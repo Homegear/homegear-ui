@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+
+override_dh_auto_clean:
+
+override_dh_auto_configure:
+	# We can for example download needed files here.
+	# All shell commands are supported
+
+override_dh_auto_build:
+
+override_dh_auto_install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	cd $(CURDIR)
+	npm install
+	php admin/admin.php generateExtensions
+	/usr/local/bin/babel script.js --out-file script.min.js
+	mkdir -p $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui
+	cp -R $(CURDIR)/assets $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/*.ico $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/*.png $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/icons.js $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/index.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/interfacedata.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/manifest.json $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/manifest.webapp $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/media $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/script.min.js $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/script.vendor.js $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/style.css $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/style.vendor.css $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+
+%:
+	dh $@

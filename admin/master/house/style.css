@@ -1,0 +1,125 @@
+@media (min-width: 1024px) {
+	#houseJS {
+		padding-right: 15%;
+		padding-left: 15%;
+	}
+}
+
+@media (min-width: 1900px) {
+	#houseJS {
+		padding-right: 20%;
+		padding-left: 20%;
+	}
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+
+/* roomSelect */
+
+/* ///////////////////////////////////////////////////////////////////////// */
+
+.roomSelectTitle {
+	width: 100%;
+	font-size: 28px;
+	color: #fff;
+	font-weight: bold;
+	padding: 30px 0px 22px 0px;
+	display: block;
+	clear: both;
+}
+
+.roomSelectTitle:first-child {
+	padding-top: 0px;
+}
+
+.carousel {
+	overflow: visible;
+}
+
+.carousel .slick-list {
+	overflow: visible;
+}
+
+.roomSelect_wrapper {
+	width: 185px;
+	height: 222px;
+	margin: 0 15px 0 15px;
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.roomSelect {
+	width: 185px;
+	height: 145px;
+	background: #191b1f;
+	position: relative;
+	color: #fff;
+	border-right: 0px solid #25282e;
+	border-radius: 10px;
+	padding: 0;
+	text-align: center;
+}
+
+.roomSelect>div {
+	width: 185px;
+	height: 145px;
+	position: relative;
+}
+
+.roomSelect svg {
+	width: 100px;
+	height: 76px;
+	color: #fff;
+	fill: #fff;
+	font-size: 76px;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+
+.roomSelect_wrapper .description {
+	width: 185px;
+	height: 70px;
+	font-size: 24px;
+	color: #fff;
+	text-align: left;
+	overflow-wrap: break-word;
+	padding: 8px 0 0 0;
+	position: absolute;
+	right: 0;
+	left: 0;
+	white-space: pre-line;
+	overflow: hidden;
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+
+/* all_devices */
+
+/* ///////////////////////////////////////////////////////////////////////// */
+
+#all_devices {
+	padding-top: 90px;
+}
+
+#all_devices .button_title {
+	text-transform: capitalize;
+}
+
+#all_devices .iconDevice_active, #all_devices .iconDevice_inactive {
+	margin: 20px 0 0px 0;
+}
+
+#all_devices .iconArrow {
+	margin: 30px 0 0px 0;
+}
+
+#all_devices .allDevicesCount {
+	display: inline-block;
+}

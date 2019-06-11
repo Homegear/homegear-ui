@@ -1,0 +1,78 @@
+{
+  "name": "shif",
+  "title": "Shif",
+  "description": "Smarthome Interface",
+  "version": "4.0.0",
+  "dependencies": {
+    "@homegear/homegearws": "^1.0.9",
+    "@jaames/iro": "^4.5.1",
+    "jquery": "^3.4.1",
+    "jsoneditor": "^5.34.0",
+    "patternlock": "1.0.1",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "acorn": "^6.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2",
+    "popper.js": "^1.15.0"
+  },
+  "unusedDependencies": {
+    "plotly.js": "^1.46.0",
+    "push.js": "^1.0.9",
+    "slick-carousel": "^1.8.1",
+    "bootstrap": "^4.3.1",
+    "c3": "^0.6.14",
+    "d3": "^5.9.2",
+    "notie": "^4.3.1",
+    "jquery-chained": "^2.0.0-beta.2",
+    "jquery-touchswipe": "^1.6.19",
+    "paho-mqtt": "^1.1.0"
+  },
+  "browserslist": [
+    "last 4 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
+  "babel": {
+    "presets": [
+      "babel-preset-env"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jquery": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2015
+    },
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "linebreak-style": 0,
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-console": "off"
+    }
+  }
+}

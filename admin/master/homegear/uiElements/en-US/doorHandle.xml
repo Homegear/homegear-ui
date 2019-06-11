@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+	<homegearUiElement>
+		<uniqueUiElementId>Base.doorHandle</uniqueUiElementId>
+		<type>simple</type>
+		<control>doorHandle</control>
+        <role>0x301001</role>
+		<texts>
+			<text id="title">
+				<content>State</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>State</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
+		<icons>
+			<icon id="l2">
+				<name>door1</name>
+                <color>inactive</color>
+			</icon>
+            <icon id="l3">
+                <name>pfeil3</name>
+                <color>iconArrow</color>
+            </icon>
+		</icons>
+		<variableInputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+				<visualizeInOverview>true</visualizeInOverview>
+				<rendering>
+					<condition operator="e" value="0">
+						<icons>
+							<icon id="state">
+								<name>door1</name>
+								<color>inactive</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>closed</content>
+								<color>inactive</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="1">
+						<icons>
+							<icon id="state">
+								<name>door1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>opened</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="2">
+						<icons>
+							<icon id="state">
+								<name>door1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>tilted</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="g" value="2">
+						<icons>
+							<icon id="state">
+								<name>door1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>unknown state</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+				</rendering>
+			</variable>
+		</variableInputs>
+		<variableOutputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+			</variable>
+		</variableOutputs>
+		<metadata>
+            <role>301001</role>
+		</metadata>
+	</homegearUiElement>
+</homegearUiElements>

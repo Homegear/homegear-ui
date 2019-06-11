@@ -1,0 +1,16 @@
+Source: homegear-ui
+Maintainer: Sathya Laufer <sathya@laufers.net>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 8)
+Homepage: https://homegear.eu
+
+Package: homegear-ui
+Architecture: all
+Section: misc
+Priority: optional
+Homepage: https://homegear.eu
+Depends: ${shlibs:Depends}, ${misc:Depends}, homegear (>= 0.7.0)
+Description: Provides an user interface for Homegear.
+ This packet provides an user interface for Homegear.

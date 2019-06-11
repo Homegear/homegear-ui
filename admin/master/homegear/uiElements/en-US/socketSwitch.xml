@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+	<homegearUiElement>
+		<uniqueUiElementId>Base.socketSwitch</uniqueUiElementId>
+		<type>simple</type>
+		<control>socketSwitch</control>
+        <role>0x400000</role>
+		<texts>
+			<text id="title">
+				<content>Toggle</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>State</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
+		<icons>
+			<icon id="l2">
+				<name>socket1</name>
+                <color>inactive</color>
+			</icon>
+            <icon id="l3">
+                <name>pfeil3</name>
+                <color>iconArrow</color>
+            </icon>
+		</icons>
+		<variableInputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+				<visualizeInOverview>true</visualizeInOverview>
+				<rendering>
+					<condition operator="not" value="0">
+						<icons>
+							<icon id="state">
+								<name>socket1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>on</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="0">
+						<icons>
+							<icon id="state">
+								<name>socket1</name>
+								<color>inactive</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>off</content>
+								<color>inactive</color>
+							</text>
+						</texts>
+					</condition>
+				</rendering>
+			</variable>
+		</variableInputs>
+		<variableOutputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+			</variable>
+		</variableOutputs>
+		<metadata>
+            <role>400000</role>
+		</metadata>
+	</homegearUiElement>
+</homegearUiElements>

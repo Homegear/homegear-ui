@@ -1,0 +1,118 @@
+.device_icon .active,
+.decive_icon .inactive {
+	float: left;
+	width: 90px;
+    margin-right: 10px;
+}
+
+.iconArrow {
+	margin-top:15px;
+	float: right;
+	padding-top: 2px;
+
+}
+
+.iconArrowAll{
+	margin-top:25px;
+}
+
+.icon_default{
+    height: 60px;
+	width: 60px;
+}
+
+.device_icon .active svg, .device_icon .inactive svg{
+	height: 60px;
+	width: 60px;
+	fill: #898989;
+}
+
+.device_icon .active .svg_state {
+	display: block;
+    fill: #e3a104;
+}
+
+.device_icon .inactive .svg_state {
+	display: none;
+}
+
+.iconArrow svg {
+	height: 39px;
+	max-width: 39px;
+	fill: #898989;
+}
+
+.device_icon .active .svg_icon svg{
+    color: #e3a104;
+	fill: #e3a104;
+}
+
+.device_icon svg .window{
+	height: 60px;
+	width: 60px;
+	fill: none;
+	stroke: #898989;
+}
+
+.device_icon .window_open {
+	display: block;
+}
+
+.device_icon .window_close {
+	display: none;
+}
+
+.device_icon .active svg .window{
+	height: 60px;
+	width: 60px;
+	fill: none;
+	stroke: #e3a104;
+}
+
+.device_icon .active .window_open {
+	display: block;
+}
+
+.device_icon .active .window_close {
+	display: none;
+}
+
+.device_icon .inactive .window_open {
+	display: none;
+}
+
+.device_icon .inactive .window_close {
+	display: block;
+}
+
+.device_icon .active .door_open {
+	display: block;
+}
+
+.device_icon .active .door_close {
+	display: none;
+}
+
+.device_icon .inactive .door_open {
+	display: none;
+}
+
+.device_icon .inactive .door_close {
+	display: block;
+}
+
+#mainmenu_alarmanlage svg,
+#mainmenu_alarmanlage .inactive svg{
+	color: #4bff38 !important;
+	fill: #4bff38 !important;
+}
+
+#mainmenu_alarmanlage .active svg{
+	color: #ff3838 !important;
+	fill: #ff3838 !important;
+}
+
+#mainmenu_alarmanlage .warning svg{
+	color: #e3a104 !important;
+	fill: #e3a104 !important;
+}

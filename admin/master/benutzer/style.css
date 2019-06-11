@@ -1,0 +1,72 @@
+/* ///////////////////////////////////////////////////////////////////////// */
+/* User */
+/* ///////////////////////////////////////////////////////////////////////// */
+#user_wrapper .form-group{
+  margin-bottom: 20px;
+}
+
+.user_square {
+  float: left;
+  font-size: 20px;
+  margin: 0 40px 40px 0;
+}
+
+.user_square .user {
+  width: 145px;
+  height: 145px;
+  background: #191b1f;
+  position: relative;
+  color: #fff;
+  border-right: 0px solid #25282e;
+  border-radius: 10px;
+  padding: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.user_square .user svg {
+  width: 100px;
+  height: 76px;
+  color: #fff;
+  fill: #fff;
+  font-size: 76px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.user_square .description {
+  font-size: 24px;
+  float: left;
+  margin-left: 30px;
+}
+
+.user_square label>input {
+  display: none;
+}
+
+.user_square label>input+div {
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.user_square label>input:checked+div {
+  border: 1px solid #ffffff;
+}
+
+#color-picker-container{
+  margin-top: 20px;
+}
+
+#color-picker-container > .iro__colorPicker{
+  margin: auto;
+}
+
+#color-picker-container > svg{
+  margin: 0 auto;
+}

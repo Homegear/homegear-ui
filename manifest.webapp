@@ -1,0 +1,22 @@
+{
+  "lang": "de",
+  "name": "Shif",
+  "short_name": "Shif",
+  "description": "Smart Home Interface",
+  "background_color": "#333",
+  "theme_color": "#333",
+  "dir": "ltr",
+  "start_url": "index.php",
+  "display": "fullscreen",
+  "orientation": "any",
+  "icons": {
+     "30":"media/logo/icon/smarthome36.png", 
+     "60":"media/logo/icon/smarthome72.png", 
+     "128":"media/logo/icon/smarthome128.png" 
+    },
+    "developer": { 
+        "name": "", 
+        "url": "" 
+    }, 
+    "default_locale": "de"
+}

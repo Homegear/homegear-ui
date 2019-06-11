@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Copy this script to .git/hooks/pre-commit to enable automatic version incrementing
+
+SCRIPTDIR="$( cd "$(dirname $0)" && pwd )"
+
+cd $SCRIPTDIR/../..
+BRANCH=$(git branch | grep "\*")
+[[ "$BRANCH" == "* master" || "$BRANCH" == "* testing" ]] && exit 0
+REVISION_FILE=$SCRIPTDIR/../../revision.txt
+REVISION=$(cat $REVISION_FILE)
+echo $(($REVISION + 1)) > $REVISION_FILE
+git add revision.txt

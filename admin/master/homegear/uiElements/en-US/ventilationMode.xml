@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+	<homegearUiElement>
+		<uniqueUiElementId>Base.ventilationMode</uniqueUiElementId>
+		<type>simple</type>
+		<control>ventilationMode</control>
+        <role>0x201003</role>
+		<texts>
+			<text id="title">
+				<content>Mode</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>Mode</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
+		<icons>
+			<icon id="l2">
+				<name>ventilator</name>
+                <color>inactive</color>
+			</icon>
+            <icon id="l3">
+                <name>pfeil3</name>
+                <color>iconArrow</color>
+            </icon>
+		</icons>
+		<variableInputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+				<visualizeInOverview>true</visualizeInOverview>
+				<rendering>
+					<condition operator="e" value="0">
+						<icons>
+							<icon id="state">
+								<name>pfeil2</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>Step 1</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="1">
+						<icons>
+							<icon id="state">
+								<name>pfeil2</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>Step 2</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="2">
+						<icons>
+							<icon id="state">
+								<name>pfeil2</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>Step 3</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="3">
+						<icons>
+							<icon id="state">
+								<name>pfeil2</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>Step 4</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+				</rendering>
+			</variable>
+		</variableInputs>
+		<variableOutputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+			</variable>
+		</variableOutputs>
+		<metadata>
+		</metadata>
+	</homegearUiElement>
+</homegearUiElements>
