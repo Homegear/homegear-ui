@@ -3,13 +3,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Pfad zum Rootverzeichnis des Interfaces
-$rootPath = getcwd();
+$rootPath         = getcwd();
 
 // Pfad zu den Admin Daten
-$adminPath = $rootPath."/admin";
+$adminPath        = $rootPath."/admin";
 
 // Pfad zum Master der Erweiterungen
-$masterPath = $adminPath."/master/";
+$masterPath       = $adminPath."/master/";
 
 // Pfad zur json Config Datei
 $databaseJsonPath = $rootPath."/interfacedata.php";
@@ -17,21 +17,13 @@ $databaseJsonPath = $rootPath."/interfacedata.php";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // include and parse the json config file
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if( (file_exists($databaseJsonPath) && !isset($_GET["interfacedata"])) || (isset($_GET["interfacedata"]) && file_exists($rootPath."interfacedata_".$_GET["interfacedata"].".php")) ){
-    if(isset($_GET["interfacedata"])){
-        include_once($rootPath."/interfacedata_".$_GET["interfacedata"].".php");
-    }
-    else{
-        include_once($databaseJsonPath);
-    }
-
-    if(is_array($interfaceData)){
-    }
-    else if(!($interfaceData = json_decode($interfaceData, true))){
+if (file_exists($databaseJsonPath)) {
+    include_once($databaseJsonPath);
+    if(!is_array($interfaceData)){
         die("Invalid JSON file!");
     }
 }
-else{
+else {
     die("JSON file missing!");
 }
 
@@ -52,35 +44,32 @@ date_default_timezone_set($interfaceData["settings"]["timezone"]);
 error_reporting($interfaceData["settings"]["errorReporting"]);
 
 // Name des Authentifizierungs Cookies
-$cookie_name = $interfaceData["settings"]["cookieName"];
+$cookie_name        = $interfaceData["settings"]["cookieName"];
 
 // Direktlogin eines bestimmten Users
 $directLoginUserKey = $interfaceData["settings"]["directLoginUserKey"];
-$directLoginUrlKey = $interfaceData["settings"]["directLoginUrlKey"];
+$directLoginUrlKey  = $interfaceData["settings"]["directLoginUrlKey"];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // validation
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 if ($directLoginUserKey != "" && $directLoginUrlKey != "" && class_exists('\Homegear\Homegear')) {
-    $_POST['user'] = $directLoginUserKey;
+    $_POST['user']     = $directLoginUserKey;
     $_POST['password'] = $directLoginUrlKey;
 }
 
 function authorized() {
-    return isset($_SESSION['authorized']) && $_SESSION['authorized'] === true &&
-           isset($_SESSION['user']);
+    return isset($_SESSION['authorized']) && $_SESSION['authorized'] === true && isset($_SESSION['user']);
 
 }
 
-function oauth_init_cookies($oauth_keys)
-{
+function oauth_init_cookies($oauth_keys) {
     $thirty_days = time() + 2592000;
     setcookie('key_access',  $oauth_keys['access_token'],  $thirty_days);
     setcookie('key_refresh', $oauth_keys['refresh_token'], $thirty_days);
 }
 
-function oauth_deinit_cookies()
-{
+function oauth_deinit_cookies() {
     // Choose some time in the past, so browsers will remove the cookie(s)
     $past = time() - 42000;
 
@@ -93,14 +82,12 @@ function oauth_deinit_cookies()
     }
 }
 
-function oauth_init_session($username)
-{
+function oauth_init_session($username) {
     $_SESSION['authorized'] = true;
-    $_SESSION['user'] = $username;
+    $_SESSION['user']       = $username;
 }
 
-function oauth_deinit_session()
-{
+function oauth_deinit_session() {
     if (isset($_SESSION['authorized']))
         unset($_SESSION['authorized']);
     if (isset($_SESSION['user']))
@@ -109,8 +96,7 @@ function oauth_deinit_session()
 
 // Homegear exceptions must be catched by the caller.
 // The caller has to provide a $hg, so he should have a try-catch already.
-function oauth_login(&$hg)
-{
+function oauth_login(&$hg) {
     if (!isset($_POST['user']) || !isset($_POST['password']))
         return false;
 
@@ -123,16 +109,14 @@ function oauth_login(&$hg)
     return $_POST['user'];
 }
 
-function oauth_clear()
-{
+function oauth_clear() {
     oauth_deinit_cookies();
     oauth_deinit_session();
 }
 
 // Homegear exceptions must be catched by the caller.
 // The caller has to provide a $hg, so he should have a try-catch already.
-function oauth_check_logged_in(&$hg)
-{
+function oauth_check_logged_in(&$hg) {
     // No OAuth keys saved, leave
     if (!isset($_COOKIE['key_access']) || !isset($_COOKIE['key_refresh']))
         return false;
@@ -155,10 +139,15 @@ function oauth_check_logged_in(&$hg)
 }
 
 function current_user_init(&$hg) {
+    global $interfaceData;
     foreach ($hg->listUsers() as $user) {
         if ($user['name'] !== $_SESSION['user'])
             continue;
 
+        if (!isset($user['metadata']['interface'])) {
+            $user['metadata']['interface'] = $interfaceData['users']['1']['settings'];
+        }
+        
         return [
             'id'       => $user['id'],
             'settings' => $user['metadata']['interface'] ?? array(),
@@ -168,10 +157,9 @@ function current_user_init(&$hg) {
     }
 }
 
-$currentUser = ['id' => null];
+$currentUser       = ['id' => null];
 $hg_login_verified = false;
 if (class_exists('\Homegear\Homegear')) {
-
     try {
 
         $hg = new \Homegear\Homegear();
@@ -195,7 +183,7 @@ if (class_exists('\Homegear\Homegear')) {
     }
 }
 
-if (!$hg_login_verified) {
+if (!$hg_login_verified){
     // valid if session exist
     if( isset($_SESSION['authorized']) && $_SESSION['authorized'] == true && isset($_SESSION['interfaceUser']) ){
         $currentUser = $interfaceData["users"][$_SESSION['interfaceUser']];
@@ -255,13 +243,9 @@ $interfacePath = $interfaceData["settings"]["interfacePath"].(isset($_GET["login
 $loginMethod = $interfaceData["settings"]["loginMethod"];
 
 if($currentUser["id"] !== null){
-    $firstBreadcrumb = $interfaceData["users"][$currentUser["id"]]["settings"]["firstBreadcrumb"] ?? '';
-    $firstBreadcrumbId = $interfaceData["users"][$currentUser["id"]]["settings"]["firstBreadcrumbId"] ?? '';
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Javascript Optionen
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    $javascript_options = "<script>";
+    $firstBreadcrumb     = $interfaceData["users"][$currentUser["id"]]["settings"]["firstBreadcrumb"] ?? '';
+    $firstBreadcrumbId   = $interfaceData["users"][$currentUser["id"]]["settings"]["firstBreadcrumbId"] ?? '';
+    $javascript_options  = "<script>";
     $javascript_options .= "    var firstBreadcrumb = '".$firstBreadcrumb."';"."\n";
     $javascript_options .= "    var firstBreadcrumbId = '".$firstBreadcrumbId."';"."\n";
     $javascript_options .= "    var breadcrumbs_array = ['<div class=\"breadcrumbsJump\" onclick=\'main(this, {\"name\":firstBreadcrumb,\"content\":firstBreadcrumbId});\'>".$firstBreadcrumb."</div>'];"."\n";
@@ -272,14 +256,12 @@ if($currentUser["id"] !== null){
     $javascript_options .= "    var text;"."\n";
     $javascript_options .= "    var interfacePath = '".$interfacePath."';"."\n";
     $javascript_options .= "    var controller_url = '".$interfaceData["settings"]["controllerUrl"]."';"."\n";
-    if(isset($interfaceData["settings"]["homegear"])){
-        $javascript_options .= "    var websocket_url = ".$interfaceData["settings"]["homegear"]["url"].";"."\n";
-        $javascript_options .= "    var websocket_port = ".$interfaceData["settings"]["homegear"]["port"].";"."\n";
-        $javascript_options .= "    var websocket_security = '".$interfaceData["settings"]["homegear"]["security"]."';"."\n";
-        $javascript_options .= "    var websocket_security_ssl = '".$interfaceData["settings"]["homegear"]["ssl"]."';"."\n";
-        $javascript_options .= "    var websocket_user = '".$interfaceData["settings"]["homegear"]["user"]."';"."\n";
-        $javascript_options .= "    var websocket_password = '".$interfaceData["settings"]["homegear"]["password"]."';"."\n";
-    }
+    $javascript_options .= "    var websocket_url = ".$interfaceData["settings"]["homegear"]["url"].";"."\n";
+    $javascript_options .= "    var websocket_port = ".$interfaceData["settings"]["homegear"]["port"].";"."\n";
+    $javascript_options .= "    var websocket_security = '".$interfaceData["settings"]["homegear"]["security"]."';"."\n";
+    $javascript_options .= "    var websocket_security_ssl = '".$interfaceData["settings"]["homegear"]["ssl"]."';"."\n";
+    $javascript_options .= "    var websocket_user = '".$interfaceData["settings"]["homegear"]["user"]."';"."\n";
+    $javascript_options .= "    var websocket_password = '".$interfaceData["settings"]["homegear"]["password"]."';"."\n";
     $javascript_options .= "</script>";
 }
 else{
