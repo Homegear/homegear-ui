@@ -17,7 +17,7 @@ override_dh_auto_install:
 	npm install
 	npm install babel-preset-es2015
 	php admin/admin.php generateExtensions
-	/usr/local/bin/babel script.js --out-file script.min.js
+	babel script.js --out-file script.min.js
 	mkdir -p $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui
 	cp -R $(CURDIR)/assets $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/*.ico $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
