@@ -3,17 +3,31 @@
 // liefert den view für das Editieren der Benutzereinstellungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user(element, options){
-    var themesNames = Array();
-    $.each(interfaceData.themes, function(key, value) {
-        if(!(value.name in themesNames) && value.name != 'standard' && value.name != 'highlight' ){
-            themesNames.push('<option value="'+value.name+'" autocomplete="off" '+(userSettings.theme == value.name ? 'selected' : '')+'>'+interfaceData.l18n['settings.user.manage.theme.'+value.name]+'</option>');
-        }
-    });
-    var langNames = Array();
+    let themesNames = [];
+    for (let i of interfaceData.themes) {
+        if (i.name === 'standard' || i.name === 'highlight')
+            continue;
+
+        const selected = userSettings.theme == i.name ? 'selected' : '';
+        themesNames.push(`
+            <option value="${i.name}" autocomplete="off" ${selected}>
+                ${interfaceData.l18n['settings.user.manage.theme.'+i.name]}
+            </option>
+        `);
+
+    }
+
+    let langNames = [];
     $.each(interfaceData.l18n.languages, function(key, value) {
-        langNames.push('<option value="'+key+'" autocomplete="off" '+(userSettings.language == key ? 'selected' : '')+'>'+value.name+'</option>');
+        const selected = userSettings.language == key ? 'selected' : '';
+        langNames.push(`
+            <option value="${key}" autocomplete="off" ${selected}>
+                ${value.name}
+            </option>
+        `);
     });
-    var output = `
+
+    const output = `
         <div id="user_wrapper">
         <form id="user_${options.content}" name="user_${options.content}" action="javascript:void(0);" onsubmit="user_${options.content}_commit();">
             <div class="form-group">
@@ -43,10 +57,11 @@ function user(element, options){
 
     content('this', {'content':output, 'name':options['name']});
 
-    var userColorPickerWidth = $('#user_edit').outerWidth() <= 400 ? $('#user_edit').outerWidth() : 400;
-    var userColorPickerHeight = userColorPickerWidth + 20;
+    const outerWidth = $('#user_edit').outerWidth()
+    const userColorPickerWidth = outerWidth <= 400 ? outerWidth : 400;
+    const userColorPickerHeight = userColorPickerWidth + 20;
 
-    var userColorPicker = new iro.ColorPicker('#color-picker-container', {
+    const userColorPicker = new iro.ColorPicker('#color-picker-container', {
         width: userColorPickerWidth,
         height: userColorPickerHeight,
         color: userSettings.highlight,
@@ -57,9 +72,9 @@ function user(element, options){
         borderWidth: 3,
         borderColor: '#fff',
         anticlockwise: true,
-    });  
+    });
 
-    userColorPicker.on('color:change', function(color, changes) {
+    userColorPicker.on('color:change', function (color, changes) {
         $('#user_highlight_display #highlight').val(color.hexString);
     });
 }
@@ -68,24 +83,10 @@ function user(element, options){
 // verarbeitet das Editieren der Benutzereinstellungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_edit_commit() {
-    if ($('#user_edit #theme').val()) {
-        userSettings.theme = $('#user_edit #theme').val();
-    } else {
-        userSettings.theme = "dark";
-    }
+    userSettings.theme     = $('#user_edit #theme').val()     || 'dark';
+    userSettings.highlight = $('#user_edit #highlight').val() || '#e3a104';
+    userSettings.language  = $('#user_edit #language').val()  || 'en-US';
 
-    if ($('#user_edit #highlight').val()) {
-        userSettings.highlight = $('#user_edit #highlight').val();
-    } else {
-        userSettings.highlight = "#e3a104";
-    }
-
-    if ($('#user_edit #language').val()) {
-        userSettings.language = $('#user_edit #language').val();
-    } else {
-        userSettings.language = "en-US";
-    }
-    
     var rpc_obj_get = {
         jsonrpc: '2.0',
         method: 'getUserMetadata',
@@ -93,19 +94,22 @@ function user_edit_commit() {
     };
 
     homegear.invoke(rpc_obj_get, updateUserSettingsData);
-    
-    function updateUserSettingsData(data){
-        var newUserSettings = data.result;
-        newUserSettings['interface']['language'] = userSettings.language;
-        newUserSettings['interface']['theme'] = userSettings.theme;
-        newUserSettings['interface']['highlight'] = userSettings.highlight;
-                
-        var rpc_obj = {
+
+    function updateUserSettingsData(data) {
+        let newUserSettings = data.result;
+
+        newUserSettings.interface.language  = userSettings.language;
+        newUserSettings.interface.theme     = userSettings.theme;
+        newUserSettings.interface.highlight = userSettings.highlight;
+
+        const rpc_obj = {
             jsonrpc: '2.0',
             method: 'setUserMetadata',
             params: [newUserSettings]
         };
 
-        homegear.invoke(rpc_obj, function(){window.location.href = interfacePath;});
+        homegear.invoke(rpc_obj, function() {
+            window.location.href = interfacePath;
+        });
     }
 }
