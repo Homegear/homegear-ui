@@ -9,23 +9,7 @@
         die("No interfaceData file!");
     }
 
-    if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) || (isset($_SERVER['HTTP_X_GITLAB_TOKEN']) && $_SERVER['HTTP_X_GITLAB_TOKEN'] == $urlKey) ){
-
-        // GIT Checkout Trigger
-        if(isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
-            $filePath = "README.md";
-            touch($filePath);
-            $fileTime = filemtime($filePath);
-            for ($i = 0; $i <= 10; $i++) {
-                sleep(1);
-                if($fileTime != filemtime($filePath)){
-                    break;
-                }
-                echo $i." | ";
-            }
-            die();
-        }
-
+    if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/settings.php");
             include(getcwd()."/admin/admin.php");
@@ -42,21 +26,6 @@
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function getRequestHeaders() {
-        $headers = array();
-        foreach($_SERVER as $key => $value) {
-            if (substr($key, 0, 5) <> 'HTTP_') {
-                continue;
-            }
-            $header = $key;
-            $headers[$header] = $value;
-        }
-        return $headers;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // json raw
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(isset($_GET["json"])){
@@ -67,7 +36,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // homegear json raw
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    else if(isset($_GET["homegear-json"])){
+    else if(isset($_GET["homegear-json-raw"])){
         header('Content-Type: application/json; charset=utf-8');
         $homegear_json_lang = "en-US";
         try {
@@ -86,6 +55,21 @@
             print "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
         }
         die();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // homegear json processed 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if(isset($_GET["homegear-json"])){
+        if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
+            $currentUser["id"] = "setup";
+            include(getcwd()."/admin/master/homegear/functions.php");
+        }
+        else{
+            die("No homegear functions.php file!");
+        }
+        header('Content-Type: application/json; charset=utf-8');
+        die("<pre>".json_encode($hg_interfaceData, JSON_PRETTY_PRINT)."</pre>");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -540,7 +524,8 @@
             <div onclick="loadDoc(\''.$admin_url.'&action=icons\', outputResult)" class="adminButton">Icons</div>
 
             <h2>Homegear</h2>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear-json\', outputResult)" class="adminButton">Raw json output</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear-json-raw\', outputResult)" class="adminButton">Raw json output</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear-json\', outputResult)" class="adminButton">Processed json output</div>
 
             <h4>Stories</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createStories\', outputResult)" class="adminButton">create</div>
