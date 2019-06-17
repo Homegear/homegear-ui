@@ -238,25 +238,25 @@
                         "flaticons"
                     ]
                 },
-                "benutzer": {
+                "user": {
                     "activated": true,
                     "requiredAssets": [
                         ""
                     ]
                 },
-                "beschattung": {
+                "shading": {
                     "activated": true,
                     "requiredAssets": [
                         ""
                     ]
                 },
-                "fenster": {
+                "window": {
                     "activated": true,
                     "requiredAssets": [
                         ""
                     ]
                 },
-                "tueren": {
+                "door": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -280,7 +280,7 @@
                         ""
                     ]
                 },
-                "beleuchtung": {
+                "lighting": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -292,7 +292,7 @@
                         ""
                     ]
                 },
-                "schalten": {
+                "socket": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -304,7 +304,19 @@
                         ""
                     ]
                 },
-                "klima": {
+                "climate": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "heating": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "ventilation": {
                     "activated": true,
                     "requiredAssets": [
                         ""
