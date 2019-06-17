@@ -19,7 +19,6 @@
     "settings": {
         "timezone": "Europe/Berlin",
         "errorReporting": "-1",
-        "salt": "",
         "interfacePath": "/",
         "loginMethod": "input",
         "controllerUrl": "index.php",

@@ -139,46 +139,12 @@
         //$content .= '<script type="text/javascript">'.stripslashes($interfaceScript).'</script>';
     }
 
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////
     // Loginseitengenerierung
     ///////////////////////////////////////////////////////////////////////////////////////////
     else{
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Login Validation
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if( isset($_POST['user']) && isset($_POST['password']) ){
-
-            $username = htmlentities($_POST['user']);
-            $password = htmlentities($_POST['password']);
-
-            // only with patternlock no user is valid
-            if($loginMethod != "patternlock" && ($username == "" || $password == "")){
-                die();
-            }
-
-            // check for valid user
-            $validUser = false;
-            foreach($interfaceData["users"] as $line){
-                if(password_verify($password, $line["password"])){
-                    $validUser = true;
-                    setcookie($cookie_name, $line["key"], time() + (86400 * 30), "/"); // name, value
-                    die("true");
-                }
-                else{
-                    setcookie($cookie_name, "", time() - 3600, "/");
-                    unset($_COOKIE[$cookie_name]);
-                }
-            }
-
-            if($validUser != true){
-                die("false");
-            }
-
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Login Content
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////
         $content .= '<link href="style.vendor.css" rel="stylesheet" type="text/css">';
         $content .= '
           <style>

@@ -183,61 +183,19 @@ if (class_exists('\Homegear\Homegear')) {
     }
 }
 
-if (!$hg_login_verified){
-    // valid if session exist
-    if( isset($_SESSION['authorized']) && $_SESSION['authorized'] == true && isset($_SESSION['interfaceUser']) ){
-        $currentUser = $interfaceData["users"][$_SESSION['interfaceUser']];
-    }
-    // valid if directLogin is set and user exists or if only cookie exist and is valid -> cookie autologin
-    else if( $directLoginUserKey != "" || $directLoginUrlKey != "" || (isset($_COOKIE[$cookie_name]) && $_COOKIE[$cookie_name] != "") ){
-        if($directLoginUserKey != "" && $directLoginUrlKey == ""){
-            $tempKey = $directLoginUserKey;
-        }
-        else if(!isset($_GET["login"]) && $directLoginUrlKey != "" && isset($_COOKIE[$cookie_name]) && $_COOKIE[$cookie_name] != ""){
-            $tempKey = $_COOKIE[$cookie_name];
-        }
-        else if($directLoginUserKey != "" && $directLoginUrlKey != "" && isset($_GET["login"]) && $_GET["login"] == $directLoginUrlKey){
-                $tempKey = $directLoginUserKey;
-        }
-        else if(isset($_COOKIE[$cookie_name]) && $_COOKIE[$cookie_name] != ""){
-            $tempKey = $_COOKIE[$cookie_name];
-        }
-
-        if( isset($tempKey) ){
-            foreach($interfaceData["users"] as $key => $line){
-                if($line["key"] == $tempKey){
-                    $_SESSION['authorized'] = true;
-                    $_SESSION['user'] = $interfaceData["settings"]["homegear"]["user"];
-                    $_SESSION['interfaceUser'] = $key;
-                    $currentUser = $interfaceData["users"][$_SESSION['interfaceUser']];
-                }
-            }
-        }
-        // if no user where found reset
-        else{
-            unset($_COOKIE[$cookie_name]);
-            setcookie($cookie_name, "", time() - 3600, "/");
-            unset($_SESSION['authorized']);
-            unset($_SESSION['user']);
-            unset($_SESSION['interfaceUser']);
-        }
-    }
-    else{
-        unset($_SESSION['authorized']);
-        unset($_SESSION['user']);
-        unset($_SESSION['interfaceUser']);
-        $currentUser = array("id" => "1");
+// for dev interface installations outside a homegear webserver
+if (!$hg_login_verified && !class_exists('\Homegear\Homegear') && file_exists($adminPath."/functions.dev.php")){
+    include_once($adminPath."/functions.dev.php");
+    if(function_exists('hgLessLogin')){
+        hgLessLogin();
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Crypt Salt zur Passwortgenerierung
-$salt = $interfaceData["settings"]["salt"];
-
 // Pfad zum Interfaceverzeichnis ab URL Root
-$interfacePath = $interfaceData["settings"]["interfacePath"].(isset($_GET["login"]) ? '?login='.$_GET["login"] : "");
+$interfacePath = $interfaceData["settings"]["interfacePath"];
 
 // Einstellen der standard Loginmethode: patternlock | input | userselect
 $loginMethod = $interfaceData["settings"]["loginMethod"];
@@ -248,7 +206,7 @@ if($currentUser["id"] !== null){
     $javascript_options  = "<script>";
     $javascript_options .= "    var firstBreadcrumb = '".$firstBreadcrumb."';"."\n";
     $javascript_options .= "    var firstBreadcrumbId = '".$firstBreadcrumbId."';"."\n";
-    $javascript_options .= "    var breadcrumbs_array = ['<div class=\"breadcrumbsJump\" onclick=\'main(this, {\"name\":firstBreadcrumb,\"content\":firstBreadcrumbId});\'>".$firstBreadcrumb."</div>'];"."\n";
+    $javascript_options .= "    var breadcrumbs_array = ['<div class=\"breadcrumbsJump\" onclick=\'main(this, {name:firstBreadcrumb,content:firstBreadcrumbId});\'>".$firstBreadcrumb."</div>'];"."\n";
     $javascript_options .= "    var breadcrumbs_id_array = [firstBreadcrumbId];"."\n";
     $javascript_options .= "    var showFloor = '".($interfaceData["users"][$currentUser["id"]]["settings"]["showFloor"] ?? false)."';"."\n";
     $javascript_options .= "    var console_log = '".( ((isset($_GET['console_log']) && ($interfaceData["users"][$currentUser["id"]]["settings"]["consoleLog"] ?? '') == "url") || ($interfaceData["users"][$currentUser["id"]]["settings"]["consoleLog"] ?? '') == "true" )  ? 'true' : 'false')."';"."\n";
