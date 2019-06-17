@@ -97,6 +97,10 @@ function user_edit_commit() {
 
     function updateUserSettingsData(data) {
         let newUserSettings = data.result;
+        if (!newUserSettings.interface) {
+            newUserSettings.interface = userSettings;
+        }
+
 
         newUserSettings.interface.language  = userSettings.language;
         newUserSettings.interface.theme     = userSettings.theme;
