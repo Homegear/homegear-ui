@@ -2228,7 +2228,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderMode",
+            "Base.heatingIsStateSliderModeWindow",
             {
                 "inputPeers": [
                     [
@@ -2250,6 +2250,13 @@
                             "peer": 78,
                             "channel": 1,
                             "name": "CONTROL_MODE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWALARM"
                         }
                     ]
                 ],
@@ -2273,6 +2280,13 @@
                             "peer": 78,
                             "channel": 1,
                             "name": "CONTROL_MODE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWALARM"
                         }
                     ]
                 ],
