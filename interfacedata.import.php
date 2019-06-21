@@ -3191,6 +3191,68 @@
                 "metadata": {
                 }
             }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ]
+                ],
+                "label": "Temperatur",
+                "room": 3,
+                "categories": [
+                    4
+                ],
+                "metadata": {
+                    "l2_only": true
+                }
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ]
+                ],
+                "label": "Feuchte",
+                "room": 3,
+                "categories": [
+                    4
+                ],
+                "metadata": {
+                    "l2_only": true
+                }
+            }
         ]
     ]
 }
