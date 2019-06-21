@@ -1558,7 +1558,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsUpDown",
             {
                 "inputPeers": [
                     [
@@ -1570,19 +1570,7 @@
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
                             "name": "DOWN"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
                         }
                     ]
                 ],
@@ -1596,23 +1584,11 @@
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
                             "name": "DOWN"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
                         }
                     ]
                 ],
-                "label": "Rollladen",
+                "label": "Dachflächenfenster",
                 "room": 3,
                 "categories": [
                     2
@@ -1626,7 +1602,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPositionSlatsWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1651,6 +1627,13 @@
                             "peer": 18,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1678,9 +1661,16 @@
                             "channel": 1,
                             "name": "CURRENT_POSITION"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
                     ]
                 ],
-                "label": "Rollladen links",
+                "label": "Rollladen Windalarm",
                 "room": 6,
                 "categories": [
                     2
@@ -3127,6 +3117,64 @@
                         "control": 0,
                         "input": 0
                     }
+                }
+            }
+        ],
+        [
+            "254.0x100.OpenWeatherMap",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "REQUEST"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "REQUEST"
+                        }
+                    ]
+                ],
+                "label": "OpenWeatherMap",
+                "room": 6,
+                "categories": [
+                    5
+                ],
+                "metadata": {
                 }
             }
         ]
