@@ -237,10 +237,32 @@ function removeCookie(cookieName) {
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_logoff() {
-    removeCookie('smarthome');
-    removeCookie('PHPSESSIDUI');
-
-    window.location.href = interfacePath;
+    var dataString = 'cookie_delete';
+    $.ajax({
+        url: controller_url,
+        type: 'POST',
+        data: dataString,
+        processData: false,
+        success: function(data){
+            console.log('data: '+data);
+            if(data.indexOf('true') > -1){
+                removeCookie('smarthome');
+                removeCookie('PHPSESSIDUI');
+                removeCookie('key_refresh');
+                removeCookie('key_refresh');
+                window.location.href = './';
+            }
+            else{
+                console.log( l18n('login.dataerror') );
+                return false;
+            }
+        },
+        error: function(msg){
+            console.log('Error:');
+            console.log(msg);
+            return false;
+        },
+    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
