@@ -53,7 +53,7 @@
             "id": "6",
             "name": "Kind",
             "floor": "2",
-            "icon": "bett1"
+            "icon": "player"
         },
         "7": {
             "id": "7",
