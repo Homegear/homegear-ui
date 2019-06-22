@@ -689,7 +689,41 @@ Vue.component('shif-generic-l2', {
 // }}}
 
 
+
 // [shif_device] Generic Shif Device Component Object {{{
+function status_impl(control) {
+   let out = [];
+
+   const key = (control.texts &&
+                control.texts.l2_state_title &&
+                control.texts.l2_state_title.content) ?
+       control.texts.l2_state_title.content :
+       null;
+   let val = [];
+
+   for (const input of control.variableInputs) {
+       if (!input.properties.visualizeInOverview)
+           continue;
+
+       if (input.rendering) {
+           const sel = condition_get_matching(input.rendering, input.properties);
+           if (Object.keys(sel).length > 0) {
+               val.push(sel.texts.state.content);
+               continue;
+           }
+       }
+
+       const unit = input.properties.unit ? input.properties.unit : '';
+       val.push(input.properties.value + unit);
+   }
+
+   if (val.length > 0)
+       out.push({key: key, value: val.join(', ')});
+
+   return out;
+}
+
+
 const shif_device = {
     props: [
         'control',
@@ -740,35 +774,14 @@ const shif_device = {
         status: function () {
             let out = [];
 
-            for (const control of this.dev.controls) {
-                const key = (control.texts &&
-                             control.texts.l2_state_title &&
-                             control.texts.l2_state_title.content) ?
-                    control.texts.l2_state_title.content :
-                    null;
-                let val = [];
-
-                for (const input of control.variableInputs) {
-                    if (!input.properties.visualizeInOverview)
-                        continue;
-
-                    if (input.rendering) {
-                        const sel = condition_get_matching(input.rendering, input.properties);
-                        if (Object.keys(sel).length > 0) {
-                            val.push(sel.texts.state.content);
-                            continue;
-                        }
-                    }
-
-                    const unit = input.properties.unit ? input.properties.unit : '';
-                    val.push(input.properties.value + unit);
-                }
-
-                if (val.length > 0)
-                    out.push({key: key, value: val.join(', ')});
-            }
+            for (const control of this.dev.controls)
+                out = out.concat(status_impl(control));
 
             return out;
+        },
+
+        status_minimal: function () {
+            return status_impl(this.control);
         },
 
         breadcrumb: function () {
