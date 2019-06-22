@@ -1602,7 +1602,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlatsWindalarm",
+            "Base.shadingButtonsPositionVentilationWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1627,6 +1627,13 @@
                             "peer": 18,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
                         }
                     ],
                     [
@@ -1660,6 +1667,13 @@
                             "peer": 18,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
                         }
                     ],
                     [
@@ -3189,6 +3203,10 @@
                     5
                 ],
                 "metadata": {
+                    "l2_action": {
+                        "control": 0,
+                        "input": 0
+                    }
                 }
             }
         ],
