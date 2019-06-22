@@ -93,6 +93,7 @@ heating_window_l3.template = `
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
+                     v-bind:status="status_minimal"
                      v-on:click="$homegear.value_set(output, !props.value)">
     </shif-generic-l2>
 `;
