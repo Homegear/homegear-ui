@@ -17,7 +17,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>thermometer1</name>
+				<name>plus-minus</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -36,7 +36,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>plus-minus</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="1">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>plus-minus</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -64,7 +64,7 @@
 					<condition operator="e" value="2">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>plus-minus</name>
 								<color>active</color>
 							</icon>
 						</icons>

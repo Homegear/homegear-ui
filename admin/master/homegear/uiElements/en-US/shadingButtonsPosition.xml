@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<id>Base.heatingIsStateSliderModeWindow</id>
+		<id>Base.shadingButtonsPositionSlats</id>
+        <control>shadingButtonsPositionSlats</control>
 		<type>complex</type>
-        <control>heatingIsStateSliderModeWindow</control>
-        <role>0x201000</role>
+        <role>0x500000</role>
 		<texts>
 			<text id="title">
-				<content>Heating</content>
+				<content>Shading</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Heating</content>
+				<content>Shading</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
-			<icon id="temperature">
-				<name>heater</name>
-                <color>inactive</color>
+			<icon id="rolladen1">
+				<name>rolladen1</name>
+                <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>heater</name>
-                <color>inactive</color>
+				<name>rolladen1</name>
+                <color>icon</color>
 			</icon>
             <icon id="l3">
                 <name>pfeil3</name>
@@ -36,25 +36,13 @@
 			<rows>3</rows>
 		</grid>
 		<controls>
-			<control id="Base.heatingIsState">
+			<control id="Base.shadingButtons">
 				<x>0</x>
 				<y>0</y>
 				<columns>1</columns>
 				<rows>1</rows>
 			</control>
-			<control id="Base.heatingSlider">
-				<x>0</x>
-				<y>1</y>
-				<columns>1</columns>
-				<rows>1</rows>
-			</control>
-			<control id="Base.heatingMode">
-				<x>0</x>
-				<y>1</y>
-				<columns>1</columns>
-				<rows>1</rows>
-			</control>
-			<control id="Base.heatingWindow">
+			<control id="Base.shadingPosition">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>
@@ -62,7 +50,7 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>201000</role>
+            <role>500000</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
