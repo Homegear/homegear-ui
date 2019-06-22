@@ -71,3 +71,30 @@ heating_mode_l3.template = `
 `;
 
 shif_comps_create('heatingMode', heating_is_state_l2, heating_mode_l3);
+
+
+
+let heating_window_l2 = clone(shif_device);
+heating_window_l2.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status"
+                     v-bind:place="place"
+                     v-bind:actions="true"
+                     v-on:click_icon="$homegear.value_set(output, !props.value)"
+                     v-on:click="level3(device, breadcrumb)">
+    </shif-generic-l2>
+`;
+
+let heating_window_l3 = clone(shif_device);
+heating_window_l3.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="title"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:place="place"
+                     v-on:click="$homegear.value_set(output, !props.value)">
+    </shif-generic-l2>
+`;
+
+shif_comps_create('heatingWindow', heating_window_l2, heating_window_l3);
