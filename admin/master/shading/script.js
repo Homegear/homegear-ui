@@ -26,6 +26,7 @@ shading_ventilation_l3.template = `
 `;
 
 shif_comps_create('shadingVentilation', shading_ventilation_l2, shading_ventilation_l3);
+shif_comps_create('shadingWindalarm', shading_ventilation_l2, shading_ventilation_l3);
 
 
 
@@ -71,3 +72,4 @@ shading_buttons_l3.template = `
 `;
 
 shif_comps_create('shadingButtons', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
+shif_comps_create('shadingButtonsUpDown', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
