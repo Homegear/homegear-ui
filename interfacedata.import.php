@@ -1248,7 +1248,7 @@
             }
         ],
         [
-            "Base.socketSwitch",
+            "Base.socketButton",
             {
                 "inputPeers": [
                     [
@@ -1602,7 +1602,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionVentilationWindalarm",
+            "Base.shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1698,7 +1698,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPositionPositionSlats",
             {
                 "inputPeers": [
                     [
@@ -1834,7 +1834,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPositionVentilationWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1902,7 +1902,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPositionWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1970,7 +1970,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -2038,7 +2038,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -2106,7 +2106,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -2174,7 +2174,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -2969,6 +2969,37 @@
             }
         ],
         [
+            "Base.doorHandle",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 69,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 69,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "label": "Tür",
+                "room": 3,
+                "categories": [
+                    4
+                ],
+                "metadata": {
+                    "l2_only": true
+                }
+            }
+        ],
+        [
             "Base.ventilationMode",
             {
                 "inputPeers": [
@@ -3003,7 +3034,7 @@
             }
         ],
         [
-            "Base.lightingSwitchBrightness",
+            "Base.lightingSwitchButtonBrightness",
             {
                 "inputPeers": [
                     [

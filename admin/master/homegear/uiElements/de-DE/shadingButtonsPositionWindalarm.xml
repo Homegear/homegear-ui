@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<homegearUiElements lang="en-US">
+<homegearUiElements lang="de-DE">
 	<homegearUiElement>
-		<id>Base.shadingButtonsPosition</id>
-        <control>shadingButtonsPosition</control>
+		<id>Base.shadingButtonsPositionWindalarm</id>
+        <control>shadingButtonsPositionWindalarm</control>
 		<type>complex</type>
         <role>0x500000</role>
 		<texts>
@@ -43,6 +43,12 @@
 				<rows>1</rows>
 			</control>
 			<control id="Base.shadingPosition">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.shadingWindalarm">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>
