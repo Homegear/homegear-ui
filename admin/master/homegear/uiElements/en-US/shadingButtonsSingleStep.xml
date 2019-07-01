@@ -72,7 +72,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>schliesen1</name>
+								<name>pfeil-stepp2</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -86,7 +86,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>schliesen1</name>
+								<name>pfeil-stepp2</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -109,7 +109,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil4</name>
+								<name>pfeil-stepp4</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -123,7 +123,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil4</name>
+								<name>pfeil-stepp4</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
