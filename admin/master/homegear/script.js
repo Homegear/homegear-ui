@@ -122,7 +122,7 @@ function params_create(input, value) {
         Number(input.peer),
         Number(input.channel),
         input.name,
-        Number(value),
+        value,
         false,
     ];
 }
