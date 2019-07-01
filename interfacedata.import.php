@@ -142,12 +142,12 @@
                         {
                             "roleId": 201003,
                             "value": 0,
-                            "buttonText": "Zentral Komfort"
+                            "buttonText": "Zentral Frostschutz"
                         },
                         {
                             "roleId": 201003,
                             "value": 1,
-                            "buttonText": "Zentral Frostschutz"
+                            "buttonText": "Zentral Komfort"
                         },
                         {
                             "roleId": 201003,
@@ -156,16 +156,16 @@
                         }
                     ],
                     "translations": {
-                       "de-DE": {
-                         "0": "Komfort",
-                         "1": "Frostschutz",
-                         "2": "Spar"
-                       },
-                       "en-US": {
-                         "0": "Comfort",
-                         "1": "Frost",
-                         "2": "Eco"
-                       }
+                        "de-DE": {
+                            "0": "Frostschutz",
+                            "1": "Komfort",
+                            "2": "Spar"
+                          },
+                        "en-US": {
+                            "0": "Frost",
+                            "1": "Comfort",
+                            "2": "Spar"
+                        }
                     },
                     "rolesInclude": [
                         {
@@ -214,13 +214,13 @@
                 "interface": {
                     "translations": {
                        "de-DE": {
-                         "0": "Komfort",
-                         "1": "Frostschutz",
+                         "0": "Frostschutz",
+                         "1": "Komfort",
                          "2": "Spar"
                        },
                        "en-US": {
-                         "0": "Comfort",
-                         "1": "Frost",
+                         "0": "Frost",
+                         "1": "Comfort",
                          "2": "Spar"
                        }
                     }
@@ -248,10 +248,10 @@
                 "interface": {
                     "translations": {
                        "de-DE": {
-                         "0": "Absenk"
+                         "0": "Spar"
                        },
                        "en-US": {
-                         "0": "Eco"
+                         "0": "Spar"
                        }
                     }
                 }
@@ -263,7 +263,7 @@
                 "interface": {
                     "translations": {
                        "de-DE": {
-                         "0": "Frost"
+                         "0": "Frostschutz"
                        },
                        "en-US": {
                          "0": "Frost"
@@ -1565,12 +1565,14 @@
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ]
                 ],
@@ -1579,12 +1581,14 @@
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ]
                 ],
@@ -1609,17 +1613,67 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": 1
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": 2
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": 3
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": 2
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 2
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
                         }
                     ],
                     [
@@ -1649,17 +1703,67 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": 1
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": 2
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": 3
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": 2
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 2
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
                         }
                     ],
                     [
@@ -1705,17 +1809,27 @@
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "MOVE",
+                            "value": false
                         },
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STEP",
+                            "value": false
                         },
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "MOVE",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
                         }
                     ],
                     [
@@ -1731,17 +1845,27 @@
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "MOVE",
+                            "value": false
                         },
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STEP",
+                            "value": false
                         },
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "MOVE",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
                         }
                     ],
                     [
@@ -1752,7 +1876,7 @@
                         }
                     ]
                 ],
-                "label": "Rollladen rechts",
+                "label": "Rollladen KNX",
                 "room": 6,
                 "categories": [
                     2
@@ -1773,17 +1897,20 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1799,17 +1926,20 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1841,17 +1971,20 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1859,6 +1992,20 @@
                             "peer": 21,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1867,17 +2014,20 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1885,6 +2035,20 @@
                             "peer": 21,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1909,17 +2073,20 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1927,6 +2094,13 @@
                             "peer": 22,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1935,17 +2109,20 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1953,6 +2130,13 @@
                             "peer": 22,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1977,17 +2161,20 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2003,17 +2190,20 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2045,17 +2235,20 @@
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2071,17 +2264,20 @@
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2113,17 +2309,20 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2139,17 +2338,20 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2181,17 +2383,20 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2207,17 +2412,20 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -3048,11 +3256,25 @@
                         {
                             "peer": 94,
                             "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
                             "name": "LEVEL_FAST"
                         }
                     ]
                 ],
                 "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 94,
