@@ -42,7 +42,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>Comfort</content>
+								<content>Minimal</content>
 								<color>active</color>
 							</text>
 						</texts>
@@ -56,7 +56,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>Minimal</content>
+								<content>Comfort</content>
 								<color>active</color>
 							</text>
 						</texts>
