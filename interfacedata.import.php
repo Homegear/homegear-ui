@@ -108,6 +108,43 @@
             }
         }
     },
+    "systemVariables": [
+        {
+            "name": "HUMIDITY",
+            "type": "float",
+            "value": 51.51
+        },
+        {
+            "name": "TEMPERATURE",
+            "type": "float",
+            "value": 21.21
+        },
+        {
+            "name": "REQUEST",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "VENTILATION",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "WINDALARM",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "WINDOWALARM",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "LIGHT",
+            "type": "bool",
+            "value": false
+        }
+    ],
     "roles": [
         {
             "id": 100000,
@@ -468,7 +505,7 @@
         {
             "deviceId": 0,
             "channel": -1,
-            "varName": "TEST",
+            "varName": "LIGHT",
             "roleId": 100000
         },
         {
@@ -979,7 +1016,7 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEST"
+                            "name": "LIGHT"
                         }
                     ]
                 ],
@@ -988,7 +1025,7 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEST"
+                            "name": "LIGHT"
                         }
                     ]
                 ],

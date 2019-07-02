@@ -248,6 +248,22 @@
             }
         }
 
+        if(isset($_GET["deleteSV"])){
+            foreach($oldInterfaceData["systemVariables"] as $value){
+                $allInterfaceData["deleteSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($value["name"]);
+            }
+        }
+
+        if(isset($_GET["createSV"])){
+            foreach($oldInterfaceData["systemVariables"] as $value){
+                $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
+            }
+        }
+
+        if(isset($_GET["getSV"])){
+            $allInterfaceData["getAllSystemVariables"] = $hg->getAllSystemVariables();
+        }
+
         echo "\n";
         echo "<pre>";
         echo "\n";
@@ -553,6 +569,11 @@
             <h4>User</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createUser\', outputResult)" class="adminButton">create</div>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&listUsers\', outputResult)" class="adminButton">list</div>
+
+            <h4>System Variables</h4>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&createSV\', outputResult)" class="adminButton">create</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&getSV\', outputResult)" class="adminButton">list</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteSV\', outputResult)" class="adminButton">delete</div>
         </div>
     ';
 ?>
