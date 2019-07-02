@@ -118,6 +118,9 @@ function handle_homegear_update(resp) {
 // Extensions to the homegear object
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function params_create(input, value) {
+    if ('value' in input) {
+        value = input.value;
+    }
     return [
         Number(input.peer),
         Number(input.channel),
