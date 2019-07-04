@@ -692,35 +692,35 @@ Vue.component('shif-generic-l2', {
 
 // [shif_device] Generic Shif Device Component Object {{{
 function status_impl(control) {
-   let out = [];
+    let out = [];
 
-   const key = (control.texts &&
-                control.texts.l2_state_title &&
-                control.texts.l2_state_title.content) ?
-       control.texts.l2_state_title.content :
-       null;
-   let val = [];
+    const key = (control.texts &&
+                 control.texts.l2_state_title &&
+                 control.texts.l2_state_title.content) ?
+        control.texts.l2_state_title.content :
+        null;
+    let val = [];
 
-   for (const input of control.variableInputs) {
-       if (!input.properties.visualizeInOverview)
-           continue;
+    for (const input of control.variableInputs) {
+        if (!input.properties.visualizeInOverview)
+            continue;
 
-       if (input.rendering) {
-           const sel = condition_get_matching(input.rendering, input.properties);
-           if (Object.keys(sel).length > 0) {
-               val.push(sel.texts.state.content);
-               continue;
-           }
-       }
+        if (input.rendering) {
+            const sel = condition_get_matching(input.rendering, input.properties);
+            if (Object.keys(sel).length > 0) {
+                val.push(sel.texts.state.content);
+                continue;
+            }
+        }
 
-       const unit = input.properties.unit ? input.properties.unit : '';
-       val.push(input.properties.value + unit);
-   }
+        const unit = input.properties.unit ? input.properties.unit : '';
+        val.push(input.properties.value + unit);
+    }
 
-   if (val.length > 0)
-       out.push({key: key, value: val.join(', ')});
+    if (val.length > 0)
+        out.push({key: key, value: val.join(', ')});
 
-   return out;
+    return out;
 }
 
 
