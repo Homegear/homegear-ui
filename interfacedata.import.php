@@ -2542,7 +2542,10 @@
                     "l2_action": {
                         "control": 0,
                         "input": 0
-                    }
+                    },
+                    "event_hooks": {
+                        "disabled": [1]
+                    } 
                 }
             }
         ],
