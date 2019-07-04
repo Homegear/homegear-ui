@@ -62,7 +62,7 @@ let shading_buttons_l3 = clone(shif_device);
 shading_buttons_l3.template = `
     <div>
         <div class="control_button_wrapper">
-            <shif-button width="50%" v-on:click="$homegear.value_set(output, true)">
+            <shif-button v-on:click="$homegear.value_set(output, true)">
                 <shif-icon v-bind:src="cond.icon.name"
                            v-bind:active="cond.icon.color">
                 </shif-icon>
@@ -72,4 +72,5 @@ shading_buttons_l3.template = `
 `;
 
 shif_comps_create('shadingButtons', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
+shif_comps_create('shadingButtonsSingleStep', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
 shif_comps_create('shadingButtonsUpDown', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
