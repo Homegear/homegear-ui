@@ -63,6 +63,19 @@ class User
                 $authorized = $this->oauthLogin();
             }
         }
+
+        if(!$authorized)
+        {
+            //Try API key login
+            if(isset($this->globalSettings['directLoginUser']) &&
+                strlen($this->globalSettings['directLoginUser']) > 0 &&
+                isset($this->globalSettings['directLoginApiKey']) &&
+                strlen($this->globalSettings['directLoginApiKey']) > 16 &&
+                isset($_REQUEST['key']))
+            {
+                $authorized = $this->apiKeyLogin();
+            }
+        }
         
         if(!$authorized && $redirectToLogin)
         {
@@ -110,16 +123,46 @@ class User
     {
         try
         {
-            $user = $this->hg->verifyOauthKey($_COOKIE['accessKey']);
-            if(!$user)
+            if(isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey']))
             {
-                $keys = $this->hg->refreshOauthKey($_COOKIE['refreshKey']);
-                setcookie("accessKey", $keys['access_token'], time() + 2592000);
-                setcookie("refreshKey", $keys['refresh_token'], time() + 2592000);
-                $user = $keys['user'];
+                $user = $this->hg->verifyOauthKey($_COOKIE['accessKey']);
+                if(!$user)
+                {
+                    $keys = $this->hg->refreshOauthKey($_COOKIE['refreshKey']);
+                    setcookie("accessKey", $keys['access_token'], time() + 2592000);
+                    setcookie("refreshKey", $keys['refresh_token'], time() + 2592000);
+                    $user = $keys['user'];
+                }
+                if($user)
+                {
+                    hg_set_user_privileges($user);
+                    if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
+                    $_SESSION['authorized'] = true;
+                    $_SESSION['user'] = $user;
+                    $this->initialize();
+                    return true;
+                }
             }
-            if($user)
+        }
+        catch(\Homegear\HomegearException $e)
+        {
+        }
+        return false;
+    }
+
+    private function apiKeyLogin()
+    {
+        try
+        {
+            if(isset($this->globalSettings['directLoginUser']) &&
+                strlen($this->globalSettings['directLoginUser']) > 0 &&
+                isset($this->globalSettings['directLoginApiKey']) &&
+                strlen($this->globalSettings['directLoginApiKey']) > 16 &&
+                isset($_REQUEST['key']))
             {
+                if($_REQUEST['key'] !== $this->globalSettings['directLoginApiKey']) return false;
+                $user = $this->globalSettings['directLoginUser'];
+                if(!$this->hg->userExists($user)) return false;
                 hg_set_user_privileges($user);
                 if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
                 $_SESSION['authorized'] = true;

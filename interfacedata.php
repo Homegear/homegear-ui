@@ -7,8 +7,8 @@
         "loginMethod": "input",
         "controllerUrl": "index.php",
         "cookieName": "smarthome",
-        "directLoginUser": "",
-        "directLoginApiKey": "",
+        "directLoginUser": "homegear",
+        "directLoginApiKey": "blablablablablablablablablablablablablabla",
         "homegear": {
             "url": "location.hostname",
             "port": "location.port",
