@@ -283,6 +283,8 @@ if($action !== ''){
         /////////////////////////////////////////////////////////
         $tempInterfaceData["index"] = '<?php'."\n";
         $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/settings.php")));
+        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/auth.php")));
+        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/javascriptOptions.php")));
         //$tempInterfaceData["index"] .= '$interfaceStyleVendor = "'.addslashes($tempInterfaceData["styleVendor"]).'";';
         //$tempInterfaceData["index"] .= '$interfaceStyle = "'.addslashes($tempInterfaceData["style"]).'";';
         //$tempInterfaceData["index"] .= '$interfaceScriptVendor = "'.base64_encode($tempInterfaceData["scriptVendor"]).'";';

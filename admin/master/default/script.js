@@ -237,32 +237,7 @@ function removeCookie(cookieName) {
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_logoff() {
-    var dataString = 'cookie_delete';
-    $.ajax({
-        url: controller_url,
-        type: 'POST',
-        data: dataString,
-        processData: false,
-        success: function(data){
-            console.log('data: '+data);
-            if(data.indexOf('true') > -1){
-                removeCookie('smarthome');
-                removeCookie('PHPSESSIDUI');
-                removeCookie('key_refresh');
-                removeCookie('key_refresh');
-                window.location.href = './';
-            }
-            else{
-                console.log( l18n('login.dataerror') );
-                return false;
-            }
-        },
-        error: function(msg){
-            console.log('Error:');
-            console.log(msg);
-            return false;
-        },
-    });
+    window.location.href = 'signin.php?logout=1';
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -312,12 +287,12 @@ function license() {
             <table>
                 <tr>
                     <th onclick='main(this, {"name":"Log","content":"log"})'>
-                        ${l18n('settings.about.table.name')}
+                        ${i18n('settings.about.table.name')}
                     </th>
-                    <th>${l18n('settings.about.table.version')}</th>
-                    <th>${l18n('settings.about.table.rights')}</th>
-                    <th>${l18n('settings.about.table.license')}</th>
-                    <th>${l18n('settings.about.table.license.url')}</th>
+                    <th>${i18n('settings.about.table.version')}</th>
+                    <th>${i18n('settings.about.table.rights')}</th>
+                    <th>${i18n('settings.about.table.license')}</th>
+                    <th>${i18n('settings.about.table.license.url')}</th>
                 </tr>
                 ${table_rows}
             </table>
@@ -343,8 +318,8 @@ function check_value_in_key(haystack, haystackkey, haystackneedle) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function l18n(key) {
-    for (let i of [interfaceData.l18n, interfaceData.l18n.default])
+function i18n(key) {
+    for (let i of [interfaceData.i18n, interfaceData.i18n.default])
         if (key in i)
             return i[key];
 

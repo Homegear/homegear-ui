@@ -2,49 +2,36 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if( class_exists('\Homegear\Homegear') && $currentUser["id"] !== null ){
-    try {
-        $hg = new \Homegear\Homegear();
+if(class_exists('\Homegear\Homegear') && $user->checkAuth(true))
+{
+    $hg = new \Homegear\Homegear();
 
-        if(isset($currentUser["settings"]["language"])){
-            $hg_lang = $currentUser["settings"]["language"];
-        }
-        else{
-            $hg_lang = "en-US";
-        }
+    try
+    {
+        $hg_lang = $_SESSION['locale'] ?? 'en-US';
 
-        $hg_users    = $hg->listUsers();
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_cats     = $hg->getCategories($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
     } 
-    catch (\Homegear\HomegearException $e) {
-        $hgMessage = js_log('Homegear Exception catched. ' .
+    catch (\Homegear\HomegearException $e)
+    {
+        $hgMessage = $hg->log(2, 'Homegear Exception catched. ' .
                                "Code: {$e->getCode()} " .
                             "Message: {$e->getMessage()}");
         return;
     }
 
-    function array_move_element($key, &$from, &$dest) {
+    function array_move_element($key, &$from, &$dest)
+    {
         $dest[$key] = $from[$key];
         unset($from[$key]);
     }
 
-    function user_parse(&$house, &$user) {
-        $id = $user['id'];
-
-        $house['users'][$id] = [
-            'name'  => $user['name'],
-            'groups' => $user['groups'],
-        ];
-
-        foreach ($user['metadata'] as $name => &$data)
-            $house['users'][$id][$name] = $data;
-    }
-
-    function category_parse(&$house, &$category) {
+    function category_parse(&$house, &$category)
+    {
         $id = $category['ID'];
 
         $house['categories'][$id]['name'] = $category['NAME'];
@@ -157,7 +144,6 @@ if( class_exists('\Homegear\Homegear') && $currentUser["id"] !== null ){
         'devices'    => [],
         'floors'     => [],
         'rooms'      => [],
-        'users'      => [],
         'categories' => [],
         'roles'      => [],
         'mainmenu'   => $interfaceData["mainmenu"],
@@ -166,20 +152,17 @@ if( class_exists('\Homegear\Homegear') && $currentUser["id"] !== null ){
     ];
 
     if($hg_lang != "en-US"){
-        $l18nOut = $interfaceData["l18n"][$hg_lang];
-        $l18nOut["default"] = $interfaceData["l18n"]["en-US"];
+        $i18nOut = $interfaceData["i18n"][$hg_lang];
+        $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else{
-        $l18nOut = $interfaceData["l18n"]["en-US"];
+        $i18nOut = $interfaceData["i18n"]["en-US"];
     }
 
-    $house["l18n"] = $l18nOut;
+    $house["i18n"] = $i18nOut;
 
     // will be filled while deviceparsing
     $map_invoke = [];
-
-    foreach ($hg_users as &$user)
-        user_parse($house, $user);
 
     foreach ($hg_cats as &$category)
         category_parse($house, $category);

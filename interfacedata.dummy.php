@@ -11377,63 +11377,6 @@
             "icon": "sofa1"
         }
     },
-    "users": {
-        "1": {
-            "name": "homegear",
-            "groups": [
-                1
-            ],
-            "afterLogin": "",
-            "expert": "true",
-            "interface": {
-                "consoleLog": "true",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "highlight": "#b3001e",
-                "language": "en-US",
-                "showFloor": "true",
-                "theme": "dark"
-            },
-            "locale": "en-US",
-            "theme": "dark"
-        },
-        "2": {
-            "name": "ui",
-            "groups": [
-                1
-            ],
-            "interface": {
-                "consoleLog": "true",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "highlight": "#e3a104",
-                "houseView": "scroll",
-                "language": "de-DE",
-                "showFloor": "true",
-                "theme": "dark"
-            }
-        },
-        "3": {
-            "name": "interface",
-            "groups": [
-                1
-            ],
-            "afterLogin": "",
-            "expert": "true",
-            "interface": {
-                "consoleLog": "true",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "highlight": "#00d8e3",
-                "houseView": "scroll",
-                "language": "en-US",
-                "showFloor": "true",
-                "theme": "dark"
-            },
-            "locale": "de-DE",
-            "theme": "dark"
-        }
-    },
     "categories": {
         "1": {
             "name": "Beleuchtung",
@@ -12280,21 +12223,18 @@
             "id": "1",
             "name": "house",
             "icon": "haus1",
-            "access": "-1",
             "onclick": "main(this, {name:firstBreadcrumb,content:\'house\'})"
         },
         {
             "id": "2",
             "name": "settings",
             "icon": "einstellungen1",
-            "access": "-1",
             "onclick": "main(this, {name:\'Einstellungen\',content:\'settings\',menu:\'settings\'})"
         },
         {
             "id": "3",
             "name": "logoff",
             "icon": "power1",
-            "access": "-1",
             "onclick": "user_logoff()"
         }
     ],
@@ -12306,7 +12246,6 @@
             "category": "user",
             "level": "1",
             "icon": "profil1",
-            "access": "-1",
             "onclick": "menu({mainmenu:\'settings\',level:\'2\',category:\'user\',name:\'Benutzer\',content:\'true\'})",
             "description": "Verwalten"
         },
@@ -12317,7 +12256,6 @@
             "category": "user",
             "level": "2",
             "icon": "profil1",
-            "access": "-1",
             "onclick": "user(this, {name:\'Benutzereinstellungen\',content:\'edit\'})",
             "description": "Theme, ..."
         },
@@ -12328,7 +12266,6 @@
             "category": "license",
             "level": "1",
             "icon": "information1",
-            "access": "-1",
             "onclick": "license(this, {name:\'Lizenz\',content:\'license\'})",
             "description": "Credits"
         }
@@ -12404,7 +12341,7 @@
             }
         }
     ],
-    "l18n": {
+    "i18n": {
         "login.username": "Username",
         "login.password": "Password",
         "login.loginbutton": "Login",

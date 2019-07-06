@@ -1,30 +1,14 @@
 <?php 
     $defaultInterfaceDataJson = '
 {
-    "users": {
-        "1": {
-            "id": "1",
-            "username": "ui",
-            "settings": {
-                "theme": "dark",
-                "highlight": "#0056b7",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "showFloor": "true",
-                "language": "de-DE",
-                "consoleLog": "true"
-            }
-        }
-    },
     "settings": {
-        "timezone": "Europe/Berlin",
         "errorReporting": "-1",
         "interfacePath": "/",
         "loginMethod": "input",
         "controllerUrl": "index.php",
         "cookieName": "smarthome",
-        "directLoginUserKey": "",
-        "directLoginUrlKey": "",
+        "directLoginUser": "",
+        "directLoginApiKey": "",
         "homegear": {
             "url": "location.hostname",
             "port": "location.port",
@@ -32,6 +16,15 @@
             "ssl": "false",
             "user": "ui",
             "password": ""
+        },
+        "userDefaults": {
+            "theme": "dark",
+            "highlight": "#0056b7",
+            "firstBreadcrumb": "Haus",
+            "firstBreadcrumbId": "house",
+            "showFloor": "true",
+            "language": "de-DE",
+            "consoleLog": "true"
         }
     },
     "mainmenu": [
@@ -39,21 +32,18 @@
             "id": "1",
             "name": "house",
             "icon": "haus1",
-            "access": "-1",
             "onclick": "main(this, {name:firstBreadcrumb,content:\'house\'})"
         },
         {
             "id": "2",
             "name": "settings",
             "icon": "einstellungen1",
-            "access": "-1",
             "onclick": "main(this, {name:\'Einstellungen\',content:\'settings\',menu:\'settings\'})"
         },
         {
             "id": "3",
             "name": "logoff",
             "icon": "power1",
-            "access": "-1",
             "onclick": "user_logoff()"
         }
     ],
@@ -65,7 +55,6 @@
             "category": "user",
             "level": "1",
             "icon": "profil1",
-            "access": "-1",
             "onclick": "menu({mainmenu:\'settings\',level:\'2\',category:\'user\',name:\'Benutzer\',content:\'true\'})",
             "description": "Verwalten"
         },
@@ -76,7 +65,6 @@
             "category": "user",
             "level": "2",
             "icon": "profil1",
-            "access": "-1",
             "onclick": "user(this, {name:\'Benutzereinstellungen\',content:\'edit\'})",
             "description": "Theme, ..."
         },
@@ -87,7 +75,6 @@
             "category": "license",
             "level": "1",
             "icon": "information1",
-            "access": "-1",
             "onclick": "license(this, {name:\'Lizenz\',content:\'license\'})",
             "description": "Credits"
         }
@@ -163,12 +150,17 @@
             }
         }
     },
-    "l18n": {
+    "i18n": {
         "en-US": {
-            "login.username": "Username",
-            "login.password": "Password",
-            "login.loginbutton": "Login",
-            "login.dataerror": "Incorrect login data!",
+            "login": {
+                "username": "Username",
+                "password": "Password",
+                "signin": "Login",
+                "error": {
+                    "wrongpassword": "Unbekannter Benutzer oder falsches Kennwort.",
+                    "noaccess": "Keine Zugriffsberechtigung."
+                }
+            },
             "house": "House",
             "house.tab.rooms": "Rooms",
             "house.tab.devices": "Devices",
@@ -191,10 +183,15 @@
             "logoff": "Logoff"
         },
         "de-DE": {
-            "login.username": "Benutzername",
-            "login.password": "Passwort",
-            "login.loginbutton": "Anmelden",
-            "login.dataerror": "Falsche Logindaten!",
+            "login": {
+                "username": "Benutzername",
+                "password": "Kennwort",
+                "signin": "Anmelden",
+                "error": {
+                    "wrongpassword": "Wrong username or password.",
+                    "noaccess":"No access permission."
+                }
+            },
             "house": "Haus",
             "house.tab.rooms": "Räume",
             "house.tab.devices": "Geräte",

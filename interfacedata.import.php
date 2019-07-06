@@ -92,22 +92,6 @@
             "icon": "sofa1"
         }
     },
-    "users": {
-        "1":{
-            "username": "ui",
-            "groups": [1],
-            "interface": {
-                "language": "de-DE",
-                "theme": "dark",
-                "highlight": "#e3a104",
-                "houseView": "scroll",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "showFloor": "true",
-                "consoleLog": "true"
-            }
-        }
-    },
     "systemVariables": [
         {
             "name": "HUMIDITY",

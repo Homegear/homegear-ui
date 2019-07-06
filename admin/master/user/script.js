@@ -11,14 +11,14 @@ function user(element, options){
         const selected = userSettings.theme == i.name ? 'selected' : '';
         themesNames.push(`
             <option value="${i.name}" autocomplete="off" ${selected}>
-                ${interfaceData.l18n['settings.user.manage.theme.'+i.name]}
+                ${interfaceData.i18n['settings.user.manage.theme.'+i.name]}
             </option>
         `);
 
     }
 
     let langNames = [];
-    $.each(interfaceData.l18n.languages, function(key, value) {
+    $.each(interfaceData.i18n.languages, function(key, value) {
         const selected = userSettings.language == key ? 'selected' : '';
         langNames.push(`
             <option value="${key}" autocomplete="off" ${selected}>
@@ -31,25 +31,25 @@ function user(element, options){
         <div id="user_wrapper">
         <form id="user_${options.content}" name="user_${options.content}" action="javascript:void(0);" onsubmit="user_${options.content}_commit();">
             <div class="form-group">
-                <div class="label">${l18n('settings.user.manage.language')}:</div>
+                <div class="label">${i18n('settings.user.manage.language')}:</div>
                 <select id="language" name="language">
                     ${langNames}
                 </select>
             </div>
             <div class="form-group">
-                <div class="label">${l18n('settings.user.manage.theme')}:</div>
+                <div class="label">${i18n('settings.user.manage.theme')}:</div>
                 <select id="theme" name="theme">
                     ${themesNames}
                 </select>
             </div>
             <div id="user_highlight_display" class="form-group">
-                <div class="label">${l18n('settings.user.manage.highlight')}:</div>
+                <div class="label">${i18n('settings.user.manage.highlight')}:</div>
                 <input id="highlight" type="hidden" name="highlight" value="${userSettings.highlight}">
                     <div id="color-picker-container"></div>
                 <div style="clear:both;"></div>
             </div>
             <div class="form-group">
-                <input type="submit" class="" name="user_${options.content}" value="${l18n('settings.user.manage.save')}">
+                <input type="submit" class="" name="user_${options.content}" value="${i18n('settings.user.manage.save')}">
             </div>
         </form>
         </div>

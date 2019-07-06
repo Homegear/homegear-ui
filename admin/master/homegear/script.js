@@ -51,12 +51,12 @@ else if (websocket_security == 'none')
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 homegear.ready(function() {
-    var addDevicesAsHomegearPears = Object.keys(interfaceData.map_invoke).map(Number);
+    var addDevicesAsHomegearPeers = Object.keys(interfaceData.map_invoke).map(Number);
 
-    console.log('HomegearPears: ');
-    console.log(addDevicesAsHomegearPears);
+    console.log('HomegearPeers: ');
+    console.log(addDevicesAsHomegearPeers);
 
-    homegear.addPeers( addDevicesAsHomegearPears );
+    homegear.addPeers( addDevicesAsHomegearPeers );
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

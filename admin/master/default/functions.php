@@ -23,26 +23,25 @@ function in_array_r($needle, $haystack, $strict = false) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// l18n
+// i18n
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function l18n($langKey){
-    global $currentUser;
+function i18n($langKey){
     global $interfaceData;
-    $l18nOut = null;
+    $i18nOut = null;
 
-    if(isset($currentUser["settings"]["language"]) && $currentUser["settings"]["language"] != "en-US"){
-        $l18nOut = $interfaceData["l18n"][$currentUser["settings"]["language"]];
-        $l18nOut["default"] = $interfaceData["l18n"]["en-US"];
+    if(isset($_SESSION['locale']) && $_SESSION['locale'] != "en-US"){
+        $i18nOut = $interfaceData["i18n"][$_SESSION['locale']];
+        $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else{
-        $l18nOut = $interfaceData["l18n"]["en-US"];
+        $i18nOut = $interfaceData["i18n"]["en-US"];
     }
 
-    if(array_key_exists($langKey, $l18nOut)){
-        return $l18nOut[$langKey];
+    if(array_key_exists($langKey, $i18nOut)){
+        return $i18nOut[$langKey];
     }
-    else if(isset($l18nOut["default"]) && array_key_exists($langKey, $l18nOut["default"])){
-        return $l18nOut["default"][$langKey];
+    else if(isset($i18nOut["default"]) && array_key_exists($langKey, $i18nOut["default"])){
+        return $i18nOut["default"][$langKey];
     }
     else{
         return "NoTranslation: ".$langKey;
@@ -111,8 +110,9 @@ function tabs($tabs, $options){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // parst die Styledatei und ersetzt je nach gewähltem Theme die Farbeinstellungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function userStyle(){
-    global $currentUser;
+function userStyle()
+{
+    global $user;
     global $interfaceData;
 
     if (file_exists("style.min.css")) {
@@ -132,7 +132,7 @@ function userStyle(){
     $theme_standard = $themes[1];
 
     foreach($themes as $key => $value){
-        if($value["name"] == $currentUser['settings']['theme']){
+        if($value["name"] == $user->getSettings()['theme']){
             $theme = $themes[$key];
             break;
         }
@@ -142,20 +142,10 @@ function userStyle(){
     unset($themes[1]);
 
     if($theme["colors"]["highlight_active"] == ""){
-        $theme["colors"]["highlight_active"] = $currentUser['settings']['highlight'];
+        $theme["colors"]["highlight_active"] = $user->getSettings()['highlight'];
     }
 
     $style_theme = str_replace($theme_standard["colors"], $theme["colors"], $style);
 
     return $style_theme;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// logoff
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (isset($_POST["cookie_delete"])){
-    oauth_clear();
-    setcookie('key_access', "", time() - 1, "/");
-    setcookie('key_refresh', "", time() - 1, "/");
-    die("true");
 }
