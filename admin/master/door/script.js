@@ -13,3 +13,4 @@ door_status.template = `
 
 shif_comps_create('doorContact', door_status, door_status);
 shif_comps_create('doorHandle',  door_status, door_status);
+shif_comps_create('doorSecurity',  door_status, door_status);
