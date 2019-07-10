@@ -26,6 +26,7 @@ function clean_json_to_js(){
     }
 
     if($_SESSION['locale'] != "en-US"){
+        if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
         $interfaceDataOut["i18n"] = $interfaceData["i18n"][$_SESSION['locale']];
         $interfaceDataOut["i18n"]["default"] = $interfaceData["i18n"]["en-US"];
     }

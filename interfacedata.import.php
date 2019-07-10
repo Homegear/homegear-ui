@@ -208,7 +208,7 @@
                          "0": "Ist"
                        },
                        "en-US": {
-                         "0": "Is"
+                         "0": "Current"
                        }
                     }
                 }
@@ -240,9 +240,9 @@
                          "2": "Spar"
                        },
                        "en-US": {
-                         "0": "Frost",
+                         "0": "Frost protection",
                          "1": "Comfort",
-                         "2": "Spar"
+                         "2": "Eco"
                        }
                     }
                 }
@@ -272,7 +272,7 @@
                          "0": "Spar"
                        },
                        "en-US": {
-                         "0": "Spar"
+                         "0": "Eco"
                        }
                     }
                 }
@@ -287,7 +287,7 @@
                          "0": "Frostschutz"
                        },
                        "en-US": {
-                         "0": "Frost"
+                         "0": "Frost protection"
                        }
                     }
                 }
@@ -325,7 +325,7 @@
                        "en-US": {
                          "0": "closed",
                          "1": "opened",
-                         "2": "Tilted"
+                         "2": "tilted"
                        }
                     }
                 }

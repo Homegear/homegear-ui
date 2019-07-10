@@ -37,6 +37,7 @@ $i18n = $interfaceData['i18n']['en-US'];
 
 foreach($locales as $locale)
 {
+  if($locale == 'de') $locale = 'de-DE';
   if(array_key_exists($locale, $interfaceData['i18n']))
   {
     $i18n = array_replace_recursive($i18n, $interfaceData['i18n'][$locale]);

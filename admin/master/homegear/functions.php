@@ -8,6 +8,7 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true))
 
     try
     {
+        if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
         $hg_lang = $_SESSION['locale'] ?? 'en-US';
 
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
