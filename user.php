@@ -34,6 +34,8 @@ class User
         if(is_array($_SESSION['locale']) && count($_SESSION['locale']) > 0) $_SESSION['locale'] = $_SESSION['locale'][0];
         if(!is_string($_SESSION['locale'])) $_SESSION['locale'] = 'en-US';
         $_SESSION['locale'] = str_replace('_', '-', $_SESSION['locale']);
+        if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
+        else if($_SESSION['locale'] == 'en') $_SESSION['locale'] = 'en-US';
         hg_set_user_privileges($_SESSION['user']);
         
         $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
