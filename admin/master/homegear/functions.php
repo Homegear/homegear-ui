@@ -170,17 +170,17 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true))
     foreach($hg_roles as $key => $value){
         $aggregated = $hg->aggregateRoles(2, $value["ID"], array());
         $varInRole = $hg->getVariablesInRole($value["ID"]);
-        if($aggregated["variableCount"] > 0 || isset($value["METADATA"]["interface"])){
+        if($aggregated["variableCount"] > 0 || isset($value["METADATA"]["ui"])){
             $house['roles'][$value["ID"]]["name"] = $value["NAME"];
-            if(isset($value["METADATA"]["interface"]) && is_array($value["METADATA"]["interface"]["translations"]) && array_key_exists($hg_lang, $value["METADATA"]["interface"]["translations"])){
-                $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["interface"]["translations"][$hg_lang];
+            if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["translations"])){
+                $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"][$hg_lang];
             }
-            else if(isset($value["METADATA"]["interface"]) && is_array($value["METADATA"]["interface"]["translations"])){
-                $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["interface"]["translations"]["en-US"];
+            else if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"])){
+                $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"]["en-US"];
             }
-            unset($value["METADATA"]["interface"]["translations"]);
-            if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["interface"]) && is_array($value["METADATA"]["interface"])){
-                $house['roles'][$value["ID"]] = array_merge($house['roles'][$value["ID"]], $value["METADATA"]["interface"]);
+            unset($value["METADATA"]["ui"]["translations"]);
+            if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
+                $house['roles'][$value["ID"]] = array_merge($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
             }
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
             $house['roles'][$value["ID"]]["varInRole"] = $varInRole;
