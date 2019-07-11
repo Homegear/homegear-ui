@@ -6,16 +6,13 @@
         "interfacePath": "/",
         "loginMethod": "input",
         "controllerUrl": "index.php",
-        "cookieName": "smarthome",
         "directLoginUser": "",
         "directLoginApiKey": "",
         "homegear": {
             "url": "location.hostname",
             "port": "location.port",
             "security": "session",
-            "ssl": "false",
-            "user": "ui",
-            "password": ""
+            "ssl": "false"
         },
         "userDefaults": {
             "theme": "dark",
@@ -650,8 +647,11 @@ $interfaceData = array_merge($interfaceData, $defaultInterfaceData);
 
 if(file_exists("interfacedata.custom.php")){
     include_once("interfacedata.custom.php");
-    $customInterfaceData = json_decode($customInterfaceDataJson, true);
-    $interfaceData = array_merge($interfaceData, $customInterfaceData);
+    if($customInterfaceDataJson)
+    {
+        $customInterfaceData = json_decode($customInterfaceDataJson, true);
+        $interfaceData = array_merge($interfaceData, $customInterfaceData);
+    }
 }
 
 if(strpos($_SERVER['REQUEST_URI'], 'setup') !== false && isset($customImportInterfaceDataJson)){

@@ -11,9 +11,6 @@ $adminPath        = $rootPath."/admin";
 // Pfad zum Master der Erweiterungen
 $masterPath       = $adminPath."/master/";
 
-// Pfad zur json Config Datei
-$databaseJsonPath = $rootPath."/interfacedata.php";
-
 //{{{ Load settings
 $databaseJsonPath = $rootPath."/interfacedata.php";
 if(file_exists($databaseJsonPath))

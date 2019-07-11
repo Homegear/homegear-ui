@@ -101,7 +101,7 @@ function user_edit_commit() {
             newUserSettings.interface = userSettings;
         }
 
-
+        newUserSettings.locale  = userSettings.language;
         newUserSettings.interface.language  = userSettings.language;
         newUserSettings.interface.theme     = userSettings.theme;
         newUserSettings.interface.highlight = userSettings.highlight;

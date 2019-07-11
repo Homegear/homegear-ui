@@ -218,22 +218,6 @@ function content(element, options) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// cookies können nur mit php verlässlich entfernt werden
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function removeCookie(cookieName) {
-    const cookieValue    = '';
-    const cookieLifetime = -1;
-    const msecs_per_day  = 24 * 60 * 60 * 1000;
-
-    let date = new Date();
-    date.setTime(date.getTime() + (cookieLifetime * msecs_per_day));
-
-    const expires = '; expires=' + date.toGMTString();
-    document.cookie = cookieName + '=' + JSON.stringify(cookieValue) + expires +
-                      '; path=/';
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_logoff() {
