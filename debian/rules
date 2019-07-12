@@ -34,6 +34,7 @@ override_dh_auto_install:
 	cp -R $(CURDIR)/script.vendor.js $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/style.css $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/style.vendor.css $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/admin/master/homegear/uiElements/* $(CURDIR)/debian/homegear-ui/etc/homegear/devices/uiBase/
 
 %:
 	dh $@

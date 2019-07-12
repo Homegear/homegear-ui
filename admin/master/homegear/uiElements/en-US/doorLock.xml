@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<uniqueUiElementId>Base.doorSecurity</uniqueUiElementId>
+		<uniqueUiElementId>Base.doorLock</uniqueUiElementId>
 		<type>simple</type>
-		<control>doorSecurity</control>
+		<control>doorLock</control>
         <role>0x301003</role>
 		<texts>
 			<text id="title">
@@ -17,8 +17,8 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>sicherheit1</name>
-                <color>inactive</color>
+				<name>lock1</name>
+                		<color>inactive</color>
 			</icon>
             <icon id="l3">
                 <name>pfeil3</name>
@@ -36,7 +36,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>sicherheit1</name>
+								<name>lock1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>sicherheit1</name>
+								<name>lock1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>

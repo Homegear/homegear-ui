@@ -11438,7 +11438,7 @@
                         "variableInputIndex": 0
                     }
                 ],
-                "icon": "sicherheit1"
+                "icon": "lock1"
             }
         },
         "5": {
