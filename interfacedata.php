@@ -10,9 +10,7 @@
         "directLoginApiKey": "",
         "homegear": {
             "url": "location.hostname",
-            "port": "location.port",
-            "security": "session",
-            "ssl": "false"
+            "port": "location.port"
         },
         "userDefaults": {
             "theme": "dark",

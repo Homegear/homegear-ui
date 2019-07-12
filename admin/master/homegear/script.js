@@ -35,17 +35,14 @@ function homegear_new() {
     );
 }
 
-if (location.protocol == 'https:')
-    websocket_security_ssl = true;
+websocket_security_ssl = true; //Enabled by default
+if (location.protocol == 'http:')
+    websocket_security_ssl = false;
 
 if (websocket_url == '' || !websocket_url)
     console.log('Homegear settings error!');
-else if (websocket_security == 'session')
-    var homegear = homegear_new(readCookie('PHPSESSIDUI'));
-else if (websocket_security == 'basic')
-    var homegear = homegear_new(websocket_user, websocket_password);
-else if (websocket_security == 'none')
-    var homegear = homegear_new();
+
+var homegear = homegear_new(readCookie('PHPSESSIDUI'));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //

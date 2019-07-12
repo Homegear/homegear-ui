@@ -17,9 +17,5 @@ if($user->checkAuth(true))
     $javascript_options .= "    var controller_url = '".$interfaceData["settings"]["controllerUrl"]."';"."\n";
     $javascript_options .= "    var websocket_url = ".$interfaceData["settings"]["homegear"]["url"].";"."\n";
     $javascript_options .= "    var websocket_port = ".$interfaceData["settings"]["homegear"]["port"].";"."\n";
-    $javascript_options .= "    var websocket_security = '".$interfaceData["settings"]["homegear"]["security"]."';"."\n";
-    $javascript_options .= "    var websocket_security_ssl = '".$interfaceData["settings"]["homegear"]["ssl"]."';"."\n";
-    $javascript_options .= "    var websocket_user = '".$interfaceData["settings"]["homegear"]["user"]."';"."\n";
-    $javascript_options .= "    var websocket_password = '".$interfaceData["settings"]["homegear"]["password"]."';"."\n";
     $javascript_options .= "</script>";
 }
