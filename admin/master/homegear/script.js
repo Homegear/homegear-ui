@@ -35,7 +35,7 @@ function homegear_new() {
     );
 }
 
-websocket_security_ssl = true; //Enabled by default
+var websocket_security_ssl = true; //Enabled by default
 if (location.protocol == 'http:')
     websocket_security_ssl = false;
 
