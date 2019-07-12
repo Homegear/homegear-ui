@@ -42,6 +42,7 @@ if (location.protocol == 'http:')
 if (websocket_url == '' || !websocket_url)
     console.log('Homegear settings error!');
 
+var homegearDisconnected = false;
 var homegear = homegear_new(readCookie('PHPSESSIDUI'));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,9 +60,14 @@ homegear.ready(function() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //get new sessionid when websocket reconnects
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-homegear.error(function () {
-    if (parseInt(new Date()) - 6000 > parseInt(startDate))
+homegear.error(function (message) {
+    if (Date.now() - 6000 > startDate && message == 'Disconnected.') {
+        console.log('Homegear error: ' + message);
+        homegearDisconnected = true;
+    } else if(message == 'Authentication failed.' && homegearDisconnected) {
+        console.log('Reloading...');
         window.location.reload(true);
+    }
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

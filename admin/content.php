@@ -25,7 +25,7 @@
 
     $content .= '
         <script type="text/javascript">
-        var startDate = '.date('YmdHis').';
+        var startDate = '.(time() * 1000).';
         var userSettings = '.json_encode($user->getSettings(), JSON_PRETTY_PRINT).';
     ';
 
