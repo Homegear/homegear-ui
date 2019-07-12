@@ -54,6 +54,7 @@ homegear.ready(function() {
     console.log(addDevicesAsHomegearPeers);
 
     homegear.addPeers( addDevicesAsHomegearPeers );
+    $('#loadingPage').hide();
 });
 
 homegear.connected(function() {
@@ -61,7 +62,7 @@ homegear.connected(function() {
 });
 
 homegear.disconnected(function() {
-
+    $('#loadingPage').show();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
