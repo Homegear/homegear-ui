@@ -49,7 +49,7 @@
     }
 
     if(is_dir($adminPath)){
-        $content .= 'console.log("Das admin Verzeichnis im webroot zu belassen ist unsicher, bitte löschen!");'."\n";
+        $content .= 'console.log("Please delete the admin directory for security reasons.");'."\n";
     }
 
     $content .= '</script>';

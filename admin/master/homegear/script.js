@@ -170,8 +170,6 @@ homegear.value_set = function (input, value) {
     return this.invoke(object);
 }
 
-
-
 homegear.value_set_multi = function (ops) {
     return this.invoke_multi([
         ops.map(op => ({

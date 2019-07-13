@@ -694,6 +694,8 @@ const shif_device = {
         'include_place',
     ],
 
+    methods: {},
+
     computed: {
         cond: function () {
             const sel = condition_get_matching(this.rendering, this.props);

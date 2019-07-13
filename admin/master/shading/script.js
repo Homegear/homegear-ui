@@ -59,10 +59,22 @@ shading_buttons_l2.template = `
     </shif-generic-l2>
 `;
 let shading_buttons_l3 = clone(shif_device);
+shading_buttons_l3.methods.change = function(event) {
+    let upVar = this.control.variableOutputs[0];
+    let downVar = this.control.variableOutputs[2];
+    if(!upVar.hasOwnProperty('value') &&
+        !downVar.hasOwnProperty('value') &&
+        upVar.peer == downVar.peer &&
+        upVar.channel == downVar.channel &&
+        upVar.name == downVar.name) {
+        //Todo: Implement
+    }
+    else homegear.value_set(this.output, true)
+}
 shading_buttons_l3.template = `
     <div>
         <div class="control_button_wrapper">
-            <shif-button v-on:click="$homegear.value_set(output, true)">
+            <shif-button v-on:click="change">
                 <shif-icon v-bind:src="cond.icon.name"
                            v-bind:active="cond.icon.color">
                 </shif-icon>
