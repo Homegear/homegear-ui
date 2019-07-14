@@ -62,14 +62,30 @@ let shading_buttons_l3 = clone(shif_device);
 shading_buttons_l3.methods.change = function(event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
-    if(!upVar.hasOwnProperty('value') &&
+    if((this.index == 0 || this.index == 2) &&
+        !upVar.hasOwnProperty('value') &&
         !downVar.hasOwnProperty('value') &&
         upVar.peer == downVar.peer &&
         upVar.channel == downVar.channel &&
         upVar.name == downVar.name) {
-        //Todo: Implement
+        let down = (this.index == 2);
+        console.log(this.output);
+        if((this.output.type == 'integer' ||
+            this.output.type == 'integer64' ||
+            this.output.type == 'float') &&
+            this.output.hasOwnProperty('minimumValue') &&
+            this.output.hasOwnProperty('maximumValue')) {
+            let output = clone(this.output);
+            output.value = (down ? this.output.maximumValue : this.output.minimumValue);
+            homegear.value_set(output, null);
+        }
+        else if(this.output.type == 'bool') {
+            let output = clone(this.output);
+            output.value = down;
+            homegear.value_set(output, null);
+        }
     }
-    else homegear.value_set(this.output, true)
+    else homegear.value_set(this.output, true);
 }
 shading_buttons_l3.template = `
     <div>
