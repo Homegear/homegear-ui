@@ -4,7 +4,7 @@
 		<id>Base.shadingButtonsPositionVentilationWindalarm</id>
         <control>shadingButtonsPositionVentilationWindalarm</control>
 		<type>complex</type>
-        <role>0x500000</role>
+        <role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Shading</content>
@@ -62,7 +62,7 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>500000</role>
+            <role>501000</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
