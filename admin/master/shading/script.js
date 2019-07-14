@@ -69,7 +69,6 @@ shading_buttons_l3.methods.change = function(event) {
         upVar.channel == downVar.channel &&
         upVar.name == downVar.name) {
         let down = (this.index == 2);
-        console.log(this.output);
         if((this.output.type == 'integer' ||
             this.output.type == 'integer64' ||
             this.output.type == 'float') &&
