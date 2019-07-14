@@ -14,13 +14,16 @@ timer_l2.template = `
 `;
 
 let timer_l3 = clone(shif_device);
+timer_l3.methods.change = function(event) {
+    homegear.value_set_clickcounter(this, this.output, !this.props.value);
+}
 timer_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
                      v-bind:status="status"
-                     v-on:click="$homegear.value_set(output, !props.value)">
+                     v-on:click="change">
     </shif-generic-l2>
 `;
 

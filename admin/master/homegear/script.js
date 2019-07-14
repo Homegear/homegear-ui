@@ -156,20 +156,6 @@ homegear.invoke_multi = function (ops) {
     return this.invoke(object);
 }
 
-
-
-homegear.value_set = function (input, value) {
-    const object = {
-        jsonrpc: '2.0',
-        method: 'setValue',
-        params: params_create(input, value),
-    };
-
-    console.log(JSON.stringify(object, null, 4));
-
-    return this.invoke(object);
-}
-
 homegear.value_set_multi = function (ops) {
     return this.invoke_multi([
         ops.map(op => ({
@@ -177,4 +163,23 @@ homegear.value_set_multi = function (ops) {
             params: params_create(op.input, op.value),
         }))
     ]);
+}
+
+homegear.value_set_clickcounter = function(control, params, value) {
+    let methods = [[
+        {
+            methodName: 'setValue',
+            params: params_create(params, value)
+        }
+    ]];
+
+    if(Date.now() - control.lastClickCount > 10000) {
+        control.lastClickCount = Date.now();
+        methods[0].push({
+            methodName: 'setUserData',
+            params: ['ui.clickCounts', control.uiElement.databaseId.toString(), ++control.uiElement.clickCount]
+        });
+    }
+
+    return this.invoke_multi(methods);
 }

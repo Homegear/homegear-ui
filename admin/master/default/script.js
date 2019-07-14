@@ -684,6 +684,7 @@ function status_impl(control) {
 
 const shif_device = {
     props: [
+        'uiElement',
         'control',
         'device',
         'icons',
@@ -691,6 +692,7 @@ const shif_device = {
         'output',
         'props',
         'index',
+        'lastClickCount',
         'rendering',
         'include_place',
     ],

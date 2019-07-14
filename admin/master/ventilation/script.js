@@ -14,6 +14,9 @@ ventilation_mode_l2.template = `
 `;
 
 let ventilation_mode_l3 = clone(shif_device);
+heating_mode_l3.methods.change = function(x) {
+    homegear.value_set_clickcounter(this, this.output, x);
+}
 ventilation_mode_l3.computed.values = function () {
     return this.rendering
         .map(x => ({
@@ -25,7 +28,7 @@ ventilation_mode_l3.computed.values = function () {
 ventilation_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
-                v-on:input="x => $homegear.value_set(output, parseInt(x))">
+                v-on:input="x => change(parseInt(x))">
     </shif-radio>
 `;
 
