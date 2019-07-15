@@ -248,7 +248,7 @@
                 "user": {
                     "activated": true,
                     "requiredAssets": [
-                        ""
+			"webauthn"
                     ]
                 },
                 "shading": {
@@ -611,6 +611,15 @@
                         "name": "iro.js",
                         "version": "",
                         "rights": "James Daniel",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
+                "webauthn": {
+                    "license": {
+                        "name": "WebAuthn",
+                        "version": "",
+                        "rights": "Lukas Buchs, Thomas Bleeker",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",
                         "licensename": "MIT"
                     }

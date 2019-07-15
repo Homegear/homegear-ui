@@ -1,4 +1,22 @@
-<?php //////////////////////////////////////////////////////////////////////////////////////
+<?php
+/* Copyright 2013-2019 Homegear GmbH
+ *
+ * Smart Home Interface (Shif, homegear-ui) is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU Lesser
+ * General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * Shif is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with Shif.  If not, see
+ * <http://www.gnu.org/licenses/>.
+*/
+
+///////////////////////////////////////////////////////////////////////////////////////////
 // Administrationsfunktionen
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -148,9 +166,10 @@ if($action !== ''){
           $out .= $line.": ";
           $path = $adminPath."/assets/masters/".$line;
           if(!is_dir($path)){
-              $out .= "Warning: Nicht vorhanden -> ".$path.$actionSeparator."\n";
-              continue;
-		  }
+            $tempInterfaceData["vendorLicense"][] = $configAdmin["settings"]["assets"][$line]["license"];
+            $out .= "Warning: Nicht vorhanden -> ".$path.$actionSeparator."\n";
+            continue;
+          }
           if(file_exists($path."/package.json")){
 			$packageJson = json_decode(file_get_contents($path."/package.json"), true);
 			$license = array();
