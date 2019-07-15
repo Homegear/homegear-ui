@@ -128,7 +128,7 @@ class User
         {
             return array();
         }
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
         $createArgs = null;
         try
         {
@@ -148,7 +148,7 @@ class User
         {
             return array();
         }
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
 
         $ids = array();
 
@@ -174,7 +174,7 @@ class User
     public function registerWebAuthnDevice($clientDataJson, $attestationObject)
     {
         if(!isset($_SESSION['user']) || !$_SESSION['user'] || !$_SESSION["authorized"] || !isset($_SESSION['challenge']) || $this->hasWebAuthn()) return false;
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
 
         $data = null;
 
@@ -205,7 +205,7 @@ class User
         if(!isset($_SESSION['user']) || !$_SESSION['user'] || !isset($_SESSION['challenge'])) return false;
         if(!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true) return false;
         if(!$this->initialized) $this->initialize();
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
 
         $credentialPublicKey = null;
 
