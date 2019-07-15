@@ -120,8 +120,9 @@ function handle_homegear_update(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        const role = interfaceData.devices[input.databaseId].metadata.role;
-        app.$root.$emit('role-update', role);
+        for (const role of input.roles) {
+            app.$root.$emit('role-update', role);
+        }
     }
 
 }

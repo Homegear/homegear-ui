@@ -692,10 +692,15 @@ const shif_device = {
         'output',
         'props',
         'index',
-        'lastClickCount',
         'rendering',
         'include_place',
     ],
+
+    data: function() {
+        return {
+            lastClickCount: 0
+        };
+    },
 
     methods: {},
 

@@ -99,15 +99,19 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true))
     }
 
     function device_build_invoke_map(&$map, $dev, $id) {
-        foreach ($dev['controls'] as $key_control => $control)
-            foreach ($control['variableInputs'] as $key_input => $input)
+        foreach ($dev['controls'] as $key_control => $control) {
+            foreach ($control['variableInputs'] as $key_input => $input) {
+                $roles = $input['roles'] ?? array();
                 $map[$input['peer']]
                     [$input['channel']]
                     [$input['name']][] = [
                         'databaseId' => $id,
                         'control'    => $key_control,
                         'input'      => $key_input,
+                        'roles'      => $roles
                 ];
+            }
+        }
     }
 
     function device_parse(&$house, &$map_invoke, $dev) {

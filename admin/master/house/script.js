@@ -64,7 +64,6 @@ function component_object(control, device, input, output, index, is) {
         output:         output,
         props:          input.properties,
         index:          index,
-        lastClickCount: 0,
         rendering:      input.rendering
     };
 
