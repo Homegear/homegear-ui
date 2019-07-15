@@ -151,9 +151,12 @@
                 "username": "Username",
                 "password": "Password",
                 "signin": "Login",
+                "waitingFor2ndFactor": "Waiting for second factor...",
                 "error": {
-                    "wrongpassword": "Unbekannter Benutzer oder falsches Kennwort.",
-                    "noaccess": "Keine Zugriffsberechtigung."
+                    "wrongpassword": "Wrong username or password",
+                    "noaccess":"No access permission",
+                    "twofaError": "2nd factor error",
+                    "browserNotSupported": "Browser not supported."
                 }
             },
             "house": "House",
@@ -161,6 +164,11 @@
             "house.tab.devices": "Devices",
             "widgets": "Widgets",
             "settings": "Settings",
+            "settings.user.manage.twofa": "Two-factor authentication",
+            "settings.user.manage.registerTwofa": "Register WebAuthn device",
+            "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
+            "settings.user.manage.twofaRegistered": "WebAuthn activated",
+            "settings.user.manage.browserNotSupported": "Browser not supported.",
             "settings.user.manage.theme": "Theme",
             "settings.user.manage.theme.dark": "Dark",
             "settings.user.manage.theme.light": "Light",
@@ -182,9 +190,12 @@
                 "username": "Benutzername",
                 "password": "Kennwort",
                 "signin": "Anmelden",
+                "waitingFor2ndFactor": "Warte auf zweiten Faktor...",
                 "error": {
-                    "wrongpassword": "Wrong username or password.",
-                    "noaccess":"No access permission."
+                    "wrongpassword": "Unbekannter Benutzer oder falsches Kennwort.",
+                    "noaccess": "Keine Zugriffsberechtigung.",
+                    "twofaError": "Fehler beim zweiten Faktor",
+                    "browserNotSupported": "Browser wird nicht unterstützt."
                 }
             },
             "house": "Haus",
@@ -192,6 +203,11 @@
             "house.tab.devices": "Geräte",
             "widgets": "Widgets",
             "settings": "Einstellungen",
+            "settings.user.manage.twofa": "Zweifaktorauthentifizierung",
+            "settings.user.manage.registerTwofa": "WebAuthn-Gerät registrieren",
+            "settings.user.manage.unregisterTwofa": "WebAuthn-Gerät entfernen",
+            "settings.user.manage.twofaRegistered": "WebAuthn ist aktiviert",
+            "settings.user.manage.browserNotSupported": "Browser wird nicht unterstützt.",
             "settings.user.manage.language": "Sprache",
             "settings.user.manage.language.name": "Deutsch",
             "settings.user.manage.theme": "Theme",
@@ -199,7 +215,7 @@
             "settings.user.manage.theme.light": "Hell",
             "settings.user.manage.theme.blue": "Blau",
             "settings.user.manage.theme.purple": "Lila",
-            "settings.user.manage.highlight": "Highlight Farbe",
+            "settings.user.manage.highlight": "Vordergrundfarbe",
             "settings.user.manage.save": "Speichern",
             "settings.about.table.name": "Name",
             "settings.about.table.version": "Version",

@@ -5,6 +5,7 @@ if($user->checkAuth(true))
     $firstBreadcrumb     = $user->getSettings()["firstBreadcrumb"] ?? '';
     $firstBreadcrumbId   = $user->getSettings()["firstBreadcrumbId"] ?? '';
     $javascript_options  = "<script>";
+    $javascript_options .= "    var userHasTwofaRegistrations = ".($user->hasWebAuthn() ? "true" : "false").";"."\n";
     $javascript_options .= "    var firstBreadcrumb = '".$firstBreadcrumb."';"."\n";
     $javascript_options .= "    var firstBreadcrumbId = '".$firstBreadcrumbId."';"."\n";
     $javascript_options .= "    var breadcrumbs_array = ['<div class=\"breadcrumbsJump\" onclick=\'main(this, {name:firstBreadcrumb,content:firstBreadcrumbId});\'>".$firstBreadcrumb."</div>'];"."\n";

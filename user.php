@@ -1,10 +1,15 @@
 <?php
+
+require_once 'WebAuthn/WebAuthn.php';
+
 class User
 {
-    private $hg;
+    private $hg = NULL;
     private $initialized = false;
     private $globalSettings = array();
     private $userSettings = array();
+    private $twofaSettings = array();
+    private $webAuthn = NULL;
 
     public function getName()
     {
@@ -14,6 +19,11 @@ class User
     public function getSettings()
     {
         return $this->userSettings;
+    }
+
+    public function hasWebAuthn()
+    {
+        return isset($this->twofaSettings['registrations']) && count($this->twofaSettings['registrations']) > 0;
     }
 
     public function __construct($globalSettings = array())
@@ -40,6 +50,9 @@ class User
         
         $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
         if(isset($metadata['interface'])) $this->userSettings = array_merge($this->userSettings, $metadata['interface']);
+
+        $this->twofaSettings = $this->userSettings['2fa'] ?? array();
+        unset($this->userSettings['2fa']);
 
         $this->initialized = true;
     }
@@ -96,17 +109,134 @@ class User
         {
             hg_set_user_privileges($user);
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
-            $_SESSION["authorized"] = true;
             $_SESSION["user"] = $user;
             $this->initialize();
+            if(isset($this->twofaSettings['type']) && $this->twofaSettings['type'] == 'webauthn')
+            {
+                 $_SESSION['firstFactorAuthorized'] = true;
+                return 1;
+            }
+            else $_SESSION['authorized'] = true;
             return 0;
         }
         return -1;
     }
 
+    public function getWebAuthnCreateArgs()
+    {
+        if(!isset($_SESSION['user']) || !$_SESSION['user'] || (!isset($_SESSION["authorized"]) || $_SESSION["authorized"] !== true))
+        {
+            return array();
+        }
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+        $createArgs = null;
+        try
+        {
+            $createArgs = $this->webAuthn->getCreateArgs($_SESSION["user"], $_SESSION["user"], $_SESSION["user"], 20, false, false);
+        }
+        catch(\WebAuthn\WebAuthnException $e)
+        {
+            return array();
+        }
+        $_SESSION['challenge'] = $this->webAuthn->getChallenge();
+        return $createArgs;
+    }
+
+    public function getWebAuthnLoginArgs()
+    {
+        if(!isset($_SESSION['user']) || !$_SESSION['user'] || (!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true))
+        {
+            return array();
+        }
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+
+        $ids = array();
+
+        if(!isset($this->twofaSettings['registrations'])) return array();
+        foreach($this->twofaSettings['registrations'] as $registration)
+        {
+            $ids[] = $registration['credentialId'];
+        }
+
+        $loginArgs = null;
+        try
+        {
+            $loginArgs = $this->webAuthn->getGetArgs($ids);
+        }
+        catch(\WebAuthn\WebAuthnException $e)
+        {
+            return array();
+        }
+        $_SESSION['challenge'] = $this->webAuthn->getChallenge();
+        return $loginArgs;
+    }
+
+    public function registerWebAuthnDevice($clientDataJson, $attestationObject)
+    {
+        if(!isset($_SESSION['user']) || !$_SESSION['user'] || !$_SESSION["authorized"] || !isset($_SESSION['challenge']) || $this->hasWebAuthn()) return false;
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+
+        $data = null;
+
+        try
+        {
+            $data = get_object_vars($this->webAuthn->processCreate($clientDataJson, $attestationObject, $_SESSION['challenge']));
+        }
+        catch(\WebAuthn\WebAuthnException $e)
+        {
+            return false;
+        }
+
+        unset($_SESSION['challenge']);
+
+        $metadata = $this->hg->getUserMetadata($_SESSION['user']);
+        if(!isset($metadata['interface'])) $metadata['interface'] = array();
+        if(!isset($metadata['interface']['2fa'])) $metadata['interface']['2fa'] = array();
+        if(!isset($metadata['interface']['2fa']['registrations'])) $metadata['interface']['2fa']['registrations'] = array();
+        $metadata['interface']['2fa']['type'] = 'webauthn';
+        $metadata['interface']['2fa']['registrations'][] = $data;
+        $this->hg->setUserMetadata($_SESSION['user'], $metadata);
+
+        return true;
+    }
+
+    public function twofaLogin($clientDataJson, $authenticatorData, $signature, $id)
+    {
+        if(!isset($_SESSION['user']) || !$_SESSION['user'] || !isset($_SESSION['challenge'])) return false;
+        if(!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true) return false;
+        if(!$this->initialized) $this->initialize();
+        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0]);
+
+        $credentialPublicKey = null;
+
+        if(!isset($this->twofaSettings['registrations'])) return false;
+        foreach($this->twofaSettings['registrations'] as $registration)
+        {
+            if ($registration['credentialId'] === $id) {
+                $credentialPublicKey = $registration['credentialPublicKey'];
+                break;
+            }
+        }
+        if($credentialPublicKey === null) return false;
+
+        try
+        {
+            $this->webAuthn->processGet($clientDataJson, $authenticatorData, $signature, $credentialPublicKey, $_SESSION['challenge']);
+        }
+        catch(\WebAuthn\WebAuthnException $e)
+        {
+            return false;
+        }
+
+        unset($_SESSION['challenge']);
+        unset($_SESSION['firstFactorAuthorized']);
+        $_SESSION['authorized'] = true;
+        return true;
+    }
+
     private function certificateLogin()
     {
-        if(array_key_exists('SSL_CLIENT_VERIFY',$_SERVER) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
+        if(isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
         {
             // Certificate auth
             $user = $_SERVER['SSL_CLIENT_S_DN_CN'];
