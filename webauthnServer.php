@@ -49,7 +49,7 @@ else if($command == 'checkAuth')
     $signature = base64_decode($post->signature);
     $id = base64_decode($post->id);
 
-    $result = $user->twofaLogin($clientDataJson, $authenticatorData, $signature, $id);
+    $result = $user->webauthnLogin($clientDataJson, $authenticatorData, $signature, $id);
 
 	$return = new stdClass();
 	$return->success = $result;

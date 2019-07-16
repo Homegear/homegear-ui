@@ -24,4 +24,4 @@ if(!$_SERVER['WEBSOCKET_ENABLED']) die('WebSockets are not enabled on this serve
 if($_SERVER['WEBSOCKET_AUTH_TYPE'] != 'session') die('WebSocket authorization type is not set to "session" in "rpcservers.conf".');
 
 $user = new User($interfaceData['settings']);
-if(!$user->checkAuth(true)) die('unauthorized');
+if($user->checkAuth(true) !== 0) die('unauthorized');

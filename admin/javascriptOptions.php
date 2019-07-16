@@ -16,11 +16,12 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-if($user->checkAuth(true))
+if($user->checkAuth(true) === 0)
 {
     $firstBreadcrumb     = $user->getSettings()["firstBreadcrumb"] ?? '';
     $firstBreadcrumbId   = $user->getSettings()["firstBreadcrumbId"] ?? '';
     $javascript_options  = "<script>";
+    $javascript_options .= "    var twofaEnabled = ".(in_array('webauthn', $user->getSecondFactorAuthMethods(), true) ? "true" : "false").";"."\n";
     $javascript_options .= "    var userHasTwofaRegistrations = ".($user->hasWebAuthn() ? "true" : "false").";"."\n";
     $javascript_options .= "    var firstBreadcrumb = '".$firstBreadcrumb."';"."\n";
     $javascript_options .= "    var firstBreadcrumbId = '".$firstBreadcrumbId."';"."\n";

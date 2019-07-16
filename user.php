@@ -26,6 +26,8 @@ class User
     private $userSettings = array();
     private $twofaSettings = array();
     private $webAuthn = NULL;
+    private $firstFactorAuthMethods = array();
+    private $secondFactorAuthMethods = array();
 
     public function getName()
     {
@@ -35,6 +37,21 @@ class User
     public function getSettings()
     {
         return $this->userSettings;
+    }
+
+    public function getFirstFactorAuthMethods()
+    {
+        return $this->firstFactorAuthMethods;
+    }
+
+    public function getSecondFactorAuthMethods()
+    {
+        return $this->secondFactorAuthMethods;
+    }
+
+    public function hasSecondFactor()
+    {
+        return $this->hasWebAuthn();
     }
 
     public function hasWebAuthn()
@@ -55,6 +72,7 @@ class User
 
     private function initialize()
     {
+        if(!isset($_SESSION['user'])) return;
         $metadata = $this->hg->getUserMetadata($_SESSION['user']);
         $_SESSION['locale'] = array((array_key_exists('locale', $metadata) ? $metadata['locale'] : 'en-US'));
         if(is_array($_SESSION['locale']) && count($_SESSION['locale']) > 0) $_SESSION['locale'] = $_SESSION['locale'][0];
@@ -70,32 +88,40 @@ class User
         $this->twofaSettings = $this->userSettings['2fa'] ?? array();
         unset($this->userSettings['2fa']);
 
+        $this->firstFactorAuthMethods = $this->userSettings['firstFactorAuthMethods'] ?? array();
+        $this->secondFactorAuthMethods = $this->userSettings['secondFactorAuthMethods'] ?? array();
+
         $this->initialized = true;
     }
 
     public function checkAuth($redirectToLogin)
     {
-        $authorized = (isset($_SESSION["authorized"]) && $_SESSION["authorized"] === true && isset($_SESSION['user']));
-        
-        if(!$authorized)
+        $authorized = (isset($_SESSION["authorized"]) && $_SESSION["authorized"] === true && isset($_SESSION['user'])) ? 0 : -1;
+        if($authorized === -1 && isset($_SESSION['firstFactorAuthorized']) && $_SESSION['firstFactorAuthorized'] === true) $authorized = 1;
+
+        if($authorized === -1)
         {
             //Try certificate login
             if(isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
             {
                 $authorized = $this->certificateLogin();
+                //$this->firstFactorAuthMethods is not set before this point.
+                if(!in_array('certificate', $this->firstFactorAuthMethods, true)) $authorized = -1;
             }
         }
 
-        if(!$authorized)
+        if($authorized === -1)
         {
             //Try OAuth login
             if(isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey']))
             {
                 $authorized = $this->oauthLogin();
+                //$this->firstFactorAuthMethods is not set before this point.
+                if(!in_array('oauth', $this->firstFactorAuthMethods, true)) $authorized = -1;
             }
         }
 
-        if(!$authorized)
+        if($authorized === -1)
         {
             //Try API key login
             if(isset($this->globalSettings['directLoginUser']) &&
@@ -105,16 +131,18 @@ class User
                 isset($_REQUEST['key']))
             {
                 $authorized = $this->apiKeyLogin();
+                //$this->firstFactorAuthMethods is not set before this point.
+                if(!in_array('apiKey', $this->firstFactorAuthMethods, true)) $authorized = -1;
             }
         }
         
-        if(!$authorized && $redirectToLogin)
+        if($authorized === -1 && $redirectToLogin)
         {
             header("Location: signin.php");
             die("unauthorized");
         }
 
-        if(!$this->initialized) $this->initialize();
+        if(!$this->initialized && isset($_SESSION['user'])) $this->initialize();
 
         return $authorized;
     }
@@ -127,13 +155,17 @@ class User
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
             $_SESSION["user"] = $user;
             $this->initialize();
-            if(isset($this->twofaSettings['type']) && $this->twofaSettings['type'] == 'webauthn')
+            if(!in_array('login', $this->firstFactorAuthMethods, true)) return -1;
+            if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
             {
-                 $_SESSION['firstFactorAuthorized'] = true;
+                $_SESSION['firstFactorAuthorized'] = true;
                 return 1;
             }
-            else $_SESSION['authorized'] = true;
-            return 0;
+            else
+            {
+                $_SESSION['authorized'] = true;
+                return 0;
+            }
         }
         return -1;
     }
@@ -216,7 +248,7 @@ class User
         return true;
     }
 
-    public function twofaLogin($clientDataJson, $authenticatorData, $signature, $id)
+    public function webauthnLogin($clientDataJson, $authenticatorData, $signature, $id)
     {
         if(!isset($_SESSION['user']) || !$_SESSION['user'] || !isset($_SESSION['challenge'])) return false;
         if(!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true) return false;
@@ -246,6 +278,12 @@ class User
 
         unset($_SESSION['challenge']);
         unset($_SESSION['firstFactorAuthorized']);
+
+        hg_set_user_privileges($_SESSION['user']);
+        if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
+
+        if(!$this->initialized) $this->initialize();
+
         $_SESSION['authorized'] = true;
         return true;
     }
@@ -258,13 +296,21 @@ class User
             $user = $_SERVER['SSL_CLIENT_S_DN_CN'];
             hg_set_user_privileges($user);
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
-            $_SESSION['authorized'] = true;
             $_SESSION['user'] = $user;
             $this->initialize();
-            return true;
+            if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
+            {
+                $_SESSION['firstFactorAuthorized'] = true;
+                return 1;
+            }
+            else
+            {
+                $_SESSION['authorized'] = true;
+                return 0;
+            }
         }
 
-        return false;
+        return -1;
     }
 
     private function oauthLogin()
@@ -285,17 +331,25 @@ class User
                 {
                     hg_set_user_privileges($user);
                     if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
-                    $_SESSION['authorized'] = true;
                     $_SESSION['user'] = $user;
                     $this->initialize();
-                    return true;
+                    if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
+                    {
+                        $_SESSION['firstFactorAuthorized'] = true;
+                        return 1;
+                    }
+                    else
+                    {
+                        $_SESSION['authorized'] = true;
+                        return 0;
+                    }
                 }
             }
         }
         catch(\Homegear\HomegearException $e)
         {
         }
-        return false;
+        return -1;
     }
 
     private function apiKeyLogin()
@@ -313,16 +367,24 @@ class User
                 if(!$this->hg->userExists($user)) return false;
                 hg_set_user_privileges($user);
                 if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
-                $_SESSION['authorized'] = true;
                 $_SESSION['user'] = $user;
                 $this->initialize();
-                return true;
+                if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
+                {
+                    $_SESSION['firstFactorAuthorized'] = true;
+                    return 1;
+                }
+                else
+                {
+                    $_SESSION['authorized'] = true;
+                    return 0;
+                }
             }
         }
         catch(\Homegear\HomegearException $e)
         {
         }
-        return false;
+        return -1;
     }
 
     public function logout()

@@ -29,8 +29,9 @@ if(file_exists($databaseJsonPath))
 else die("JSON file missing!");
 //}}}
 
-$user = new User();
+$user = new User($interfaceData['settings']);
 $loginResult = -5;
+
 if(isset($_GET["logout"]))
 {
   $user->logout();
@@ -39,6 +40,14 @@ if(isset($_GET["logout"]))
 }
 else
 {
+  $result = $user->checkAuth(false);
+  if($result === 0)
+  {
+    header("Location: index.php");
+    die();
+  }
+  else if($result === 1) $loginResult = $result;
+  
   if(isset($_POST["username"]) && isset($_POST["password"]) && $_POST["username"] && $_POST["password"])
   {
     $loginResult = $user->login($_POST["username"], urldecode($_POST["password"]));

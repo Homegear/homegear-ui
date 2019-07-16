@@ -19,7 +19,9 @@
             "firstBreadcrumbId": "house",
             "showFloor": "true",
             "language": "de-DE",
-            "consoleLog": "true"
+            "consoleLog": "true",
+            "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
+            "secondFactorAuthMethods": ["webauthn"]
         }
     },
     "mainmenu": [

@@ -30,7 +30,7 @@ function user(element, options){
     const output = `
         <div id="user_wrapper">
         <form id="user_${options.content}" name="user_${options.content}" action="javascript:void(0);" onsubmit="user_${options.content}_commit();">
-            <div class="form-group">
+            <div id="twofaContainer" class="form-group" style="display: none">
                 <div class="label">${i18n('settings.user.manage.twofa')}:</div>
                 <input id="registerWebauthn" onclick="user_register_webauthn_device()" type="button" class="" ${userHasTwofaRegistrations ? 'disabled="disabled"' : ''} value="${userHasTwofaRegistrations ? i18n('settings.user.manage.twofaRegistered') : i18n('settings.user.manage.registerTwofa')}">
             </div>
@@ -60,6 +60,7 @@ function user(element, options){
     `;
 
     content('this', {'content':output, 'name':options['name']});
+    if(twofaEnabled) $('#twofaContainer').show();
 
     const outerWidth = $('#user_edit').outerWidth()
     const userColorPickerWidth = outerWidth <= 400 ? outerWidth : 400;
