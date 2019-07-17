@@ -4,8 +4,9 @@
   "description": "Smarthome Interface",
   "version": "4.0.0",
   "dependencies": {
-    "@homegear/homegearws": "^1.0.9",
+    "@homegear/homegearws": "^1.0.10",
     "@jaames/iro": "^4.5.1",
+    "babel-preset-es2015": "^6.24.1",
     "jquery": "^3.4.1",
     "jsoneditor": "^5.34.0",
     "patternlock": "1.0.1",

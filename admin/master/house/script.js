@@ -54,15 +54,17 @@ function component_create(constructor, data) {
     return comp.$el;
 }
 
-function component_object(control, device, input, output, is) {
+function component_object(control, device, input, output, index, is) {
     let ret = {
-        control:   control,
-        device:    device.databaseId,
-        icons:     device.icons,
-        texts:     device.texts,
-        output:    output,
-        props:     input.properties,
-        rendering: input.rendering,
+        uiElement:      device,
+        control:        control,
+        device:         device.databaseId,
+        icons:          device.icons,
+        texts:          device.texts,
+        output:         output,
+        props:          input.properties,
+        index:          index,
+        rendering:      input.rendering
     };
 
     if (is)
@@ -84,7 +86,7 @@ function components_create(device, layer) {
 
             return [component_create(
                 controlComponents[control.control].l2,
-                component_object(control, device, input, output, null)
+                component_object(control, device, input, output, keys.input, null)
             )];
         }
 
@@ -103,7 +105,7 @@ function components_create(device, layer) {
 
             out.push(component_create(
                 controlComponents[control.control][layer],
-                component_object(control, device, input, output, null)
+                component_object(control, device, input, output, k, null)
             ));
         }
     }
@@ -206,7 +208,7 @@ Vue.component('shif-ctrl-summary', {
                     const output  = control.variableOutputs[keys.input];
                     const is      = 'shif-' + control.control + '-l2';
 
-                    return [component_object(control, device, input, output, is)];
+                    return [component_object(control, device, input, output, keys.input, is)];
                 }
 
                 if ('l2_only' in device.metadata)
@@ -220,7 +222,7 @@ Vue.component('shif-ctrl-summary', {
                     const output = control.variableOutputs[k];
                     const is     = 'shif-' + control.control + '-' + layer;
 
-                    out.push(component_object(control, device, input, output, is));
+                    out.push(component_object(control, device, input, output, k, is));
                 }
             }
 

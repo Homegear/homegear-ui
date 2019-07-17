@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+	<homegearUiElement>
+		<id>Base.shadingButtonsPosition</id>
+        <control>shadingButtonsPosition</control>
+		<type>complex</type>
+        <role>501000</role>
+		<texts>
+			<text id="title">
+				<content>Shading</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>Shading</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
+		<icons>
+			<icon id="rolladen1">
+				<name>rolladen1</name>
+                <color>icon</color>
+			</icon>
+			<icon id="l2">
+				<name>rolladen1</name>
+                <color>icon</color>
+			</icon>
+            <icon id="l3">
+                <name>pfeil3</name>
+                <color>iconArrow</color>
+            </icon>
+		</icons>
+		<grid>
+			<width>3</width>
+			<height>3</height>
+			<columns>1</columns>
+			<rows>3</rows>
+		</grid>
+		<controls>
+			<control id="Base.shadingButtons">
+				<x>0</x>
+				<y>0</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.shadingPosition">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+		</controls>
+		<metadata>
+            <role>501000</role>
+		</metadata>
+	</homegearUiElement>
+</homegearUiElements>

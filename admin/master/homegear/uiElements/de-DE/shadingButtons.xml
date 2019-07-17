@@ -16,7 +16,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>markiese1</name>
+				<name>rolladen1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -158,7 +158,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>500000</role>
+            <role>501000</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

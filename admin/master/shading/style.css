@@ -1,0 +1,101 @@
+.shading-buttons-up-down_control_button_wrapper {
+    display: table;
+    clear: both;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.shading-buttons-up-down_control_button_wrapper .control_button {
+    background: #191b1f;
+    display: table-cell;
+    padding: 0px;
+    border-right: 1px solid #25282E;
+    height: 80px;
+    text-align: center;
+    position: relative;
+    vertical-align: middle;
+}
+
+.shading-buttons-up-down_control_button_wrapper .control_button:last-child {
+    border-right: 0px solid;
+}
+
+.shading-buttons-up-down_control_button_wrapper .control_button:active, .control_button:focus {
+    background: #898989;
+}
+
+.shading-buttons-up-down_control_button_wrapper .control_button svg {
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    fill: #fff;
+}
+
+.shading-buttons-up-down_control_button_wrapper .control_button .schliesen1 svg {
+    width: 30px;
+    height: 30px;
+}
+
+.shading_all_up_down {
+    width: 100%;
+    background: #191b1f;
+    padding: 0px;
+}
+
+.shading_all_up_down td {
+    width: 33.333333333%;
+}
+
+.shading_all_step_up_down {
+    width: 100%;
+    background: #191b1f;
+    padding: 0px;
+}
+
+.shading_all_step_up_down td {
+    width: 25%;
+}
+
+.shading_all_up_down_button {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    position: relative;
+}
+
+.shading_all_up_down_button:active, .shading_all_up_down_button:focus {
+    background: #898989;
+}
+
+.shading_all_up_down_button svg {
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    text-align: center;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    fill: #fff;
+}
+
+.shading_all_up_down_button .schliesen1 svg {
+    width: 40px;
+    height: 40px;
+}
+
+.devicesAlert .deviceState_status .alert {
+    display: inline-block;
+    color: #ff0000 !important;
+}
+
+.deviceAlert {
+    opacity: .6;
+}

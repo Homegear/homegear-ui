@@ -88,13 +88,12 @@
 	height: 70px;
 	font-size: 24px;
 	color: #fff;
-	text-align: left;
+	text-align: center;
 	overflow-wrap: break-word;
 	padding: 8px 0 0 0;
 	position: absolute;
 	right: 0;
 	left: 0;
-	white-space: pre-line;
 	overflow: hidden;
 }
 

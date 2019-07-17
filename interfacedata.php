@@ -1,38 +1,27 @@
 <?php 
     $defaultInterfaceDataJson = '
 {
-    "users": {
-        "1": {
-            "id": "1",
-            "username": "ui",
-            "settings": {
-                "theme": "dark",
-                "highlight": "#0056b7",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "showFloor": "true",
-                "language": "de-DE",
-                "consoleLog": "true"
-            }
-        }
-    },
     "settings": {
-        "timezone": "Europe/Berlin",
         "errorReporting": "-1",
-        "salt": "",
         "interfacePath": "/",
         "loginMethod": "input",
         "controllerUrl": "index.php",
-        "cookieName": "smarthome",
-        "directLoginUserKey": "",
-        "directLoginUrlKey": "",
+        "directLoginUser": "",
+        "directLoginApiKey": "",
         "homegear": {
             "url": "location.hostname",
-            "port": "location.port",
-            "security": "session",
-            "ssl": "false",
-            "user": "ui",
-            "password": ""
+            "port": "location.port"
+        },
+        "userDefaults": {
+            "theme": "dark",
+            "highlight": "#0056b7",
+            "firstBreadcrumb": "Haus",
+            "firstBreadcrumbId": "house",
+            "showFloor": "true",
+            "language": "de-DE",
+            "consoleLog": "true",
+            "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
+            "secondFactorAuthMethods": ["webauthn"]
         }
     },
     "mainmenu": [
@@ -40,21 +29,18 @@
             "id": "1",
             "name": "house",
             "icon": "haus1",
-            "access": "-1",
             "onclick": "main(this, {name:firstBreadcrumb,content:\'house\'})"
         },
         {
             "id": "2",
             "name": "settings",
             "icon": "einstellungen1",
-            "access": "-1",
             "onclick": "main(this, {name:\'Einstellungen\',content:\'settings\',menu:\'settings\'})"
         },
         {
             "id": "3",
             "name": "logoff",
             "icon": "power1",
-            "access": "-1",
             "onclick": "user_logoff()"
         }
     ],
@@ -66,7 +52,6 @@
             "category": "user",
             "level": "1",
             "icon": "profil1",
-            "access": "-1",
             "onclick": "menu({mainmenu:\'settings\',level:\'2\',category:\'user\',name:\'Benutzer\',content:\'true\'})",
             "description": "Verwalten"
         },
@@ -77,7 +62,6 @@
             "category": "user",
             "level": "2",
             "icon": "profil1",
-            "access": "-1",
             "onclick": "user(this, {name:\'Benutzereinstellungen\',content:\'edit\'})",
             "description": "Theme, ..."
         },
@@ -88,7 +72,6 @@
             "category": "license",
             "level": "1",
             "icon": "information1",
-            "access": "-1",
             "onclick": "license(this, {name:\'Lizenz\',content:\'license\'})",
             "description": "Credits"
         }
@@ -164,17 +147,30 @@
             }
         }
     },
-    "l18n": {
+    "i18n": {
         "en-US": {
-            "login.username": "Username",
-            "login.password": "Password",
-            "login.loginbutton": "Login",
-            "login.dataerror": "Incorrect login data!",
+            "login": {
+                "username": "Username",
+                "password": "Password",
+                "signin": "Login",
+                "waitingFor2ndFactor": "Waiting for second factor...",
+                "error": {
+                    "wrongpassword": "Wrong username or password",
+                    "noaccess":"No access permission",
+                    "twofaError": "2nd factor error",
+                    "browserNotSupported": "Browser not supported."
+                }
+            },
             "house": "House",
             "house.tab.rooms": "Rooms",
             "house.tab.devices": "Devices",
             "widgets": "Widgets",
             "settings": "Settings",
+            "settings.user.manage.twofa": "Two-factor authentication",
+            "settings.user.manage.registerTwofa": "Register WebAuthn device",
+            "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
+            "settings.user.manage.twofaRegistered": "WebAuthn activated",
+            "settings.user.manage.browserNotSupported": "Browser not supported.",
             "settings.user.manage.theme": "Theme",
             "settings.user.manage.theme.dark": "Dark",
             "settings.user.manage.theme.light": "Light",
@@ -192,15 +188,28 @@
             "logoff": "Logoff"
         },
         "de-DE": {
-            "login.username": "Benutzername",
-            "login.password": "Passwort",
-            "login.loginbutton": "Anmelden",
-            "login.dataerror": "Falsche Logindaten!",
+            "login": {
+                "username": "Benutzername",
+                "password": "Kennwort",
+                "signin": "Anmelden",
+                "waitingFor2ndFactor": "Warte auf zweiten Faktor...",
+                "error": {
+                    "wrongpassword": "Unbekannter Benutzer oder falsches Kennwort.",
+                    "noaccess": "Keine Zugriffsberechtigung.",
+                    "twofaError": "Fehler beim zweiten Faktor",
+                    "browserNotSupported": "Browser wird nicht unterstützt."
+                }
+            },
             "house": "Haus",
             "house.tab.rooms": "Räume",
             "house.tab.devices": "Geräte",
             "widgets": "Widgets",
             "settings": "Einstellungen",
+            "settings.user.manage.twofa": "Zweifaktorauthentifizierung",
+            "settings.user.manage.registerTwofa": "WebAuthn-Gerät registrieren",
+            "settings.user.manage.unregisterTwofa": "WebAuthn-Gerät entfernen",
+            "settings.user.manage.twofaRegistered": "WebAuthn ist aktiviert",
+            "settings.user.manage.browserNotSupported": "Browser wird nicht unterstützt.",
             "settings.user.manage.language": "Sprache",
             "settings.user.manage.language.name": "Deutsch",
             "settings.user.manage.theme": "Theme",
@@ -208,7 +217,7 @@
             "settings.user.manage.theme.light": "Hell",
             "settings.user.manage.theme.blue": "Blau",
             "settings.user.manage.theme.purple": "Lila",
-            "settings.user.manage.highlight": "Highlight Farbe",
+            "settings.user.manage.highlight": "Vordergrundfarbe",
             "settings.user.manage.save": "Speichern",
             "settings.about.table.name": "Name",
             "settings.about.table.version": "Version",
@@ -238,25 +247,25 @@
                         "flaticons"
                     ]
                 },
-                "benutzer": {
+                "user": {
+                    "activated": true,
+                    "requiredAssets": [
+			"webauthn"
+                    ]
+                },
+                "shading": {
                     "activated": true,
                     "requiredAssets": [
                         ""
                     ]
                 },
-                "beschattung": {
+                "window": {
                     "activated": true,
                     "requiredAssets": [
                         ""
                     ]
                 },
-                "fenster": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
-                "tueren": {
+                "door": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -280,7 +289,7 @@
                         ""
                     ]
                 },
-                "beleuchtung": {
+                "lighting": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -292,7 +301,7 @@
                         ""
                     ]
                 },
-                "schalten": {
+                "socket": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -304,7 +313,19 @@
                         ""
                     ]
                 },
-                "klima": {
+                "climate": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "heating": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "ventilation": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -596,6 +617,15 @@
                         "licensename": "MIT"
                     }
                 },
+                "webauthn": {
+                    "license": {
+                        "name": "WebAuthn",
+                        "version": "",
+                        "rights": "Lukas Buchs, Thomas Bleeker",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
                 "touchswipe": {
                     "user": "jaames",
                     "repository": "/node_modules/jquery-touchswipe",
@@ -642,8 +672,11 @@ $interfaceData = array_merge($interfaceData, $defaultInterfaceData);
 
 if(file_exists("interfacedata.custom.php")){
     include_once("interfacedata.custom.php");
-    $customInterfaceData = json_decode($customInterfaceDataJson, true);
-    $interfaceData = array_merge($interfaceData, $customInterfaceData);
+    if($customInterfaceDataJson)
+    {
+        $customInterfaceData = json_decode($customInterfaceDataJson, true);
+        $interfaceData = array_merge($interfaceData, $customInterfaceData);
+    }
 }
 
 if(strpos($_SERVER['REQUEST_URI'], 'setup') !== false && isset($customImportInterfaceDataJson)){

@@ -4,7 +4,6 @@
 		<uniqueUiElementId>Base.lightingButton</uniqueUiElementId>
 		<type>simple</type>
 		<control>lightingButton</control>
-        <role>0x100000</role>
 		<texts>
 			<text id="title">
 				<content>Button</content>
@@ -72,8 +71,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>100000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

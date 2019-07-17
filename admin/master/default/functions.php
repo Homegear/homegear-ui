@@ -23,92 +23,25 @@ function in_array_r($needle, $haystack, $strict = false) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// PHP JSON clean to Javascript
+// i18n
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function clean_json_to_js(){
-    global $currentUser;
+function i18n($langKey){
     global $interfaceData;
-    $interfaceDataOut = array();
-    $interfaceDataOut["devices"] = $interfaceData["devices"];
-    $interfaceDataOut["rooms"] = $interfaceData["rooms"];
-    $interfaceDataOut["floors"] = $interfaceData["floors"];
-    $interfaceDataOut["menu"] = $interfaceData["menu"];
-    $interfaceDataOut["mainmenu"] = $interfaceData["mainmenu"];
-    $interfaceDataOut["themes"] = $interfaceData["themes"];
-    $interfaceDataOut["users"] = $interfaceData["users"];
-    $interfaceDataOut["map_invoke"] = $interfaceData["map_invoke"];
-    $interfaceDataOut["categories"] = $interfaceData["categories"];
-    $interfaceDataOut["roles"] = $interfaceData["roles"];
+    $i18nOut = null;
 
-    foreach($interfaceDataOut["users"] as $keyLine => $line){
-        unset($interfaceDataOut["users"][$keyLine]["id"]);
-        unset($interfaceDataOut["users"][$keyLine]["username"]);
-        unset($interfaceDataOut["users"][$keyLine]["rights"]);
-        unset($interfaceDataOut["users"][$keyLine]["settings"]);
-        unset($interfaceDataOut["users"][$keyLine]["password"]);
-        unset($interfaceDataOut["users"][$keyLine]["controllerkey"]);
-        unset($interfaceDataOut["users"][$keyLine]["key"]);
-    }
-
-    foreach($interfaceDataOut as $key => $type){
-        foreach($type as $keyLine => $line){
-            if($line == null){
-                unset($interfaceDataOut[$key][$keyLine]);
-                continue;
-            }
-            else if(!array_key_exists("access", $line)){
-                continue;
-            }
-            else if($line["access"] == ""){
-                unset($interfaceDataOut[$key][$keyLine]);
-            }
-            else if($line["access"] != ""){
-                $access = explode(",", $line["access"]);
-                if(!in_array("-1", $access) && !in_array($currentUser['id'], $access)){
-                    unset($interfaceDataOut[$key][$keyLine]);
-                }
-            }
-        }
-    }
-
-    if($currentUser["settings"]["language"] != "en-US"){
-        $interfaceDataOut["l18n"] = $interfaceData["l18n"][$currentUser["settings"]["language"]];
-        $interfaceDataOut["l18n"]["default"] = $interfaceData["l18n"]["en-US"];
+    if(isset($_SESSION['locale']) && $_SESSION['locale'] != "en-US"){
+        $i18nOut = $interfaceData["i18n"][$_SESSION['locale']];
+        $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else{
-        $interfaceDataOut["l18n"] = $interfaceData["l18n"]["en-US"];
+        $i18nOut = $interfaceData["i18n"]["en-US"];
     }
 
-    foreach($interfaceData["l18n"] as $key => $value){
-        $interfaceDataOut["l18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
+    if(array_key_exists($langKey, $i18nOut)){
+        return $i18nOut[$langKey];
     }
-
-    $out = "var interfaceData = ".json_encode($interfaceDataOut, JSON_PRETTY_PRINT).';'."\n";
-
-    return $out;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// l18n
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function l18n($langKey){
-    global $currentUser;
-    global $interfaceData;
-    $l18nOut = null;
-
-    if(isset($currentUser["settings"]["language"]) && $currentUser["settings"]["language"] != "en-US"){
-        $l18nOut = $interfaceData["l18n"][$currentUser["settings"]["language"]];
-        $l18nOut["default"] = $interfaceData["l18n"]["en-US"];
-    }
-    else{
-        $l18nOut = $interfaceData["l18n"]["en-US"];
-    }
-
-    if(array_key_exists($langKey, $l18nOut)){
-        return $l18nOut[$langKey];
-    }
-    else if(isset($l18nOut["default"]) && array_key_exists($langKey, $l18nOut["default"])){
-        return $l18nOut["default"][$langKey];
+    else if(isset($i18nOut["default"]) && array_key_exists($langKey, $i18nOut["default"])){
+        return $i18nOut["default"][$langKey];
     }
     else{
         return "NoTranslation: ".$langKey;
@@ -177,8 +110,9 @@ function tabs($tabs, $options){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // parst die Styledatei und ersetzt je nach gewähltem Theme die Farbeinstellungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function userStyle(){
-    global $currentUser;
+function userStyle()
+{
+    global $user;
     global $interfaceData;
 
     if (file_exists("style.min.css")) {
@@ -198,7 +132,7 @@ function userStyle(){
     $theme_standard = $themes[1];
 
     foreach($themes as $key => $value){
-        if($value["name"] == $currentUser['settings']['theme']){
+        if($value["name"] == $user->getSettings()['theme']){
             $theme = $themes[$key];
             break;
         }
@@ -208,7 +142,7 @@ function userStyle(){
     unset($themes[1]);
 
     if($theme["colors"]["highlight_active"] == ""){
-        $theme["colors"]["highlight_active"] = $currentUser['settings']['highlight'];
+        $theme["colors"]["highlight_active"] = $user->getSettings()['highlight'];
     }
 
     $style_theme = str_replace($theme_standard["colors"], $theme["colors"], $style);

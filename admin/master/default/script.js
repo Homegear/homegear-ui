@@ -218,36 +218,16 @@ function content(element, options) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// cookies können nur mit php verlässlich entfernt werden
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function removeCookie(cookieName) {
-    const cookieValue    = '';
-    const cookieLifetime = -1;
-    const msecs_per_day  = 24 * 60 * 60 * 1000;
-
-    let date = new Date();
-    date.setTime(date.getTime() + (cookieLifetime * msecs_per_day));
-
-    const expires = '; expires=' + date.toGMTString();
-    document.cookie = cookieName + '=' + JSON.stringify(cookieValue) + expires +
-                      '; path=/';
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_logoff() {
-    removeCookie('smarthome');
-    removeCookie('PHPSESSIDUI');
-
-    window.location.href = interfacePath;
+    window.location.href = 'signin.php?logout=1';
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Ladebildschirm
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
-    $('#loadingPage').hide();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -290,12 +270,12 @@ function license() {
             <table>
                 <tr>
                     <th onclick='main(this, {"name":"Log","content":"log"})'>
-                        ${l18n('settings.about.table.name')}
+                        ${i18n('settings.about.table.name')}
                     </th>
-                    <th>${l18n('settings.about.table.version')}</th>
-                    <th>${l18n('settings.about.table.rights')}</th>
-                    <th>${l18n('settings.about.table.license')}</th>
-                    <th>${l18n('settings.about.table.license.url')}</th>
+                    <th>${i18n('settings.about.table.version')}</th>
+                    <th>${i18n('settings.about.table.rights')}</th>
+                    <th>${i18n('settings.about.table.license')}</th>
+                    <th>${i18n('settings.about.table.license.url')}</th>
                 </tr>
                 ${table_rows}
             </table>
@@ -321,8 +301,8 @@ function check_value_in_key(haystack, haystackkey, haystackneedle) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function l18n(key) {
-    for (let i of [interfaceData.l18n, interfaceData.l18n.default])
+function i18n(key) {
+    for (let i of [interfaceData.i18n, interfaceData.i18n.default])
         if (key in i)
             return i[key];
 
@@ -667,18 +647,62 @@ Vue.component('shif-generic-l2', {
 // }}}
 
 
+
 // [shif_device] Generic Shif Device Component Object {{{
+function status_impl(control) {
+    let out = [];
+
+    const key = (control.texts &&
+                 control.texts.l2_state_title &&
+                 control.texts.l2_state_title.content) ?
+        control.texts.l2_state_title.content :
+        null;
+    let val = [];
+
+    for (const input of control.variableInputs) {
+        if (!input.properties.visualizeInOverview)
+            continue;
+
+        if (input.rendering) {
+            const sel = condition_get_matching(input.rendering, input.properties);
+            if (Object.keys(sel).length > 0) {
+                val.push(sel.texts.state.content);
+                continue;
+            }
+        }
+
+        const unit = input.properties.unit ? input.properties.unit : '';
+        val.push(input.properties.value + unit);
+    }
+
+    if (val.length > 0)
+        out.push({key: key, value: val.join(', ')});
+
+    return out;
+}
+
+
 const shif_device = {
     props: [
+        'uiElement',
         'control',
         'device',
         'icons',
         'texts',
         'output',
         'props',
+        'index',
         'rendering',
         'include_place',
     ],
+
+    data: function() {
+        return {
+            lastClickCount: 0
+        };
+    },
+
+    methods: {},
 
     computed: {
         cond: function () {
@@ -718,35 +742,14 @@ const shif_device = {
         status: function () {
             let out = [];
 
-            for (const control of this.dev.controls) {
-                const key = (control.texts &&
-                             control.texts.l2_state_title &&
-                             control.texts.l2_state_title.content) ?
-                    control.texts.l2_state_title.content :
-                    null;
-                let val = [];
-
-                for (const input of control.variableInputs) {
-                    if (!input.properties.visualizeInOverview)
-                        continue;
-
-                    if (input.rendering) {
-                        const sel = condition_get_matching(input.rendering, input.properties);
-                        if (Object.keys(sel).length > 0) {
-                            val.push(sel.texts.state.content);
-                            continue;
-                        }
-                    }
-
-                    const unit = input.properties.unit ? input.properties.unit : '';
-                    val.push(input.properties.value + unit);
-                }
-
-                if (val.length > 0)
-                    out.push({key: key, value: val.join(', ')});
-            }
+            for (const control of this.dev.controls)
+                out = out.concat(status_impl(control));
 
             return out;
+        },
+
+        status_minimal: function () {
+            return status_impl(this.control);
         },
 
         breadcrumb: function () {
@@ -757,221 +760,13 @@ const shif_device = {
 
 
 
-function shif_comps_create(name, l2, l2_only, l3) {
+function shif_comps_create(name, l2, l2_only_and_l3) {
     const shif_name = 'shif-' + name + '-';
 
     controlComponents[name] = {
         l2:      Vue.component(shif_name + 'l2',      l2),
-        l2_only: Vue.component(shif_name + 'l2_only', l2_only),
-        l3:      Vue.component(shif_name + 'l3',      l3),
+        l2_only: Vue.component(shif_name + 'l2_only', l2_only_and_l3),
+        l3:      Vue.component(shif_name + 'l3',      l2_only_and_l3),
     };
 }
-// }}}
-
-
-
-// [a] {{{
-let shif_socket_l2 = clone(shif_device);
-shif_socket_l2.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status"
-                     v-bind:place="place"
-                     v-bind:actions="true"
-                     v-on:click_icon="$homegear.value_set(output, !props.value)"
-                     v-on:click="level3(device, breadcrumb)">
-    </shif-generic-l2>
-`;
-
-let shif_socket_l3 = clone(shif_device);
-shif_socket_l3.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="title"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:place="place"
-                     v-bind:status="status"
-                     v-on:click="$homegear.value_set(output, !props.value)">
-    </shif-generic-l2>
-`;
-
-let shif_socket = clone(shif_socket_l2);
-
-
-shif_comps_create('socketSwitch',       shif_socket_l2, shif_socket_l3, shif_socket_l3);
-shif_comps_create('lightingSwitch',     shif_socket_l2, shif_socket_l3, shif_socket_l3);
-shif_comps_create('shadingVentilation', shif_socket_l2, shif_socket_l3, shif_socket_l3);
-// }}}
-
-
-// [b] {{{
-let shif_brightness = clone(shif_device);
-shif_brightness.template = `
-    <shif-slider v-bind:min="props.minimumScaled"
-                 v-bind:max="props.maximumScaled"
-                 v-bind:unit="props.unit"
-                 v-bind:value="props.value"
-                 v-bind:title="title"
-                 v-on:change="$homegear.value_set(output, props.value)"
-                 v-model:value="props.value">
-    </shif-slider>
-`;
-
-
-shif_comps_create('lightingBrightness',   shif_socket, shif_brightness, shif_brightness);
-shif_comps_create('shadingPosition',      shif_socket, shif_brightness, shif_brightness);
-shif_comps_create('shadingPositionSlats', shif_socket, shif_brightness, shif_brightness);
-shif_comps_create('heatingSlider',        shif_socket, shif_brightness, shif_brightness);
-// [b] }}}
-
-
-// [d] like [a] w/o click {{{
-let shif_humidity = clone(shif_device);
-shif_humidity.template = `
-    <shif-generic-l2 v-bind:icon="icons.humidity.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: icons.humidity.color, text: texts.title.color}"
-                     v-bind:status="status"
-                     v-bind:place="place">
-    </shif-generic-l2>
-`;
-let shif_temperature = clone(shif_device);
-shif_temperature.template = `
-    <shif-generic-l2 v-bind:icon="icons.temperature.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: icons.temperature.color, text: texts.title.color}"
-                     v-bind:status="status"
-                     v-bind:place="place">
-    </shif-generic-l2>
-`;
-shif_comps_create('humidity',    shif_humidity,    shif_humidity,    shif_humidity);
-shif_comps_create('temperature', shif_temperature, shif_temperature, shif_temperature);
-// }}}
-
-
-// [e] like [a] w/o click {{{
-let shif_status = clone(shif_device);
-shif_status.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status"
-                     v-bind:place="place">
-    </shif-generic-l2>
-`;
-shif_comps_create('windowContact', shif_status, shif_status, shif_status);
-shif_comps_create('windowHandle',  shif_status, shif_status, shif_status);
-
-shif_comps_create('doorContact', shif_status, shif_status, shif_status);
-shif_comps_create('doorHandle',  shif_status, shif_status, shif_status);
-// }}}
-
-
-// [f] {{{
-let shif_button_l2 = clone(shif_device);
-shif_button_l2.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status"
-                     v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
-    </shif-generic-l2>
-`;
-
-let shif_button_l3 = clone(shif_device);
-shif_button_l3.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="title"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status"
-                     v-bind:place="place"
-                     v-on:mousedown="$homegear.value_set(output, true)"
-                     v-on:mouseup="$homegear.value_set(output, false)">
-    </shif-generic-l2>
-`;
-
-shif_comps_create('socketButton',   shif_button_l2, shif_button_l3, shif_button_l3);
-shif_comps_create('lightingButton', shif_button_l2, shif_button_l3, shif_button_l3);
-// }}}
-
-
-// [g] {{{
-let shif_heating_l2 = clone(shif_device);
-shif_heating_l2.template = `
-    <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
-                     v-bind:status="status"
-                     v-bind:actions="true"
-                     v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
-    </shif-generic-l2>
-`;
-let shif_heating_l3 = clone(shif_device);
-shif_heating_l3.template = `
-    <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
-                     v-bind:title="title"
-                     v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
-                     v-bind:status="status"
-                     v-bind:place="place">
-    </shif-generic-l2>
-`;
-
-shif_comps_create('heatingIsState', shif_heating_l2, shif_heating_l3, shif_heating_l3);
-// }}}
-
-
-// [h] {{{
-let shif_heating_mode_l3 = clone(shif_device);
-shif_heating_mode_l3.computed.values = function () {
-    return this.rendering
-        .map(x => ({
-            name:     x.definitions.texts.state.content,
-            value:    x.condition.value,
-            selected: x.condition.value == this.props.value,
-        }));
-};
-shif_heating_mode_l3.template = `
-    <shif-radio v-bind:title="title"
-                v-bind:values="values"
-                v-on:input="x => $homegear.value_set(output, parseInt(x))">
-    </shif-radio>
-`;
-
-shif_comps_create('heatingMode', shif_heating_l2, shif_heating_mode_l3, shif_heating_mode_l3);
-// }}}
-
-
-// [i] {{{
-let shif_shading_l2 = clone(shif_device);
-shif_shading_l2.template = `
-    <shif-generic-l2 v-bind:icon="icons.l2.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
-                     v-bind:place="place"
-                     v-bind:actions="true"
-                     v-bind:status="status"
-                     v-on:click="level3(device, breadcrumb)">
-    </shif-generic-l2>
-`;
-let shif_shading_l3 = clone(shif_device);
-shif_shading_l3.template = `
-    <div>
-        <div class="control_button_wrapper">
-            <shif-button width="50%" v-on:click="$homegear.value_set(output, true)">
-                <shif-icon v-bind:src="cond.icon.name"
-                           v-bind:active="cond.icon.color">
-                </shif-icon>
-            </shif-button>
-        </div>
-    </div>
-`;
-
-shif_comps_create('shadingButtons', shif_shading_l2, shif_shading_l3, shif_shading_l3);
-// }}}
-
-
-// [j] {{{
-shif_comps_create('ventilationMode', shif_shading_l2, shif_heating_mode_l3, shif_heating_mode_l3);
 // }}}
