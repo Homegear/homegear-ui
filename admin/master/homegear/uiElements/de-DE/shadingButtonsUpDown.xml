@@ -114,8 +114,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

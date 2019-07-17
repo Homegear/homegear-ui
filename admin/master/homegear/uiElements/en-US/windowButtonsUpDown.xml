@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<uniqueUiElementId>Base.shadingButtonsUpDown</uniqueUiElementId>
+		<uniqueUiElementId>Base.windowButtonsUpDown</uniqueUiElementId>
 		<type>simple</type>
-		<control>shadingButtonsUpDown</control>
+		<control>windowButtonsUpDown</control>
 		<texts>
 			<text id="title">
 				<content>Trigger</content>
@@ -16,7 +16,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>rolladen1</name>
+				<name>fenster1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
