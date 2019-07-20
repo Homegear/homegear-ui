@@ -29,6 +29,9 @@
     if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/settings.php");
+            include(getcwd()."/user.php");
+            include(getcwd()."/admin/auth.php");
+            include(getcwd()."/admin/javascriptOptions.php");
             include(getcwd()."/admin/admin.php");
             $date = "\n"."SUCCESS: ".date("Y-m-d H:i:s");
             die($date);
@@ -64,6 +67,7 @@
             $allInterfaceData["Rooms"] = $hg->getRooms($homegear_json_lang);
             $allInterfaceData["Categories"] = $hg->getCategories($homegear_json_lang);
             $allInterfaceData["Roles"] = $hg->getRoles($homegear_json_lang);
+            $allInterfaceData["Users"] = $hg->listUsers();
             $allInterfaceData["Devices"] = $hg->getAllValues();
             die("<pre>".json_encode($allInterfaceData, JSON_PRETTY_PRINT)."</pre>");
         } 
@@ -78,6 +82,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
         if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
+            $currentUser["id"] = "setup";
             include(getcwd()."/admin/master/homegear/functions.php");
         }
         else{
@@ -120,6 +125,23 @@
 
         if(isset($_GET["getUIE"])){
             $allInterfaceData["getAllUiElements"] = $hg->getAllUiElements("en-US");
+        }
+
+        if(isset($_GET["createUser"])){
+            foreach($oldInterfaceData["users"] as $key => $value){
+                $currentUserMeta = $hg->getUserMetadata($value["username"]);
+                $allInterfaceData["usermetadata"][$value["username"]]["currentUserMeta"] = $currentUserMeta;
+                unset($currentUserMeta["interface"]);
+                $allInterfaceData["usermetadata"][$value["username"]]["after InterfaceRemoval"] = $currentUserMeta;
+                $currentUserMeta["interface"] = $value["interface"];
+                $allInterfaceData["usermetadata"][$value["username"]]["newUserMeta"] = $value["interface"];
+                $allInterfaceData["usermetadata"][$value["username"]]["merged"] = $currentUserMeta;
+                $allInterfaceData["usermetadata"][$value["username"]]["state"] = $hg->setUserMetadata($value["username"], $currentUserMeta);
+            }
+        }
+
+        if(isset($_GET["listUsers"])){
+            $allInterfaceData["listUsers"] = $hg->listUsers();
         }
 
         if(isset($_GET["createStories"])){
@@ -566,6 +588,7 @@
 
             <h4>User</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createUser\', outputResult)" class="adminButton">create</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&listUsers\', outputResult)" class="adminButton">list</div>
 
             <h4>System Variables</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createSV\', outputResult)" class="adminButton">create</div>
