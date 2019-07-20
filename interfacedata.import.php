@@ -130,463 +130,109 @@
         }
     ],
     "roles": [
-        {
-            "id": 100000,
-            "metadata": {
-                "interface": {
-                    "icon": "licht1",
-                    "invokeOutputs": [
-                        {
-                            "value": 0,
-                            "buttonText": "Zentral aus"
-                        }
-                    ],
-                    "translations": {
-                       "de-DE": {
-                         "0": "aus",
-                         "1": "an"
-                       },
-                       "en-US": {
-                         "0": "off",
-                         "1": "on"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201000,
-            "metadata": {
-                "interface": {
-                    "icon": "heater",
-                    "invokeOutputs": [
-                        {
-                            "roleId": 201003,
-                            "value": 0,
-                            "buttonText": "Zentral Frostschutz"
-                        },
-                        {
-                            "roleId": 201003,
-                            "value": 1,
-                            "buttonText": "Zentral Komfort"
-                        },
-                        {
-                            "roleId": 201003,
-                            "value": 2,
-                            "buttonText": "Zentral Spar"
-                        }
-                    ],
-                    "translations": {
-                        "de-DE": {
-                            "0": "Frostschutz",
-                            "1": "Komfort",
-                            "2": "Spar"
-                          },
-                        "en-US": {
-                            "0": "Frost",
-                            "1": "Comfort",
-                            "2": "Spar"
-                        }
-                    },
-                    "rolesInclude": [
-                        {
-                            "aggregationType": 2,
-                            "roles": [
-                                201003
-                            ]
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "id": 201001,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Ist"
-                       },
-                       "en-US": {
-                         "0": "Current"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201002,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Soll"
-                       },
-                       "en-US": {
-                         "0": "Setpoint"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201003,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Frostschutz",
-                         "1": "Komfort",
-                         "2": "Spar"
-                       },
-                       "en-US": {
-                         "0": "Frost protection",
-                         "1": "Comfort",
-                         "2": "Eco"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201004,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Komfort"
-                       },
-                       "en-US": {
-                         "0": "Comfort"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201005,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Spar"
-                       },
-                       "en-US": {
-                         "0": "Eco"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201006,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Frostschutz"
-                       },
-                       "en-US": {
-                         "0": "Frost protection"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 301001,
-            "metadata": {
-                "interface": {
-                    "icon": "door2",
-                    "translations": {
-                       "de-DE": {
-                         "0": "geschlossen",
-                         "1": "offen"
-                       },
-                       "en-US": {
-                         "0": "closed",
-                         "1": "opened"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 301002,
-            "metadata": {
-                "interface": {
-                    "icon": "fenster1",
-                    "translations": {
-                       "de-DE": {
-                         "0": "geschlossen",
-                         "1": "geöffnet",
-                         "2": "gekippt"
-                       },
-                       "en-US": {
-                         "0": "closed",
-                         "1": "opened",
-                         "2": "tilted"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 400000,
-            "metadata": {
-                "interface": {
-                    "icon": "socket1",
-                    "invokeOutputs": [
-                        {
-                            "value": 0,
-                            "buttonText": "Zentral aus"
-                        }
-                    ],
-                    "translations": {
-                       "de-DE": {
-                         "0": "aus",
-                         "1": "an"
-                       },
-                       "en-US": {
-                         "0": "off",
-                         "1": "on"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 500000,
-            "metadata": {
-                "interface": {
-                    "icon": "rolladen1",
-                    "invokeOutputs": [
-                        {
-                            "roleId": 501003,
-                            "value": 0,
-                            "buttonText": "Zentral auf"
-                        },
-                        {
-                            "roleId": 501003,
-                            "value": 100,
-                            "buttonText": "Zentral ab"
-                        }
-                    ],
-                    "translations": {
-                       "de-DE": {
-                         "falseCount": "eingefahren",
-                         "trueCount": "ausgefahren"
-                       },
-                       "en-US": {
-                         "falseCount": "retracted",
-                         "trueCount": "extended"
-                       }
-                    },
-                    "rolesInclude": [
-                        {
-                            "aggregationType": 1,
-                            "roles": [
-                                501003,
-                                502003
-                            ]
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "id": 501001,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Hoch"
-                       },
-                       "en-US": {
-                         "0": "Up"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 501002,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Runter"
-                       },
-                       "en-US": {
-                         "0": "Down"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 501003,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Stop"
-                       },
-                       "en-US": {
-                         "0": "Stop"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 502001,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "einfahren"
-                       },
-                       "en-US": {
-                         "0": "retract"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 502002,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "ausfahren"
-                       },
-                       "en-US": {
-                         "0": "extend"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 502003,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Stop"
-                       },
-                       "en-US": {
-                         "0": "Stop"
-                       }
-                    }
-                }
-            }
-        }
     ],
     "roles2var": [
         {
             "deviceId": 0,
             "channel": -1,
             "varName": "LIGHT",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 1,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 2,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 3,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 4,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 5,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 6,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 7,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 8,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 9,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 10,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 11,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 12,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 13,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 14,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 15,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 16,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 17,
@@ -940,7 +586,7 @@
             "deviceId": 84,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 87,
@@ -952,25 +598,25 @@
             "deviceId": 91,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 92,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 93,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 94,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 92,
