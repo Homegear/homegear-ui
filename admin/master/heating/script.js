@@ -26,8 +26,9 @@ heating_slider_l3.template = `
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
-                 v-bind:step=0.5
+                 v-bind:step="0.5"
                  v-on:change="change"
+                 v-bind:disabled="disabled"
                  v-model:value="props.value">
     </shif-slider>
 `;
