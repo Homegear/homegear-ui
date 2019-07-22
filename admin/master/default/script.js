@@ -481,10 +481,11 @@ Vue.component('shif-slider', {
         value: Number,
         title: String,
         step:  Number
+        disabled: Boolean,
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled}">
             <div class="device slider">
                 <shif-title>{{ title }}</shif-title>
 
@@ -503,6 +504,7 @@ Vue.component('shif-slider', {
                         v-bind:value="value"
                         v-on:change="$emit('change', parseFloat($event.target.value))"
                         v-on:input="$emit('input', parseFloat($event.target.value))" />
+                        v-bind:disabled="disabled"
 
                 <div class="slider_marks">
                     <div class="left">
@@ -524,6 +526,7 @@ Vue.component('shif-radio', {
         'title',
         'classname',
         'values',
+        'disabled'
     ],
 
     computed: {
@@ -533,7 +536,7 @@ Vue.component('shif-radio', {
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled}">
             <div class="device">
                 <shif-title>{{ title }}</shif-title>
                 <div class="device_radio">
@@ -544,6 +547,7 @@ Vue.component('shif-radio', {
                                    v-bind:name="identifier"
                                    v-bind:value="i.value"
                                    v-bind:checked="i.selected"
+                                   v-bind:disabled="disabled"
                                    v-on:input="$emit('input', $event.target.value)" />
                             <i></i>
                         </label>
@@ -563,10 +567,11 @@ Vue.component('shif-button', {
             default: '100%',
         },
         classname: String,
+        disabled:  Boolean,
     },
     template: `
         <div class="control_button"
-             v-bind:class="classname"
+             v-bind:class="{[classname]: true, disabled: disabled}"
              v-bind:style="{width}"
              v-on:click="$emit('click', 1)">
             <slot></slot>
