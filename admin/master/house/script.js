@@ -44,6 +44,13 @@ house_level1();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function check_disabled(metadata, control_idx) {
+    return 'event_hooks' in metadata &&
+           'disabled'    in metadata.event_hooks &&
+            control_idx  in metadata.event_hooks.disabled &&
+            metadata.event_hooks.disabled[control_idx];
+}
+
 function component_create(constructor, data) {
     let comp = new constructor({
         propsData: data,
@@ -67,6 +74,8 @@ function component_object(control, device, input, output, is, indexes) {
         rendering: input.rendering
     };
 
+    ret.control.disabled = () => check_disabled(device.metadata, disabled_idx);
+
     if (is)
         ret.is = is;
 
@@ -83,6 +92,8 @@ function components_create(device, layer) {
             const control = device.controls[keys.control];
             const input   = control.variableInputs[keys.input];
             const output  = control.variableOutputs[keys.input];
+            const disabled_idx = keys.control;
+
 
             return [component_create(
                 controlComponents[control.control].l2,
@@ -218,7 +229,8 @@ Vue.component('shif-ctrl-summary', {
                     const output  = control.variableOutputs[keys.input];
                     const is      = 'shif-' + control.control + '-l2';
 
-                    return [component_object(control, device, input, output, keys.input, is)];
+                    return [component_object(control, device, input, output, is,
+                                             {input: keys.input, control: keys.control})];
                 }
 
                 if ('l2_only' in device.metadata)
@@ -226,13 +238,17 @@ Vue.component('shif-ctrl-summary', {
             }
 
             let out = [];
-            for (const control of device.controls) {
+            // for (const control of device.controls) {
+            for (let i = 0; i < device.controls.length; ++i) {
+                const control = device.controls[i];
+
                 for (const k in control.variableInputs) {
                     const input  = control.variableInputs[k];
                     const output = control.variableOutputs[k];
                     const is     = 'shif-' + control.control + '-' + layer;
 
-                    out.push(component_object(control, device, input, output, k, is));
+                    out.push(component_object(control, device, input, output, is,
+                                              {input: k, control: i}));
                 }
             }
 
