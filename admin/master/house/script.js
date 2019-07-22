@@ -158,7 +158,6 @@ Vue.use({
 });
 
 
-
 Vue.mixin({
     data: function () {
         return  {
@@ -166,6 +165,13 @@ Vue.mixin({
             interfaceData:  interfaceData,
         };
     },
+
+    filters: {
+        pretty: function (val) {
+            return JSON.stringify(val, null, 4);
+        }
+    },
+
     methods: {
         level3: function (device, name) {
             house_level3(this, {
@@ -201,7 +207,7 @@ Vue.component('shif-ctrl-summary', {
         },
     },
 
-    methods: { // {{{
+    methods: {
         find_component: function (device, layer) {
             if (layer == 'l2' && typeof(device.metadata) == 'object') {
                 if ('l2_action' in device.metadata) {
@@ -250,7 +256,7 @@ Vue.component('shif-ctrl-summary', {
 
             this.$homegear.value_set_multi(ops);
         },
-    }, // }}}
+    },
 
     template: `
         <div>
@@ -278,10 +284,13 @@ Vue.component('shif-ctrl-summary', {
                     </div>
 
                     <template v-for="dev in dev_objs">
-                        <p v-if="debug">{{ dev }}</p>
                         <component v-bind="dev" v-bind:include_place="true">
                         </component>
-                        <hr v-if="debug" />
+
+                        <template v-if="debug">
+                            <pre>{{ dev | pretty }}</pre>
+                            <hr />
+                        </template>
                     </template>
                 </div>
             </transition>
