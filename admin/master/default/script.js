@@ -480,7 +480,7 @@ Vue.component('shif-slider', {
         unit:  String,
         value: Number,
         title: String,
-        step:  Number
+        step:  Number,
         disabled: Boolean,
     },
 
@@ -760,7 +760,11 @@ const shif_device = {
 
         breadcrumb: function () {
             return (this.place ? this.place + ' | ' : '') + this.dev.label;
-        }
+        },
+
+        disabled: function () {
+            return this.control.disabled();
+        },
     },
 };
 
