@@ -28,9 +28,7 @@
 
     if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
-            include(getcwd()."/admin/settings.php");
-            include(getcwd()."/user.php");
-            include(getcwd()."/admin/auth.php");
+            include(getcwd()."/admin/functions.dev.php");
             include(getcwd()."/admin/javascriptOptions.php");
             include(getcwd()."/admin/admin.php");
             $date = "\n"."SUCCESS: ".date("Y-m-d H:i:s");
@@ -301,7 +299,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
      else if(isset($_GET["jsoneditor"])){
         function setupIcon(){
-            global $rootPath;
+            global $interfaceData;
             $files = null;
             $out = null;
             $path = "admin/media/icons/";
@@ -534,7 +532,6 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if( isset($_POST['jsoneditor']) && $_POST['jsoneditor'] != "" ){
         if( $json = json_decode(mb_convert_encoding(rawurldecode ($_POST['jsoneditor']), 'UTF-8'), true) ){
-            //file_put_contents($databaseJsonPath, '<?php $interfaceData = \' '.mb_convert_encoding(rawurldecode ($_POST['jsoneditor']), 'UTF-8')."';");
             die("true");
         }
         else{

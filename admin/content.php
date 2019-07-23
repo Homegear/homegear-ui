@@ -16,6 +16,12 @@
  * <http://www.gnu.org/licenses/>.
 */
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Settings
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Fehlermeldungen im DemoModus unterdrücken, damit die Statusrückgabe angezeigt werden kann
+    error_reporting($interfaceData["settings"]["errorReporting"]);
+
     ///////////////////////////////////////////////////////////////////////////////////////////
     // logged in | logged out
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -28,10 +34,10 @@
     //$content .= '<style>'.stripslashes($interfaceStyleVendor).'</style>';
     //$content .= '<style>'.stripslashes($interfaceStyle).'</style>';
 
-    if(file_exists("style.vendor.css")){
+    if (file_exists("style.vendor.css")) {
         $content .= '<link href="style.vendor.css" rel="stylesheet" type="text/css">'."\n";
     }
-    else{
+    else {
         die("Vendor style file is missing!");
     }
 
@@ -46,7 +52,7 @@
         var userSettings = '.json_encode($user->getSettings(), JSON_PRETTY_PRINT).';
     ';
 
-    if(isset($hg)){
+    if (isset($hg)) {
         if(isset($hg_interfaceData) && $hg_interfaceData != ""){
             foreach($interfaceData["i18n"] as $key => $value){
                 $hg_interfaceData["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
@@ -54,19 +60,12 @@
             $content .= "var interfaceData = ".json_encode($hg_interfaceData, JSON_PRETTY_PRINT).";"."\n";
         }
     }
-    else if(isset($databaseJsonPath) && $databaseJsonPath != ""){
+    else {
         $content .= clean_json_to_js()."\n";
     }
-    else{
-        die('error interfaceData parsing!');
-    }
 
-    if(isset($hgMessage)){
+    if (isset($hgMessage)) {
         $content .= $hgMessage."\n";
-    }
-
-    if(is_dir($adminPath)){
-        $content .= 'console.log("Please delete the admin directory for security reasons.");'."\n";
     }
 
     $content .= '</script>';

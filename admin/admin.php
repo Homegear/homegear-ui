@@ -16,27 +16,13 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-///////////////////////////////////////////////////////////////////////////////////////////
-// Administrationsfunktionen
-///////////////////////////////////////////////////////////////////////////////////////////
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Config
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-if(!isset($adminPath)){
-    include(getcwd()."/admin/settings.php");
-}
-
-if(isset($interfaceData["admin"])){
-    $configAdmin = $interfaceData["admin"];
-}
-else{
-    if(file_exists(getcwd()."/interfacedata.php")){
-        include(getcwd()."/interfacedata.php");
-        $configAdmin = $interfaceData["admin"];
-    }
-}
+include(getcwd()."/interfacedata.php");
+$configAdmin = $interfaceData["admin"];
+$rootPath    = getcwd();
+$adminPath   = $rootPath."/admin";
 
 $action = '';
 $origin = '';
@@ -124,7 +110,7 @@ if($action !== ''){
 
         foreach($activeExtensions as $line){
           $out .= $line.$actionSeparator."\n";
-          $path = $masterPath.$line;
+          $path = $rootPath."/admin/master/".$line;
           if(!is_dir($path)){
               continue;
           }
@@ -301,8 +287,14 @@ if($action !== ''){
         // baut die index Datei
         /////////////////////////////////////////////////////////
         $tempInterfaceData["index"] = '<?php'."\n";
-        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/settings.php")));
-        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/auth.php")));
+
+        if (isset($interfaceData["settings"]["env"]) && $interfaceData["settings"]["env"] == "dev" ) {
+            $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/functions.dev.php")));
+        }
+        else {
+            $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/auth.php")));
+        }
+
         $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/javascriptOptions.php")));
         //$tempInterfaceData["index"] .= '$interfaceStyleVendor = "'.addslashes($tempInterfaceData["styleVendor"]).'";';
         //$tempInterfaceData["index"] .= '$interfaceStyle = "'.addslashes($tempInterfaceData["style"]).'";';
