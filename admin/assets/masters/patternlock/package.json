@@ -16,7 +16,6 @@
         "fetchSpec": "1.0.1"
     },
     "_requiredBy": [
-        "#USER",
         "\/"
     ],
     "_resolved": "https:\/\/registry.npmjs.org\/patternlock\/-\/patternlock-1.0.1.tgz",
