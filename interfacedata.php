@@ -10,16 +10,17 @@
         "directLoginApiKey": "",
         "homegear": {
             "url": "location.hostname",
-            "port": "location.port"
+            "port": "location.port",
+            "ssl": true
         },
         "userDefaults": {
             "theme": "dark",
             "highlight": "#0056b7",
             "firstBreadcrumb": "Haus",
             "firstBreadcrumbId": "house",
-            "showFloor": "true",
+            "showFloor": true,
             "language": "de-DE",
-            "consoleLog": "true",
+            "consoleLog": true,
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
         }
@@ -29,51 +30,78 @@
             "id": "1",
             "name": "house",
             "icon": "haus1",
-            "onclick": "main(this, {name:firstBreadcrumb,content:\'house\'})"
+            "onclick": "main",
+            "onclickOptions": {
+                "name": "house",
+                "content": "house"
+            }
         },
         {
             "id": "2",
             "name": "settings",
             "icon": "einstellungen1",
-            "onclick": "main(this, {name:\'Einstellungen\',content:\'settings\',menu:\'settings\'})"
+            "onclick": "main",
+            "onclickOptions": {
+                "name": "settings",
+                "content": "settings",
+                "menu": "settings"
+            }
         },
         {
             "id": "3",
             "name": "logoff",
             "icon": "power1",
-            "onclick": "user_logoff()"
+            "onclick": "user_logoff",
+            "onclickOptions": {
+                "name": "logoff"
+            }
         }
     ],
     "menu": [
         {
             "id": "1",
-            "name": "Benutzer",
+            "name": "settings.user",
             "mainmenu": "settings",
             "category": "user",
             "level": "1",
             "icon": "profil1",
-            "onclick": "menu({mainmenu:\'settings\',level:\'2\',category:\'user\',name:\'Benutzer\',content:\'true\'})",
-            "description": "Verwalten"
+            "onclick": "menu",
+            "onclickOptions": {
+                "mainmenu":"settings",
+                "level":"2",
+                "category":"user",
+                "name":"settings.user",
+                "content":"true"
+            },
+            "description": "settings.user.description"
         },
         {
             "id": "2",
-            "name": "Benutzereinstellungen",
+            "name": "settings.user.manage",
             "mainmenu": "settings",
             "category": "user",
             "level": "2",
             "icon": "profil1",
-            "onclick": "user(this, {name:\'Benutzereinstellungen\',content:\'edit\'})",
-            "description": "Theme, ..."
+            "onclick": "user",
+            "onclickOptions": {
+                "name":"settings.user.manage",
+                "content":"edit"
+            },
+            "description": "settings.user.manage.description"
         },
         {
             "id": "3",
-            "name": "Lizenz",
+            "name": "settings.about",
             "mainmenu": "settings",
             "category": "license",
             "level": "1",
             "icon": "information1",
-            "onclick": "license(this, {name:\'Lizenz\',content:\'license\'})",
-            "description": "Credits"
+            "onclick": "license",
+            "onclickOptions": {
+                "name":"settings.about",
+                "content":"license"
+            },
+            "description": "settings.about.description"
         }
     ],
     "themes": {
@@ -166,6 +194,10 @@
             "house.tab.devices": "Devices",
             "widgets": "Widgets",
             "settings": "Settings",
+            "settings.user": "User",
+            "settings.user.description": "Manage",
+            "settings.user.manage": "User Settings",
+            "settings.user.manage.description": "Auth, Language, Theme, Colors",
             "settings.user.manage.twofa": "Two-factor authentication",
             "settings.user.manage.registerTwofa": "Register WebAuthn device",
             "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
@@ -180,6 +212,8 @@
             "settings.user.manage.language.name": "English",
             "settings.user.manage.highlight": "Highlighting",
             "settings.user.manage.save": "Save",
+            "settings.about": "License",
+            "settings.about.description": "Credits",
             "settings.about.table.name": "Name",
             "settings.about.table.version": "Version",
             "settings.about.table.rights": "Rights",
@@ -205,6 +239,10 @@
             "house.tab.devices": "Geräte",
             "widgets": "Widgets",
             "settings": "Einstellungen",
+            "settings.user": "Benutzer",
+            "settings.user.description": "Verwalten",
+            "settings.user.manage": "Benutzereinstellungen",
+            "settings.user.manage.description": "Auth, Sprache, Theme, Farben",
             "settings.user.manage.twofa": "Zweifaktorauthentifizierung",
             "settings.user.manage.registerTwofa": "WebAuthn-Gerät registrieren",
             "settings.user.manage.unregisterTwofa": "WebAuthn-Gerät entfernen",
@@ -219,6 +257,8 @@
             "settings.user.manage.theme.purple": "Lila",
             "settings.user.manage.highlight": "Vordergrundfarbe",
             "settings.user.manage.save": "Speichern",
+            "settings.about": "Lizenz",
+            "settings.about.description": "Credits",
             "settings.about.table.name": "Name",
             "settings.about.table.version": "Version",
             "settings.about.table.rights": "Rechte",
@@ -618,6 +658,8 @@
                     }
                 },
                 "webauthn": {
+                    "user": "lbuchs",
+                    "repository": "https://github.com/lbuchs/WebAuthn",
                     "license": {
                         "name": "WebAuthn",
                         "version": "",
@@ -662,7 +704,7 @@
 $interfaceData = array();
 $defaultInterfaceData = json_decode($defaultInterfaceDataJson, true);
 
-if(file_exists("interfacedata.dummy.php")){
+if (file_exists("interfacedata.dummy.php")) {
     include_once("interfacedata.dummy.php");
     $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
     $interfaceData = array_merge($interfaceData, $dummyInterfaceData);
@@ -670,19 +712,33 @@ if(file_exists("interfacedata.dummy.php")){
 
 $interfaceData = array_merge($interfaceData, $defaultInterfaceData);
 
-if(file_exists("interfacedata.custom.php")){
+if (file_exists("interfacedata.custom.php")) {
     include_once("interfacedata.custom.php");
-    if($customInterfaceDataJson)
-    {
+    if($customInterfaceDataJson) {
         $customInterfaceData = json_decode($customInterfaceDataJson, true);
         $interfaceData = array_merge($interfaceData, $customInterfaceData);
     }
 }
 
-if(strpos($_SERVER['REQUEST_URI'], 'setup') !== false && isset($customImportInterfaceDataJson)){
-    $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
+function userSettings() {
+    global $interfaceData;
+    global $user;
+    $interfaceData["options"]["twofaEnabled"] = (in_array('webauthn', $user->getSecondFactorAuthMethods(), true) ? true : false);
+    $interfaceData["options"]["userHasTwofaRegistrations"] = ($user->hasWebAuthn() ? true : false);
+    $interfaceData["options"]["firstBreadcrumb"] = $user->getSettings()["firstBreadcrumb"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumb"];
+    $interfaceData["options"]["firstBreadcrumbId"] = $user->getSettings()["firstBreadcrumbId"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumbId"];
+    $interfaceData["options"]["breadcrumbs_array"] = ["<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">".$interfaceData["options"]["firstBreadcrumb"]."</div>"];
+    $interfaceData["options"]["breadcrumbs_id_array"] = [$interfaceData["options"]["firstBreadcrumbId"]];
+    $interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
+    $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
+    $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+    $interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
+    $interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
+    $interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
+    $interfaceData["options"]["controller_url"] = $interfaceData["settings"]["controllerUrl"];
+    $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
+    $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
+    $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"];
 }
-else if(strpos($_SERVER['REQUEST_URI'], 'setup') !== false && file_exists("interfacedata.import.php")){
-    include_once("interfacedata.import.php");
-    $oldInterfaceData = json_decode($importInterfaceDataJson, true);
-}
+
+if (!is_array($interfaceData)) die("Invalid JSON file!");

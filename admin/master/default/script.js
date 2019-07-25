@@ -6,7 +6,7 @@ var controlComponents = {};
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // write console logs to setting/about/nameClick/log page
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (typeof console_log !== 'undefined' && (console_log == 'true' || console_log == true)) {
+if (typeof interfaceData.options.consoleLog !== 'undefined' && (interfaceData.options.consoleLog == 'true' || interfaceData.options.consoleLog == true)) {
     console.oldLog = console.log;
     console.log = function(value) {
         console.oldLog(value);
@@ -38,8 +38,8 @@ function isJSON(str) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-$('#'+breadcrumbs_id_array[0]).addClass('content_single');
-$('.breadcrumbsJump').html(firstBreadcrumb);
+$('#'+interfaceData.options.breadcrumbs_id_array[0]).addClass('content_single');
+$('.breadcrumbsJump').html(interfaceData.options.firstBreadcrumb);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // verhindert das die Zurück Funktion bei DesktopBrowsern ausgeführt werden kann
@@ -117,7 +117,7 @@ function content_hndl_breadcrumb_classes(ids, destSize) {
         $('#' + ids[ids.length - 1]).addClass(destSize);
         $('#' + ids[ids.length - 2]).addClass('content_small');
     }
-    else if (breadcrumbs_id_array.length == 1) {
+    else if (interfaceData.options.breadcrumbs_id_array.length == 1) {
         $('#' + ids[ids.length - 1]).addClass('content_single');
         $('#back').addClass('inactive');
     }
@@ -131,7 +131,7 @@ function content(element, options) {
     if (typeof options != 'object')
         options = $.parseJSON(options);
 
-    if ('back' in options && breadcrumbs_id_array.length <= 1) {
+    if ('back' in options && interfaceData.options.breadcrumbs_id_array.length <= 1) {
         $('#back').addClass('inactive');
         $('.content').scrollTop(0);
         return;
@@ -171,31 +171,31 @@ function content(element, options) {
     $('.content_back').remove();
 
     if ('jump' in options) {
-        for (let i = breadcrumbs_id_array.length - options.jump; i > 1; i--)
-            content_delete_breadcumb_container(breadcrumbs_id_array,
-                                               breadcrumbs_array);
+        for (let i = interfaceData.options.breadcrumbs_id_array.length - options.jump; i > 1; i--)
+            content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array,
+                                               interfaceData.options.breadcrumbs_array);
 
-        content_hndl_breadcrumb_classes(breadcrumbs_id_array, destSize);
+        content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
     }
 
     else if ('back' in options) {
         //löschen des aktuellen containers
-        content_delete_breadcumb_container(breadcrumbs_id_array, breadcrumbs_array);
+        content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array, interfaceData.options.breadcrumbs_array);
 
-        content_hndl_breadcrumb_classes(breadcrumbs_id_array, destSize);
+        content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
     }
 
     else {
-        breadcrumbs_array.push(`
+        interfaceData.options.breadcrumbs_array.push(`
             <div class="breadcrumbsJump"
-                 onclick='content(this, {"jump":"${breadcrumbs_array.length}"});'>
+                 onclick='content(this, {"jump":"${interfaceData.options.breadcrumbs_array.length}"});'>
                 ${options.name}
             </div>
         `);
 
         $('#' + id).addClass(destSize);
-        $('#' + breadcrumbs_id_array[breadcrumbs_id_array.length - 1]).addClass('content_small');
-        breadcrumbs_id_array.push(id);
+        $('#' + interfaceData.options.breadcrumbs_id_array[interfaceData.options.breadcrumbs_id_array.length - 1]).addClass('content_small');
+        interfaceData.options.breadcrumbs_id_array.push(id);
         $('#back').removeClass('inactive');
     }
 
@@ -205,10 +205,10 @@ function content(element, options) {
     `);
 
     let text = '';
-    for  (let i = 0; i < breadcrumbs_array.length; i++) {
-        text += breadcrumbs_array[i];
+    for  (let i = 0; i < interfaceData.options.breadcrumbs_array.length; i++) {
+        text += interfaceData.options.breadcrumbs_array[i];
 
-        if (i + 1 != breadcrumbs_array.length)
+        if (i + 1 != interfaceData.options.breadcrumbs_array.length)
             text += '<div class="breadcrumbs_separator">|</div>';
     }
 
@@ -269,7 +269,7 @@ function license() {
         <div class="table1">
             <table>
                 <tr>
-                    <th onclick='main(this, {"name":"Log","content":"log"})'>
+                    <th onclick='main({"name":"Log","content":"log"})'>
                         ${i18n('settings.about.table.name')}
                     </th>
                     <th>${i18n('settings.about.table.version')}</th>
@@ -282,7 +282,7 @@ function license() {
         </div>
     `;
 
-    content('this', {'content':data,'name':'Lizenz'});
+    content('this', {'content':data,'name':i18n('settings.about')});
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -723,7 +723,7 @@ const shif_device = {
                 return null;
 
             const room = interfaceData.rooms[this.dev.room];
-            if (userSettings.showFloor !== 'true')
+            if (interfaceData.options.showFloor !== true)
                 return room.name;
 
             return room.floors.map(x => interfaceData.floors[x])

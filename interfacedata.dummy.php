@@ -1,6 +1,855 @@
 <?php $dummyInterfaceDataJson = '
 {
     "devices": {
+        "5": {
+            "categories": [
+                1
+            ],
+            "clickCount": 1,
+            "databaseId": 5,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "licht1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Licht Spiegel",
+            "metadata": {
+                "l2_only": true,
+                "role": "100001"
+            },
+            "role": 1048577,
+            "room": 2,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "lightingSwitch",
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 4,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 4,
+                            "properties": [],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                2
+            ]
+        },
+        "4": {
+            "categories": [
+                1
+            ],
+            "clickCount": 1,
+            "databaseId": 4,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "licht1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Licht Decke",
+            "metadata": {
+                "l2_only": true,
+                "role": "100001"
+            },
+            "role": 1048577,
+            "room": 2,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "lightingSwitch",
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 3,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 3,
+                            "properties": [],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                2
+            ]
+        },
+        "19": {
+            "categories": [
+                7
+            ],
+            "clickCount": 1,
+            "databaseId": 19,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 0,
+            "room": 4,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Status"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketSwitch",
+                    "uniqueUiElementId": "Base.socketSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 91,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 91,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                4
+            ],
+            "rooms": [
+                4
+            ]
+        },
+        "17": {
+            "categories": [
+                7
+            ],
+            "clickCount": 1,
+            "databaseId": 17,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 0,
+            "room": 11,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Status"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketSwitch",
+                    "uniqueUiElementId": "Base.socketSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 16,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 16,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                4
+            ],
+            "rooms": [
+                11
+            ]
+        },
+        "13": {
+            "categories": [
+                7
+            ],
+            "clickCount": 1,
+            "databaseId": 13,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 0,
+            "room": 7,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Status"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketSwitch",
+                    "uniqueUiElementId": "Base.socketSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 12,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 12,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                3
+            ],
+            "rooms": [
+                7
+            ]
+        },
+        "11": {
+            "categories": [
+                1
+            ],
+            "clickCount": 1,
+            "databaseId": 11,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "licht1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Licht",
+            "metadata": {
+                "l2_only": true,
+                "role": "100001"
+            },
+            "role": 1048577,
+            "room": 1,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "lightingSwitch",
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 10,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 10,
+                            "properties": [],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1,
+                2
+            ],
+            "rooms": [
+                1,
+                1
+            ]
+        },
+        "10": {
+            "categories": [
+                7
+            ],
+            "clickCount": 1,
+            "databaseId": 10,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 0,
+            "room": 12,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Status"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Button"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketButton",
+                    "uniqueUiElementId": "Base.socketButton",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 9,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "play"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "gedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "play"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "losgelassen"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 9,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                12
+            ]
+        },
         "36": {
             "categories": [
                 3
@@ -235,7 +1084,7 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 10
+                                "value": 22
                             },
                             "rendering": [],
                             "roles": [
@@ -301,7 +1150,7 @@
                             "peer": 83,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 1
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -549,7 +1398,7 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 10
+                                "value": 21.5
                             },
                             "rendering": [],
                             "roles": [
@@ -615,7 +1464,7 @@
                             "peer": 82,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 1
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -863,7 +1712,7 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 10
+                                "value": 20
                             },
                             "rendering": [],
                             "roles": [
@@ -929,7 +1778,7 @@
                             "peer": 81,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 1
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -1177,7 +2026,7 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 9
+                                "value": 23
                             },
                             "rendering": [],
                             "roles": [
@@ -1243,7 +2092,7 @@
                             "peer": 80,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 1
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -1491,7 +2340,7 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 10
+                                "value": 21.5
                             },
                             "rendering": [],
                             "roles": [
@@ -1557,7 +2406,7 @@
                             "peer": 79,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 1
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -1805,7 +2654,7 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 13
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
@@ -1871,7 +2720,7 @@
                             "peer": 78,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 2
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -1994,7 +2843,7 @@
                             "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -6634,127 +7483,6 @@
                 3
             ]
         },
-        "19": {
-            "categories": [
-                7
-            ],
-            "clickCount": 0,
-            "databaseId": 19,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 4,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 91,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 91,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                4
-            ],
-            "rooms": [
-                4
-            ]
-        },
         "18": {
             "categories": [
                 1
@@ -6876,127 +7604,6 @@
                 12
             ]
         },
-        "17": {
-            "categories": [
-                7
-            ],
-            "clickCount": 0,
-            "databaseId": 17,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 11,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 16,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 16,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                4
-            ],
-            "rooms": [
-                11
-            ]
-        },
         "6": {
             "categories": [
                 1
@@ -7116,248 +7723,6 @@
             ],
             "rooms": [
                 9
-            ]
-        },
-        "5": {
-            "categories": [
-                1
-            ],
-            "clickCount": 0,
-            "databaseId": 5,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "licht1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Licht Spiegel",
-            "metadata": {
-                "l2_only": true,
-                "role": "100001"
-            },
-            "role": 1048577,
-            "room": 2,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 4,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 4,
-                            "properties": [],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                2
-            ]
-        },
-        "4": {
-            "categories": [
-                1
-            ],
-            "clickCount": 0,
-            "databaseId": 4,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "licht1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Licht Decke",
-            "metadata": {
-                "l2_only": true,
-                "role": "100001"
-            },
-            "role": 1048577,
-            "room": 2,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 3,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 3,
-                            "properties": [],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                2
             ]
         },
         "3": {
@@ -7644,7 +8009,7 @@
                             "peer": 1,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -7765,7 +8130,7 @@
                             "peer": 6,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -7886,7 +8251,7 @@
                             "peer": 7,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8007,7 +8372,7 @@
                             "peer": 8,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8080,250 +8445,6 @@
                 12
             ]
         },
-        "10": {
-            "categories": [
-                7
-            ],
-            "clickCount": 0,
-            "databaseId": 10,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 12,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Button"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketButton",
-                    "uniqueUiElementId": "Base.socketButton",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 9,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "play"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "gedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "play"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "losgelassen"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 9,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                12
-            ]
-        },
-        "11": {
-            "categories": [
-                1
-            ],
-            "clickCount": 0,
-            "databaseId": 11,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "licht1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Licht",
-            "metadata": {
-                "l2_only": true,
-                "role": "100001"
-            },
-            "role": 1048577,
-            "room": 1,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 10,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 10,
-                            "properties": [],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1,
-                2
-            ],
-            "rooms": [
-                1,
-                1
-            ]
-        },
         "12": {
             "categories": [
                 1
@@ -8372,7 +8493,7 @@
                             "peer": 11,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8432,127 +8553,6 @@
                             "properties": [],
                             "roles": [
                                 100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                3
-            ],
-            "rooms": [
-                7
-            ]
-        },
-        "13": {
-            "categories": [
-                7
-            ],
-            "clickCount": 0,
-            "databaseId": 13,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 7,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 12,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 12,
-                            "properties": [],
-                            "roles": [
-                                400001
                             ],
                             "type": "bool"
                         }
@@ -8614,7 +8614,7 @@
                             "peer": 13,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8735,7 +8735,7 @@
                             "peer": 14,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8856,7 +8856,7 @@
                             "peer": 15,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -9138,7 +9138,7 @@
                             "peer": 61,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 2
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -9299,7 +9299,7 @@
                             "peer": 62,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 2
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -9782,7 +9782,7 @@
                             "peer": 65,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 2
                             },
                             "rendering": [
                                 {
@@ -10104,7 +10104,7 @@
                             "peer": 67,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 2
                             },
                             "rendering": [
                                 {
@@ -12074,10 +12074,10 @@
         },
         "2": {
             "devices": [
-                32,
-                23,
                 5,
                 4,
+                32,
+                23,
                 40
             ],
             "floors": [
@@ -12145,10 +12145,10 @@
         },
         "7": {
             "devices": [
+                13,
                 29,
                 28,
-                12,
-                13
+                12
             ],
             "floors": [
                 3
@@ -12204,6 +12204,7 @@
         },
         "12": {
             "devices": [
+                10,
                 36,
                 34,
                 27,
@@ -12212,7 +12213,6 @@
                 7,
                 8,
                 9,
-                10,
                 43,
                 44,
                 45,
@@ -12378,8 +12378,8 @@
                 ]
             },
             "aggregated": {
-                "0": 12,
-                "1": 6,
+                "0": 14,
+                "1": 4,
                 "variableCount": 18
             },
             "varInRole": {
@@ -12616,9 +12616,10 @@
                 ]
             },
             "aggregated": {
-                "10": 4,
-                "13": 1,
-                "9": 1,
+                "20": 1,
+                "21": 1,
+                "22": 3,
+                "23": 1,
                 "variableCount": 6
             },
             "varInRole": {
@@ -12662,9 +12663,7 @@
                 "Spar"
             ],
             "aggregated": {
-                "0": 6,
-                "1": 5,
-                "2": 1,
+                "0": 12,
                 "variableCount": 12
             },
             "varInRole": {
@@ -12876,7 +12875,8 @@
                 ]
             },
             "aggregated": {
-                "0": 7,
+                "0": 5,
+                "1": 2,
                 "2": 3,
                 "variableCount": 10
             },
@@ -12991,8 +12991,8 @@
                 ]
             },
             "aggregated": {
-                "0": 1,
-                "1": 3,
+                "0": 2,
+                "1": 2,
                 "variableCount": 4
             },
             "varInRole": {
@@ -13474,51 +13474,78 @@
             "id": "1",
             "name": "house",
             "icon": "haus1",
-            "onclick": "main(this, {name:firstBreadcrumb,content:\'house\'})"
+            "onclick": "main",
+            "onclickOptions": {
+                "name": "house",
+                "content": "house"
+            }
         },
         {
             "id": "2",
             "name": "settings",
             "icon": "einstellungen1",
-            "onclick": "main(this, {name:\'Einstellungen\',content:\'settings\',menu:\'settings\'})"
+            "onclick": "main",
+            "onclickOptions": {
+                "name": "settings",
+                "content": "settings",
+                "menu": "settings"
+            }
         },
         {
             "id": "3",
             "name": "logoff",
             "icon": "power1",
-            "onclick": "user_logoff()"
+            "onclick": "user_logoff",
+            "onclickOptions": {
+                "name": "logoff"
+            }
         }
     ],
     "menu": [
         {
             "id": "1",
-            "name": "Benutzer",
+            "name": "settings.user",
             "mainmenu": "settings",
             "category": "user",
             "level": "1",
             "icon": "profil1",
-            "onclick": "menu({mainmenu:\'settings\',level:\'2\',category:\'user\',name:\'Benutzer\',content:\'true\'})",
-            "description": "Verwalten"
+            "onclick": "menu",
+            "onclickOptions": {
+                "mainmenu": "settings",
+                "level": "2",
+                "category": "user",
+                "name": "settings.user",
+                "content": "true"
+            },
+            "description": "settings.user.description"
         },
         {
             "id": "2",
-            "name": "Benutzereinstellungen",
+            "name": "settings.user.manage",
             "mainmenu": "settings",
             "category": "user",
             "level": "2",
             "icon": "profil1",
-            "onclick": "user(this, {name:\'Benutzereinstellungen\',content:\'edit\'})",
-            "description": "Theme, ..."
+            "onclick": "user",
+            "onclickOptions": {
+                "name": "settings.user.manage",
+                "content": "edit"
+            },
+            "description": "settings.user.manage.description"
         },
         {
             "id": "3",
-            "name": "Lizenz",
+            "name": "settings.about",
             "mainmenu": "settings",
             "category": "license",
             "level": "1",
             "icon": "information1",
-            "onclick": "license(this, {name:\'Lizenz\',content:\'license\'})",
-            "description": "Credits"
+            "onclick": "license",
+            "onclickOptions": {
+                "name": "settings.about",
+                "content": "license"
+            },
+            "description": "settings.about.description"
         }
     ],
     "themes": [
@@ -13592,6 +13619,28 @@
             }
         }
     ],
+    "options": {
+        "twofaEnabled": true,
+        "userHasTwofaRegistrations": false,
+        "firstBreadcrumb": "Haus",
+        "firstBreadcrumbId": "house",
+        "breadcrumbs_array": [
+            "<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">Haus<\/div>"
+        ],
+        "breadcrumbs_id_array": [
+            "house"
+        ],
+        "theme": "dark",
+        "highlight": "#ff9808",
+        "language": "en-US",
+        "showFloor": "true",
+        "consoleLog": true,
+        "interfacePath": "\/",
+        "controller_url": "index.php",
+        "websocket_url": "location.hostname",
+        "websocket_port": "location.port",
+        "websocket_security_ssl": true
+    },
     "i18n": {
         "login": {
             "username": "Benutzername",
@@ -13610,6 +13659,10 @@
         "house.tab.devices": "Ger\u00e4te",
         "widgets": "Widgets",
         "settings": "Einstellungen",
+        "settings.user": "Benutzer",
+        "settings.user.description": "Verwalten",
+        "settings.user.manage": "Benutzereinstellungen",
+        "settings.user.manage.description": "Auth, Sprache, Theme, Farben",
         "settings.user.manage.twofa": "Zweifaktorauthentifizierung",
         "settings.user.manage.registerTwofa": "WebAuthn-Ger\u00e4t registrieren",
         "settings.user.manage.unregisterTwofa": "WebAuthn-Ger\u00e4t entfernen",
@@ -13624,6 +13677,8 @@
         "settings.user.manage.theme.purple": "Lila",
         "settings.user.manage.highlight": "Vordergrundfarbe",
         "settings.user.manage.save": "Speichern",
+        "settings.about": "Lizenz",
+        "settings.about.description": "Credits",
         "settings.about.table.name": "Name",
         "settings.about.table.version": "Version",
         "settings.about.table.rights": "Rechte",
@@ -13648,6 +13703,10 @@
             "house.tab.devices": "Devices",
             "widgets": "Widgets",
             "settings": "Settings",
+            "settings.user": "User",
+            "settings.user.description": "Manage",
+            "settings.user.manage": "User Settings",
+            "settings.user.manage.description": "Auth, Language, Theme, Colors",
             "settings.user.manage.twofa": "Two-factor authentication",
             "settings.user.manage.registerTwofa": "Register WebAuthn device",
             "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
@@ -13662,6 +13721,8 @@
             "settings.user.manage.language.name": "English",
             "settings.user.manage.highlight": "Highlighting",
             "settings.user.manage.save": "Save",
+            "settings.about": "License",
+            "settings.about.description": "Credits",
             "settings.about.table.name": "Name",
             "settings.about.table.version": "Version",
             "settings.about.table.rights": "Rights",
@@ -13679,6 +13740,104 @@
         }
     },
     "map_invoke": {
+        "4": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 5,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            100001
+                        ]
+                    }
+                ]
+            }
+        },
+        "3": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 4,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            100001
+                        ]
+                    }
+                ]
+            }
+        },
+        "91": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 19,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
+        "16": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 17,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
+        "12": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 13,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
+        "10": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 11,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            100001
+                        ]
+                    }
+                ]
+            }
+        },
+        "9": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 10,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
         "87": {
             "1": {
                 "STATE": [
@@ -14447,20 +14606,6 @@
                 ]
             }
         },
-        "91": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 19,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
         "84": {
             "1": {
                 "STATE": [
@@ -14475,53 +14620,11 @@
                 ]
             }
         },
-        "16": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 17,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
         "5": {
             "1": {
                 "STATE": [
                     {
                         "databaseId": 6,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            100001
-                        ]
-                    }
-                ]
-            }
-        },
-        "4": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 5,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            100001
-                        ]
-                    }
-                ]
-            }
-        },
-        "3": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 4,
                         "control": 0,
                         "input": 0,
                         "roles": [
@@ -14601,34 +14704,6 @@
                 ]
             }
         },
-        "9": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 10,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
-        "10": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 11,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            100001
-                        ]
-                    }
-                ]
-            }
-        },
         "11": {
             "1": {
                 "STATE": [
@@ -14638,20 +14713,6 @@
                         "input": 0,
                         "roles": [
                             100001
-                        ]
-                    }
-                ]
-            }
-        },
-        "12": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 13,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
                         ]
                     }
                 ]

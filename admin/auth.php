@@ -18,6 +18,13 @@
 
 /* Include this file to check authorization */
 
+//{{{ Load settings
+if (file_exists(getcwd()."/interfacedata.php")) {
+    include_once(getcwd()."/interfacedata.php");
+}
+else die("JSON file missing!");
+//}}}
+
 require_once("user.php");
 
 if(!$_SERVER['WEBSOCKET_ENABLED']) die('WebSockets are not enabled on this server in "rpcservers.conf".');
@@ -25,3 +32,7 @@ if($_SERVER['WEBSOCKET_AUTH_TYPE'] != 'session') die('WebSocket authorization ty
 
 $user = new User($interfaceData['settings']);
 if($user->checkAuth(true) !== 0) die('unauthorized');
+
+if ($user->checkAuth(true) === 0) {
+    userSettings();
+}

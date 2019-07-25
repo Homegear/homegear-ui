@@ -22,7 +22,6 @@ require_once("user.php");
 if(file_exists(getcwd()."/interfacedata.php"))
 {
     include_once(getcwd()."/interfacedata.php");
-    if(!is_array($interfaceData)) die("Invalid JSON file!");
 }
 else die("JSON file missing!");
 //}}}

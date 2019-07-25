@@ -27,20 +27,16 @@ function homegearRandomUserName() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function homegear_new() {
     return new HomegearWS(
-        websocket_url,
-        websocket_port,
+        (interfaceData.options.websocket_url == 'location.hostname') ? location.hostname : interfaceData.options.websocket_url,
+        (interfaceData.options.websocket_port == 'location.port') ? location.port : Number(interfaceData.options.websocket_port),
         homegearRandomUserName(),
-        websocket_security_ssl,
+        interfaceData.options.websocket_security_ssl,
         ...arguments
     );
 }
 
-var websocket_security_ssl = true; //Enabled by default
-if (location.protocol == 'http:')
-    websocket_security_ssl = false;
-
-if (websocket_url == '' || !websocket_url)
-    console.log('Homegear settings error!');
+if (interfaceData.options.websocket_security_ssl === false && location.protocol == 'http:')
+    interfaceData.options.websocket_security_ssl = false;
 
 var homegear = homegear_new(readCookie('PHPSESSIDUI'));
 
@@ -86,7 +82,7 @@ homegear.event(x => console.log(JSON.stringify(x, null, 4)));
 
 homegear.event(handle_homegear_update);
 
-if(location.protocol == 'https:' && websocket_security_ssl !== true)
+if(location.protocol == 'https:' && interfaceData.options.websocket_security_ssl !== true)
     console.log('Homegear security issue!');
 else
     homegear.connect();
@@ -143,8 +139,6 @@ function params_create(input, value) {
     ];
 }
 
-
-
 homegear.invoke_multi = function (ops) {
     const object = {
         jsonrpc: '2.0',
@@ -155,7 +149,7 @@ homegear.invoke_multi = function (ops) {
     console.log(JSON.stringify(object, null, 4));
 
     return this.invoke(object);
-}
+};
 
 homegear.value_set_multi = function (ops) {
     return this.invoke_multi([
@@ -164,7 +158,7 @@ homegear.value_set_multi = function (ops) {
             params: params_create(op.input, op.value),
         }))
     ]);
-}
+};
 
 homegear.value_set_clickcounter = function(control, params, value) {
     let methods = [[
@@ -183,4 +177,4 @@ homegear.value_set_clickcounter = function(control, params, value) {
     }
 
     return this.invoke_multi(methods);
-}
+};

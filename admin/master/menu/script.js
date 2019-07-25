@@ -6,10 +6,17 @@ $(document).ready(function(){
     let mainmenuItem = '';
 
     $.each(interfaceData.mainmenu, function(key, value){
-        const active = value.name === firstBreadcrumbId ? 'active' : '';
+        const active = value.name === interfaceData.options.firstBreadcrumbId ? 'active' : '';
+
+        if (value.name == 'house') {
+            value.onclickOptions.name = interfaceData.options.firstBreadcrumb;
+        }
+        else{
+            value.onclickOptions.name = i18n(value.name);
+        }
 
         mainmenuItem += `
-            <li style="width: ${mainmenuItemWidth}%;" onclick="${value.onclick};">
+            <li style="width: ${mainmenuItemWidth}%;" onclick='${value.onclick}(${JSON.stringify(value.onclickOptions)});'>
                 <div id="mainmenu_${value.name}" class="mainmenu_button ${active}">${showIcon(value.icon)}</div>
             </li>
         `;
@@ -23,11 +30,12 @@ $(document).ready(function(){
         </div>
     `);
 
-    if (firstBreadcrumbId == 'house')
+    if (interfaceData.options.firstBreadcrumbId == 'house') {
         $('#houseJS').html(house_level1_content);
+    }
 
-    else if (firstBreadcrumbId == 'widgets') {
-        main(this, {
+    else if (interfaceData.options.firstBreadcrumbId == 'widgets') {
+        main({
             name:    'Widgets',
             content: 'widgets',
             menu:    'widgets'
@@ -36,14 +44,14 @@ $(document).ready(function(){
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// zeigt den Rauminhalt
+// 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function main(element, options){
+function main(options){
 
-    for (let i = 1; i < breadcrumbs_id_array.length; i++)
-        $('#' + breadcrumbs_id_array[i]).remove();
+    for (let i = 1; i < interfaceData.options.breadcrumbs_id_array.length; i++)
+        $('#' + interfaceData.options.breadcrumbs_id_array[i]).remove();
 
-    breadcrumbs_id_array = [
+        interfaceData.options.breadcrumbs_id_array = [
         options.content,
     ];
 
@@ -67,17 +75,17 @@ function main(element, options){
     $('#' + options.content).addClass('content_single');
     $('.content').scrollTop(0);
 
-    breadcrumbs_array = [`
-        <div class="breadcrumbsJump" onclick='main(this, {"name":"${options.name}","content":"${options.content}"});'>
+    interfaceData.options.breadcrumbs_array = [`
+        <div class="breadcrumbsJump" onclick='main({"name":"${options.name}","content":"${options.content}"});'>
             ${options.name}
         </div>
     `];
 
     let text = '';
-    for (let i = 0; i < breadcrumbs_array.length; i++) {
-        text += breadcrumbs_array[i];
+    for (let i = 0; i < interfaceData.options.breadcrumbs_array.length; i++) {
+        text += interfaceData.options.breadcrumbs_array[i];
 
-        if (i + 1 != breadcrumbs_array.length)
+        if (i + 1 != interfaceData.options.breadcrumbs_array.length)
             text += '<div class="breadcrumbs_separator">|</div>';
     }
 
@@ -99,15 +107,19 @@ function menu(options){
         if ('category' in options && options.category !== value.category)
             return;
 
+        value.onclickOptions.name = i18n(value.name);
+        var name = i18n(value.name);
+        var description = i18n(value.description);
+
         menu += `
-            <div class="button" onclick="${value.onclick}">
+            <div class="button" onclick='${value.onclick}(${JSON.stringify(value.onclickOptions)})'>
                 <div class="button_icon">
                     ${showIcon(value.icon)}
                 </div>
                 <div class="button_text">
-                    <div class="button_title">${value.name}</div>
+                    <div class="button_title">${name}</div>
                     <br/>
-                    <div class="button_status">${value.description}</div>
+                    <div class="button_status">${description}</div>
                 </div>
                 <div class="button_action">
                     ${showIcon('pfeil3')}

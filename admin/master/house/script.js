@@ -16,7 +16,7 @@ function house_level1(){
         house_level1_content += '<div class="rooms_wrapper"><center>';
 
         $.each(floorValue.rooms, function(_, roomValue) {
-            const floorBreadcrumbName = showFloor === 'true'
+            const floorBreadcrumbName = interfaceData.options.showFloor === true
                                             ? floorValue.name + ' - '
                                             : '';
 

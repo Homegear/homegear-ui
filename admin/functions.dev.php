@@ -18,9 +18,16 @@
 
 include_once(getcwd()."/interfacedata.php");
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+if(file_exists("interfacedata.import.php") && isset($customImportInterfaceDataJson)){
+    $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
+}
+
 $_SERVER['WEBSOCKET_ENABLED'] = true;
-$_SERVER['WEBSOCKET_AUTH_TYPE'] = "session";
-$_SESSION['locale'] = "en-US";
+$_SERVER['WEBSOCKET_AUTH_TYPE'] = $interfaceData['settings']['homegear']['security'];
+$_SESSION['locale'] = $interfaceData["users"]["1"]["settings"]['language'];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PHP JSON clean to Javascript
@@ -37,6 +44,7 @@ function clean_json_to_js(){
     $interfaceDataOut["map_invoke"] = $interfaceData["map_invoke"];
     $interfaceDataOut["categories"] = $interfaceData["categories"];
     $interfaceDataOut["roles"] = $interfaceData["roles"];
+    $interfaceDataOut["options"] = $interfaceData["options"];
 
     foreach($interfaceDataOut as $key => $type){
         foreach($type as $keyLine => $line){
@@ -83,23 +91,49 @@ $user = new User($interfaceData['settings']);
 
 //die( print_r($interfaceData["settings"]));
 
-$firstBreadcrumb     = $user->getSettings()["firstBreadcrumb"] ?? '';
-$firstBreadcrumbId   = $user->getSettings()["firstBreadcrumbId"] ?? '';
-$javascript_options  = "<script>";
-$javascript_options .= "    var firstBreadcrumb = '".$firstBreadcrumb."';"."\n";
-$javascript_options .= "    var firstBreadcrumbId = '".$firstBreadcrumbId."';"."\n";
-$javascript_options .= "    var breadcrumbs_array = ['<div class=\"breadcrumbsJump\" onclick=\'main(this, {name:firstBreadcrumb,content:firstBreadcrumbId});\'>".$firstBreadcrumb."</div>'];"."\n";
-$javascript_options .= "    var breadcrumbs_id_array = [firstBreadcrumbId];"."\n";
-$javascript_options .= "    var showFloor = '".($user->getSettings()["showFloor"] ?? false)."';"."\n";
-$javascript_options .= "    var console_log = '".( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? '') == "true" )  ? 'true' : 'false')."';"."\n";
-$javascript_options .= "    var mainmenu = [];"."\n";
-$javascript_options .= "    var text;"."\n";
-$javascript_options .= "    var interfacePath = '".$interfaceData["settings"]["interfacePath"]."';"."\n";
-$javascript_options .= "    var controller_url = '".$interfaceData["settings"]["controllerUrl"]."';"."\n";
-$javascript_options .= "    var websocket_url = ".$interfaceData["settings"]["homegear"]["url"].";"."\n";
-$javascript_options .= "    var websocket_port = ".$interfaceData["settings"]["homegear"]["port"].";"."\n";
-$javascript_options .= "    var websocket_user = \"".$interfaceData['settings']['homegear']['user']."\""."\n";
-$javascript_options .= "    var websocket_password = \"".$interfaceData['settings']['homegear']['password']."\""."\n";
-$javascript_options .= "    var websocket_security_ssl = \"".$interfaceData['settings']['homegear']['ssl']."\""."\n";
-$javascript_options .= "    var websocket_security = \"".$interfaceData['settings']['homegear']['security']."\""."\n";
-$javascript_options .= "</script>";
+$interfaceData["options"]["twofaEnabled"] = "false";
+$interfaceData["options"]["userHasTwofaRegistrations"] = "false";
+$interfaceData["options"]["firstBreadcrumb"] = $user->getSettings()["firstBreadcrumb"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumb"];
+$interfaceData["options"]["firstBreadcrumbId"] = $user->getSettings()["firstBreadcrumbId"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumbId"];
+$interfaceData["options"]["breadcrumbs_array"] = ["<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">".$interfaceData["options"]["firstBreadcrumb"]."</div>"];
+$interfaceData["options"]["breadcrumbs_id_array"] = [$interfaceData["options"]["firstBreadcrumbId"]];
+$interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
+$interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
+$interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+$interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
+$interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
+$interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
+$interfaceData["options"]["controller_url"] = $interfaceData["settings"]["controllerUrl"];
+$interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
+$interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
+$interfaceData["options"]["websocket_user"] = $interfaceData['settings']['homegear']['user'];
+$interfaceData["options"]["websocket_password"] = $interfaceData['settings']['homegear']['password'];
+$interfaceData["options"]["websocket_security_ssl"] = $interfaceData['settings']['homegear']['ssl'];
+$interfaceData["options"]["websocket_security"] = $interfaceData['settings']['homegear']['security'];
+
+$javascript_options  = "
+    document.addEventListener('DOMContentLoaded', function(event) {
+        homegear.disconnect();
+
+        var hg_save_invoke_multi = homegear.invoke_multi;
+        var hg_save_value_set_multi = homegear.value_set_multi;
+        var hg_save_value_set_clickcounter = homegear.value_set_clickcounter;
+
+        homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
+
+        document.getElementById('loadingPage').style.display = 'none';
+
+        homegear.disconnected(function() {
+        });
+
+        homegear.reconnected(function() {
+        });
+
+        homegear.connect();
+
+        homegear.invoke_multi = hg_save_invoke_multi;
+        homegear.value_set_multi = hg_save_value_set_multi;
+        homegear.value_set_clickcounter = hg_save_value_set_clickcounter;
+    });
+    
+";

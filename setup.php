@@ -29,7 +29,6 @@
     if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/functions.dev.php");
-            include(getcwd()."/admin/javascriptOptions.php");
             include(getcwd()."/admin/admin.php");
             $date = "\n"."SUCCESS: ".date("Y-m-d H:i:s");
             die($date);

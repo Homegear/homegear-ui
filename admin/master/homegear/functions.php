@@ -153,6 +153,7 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
         'mainmenu'   => $interfaceData["mainmenu"],
         'menu'       => $interfaceData["menu"],
         'themes'     => $interfaceData["themes"],
+        'options'    => $interfaceData["options"],
     ];
 
     if($hg_lang != "en-US"){

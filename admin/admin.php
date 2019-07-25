@@ -130,15 +130,6 @@ if($action !== ''){
               else if($typePart[0] == "functions"){
                 $tempInterfaceData["functions"] .= cleanPhp(cleanPhpComments(file_get_contents($path."/".$file)))."\n";
               }
-              else if($typePart[0] == "control"){
-                $tempInterfaceData["control"] .= cleanPhp(cleanPhpComments(file_get_contents($path."/".$file)))."\n";
-              }
-              else if($typePart[0] == "database"){
-                $tempInterfaceData["database"] .= cleanPhp(cleanPhpComments(file_get_contents($path."/".$file)))."\n";
-              }
-              else if($typePart[0] == "controller"){
-                $tempInterfaceData["controller"] .= cleanPhp(cleanPhpComments(file_get_contents($path."/".$file)))."\n";
-              }
               else{
                   $out .= "Keine Verarbeitungsregel vorhanden für: ".$path."/".$file.$actionSeparator."\n";
               }
@@ -295,15 +286,12 @@ if($action !== ''){
             $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/auth.php")));
         }
 
-        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/javascriptOptions.php")));
         //$tempInterfaceData["index"] .= '$interfaceStyleVendor = "'.addslashes($tempInterfaceData["styleVendor"]).'";';
         //$tempInterfaceData["index"] .= '$interfaceStyle = "'.addslashes($tempInterfaceData["style"]).'";';
         //$tempInterfaceData["index"] .= '$interfaceScriptVendor = "'.base64_encode($tempInterfaceData["scriptVendor"]).'";';
         //$tempInterfaceData["index"] .= '$interfaceIcons = "'.addslashes($tempInterfaceData["icons"]).'";';
         $tempInterfaceData["index"] .= $tempInterfaceData["phpVendor"];
         $tempInterfaceData["index"] .= $tempInterfaceData["functions"];
-        $tempInterfaceData["index"] .= $tempInterfaceData["database"];
-        $tempInterfaceData["index"] .= $tempInterfaceData["controller"];
         $tempInterfaceData["index"] .= "\n".'?>'."\n".'<?php'."\n";
         $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/content.php")));
 

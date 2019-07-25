@@ -49,7 +49,6 @@
     $content .= '
         <script type="text/javascript">
         var startDate = '.(time() * 1000).';
-        var userSettings = '.json_encode($user->getSettings(), JSON_PRETTY_PRINT).';
     ';
 
     if (isset($hg)) {
@@ -69,7 +68,6 @@
     }
 
     $content .= '</script>';
-    $content .= $javascript_options;
 
     $content .= '
     </head>
@@ -150,6 +148,11 @@
         die("App script file is missing!");
     }
 
+    if (isset($javascript_options)) {
+      $content .= '<script>'.$javascript_options.'</script>';
+    } 
+    
+
     ///////////////////////////////////////////////////////////////////////////////////////////
     // Content output
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +161,7 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
 <head>
-  <title>Shif - '.$firstBreadcrumb.'</title>
+  <title>Shif - '.$interfaceData["options"]["firstBreadcrumb"].'</title>
 
   <meta charset="UTF-8">
   <meta name="author" content="" />
