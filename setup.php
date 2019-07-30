@@ -16,11 +16,11 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-    // http://localhost/setup.php?key=[interfaceData.settings.directLoginUrlKey]
+    // http://localhost/setup.php?key=[interfaceData.settings.directLoginApiKey]
     // &action=generateExtensions
     if(file_exists(getcwd()."/interfacedata.php")){
         include(getcwd()."/interfacedata.php");
-        $urlKey = $interfaceData["settings"]["directLoginUrlKey"];
+        $urlKey = $interfaceData["settings"]["directLoginApiKey"];
     }
     else{
         die("No interfaceData file!");
