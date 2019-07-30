@@ -21,7 +21,7 @@ include_once(getcwd()."/interfacedata.php");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(file_exists("interfacedata.import.php") && isset($customImportInterfaceDataJson)){
+if( (file_exists("interfacedata.import.php") && isset($customImportInterfaceDataJson)) || isset($customImportInterfaceDataJson)){
     $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
 }
 
