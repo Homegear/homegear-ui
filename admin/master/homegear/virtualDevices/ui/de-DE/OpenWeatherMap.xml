@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+	<homegearUiElement>
+		<uniqueUiElementId>254.0x100.Refresh</uniqueUiElementId>
+		<type>simple</type>
+		<control>refresh</control>
+		<icons>
+			<icon id="refresh">
+				<name>refresh</name>
+			</icon>
+		</icons>
+		<variableOutputs>
+			<variable>
+				<family>254</family>
+				<deviceTypeId>0x100</deviceTypeId>
+				<channel>1</channel>
+				<name>REQUEST</name>
+			</variable>
+		</variableOutputs>
+	</homegearUiElement>
+	<homegearUiElement>
+		<id>254.0x100.OpenWeatherMap</id>
+		<type>complex</type>
+        <control>OpenWeatherMap</control>
+		<texts>
+			<text id="title">
+				<content>OpenWeatherMap</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>OpenWeatherMap</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
+		<icons>
+			<icon id="weather">
+				<name>weather1</name>
+                <color>inactive</color>
+			</icon>
+			<icon id="l2">
+				<name>weather1</name>
+                <color>inactive</color>
+			</icon>
+            <icon id="l3">
+                <name>pfeil3</name>
+                <color>iconArrow</color>
+            </icon>
+		</icons>
+		<grid>
+			<width>3</width>
+			<height>3</height>
+			<columns>1</columns>
+			<rows>3</rows>
+		</grid>
+		<controls>
+			<control id="Base.temperature">
+				<x>0</x>
+				<y>0</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.humidity">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.socketButton">
+				<x>0</x>
+				<y>2</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+		</controls>
+	</homegearUiElement>
+</homegearUiElements>

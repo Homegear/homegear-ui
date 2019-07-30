@@ -4,7 +4,7 @@
 		<id>Base.lightingSwitchBrightness</id>
         <control>lightingSwitchBrightness</control>
 		<type>complex</type>
-        <role>100000</role>
+        <role>100001</role>
 		<texts>
 			<text id="title">
 				<content>Lighting</content>
@@ -50,7 +50,7 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>100000</role>
+            <role>100001</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -17,7 +17,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>thermometer1</name>
+				<name>slider</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">

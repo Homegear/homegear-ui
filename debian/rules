@@ -15,14 +15,17 @@ override_dh_auto_install:
 	dh_installdirs
 	cd $(CURDIR)
 	npm install
+	npm install babel-preset-es2015
 	php admin/admin.php generateExtensions
-	/usr/local/bin/babel script.js --out-file script.min.js
+	babel script.js --out-file script.min.js
 	mkdir -p $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui
 	cp -R $(CURDIR)/assets $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/*.ico $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/*.png $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/icons.js $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/index.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/signin.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/user.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/interfacedata.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/manifest.json $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/manifest.webapp $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
@@ -31,6 +34,9 @@ override_dh_auto_install:
 	cp -R $(CURDIR)/script.vendor.js $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/style.css $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/style.vendor.css $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/WebAuthn $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	mkdir -p $(CURDIR)/debian/homegear-ui/etc/homegear/devices/uiBase/
+	cp -R $(CURDIR)/admin/master/homegear/uiElements/* $(CURDIR)/debian/homegear-ui/etc/homegear/devices/uiBase/
 
 %:
 	dh $@

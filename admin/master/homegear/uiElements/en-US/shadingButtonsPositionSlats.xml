@@ -4,7 +4,7 @@
 		<id>Base.shadingButtonsPositionSlats</id>
         <control>shadingButtonsPositionSlats</control>
 		<type>complex</type>
-        <role>0x500000</role>
+        <role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Shading</content>
@@ -21,7 +21,7 @@
                 <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>rolladen1</name>
+				<name>blinds_1</name>
                 <color>icon</color>
 			</icon>
             <icon id="l3">
@@ -42,7 +42,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 			</control>
-			<control id="Base.shadingPosition">
+			<control id="Base.shadingPositionSlats">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>
@@ -50,7 +50,7 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>500000</role>
+            <role>501000</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.lightingBrightness</uniqueUiElementId>
 		<type>simple</type>
 		<control>lightingBrightness</control>
-        <role>100000</role>
+        <role>100001</role>
 		<texts>
 			<text id="title">
 				<content>Brightness</content>
@@ -17,7 +17,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>licht1</name>
+				<name>licht3</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -48,7 +48,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>100000</role>
+            <role>100001</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

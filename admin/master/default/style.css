@@ -139,6 +139,10 @@ img, .video {
   padding: 1px !important;
 }
 
+.disabled {
+  opacity: .7;
+}
+
 .none {
   background: none !important;
   box-shadow: none !important;

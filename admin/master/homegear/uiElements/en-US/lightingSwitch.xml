@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.lightingSwitch</uniqueUiElementId>
 		<type>simple</type>
 		<control>lightingSwitch</control>
-        <role>100000</role>
+        <role>100001</role>
 		<texts>
 			<text id="title">
 				<content>Toggle</content>
@@ -73,7 +73,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>100000</role>
+            <role>100001</role>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

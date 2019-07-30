@@ -1,4 +1,21 @@
 <?php
+/* Copyright 2013-2019 Homegear GmbH
+ *
+ * Smart Home Interface (Shif, homegear-ui) is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU Lesser
+ * General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * Shif is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with Shif.  If not, see
+ * <http://www.gnu.org/licenses/>.
+*/
+
     // http://localhost/setup.php?key=[interfaceData.settings.directLoginUrlKey]
     // &action=generateExtensions
     if(file_exists(getcwd()."/interfacedata.php")){
@@ -9,23 +26,7 @@
         die("No interfaceData file!");
     }
 
-    if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) || (isset($_SERVER['HTTP_X_GITLAB_TOKEN']) && $_SERVER['HTTP_X_GITLAB_TOKEN'] == $urlKey) ){
-
-        // GIT Checkout Trigger
-        if(isset($_SERVER['HTTP_X_GITLAB_TOKEN'])){
-            $filePath = "README.md";
-            touch($filePath);
-            $fileTime = filemtime($filePath);
-            for ($i = 0; $i <= 10; $i++) {
-                sleep(1);
-                if($fileTime != filemtime($filePath)){
-                    break;
-                }
-                echo $i." | ";
-            }
-            die();
-        }
-
+    if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/settings.php");
             include(getcwd()."/admin/admin.php");
@@ -42,21 +43,6 @@
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    function getRequestHeaders() {
-        $headers = array();
-        foreach($_SERVER as $key => $value) {
-            if (substr($key, 0, 5) <> 'HTTP_') {
-                continue;
-            }
-            $header = $key;
-            $headers[$header] = $value;
-        }
-        return $headers;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // json raw
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(isset($_GET["json"])){
@@ -67,7 +53,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // homegear json raw
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    else if(isset($_GET["homegear-json"])){
+    else if(isset($_GET["homegear-json-raw"])){
         header('Content-Type: application/json; charset=utf-8');
         $homegear_json_lang = "en-US";
         try {
@@ -78,7 +64,6 @@
             $allInterfaceData["Rooms"] = $hg->getRooms($homegear_json_lang);
             $allInterfaceData["Categories"] = $hg->getCategories($homegear_json_lang);
             $allInterfaceData["Roles"] = $hg->getRoles($homegear_json_lang);
-            $allInterfaceData["Users"] = $hg->listUsers();
             $allInterfaceData["Devices"] = $hg->getAllValues();
             die("<pre>".json_encode($allInterfaceData, JSON_PRETTY_PRINT)."</pre>");
         } 
@@ -86,6 +71,20 @@
             print "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
         }
         die();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // homegear json processed 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if(isset($_GET["homegear-json"])){
+        if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
+            include(getcwd()."/admin/master/homegear/functions.php");
+        }
+        else{
+            die("No homegear functions.php file!");
+        }
+        header('Content-Type: application/json; charset=utf-8');
+        die("<pre>".json_encode($hg_interfaceData, JSON_PRETTY_PRINT)."</pre>");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,23 +120,6 @@
 
         if(isset($_GET["getUIE"])){
             $allInterfaceData["getAllUiElements"] = $hg->getAllUiElements("en-US");
-        }
-
-        if(isset($_GET["createUser"])){
-            foreach($oldInterfaceData["users"] as $key => $value){
-                $currentUserMeta = $hg->getUserMetadata($value["username"]);
-                $allInterfaceData["usermetadata"][$value["username"]]["currentUserMeta"] = $currentUserMeta;
-                unset($currentUserMeta["interface"]);
-                $allInterfaceData["usermetadata"][$value["username"]]["after InterfaceRemoval"] = $currentUserMeta;
-                $currentUserMeta["interface"] = $value["interface"];
-                $allInterfaceData["usermetadata"][$value["username"]]["newUserMeta"] = $value["interface"];
-                $allInterfaceData["usermetadata"][$value["username"]]["merged"] = $currentUserMeta;
-                $allInterfaceData["usermetadata"][$value["username"]]["state"] = $hg->setUserMetadata($value["username"], $currentUserMeta);
-            }
-        }
-
-        if(isset($_GET["listUsers"])){
-            $allInterfaceData["listUsers"] = $hg->listUsers();
         }
 
         if(isset($_GET["createStories"])){
@@ -262,6 +244,22 @@
                     }
                 }
             }
+        }
+
+        if(isset($_GET["deleteSV"])){
+            foreach($oldInterfaceData["systemVariables"] as $value){
+                $allInterfaceData["deleteSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($value["name"]);
+            }
+        }
+
+        if(isset($_GET["createSV"])){
+            foreach($oldInterfaceData["systemVariables"] as $value){
+                $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
+            }
+        }
+
+        if(isset($_GET["getSV"])){
+            $allInterfaceData["getAllSystemVariables"] = $hg->getAllSystemVariables();
         }
 
         echo "\n";
@@ -540,7 +538,8 @@
             <div onclick="loadDoc(\''.$admin_url.'&action=icons\', outputResult)" class="adminButton">Icons</div>
 
             <h2>Homegear</h2>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear-json\', outputResult)" class="adminButton">Raw json output</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear-json-raw\', outputResult)" class="adminButton">Raw json output</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear-json\', outputResult)" class="adminButton">Processed json output</div>
 
             <h4>Stories</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createStories\', outputResult)" class="adminButton">create</div>
@@ -567,7 +566,11 @@
 
             <h4>User</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createUser\', outputResult)" class="adminButton">create</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&listUsers\', outputResult)" class="adminButton">list</div>
+
+            <h4>System Variables</h4>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&createSV\', outputResult)" class="adminButton">create</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&getSV\', outputResult)" class="adminButton">list</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteSV\', outputResult)" class="adminButton">delete</div>
         </div>
     ';
 ?>

@@ -41,7 +41,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>Komfort</content>
+								<content>Frostschutz</content>
 								<color>active</color>
 							</text>
 						</texts>
@@ -55,7 +55,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>Frostschutz</content>
+								<content>Komfort</content>
 								<color>active</color>
 							</text>
 						</texts>

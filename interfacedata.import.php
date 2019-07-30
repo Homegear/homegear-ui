@@ -53,7 +53,7 @@
             "id": "6",
             "name": "Kind",
             "floor": "2",
-            "icon": "bett1"
+            "icon": "player"
         },
         "7": {
             "id": "7",
@@ -92,22 +92,43 @@
             "icon": "sofa1"
         }
     },
-    "users": {
-        "1":{
-            "username": "ui",
-            "groups": [1],
-            "interface": {
-                "language": "de-DE",
-                "theme": "dark",
-                "highlight": "#e3a104",
-                "houseView": "scroll",
-                "firstBreadcrumb": "Haus",
-                "firstBreadcrumbId": "house",
-                "showFloor": "true",
-                "consoleLog": "true"
-            }
+    "systemVariables": [
+        {
+            "name": "HUMIDITY",
+            "type": "float",
+            "value": 51.51
+        },
+        {
+            "name": "TEMPERATURE",
+            "type": "float",
+            "value": 21.21
+        },
+        {
+            "name": "REQUEST",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "VENTILATION",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "WINDALARM",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "WINDOWALARM",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "LIGHT",
+            "type": "bool",
+            "value": false
         }
-    },
+    ],
     "roles": [
         {
             "id": 100000,
@@ -142,12 +163,12 @@
                         {
                             "roleId": 201003,
                             "value": 0,
-                            "buttonText": "Zentral Komfort"
+                            "buttonText": "Zentral Frostschutz"
                         },
                         {
                             "roleId": 201003,
                             "value": 1,
-                            "buttonText": "Zentral Frostschutz"
+                            "buttonText": "Zentral Komfort"
                         },
                         {
                             "roleId": 201003,
@@ -156,16 +177,16 @@
                         }
                     ],
                     "translations": {
-                       "de-DE": {
-                         "0": "Komfort",
-                         "1": "Frostschutz",
-                         "2": "Spar"
-                       },
-                       "en-US": {
-                         "0": "Comfort",
-                         "1": "Frost",
-                         "2": "Eco"
-                       }
+                        "de-DE": {
+                            "0": "Frostschutz",
+                            "1": "Komfort",
+                            "2": "Spar"
+                          },
+                        "en-US": {
+                            "0": "Frost",
+                            "1": "Comfort",
+                            "2": "Spar"
+                        }
                     },
                     "rolesInclude": [
                         {
@@ -187,7 +208,7 @@
                          "0": "Ist"
                        },
                        "en-US": {
-                         "0": "Is"
+                         "0": "Current"
                        }
                     }
                 }
@@ -214,14 +235,14 @@
                 "interface": {
                     "translations": {
                        "de-DE": {
-                         "0": "Komfort",
-                         "1": "Frostschutz",
+                         "0": "Frostschutz",
+                         "1": "Komfort",
                          "2": "Spar"
                        },
                        "en-US": {
-                         "0": "Comfort",
-                         "1": "Frost",
-                         "2": "Spar"
+                         "0": "Frost protection",
+                         "1": "Comfort",
+                         "2": "Eco"
                        }
                     }
                 }
@@ -248,7 +269,7 @@
                 "interface": {
                     "translations": {
                        "de-DE": {
-                         "0": "Absenk"
+                         "0": "Spar"
                        },
                        "en-US": {
                          "0": "Eco"
@@ -263,10 +284,10 @@
                 "interface": {
                     "translations": {
                        "de-DE": {
-                         "0": "Frost"
+                         "0": "Frostschutz"
                        },
                        "en-US": {
-                         "0": "Frost"
+                         "0": "Frost protection"
                        }
                     }
                 }
@@ -304,7 +325,7 @@
                        "en-US": {
                          "0": "closed",
                          "1": "opened",
-                         "2": "Tilted"
+                         "2": "tilted"
                        }
                     }
                 }
@@ -468,7 +489,7 @@
         {
             "deviceId": 0,
             "channel": -1,
-            "varName": "TEST",
+            "varName": "LIGHT",
             "roleId": 100000
         },
         {
@@ -979,7 +1000,7 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEST"
+                            "name": "LIGHT"
                         }
                     ]
                 ],
@@ -988,7 +1009,7 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEST"
+                            "name": "LIGHT"
                         }
                     ]
                 ],
@@ -1248,7 +1269,7 @@
             }
         ],
         [
-            "Base.socketSwitch",
+            "Base.socketButton",
             {
                 "inputPeers": [
                     [
@@ -1558,31 +1579,21 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsUpDown",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ]
                 ],
@@ -1591,28 +1602,18 @@
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 17,
                             "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ]
                 ],
-                "label": "Rollladen",
+                "label": "Dachflächenfenster",
                 "room": 3,
                 "categories": [
                     2
@@ -1626,24 +1627,67 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": 1
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": 2
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": 3
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": 2
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 2
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1651,6 +1695,27 @@
                             "peer": 18,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1659,17 +1724,60 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": 1
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": 2
                         },
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": 3
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": 2
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 1
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": 2
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1678,9 +1786,118 @@
                             "channel": 1,
                             "name": "CURRENT_POSITION"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 18,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
                     ]
                 ],
-                "label": "Rollladen links",
+                "label": "Rollladen Windalarm",
+                "room": 6,
+                "categories": [
+                    2
+                ],
+                "metadata": {
+                    "l2_action": {
+                        "control": 0,
+                        "input": 0
+                    }
+                }
+            }
+        ],
+        [
+            "Base.shadingButtonsPositionPositionSlats",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "MOVE",
+                            "value": false
+                        },
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "STEP",
+                            "value": false
+                        },
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "MOVE",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "MOVE",
+                            "value": false
+                        },
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "STEP",
+                            "value": false
+                        },
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "MOVE",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 19,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ]
+                ],
+                "label": "Rollladen KNX",
                 "room": 6,
                 "categories": [
                     2
@@ -1699,87 +1916,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "DOWN"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "UP"
-                        },
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "DOWN"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 19,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
-                        }
-                    ]
-                ],
-                "label": "Rollladen rechts",
-                "room": 6,
-                "categories": [
-                    2
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
-            }
-        ],
-        [
-            "Base.shadingButtonsPositionSlats",
-            {
-                "inputPeers": [
-                    [
-                        {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1795,17 +1947,20 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1830,24 +1985,27 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPositionVentilationWindalarm",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1855,6 +2013,20 @@
                             "peer": 21,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1863,17 +2035,20 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1881,6 +2056,20 @@
                             "peer": 21,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "VENTILATION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1898,24 +2087,27 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPositionWindalarm",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1923,6 +2115,13 @@
                             "peer": 22,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1931,17 +2130,20 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1949,6 +2151,13 @@
                             "peer": 22,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -1966,24 +2175,27 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -1999,17 +2211,20 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2034,24 +2249,27 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2067,17 +2285,20 @@
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2102,24 +2323,27 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2135,17 +2359,20 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2170,24 +2397,27 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.shadingButtonsPosition",
             {
                 "inputPeers": [
                     [
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2203,17 +2433,20 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "UP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "UP"
+                            "name": "STOP",
+                            "value": true
                         },
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "DOWN"
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2238,7 +2471,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderMode",
+            "Base.heatingIsStateSliderModeWindow",
             {
                 "inputPeers": [
                     [
@@ -2260,6 +2493,13 @@
                             "peer": 78,
                             "channel": 1,
                             "name": "CONTROL_MODE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWALARM"
                         }
                     ]
                 ],
@@ -2284,6 +2524,13 @@
                             "channel": 1,
                             "name": "CONTROL_MODE"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWALARM"
+                        }
                     ]
                 ],
                 "label": "Heizung",
@@ -2295,7 +2542,10 @@
                     "l2_action": {
                         "control": 0,
                         "input": 0
-                    }
+                    },
+                    "event_hooks": {
+                        "disabled": [1]
+                    } 
                 }
             }
         ],
@@ -2951,6 +3201,37 @@
             }
         ],
         [
+            "Base.doorHandle",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 69,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 69,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "label": "Tür",
+                "room": 3,
+                "categories": [
+                    4
+                ],
+                "metadata": {
+                    "l2_only": true
+                }
+            }
+        ],
+        [
             "Base.ventilationMode",
             {
                 "inputPeers": [
@@ -2985,9 +3266,16 @@
             }
         ],
         [
-            "Base.lightingSwitchBrightness",
+            "Base.lightingSwitchButtonBrightness",
             {
                 "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 94,
@@ -3004,6 +3292,13 @@
                     ]
                 ],
                 "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 94,
@@ -3127,6 +3422,130 @@
                         "control": 0,
                         "input": 0
                     }
+                }
+            }
+        ],
+        [
+            "254.0x100.OpenWeatherMap",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "REQUEST"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "REQUEST"
+                        }
+                    ]
+                ],
+                "label": "OpenWeatherMap",
+                "room": 6,
+                "categories": [
+                    5
+                ],
+                "metadata": {
+                    "l2_action": {
+                        "control": 0,
+                        "input": 0
+                    }
+                }
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE"
+                        }
+                    ]
+                ],
+                "label": "Temperatur",
+                "room": 3,
+                "categories": [
+                    4
+                ],
+                "metadata": {
+                    "l2_only": true
+                }
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY"
+                        }
+                    ]
+                ],
+                "label": "Feuchte",
+                "room": 3,
+                "categories": [
+                    4
+                ],
+                "metadata": {
+                    "l2_only": true
                 }
             }
         ]

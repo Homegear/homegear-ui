@@ -35,36 +35,48 @@ function homegear_new() {
     );
 }
 
-if (location.protocol == 'https:')
-    websocket_security_ssl = true;
+var websocket_security_ssl = true; //Enabled by default
+if (location.protocol == 'http:')
+    websocket_security_ssl = false;
 
 if (websocket_url == '' || !websocket_url)
     console.log('Homegear settings error!');
-else if (websocket_security == 'session')
-    var homegear = homegear_new(readCookie('PHPSESSIDUI'));
-else if (websocket_security == 'basic')
-    var homegear = homegear_new(websocket_user, websocket_password);
-else if (websocket_security == 'none')
-    var homegear = homegear_new();
+
+var homegear = homegear_new(readCookie('PHPSESSIDUI'));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 homegear.ready(function() {
-    var addDevicesAsHomegearPears = Object.keys(interfaceData.map_invoke).map(Number);
+    var addDevicesAsHomegearPeers = Object.keys(interfaceData.map_invoke).map(Number);
 
-    console.log('HomegearPears: ');
-    console.log(addDevicesAsHomegearPears);
+    console.log('HomegearPeers: ');
+    console.log(addDevicesAsHomegearPeers);
 
-    homegear.addPeers( addDevicesAsHomegearPears );
+    homegear.addPeers( addDevicesAsHomegearPeers );
+    $('#loadingPage').hide();
+});
+
+homegear.connected(function() {
+
+});
+
+homegear.disconnected(function() {
+    $('#loadingPage').show();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //get new sessionid when websocket reconnects
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-homegear.error(function () {
-    if (parseInt(new Date()) - 6000 > parseInt(startDate))
-        window.location.reload(true);
+homegear.reconnected(function() {
+    window.location.reload(true);
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//print Homegear errors
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+homegear.error(function (message) {
+    console.log(message);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,8 +120,9 @@ function handle_homegear_update(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        const role = interfaceData.devices[input.databaseId].metadata.role;
-        app.$root.$emit('role-update', role);
+        for (const role of input.roles) {
+            app.$root.$emit('role-update', role);
+        }
     }
 
 }
@@ -118,11 +131,14 @@ function handle_homegear_update(resp) {
 // Extensions to the homegear object
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function params_create(input, value) {
+    if ('value' in input) {
+        value = input.value;
+    }
     return [
         Number(input.peer),
         Number(input.channel),
         input.name,
-        Number(value),
+        value,
         false,
     ];
 }
@@ -141,22 +157,6 @@ homegear.invoke_multi = function (ops) {
     return this.invoke(object);
 }
 
-
-
-homegear.value_set = function (input, value) {
-    const object = {
-        jsonrpc: '2.0',
-        method: 'setValue',
-        params: params_create(input, value),
-    };
-
-    console.log(JSON.stringify(object, null, 4));
-
-    return this.invoke(object);
-}
-
-
-
 homegear.value_set_multi = function (ops) {
     return this.invoke_multi([
         ops.map(op => ({
@@ -164,4 +164,23 @@ homegear.value_set_multi = function (ops) {
             params: params_create(op.input, op.value),
         }))
     ]);
+}
+
+homegear.value_set_clickcounter = function(control, params, value) {
+    let methods = [[
+        {
+            methodName: 'setValue',
+            params: params_create(params, value)
+        }
+    ]];
+
+    if(Date.now() - control.lastClickCount > 10000) {
+        control.lastClickCount = Date.now();
+        methods[0].push({
+            methodName: 'setUserData',
+            params: ['ui.clickCounts', control.uiElement.databaseId.toString(), ++control.uiElement.clickCount]
+        });
+    }
+
+    return this.invoke_multi(methods);
 }
