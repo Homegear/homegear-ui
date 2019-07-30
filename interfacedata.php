@@ -20,6 +20,7 @@
             "firstBreadcrumbId": "house",
             "showFloor": true,
             "language": "de-DE",
+            "languageChangeable": true,
             "consoleLog": true,
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
@@ -311,6 +312,7 @@ function userSettings() {
     $interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
     $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+    $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
     $interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
     $interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
     $interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];

@@ -73,6 +73,16 @@ function clean_json_to_js() {
 }
 
 class User {
+    public function getSecondFactorAuthMethods()
+    {
+        return array(true);
+    }
+
+    public function hasWebAuthn()
+    {
+        return true;
+    }
+
     public function getSettings() {
         global $interfaceData;
         return $interfaceData["users"]["1"]["settings"];
@@ -88,26 +98,10 @@ class User {
 
 $user = new User($interfaceData['settings']);
 
-//die( print_r($interfaceData["settings"]));
+userSettings();
 
-$interfaceData["options"]["twofaEnabled"] = "false";
-$interfaceData["options"]["userHasTwofaRegistrations"] = "false";
-$interfaceData["options"]["firstBreadcrumb"] = $user->getSettings()["firstBreadcrumb"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumb"];
-$interfaceData["options"]["firstBreadcrumbId"] = $user->getSettings()["firstBreadcrumbId"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumbId"];
-$interfaceData["options"]["breadcrumbs_array"] = ["<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">".$interfaceData["options"]["firstBreadcrumb"]."</div>"];
-$interfaceData["options"]["breadcrumbs_id_array"] = [$interfaceData["options"]["firstBreadcrumbId"]];
-$interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
-$interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
-$interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
-$interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
-$interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
-$interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
-$interfaceData["options"]["controller_url"] = $interfaceData["settings"]["controllerUrl"];
-$interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
-$interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
 $interfaceData["options"]["websocket_user"] = $interfaceData['settings']['homegear']['user'];
 $interfaceData["options"]["websocket_password"] = $interfaceData['settings']['homegear']['password'];
-$interfaceData["options"]["websocket_security_ssl"] = $interfaceData['settings']['homegear']['ssl'];
 $interfaceData["options"]["websocket_security"] = $interfaceData['settings']['homegear']['security'];
 
 $javascript_options  = "

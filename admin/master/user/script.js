@@ -27,31 +27,43 @@ function user(options){
         `);
     });
 
-    const output = `
+    var output = `
         <div id="user_wrapper">
         <form id="user_${options.content}" name="user_${options.content}" action="javascript:void(0);" onsubmit="user_${options.content}_commit();">
+    `;
+    output += `
             <div id="twofaContainer" class="form-group" style="display: none">
                 <div class="label">${i18n('settings.user.manage.twofa')}:</div>
                 <input id="registerWebauthn" onclick="user_register_webauthn_device()" type="button" class="" ${interfaceData.options.userHasTwofaRegistrations ? 'disabled="disabled"' : ''} value="${interfaceData.options.userHasTwofaRegistrations ? i18n('settings.user.manage.twofaRegistered') : i18n('settings.user.manage.registerTwofa')}">
             </div>
+    `;
+    if (interfaceData.options.languageChangeable == true){
+        output += `
             <div class="form-group">
                 <div class="label">${i18n('settings.user.manage.language')}:</div>
                 <select id="language" name="language">
                     ${langNames}
                 </select>
             </div>
+        `;
+    }
+    output += `
             <div class="form-group">
                 <div class="label">${i18n('settings.user.manage.theme')}:</div>
                 <select id="theme" name="theme">
                     ${themesNames}
                 </select>
             </div>
+    `;
+    output += `
             <div id="user_highlight_display" class="form-group">
                 <div class="label">${i18n('settings.user.manage.highlight')}:</div>
                 <input id="highlight" type="hidden" name="highlight" value="${interfaceData.options.highlight}">
                     <div id="color-picker-container"></div>
                 <div style="clear:both;"></div>
             </div>
+    `;
+    output += `
             <div class="form-group">
                 <input type="submit" class="" name="user_${options.content}" value="${i18n('settings.user.manage.save')}">
             </div>
