@@ -19,7 +19,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Config
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-include(getcwd()."/interfacedata.php");
+if (file_exists(getcwd()."/interfacedata.php")) {
+    include_once(getcwd()."/interfacedata.php");
+}
+else {
+    die("No interfaceData file!");
+}
+
 $configAdmin = $interfaceData["admin"];
 $rootPath    = getcwd();
 $adminPath   = $rootPath."/admin";
@@ -32,7 +38,7 @@ if(isset($argc) && $argc > 1){
 }
 else if(isset($_GET['action'])) $action = $_GET['action'];
 
-if(isset($_GET['origin'])) $origin =  $_GET['origin'];
+if(isset($_GET['origin'])) $origin = $_GET['origin'];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //

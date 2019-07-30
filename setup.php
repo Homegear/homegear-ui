@@ -28,7 +28,6 @@
 
     if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
-            include(getcwd()."/admin/functions.dev.php");
             include(getcwd()."/admin/admin.php");
             $date = "\n"."SUCCESS: ".date("Y-m-d H:i:s");
             die($date);
@@ -99,6 +98,19 @@
         } 
         catch(\Homegear\HomegearException $e) {
             die("Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage());
+        }
+
+        if (file_exists(getcwd()."/interfacedata.import.php")) {
+            include_once(getcwd()."/interfacedata.import.php");
+        }
+        if (isset($customImportInterfaceDataJson)) {
+            $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
+        }
+        else if(isset($importInterfaceDataJson)){
+            $oldInterfaceData = json_decode($importInterfaceDataJson, true);
+        }
+        else {
+            die("No customImportInterfaceDataJson set!");
         }
 
         $allInterfaceData = array();

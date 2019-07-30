@@ -16,15 +16,16 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-include_once(getcwd()."/interfacedata.php");
+if (file_exists(getcwd()."/interfacedata.php")) {
+    include_once(getcwd()."/interfacedata.php");
+}
+else {
+    die("No interfaceData file!");
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if( (file_exists("interfacedata.import.php") && isset($customImportInterfaceDataJson)) || isset($customImportInterfaceDataJson)){
-    $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
-}
-
 $_SERVER['WEBSOCKET_ENABLED'] = true;
 $_SERVER['WEBSOCKET_AUTH_TYPE'] = $interfaceData['settings']['homegear']['security'];
 $_SESSION['locale'] = $interfaceData["users"]["1"]["settings"]['language'];
@@ -32,7 +33,7 @@ $_SESSION['locale'] = $interfaceData["users"]["1"]["settings"]['language'];
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PHP JSON clean to Javascript
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function clean_json_to_js(){
+function clean_json_to_js() {
     global $interfaceData;
     $interfaceDataOut = array();
     $interfaceDataOut["devices"] = $interfaceData["devices"];
@@ -46,25 +47,24 @@ function clean_json_to_js(){
     $interfaceDataOut["roles"] = $interfaceData["roles"];
     $interfaceDataOut["options"] = $interfaceData["options"];
 
-    foreach($interfaceDataOut as $key => $type){
+    foreach ($interfaceDataOut as $key => $type ){
         foreach($type as $keyLine => $line){
-            if($line == null)
-            {
+            if ($line == null) {
                 unset($interfaceDataOut[$key][$keyLine]);
                 continue;
             }
         }
     }
 
-    if($_SESSION['locale'] != "en-US"){
+    if ($_SESSION['locale'] != "en-US") {
         $interfaceDataOut["i18n"] = $interfaceData["i18n"][$_SESSION['locale']];
         $interfaceDataOut["i18n"]["default"] = $interfaceData["i18n"]["en-US"];
     }
-    else{
+    else {
         $interfaceDataOut["i18n"] = $interfaceData["i18n"]["en-US"];
     }
 
-    foreach($interfaceData["i18n"] as $key => $value){
+    foreach ($interfaceData["i18n"] as $key => $value) {
         $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
     }
 
