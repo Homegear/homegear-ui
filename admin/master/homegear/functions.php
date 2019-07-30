@@ -8,7 +8,7 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
 
     try
     {
-        $hg_lang = $_SESSION['locale'] ?? 'en-US';
+        $hg_lang = $interfaceData["options"]["language"] ?? 'en-US';
 
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);

@@ -28,7 +28,6 @@ else {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 $_SERVER['WEBSOCKET_ENABLED'] = true;
 $_SERVER['WEBSOCKET_AUTH_TYPE'] = $interfaceData['settings']['homegear']['security'];
-$_SESSION['locale'] = $interfaceData["users"]["1"]["settings"]['language'];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PHP JSON clean to Javascript
@@ -56,8 +55,8 @@ function clean_json_to_js() {
         }
     }
 
-    if ($_SESSION['locale'] != "en-US") {
-        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$_SESSION['locale']];
+    if ($interfaceData["options"]['language'] != "en-US") {
+        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$interfaceData["options"]['language']];
         $interfaceDataOut["i18n"]["default"] = $interfaceData["i18n"]["en-US"];
     }
     else {
