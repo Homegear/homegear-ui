@@ -16,9 +16,17 @@
  * <http://www.gnu.org/licenses/>.
 */
 
+//{{{ Load settings
+if (file_exists(getcwd()."/interfacedata.php")) {
+    include_once(getcwd()."/interfacedata.php");
+}
+else die("JSON file missing!");
+//}}}
+
 require_once('user.php');
 
-$user = new User();
+$user = new User($interfaceData['settings']);
+if($user->checkAuth(true) !== 0) die('unauthorized');
 
 $command = $_GET['command'];
 $post = trim(file_get_contents('php://input'));
