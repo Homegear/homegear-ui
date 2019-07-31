@@ -78,7 +78,6 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
         if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
-            $currentUser["id"] = "setup";
             include(getcwd()."/admin/master/homegear/functions.php");
         }
         else{

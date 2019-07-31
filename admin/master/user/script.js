@@ -31,12 +31,14 @@ function user(options){
         <div id="user_wrapper">
         <form id="user_${options.content}" name="user_${options.content}" action="javascript:void(0);" onsubmit="user_${options.content}_commit();">
     `;
-    output += `
-            <div id="twofaContainer" class="form-group" style="display: none">
-                <div class="label">${i18n('settings.user.manage.twofa')}:</div>
-                <input id="registerWebauthn" onclick="user_register_webauthn_device()" type="button" class="" ${interfaceData.options.userHasTwofaRegistrations ? 'disabled="disabled"' : ''} value="${interfaceData.options.userHasTwofaRegistrations ? i18n('settings.user.manage.twofaRegistered') : i18n('settings.user.manage.registerTwofa')}">
-            </div>
-    `;
+    if (interfaceData.options.twofaChangeable == true){
+        output += `
+                <div id="twofaContainer" class="form-group" style="display: none">
+                    <div class="label">${i18n('settings.user.manage.twofa')}:</div>
+                    <input id="registerWebauthn" onclick="user_register_webauthn_device()" type="button" class="" ${interfaceData.options.userHasTwofaRegistrations ? 'disabled="disabled"' : ''} value="${interfaceData.options.userHasTwofaRegistrations ? i18n('settings.user.manage.twofaRegistered') : i18n('settings.user.manage.registerTwofa')}">
+                </div>
+        `;
+    }
     if (interfaceData.options.languageChangeable == true){
         output += `
             <div class="form-group">
@@ -74,7 +76,7 @@ function user(options){
     content('this', {'content':output, 'name':options['name']});
     if(interfaceData.options.twofaEnabled) $('#twofaContainer').show();
 
-    const outerWidth = $('#user_edit').outerWidth()
+    const outerWidth = $('#user_edit').outerWidth();
     const userColorPickerWidth = outerWidth <= 400 ? outerWidth : 400;
     const userColorPickerHeight = userColorPickerWidth + 20;
 

@@ -51,20 +51,17 @@
         var startDate = '.(time() * 1000).';
     ';
 
-    if (isset($hg)) {
-        if(isset($hg_interfaceData) && $hg_interfaceData != ""){
+    if (class_exists('\Homegear\Homegear')) {
+        $hg_interfaceData = homegear_init();
             foreach($interfaceData["i18n"] as $key => $value){
                 $hg_interfaceData["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
             }
             $content .= "var interfaceData = ".json_encode($hg_interfaceData, JSON_PRETTY_PRINT).";"."\n";
-        }
+        
     }
     else {
+        $content .= 'console.log("HOMEGEAR PHP API NOT FOUND!");'."\n";
         $content .= clean_json_to_js()."\n";
-    }
-
-    if (isset($hgMessage)) {
-        $content .= $hgMessage."\n";
     }
 
     $content .= '</script>';

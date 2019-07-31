@@ -1,855 +1,6 @@
 <?php $dummyInterfaceDataJson = '
 {
     "devices": {
-        "5": {
-            "categories": [
-                1
-            ],
-            "clickCount": 1,
-            "databaseId": 5,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "licht1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Licht Spiegel",
-            "metadata": {
-                "l2_only": true,
-                "role": "100001"
-            },
-            "role": 1048577,
-            "room": 2,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 4,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 4,
-                            "properties": [],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                2
-            ]
-        },
-        "4": {
-            "categories": [
-                1
-            ],
-            "clickCount": 1,
-            "databaseId": 4,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "licht1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Licht Decke",
-            "metadata": {
-                "l2_only": true,
-                "role": "100001"
-            },
-            "role": 1048577,
-            "room": 2,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 3,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 3,
-                            "properties": [],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                2
-            ]
-        },
-        "19": {
-            "categories": [
-                7
-            ],
-            "clickCount": 1,
-            "databaseId": 19,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 4,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 91,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 91,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                4
-            ],
-            "rooms": [
-                4
-            ]
-        },
-        "17": {
-            "categories": [
-                7
-            ],
-            "clickCount": 1,
-            "databaseId": 17,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 11,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 16,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": true
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 16,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                4
-            ],
-            "rooms": [
-                11
-            ]
-        },
-        "13": {
-            "categories": [
-                7
-            ],
-            "clickCount": 1,
-            "databaseId": 13,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 7,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 12,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "socket1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 12,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                3
-            ],
-            "rooms": [
-                7
-            ]
-        },
-        "11": {
-            "categories": [
-                1
-            ],
-            "clickCount": 1,
-            "databaseId": 11,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "licht1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Licht",
-            "metadata": {
-                "l2_only": true,
-                "role": "100001"
-            },
-            "role": 1048577,
-            "room": 1,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Toggle"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 10,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "licht1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 10,
-                            "properties": [],
-                            "roles": [
-                                100001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1,
-                2
-            ],
-            "rooms": [
-                1,
-                1
-            ]
-        },
-        "10": {
-            "categories": [
-                7
-            ],
-            "clickCount": 1,
-            "databaseId": 10,
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "pfeil3"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true,
-                "role": "400001"
-            },
-            "role": 0,
-            "room": 12,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Button"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketButton",
-                    "uniqueUiElementId": "Base.socketButton",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 9,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "play"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "gedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "play"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "losgelassen"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 9,
-                            "properties": [],
-                            "roles": [
-                                400001
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                12
-            ]
-        },
         "36": {
             "categories": [
                 3
@@ -871,12 +22,12 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 12,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Status"
+                    "content": "State"
                 },
                 "title": {
                     "color": "title",
@@ -916,7 +67,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -936,7 +87,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -1002,15 +153,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101249,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Ist"
+                            "content": "Is"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingIsState",
@@ -1048,7 +199,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "slider"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1058,15 +209,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101250,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Soll"
+                            "content": "Set"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Soll-Temperatur"
+                            "content": "Set"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingSlider",
@@ -1119,7 +270,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "plus-minus"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1129,15 +280,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101251,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Modus"
+                            "content": "Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Betriebsmodus"
+                            "content": "Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingMode",
@@ -1162,13 +313,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Frostschutz"
+                                                "content": "Minimal"
                                             }
                                         }
                                     }
@@ -1182,13 +333,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Komfort"
+                                                "content": "Comfort"
                                             }
                                         }
                                     }
@@ -1202,13 +353,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Spar"
+                                                "content": "Save"
                                             }
                                         }
                                     }
@@ -1246,7 +397,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -1254,7 +405,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 }
             },
             "label": "Heizung",
@@ -1265,16 +416,16 @@
                 },
                 "role": "201000"
             },
-            "role": 0,
+            "role": 2101248,
             "room": 5,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Heating"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Heizung"
+                    "content": "Heating"
                 }
             },
             "uniqueUiElementId": "Base.heatingIsStateSliderMode",
@@ -1316,15 +467,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101249,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Ist"
+                            "content": "Is"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingIsState",
@@ -1362,7 +513,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "slider"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1372,15 +523,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101250,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Soll"
+                            "content": "Set"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Soll-Temperatur"
+                            "content": "Set"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingSlider",
@@ -1433,7 +584,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "plus-minus"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1443,15 +594,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101251,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Modus"
+                            "content": "Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Betriebsmodus"
+                            "content": "Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingMode",
@@ -1476,13 +627,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Frostschutz"
+                                                "content": "Minimal"
                                             }
                                         }
                                     }
@@ -1496,13 +647,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Komfort"
+                                                "content": "Comfort"
                                             }
                                         }
                                     }
@@ -1516,13 +667,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Spar"
+                                                "content": "Save"
                                             }
                                         }
                                     }
@@ -1560,7 +711,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -1568,7 +719,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 }
             },
             "label": "Heizung",
@@ -1579,16 +730,16 @@
                 },
                 "role": "201000"
             },
-            "role": 0,
+            "role": 2101248,
             "room": 12,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Heating"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Heizung"
+                    "content": "Heating"
                 }
             },
             "uniqueUiElementId": "Base.heatingIsStateSliderMode",
@@ -1630,15 +781,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101249,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Ist"
+                            "content": "Is"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingIsState",
@@ -1676,7 +827,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "slider"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1686,15 +837,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101250,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Soll"
+                            "content": "Set"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Soll-Temperatur"
+                            "content": "Set"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingSlider",
@@ -1747,7 +898,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "plus-minus"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1757,15 +908,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101251,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Modus"
+                            "content": "Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Betriebsmodus"
+                            "content": "Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingMode",
@@ -1790,13 +941,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Frostschutz"
+                                                "content": "Minimal"
                                             }
                                         }
                                     }
@@ -1810,13 +961,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Komfort"
+                                                "content": "Comfort"
                                             }
                                         }
                                     }
@@ -1830,13 +981,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Spar"
+                                                "content": "Save"
                                             }
                                         }
                                     }
@@ -1874,7 +1025,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -1882,7 +1033,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 }
             },
             "label": "Heizung",
@@ -1893,16 +1044,16 @@
                 },
                 "role": "201000"
             },
-            "role": 0,
+            "role": 2101248,
             "room": 9,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Heating"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Heizung"
+                    "content": "Heating"
                 }
             },
             "uniqueUiElementId": "Base.heatingIsStateSliderMode",
@@ -1944,15 +1095,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101249,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Ist"
+                            "content": "Is"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingIsState",
@@ -1990,7 +1141,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "slider"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -2000,15 +1151,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101250,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Soll"
+                            "content": "Set"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Soll-Temperatur"
+                            "content": "Set"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingSlider",
@@ -2061,7 +1212,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "plus-minus"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -2071,15 +1222,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101251,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Modus"
+                            "content": "Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Betriebsmodus"
+                            "content": "Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingMode",
@@ -2104,13 +1255,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Frostschutz"
+                                                "content": "Minimal"
                                             }
                                         }
                                     }
@@ -2124,13 +1275,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Komfort"
+                                                "content": "Comfort"
                                             }
                                         }
                                     }
@@ -2144,13 +1295,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Spar"
+                                                "content": "Save"
                                             }
                                         }
                                     }
@@ -2188,7 +1339,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -2196,7 +1347,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 }
             },
             "label": "Heizung",
@@ -2207,16 +1358,16 @@
                 },
                 "role": "201000"
             },
-            "role": 0,
+            "role": 2101248,
             "room": 2,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Heating"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Heizung"
+                    "content": "Heating"
                 }
             },
             "uniqueUiElementId": "Base.heatingIsStateSliderMode",
@@ -2258,15 +1409,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101249,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Ist"
+                            "content": "Is"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingIsState",
@@ -2304,7 +1455,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "slider"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -2314,15 +1465,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101250,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Soll"
+                            "content": "Set"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Soll-Temperatur"
+                            "content": "Set"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingSlider",
@@ -2375,7 +1526,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "plus-minus"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -2385,15 +1536,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101251,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Modus"
+                            "content": "Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Betriebsmodus"
+                            "content": "Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingMode",
@@ -2418,13 +1569,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Frostschutz"
+                                                "content": "Minimal"
                                             }
                                         }
                                     }
@@ -2438,13 +1589,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Komfort"
+                                                "content": "Comfort"
                                             }
                                         }
                                     }
@@ -2458,13 +1609,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Spar"
+                                                "content": "Save"
                                             }
                                         }
                                     }
@@ -2502,7 +1653,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -2510,7 +1661,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 }
             },
             "label": "Heizung",
@@ -2521,16 +1672,16 @@
                 },
                 "role": "201000"
             },
-            "role": 0,
+            "role": 2101248,
             "room": 6,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Heating"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Heizung"
+                    "content": "Heating"
                 }
             },
             "uniqueUiElementId": "Base.heatingIsStateSliderMode",
@@ -2572,15 +1723,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101249,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Ist"
+                            "content": "Is"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingIsState",
@@ -2618,7 +1769,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "slider"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -2628,15 +1779,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101250,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Soll"
+                            "content": "Set"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Soll-Temperatur"
+                            "content": "Set"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingSlider",
@@ -2689,7 +1840,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "thermometer1"
+                            "name": "plus-minus"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -2699,15 +1850,15 @@
                     "metadata": {
                         "role": "201000"
                     },
-                    "role": 0,
+                    "role": 2101251,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Modus"
+                            "content": "Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Betriebsmodus"
+                            "content": "Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingMode",
@@ -2732,13 +1883,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Frostschutz"
+                                                "content": "Minimal"
                                             }
                                         }
                                     }
@@ -2752,13 +1903,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Komfort"
+                                                "content": "Comfort"
                                             }
                                         }
                                     }
@@ -2772,13 +1923,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "pfeil2"
+                                                "name": "plus-minus"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Spar"
+                                                "content": "Save"
                                             }
                                         }
                                     }
@@ -2828,11 +1979,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Fenster Modus"
+                            "content": "Window Mode"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Fenster Modus"
+                            "content": "Window Mode"
                         }
                     },
                     "uniqueUiElementId": "Base.heatingWindow",
@@ -2843,7 +1994,7 @@
                             "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -2911,7 +2062,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -2919,7 +2070,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer1"
+                    "name": "heater"
                 }
             },
             "label": "Heizung",
@@ -2972,7 +2123,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -3021,7 +2172,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3041,7 +2192,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3075,7 +2226,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3095,7 +2246,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3128,7 +2279,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3148,7 +2299,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3334,7 +2485,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -3383,7 +2534,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3403,7 +2554,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3437,7 +2588,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3457,7 +2608,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3490,7 +2641,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3510,7 +2661,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3696,7 +2847,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -3745,7 +2896,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3765,7 +2916,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3799,7 +2950,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3819,7 +2970,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -3852,7 +3003,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -3872,7 +3023,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4058,7 +3209,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -4107,7 +3258,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4127,7 +3278,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4161,7 +3312,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4181,7 +3332,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4214,7 +3365,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4234,7 +3385,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4420,7 +3571,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -4469,7 +3620,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4489,7 +3640,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4523,7 +3674,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4543,7 +3694,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4576,7 +3727,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4596,7 +3747,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4738,11 +3889,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Alarm"
+                            "content": "Windalarm"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Alarm"
+                            "content": "Windalarm"
                         }
                     },
                     "uniqueUiElementId": "Base.shadingWindalarm",
@@ -4877,7 +4028,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -4926,7 +4077,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -4946,7 +4097,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -4980,7 +4131,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5000,7 +4151,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5033,7 +4184,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5053,7 +4204,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5183,7 +4334,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "ventilator"
+                            "name": "air-quality"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -5197,7 +4348,7 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "L\u00fcftung"
+                            "content": "Ventilation"
                         },
                         "title": {
                             "color": "title",
@@ -5224,13 +4375,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "ventilator"
+                                                "name": "air-quality"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5244,13 +4395,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "inactive",
-                                                "name": "ventilator"
+                                                "name": "air-quality"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5292,11 +4443,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Alarm"
+                            "content": "Windalarm"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Alarm"
+                            "content": "Windalarm"
                         }
                     },
                     "uniqueUiElementId": "Base.shadingWindalarm",
@@ -5431,7 +4582,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -5480,7 +4631,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5500,7 +4651,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5534,7 +4685,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5554,7 +4705,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5587,7 +4738,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5607,7 +4758,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5662,11 +4813,11 @@
                         "x": 0,
                         "y": 1
                     },
-                    "control": "shadingPosition",
+                    "control": "shadingPositionSlats",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "blinds_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -5680,14 +4831,14 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Position"
+                            "content": "Slats"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Position"
+                            "content": "Slats Position"
                         }
                     },
-                    "uniqueUiElementId": "Base.shadingPosition",
+                    "uniqueUiElementId": "Base.shadingPositionSlats",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -5737,7 +4888,7 @@
             "icons": {
                 "l2": {
                     "color": "icon",
-                    "name": "rolladen1"
+                    "name": "blinds_1"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -5756,12 +4907,12 @@
                 },
                 "role": "501000"
             },
-            "role": 0,
+            "role": 5246976,
             "room": 2,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Shading"
                 },
                 "title": {
                     "color": "title",
@@ -5793,7 +4944,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -5839,7 +4990,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5859,7 +5010,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5889,7 +5040,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5909,7 +5060,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -5939,7 +5090,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -5959,7 +5110,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6073,7 +5224,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "blinds_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -6087,7 +5238,7 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Blenden"
+                            "content": "Slats"
                         },
                         "title": {
                             "color": "title",
@@ -6163,7 +5314,7 @@
                 },
                 "role": "501000"
             },
-            "role": 0,
+            "role": 5246976,
             "room": 6,
             "texts": {
                 "l2_state_title": {
@@ -6200,7 +5351,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "switches"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -6249,7 +5400,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6269,7 +5420,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6303,7 +5454,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6323,7 +5474,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6356,7 +5507,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6376,7 +5527,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6484,7 +5635,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6504,7 +5655,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6538,7 +5689,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6558,7 +5709,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6591,7 +5742,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6611,7 +5762,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6648,7 +5799,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -6668,7 +5819,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -6987,7 +6138,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "rolladen1"
+                            "name": "blinds_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -7001,7 +6152,7 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Blenden"
+                            "content": "Slats"
                         },
                         "title": {
                             "color": "title",
@@ -7058,7 +6209,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "ventilator"
+                            "name": "air-quality"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -7072,7 +6223,7 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "L\u00fcftung"
+                            "content": "Ventilation"
                         },
                         "title": {
                             "color": "title",
@@ -7099,13 +6250,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "ventilator"
+                                                "name": "air-quality"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -7119,13 +6270,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "inactive",
-                                                "name": "ventilator"
+                                                "name": "air-quality"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -7167,11 +6318,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Alarm"
+                            "content": "Windalarm"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Alarm"
+                            "content": "Windalarm"
                         }
                     },
                     "uniqueUiElementId": "Base.shadingWindalarm",
@@ -7483,6 +6634,127 @@
                 3
             ]
         },
+        "19": {
+            "categories": [
+                7
+            ],
+            "clickCount": 0,
+            "databaseId": 19,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 4194304,
+            "room": 4,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketSwitch",
+                    "uniqueUiElementId": "Base.socketSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 91,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 91,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                4
+            ],
+            "rooms": [
+                4
+            ]
+        },
         "18": {
             "categories": [
                 1
@@ -7549,7 +6821,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -7569,7 +6841,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -7602,6 +6874,127 @@
             ],
             "rooms": [
                 12
+            ]
+        },
+        "17": {
+            "categories": [
+                7
+            ],
+            "clickCount": 0,
+            "databaseId": 17,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 4194304,
+            "room": 11,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketSwitch",
+                    "uniqueUiElementId": "Base.socketSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 16,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 16,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                4
+            ],
+            "rooms": [
+                11
             ]
         },
         "6": {
@@ -7670,7 +7063,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -7690,7 +7083,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -7723,6 +7116,248 @@
             ],
             "rooms": [
                 9
+            ]
+        },
+        "5": {
+            "categories": [
+                1
+            ],
+            "clickCount": 0,
+            "databaseId": 5,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "licht1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Licht Spiegel",
+            "metadata": {
+                "l2_only": true,
+                "role": "100001"
+            },
+            "role": 1048577,
+            "room": 2,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "lightingSwitch",
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 4,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 4,
+                            "properties": [],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                2
+            ]
+        },
+        "4": {
+            "categories": [
+                1
+            ],
+            "clickCount": 0,
+            "databaseId": 4,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "licht1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Licht Decke",
+            "metadata": {
+                "l2_only": true,
+                "role": "100001"
+            },
+            "role": 1048577,
+            "room": 2,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "lightingSwitch",
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 3,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": true
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 3,
+                            "properties": [],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                2
             ]
         },
         "3": {
@@ -7791,7 +7426,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -7811,7 +7446,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -7908,7 +7543,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -7928,7 +7563,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8027,7 +7662,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8047,7 +7682,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8148,7 +7783,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8168,7 +7803,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8269,7 +7904,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8289,7 +7924,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8390,7 +8025,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8410,7 +8045,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8443,6 +8078,250 @@
             ],
             "rooms": [
                 12
+            ]
+        },
+        "10": {
+            "categories": [
+                7
+            ],
+            "clickCount": 0,
+            "databaseId": 10,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 4194304,
+            "room": 12,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Button"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketButton",
+                    "uniqueUiElementId": "Base.socketButton",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 9,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "play"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "pushed"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "play"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "unpushed"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 9,
+                            "properties": [],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                12
+            ]
+        },
+        "11": {
+            "categories": [
+                1
+            ],
+            "clickCount": 0,
+            "databaseId": 11,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "licht1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Licht",
+            "metadata": {
+                "l2_only": true,
+                "role": "100001"
+            },
+            "role": 1048577,
+            "room": 1,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "lightingSwitch",
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 10,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "licht1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 10,
+                            "properties": [],
+                            "roles": [
+                                100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1,
+                2
+            ],
+            "rooms": [
+                1,
+                1
             ]
         },
         "12": {
@@ -8511,7 +8390,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8531,7 +8410,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8553,6 +8432,127 @@
                             "properties": [],
                             "roles": [
                                 100001
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                3
+            ],
+            "rooms": [
+                7
+            ]
+        },
+        "13": {
+            "categories": [
+                7
+            ],
+            "clickCount": 0,
+            "databaseId": 13,
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "pfeil3"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true,
+                "role": "400001"
+            },
+            "role": 4194304,
+            "room": 7,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "State"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Toggle"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketSwitch",
+                    "uniqueUiElementId": "Base.socketSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 12,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "socket1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                400001
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 12,
+                            "properties": [],
+                            "roles": [
+                                400001
                             ],
                             "type": "bool"
                         }
@@ -8632,7 +8632,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8652,7 +8652,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8735,7 +8735,7 @@
                             "peer": 14,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -8753,7 +8753,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8773,7 +8773,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8874,7 +8874,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -8894,7 +8894,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -8950,7 +8950,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 3,
             "texts": {
                 "l2_state_title": {
@@ -8995,7 +8995,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9015,7 +9015,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -9035,7 +9035,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -9055,7 +9055,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -9111,7 +9111,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 6,
             "texts": {
                 "l2_state_title": {
@@ -9156,7 +9156,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9176,7 +9176,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -9196,7 +9196,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -9216,7 +9216,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -9272,7 +9272,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 6,
             "texts": {
                 "l2_state_title": {
@@ -9317,7 +9317,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9337,7 +9337,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -9357,7 +9357,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -9377,7 +9377,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -9433,7 +9433,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 2,
             "texts": {
                 "l2_state_title": {
@@ -9478,7 +9478,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9498,7 +9498,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -9518,7 +9518,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -9538,7 +9538,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -9594,7 +9594,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 9,
             "texts": {
                 "l2_state_title": {
@@ -9639,7 +9639,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9659,7 +9659,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -9679,7 +9679,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -9699,7 +9699,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -9755,7 +9755,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 9,
             "texts": {
                 "l2_state_title": {
@@ -9800,7 +9800,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9820,7 +9820,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -9840,7 +9840,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -9860,7 +9860,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -9916,7 +9916,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 12,
             "texts": {
                 "l2_state_title": {
@@ -9961,7 +9961,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -9981,7 +9981,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -10001,7 +10001,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -10021,7 +10021,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -10077,7 +10077,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 12,
             "texts": {
                 "l2_state_title": {
@@ -10122,7 +10122,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -10142,7 +10142,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -10162,7 +10162,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -10182,7 +10182,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -10238,7 +10238,7 @@
                 "l2_only": true,
                 "role": "301002"
             },
-            "role": 0,
+            "role": 3149826,
             "room": 12,
             "texts": {
                 "l2_state_title": {
@@ -10283,7 +10283,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -10303,7 +10303,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -10323,7 +10323,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gekippt"
+                                                "content": "tilted"
                                             }
                                         }
                                     }
@@ -10343,7 +10343,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "undefined"
+                                                "content": "unknown state"
                                             }
                                         }
                                     }
@@ -10399,7 +10399,7 @@
                 "l2_only": true,
                 "role": "301001"
             },
-            "role": 0,
+            "role": 3149825,
             "room": 3,
             "texts": {
                 "l2_state_title": {
@@ -10444,7 +10444,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -10464,7 +10464,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -10508,7 +10508,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "door1"
+                    "name": "door-handle"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -10520,7 +10520,7 @@
                 "l2_only": true,
                 "role": "301001"
             },
-            "role": 0,
+            "role": 3149825,
             "room": 3,
             "texts": {
                 "l2_state_title": {
@@ -10559,13 +10559,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "inactive",
-                                                "name": "door1"
+                                                "name": "door-handle"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "geschlossen"
+                                                "content": "closed"
                                             }
                                         }
                                     }
@@ -10579,13 +10579,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "door1"
+                                                "name": "door-handle"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "offen"
+                                                "content": "opened"
                                             }
                                         }
                                     }
@@ -10599,7 +10599,7 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "door1"
+                                                "name": "door-handle"
                                             }
                                         },
                                         "texts": {
@@ -10619,7 +10619,7 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "door1"
+                                                "name": "door-handle"
                                             }
                                         },
                                         "texts": {
@@ -10688,11 +10688,11 @@
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Stufe"
+                    "content": "Mode"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Bel\u00fcftung"
+                    "content": "Mode"
                 }
             },
             "grid": null,
@@ -10728,7 +10728,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Stufe 1"
+                                                "content": "Step 1"
                                             }
                                         }
                                     }
@@ -10748,7 +10748,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Stufe 2"
+                                                "content": "Step 2"
                                             }
                                         }
                                     }
@@ -10768,7 +10768,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Stufe 3"
+                                                "content": "Step 3"
                                             }
                                         }
                                     }
@@ -10788,7 +10788,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "Stufe 4"
+                                                "content": "Step 4"
                                             }
                                         }
                                     }
@@ -10883,7 +10883,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -10903,7 +10903,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -11046,7 +11046,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "licht1"
+                            "name": "licht3"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -11056,15 +11056,15 @@
                     "metadata": {
                         "role": "100001"
                     },
-                    "role": 0,
+                    "role": 1048577,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Helligkeit"
+                            "content": "Brightness"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Helligkeit"
+                            "content": "Brightness"
                         }
                     },
                     "uniqueUiElementId": "Base.lightingBrightness",
@@ -11222,7 +11222,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -11242,7 +11242,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -11280,7 +11280,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "licht1"
+                            "name": "licht3"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -11290,15 +11290,15 @@
                     "metadata": {
                         "role": "100001"
                     },
-                    "role": 0,
+                    "role": 1048577,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Helligkeit"
+                            "content": "Brightness"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Helligkeit"
+                            "content": "Brightness"
                         }
                     },
                     "uniqueUiElementId": "Base.lightingBrightness",
@@ -11370,12 +11370,12 @@
                 },
                 "role": "100001"
             },
-            "role": 0,
+            "role": 1048577,
             "room": 12,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Lighting"
                 },
                 "title": {
                     "color": "title",
@@ -11456,7 +11456,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "an"
+                                                "content": "on"
                                             }
                                         }
                                     }
@@ -11476,7 +11476,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "aus"
+                                                "content": "off"
                                             }
                                         }
                                     }
@@ -11514,7 +11514,7 @@
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "licht1"
+                            "name": "licht3"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -11524,15 +11524,15 @@
                     "metadata": {
                         "role": "100001"
                     },
-                    "role": 0,
+                    "role": 1048577,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Helligkeit"
+                            "content": "Brightness"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Helligkeit"
+                            "content": "Brightness"
                         }
                     },
                     "uniqueUiElementId": "Base.lightingBrightness",
@@ -11604,12 +11604,12 @@
                 },
                 "role": "100001"
             },
-            "role": 0,
+            "role": 1048577,
             "room": 6,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "State"
+                    "content": "Lighting"
                 },
                 "title": {
                     "color": "title",
@@ -11659,11 +11659,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Temp:"
+                            "content": "Temp."
                         },
                         "title": {
                             "color": "title",
-                            "content": "Temperatur"
+                            "content": "Temperature"
                         }
                     },
                     "uniqueUiElementId": "Base.temperature",
@@ -11714,11 +11714,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Feuchte"
+                            "content": "Humidity"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Luftfeuchtigkeit"
+                            "content": "Humidity"
                         }
                     },
                     "uniqueUiElementId": "Base.humidity",
@@ -11761,11 +11761,11 @@
                     "metadata": {
                         "role": "400001"
                     },
-                    "role": 0,
+                    "role": 4194304,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Status"
+                            "content": "State"
                         },
                         "title": {
                             "color": "title",
@@ -11798,7 +11798,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "gedr\u00fcckt"
+                                                "content": "pushed"
                                             }
                                         }
                                     }
@@ -11818,7 +11818,7 @@
                                         "texts": {
                                             "state": {
                                                 "color": "inactive",
-                                                "content": "losgelassen"
+                                                "content": "unpushed"
                                             }
                                         }
                                     }
@@ -11916,11 +11916,11 @@
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Temp:"
+                    "content": "Temp."
                 },
                 "title": {
                     "color": "title",
-                    "content": "Temperatur"
+                    "content": "Temperature"
                 }
             },
             "grid": null,
@@ -11985,11 +11985,11 @@
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Feuchte"
+                    "content": "Humidity"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Luftfeuchtigkeit"
+                    "content": "Humidity"
                 }
             },
             "grid": null,
@@ -12074,10 +12074,10 @@
         },
         "2": {
             "devices": [
-                5,
-                4,
                 32,
                 23,
+                5,
+                4,
                 40
             ],
             "floors": [
@@ -12145,10 +12145,10 @@
         },
         "7": {
             "devices": [
-                13,
                 29,
                 28,
-                12
+                12,
+                13
             ],
             "floors": [
                 3
@@ -12204,7 +12204,6 @@
         },
         "12": {
             "devices": [
-                10,
                 36,
                 34,
                 27,
@@ -12213,6 +12212,7 @@
                 7,
                 8,
                 9,
+                10,
                 43,
                 44,
                 45,
@@ -12349,10 +12349,10 @@
     },
     "roles": {
         "100001": {
-            "name": "Licht - Status",
+            "name": "light - state",
             "texts": [
-                "aus",
-                "an"
+                "off",
+                "on"
             ],
             "icon": "licht1",
             "invokeOutputs": [
@@ -12378,8 +12378,8 @@
                 ]
             },
             "aggregated": {
-                "0": 14,
-                "1": 4,
+                "0": 13,
+                "1": 5,
                 "variableCount": 18
             },
             "varInRole": {
@@ -12476,7 +12476,7 @@
             }
         },
         "101000": {
-            "name": "Licht - Helligkeit",
+            "name": "light - brightness",
             "aggregated": {
                 "0": 3,
                 "variableCount": 3
@@ -12500,11 +12500,11 @@
             }
         },
         "201000": {
-            "name": "Heizung",
+            "name": "heating",
             "texts": [
-                "Frostschutz",
-                "Komfort",
-                "Spar"
+                "Frost protection",
+                "Comffort",
+                "Eco"
             ],
             "icon": "heater",
             "invokeOutputs": [
@@ -12538,9 +12538,9 @@
             "varInRole": []
         },
         "201001": {
-            "name": "Heizung - Ist-Temperatur",
+            "name": "heating - current temperature",
             "texts": [
-                "Ist"
+                "Current"
             ],
             "aggregated": {
                 "20": 1,
@@ -12583,9 +12583,9 @@
             }
         },
         "201002": {
-            "name": "Heizung - Soll-Temperatur",
+            "name": "heating - setpoint temperature",
             "texts": [
-                "Soll"
+                "Setpoint"
             ],
             "simpleCreationInfo": {
                 "element": "Base.heatingIsStateSliderMode",
@@ -12656,186 +12656,84 @@
             }
         },
         "201003": {
-            "name": "Heizung - Temperaturmodus",
+            "name": "heating - temperature mode",
             "texts": [
-                "Frostschutz",
-                "Komfort",
+                "Frost",
+                "Comfort",
                 "Spar"
             ],
             "aggregated": {
-                "0": 12,
-                "variableCount": 12
+                "0": 6,
+                "variableCount": 6
             },
             "varInRole": {
                 "78": {
                     "1": [
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE",
                         "CONTROL_MODE"
                     ]
                 },
                 "79": {
                     "1": [
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE",
                         "CONTROL_MODE"
                     ]
                 },
                 "80": {
                     "1": [
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE",
                         "CONTROL_MODE"
                     ]
                 },
                 "81": {
                     "1": [
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE",
                         "CONTROL_MODE"
                     ]
                 },
                 "82": {
                     "1": [
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE",
                         "CONTROL_MODE"
                     ]
                 },
                 "83": {
                     "1": [
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE",
                         "CONTROL_MODE"
                     ]
                 }
             }
         },
         "201004": {
-            "name": "Heizung - Komforttemperatur",
+            "name": "heating - comfort temperature",
             "texts": [
-                "Komfort"
+                "Comfort"
             ],
             "aggregated": {
-                "21": 6,
-                "variableCount": 6
+                "variableCount": 0
             },
-            "varInRole": {
-                "78": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE"
-                    ]
-                },
-                "79": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE"
-                    ]
-                },
-                "80": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE"
-                    ]
-                },
-                "81": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE"
-                    ]
-                },
-                "82": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE"
-                    ]
-                },
-                "83": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE"
-                    ]
-                }
-            }
+            "varInRole": []
         },
         "201005": {
-            "name": "Heizung - Absenktemperatur",
+            "name": "heating - eco temperature",
             "texts": [
                 "Spar"
             ],
             "aggregated": {
-                "18": 6,
-                "variableCount": 6
+                "variableCount": 0
             },
-            "varInRole": {
-                "78": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE"
-                    ]
-                },
-                "79": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE"
-                    ]
-                },
-                "80": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE"
-                    ]
-                },
-                "81": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE"
-                    ]
-                },
-                "82": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE"
-                    ]
-                },
-                "83": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE"
-                    ]
-                }
-            }
+            "varInRole": []
         },
         "201006": {
-            "name": "Heizung - Frostschutztemperatur",
+            "name": "heating - frost protection temperature",
             "texts": [
-                "Frostschutz"
+                "Frost"
             ],
             "aggregated": {
-                "5": 6,
-                "variableCount": 6
+                "variableCount": 0
             },
-            "varInRole": {
-                "78": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE"
-                    ]
-                },
-                "79": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE"
-                    ]
-                },
-                "80": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE"
-                    ]
-                },
-                "81": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE"
-                    ]
-                },
-                "82": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE"
-                    ]
-                },
-                "83": {
-                    "1": [
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE"
-                    ]
-                }
-            }
+            "varInRole": []
         },
         "301001": {
-            "name": "Sicherheit - T\u00fcrzustand",
+            "name": "security - Door state",
             "texts": [
-                "geschlossen",
-                "offen"
+                "closed",
+                "opened"
             ],
             "icon": "door2",
             "aggregated": {
@@ -12851,11 +12749,11 @@
             }
         },
         "301002": {
-            "name": "Sicherheit - Fensterzustand",
+            "name": "security - Window state",
             "texts": [
-                "geschlossen",
-                "ge\u00f6ffnet",
-                "gekippt"
+                "closed",
+                "opened",
+                "Tilted"
             ],
             "icon": "fenster1",
             "simpleCreationInfo": {
@@ -12934,10 +12832,10 @@
             }
         },
         "301003": {
-            "name": "Sicherheit - T\u00fcrschloss",
+            "name": "security - Door lock",
             "texts": [
-                "verriegelt",
-                "unverriegelt"
+                "locked",
+                "unlocked"
             ],
             "icon": "sicherheit1",
             "simpleCreationInfo": {
@@ -12962,10 +12860,10 @@
             "varInRole": []
         },
         "400001": {
-            "name": "Steckdose - Zustand",
+            "name": "socket - state",
             "texts": [
-                "aus",
-                "an"
+                "off",
+                "on"
             ],
             "icon": "socket1",
             "invokeOutputs": [
@@ -13019,10 +12917,10 @@
             }
         },
         "501000": {
-            "name": "Beschattung - Rollladen",
+            "name": "shading - blind",
             "texts": {
-                "falseCount": "eingefahren",
-                "trueCount": "ausgefahren"
+                "falseCount": "retracted",
+                "trueCount": "extended"
             },
             "icon": "rolladen1",
             "invokeOutputs": [
@@ -13104,9 +13002,9 @@
             "varInRole": []
         },
         "501001": {
-            "name": "Beschattung - hoch",
+            "name": "shading - blind - up",
             "texts": [
-                "Hoch"
+                "Up"
             ],
             "aggregated": {
                 "0": 8,
@@ -13156,9 +13054,9 @@
             }
         },
         "501002": {
-            "name": "Beschattung - runter",
+            "name": "shading - blind - down",
             "texts": [
-                "Runter"
+                "Down"
             ],
             "aggregated": {
                 "1": 8,
@@ -13208,9 +13106,9 @@
             }
         },
         "501003": {
-            "name": "Beschattung - Stopp",
+            "name": "shading - blind - stop",
             "texts": [
-                "Stopp"
+                "Stop"
             ],
             "aggregated": {
                 "0": 10,
@@ -13270,7 +13168,7 @@
             }
         },
         "502000": {
-            "name": "Beschattung - Markise",
+            "name": "shading - awning",
             "simpleCreationInfo": [
                 {
                     "element": "Base.shadingButtonsPositionSlats",
@@ -13329,9 +13227,9 @@
             "varInRole": []
         },
         "502001": {
-            "name": "Beschattung - Markise - einfahren",
+            "name": "shading - awning - retract",
             "texts": [
-                "einfahren"
+                "retract"
             ],
             "aggregated": {
                 "1": 2,
@@ -13351,9 +13249,9 @@
             }
         },
         "502002": {
-            "name": "Beschattung - Markise - ausfahren",
+            "name": "shading - awning - extend",
             "texts": [
-                "ausfahren"
+                "extend"
             ],
             "aggregated": {
                 "1": 2,
@@ -13373,9 +13271,9 @@
             }
         },
         "502003": {
-            "name": "Beschattung - Markise - Stopp",
+            "name": "shading - awning - stop",
             "texts": [
-                "Stopp"
+                "Stop"
             ],
             "aggregated": {
                 "variableCount": 0
@@ -13383,10 +13281,10 @@
             "varInRole": []
         },
         "600000": {
-            "name": "Fenster",
+            "name": "window",
             "texts": {
-                "falseCount": "eingefahren",
-                "trueCount": "ausgefahren"
+                "falseCount": "retracted",
+                "trueCount": "extended"
             },
             "icon": "rolladen1",
             "invokeOutputs": [
@@ -13439,9 +13337,9 @@
             "varInRole": []
         },
         "600001": {
-            "name": "Fenster - hoch",
+            "name": "window - up",
             "texts": [
-                "Hoch"
+                "Up"
             ],
             "aggregated": {
                 "variableCount": 0
@@ -13449,9 +13347,9 @@
             "varInRole": []
         },
         "600002": {
-            "name": "Fenster - runter",
+            "name": "window - down",
             "texts": [
-                "Runter"
+                "Down"
             ],
             "aggregated": {
                 "variableCount": 0
@@ -13459,9 +13357,9 @@
             "varInRole": []
         },
         "600003": {
-            "name": "Fenster - Stopp",
+            "name": "window - stop",
             "texts": [
-                "Stopp"
+                "Stop"
             ],
             "aggregated": {
                 "variableCount": 0
@@ -13619,225 +13517,53 @@
             }
         }
     ],
-    "options": {
-        "twofaEnabled": true,
-        "userHasTwofaRegistrations": false,
-        "firstBreadcrumb": "Haus",
-        "firstBreadcrumbId": "house",
-        "breadcrumbs_array": [
-            "<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">Haus<\/div>"
-        ],
-        "breadcrumbs_id_array": [
-            "house"
-        ],
-        "theme": "dark",
-        "highlight": "#ff9808",
-        "language": "en-US",
-        "showFloor": "true",
-        "consoleLog": true,
-        "interfacePath": "\/",
-        "controller_url": "index.php",
-        "websocket_url": "location.hostname",
-        "websocket_port": "location.port",
-        "websocket_security_ssl": true
-    },
+    "options": null,
     "i18n": {
         "login": {
-            "username": "Benutzername",
-            "password": "Kennwort",
-            "signin": "Anmelden",
-            "waitingFor2ndFactor": "Warte auf zweiten Faktor...",
+            "username": "Username",
+            "password": "Password",
+            "signin": "Login",
+            "waitingFor2ndFactor": "Waiting for second factor...",
             "error": {
-                "wrongpassword": "Unbekannter Benutzer oder falsches Kennwort.",
-                "noaccess": "Keine Zugriffsberechtigung.",
-                "twofaError": "Fehler beim zweiten Faktor",
-                "browserNotSupported": "Browser wird nicht unterst\u00fctzt."
+                "wrongpassword": "Wrong username or password",
+                "noaccess": "No access permission",
+                "twofaError": "2nd factor error",
+                "browserNotSupported": "Browser not supported."
             }
         },
-        "house": "Haus",
-        "house.tab.rooms": "R\u00e4ume",
-        "house.tab.devices": "Ger\u00e4te",
+        "house": "House",
+        "house.tab.rooms": "Rooms",
+        "house.tab.devices": "Devices",
         "widgets": "Widgets",
-        "settings": "Einstellungen",
-        "settings.user": "Benutzer",
-        "settings.user.description": "Verwalten",
-        "settings.user.manage": "Benutzereinstellungen",
-        "settings.user.manage.description": "Auth, Sprache, Theme, Farben",
-        "settings.user.manage.twofa": "Zweifaktorauthentifizierung",
-        "settings.user.manage.registerTwofa": "WebAuthn-Ger\u00e4t registrieren",
-        "settings.user.manage.unregisterTwofa": "WebAuthn-Ger\u00e4t entfernen",
-        "settings.user.manage.twofaRegistered": "WebAuthn ist aktiviert",
-        "settings.user.manage.browserNotSupported": "Browser wird nicht unterst\u00fctzt.",
-        "settings.user.manage.language": "Sprache",
-        "settings.user.manage.language.name": "Deutsch",
+        "settings": "Settings",
+        "settings.user": "User",
+        "settings.user.description": "Manage",
+        "settings.user.manage": "User Settings",
+        "settings.user.manage.description": "Auth, Language, Theme, Colors",
+        "settings.user.manage.twofa": "Two-factor authentication",
+        "settings.user.manage.registerTwofa": "Register WebAuthn device",
+        "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
+        "settings.user.manage.twofaRegistered": "WebAuthn activated",
+        "settings.user.manage.browserNotSupported": "Browser not supported.",
         "settings.user.manage.theme": "Theme",
-        "settings.user.manage.theme.dark": "Dunkel",
-        "settings.user.manage.theme.light": "Hell",
-        "settings.user.manage.theme.blue": "Blau",
-        "settings.user.manage.theme.purple": "Lila",
-        "settings.user.manage.highlight": "Vordergrundfarbe",
-        "settings.user.manage.save": "Speichern",
-        "settings.about": "Lizenz",
+        "settings.user.manage.theme.dark": "Dark",
+        "settings.user.manage.theme.light": "Light",
+        "settings.user.manage.theme.blue": "Blue",
+        "settings.user.manage.theme.purple": "Purple",
+        "settings.user.manage.language": "Language",
+        "settings.user.manage.language.name": "English",
+        "settings.user.manage.highlight": "Highlighting",
+        "settings.user.manage.save": "Save",
+        "settings.about": "License",
         "settings.about.description": "Credits",
         "settings.about.table.name": "Name",
         "settings.about.table.version": "Version",
-        "settings.about.table.rights": "Rechte",
-        "settings.about.table.license": "Lizenz",
-        "settings.about.table.license.url": "Lizenz URL",
-        "logoff": "Abmelden",
-        "default": {
-            "login": {
-                "username": "Username",
-                "password": "Password",
-                "signin": "Login",
-                "waitingFor2ndFactor": "Waiting for second factor...",
-                "error": {
-                    "wrongpassword": "Wrong username or password",
-                    "noaccess": "No access permission",
-                    "twofaError": "2nd factor error",
-                    "browserNotSupported": "Browser not supported."
-                }
-            },
-            "house": "House",
-            "house.tab.rooms": "Rooms",
-            "house.tab.devices": "Devices",
-            "widgets": "Widgets",
-            "settings": "Settings",
-            "settings.user": "User",
-            "settings.user.description": "Manage",
-            "settings.user.manage": "User Settings",
-            "settings.user.manage.description": "Auth, Language, Theme, Colors",
-            "settings.user.manage.twofa": "Two-factor authentication",
-            "settings.user.manage.registerTwofa": "Register WebAuthn device",
-            "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
-            "settings.user.manage.twofaRegistered": "WebAuthn activated",
-            "settings.user.manage.browserNotSupported": "Browser not supported.",
-            "settings.user.manage.theme": "Theme",
-            "settings.user.manage.theme.dark": "Dark",
-            "settings.user.manage.theme.light": "Light",
-            "settings.user.manage.theme.blue": "Blue",
-            "settings.user.manage.theme.purple": "Purple",
-            "settings.user.manage.language": "Language",
-            "settings.user.manage.language.name": "English",
-            "settings.user.manage.highlight": "Highlighting",
-            "settings.user.manage.save": "Save",
-            "settings.about": "License",
-            "settings.about.description": "Credits",
-            "settings.about.table.name": "Name",
-            "settings.about.table.version": "Version",
-            "settings.about.table.rights": "Rights",
-            "settings.about.table.license": "License",
-            "settings.about.table.license.url": "License URL",
-            "logoff": "Logoff"
-        },
-        "languages": {
-            "en-US": {
-                "name": "English"
-            },
-            "de-DE": {
-                "name": "Deutsch"
-            }
-        }
+        "settings.about.table.rights": "Rights",
+        "settings.about.table.license": "License",
+        "settings.about.table.license.url": "License URL",
+        "logoff": "Logoff"
     },
     "map_invoke": {
-        "4": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 5,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            100001
-                        ]
-                    }
-                ]
-            }
-        },
-        "3": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 4,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            100001
-                        ]
-                    }
-                ]
-            }
-        },
-        "91": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 19,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
-        "16": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 17,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
-        "12": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 13,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
-        "10": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 11,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            100001
-                        ]
-                    }
-                ]
-            }
-        },
-        "9": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 10,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            400001
-                        ]
-                    }
-                ]
-            }
-        },
         "87": {
             "1": {
                 "STATE": [
@@ -14606,6 +14332,20 @@
                 ]
             }
         },
+        "91": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 19,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
         "84": {
             "1": {
                 "STATE": [
@@ -14620,11 +14360,53 @@
                 ]
             }
         },
+        "16": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 17,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
         "5": {
             "1": {
                 "STATE": [
                     {
                         "databaseId": 6,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            100001
+                        ]
+                    }
+                ]
+            }
+        },
+        "4": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 5,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            100001
+                        ]
+                    }
+                ]
+            }
+        },
+        "3": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 4,
                         "control": 0,
                         "input": 0,
                         "roles": [
@@ -14704,6 +14486,34 @@
                 ]
             }
         },
+        "9": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 10,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
+                        ]
+                    }
+                ]
+            }
+        },
+        "10": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 11,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            100001
+                        ]
+                    }
+                ]
+            }
+        },
         "11": {
             "1": {
                 "STATE": [
@@ -14713,6 +14523,20 @@
                         "input": 0,
                         "roles": [
                             100001
+                        ]
+                    }
+                ]
+            }
+        },
+        "12": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 13,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            400001
                         ]
                     }
                 ]

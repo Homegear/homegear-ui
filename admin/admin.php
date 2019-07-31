@@ -26,6 +26,15 @@ else {
     die("No interfaceData file!");
 }
 
+if (file_exists("interfacedata.admin.php")) {
+    include_once("interfacedata.admin.php");
+}
+
+if(isset($adminInterfaceDataJson)) {
+    $adminInterfaceData = json_decode($adminInterfaceDataJson, true);
+    $interfaceData = array_replace_recursive($interfaceData, $adminInterfaceData);
+}
+
 $configAdmin = $interfaceData["admin"];
 $rootPath    = getcwd();
 $adminPath   = $rootPath."/admin";
@@ -351,7 +360,7 @@ if($action !== ''){
 		$activAssets = array();
 		foreach($configAdmin["settings"]["extensions"] as $value){
 			if($value["activated"] == true && isset($value["requiredAssets"][0]) && $value["requiredAssets"][0] != ""){
-				$activAssets = array_merge($activAssets, $value["requiredAssets"]);
+				$activAssets = array_replace_recursive($activAssets, $value["requiredAssets"]);
 			}
 		}
 		$activAssets = array_unique($activAssets);

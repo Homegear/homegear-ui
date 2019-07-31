@@ -23,11 +23,15 @@ else {
     die("No interfaceData file!");
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-$_SERVER['WEBSOCKET_ENABLED'] = true;
-$_SERVER['WEBSOCKET_AUTH_TYPE'] = $interfaceData['settings']['homegear']['security'];
+if (file_exists("interfacedata.dummy.php")) {
+    include_once("interfacedata.dummy.php");
+}
+if(isset($dummyInterfaceDataJson)) {
+    $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
+    $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
+}
+
+if (!is_array($interfaceData)) die("Invalid JSON file!");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PHP JSON clean to Javascript
@@ -63,9 +67,8 @@ function clean_json_to_js() {
         $interfaceDataOut["i18n"] = $interfaceData["i18n"]["en-US"];
     }
 
-    foreach ($interfaceData["i18n"] as $key => $value) {
-        $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
-    }
+    $interfaceDataOut["i18n"]["languages"] = $interfaceData["i18n"]["languages"];
+    
 
     $out = "var interfaceData = ".json_encode($interfaceDataOut, JSON_PRETTY_PRINT).';'."\n";
 

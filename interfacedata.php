@@ -21,6 +21,7 @@
             "showFloor": true,
             "language": "de-DE",
             "languageChangeable": true,
+            "twofaChangeable": true,
             "consoleLog": true,
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
@@ -271,33 +272,16 @@
 }
 ';
 
-$interfaceData = array();
 $defaultInterfaceData = json_decode($defaultInterfaceDataJson, true);
-
-if (file_exists("interfacedata.dummy.php")) {
-    include_once("interfacedata.dummy.php");
-}
-if(isset($dummyInterfaceDataJson)) {
-    $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
-    $interfaceData = array_merge($interfaceData, $dummyInterfaceData);
-}
-
-$interfaceData = array_merge($interfaceData, $defaultInterfaceData);
-
-if (file_exists("interfacedata.admin.php")) {
-    include_once("interfacedata.admin.php");
-}
-if(isset($adminInterfaceDataJson)) {
-    $adminInterfaceData = json_decode($adminInterfaceDataJson, true);
-    $interfaceData = array_merge($interfaceData, $adminInterfaceData);
-}
+$interfaceData = $defaultInterfaceData;
 
 if (file_exists("interfacedata.custom.php")) {
     include_once("interfacedata.custom.php");
 }
+
 if(isset($customInterfaceDataJson)) {
     $customInterfaceData = json_decode($customInterfaceDataJson, true);
-    $interfaceData = array_merge($interfaceData, $customInterfaceData);
+    $interfaceData = array_replace_recursive($interfaceData, $customInterfaceData);
 }
 
 function userSettings() {
@@ -313,6 +297,7 @@ function userSettings() {
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
     $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
+    $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
     $interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
     $interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
     $interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
