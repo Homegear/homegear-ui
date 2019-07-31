@@ -199,9 +199,8 @@ function user_edit_commit() {
 
     function updateUserSettingsData(data) {
         let newUserSettings = data.result;
-        if (!newUserSettings.interface) {
-            newUserSettings.interface = interfaceData.options;
-        }
+
+        newUserSettings.interface = newUserSettings.interface || {};
 
         newUserSettings.locale  = interfaceData.options.language;
         newUserSettings.interface.language  = interfaceData.options.language;
@@ -215,7 +214,7 @@ function user_edit_commit() {
         };
 
         homegear.invoke(rpc_obj, function() {
-            window.location.href = interfacePath;
+            window.location.reload(true);
         });
     }
 }

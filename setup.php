@@ -153,6 +153,18 @@
             $allInterfaceData["listUsers"] = $hg->listUsers();
         }
 
+        if(isset($_GET["deleteUsersMetadata"])){
+            $currentUsers = $hg->listUsers();
+            foreach($currentUsers as $key => $value){
+                $currentUserMeta = $hg->getUserMetadata($value["name"]);
+                $allInterfaceData["deleteUsersMetadata"][$value["name"]]["currentUserMeta"] = $currentUserMeta;
+                unset($currentUserMeta["interface"]);
+                $currentUserMeta["interface"] = (object) array();
+                $allInterfaceData["deleteUsersMetadata"][$value["name"]]["newUserMeta"] = $currentUserMeta;
+                $allInterfaceData["deleteUsersMetadata"][$value["name"]]["status"] = $hg->setUserMetadata($value["name"], $currentUserMeta);
+            }
+        }
+
         if(isset($_GET["createStories"])){
             foreach($oldInterfaceData["floors"] as $key => $value){
                 $allInterfaceData["createStory"][$value["name"]] = $hg->createStory(array("en-US" => $value["name"], "de-DE" => $value["name"]));
@@ -597,6 +609,7 @@
             <h4>User</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createUser\', outputResult)" class="adminButton">create</div>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&listUsers\', outputResult)" class="adminButton">list</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteUsersMetadata\', outputResult)" class="adminButton">Delete Metadata</div>
 
             <h4>System Variables</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createSV\', outputResult)" class="adminButton">create</div>
