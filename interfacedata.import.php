@@ -250,7 +250,7 @@
             "deviceId": 17,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 18,
@@ -268,7 +268,7 @@
             "deviceId": 18,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 19,
@@ -286,7 +286,7 @@
             "deviceId": 19,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 20,
@@ -304,7 +304,7 @@
             "deviceId": 20,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 21,
@@ -322,7 +322,7 @@
             "deviceId": 21,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 22,
@@ -340,7 +340,7 @@
             "deviceId": 22,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 23,
@@ -358,7 +358,7 @@
             "deviceId": 23,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 24,
@@ -376,7 +376,7 @@
             "deviceId": 24,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 25,
@@ -394,7 +394,7 @@
             "deviceId": 25,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 502004
         },
         {
             "deviceId": 26,
@@ -412,7 +412,7 @@
             "deviceId": 26,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 502004
         },
         {
             "deviceId": 60,
@@ -1969,7 +1969,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPosition",
+            "Base.shadingAwningButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -2043,7 +2043,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPosition",
+            "Base.shadingAwningButtonsPosition",
             {
                 "inputPeers": [
                     [
