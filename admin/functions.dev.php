@@ -5,7 +5,7 @@
  * redistribute it and/or modify it under the terms of the GNU Lesser
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * 
+ *
  * Shif is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -70,7 +70,7 @@ function clean_json_to_js() {
 
     foreach($defaultInterfaceData["i18n"] as $key => $value){
         $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
-    }   
+    }
 
     $out = "var interfaceData = ".json_encode($interfaceDataOut, JSON_PRETTY_PRINT).';'."\n";
 
@@ -98,7 +98,7 @@ class User {
             return false;
         }
         return true;
-    } 
+    }
 }
 
 $user = new User($interfaceData['settings']);
@@ -111,27 +111,24 @@ $interfaceData["options"]["websocket_security"] = $interfaceData['settings']['ho
 
 $javascript_options  = "
     document.addEventListener('DOMContentLoaded', function(event) {
+        // var hg_new = homegear_new(interfaceData.options.websocket_user,
+                                  // interfaceData.options.websocket_password);
+
+        // hg_new.disconnected(function() {});
+        // hg_new.reconnected(function() {});
+
+
+        homegear.onDisconnected = [];
+        homegear.onReconnected = [];
         homegear.disconnect();
+        homegear.wasConnected = false;
 
-        var hg_save_invoke_multi = homegear.invoke_multi;
-        var hg_save_value_set_multi = homegear.value_set_multi;
-        var hg_save_value_set_clickcounter = homegear.value_set_clickcounter;
-
-        homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
-
-        document.getElementById('loadingPage').style.display = 'none';
-
-        homegear.disconnected(function() {
-        });
-
-        homegear.reconnected(function() {
-        });
+        homegear = homegear_new(interfaceData.options.websocket_user,
+                                interfaceData.options.websocket_password);
 
         homegear.connect();
 
-        homegear.invoke_multi = hg_save_invoke_multi;
-        homegear.value_set_multi = hg_save_value_set_multi;
-        homegear.value_set_clickcounter = hg_save_value_set_clickcounter;
+        homegear_prepare(homegear);
     });
-    
+
 ";
