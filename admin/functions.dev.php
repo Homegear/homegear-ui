@@ -38,6 +38,7 @@ if (!is_array($interfaceData)) die("Invalid JSON file!");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function clean_json_to_js() {
     global $interfaceData;
+    global $defaultInterfaceData;
     $interfaceDataOut = array();
     $interfaceDataOut["devices"] = $interfaceData["devices"];
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
@@ -67,8 +68,9 @@ function clean_json_to_js() {
         $interfaceDataOut["i18n"] = $interfaceData["i18n"]["en-US"];
     }
 
-    $interfaceDataOut["i18n"]["languages"] = $interfaceData["i18n"]["languages"];
-    
+    foreach($defaultInterfaceData["i18n"] as $key => $value){
+        $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
+    }   
 
     $out = "var interfaceData = ".json_encode($interfaceDataOut, JSON_PRETTY_PRINT).';'."\n";
 

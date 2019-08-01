@@ -15,15 +15,14 @@
                     "activated": true,
                     "requiredAssets": [
                         "jquery",
-                        "patternlock",
                         "vue",
-                        "iro",
                         "flaticons"
                     ]
                 },
                 "user": {
                     "activated": true,
                     "requiredAssets": [
+                        "iro",
 			            "webauthn"
                     ]
                 },

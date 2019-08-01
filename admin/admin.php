@@ -360,7 +360,7 @@ if($action !== ''){
 		$activAssets = array();
 		foreach($configAdmin["settings"]["extensions"] as $value){
 			if($value["activated"] == true && isset($value["requiredAssets"][0]) && $value["requiredAssets"][0] != ""){
-				$activAssets = array_replace_recursive($activAssets, $value["requiredAssets"]);
+				$activAssets = array_merge($activAssets, $value["requiredAssets"]);
 			}
 		}
 		$activAssets = array_unique($activAssets);
