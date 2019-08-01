@@ -78,10 +78,6 @@ homegear.error(function (message) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-homegear.event(x => console.log(JSON.stringify(x, null, 4)));
-
-homegear.event(handle_homegear_update);
-
 if(location.protocol == 'https:' && interfaceData.options.websocket_security_ssl !== true)
     console.log('Homegear security issue!');
 else
@@ -139,42 +135,50 @@ function params_create(input, value) {
     ];
 }
 
-homegear.invoke_multi = function (ops) {
-    const object = {
-        jsonrpc: '2.0',
-        method: 'system.multicall',
-        params: ops,
+
+
+function homegear_prepare(homegear) {
+    homegear.event(x => console.log(JSON.stringify(x, null, 4)));
+    homegear.event(handle_homegear_update);
+
+    homegear.invoke_multi = function (ops) {
+        const object = {
+            jsonrpc: '2.0',
+            method: 'system.multicall',
+            params: ops,
+        };
+
+        console.log(JSON.stringify(object, null, 4));
+
+        return this.invoke(object);
     };
 
-    console.log(JSON.stringify(object, null, 4));
+    homegear.value_set_multi = function (ops) {
+        return this.invoke_multi([
+            ops.map(op => ({
+                methodName: 'setValue',
+                params: params_create(op.input, op.value),
+            }))
+        ]);
+    };
 
-    return this.invoke(object);
-};
+    homegear.value_set_clickcounter = function(control, params, value) {
+        let methods = [[
+            {
+                methodName: 'setValue',
+                params: params_create(params, value)
+            }
+        ]];
 
-homegear.value_set_multi = function (ops) {
-    return this.invoke_multi([
-        ops.map(op => ({
-            methodName: 'setValue',
-            params: params_create(op.input, op.value),
-        }))
-    ]);
-};
-
-homegear.value_set_clickcounter = function(control, params, value) {
-    let methods = [[
-        {
-            methodName: 'setValue',
-            params: params_create(params, value)
+        if(Date.now() - control.lastClickCount > 10000) {
+            control.lastClickCount = Date.now();
+            methods[0].push({
+                methodName: 'setUserData',
+                params: ['ui.clickCounts', control.uiElement.databaseId.toString(), ++control.uiElement.clickCount]
+            });
         }
-    ]];
 
-    if(Date.now() - control.lastClickCount > 10000) {
-        control.lastClickCount = Date.now();
-        methods[0].push({
-            methodName: 'setUserData',
-            params: ['ui.clickCounts', control.uiElement.databaseId.toString(), ++control.uiElement.clickCount]
-        });
-    }
-
-    return this.invoke_multi(methods);
-};
+        return this.invoke_multi(methods);
+    };
+}
+homegear_prepare(homegear);
