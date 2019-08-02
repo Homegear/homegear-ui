@@ -97,7 +97,7 @@ shading_buttons_l3.methods.change = function(event) {
 }
 shading_buttons_l3.template = `
     <div>
-        <div class="shading-buttons-up-down_control_button_wrapper">
+        <div class="control_button_wrapper">
             <shif-button v-on:click="change">
                 <shif-icon v-bind:src="cond.icon.name"
                            v-bind:active="cond.icon.color">
