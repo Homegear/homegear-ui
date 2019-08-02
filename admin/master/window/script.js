@@ -55,7 +55,7 @@ window_buttons_l3.methods.change = function(event) {
 }
 window_buttons_l3.template = `
     <div>
-        <div class="window-buttons-up-down_control_button_wrapper">
+        <div class="control_button_wrapper">
             <shif-button v-on:click="change">
                 <shif-icon v-bind:src="cond.icon.name"
                            v-bind:active="cond.icon.color">
@@ -66,3 +66,21 @@ window_buttons_l3.template = `
 `;
 
 shif_comps_create('windowButtonsUpDown', window_buttons_l2, window_buttons_l3, window_buttons_l3);
+shif_comps_create('windowButtons', window_buttons_l2, window_buttons_l3, window_buttons_l3);
+
+let window_slider = clone(shif_device);
+window_slider.methods.change = function(event) {
+    homegear.value_set_clickcounter(this, this.output, this.props.value);
+}
+window_slider.template = `
+    <shif-slider v-bind:min="props.minimumScaled"
+                 v-bind:max="props.maximumScaled"
+                 v-bind:unit="props.unit"
+                 v-bind:value="props.value"
+                 v-bind:title="title"
+                 v-on:change="change"
+                 v-model:value="props.value">
+    </shif-slider>
+`;
+
+shif_comps_create('windowPosition',      window_buttons_l2, window_slider);

@@ -212,6 +212,53 @@
                     ]
                 }
             }
+        },
+        {
+            "id": 600000,
+            "metadata": {
+                "ui": {
+                    "simpleCreationInfo": [
+                        {
+                            "element": "Base.windowButtonsUpDown",
+                            "roleIdsIn": [[600001, 600002]],
+                            "roleIdsOut": [[600001, 600002]],
+                            "metadata": {"l2_action": {"control": 0, "input": 0}}
+                        }
+                    ],
+
+                    "icon": "fenster1",
+                    "invokeOutputs": [
+                        {
+                            "roleId": 600001,
+                            "value": false,
+                            "buttonText": "Zentral auf"
+                        },
+                        {
+                            "roleId": 600002,
+                            "value": true,
+                            "buttonText": "Zentral ab"
+                        }
+                    ],
+                    "translations": {
+                       "de-DE": {
+                         "falseCount": "eingefahren",
+                         "trueCount": "ausgefahren"
+                       },
+                       "en-US": {
+                         "falseCount": "retracted",
+                         "trueCount": "extended"
+                       }
+                    },
+                    "rolesInclude": [
+                        {
+                            "aggregationType": 1,
+                            "roles": [
+                                600004
+                            ]
+                        }
+                    ]
+                }
+            }
         }
     ],
     "roles2var": [
@@ -375,19 +422,19 @@
             "deviceId": 20,
             "channel": 1,
             "varName": "UP",
-            "roleId": 501001
+            "roleId": 600001
         },
         {
             "deviceId": 20,
             "channel": 1,
             "varName": "DOWN",
-            "roleId": 501002
+            "roleId": 600002
         },
         {
             "deviceId": 20,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": 600004
         },
         {
             "deviceId": 21,
@@ -1640,7 +1687,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.windowButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -1700,7 +1747,7 @@
                         }
                     ]
                 ],
-                "label": "Rollladen",
+                "label": "Fenstermotor",
                 "room": 2,
                 "categories": [
                     2
