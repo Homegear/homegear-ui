@@ -22,10 +22,11 @@ heating_slider_l3.methods.change = function(event) {
 }
 heating_slider_l3.template = `
     <shif-slider v-bind:min="props.minimumScaled"
-                 v-bind:max="props.maximumScaled"
+                 v-bind:max="parseFloat(props.maximumScaled)+parseFloat(0.5)"
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
+                 v-bind:step=0.5
                  v-on:change="change"
                  v-model:value="props.value">
     </shif-slider>

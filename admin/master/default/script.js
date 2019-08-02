@@ -480,6 +480,7 @@ Vue.component('shif-slider', {
         unit:  String,
         value: Number,
         title: String,
+        step:  Number
     },
 
     template: `
@@ -496,12 +497,12 @@ Vue.component('shif-slider', {
                 <input type="range"
                         class="range"
                         name="range"
-                        step="1"
+                        v-bind:step="step"
                         v-bind:min="min"
                         v-bind:max="max"
                         v-bind:value="value"
-                        v-on:change="$emit('change', parseInt($event.target.value))"
-                        v-on:input="$emit('input', parseInt($event.target.value))" />
+                        v-on:change="$emit('change', parseFloat($event.target.value))"
+                        v-on:input="$emit('input', parseFloat($event.target.value))" />
 
                 <div class="slider_marks">
                     <div class="left">

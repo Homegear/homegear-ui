@@ -78,6 +78,7 @@ window_slider.template = `
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
+                 v-bind:step=5
                  v-on:change="change"
                  v-model:value="props.value">
     </shif-slider>
