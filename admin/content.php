@@ -116,7 +116,7 @@ echo '</script>';
 
   <div id="inhalt">
     <div id="house" class="content">
-      <?php tabs("".i18n("house.tab.rooms")."*;".i18n("house.tab.devices")."", '{"id":"house"}'); ?>
+      <?php echo tabs("".i18n("house.tab.rooms")."*;".i18n("house.tab.devices")."", '{"id":"house"}'); ?>
       <div id="houseJS" class="tabWrapper activeTab">
       </div>
       <div class="tabWrapper">
