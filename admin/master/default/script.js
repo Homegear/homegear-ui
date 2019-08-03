@@ -692,7 +692,7 @@ const shif_device = {
         'texts',
         'output',
         'props',
-        'index',
+        'indexes',
         'rendering',
         'include_place',
     ],
