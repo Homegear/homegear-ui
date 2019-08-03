@@ -45,10 +45,43 @@ house_level1();
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function check_disabled(metadata, control_idx) {
-    return 'event_hooks' in metadata &&
-           'disabled'    in metadata.event_hooks &&
-            control_idx  in metadata.event_hooks.disabled &&
-            metadata.event_hooks.disabled[control_idx];
+    function check_event_trigger(event) {
+        if (event.trigger == undefined || event.trigger.length == 3)
+            return false;
+
+        const trigger = event.trigger;
+        return trigger[0] in interfaceData.map_invoke &&
+               trigger[1] in interfaceData.map_invoke[trigger[0]] &&
+               trigger[2] in interfaceData.map_invoke[trigger[0]][trigger[1]];
+    }
+
+    function check_event_disable(event, control_idx) {
+        return 'disable' in event &&
+               control_idx in event.disable;
+    }
+
+    if (! ('event_hooks' in metadata))
+        return false;
+
+    for (let event of metadata.event_hooks) {
+        if (! check_event_trigger(event) ||
+            ! check_event_disable(event, control_idx))
+            continue;
+
+        let trigger = event.trigger;
+        let disable = event.disable;
+
+        if (! disable[control_idx])
+            return false;
+
+        // TODO: Check only for current/wanted device!
+        let devices = interfaceData.map_invoke[trigger[0]][trigger[1]][trigger[2]];
+        for (let dev of devices) {
+            if (! interfaceData.devices[dev.databaseId].controls[dev.control].variableInputs[dev.input].properties.value)
+                return false;
+        }
+    }
+    return true;
 }
 
 function component_create(constructor, data) {
