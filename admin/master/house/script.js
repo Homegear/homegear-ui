@@ -54,17 +54,17 @@ function component_create(constructor, data) {
     return comp.$el;
 }
 
-function component_object(control, device, input, output, index, is) {
+function component_object(control, device, input, output, is, indexes) {
     let ret = {
-        uiElement:      device,
-        control:        control,
-        device:         device.databaseId,
-        icons:          device.icons,
-        texts:          device.texts,
-        output:         output,
-        props:          input.properties,
-        index:          index,
-        rendering:      input.rendering
+        uiElement: device,
+        control:   control,
+        device:    device.databaseId,
+        icons:     device.icons,
+        texts:     device.texts,
+        output:    output,
+        props:     input.properties,
+        indexes:   indexes,
+        rendering: input.rendering
     };
 
     if (is)
@@ -86,7 +86,8 @@ function components_create(device, layer) {
 
             return [component_create(
                 controlComponents[control.control].l2,
-                component_object(control, device, input, output, keys.input, null)
+                component_object(control, device, input, output, null,
+                                 {input: keys.input, control: keys.control})
             )];
         }
 
@@ -94,7 +95,9 @@ function components_create(device, layer) {
             layer = 'l3';
     }
 
-    for (const control of device.controls) {
+    for (let i = 0; i < device.controls.length; ++i) {
+        const control = device.controls[i];
+
         if (!(control.control in controlComponents) ||
             !(layer           in controlComponents[control.control]))
             continue;
@@ -105,7 +108,8 @@ function components_create(device, layer) {
 
             out.push(component_create(
                 controlComponents[control.control][layer],
-                component_object(control, device, input, output, k, null)
+                component_object(control, device, input, output, null,
+                                 {input: k, control: i})
             ));
         }
     }
