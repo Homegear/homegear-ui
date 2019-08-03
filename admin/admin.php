@@ -211,6 +211,53 @@ if($action !== ''){
         /////////////////////////////////////////////////////////
         // parst die Style datei und bereinigt sie
         /////////////////////////////////////////////////////////
+
+        /**
+         * This function takes a css-string and compresses it, removing
+         * unneccessary whitespace, colons, removing unneccessary px/em
+         * declarations etc.
+         *
+         * @param string $css
+         * @return string compressed css content
+         * @author Steffen Becker
+         * @url https://gist.github.com/webgefrickel/3339063
+         */
+        function minifyCss($css) {
+            // some of the following functions to minimize the css-output are directly taken
+            // from the awesome CSS JS Booster: https://github.com/Schepp/CSS-JS-Booster
+            // all credits to Christian Schaefer: http://twitter.com/derSchepp
+            // remove comments
+            $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+            // backup values within single or double quotes
+            preg_match_all('/(\'[^\']*?\'|"[^"]*?")/ims', $css, $hit, PREG_PATTERN_ORDER);
+            for ($i=0; $i < count($hit[1]); $i++) {
+            $css = str_replace($hit[1][$i], '##########' . $i . '##########', $css);
+            }
+            // remove traling semicolon of selector's last property
+            $css = preg_replace('/;[\s\r\n\t]*?}[\s\r\n\t]*/ims', "}\r\n", $css);
+            // remove any whitespace between semicolon and property-name
+            $css = preg_replace('/;[\s\r\n\t]*?([\r\n]?[^\s\r\n\t])/ims', ';$1', $css);
+            // remove any whitespace surrounding property-colon
+            $css = preg_replace('/[\s\r\n\t]*:[\s\r\n\t]*?([^\s\r\n\t])/ims', ':$1', $css);
+            // remove any whitespace surrounding selector-comma
+            $css = preg_replace('/[\s\r\n\t]*,[\s\r\n\t]*?([^\s\r\n\t])/ims', ',$1', $css);
+            // remove any whitespace surrounding opening parenthesis
+            $css = preg_replace('/[\s\r\n\t]*{[\s\r\n\t]*?([^\s\r\n\t])/ims', '{$1', $css);
+            // remove any whitespace between numbers and units
+            $css = preg_replace('/([\d\.]+)[\s\r\n\t]+(px|em|pt|%)/ims', '$1$2', $css);
+            // shorten zero-values
+            $css = preg_replace('/([^\d\.]0)(px|em|pt|%)/ims', '$1', $css);
+            // constrain multiple whitespaces
+            $css = preg_replace('/\p{Zs}+/ims',' ', $css);
+            // remove newlines
+            $css = str_replace(array("\r\n", "\r", "\n"), '', $css);
+            // Restore backupped values within single or double quotes
+            for ($i=0; $i < count($hit[1]); $i++) {
+            $css = str_replace('##########' . $i . '##########', $hit[1][$i], $css);
+            }
+            return $css;
+        }
+
         $style = $tempInterfaceData["style"];
         $regex = array(
         "`^([\t\s]+)`ism"=>'',
@@ -219,13 +266,15 @@ if($action !== ''){
         "`([\n\A;\s]+)//(.+?)[\n\r]`ism"=>"$1\n",
         "`(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+`ism"=>"\n",
         );
-        $style = preg_replace(array_keys($regex),$regex,$style);
+        //$style = preg_replace(array_keys($regex),$regex,$style);
 
         $search  = array( "<style>", "</style>");
         $replace = array( "", "");
         $style = str_replace($search, $replace, $style);
 
-        $style = preg_replace('/ {2,}/', ' ', $style);
+        $style = minifyCss($style);
+
+        //$style = preg_replace('/ {2,}/', ' ', $style);
         $tempInterfaceData["style"] = $style;
 
         //////////////////////////////////////////////////////////
@@ -307,8 +356,8 @@ if($action !== ''){
         //$tempInterfaceData["index"] .= '$interfaceIcons = "'.addslashes($tempInterfaceData["icons"]).'";';
         $tempInterfaceData["index"] .= $tempInterfaceData["phpVendor"];
         $tempInterfaceData["index"] .= $tempInterfaceData["functions"];
-        $tempInterfaceData["index"] .= "\n".'?>'."\n".'<?php'."\n";
-        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/content.php")));
+        $tempInterfaceData["index"] .= "\n".'?>'."\n";
+        $tempInterfaceData["index"] .= cleanPhpComments(file_get_contents($adminPath."/content.php"));
 
         //////////////////////////////////////////////////////////
         //
