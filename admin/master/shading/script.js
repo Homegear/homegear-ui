@@ -72,13 +72,13 @@ let shading_buttons_l3 = clone(shif_device);
 shading_buttons_l3.methods.change = function(event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
-    if((this.index == 0 || this.index == 2) &&
+    if((this.indexes.input == 0 || this.indexes.input == 2) &&
         !upVar.hasOwnProperty('value') &&
         !downVar.hasOwnProperty('value') &&
         upVar.peer == downVar.peer &&
         upVar.channel == downVar.channel &&
         upVar.name == downVar.name) {
-        let down = (this.index == 2);
+        let down = (this.indexes.input == 2);
         if((this.output.type == 'integer' ||
             this.output.type == 'integer64' ||
             this.output.type == 'float') &&
