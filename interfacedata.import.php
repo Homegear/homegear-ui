@@ -178,7 +178,7 @@
                             "metadata": {"l2_action": {"control": 0, "input": 0}}
                         }
                     ],
-                    
+
                     "icon": "markiese1",
                     "invokeOutputs": [
                         {
@@ -2320,8 +2320,10 @@
                         "input": 0
                     },
                     "event_hooks": {
-                        "disabled": [1]
-                    } 
+                        "disabled": {
+                            "__dummy__": false
+                        }
+                    }
                 }
             }
         ],
