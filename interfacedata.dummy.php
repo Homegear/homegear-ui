@@ -386,15 +386,11 @@
             "metadata": {
                 "event_hooks": [
                     {
+                        "trigger": ["0", "-1", "WINDOWALARM"],
                         "disable": {
                             "1": true,
                             "__dummy__": false
-                        },
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDOWALARM"
-                        ]
+                        }
                     }
                 ],
                 "l2_action": {
