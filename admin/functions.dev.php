@@ -129,6 +129,8 @@ $javascript_options  = "
         homegear.connect();
 
         homegear_prepare(homegear);
+
+        document.getElementById('loadingPage').style.display = 'none';
     });
 
 ";

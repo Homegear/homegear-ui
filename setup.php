@@ -5,7 +5,7 @@
  * redistribute it and/or modify it under the terms of the GNU Lesser
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * 
+ *
  * Shif is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -66,7 +66,7 @@
             $allInterfaceData["Users"] = $hg->listUsers();
             $allInterfaceData["Devices"] = $hg->getAllValues();
             die("<pre>".json_encode($allInterfaceData, JSON_PRETTY_PRINT)."</pre>");
-        } 
+        }
         catch(\Homegear\HomegearException $e) {
             print "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
         }
@@ -74,7 +74,7 @@
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // homegear json processed 
+    // homegear json processed
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
         if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
@@ -94,7 +94,7 @@
         header('Content-Type: application/json; charset=utf-8');
         try {
             $hg = new \Homegear\Homegear();
-        } 
+        }
         catch(\Homegear\HomegearException $e) {
             die("Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage());
         }
@@ -113,6 +113,44 @@
         }
 
         $allInterfaceData = array();
+
+        if(isset($_GET["deleteDevice"])){
+            $CurrentDevices = $hg->getAllValues();
+            if(count($CurrentDevices) > 0){
+                foreach($CurrentDevices as $value){
+                    $allInterfaceData["deleteDevice"][$value["ID"]] = $hg->deleteDevice($value["ID"]);
+                }
+            }
+        }
+
+        if(isset($_GET["createDevice"])){
+            foreach($oldInterfaceData["devices"] as $value){
+                $device = $hg->createDevice($value["FAMILY"], $value["TYPE_ID"], $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]);
+                $deviceName = $hg->setName($device, $value["NAME"]);
+                if ($device != ""){
+                    $allInterfaceData["createDevice"][$device]["SERIALNUMBER"] = $value["SERIALNUMBER"];
+                    $allInterfaceData["createDevice"][$device]["name"] = $value["NAME"];
+                    $allInterfaceData["createDevice"][$device]["nameChange"] = $deviceName;
+                }
+                else {
+                    $allInterfaceData["createDevice"]["error"][$value["SERIALNUMBER"]] = true;
+                }
+            }
+        }
+
+        if(isset($_GET["getDevice"])){
+            $CurrentDevices = $hg->getAllValues();
+            foreach($CurrentDevices as $key => $value){
+                unset($CurrentDevices[$key]["CHANNELS"]);
+                unset($CurrentDevices[$key]["ID"]);
+                $CurrentDevices[$key]["TYPE_ID"] = "0x".dechex($value["TYPE_ID"]);
+                $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["ADDRESS"];
+                $CurrentDevices[$key]["ADDRESS"] = -1;
+                $CurrentDevices[$key]["FIRMWAREVERSION"] = -1;
+                $CurrentDevices[$key]["INTERFACEID"] = "";
+            }
+            $allInterfaceData["getAllValues"] = $CurrentDevices;
+        }
 
         if(isset($_GET["deleteUIE"])){
             $CurrentUiElements = $hg->getAllUiElements("en-US");
@@ -264,11 +302,10 @@
                 if($value["roleId"]){
                     try {
                         $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"]);
-                    } 
+                    }
                     catch(\Homegear\HomegearException $e) {
                         $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
                     }
-                    
                 }
             }
         }
@@ -582,6 +619,11 @@
             <div onclick="loadDoc(\''.$admin_url.'&homegear-json-raw\', outputResult)" class="adminButton">Raw json output</div>
             <div onclick="loadDoc(\''.$admin_url.'&homegear-json\', outputResult)" class="adminButton">Processed json output</div>
 
+            <h4>Devices</h4>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&createDevice\', outputResult)" class="adminButton">create</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&getDevice\', outputResult)" class="adminButton">list</div>
+            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteDevice\', outputResult)" class="adminButton">delete</div>
+
             <h4>Stories</h4>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&createStories\', outputResult)" class="adminButton">create</div>
             <div onclick="loadDoc(\''.$admin_url.'&homegear&getStories\', outputResult)" class="adminButton">list</div>
@@ -698,7 +740,7 @@
 
         .loader {
         border: 16px solid #f3f3f3;
-        border-top: 16px solid #3498db; 
+        border-top: 16px solid #3498db;
         border-radius: 50%;
         width: 120px;
         height: 120px;
