@@ -74,7 +74,7 @@ function component_object(control, device, input, output, is, indexes) {
         rendering: input.rendering
     };
 
-    ret.control.disabled = () => check_disabled(device.metadata, disabled_idx);
+    ret.control.disabled = () => check_disabled(device.metadata, indexes.control);
 
     if (is)
         ret.is = is;
@@ -92,7 +92,6 @@ function components_create(device, layer) {
             const control = device.controls[keys.control];
             const input   = control.variableInputs[keys.input];
             const output  = control.variableOutputs[keys.input];
-            const disabled_idx = keys.control;
 
 
             return [component_create(
