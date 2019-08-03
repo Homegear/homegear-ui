@@ -502,9 +502,9 @@ Vue.component('shif-slider', {
                         v-bind:min="min"
                         v-bind:max="max"
                         v-bind:value="value"
+                        v-bind:disabled="disabled"
                         v-on:change="$emit('change', parseFloat($event.target.value))"
                         v-on:input="$emit('input', parseFloat($event.target.value))" />
-                        v-bind:disabled="disabled"
 
                 <div class="slider_marks">
                     <div class="left">
