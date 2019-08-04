@@ -1414,7 +1414,7 @@
            }
        ],
        [
-           "Base.shadingButtonsUpDown",
+           "Base.windowButtonsUpDown",
            {
                "inputPeers": [
                    [
