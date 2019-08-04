@@ -427,19 +427,19 @@
            "deviceId": 17,
            "channel": 1,
            "varName": "UP",
-           "roleId": 501001
+           "roleId": 600001
        },
        {
            "deviceId": 17,
            "channel": 1,
            "varName": "DOWN",
-           "roleId": 501002
+           "roleId": 600002
        },
        {
            "deviceId": 17,
            "channel": 1,
            "varName": "CURRENT_POSITION",
-           "roleId": 501004
+           "roleId": 600004
        },
        {
            "deviceId": 18,
