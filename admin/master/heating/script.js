@@ -77,6 +77,7 @@ heating_mode_l3.methods.change = function(x) {
 heating_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
+                v-bind:disabled="disabled"
                 v-on:input="x => change(parseInt(x))">
     </shif-radio>
 `;
