@@ -389,7 +389,23 @@
                         "trigger": ["0", "-1", "WINDOWALARM"],
                         "disable": {
                             "1": true,
+                            "2": true,
                             "__dummy__": false
+                        },
+                        "condition": {
+                            "operator": "e",
+                            "value": true
+                        }
+                    },
+                    {
+                        "trigger": ["78", "1", "CONTROL_MODE"],
+                        "disable": {
+                            "1": true,
+                            "__dummy__": false
+                        },
+                        "condition": {
+                            "operator": "e",
+                            "value": 0
                         }
                     }
                 ],
