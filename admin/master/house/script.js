@@ -46,7 +46,7 @@ house_level1();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function check_disabled(metadata, control_idx) {
     function check_event_trigger(event) {
-        if (event.trigger == undefined || event.trigger.length == 3)
+        if (event.trigger == undefined || event.trigger.length != 3)
             return false;
 
         const trigger = event.trigger;
@@ -81,6 +81,7 @@ function check_disabled(metadata, control_idx) {
                 return false;
         }
     }
+
     return true;
 }
 
