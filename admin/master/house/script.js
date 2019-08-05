@@ -44,7 +44,7 @@ house_level1();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function check_disabled(metadata, control_idx) {
+function check_disabled(device, indexes) {
     function check_event_trigger(event) {
         if (event.trigger == undefined || event.trigger.length != 3)
             return false;
@@ -60,29 +60,42 @@ function check_disabled(metadata, control_idx) {
                control_idx in event.disable;
     }
 
-    if (! ('event_hooks' in metadata))
+    function check_event_condition(event) {
+        return 'condition' in event &&
+               'operator'  in event.condition &&
+               'value'     in event.condition;
+    }
+
+    if (! ('metadata'    in device &&
+           'event_hooks' in device.metadata))
         return false;
 
-    for (let event of metadata.event_hooks) {
+    let res = false;
+    for (let event of device.metadata.event_hooks) {
         if (! check_event_trigger(event) ||
-            ! check_event_disable(event, control_idx))
+            ! check_event_disable(event, indexes.control) ||
+            ! check_event_condition(event))
             continue;
 
-        let trigger = event.trigger;
-        let disable = event.disable;
+        const trigger   = event.trigger;
+        const disable   = event.disable;
+        const condition = event.condition;
 
-        if (! disable[control_idx])
-            return false;
+        if (! disable[indexes.control])
+            continue;
 
-        // TODO: Check only for current/wanted device!
         let devices = interfaceData.map_invoke[trigger[0]][trigger[1]][trigger[2]];
         for (let dev of devices) {
-            if (! interfaceData.devices[dev.databaseId].controls[dev.control].variableInputs[dev.input].properties.value)
-                return false;
+            res = res || condition_check(condition,
+                                         interfaceData.devices[dev.databaseId]
+                                                      .controls[dev.control]
+                                                      .variableInputs[dev.input]
+                                                      .properties
+                                                      .value);
         }
     }
 
-    return true;
+    return res;
 }
 
 function component_create(constructor, data) {
@@ -108,7 +121,7 @@ function component_object(control, device, input, output, is, indexes) {
         rendering: input.rendering
     };
 
-    ret.control.disabled = () => check_disabled(device.metadata, indexes.control);
+    ret.control.disabled = () => check_disabled(device, indexes);
 
     if (is)
         ret.is = is;
