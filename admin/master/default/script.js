@@ -573,7 +573,7 @@ Vue.component('shif-button', {
         <div class="control_button"
              v-bind:class="{[classname]: true, disabled: disabled}"
              v-bind:style="{width}"
-             v-on:click="$emit('click', 1)">
+             v-on:click="(!disabled) && $emit('click', 1)">
             <slot></slot>
         </div>
     `,
@@ -592,6 +592,7 @@ Vue.component('shif-generic-l2', {
         actions:     Boolean,
         icon_rotate: Boolean,
         accordion:   Boolean,
+        disabled:    Boolean,
         active:  {
             type: Object,
 
@@ -611,13 +612,26 @@ Vue.component('shif-generic-l2', {
             this.$on('click_icon', this.$listeners.click);
     },
 
+    methods: {
+        emit: function (key, val) {
+            if (this.disabled)
+                return;
+
+            if (val === undefined)
+                this.$emit(key);
+            else
+                this.$emit(key, val);
+        }
+    },
+
     template: `
         <div class="device_wrapper"
-             v-on:mousedown="$emit('mousedown')"
-             v-on:mouseup="$emit('mouseup')"
-             v-on:click="$emit('click')">
+             v-bind:class="{disabled: disabled}"
+             v-on:mousedown="emit('mousedown')"
+             v-on:mouseup="emit('mouseup')"
+             v-on:click="emit('click')">
             <div class="device">
-                <div v-on:click.stop="$emit('click_icon')">
+                <div v-on:click.stop="emit('click_icon')">
                     <shif-icon v-bind:src="icon"
                                v-bind:active="active.icon"
                                classname="device_icon">
