@@ -27,6 +27,7 @@ shading_ventilation_l3.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
                      v-bind:status="status_minimal"
+                     v-bind:disabled="disabled"
                      v-on:click="change">
     </shif-generic-l2>
 `;
@@ -47,6 +48,7 @@ shading_slider.template = `
                  v-bind:value="props.value"
                  v-bind:title="title"
                  v-bind:step=5
+                 v-bind:disabled="disabled"
                  v-on:change="change"
                  v-model:value="props.value">
     </shif-slider>
@@ -97,14 +99,13 @@ shading_buttons_l3.methods.change = function(event) {
     else homegear.value_set_clickcounter(this, this.output, true);
 }
 shading_buttons_l3.template = `
-    <div>
-        <div class="control_button_wrapper">
-            <shif-button v-on:click="change">
-                <shif-icon v-bind:src="cond.icon.name"
-                           v-bind:active="cond.icon.color">
-                </shif-icon>
-            </shif-button>
-        </div>
+    <div class="control_button_wrapper">
+        <shif-button v-bind:disabled="disabled"
+                     v-on:click="change">
+            <shif-icon v-bind:src="cond.icon.name"
+                        v-bind:active="cond.icon.color">
+            </shif-icon>
+        </shif-button>
     </div>
 `;
 
