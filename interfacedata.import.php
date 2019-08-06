@@ -1650,6 +1650,24 @@
                    2
                ],
                "metadata": {
+                    "event_hooks": [
+                        {
+                            "trigger": ["0", "-1", "WINDALARM"],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "2": true,
+                                "3": true,
+                                "4": true,
+                                "5": true,
+                                "__dummy__": false
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ],
                    "l2_action": {
                        "control": 0,
                        "input": 0
