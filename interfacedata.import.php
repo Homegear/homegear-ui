@@ -1935,7 +1935,22 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                       {
+                           "trigger": ["0", "-1", "WINDALARM"],
+                           "disable": {
+                               "0": true,
+                               "1": true,
+                               "2": true,
+                               "__dummy__": false
+                           },
+                           "condition": {
+                               "operator": "e",
+                               "value": true
+                           }
+                       }
+                   ]
                }
            }
        ],
@@ -2023,7 +2038,21 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                       {
+                           "trigger": ["0", "-1", "WINDALARM"],
+                           "disable": {
+                               "0": true,
+                               "1": true,
+                               "__dummy__": false
+                           },
+                           "condition": {
+                               "operator": "e",
+                               "value": true
+                           }
+                       }
+                   ]
                }
            }
        ],
@@ -2482,7 +2511,20 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                        {
+                            "trigger": ["79", "1", "CONTROL_MODE"],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                   ]
                }
            }
        ],
@@ -2544,7 +2586,20 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                        {
+                            "trigger": ["80", "1", "CONTROL_MODE"],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                   ]
                }
            }
        ],
@@ -2606,7 +2661,20 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                        {
+                            "trigger": ["81", "1", "CONTROL_MODE"],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                   ]
                }
            }
        ],
@@ -2668,7 +2736,20 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                        {
+                            "trigger": ["82", "1", "CONTROL_MODE"],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                   ]
                }
            }
        ],
@@ -2730,7 +2811,20 @@
                    "l2_action": {
                        "control": 0,
                        "input": 0
-                   }
+                   },
+                   "event_hooks": [
+                        {
+                            "trigger": ["83", "1", "CONTROL_MODE"],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                   ]
                }
            }
        ],
