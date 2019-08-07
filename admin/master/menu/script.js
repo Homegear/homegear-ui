@@ -122,7 +122,7 @@ function menu(options){
                     <div class="button_status">${description}</div>
                 </div>
                 <div class="button_action">
-                    ${showIcon('pfeil3')}
+                    ${showIcon('arrow_right_1')}
                 </div>
             </div>
         `;

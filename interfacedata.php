@@ -29,7 +29,7 @@
         {
             "id": "1",
             "name": "house",
-            "icon": "haus1",
+            "icon": "house_1",
             "onclick": "main",
             "onclickOptions": {
                 "name": "house",
@@ -39,7 +39,7 @@
         {
             "id": "2",
             "name": "settings",
-            "icon": "einstellungen1",
+            "icon": "settings_1",
             "onclick": "main",
             "onclickOptions": {
                 "name": "settings",
@@ -50,7 +50,7 @@
         {
             "id": "3",
             "name": "logoff",
-            "icon": "power1",
+            "icon": "power_1",
             "onclick": "user_logoff",
             "onclickOptions": {
                 "name": "logoff"
@@ -64,7 +64,7 @@
             "mainmenu": "settings",
             "category": "user",
             "level": "1",
-            "icon": "profil1",
+            "icon": "profile_1",
             "onclick": "menu",
             "onclickOptions": {
                 "mainmenu":"settings",
@@ -81,7 +81,7 @@
             "mainmenu": "settings",
             "category": "user",
             "level": "2",
-            "icon": "profil1",
+            "icon": "profile_1",
             "onclick": "user",
             "onclickOptions": {
                 "name":"settings.user.manage",
@@ -95,7 +95,7 @@
             "mainmenu": "settings",
             "category": "license",
             "level": "1",
-            "icon": "information1",
+            "icon": "information_1",
             "onclick": "license",
             "onclickOptions": {
                 "name":"settings.about",

@@ -23,73 +23,73 @@
            "id": "1",
            "name": "Abstellraum",
            "floor": "1",
-           "icon": "clean1"
+           "icon": "broom_1"
        },
        "2": {
            "id": "2",
            "name": "Bad",
            "floor": "1",
-           "icon": "wc2"
+           "icon": "bathtube_1"
        },
        "3": {
            "id": "3",
            "name": "Diele",
            "floor": "3",
-           "icon": "floor1"
+           "icon": "floor_1"
        },
        "4": {
            "id": "4",
            "name": "Garage",
            "floor": "4",
-           "icon": "garage1"
+           "icon": "garage_1"
        },
        "5": {
            "id": "5",
            "name": "Gäste WC",
            "floor": "2",
-           "icon": "wc1"
+           "icon": "wc_1"
        },
        "6": {
            "id": "6",
            "name": "Kind",
            "floor": "2",
-           "icon": "player"
+           "icon": "hokeyplayer_1"
        },
        "7": {
            "id": "7",
            "name": "Loggia",
            "floor": "3",
-           "icon": "balcony1"
+           "icon": "balcony_1"
        },
        "8": {
            "id": "8",
            "name": "Lüftung",
            "floor": "4",
-           "icon": "ventilator"
+           "icon": "ventilator_2"
        },
        "9": {
            "id": "9",
            "name": "Schlafen",
            "floor": "1",
-           "icon": "bett1"
+           "icon": "bed_1"
        },
        "10": {
            "id": "10",
            "name": "Technikraum",
            "floor": "4",
-           "icon": "tools"
+           "icon": "tools_1"
        },
        "11": {
            "id": "11",
            "name": "Waschraum",
            "floor": "4",
-           "icon": "waschmaschiene1"
+           "icon": "washer_1"
        },
        "12": {
            "id": "12",
            "name": "Wohnbereich",
            "floor": "1",
-           "icon": "sofa1"
+           "icon": "sofa_1"
        }
    },
    "systemVariables": [
@@ -150,7 +150,7 @@
                            "l2_only": true
                        }
                    },
-                   "icon": "licht3",
+                   "icon": "light_dim_1",
                    "invokeOutputs": [
                        {
                            "value": 0,
@@ -224,7 +224,7 @@
                            }
                        }
                    ],
-                   "icon": "markiese1",
+                   "icon": "awning_1",
                    "invokeOutputs": [
                        {
                            "roleId": 502001,
@@ -285,7 +285,7 @@
                            }
                        }
                    ],
-                   "icon": "fenster1",
+                   "icon": "window_1",
                    "invokeOutputs": [
                        {
                            "roleId": 600001,

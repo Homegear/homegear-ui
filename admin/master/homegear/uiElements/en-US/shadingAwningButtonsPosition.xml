@@ -16,16 +16,16 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="markiese1">
-				<name>markiese1</name>
+			<icon id="awning_1">
+				<name>awning_1</name>
                 <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>markiese1</name>
+				<name>awning_1</name>
                 <color>icon</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
