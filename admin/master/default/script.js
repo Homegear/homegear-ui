@@ -654,10 +654,10 @@ Vue.component('shif-generic-l2', {
                 <div v-if="actions"
                      class="device_action">
                     <template v-if="accordion">
-                        <shif-icon src="pfeil4" v-bind:rotate="icon_rotate"></shif-icon>
+                        <shif-icon src="arrow_down_1" v-bind:rotate="icon_rotate"></shif-icon>
                     </template>
                     <template v-else>
-                        <shif-icon src="pfeil3"></shif-icon>
+                        <shif-icon src="arrow_right_1"></shif-icon>
                     </template>
                 </div>
             </div>
