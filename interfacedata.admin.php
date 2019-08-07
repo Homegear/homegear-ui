@@ -432,18 +432,11 @@
         },
         "icons": {
             "files": [
-                "interfacedata.php",
-                "interfacedata.import.php"
+                "admin/master/homegear/roles/defaultRoles.json"
             ],
             "folders": [
-                "admin/master/homegear/uielements/de-DE",
-                "admin/master/homegear/uielements/en-US"
             ],
             "SaR": [
-                {
-                    "search": "humidity1",
-                    "replace": "humidity_1"
-                }
             ]
         }
     }

@@ -545,28 +545,36 @@ if($action !== ''){
         //print_r($configAdmin["icons"]["SaR"]);
         //die();
         
-        foreach($configAdmin["icons"]["SaR"] as $value){
-            $SaR["search"][]  = '"'.$value["search"].'"';
-            $SaR["replace"][] = '"'.$value["replace"].'"';
+        if (is_array($configAdmin["icons"]["SaR"])) {
+            foreach($configAdmin["icons"]["SaR"] as $value){
+                $SaR["search"][]  = '"'.$value["search"].'"';
+                $SaR["replace"][] = '"'.$value["replace"].'"';
 
-            $SaR["search"][]  = "<name>".$value["search"]."</name>";
-            $SaR["replace"][] = "<name>".$value["replace"]."</name>";
-        }
-        foreach($configAdmin["icons"]["folders"] as $folder){
-            $files = array_diff(scandir($folder), array('.', '..'));
-            foreach($files as $file){
-                $configAdmin["icons"]["files"][] = $folder."/".$file;
+                $SaR["search"][]  = "<name>".$value["search"]."</name>";
+                $SaR["replace"][] = "<name>".$value["replace"]."</name>";
             }
-            //print_r($configAdmin["icons"]["files"]);
         }
-        foreach($configAdmin["icons"]["files"] as $file){
-            $path = $rootPath."/".$file;
-            echo $path.$actionSeparator;
-            if (!is_file($path)){echo "nofile!"; continue;}
-            $data = file_get_contents($path);
-            $data = str_replace($SaR["search"], $SaR["replace"], $data);
-            file_put_contents($path, $data);
-            echo "-----------------".$actionSeparator;
+
+        if (is_array($configAdmin["icons"]["folders"])) {
+            foreach($configAdmin["icons"]["folders"] as $folder){
+                $files = array_diff(scandir($folder), array('.', '..'));
+                foreach($files as $file){
+                    $configAdmin["icons"]["files"][] = $folder."/".$file;
+                }
+                //print_r($configAdmin["icons"]["files"]);
+            }
+        }
+
+        if (is_array($configAdmin["icons"]["files"])) {
+            foreach($configAdmin["icons"]["files"] as $file){
+                $path = $rootPath."/".$file;
+                echo $path.$actionSeparator;
+                if (!is_file($path)){echo "nofile!"; continue;}
+                $data = file_get_contents($path);
+                $data = str_replace($SaR["search"], $SaR["replace"], $data);
+                file_put_contents($path, $data);
+                echo "-----------------".$actionSeparator;
+            }
         }
     }
 
