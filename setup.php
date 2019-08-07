@@ -609,6 +609,7 @@
             <a href="/" class="adminButton">Login</a>
             <div onclick="loadDoc(\''.$admin_url.'&action=generateExtensions\', outputResult)" class="adminButton">Erweiterungen generieren</div>
             <div onclick="loadDoc(\''.$admin_url.'&action=getAssetMaster\', outputResult)" class="adminButton">Assets aktualisieren</div>
+            <div onclick="loadDoc(\''.$admin_url.'&action=renameIcons\', outputResult)" class="adminButton">Rename Icons</div>
             <div onclick="loadDoc(\''.$admin_url.'&json\', outputResult)" class="adminButton">Raw interfacedata json output</div>
             <div onclick="loadDoc(\''.$admin_url.'&action=phpinfo\', outputResult)" class="adminButton">PHP Info</div>
             <div onclick="passForm()" class="adminButton">Password</div>

@@ -49,6 +49,13 @@ else if(isset($_GET['action'])) $action = $_GET['action'];
 
 if(isset($_GET['origin'])) $origin = $_GET['origin'];
 
+if( $origin == "cli" ){
+    $actionSeparator = '';
+}
+else{
+    $actionSeparator = ' <br> ';
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,13 +108,6 @@ if($action !== ''){
             }
 
             return $newStr;
-        }
-
-        if( $origin == "cli" ){
-          $actionSeparator = '';
-        }
-        else{
-          $actionSeparator = ' <br> ';
         }
 
         $activeExtensions = array();
@@ -494,6 +494,82 @@ if($action !== ''){
 			echo "</pre>";
         }
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if($action == "renameIcons"){
+        $gDriveApiUrlNewPre = "https://docs.google.com/spreadsheets/d/";
+        $gDriveApiUrlNewPost = "/gviz/tq?tqx=out:json";
+        $SaR = array();
+
+        $gSaRraw = file_get_contents($gDriveApiUrlNewPre.$interfaceData["settings"]["gkey"].$gDriveApiUrlNewPost);
+
+        $sr = array(
+          "/*O_o*/" => "",
+          "google.visualization.Query.setResponse(" => "",
+          ");" => "",
+        );
+  
+        function sr($sr, $str){
+            foreach($sr as $search => $replace){
+                $str = str_replace($search, $replace, $str);
+            }
+            return $str;
+        }
+  
+        function colsAsKeyToLines($cols, $rows){
+            $out = array();
+            $i = 0;
+            foreach($rows as $key => $row){
+                $out[$key] = array();
+                foreach($row["c"] as $key1 => $entry){
+                  $out[$key][$key1] = str_replace(array("\r\n", "\r", "\n"), "", nl2br(trim($entry["v"])));
+                  $out[$key][$cols[$key1]["label"]] = str_replace(array("\r\n", "\r", "\n"), "", nl2br(trim($entry["v"])));
+                }
+                $i++;
+            }
+            return $out;
+        }
+  
+        $gSaRjson = json_decode(sr($sr, $gSaRraw), true);
+        $gSaR = colsAsKeyToLines($gSaRjson["table"]["cols"], $gSaRjson["table"]["rows"]);
+        //echo "<pre>";
+        //print_r($gSaR);
+
+        unset($gSaR[0]);
+        foreach($gSaR as $value){
+            $configAdmin["icons"]["SaR"][]  = array("search" => $value[0], "replace" => $value[1]);
+        }
+        //echo "<pre>";
+        //print_r($configAdmin["icons"]["SaR"]);
+        //die();
+        
+        foreach($configAdmin["icons"]["SaR"] as $value){
+            $SaR["search"][]  = '"'.$value["search"].'"';
+            $SaR["replace"][] = '"'.$value["replace"].'"';
+
+            $SaR["search"][]  = "<name>".$value["search"]."</name>";
+            $SaR["replace"][] = "<name>".$value["replace"]."</name>";
+        }
+        foreach($configAdmin["icons"]["folders"] as $folder){
+            $files = array_diff(scandir($folder), array('.', '..'));
+            foreach($files as $file){
+                $configAdmin["icons"]["files"][] = $folder."/".$file;
+            }
+            //print_r($configAdmin["icons"]["files"]);
+        }
+        foreach($configAdmin["icons"]["files"] as $file){
+            $path = $rootPath."/".$file;
+            echo $path.$actionSeparator;
+            if (!is_file($path)){echo "nofile!"; continue;}
+            $data = file_get_contents($path);
+            $data = str_replace($SaR["search"], $SaR["replace"], $data);
+            file_put_contents($path, $data);
+            echo "-----------------".$actionSeparator;
+        }
+    }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //

@@ -429,6 +429,22 @@
                     }
                 }
             }
+        },
+        "icons": {
+            "files": [
+                "interfacedata.php",
+                "interfacedata.import.php"
+            ],
+            "folders": [
+                "admin/master/homegear/uielements/de-DE",
+                "admin/master/homegear/uielements/en-US"
+            ],
+            "SaR": [
+                {
+                    "search": "humidity1",
+                    "replace": "humidity_1"
+                }
+            ]
         }
     }
 }
