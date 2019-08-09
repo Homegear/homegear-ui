@@ -261,7 +261,7 @@ Vue.component('shif-ctrl-summary', {
     computed: {
         dev_objs: function () {
             return this.devs.map(x => this.find_component(this.interfaceData.devices[x], 'l2'));
-        },
+        }
     },
 
     methods: {
@@ -317,7 +317,8 @@ Vue.component('shif-ctrl-summary', {
                         });
 
             this.$homegear.value_set_multi(ops);
-        },
+        }
+
     },
 
     template: `
@@ -483,6 +484,12 @@ let ShifAllDevices = {
                 });
             }
         },
+
+        log: function (message) {
+            // call in vue.template with: {{ log(message) }}
+            console.warn(message);
+        }
+
     },
 
     mounted: function () {
@@ -524,7 +531,7 @@ let ShifAllDevices = {
 
     template: `
         <div>
-            <template v-for="(devs, role) in map_roles_devs">
+            <template v-if="role in interfaceData.roles" v-for="(devs, role) in map_roles_devs">
                 <shif-ctrl-summary
                     v-on:role_update="status"
                     v-bind:actions="interfaceData.roles[role].invokeOutputs"
@@ -534,6 +541,9 @@ let ShifAllDevices = {
                     v-bind:role_id="role"
                     v-bind:status="states[role]">
                 </shif-ctrl-summary>
+            </template>
+            <template v-else>
+                {{ log("This role is not defined: "+role) }}
             </template>
         </div>
     `,
