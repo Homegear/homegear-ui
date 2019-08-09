@@ -541,9 +541,16 @@ if($action !== ''){
         foreach($gSaR as $value){
             $configAdmin["icons"]["SaR"][]  = array("search" => $value[0], "replace" => $value[1]);
         }
-        //echo "<pre>";
+        echo "<pre>";
         //print_r($configAdmin["icons"]["SaR"]);
-        //die();
+        if (is_array($configAdmin["icons"]["SaR"])) {
+            $iconFallback = array();
+            foreach($configAdmin["icons"]["SaR"] as $value){
+                $iconFallback[$value["search"]] = $value["replace"];
+            }
+        }
+        //print_r($iconFallback);
+        echo json_encode(array("iconFallback" => $iconFallback), JSON_PRETTY_PRINT);
         
         if (is_array($configAdmin["icons"]["SaR"])) {
             foreach($configAdmin["icons"]["SaR"] as $value){
@@ -577,7 +584,6 @@ if($action !== ''){
             }
         }
     }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //

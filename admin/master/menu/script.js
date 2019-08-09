@@ -122,7 +122,11 @@ function menu(options){
                     <div class="button_status">${description}</div>
                 </div>
                 <div class="button_action">
-                    ${showIcon('arrow_right_1')}
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
+                        <g id="Ebene_1">
+                            <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
+                        </g>
+                    </svg>
                 </div>
             </div>
         `;

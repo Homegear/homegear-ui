@@ -154,6 +154,7 @@ function homegear_init() {
         'menu'       => $interfaceData["menu"],
         'themes'     => $interfaceData["themes"],
         'options'    => $interfaceData["options"],
+        'iconFallback'    => $interfaceData["iconFallback"],
     ];
 
     if($hg_lang != "en-US"){

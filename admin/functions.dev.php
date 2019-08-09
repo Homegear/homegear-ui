@@ -50,6 +50,7 @@ function clean_json_to_js() {
     $interfaceDataOut["categories"] = $interfaceData["categories"];
     $interfaceDataOut["roles"] = $interfaceData["roles"];
     $interfaceDataOut["options"] = $interfaceData["options"];
+    $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
 
     foreach ($interfaceDataOut as $key => $type ){
         foreach($type as $keyLine => $line){
