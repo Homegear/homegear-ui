@@ -19,9 +19,12 @@
 require_once("user.php");
 
 //{{{ Load settings
-if(file_exists(getcwd()."/interfacedata.php"))
+$rootPath = getcwd();
+$databaseJsonPath = $rootPath."/interfacedata.php";
+if(file_exists($databaseJsonPath))
 {
-    include_once(getcwd()."/interfacedata.php");
+    include_once($databaseJsonPath);
+    if(!is_array($interfaceData)) die("Invalid JSON file!");
 }
 else die("JSON file missing!");
 //}}}
