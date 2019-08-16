@@ -456,6 +456,13 @@ Vue.component('shif-icon', {
         rotate:    Boolean,
     },
 
+    methods: {
+        log: function (message) {
+            // call in vue.template with: {{ log(src) }}
+            console.log(message);
+        }
+    },
+
     template: `
         <div v-bind:class="classname">
             <template v-if="src in interfaceIcons">
@@ -464,8 +471,18 @@ Vue.component('shif-icon', {
                      v-html="interfaceIcons[src]">
                 </div>
             </template>
+            <template v-else-if="src in interfaceData.iconFallback">
+                <div class="svg_icon"
+                     v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
+                     v-html="interfaceIcons[interfaceData.iconFallback[src]]">
+                </div>
+            </template>
             <template v-else>
-                <div class="svg_icon icon_default"></div>
+                <div class="svg_icon icon_default">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="500" height="500" viewBox="0 0 500 500">
+                        <path d="M227.52 320.99L227.52 301.54Q227.52 289.25 229.31 279.52 231.1 269.79 234.94 261.09 238.78 252.38 245.18 244.19 251.58 236 261.31 226.78L284.35 204.77Q294.08 196.06 300.99 185.31 307.9 174.56 307.9 159.2 307.9 139.23 295.36 125.66 282.82 112.1 259.78 112.1 248 112.1 238.53 116.45 229.06 120.8 222.14 128.22 215.23 135.65 211.65 145.38 208.06 155.1 207.55 165.34L144.58 159.71Q147.65 135.14 157.63 115.94 167.62 96.74 183.49 83.42 199.36 70.11 219.84 63.2 240.32 56.29 263.87 56.29 285.89 56.29 305.6 62.69 325.31 69.09 340.42 81.63 355.52 94.18 364.22 112.61 372.93 131.04 372.93 155.1 372.93 171.49 369.34 183.78 365.76 196.06 359.1 206.3 352.45 216.54 342.98 226.02 333.5 235.49 321.73 245.73 311.49 254.43 305.09 261.09 298.69 267.74 294.85 274.4 291.01 281.06 289.47 288.74 287.94 296.42 287.94 307.68L287.94 320.99zM217.28 392.16Q217.28 375.78 229.31 364 241.34 352.22 258.24 352.22 274.62 352.22 286.91 363.49 299.2 374.75 299.2 391.14 299.2 407.52 287.17 419.3 275.14 431.07 258.24 431.07 250.05 431.07 242.62 428 235.2 424.93 229.57 419.81 223.94 414.69 220.61 407.52 217.28 400.35 217.28 392.16z"/>
+                    </svg>
+                </div>
             </template>
         </div>
     `,
@@ -480,10 +497,12 @@ Vue.component('shif-slider', {
         unit:  String,
         value: Number,
         title: String,
+        step:  Number,
+        disabled: Boolean,
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled}">
             <div class="device slider">
                 <shif-title>{{ title }}</shif-title>
 
@@ -496,12 +515,13 @@ Vue.component('shif-slider', {
                 <input type="range"
                         class="range"
                         name="range"
-                        step="1"
+                        v-bind:step="step"
                         v-bind:min="min"
                         v-bind:max="max"
                         v-bind:value="value"
-                        v-on:change="$emit('change', parseInt($event.target.value))"
-                        v-on:input="$emit('input', parseInt($event.target.value))" />
+                        v-bind:disabled="disabled"
+                        v-on:change="$emit('change', parseFloat($event.target.value))"
+                        v-on:input="$emit('input', parseFloat($event.target.value))" />
 
                 <div class="slider_marks">
                     <div class="left">
@@ -523,6 +543,7 @@ Vue.component('shif-radio', {
         'title',
         'classname',
         'values',
+        'disabled'
     ],
 
     computed: {
@@ -532,7 +553,7 @@ Vue.component('shif-radio', {
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled}">
             <div class="device">
                 <shif-title>{{ title }}</shif-title>
                 <div class="device_radio">
@@ -543,6 +564,7 @@ Vue.component('shif-radio', {
                                    v-bind:name="identifier"
                                    v-bind:value="i.value"
                                    v-bind:checked="i.selected"
+                                   v-bind:disabled="disabled"
                                    v-on:input="$emit('input', $event.target.value)" />
                             <i></i>
                         </label>
@@ -562,12 +584,13 @@ Vue.component('shif-button', {
             default: '100%',
         },
         classname: String,
+        disabled:  Boolean,
     },
     template: `
         <div class="control_button"
-             v-bind:class="classname"
+             v-bind:class="{[classname]: true, disabled: disabled}"
              v-bind:style="{width}"
-             v-on:click="$emit('click', 1)">
+             v-on:click="(!disabled) && $emit('click', 1)">
             <slot></slot>
         </div>
     `,
@@ -586,6 +609,7 @@ Vue.component('shif-generic-l2', {
         actions:     Boolean,
         icon_rotate: Boolean,
         accordion:   Boolean,
+        disabled:    Boolean,
         active:  {
             type: Object,
 
@@ -605,13 +629,26 @@ Vue.component('shif-generic-l2', {
             this.$on('click_icon', this.$listeners.click);
     },
 
+    methods: {
+        emit: function (key, val) {
+            if (this.disabled)
+                return;
+
+            if (val === undefined)
+                this.$emit(key);
+            else
+                this.$emit(key, val);
+        }
+    },
+
     template: `
         <div class="device_wrapper"
-             v-on:mousedown="$emit('mousedown')"
-             v-on:mouseup="$emit('mouseup')"
-             v-on:click="$emit('click')">
+             v-bind:class="{disabled: disabled}"
+             v-on:mousedown="emit('mousedown')"
+             v-on:mouseup="emit('mouseup')"
+             v-on:click="emit('click')">
             <div class="device">
-                <div v-on:click.stop="$emit('click_icon')">
+                <div v-on:click.stop="emit('click_icon')">
                     <shif-icon v-bind:src="icon"
                                v-bind:active="active.icon"
                                classname="device_icon">
@@ -634,10 +671,16 @@ Vue.component('shif-generic-l2', {
                 <div v-if="actions"
                      class="device_action">
                     <template v-if="accordion">
-                        <shif-icon src="pfeil4" v-bind:rotate="icon_rotate"></shif-icon>
+                        <shif-icon src="arrow_down_1" v-bind:rotate="icon_rotate"></shif-icon>
                     </template>
                     <template v-else>
-                        <shif-icon src="pfeil3"></shif-icon>
+                        <div class="svg_icon arrow_right_1">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
+                                <g id="Ebene_1">
+                                    <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
+                                </g>
+                            </svg>
+                        </div>
                     </template>
                 </div>
             </div>
@@ -691,7 +734,7 @@ const shif_device = {
         'texts',
         'output',
         'props',
-        'index',
+        'indexes',
         'rendering',
         'include_place',
     ],
@@ -754,7 +797,11 @@ const shif_device = {
 
         breadcrumb: function () {
             return (this.place ? this.place + ' | ' : '') + this.dev.label;
-        }
+        },
+
+        disabled: function () {
+            return this.control.disabled();
+        },
     },
 };
 

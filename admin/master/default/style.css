@@ -140,7 +140,7 @@ img, .video {
 }
 
 .disabled {
-  opacity: .7;
+  opacity: .2;
 }
 
 .none {
@@ -1390,7 +1390,7 @@ td {
   fill: #fff;
 }
 
-.control_button .schliesen1 svg {
+.control_button .close_x_1 svg {
   width: 30px;
   height: 30px;
 }

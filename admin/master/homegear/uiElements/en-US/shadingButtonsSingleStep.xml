@@ -16,11 +16,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>rolladen1</name>
+				<name>blind_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -35,7 +35,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -49,7 +49,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -72,7 +72,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil-stepp2</name>
+								<name>arrow_up_step_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -86,7 +86,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil-stepp2</name>
+								<name>arrow_up_step_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -109,7 +109,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil-stepp4</name>
+								<name>arrow_down_step_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -123,7 +123,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil-stepp4</name>
+								<name>arrow_down_step_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -146,7 +146,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil4</name>
+								<name>arrow_down_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -160,7 +160,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil4</name>
+								<name>arrow_down_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>

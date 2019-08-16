@@ -16,16 +16,16 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="rolladen1">
-				<name>rolladen1</name>
+			<icon id="blind_1">
+				<name>blind_1</name>
                 <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>blinds_1</name>
+				<name>blind_2</name>
                 <color>icon</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>

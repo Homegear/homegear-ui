@@ -17,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>windalarm1</name>
+				<name>windhose_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -36,7 +36,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>windalarm1</name>
+								<name>windhose_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>windalarm1</name>
+								<name>windhose_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>

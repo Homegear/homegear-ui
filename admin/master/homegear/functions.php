@@ -2,13 +2,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
-{
+function homegear_init() {
+    global $interfaceData;
     $hg = new \Homegear\Homegear();
 
     try
     {
-        $hg_lang = $_SESSION['locale'] ?? 'en-US';
+        $hg_lang = $interfaceData["options"]["language"] ?? 'en-US';
 
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
@@ -18,10 +18,10 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
     } 
     catch (\Homegear\HomegearException $e)
     {
-        $hgMessage = $hg->log(2, 'Homegear Exception catched. ' .
+        die( $hg->log(2, 'Homegear Exception catched. ' .
                                "Code: {$e->getCode()} " .
-                            "Message: {$e->getMessage()}");
-        return;
+                            "Message: {$e->getMessage()}")
+        );
     }
 
     function array_move_element($key, &$from, &$dest)
@@ -154,6 +154,7 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
         'menu'       => $interfaceData["menu"],
         'themes'     => $interfaceData["themes"],
         'options'    => $interfaceData["options"],
+        'iconFallback'    => $interfaceData["iconFallback"],
     ];
 
     if($hg_lang != "en-US"){
@@ -185,7 +186,7 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
             }
             unset($value["METADATA"]["ui"]["translations"]);
             if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
-                $house['roles'][$value["ID"]] = array_merge($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
+                $house['roles'][$value["ID"]] = array_replace_recursive($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
             }
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
             $house['roles'][$value["ID"]]["varInRole"] = $varInRole;
@@ -206,8 +207,5 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
 
     $house["map_invoke"] = $map_invoke;
 
-    $hg_interfaceData = $house;
-}
-else{
-    $hgMessage = 'console.log("HOMEGEAR PHP API NOT FOUND!");';
+    return $house;
 }

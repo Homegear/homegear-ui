@@ -16,11 +16,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>licht1</name>
+				<name>light_on_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>

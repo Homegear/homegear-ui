@@ -19,7 +19,22 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Config
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-include(getcwd()."/interfacedata.php");
+if (file_exists(getcwd()."/interfacedata.php")) {
+    include_once(getcwd()."/interfacedata.php");
+}
+else {
+    die("No interfaceData file!");
+}
+
+if (file_exists("interfacedata.admin.php")) {
+    include_once("interfacedata.admin.php");
+}
+
+if(isset($adminInterfaceDataJson)) {
+    $adminInterfaceData = json_decode($adminInterfaceDataJson, true);
+    $interfaceData = array_replace_recursive($interfaceData, $adminInterfaceData);
+}
+
 $configAdmin = $interfaceData["admin"];
 $rootPath    = getcwd();
 $adminPath   = $rootPath."/admin";
@@ -32,7 +47,14 @@ if(isset($argc) && $argc > 1){
 }
 else if(isset($_GET['action'])) $action = $_GET['action'];
 
-if(isset($_GET['origin'])) $origin =  $_GET['origin'];
+if(isset($_GET['origin'])) $origin = $_GET['origin'];
+
+if( $origin == "cli" ){
+    $actionSeparator = '';
+}
+else{
+    $actionSeparator = ' <br> ';
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -86,13 +108,6 @@ if($action !== ''){
             }
 
             return $newStr;
-        }
-
-        if( $origin == "cli" ){
-          $actionSeparator = '';
-        }
-        else{
-          $actionSeparator = ' <br> ';
         }
 
         $activeExtensions = array();
@@ -196,6 +211,53 @@ if($action !== ''){
         /////////////////////////////////////////////////////////
         // parst die Style datei und bereinigt sie
         /////////////////////////////////////////////////////////
+
+        /**
+         * This function takes a css-string and compresses it, removing
+         * unneccessary whitespace, colons, removing unneccessary px/em
+         * declarations etc.
+         *
+         * @param string $css
+         * @return string compressed css content
+         * @author Steffen Becker
+         * @url https://gist.github.com/webgefrickel/3339063
+         */
+        function minifyCss($css) {
+            // some of the following functions to minimize the css-output are directly taken
+            // from the awesome CSS JS Booster: https://github.com/Schepp/CSS-JS-Booster
+            // all credits to Christian Schaefer: http://twitter.com/derSchepp
+            // remove comments
+            $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+            // backup values within single or double quotes
+            preg_match_all('/(\'[^\']*?\'|"[^"]*?")/ims', $css, $hit, PREG_PATTERN_ORDER);
+            for ($i=0; $i < count($hit[1]); $i++) {
+            $css = str_replace($hit[1][$i], '##########' . $i . '##########', $css);
+            }
+            // remove traling semicolon of selector's last property
+            $css = preg_replace('/;[\s\r\n\t]*?}[\s\r\n\t]*/ims', "}\r\n", $css);
+            // remove any whitespace between semicolon and property-name
+            $css = preg_replace('/;[\s\r\n\t]*?([\r\n]?[^\s\r\n\t])/ims', ';$1', $css);
+            // remove any whitespace surrounding property-colon
+            $css = preg_replace('/[\s\r\n\t]*:[\s\r\n\t]*?([^\s\r\n\t])/ims', ':$1', $css);
+            // remove any whitespace surrounding selector-comma
+            $css = preg_replace('/[\s\r\n\t]*,[\s\r\n\t]*?([^\s\r\n\t])/ims', ',$1', $css);
+            // remove any whitespace surrounding opening parenthesis
+            $css = preg_replace('/[\s\r\n\t]*{[\s\r\n\t]*?([^\s\r\n\t])/ims', '{$1', $css);
+            // remove any whitespace between numbers and units
+            $css = preg_replace('/([\d\.]+)[\s\r\n\t]+(px|em|pt|%)/ims', '$1$2', $css);
+            // shorten zero-values
+            $css = preg_replace('/([^\d\.]0)(px|em|pt|%)/ims', '$1', $css);
+            // constrain multiple whitespaces
+            $css = preg_replace('/\p{Zs}+/ims',' ', $css);
+            // remove newlines
+            $css = str_replace(array("\r\n", "\r", "\n"), '', $css);
+            // Restore backupped values within single or double quotes
+            for ($i=0; $i < count($hit[1]); $i++) {
+            $css = str_replace('##########' . $i . '##########', $hit[1][$i], $css);
+            }
+            return $css;
+        }
+
         $style = $tempInterfaceData["style"];
         $regex = array(
         "`^([\t\s]+)`ism"=>'',
@@ -204,13 +266,15 @@ if($action !== ''){
         "`([\n\A;\s]+)//(.+?)[\n\r]`ism"=>"$1\n",
         "`(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+`ism"=>"\n",
         );
-        $style = preg_replace(array_keys($regex),$regex,$style);
+        //$style = preg_replace(array_keys($regex),$regex,$style);
 
         $search  = array( "<style>", "</style>");
         $replace = array( "", "");
         $style = str_replace($search, $replace, $style);
 
-        $style = preg_replace('/ {2,}/', ' ', $style);
+        $style = minifyCss($style);
+
+        //$style = preg_replace('/ {2,}/', ' ', $style);
         $tempInterfaceData["style"] = $style;
 
         //////////////////////////////////////////////////////////
@@ -292,8 +356,8 @@ if($action !== ''){
         //$tempInterfaceData["index"] .= '$interfaceIcons = "'.addslashes($tempInterfaceData["icons"]).'";';
         $tempInterfaceData["index"] .= $tempInterfaceData["phpVendor"];
         $tempInterfaceData["index"] .= $tempInterfaceData["functions"];
-        $tempInterfaceData["index"] .= "\n".'?>'."\n".'<?php'."\n";
-        $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/content.php")));
+        $tempInterfaceData["index"] .= "\n".'?>'."\n";
+        $tempInterfaceData["index"] .= cleanPhpComments(file_get_contents($adminPath."/content.php"));
 
         //////////////////////////////////////////////////////////
         //
@@ -428,6 +492,96 @@ if($action !== ''){
                 }
 			}
 			echo "</pre>";
+        }
+    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+    else if($action == "renameIcons"){
+        $gDriveApiUrlNewPre = "https://docs.google.com/spreadsheets/d/";
+        $gDriveApiUrlNewPost = "/gviz/tq?tqx=out:json";
+        $SaR = array();
+
+        $gSaRraw = file_get_contents($gDriveApiUrlNewPre.$interfaceData["settings"]["gkey"].$gDriveApiUrlNewPost);
+
+        $sr = array(
+          "/*O_o*/" => "",
+          "google.visualization.Query.setResponse(" => "",
+          ");" => "",
+        );
+  
+        function sr($sr, $str){
+            foreach($sr as $search => $replace){
+                $str = str_replace($search, $replace, $str);
+            }
+            return $str;
+        }
+  
+        function colsAsKeyToLines($cols, $rows){
+            $out = array();
+            $i = 0;
+            foreach($rows as $key => $row){
+                $out[$key] = array();
+                foreach($row["c"] as $key1 => $entry){
+                  $out[$key][$key1] = str_replace(array("\r\n", "\r", "\n"), "", nl2br(trim($entry["v"])));
+                  $out[$key][$cols[$key1]["label"]] = str_replace(array("\r\n", "\r", "\n"), "", nl2br(trim($entry["v"])));
+                }
+                $i++;
+            }
+            return $out;
+        }
+  
+        $gSaRjson = json_decode(sr($sr, $gSaRraw), true);
+        $gSaR = colsAsKeyToLines($gSaRjson["table"]["cols"], $gSaRjson["table"]["rows"]);
+        //echo "<pre>";
+        //print_r($gSaR);
+
+        unset($gSaR[0]);
+        foreach($gSaR as $value){
+            $configAdmin["icons"]["SaR"][]  = array("search" => $value[0], "replace" => $value[1]);
+        }
+        echo "<pre>";
+        //print_r($configAdmin["icons"]["SaR"]);
+        if (is_array($configAdmin["icons"]["SaR"])) {
+            $iconFallback = array();
+            foreach($configAdmin["icons"]["SaR"] as $value){
+                $iconFallback[$value["search"]] = $value["replace"];
+            }
+        }
+        //print_r($iconFallback);
+        echo json_encode(array("iconFallback" => $iconFallback), JSON_PRETTY_PRINT);
+        
+        if (is_array($configAdmin["icons"]["SaR"])) {
+            foreach($configAdmin["icons"]["SaR"] as $value){
+                $SaR["search"][]  = '"'.$value["search"].'"';
+                $SaR["replace"][] = '"'.$value["replace"].'"';
+
+                $SaR["search"][]  = "<name>".$value["search"]."</name>";
+                $SaR["replace"][] = "<name>".$value["replace"]."</name>";
+            }
+        }
+
+        if (is_array($configAdmin["icons"]["folders"])) {
+            foreach($configAdmin["icons"]["folders"] as $folder){
+                $files = array_diff(scandir($folder), array('.', '..'));
+                foreach($files as $file){
+                    $configAdmin["icons"]["files"][] = $folder."/".$file;
+                }
+                //print_r($configAdmin["icons"]["files"]);
+            }
+        }
+
+        if (is_array($configAdmin["icons"]["files"])) {
+            foreach($configAdmin["icons"]["files"] as $file){
+                $path = $rootPath."/".$file;
+                echo $path.$actionSeparator;
+                if (!is_file($path)){echo "nofile!"; continue;}
+                $data = file_get_contents($path);
+                $data = str_replace($SaR["search"], $SaR["replace"], $data);
+                file_put_contents($path, $data);
+                echo "-----------------".$actionSeparator;
+            }
         }
     }
 

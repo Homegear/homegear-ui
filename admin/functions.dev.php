@@ -5,7 +5,7 @@
  * redistribute it and/or modify it under the terms of the GNU Lesser
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * 
+ *
  * Shif is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,24 +16,29 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-include_once(getcwd()."/interfacedata.php");
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(file_exists("interfacedata.import.php") && isset($customImportInterfaceDataJson)){
-    $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
+if (file_exists(getcwd()."/interfacedata.php")) {
+    include_once(getcwd()."/interfacedata.php");
+}
+else {
+    die("No interfaceData file!");
 }
 
-$_SERVER['WEBSOCKET_ENABLED'] = true;
-$_SERVER['WEBSOCKET_AUTH_TYPE'] = $interfaceData['settings']['homegear']['security'];
-$_SESSION['locale'] = $interfaceData["users"]["1"]["settings"]['language'];
+if (file_exists("interfacedata.dummy.php")) {
+    include_once("interfacedata.dummy.php");
+}
+if(isset($dummyInterfaceDataJson)) {
+    $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
+    $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
+}
+
+if (!is_array($interfaceData)) die("Invalid JSON file!");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PHP JSON clean to Javascript
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function clean_json_to_js(){
+function clean_json_to_js() {
     global $interfaceData;
+    global $defaultInterfaceData;
     $interfaceDataOut = array();
     $interfaceDataOut["devices"] = $interfaceData["devices"];
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
@@ -45,26 +50,26 @@ function clean_json_to_js(){
     $interfaceDataOut["categories"] = $interfaceData["categories"];
     $interfaceDataOut["roles"] = $interfaceData["roles"];
     $interfaceDataOut["options"] = $interfaceData["options"];
+    $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
 
-    foreach($interfaceDataOut as $key => $type){
+    foreach ($interfaceDataOut as $key => $type ){
         foreach($type as $keyLine => $line){
-            if($line == null)
-            {
+            if ($line == null) {
                 unset($interfaceDataOut[$key][$keyLine]);
                 continue;
             }
         }
     }
 
-    if($_SESSION['locale'] != "en-US"){
-        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$_SESSION['locale']];
+    if ($interfaceData["options"]['language'] != "en-US") {
+        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$interfaceData["options"]['language']];
         $interfaceDataOut["i18n"]["default"] = $interfaceData["i18n"]["en-US"];
     }
-    else{
+    else {
         $interfaceDataOut["i18n"] = $interfaceData["i18n"]["en-US"];
     }
 
-    foreach($interfaceData["i18n"] as $key => $value){
+    foreach($defaultInterfaceData["i18n"] as $key => $value){
         $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
     }
 
@@ -74,6 +79,16 @@ function clean_json_to_js(){
 }
 
 class User {
+    public function getSecondFactorAuthMethods()
+    {
+        return array(true);
+    }
+
+    public function hasWebAuthn()
+    {
+        return true;
+    }
+
     public function getSettings() {
         global $interfaceData;
         return $interfaceData["users"]["1"]["settings"];
@@ -84,56 +99,39 @@ class User {
             return false;
         }
         return true;
-    } 
+    }
 }
 
 $user = new User($interfaceData['settings']);
 
-//die( print_r($interfaceData["settings"]));
+userSettings();
 
-$interfaceData["options"]["twofaEnabled"] = "false";
-$interfaceData["options"]["userHasTwofaRegistrations"] = "false";
-$interfaceData["options"]["firstBreadcrumb"] = $user->getSettings()["firstBreadcrumb"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumb"];
-$interfaceData["options"]["firstBreadcrumbId"] = $user->getSettings()["firstBreadcrumbId"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumbId"];
-$interfaceData["options"]["breadcrumbs_array"] = ["<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">".$interfaceData["options"]["firstBreadcrumb"]."</div>"];
-$interfaceData["options"]["breadcrumbs_id_array"] = [$interfaceData["options"]["firstBreadcrumbId"]];
-$interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
-$interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
-$interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
-$interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
-$interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
-$interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
-$interfaceData["options"]["controller_url"] = $interfaceData["settings"]["controllerUrl"];
-$interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
-$interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
 $interfaceData["options"]["websocket_user"] = $interfaceData['settings']['homegear']['user'];
 $interfaceData["options"]["websocket_password"] = $interfaceData['settings']['homegear']['password'];
-$interfaceData["options"]["websocket_security_ssl"] = $interfaceData['settings']['homegear']['ssl'];
 $interfaceData["options"]["websocket_security"] = $interfaceData['settings']['homegear']['security'];
 
 $javascript_options  = "
     document.addEventListener('DOMContentLoaded', function(event) {
+        // var hg_new = homegear_new(interfaceData.options.websocket_user,
+                                  // interfaceData.options.websocket_password);
+
+        // hg_new.disconnected(function() {});
+        // hg_new.reconnected(function() {});
+
+
+        homegear.onDisconnected = [];
+        homegear.onReconnected = [];
         homegear.disconnect();
+        homegear.wasConnected = false;
 
-        var hg_save_invoke_multi = homegear.invoke_multi;
-        var hg_save_value_set_multi = homegear.value_set_multi;
-        var hg_save_value_set_clickcounter = homegear.value_set_clickcounter;
-
-        homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
-
-        document.getElementById('loadingPage').style.display = 'none';
-
-        homegear.disconnected(function() {
-        });
-
-        homegear.reconnected(function() {
-        });
+        homegear = homegear_new(interfaceData.options.websocket_user,
+                                interfaceData.options.websocket_password);
 
         homegear.connect();
 
-        homegear.invoke_multi = hg_save_invoke_multi;
-        homegear.value_set_multi = hg_save_value_set_multi;
-        homegear.value_set_clickcounter = hg_save_value_set_clickcounter;
+        homegear_prepare(homegear);
+
+        document.getElementById('loadingPage').style.display = 'none';
     });
-    
+
 ";

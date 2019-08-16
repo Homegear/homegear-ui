@@ -22,11 +22,13 @@ heating_slider_l3.methods.change = function(event) {
 }
 heating_slider_l3.template = `
     <shif-slider v-bind:min="props.minimumScaled"
-                 v-bind:max="props.maximumScaled"
+                 v-bind:max="parseFloat(props.maximumScaled)"
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
+                 v-bind:step="0.5"
                  v-on:change="change"
+                 v-bind:disabled="disabled"
                  v-model:value="props.value">
     </shif-slider>
 `;
@@ -75,6 +77,7 @@ heating_mode_l3.methods.change = function(x) {
 heating_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
+                v-bind:disabled="disabled"
                 v-on:input="x => change(parseInt(x))">
     </shif-radio>
 `;

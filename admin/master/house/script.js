@@ -44,6 +44,60 @@ house_level1();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function check_disabled(device, indexes) {
+    function check_event_trigger(event) {
+        if (event.trigger == undefined || event.trigger.length != 3)
+            return false;
+
+        const trigger = event.trigger;
+        return trigger[0] in interfaceData.map_invoke &&
+               trigger[1] in interfaceData.map_invoke[trigger[0]] &&
+               trigger[2] in interfaceData.map_invoke[trigger[0]][trigger[1]];
+    }
+
+    function check_event_disable(event, control_idx) {
+        return 'disable' in event &&
+               control_idx in event.disable;
+    }
+
+    function check_event_condition(event) {
+        return 'condition' in event &&
+               'operator'  in event.condition &&
+               'value'     in event.condition;
+    }
+
+    if (! ('metadata'    in device &&
+           'event_hooks' in device.metadata))
+        return false;
+
+    let res = false;
+    for (let event of device.metadata.event_hooks) {
+        if (! check_event_trigger(event) ||
+            ! check_event_disable(event, indexes.control) ||
+            ! check_event_condition(event))
+            continue;
+
+        const trigger   = event.trigger;
+        const disable   = event.disable;
+        const condition = event.condition;
+
+        if (! disable[indexes.control])
+            continue;
+
+        let devices = interfaceData.map_invoke[trigger[0]][trigger[1]][trigger[2]];
+        for (let dev of devices) {
+            res = res || condition_check(condition,
+                                         interfaceData.devices[dev.databaseId]
+                                                      .controls[dev.control]
+                                                      .variableInputs[dev.input]
+                                                      .properties
+                                                      .value);
+        }
+    }
+
+    return res;
+}
+
 function component_create(constructor, data) {
     let comp = new constructor({
         propsData: data,
@@ -54,18 +108,20 @@ function component_create(constructor, data) {
     return comp.$el;
 }
 
-function component_object(control, device, input, output, index, is) {
+function component_object(control, device, input, output, is, indexes) {
     let ret = {
-        uiElement:      device,
-        control:        control,
-        device:         device.databaseId,
-        icons:          device.icons,
-        texts:          device.texts,
-        output:         output,
-        props:          input.properties,
-        index:          index,
-        rendering:      input.rendering
+        uiElement: device,
+        control:   control,
+        device:    device.databaseId,
+        icons:     device.icons,
+        texts:     device.texts,
+        output:    output,
+        props:     input.properties,
+        indexes:   indexes,
+        rendering: input.rendering
     };
+
+    ret.control.disabled = () => check_disabled(device, indexes);
 
     if (is)
         ret.is = is;
@@ -84,9 +140,11 @@ function components_create(device, layer) {
             const input   = control.variableInputs[keys.input];
             const output  = control.variableOutputs[keys.input];
 
+
             return [component_create(
                 controlComponents[control.control].l2,
-                component_object(control, device, input, output, keys.input, null)
+                component_object(control, device, input, output, null,
+                                 {input: keys.input, control: keys.control})
             )];
         }
 
@@ -94,7 +152,9 @@ function components_create(device, layer) {
             layer = 'l3';
     }
 
-    for (const control of device.controls) {
+    for (let i = 0; i < device.controls.length; ++i) {
+        const control = device.controls[i];
+
         if (!(control.control in controlComponents) ||
             !(layer           in controlComponents[control.control]))
             continue;
@@ -105,7 +165,8 @@ function components_create(device, layer) {
 
             out.push(component_create(
                 controlComponents[control.control][layer],
-                component_object(control, device, input, output, k, null)
+                component_object(control, device, input, output, null,
+                                 {input: k, control: i})
             ));
         }
     }
@@ -154,7 +215,6 @@ Vue.use({
 });
 
 
-
 Vue.mixin({
     data: function () {
         return  {
@@ -162,6 +222,13 @@ Vue.mixin({
             interfaceData:  interfaceData,
         };
     },
+
+    filters: {
+        pretty: function (val) {
+            return JSON.stringify(val, null, 4);
+        }
+    },
+
     methods: {
         level3: function (device, name) {
             house_level3(this, {
@@ -194,10 +261,10 @@ Vue.component('shif-ctrl-summary', {
     computed: {
         dev_objs: function () {
             return this.devs.map(x => this.find_component(this.interfaceData.devices[x], 'l2'));
-        },
+        }
     },
 
-    methods: { // {{{
+    methods: {
         find_component: function (device, layer) {
             if (layer == 'l2' && typeof(device.metadata) == 'object') {
                 if ('l2_action' in device.metadata) {
@@ -208,7 +275,8 @@ Vue.component('shif-ctrl-summary', {
                     const output  = control.variableOutputs[keys.input];
                     const is      = 'shif-' + control.control + '-l2';
 
-                    return [component_object(control, device, input, output, keys.input, is)];
+                    return [component_object(control, device, input, output, is,
+                                             {input: keys.input, control: keys.control})];
                 }
 
                 if ('l2_only' in device.metadata)
@@ -216,13 +284,17 @@ Vue.component('shif-ctrl-summary', {
             }
 
             let out = [];
-            for (const control of device.controls) {
+            // for (const control of device.controls) {
+            for (let i = 0; i < device.controls.length; ++i) {
+                const control = device.controls[i];
+
                 for (const k in control.variableInputs) {
                     const input  = control.variableInputs[k];
                     const output = control.variableOutputs[k];
                     const is     = 'shif-' + control.control + '-' + layer;
 
-                    out.push(component_object(control, device, input, output, k, is));
+                    out.push(component_object(control, device, input, output, is,
+                                              {input: k, control: i}));
                 }
             }
 
@@ -245,8 +317,9 @@ Vue.component('shif-ctrl-summary', {
                         });
 
             this.$homegear.value_set_multi(ops);
-        },
-    }, // }}}
+        }
+
+    },
 
     template: `
         <div>
@@ -274,10 +347,13 @@ Vue.component('shif-ctrl-summary', {
                     </div>
 
                     <template v-for="dev in dev_objs">
-                        <p v-if="debug">{{ dev }}</p>
                         <component v-bind="dev" v-bind:include_place="true">
                         </component>
-                        <hr v-if="debug" />
+
+                        <template v-if="debug">
+                            <pre>{{ dev | pretty }}</pre>
+                            <hr />
+                        </template>
                     </template>
                 </div>
             </transition>
@@ -408,6 +484,12 @@ let ShifAllDevices = {
                 });
             }
         },
+
+        log: function (message) {
+            // call in vue.template with: {{ log(message) }}
+            console.warn(message);
+        }
+
     },
 
     mounted: function () {
@@ -449,7 +531,7 @@ let ShifAllDevices = {
 
     template: `
         <div>
-            <template v-for="(devs, role) in map_roles_devs">
+            <template v-if="role in interfaceData.roles" v-for="(devs, role) in map_roles_devs">
                 <shif-ctrl-summary
                     v-on:role_update="status"
                     v-bind:actions="interfaceData.roles[role].invokeOutputs"
@@ -459,6 +541,9 @@ let ShifAllDevices = {
                     v-bind:role_id="role"
                     v-bind:status="states[role]">
                 </shif-ctrl-summary>
+            </template>
+            <template v-else>
+                {{ log("This role is not defined: "+role) }}
             </template>
         </div>
     `,

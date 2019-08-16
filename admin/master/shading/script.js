@@ -27,6 +27,7 @@ shading_ventilation_l3.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
                      v-bind:status="status_minimal"
+                     v-bind:disabled="disabled"
                      v-on:click="change">
     </shif-generic-l2>
 `;
@@ -46,6 +47,8 @@ shading_slider.template = `
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
+                 v-bind:step=5
+                 v-bind:disabled="disabled"
                  v-on:change="change"
                  v-model:value="props.value">
     </shif-slider>
@@ -71,13 +74,13 @@ let shading_buttons_l3 = clone(shif_device);
 shading_buttons_l3.methods.change = function(event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
-    if((this.index == 0 || this.index == 2) &&
+    if((this.indexes.input == 0 || this.indexes.input == 2) &&
         !upVar.hasOwnProperty('value') &&
         !downVar.hasOwnProperty('value') &&
         upVar.peer == downVar.peer &&
         upVar.channel == downVar.channel &&
         upVar.name == downVar.name) {
-        let down = (this.index == 2);
+        let down = (this.indexes.input == 2);
         if((this.output.type == 'integer' ||
             this.output.type == 'integer64' ||
             this.output.type == 'float') &&
@@ -96,14 +99,13 @@ shading_buttons_l3.methods.change = function(event) {
     else homegear.value_set_clickcounter(this, this.output, true);
 }
 shading_buttons_l3.template = `
-    <div>
-        <div class="shading-buttons-up-down_control_button_wrapper">
-            <shif-button v-on:click="change">
-                <shif-icon v-bind:src="cond.icon.name"
-                           v-bind:active="cond.icon.color">
-                </shif-icon>
-            </shif-button>
-        </div>
+    <div class="control_button_wrapper">
+        <shif-button v-bind:disabled="disabled"
+                     v-on:click="change">
+            <shif-icon v-bind:src="cond.icon.name"
+                        v-bind:active="cond.icon.color">
+            </shif-icon>
+        </shif-button>
     </div>
 `;
 

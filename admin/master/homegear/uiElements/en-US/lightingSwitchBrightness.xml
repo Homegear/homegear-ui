@@ -16,16 +16,16 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="licht3">
-				<name>licht3</name>
+			<icon id="light_dim_1">
+				<name>light_dim_1</name>
                 <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>licht3</name>
+				<name>light_dim_1</name>
                 <color>icon</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>

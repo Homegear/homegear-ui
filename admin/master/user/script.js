@@ -27,31 +27,45 @@ function user(options){
         `);
     });
 
-    const output = `
+    var output = `
         <div id="user_wrapper">
         <form id="user_${options.content}" name="user_${options.content}" action="javascript:void(0);" onsubmit="user_${options.content}_commit();">
-            <div id="twofaContainer" class="form-group" style="display: none">
-                <div class="label">${i18n('settings.user.manage.twofa')}:</div>
-                <input id="registerWebauthn" onclick="user_register_webauthn_device()" type="button" class="" ${interfaceData.options.userHasTwofaRegistrations ? 'disabled="disabled"' : ''} value="${interfaceData.options.userHasTwofaRegistrations ? i18n('settings.user.manage.twofaRegistered') : i18n('settings.user.manage.registerTwofa')}">
-            </div>
+    `;
+    if (interfaceData.options.twofaChangeable == true){
+        output += `
+                <div id="twofaContainer" class="form-group" style="display: none">
+                    <div class="label">${i18n('settings.user.manage.twofa')}:</div>
+                    <input id="registerWebauthn" onclick="user_register_webauthn_device()" type="button" class="" ${interfaceData.options.userHasTwofaRegistrations ? 'disabled="disabled"' : ''} value="${interfaceData.options.userHasTwofaRegistrations ? i18n('settings.user.manage.twofaRegistered') : i18n('settings.user.manage.registerTwofa')}">
+                </div>
+        `;
+    }
+    if (interfaceData.options.languageChangeable == true){
+        output += `
             <div class="form-group">
                 <div class="label">${i18n('settings.user.manage.language')}:</div>
                 <select id="language" name="language">
                     ${langNames}
                 </select>
             </div>
+        `;
+    }
+    output += `
             <div class="form-group">
                 <div class="label">${i18n('settings.user.manage.theme')}:</div>
                 <select id="theme" name="theme">
                     ${themesNames}
                 </select>
             </div>
+    `;
+    output += `
             <div id="user_highlight_display" class="form-group">
                 <div class="label">${i18n('settings.user.manage.highlight')}:</div>
                 <input id="highlight" type="hidden" name="highlight" value="${interfaceData.options.highlight}">
                     <div id="color-picker-container"></div>
                 <div style="clear:both;"></div>
             </div>
+    `;
+    output += `
             <div class="form-group">
                 <input type="submit" class="" name="user_${options.content}" value="${i18n('settings.user.manage.save')}">
             </div>
@@ -62,7 +76,7 @@ function user(options){
     content('this', {'content':output, 'name':options['name']});
     if(interfaceData.options.twofaEnabled) $('#twofaContainer').show();
 
-    const outerWidth = $('#user_edit').outerWidth()
+    const outerWidth = $('#user_edit').outerWidth();
     const userColorPickerWidth = outerWidth <= 400 ? outerWidth : 400;
     const userColorPickerHeight = userColorPickerWidth + 20;
 
@@ -187,9 +201,8 @@ function user_edit_commit() {
 
     function updateUserSettingsData(data) {
         let newUserSettings = data.result;
-        if (!newUserSettings.interface) {
-            newUserSettings.interface = interfaceData.options;
-        }
+
+        newUserSettings.interface = newUserSettings.interface || {};
 
         newUserSettings.locale  = interfaceData.options.language;
         newUserSettings.interface.language  = interfaceData.options.language;
@@ -203,7 +216,7 @@ function user_edit_commit() {
         };
 
         homegear.invoke(rpc_obj, function() {
-            window.location.href = interfacePath;
+            window.location.reload(true);
         });
     }
 }
