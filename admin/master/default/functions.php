@@ -33,6 +33,9 @@ function i18n($langKey){
         $i18nOut = $interfaceData["i18n"][$interfaceData["options"]["language"]];
         $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
+    else if(isset($_SESSION['locale']) && $_SESSION['locale'] != 'en-US'){
+        $i18nOut = $interfaceData["i18n"][$_SESSION['locale']];
+    }
     else{
         $i18nOut = $interfaceData["i18n"]["en-US"];
     }

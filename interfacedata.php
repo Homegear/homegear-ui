@@ -17,7 +17,6 @@
             "firstBreadcrumb": "Haus",
             "firstBreadcrumbId": "house",
             "showFloor": true,
-            "language": "de-DE",
             "languageChangeable": true,
             "twofaChangeable": true,
             "consoleLog": true,
