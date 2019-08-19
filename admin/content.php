@@ -77,6 +77,8 @@ if (class_exists('\Homegear\Homegear')) {
     foreach($interfaceData["i18n"] as $key => $value){
         $hg_interfaceData["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
     }
+    // https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
+    //echo json_encode($hg_interfaceData, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
     echo "var interfaceData = ".json_encode($hg_interfaceData, JSON_PRETTY_PRINT).";"."\n";
     
 }

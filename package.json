@@ -8,7 +8,6 @@
     "@homegear/homegearws": "^1.0.10",
     "@jaames/iro": "^4.5.1",
     "jquery": "^3.4.1",
-    "jsoneditor": "^5.34.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -27,6 +26,7 @@
   },
   "unusedDependencies": {
     "plotly.js": "^1.46.0",
+    "jsoneditor": "^5.34.0",
     "push.js": "^1.0.9",
     "slick-carousel": "^1.8.1",
     "bootstrap": "^4.3.1",
