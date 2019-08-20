@@ -25,7 +25,7 @@ function house_level1(){
             house_level1_content += `
                 <div class="roomSelect_wrapper" ${action}>
                     <div class="roomSelect">
-                        ${icons[interfaceData.rooms[roomValue].icon]}
+                        ${showIcon(interfaceData.rooms[roomValue].icon)}
                     </div>
                     <div class="description">
                         ${interfaceData.rooms[roomValue].name}
