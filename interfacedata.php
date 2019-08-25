@@ -13,7 +13,7 @@
         },
         "userDefaults": {
             "theme": "dark",
-            "highlight": "#0056b7",
+            "highlight": "#e3a104",
             "firstBreadcrumb": "Haus",
             "firstBreadcrumbId": "house",
             "showFloor": true,

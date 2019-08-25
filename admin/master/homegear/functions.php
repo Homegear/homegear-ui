@@ -6,32 +6,27 @@ function homegear_init() {
     global $interfaceData;
     $hg = new \Homegear\Homegear();
 
-    try
-    {
-        $hg_lang = $interfaceData["options"]["language"] ?? 'en-US';
-
+    try {
+        $hg_lang     = $interfaceData["options"]["language"] ?? 'en-US';
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_cats     = $hg->getCategories($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
     } 
-    catch (\Homegear\HomegearException $e)
-    {
+    catch (\Homegear\HomegearException $e) {
         die( $hg->log(2, 'Homegear Exception catched. ' .
                                "Code: {$e->getCode()} " .
                             "Message: {$e->getMessage()}")
         );
     }
 
-    function array_move_element($key, &$from, &$dest)
-    {
+    function array_move_element($key, &$from, &$dest) {
         $dest[$key] = $from[$key];
         unset($from[$key]);
     }
 
-    function category_parse(&$house, &$category)
-    {
+    function category_parse(&$house, &$category) {
         $id = $category['ID'];
 
         $house['categories'][$id]['name'] = $category['NAME'];
@@ -144,17 +139,37 @@ function homegear_init() {
         }
     }
 
+    function mainmenu_parse() {
+        global $interfaceData;
+        foreach ($interfaceData["mainmenu"] as $key => $value) {
+            if ($value["name"] == "") {
+                unset($interfaceData["mainmenu"][$key]);
+            }
+        }
+        return $interfaceData["mainmenu"];
+    }
+
+    function menu_parse() {
+        global $interfaceData;
+        foreach ($interfaceData["menu"] as $key => $value) {
+            if ($value["name"] == "") {
+                unset($interfaceData["menu"][$key]);
+            }
+        }
+        return $interfaceData["menu"];
+    }
+
     $house = [
-        'devices'    => [],
-        'floors'     => [],
-        'rooms'      => [],
-        'categories' => [],
-        'roles'      => [],
-        'mainmenu'   => $interfaceData["mainmenu"],
-        'menu'       => $interfaceData["menu"],
-        'themes'     => $interfaceData["themes"],
-        'options'    => $interfaceData["options"],
-        'iconFallback'    => $interfaceData["iconFallback"],
+        'devices'      => [],
+        'floors'       => [],
+        'rooms'        => [],
+        'categories'   => [],
+        'roles'        => [],
+        'mainmenu'     => mainmenu_parse(),
+        'menu'         => menu_parse(),
+        'themes'       => $interfaceData["themes"],
+        'options'      => $interfaceData["options"],
+        'iconFallback' => $interfaceData["iconFallback"],
     ];
 
     if($hg_lang != "en-US"){

@@ -305,8 +305,8 @@ function i18n(key) {
     for (let i of [interfaceData.i18n, interfaceData.i18n.default])
         if (key in i)
             return i[key];
-
-    return 'NoTrans.';
+        else
+            return '?';
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
