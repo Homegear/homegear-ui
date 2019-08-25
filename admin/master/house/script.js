@@ -236,6 +236,16 @@ Vue.mixin({
                 name,
             });
         },
+
+        round: function (val, precision) {
+            let mul = Math.pow(10, precision || 0);
+
+            return Math.round(val * mul) / mul;
+        },
+
+        float_formatted: function (val, precision=1) {
+            return parseFloat(val).toFixed(precision);
+        },
     },
 });
 

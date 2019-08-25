@@ -499,6 +499,16 @@ Vue.component('shif-slider', {
         title: String,
         step:  Number,
         disabled: Boolean,
+        precision: {
+            type: Number,
+            default: 0,
+        }
+    },
+
+    computed: {
+        value_formatted: function () {
+            return this.float_formatted(this.value, this.precision);
+        }
     },
 
     template: `
@@ -508,7 +518,7 @@ Vue.component('shif-slider', {
 
                 <div class="slider_action">
                     <div class="amount">
-                        <p>{{ value }} {{ unit }}</p>
+                        <p>{{ value_formatted }} {{ unit }}</p>
                     </div>
                 </div>
 
