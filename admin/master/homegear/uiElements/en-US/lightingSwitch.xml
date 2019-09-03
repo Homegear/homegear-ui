@@ -74,6 +74,7 @@
 		</variableOutputs>
 		<metadata>
             <role>100001</role>
+			<l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

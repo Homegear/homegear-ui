@@ -51,6 +51,10 @@
 		</controls>
 		<metadata>
             <role>100001</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

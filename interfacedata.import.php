@@ -849,10 +849,7 @@
                    ]
                ],
                "label": "Licht SystemVar",
-               "room": 3,
-               "metadata": {
-                   "l2_only": true
-               }
+               "room": 3
            }
        ],
        [
@@ -880,10 +877,7 @@
                "room": 3,
                "categories": [
                    1
-               ],
-               "metadata": {
-                   "l2_only": true
-               }
+               ]
            }
        ],
        [
@@ -1452,13 +1446,7 @@
                "room": 3,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -1667,11 +1655,7 @@
                                 "value": true
                             }
                         }
-                    ],
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
+                    ]
                }
            }
        ],
@@ -1754,13 +1738,7 @@
                "room": 6,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -1828,13 +1806,7 @@
                "room": 2,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -1932,10 +1904,6 @@
                    2
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                        {
                            "trigger": ["0", "-1", "WINDALARM"],
@@ -2035,10 +2003,6 @@
                    2
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                        {
                            "trigger": ["0", "-1", "WINDALARM"],
@@ -2121,13 +2085,7 @@
                "room": 12,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -2195,13 +2153,7 @@
                "room": 12,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -2269,13 +2221,7 @@
                "room": 7,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -2343,13 +2289,7 @@
                "room": 7,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -2421,10 +2361,6 @@
                    5
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                         {
                             "trigger": ["0", "-1", "WINDOWALARM"],
@@ -2508,10 +2444,6 @@
                    5
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                         {
                             "trigger": ["79", "1", "CONTROL_MODE"],
@@ -2583,10 +2515,6 @@
                    5
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                         {
                             "trigger": ["80", "1", "CONTROL_MODE"],
@@ -2658,10 +2586,6 @@
                    5
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                         {
                             "trigger": ["81", "1", "CONTROL_MODE"],
@@ -2733,10 +2657,6 @@
                    5
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                         {
                             "trigger": ["82", "1", "CONTROL_MODE"],
@@ -2808,10 +2728,6 @@
                    5
                ],
                "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   },
                    "event_hooks": [
                         {
                             "trigger": ["83", "1", "CONTROL_MODE"],
@@ -3225,13 +3141,7 @@
                "room": 8,
                "categories": [
                    2
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
@@ -3447,13 +3357,7 @@
                "room": 6,
                "categories": [
                    5
-               ],
-               "metadata": {
-                   "l2_action": {
-                       "control": 0,
-                       "input": 0
-                   }
-               }
+               ]
            }
        ],
        [
