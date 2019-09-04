@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.windowContact</uniqueUiElementId>
 		<type>simple</type>
 		<control>windowContact</control>
+		<role>301002</role>
 		<texts>
 			<text id="title">
 				<content>State</content>
@@ -71,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>301002</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

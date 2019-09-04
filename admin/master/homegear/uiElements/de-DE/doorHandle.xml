@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.doorHandle</uniqueUiElementId>
 		<type>simple</type>
 		<control>doorHandle</control>
+		<role>301001</role>
 		<texts>
 			<text id="title">
 				<content>State</content>
@@ -99,8 +100,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>301001</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

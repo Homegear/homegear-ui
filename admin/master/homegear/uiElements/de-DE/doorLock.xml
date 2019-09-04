@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.doorLock</uniqueUiElementId>
 		<type>simple</type>
 		<control>doorLock</control>
-        <role>0x301003</role>
+        <role>301003</role>
 		<texts>
 			<text id="title">
 				<content>State</content>

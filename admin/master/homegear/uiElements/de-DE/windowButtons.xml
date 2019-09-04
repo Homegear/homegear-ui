@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.windowButtons</uniqueUiElementId>
 		<type>simple</type>
 		<control>windowButtons</control>
+		<role>600000</role>
 		<texts>
 			<text id="title">
 				<content>Trigger</content>
@@ -157,8 +158,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>600000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

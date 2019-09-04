@@ -4,6 +4,7 @@
 		<id>Base.humidity</id>
 		<type>simple</type>
 		<control>humidity</control>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Humidity</content>
@@ -40,8 +41,5 @@
 				<maximumValue>100</maximumValue>
 			</variable>
 		</variableInputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

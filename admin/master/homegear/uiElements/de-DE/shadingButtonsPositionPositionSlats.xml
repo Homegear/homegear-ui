@@ -3,6 +3,7 @@
 	<homegearUiElement>
 		<id>Base.shadingButtonsPositionPositionSlats</id>
         <control>shadingButtonsPositionPositionSlats</control>
+        <role>501000</role>
 		<type>complex</type>
 		<texts>
 			<text id="title">
@@ -54,8 +55,5 @@
 				<rows>1</rows>
 			</control>
 		</controls>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

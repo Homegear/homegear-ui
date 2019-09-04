@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.shadingVentilation</uniqueUiElementId>
 		<type>simple</type>
 		<control>shadingVentilation</control>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Ventilation</content>
@@ -71,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

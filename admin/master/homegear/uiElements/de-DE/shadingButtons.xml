@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.shadingButtons</uniqueUiElementId>
 		<type>simple</type>
 		<control>shadingButtons</control>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Trigger</content>
@@ -157,8 +158,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.shadingWindalarm</uniqueUiElementId>
 		<type>simple</type>
 		<control>shadingWindalarm</control>
-        <role>0x400000</role>
+        <role>400000</role>
 		<texts>
 			<text id="title">
 				<content>Windalarm</content>
@@ -72,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.temperature</uniqueUiElementId>
 		<type>simple</type>
 		<control>temperature</control>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Temperature</content>
@@ -41,8 +42,5 @@
 				<maximumValue>100.0</maximumValue>
 			</variable>
 		</variableInputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

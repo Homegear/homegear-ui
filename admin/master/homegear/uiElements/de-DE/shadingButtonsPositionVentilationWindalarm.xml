@@ -61,8 +61,5 @@
 				<rows>1</rows>
 			</control>
 		</controls>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
