@@ -16,12 +16,12 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="window_1">
-				<name>window_1</name>
+			<icon id="window_2">
+				<name>window_2</name>
                 <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>window_1</name>
+				<name>window_2</name>
                 <color>icon</color>
 			</icon>
             <icon id="l3">
