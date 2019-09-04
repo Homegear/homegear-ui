@@ -16,7 +16,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>light_on_1</name>
+				<name>light_dim_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
