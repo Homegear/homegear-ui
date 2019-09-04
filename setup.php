@@ -164,16 +164,13 @@
 
         if(isset($_GET["deleteUIE"])){
             $CurrentUiElements = $hg->getAllUiElements("en-US");
-            $CurrentUiElementsCount = count($CurrentUiElements);
-            
-            $allInterfaceData["removeUiElement"]["Count"] = $CurrentUiElementsCount;
-            if($CurrentUiElementsCount > 0){
-                for($i = 1; $i <= $CurrentUiElementsCount + 1; $i++){
+            if(is_array($CurrentUiElements)){
+                foreach($CurrentUiElements as $value){
                     try {
-                        $allInterfaceData["removeUiElement"][$i] = $hg->removeUiElement($i);
+                        $allInterfaceData["removeUiElement"][$value["databaseId"]] = $hg->removeUiElement($value["databaseId"]);
                     }
                     catch (\Homegear\HomegearException $e) {
-                        $allInterfaceData["removeUiElement"][$i]["error"] =  $e->getMessage();
+                        $allInterfaceData["removeUiElement"][$value["databaseId"]]["error"] =  $e->getMessage();
                         $hg->log(2, 'Homegear Exception catched. ' .
                                                "Code: {$e->getCode()} " .
                                             "Message: {$e->getMessage()}");
