@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.heatingWindow</uniqueUiElementId>
 		<type>simple</type>
 		<control>heatingWindow</control>
-        <role>0x201000</role>
+        <role>301002</role>
 		<texts>
 			<text id="title">
 				<content>Fenster</content>
@@ -72,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

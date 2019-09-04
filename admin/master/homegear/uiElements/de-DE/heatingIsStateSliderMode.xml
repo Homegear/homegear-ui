@@ -4,6 +4,7 @@
 		<id>Base.heatingIsStateSliderMode</id>
         <control>heatingIsStateSliderMode</control>
 		<type>complex</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Heizung</content>
@@ -54,8 +55,5 @@
 				<rows>1</rows>
 			</control>
 		</controls>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

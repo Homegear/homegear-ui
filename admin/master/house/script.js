@@ -396,10 +396,10 @@ let ShifAllDevices = {
 
             for (const dev_idx in interfaceData.devices) {
                 let dev = interfaceData.devices[dev_idx];
-                if (!('role' in dev.metadata))
+                if (!('role' in dev))
                     continue;
 
-                const role = dev.metadata.role;
+                const role = dev.role;
                 if (!(role in ret))
                     ret[role] = [];
 

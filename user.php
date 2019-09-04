@@ -81,7 +81,7 @@ class User
         if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
         else if($_SESSION['locale'] == 'en') $_SESSION['locale'] = 'en-US';
         hg_set_user_privileges($_SESSION['user']);
-        
+
         $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
         if(isset($metadata['interface'])) $this->userSettings = array_merge($this->userSettings, $metadata['interface']);
 

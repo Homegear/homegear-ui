@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.heatingSlider</uniqueUiElementId>
 		<type>simple</type>
 		<control>heatingSlider</control>
-        <role>0x201002</role>
+        <role>201002</role>
 		<texts>
 			<text id="title">
 				<content>Set</content>
@@ -47,8 +47,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -4,7 +4,7 @@
 		<id>Base.heatingIsStateSliderModeWindow</id>
 		<type>complex</type>
         <control>heatingIsStateSliderModeWindow</control>
-        <role>0x201000</role>
+        <role>201003</role>
 		<texts>
 			<text id="title">
 				<content>Heating</content>
@@ -61,8 +61,5 @@
 				<rows>1</rows>
 			</control>
 		</controls>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

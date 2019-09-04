@@ -4,6 +4,7 @@
 		<uniqueUiElementId>Base.heatingMode</uniqueUiElementId>
 		<type>simple</type>
 		<control>heatingMode</control>
+		<role>201003</role>
 		<texts>
 			<text id="title">
 				<content>Betriebsmodus</content>
@@ -85,8 +86,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
