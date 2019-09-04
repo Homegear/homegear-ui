@@ -874,7 +874,7 @@
                     }
                 }
             ],
-            "icon": "window_1",
+            "icon": "window_2",
             "invokeOutputs": [
                 {
                     "roleId": 600001,
