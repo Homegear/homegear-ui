@@ -817,13 +817,12 @@ const shif_device = {
 
 
 
-function shif_comps_create(name, l2, l2_only_and_l3) {
+function shif_comps_create(name, l2, l3) {
     const shif_name = 'shif-' + name + '-';
 
     controlComponents[name] = {
-        l2:      Vue.component(shif_name + 'l2',      l2),
-        l2_only: Vue.component(shif_name + 'l2_only', l2_only_and_l3),
-        l3:      Vue.component(shif_name + 'l3',      l2_only_and_l3),
+        l2: Vue.component(shif_name + 'l2', l2),
+        l3: Vue.component(shif_name + 'l3', l3),
     };
 }
 // }}}
