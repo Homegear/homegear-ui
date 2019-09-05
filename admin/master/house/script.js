@@ -148,7 +148,8 @@ function components_create(device, layer) {
             )];
         }
 
-        if (device.controls.length <= 1)
+        if (device.controls.length <= 1 &&
+            (!('l3_force' in device.metadata) || device.metadata.l3_force !== true))
             layer = 'l3';
     }
 
@@ -289,7 +290,9 @@ Vue.component('shif-ctrl-summary', {
                                              {input: keys.input, control: keys.control})];
                 }
 
-                if (device.controls.length <= 1)
+                if (device.controls.length <= 1 &&
+                    (!('l3_force' in device.metadata) ||
+                     device.metadata.l3_force !== true))
                     layer = 'l3';
             }
 
