@@ -2,8 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.socketButton</uniqueUiElementId>
-		<type>simple</type>
 		<control>socketButton</control>
+		<type>simple</type>
+		<role>400001</role>
 		<texts>
 			<text id="title">
 				<content>Button</content>
@@ -72,7 +73,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>400001</role>
+            <l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

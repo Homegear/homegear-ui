@@ -2,15 +2,16 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingButtonsSingleStep</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingButtonsSingleStep</control>
+		<type>simple</type>
+    	<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Button</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -200,8 +201,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

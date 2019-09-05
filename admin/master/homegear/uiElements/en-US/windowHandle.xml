@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.windowHandle</uniqueUiElementId>
-		<type>simple</type>
 		<control>windowHandle</control>
-        <role>0x301002</role>
+		<type>simple</type>
+        <role>301002</role>
 		<texts>
 			<text id="title">
 				<content>State</content>
@@ -101,7 +101,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>301002</role>
+            <l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.doorHandle</uniqueUiElementId>
-		<type>simple</type>
 		<control>doorHandle</control>
-        <role>0x301001</role>
+		<type>simple</type>
+        <role>301001</role>
 		<texts>
 			<text id="title">
 				<content>State</content>
@@ -101,7 +101,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>301001</role>
+            <l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

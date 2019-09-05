@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<id>Base.humidity</id>
-		<type>simple</type>
+		<uniqueUiElementId>Base.humidity</uniqueUiElementId>
 		<control>humidity</control>
+		<type>simple</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Humidity</content>
@@ -41,7 +42,7 @@
 			</variable>
 		</variableInputs>
 		<metadata>
-            <role>201000</role>
+            <l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.heatingIsState</uniqueUiElementId>
-		<type>simple</type>
 		<control>heatingIsState</control>
-        <role>0x201001</role>
+		<type>simple</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Temperature</content>
@@ -41,8 +41,5 @@
 				<maximumValue>100.0</maximumValue>
 			</variable>
 		</variableInputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

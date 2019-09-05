@@ -2,8 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingButtonsSingleStep</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingButtonsSingleStep</control>
+		<type>simple</type>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Button</content>
@@ -200,8 +201,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

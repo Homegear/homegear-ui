@@ -4,13 +4,14 @@
 		<id>Base.heatingIsStateSliderMode</id>
         <control>heatingIsStateSliderMode</control>
 		<type>complex</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Heizung</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -55,7 +56,10 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>201000</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

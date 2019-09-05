@@ -50,7 +50,10 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>502000</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

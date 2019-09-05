@@ -2,8 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.temperature</uniqueUiElementId>
-		<type>simple</type>
 		<control>temperature</control>
+		<type>simple</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Temperatur</content>
@@ -42,7 +43,7 @@
 			</variable>
 		</variableInputs>
 		<metadata>
-            <role>201000</role>
+			<l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

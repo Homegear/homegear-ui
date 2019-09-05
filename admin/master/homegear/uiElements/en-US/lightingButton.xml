@@ -2,8 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.lightingButton</uniqueUiElementId>
-		<type>simple</type>
 		<control>lightingButton</control>
+		<type>simple</type>
+		<role>100001</role>
 		<texts>
 			<text id="title">
 				<content>Button</content>
@@ -71,5 +72,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+			<l2_only>true</l2_only>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

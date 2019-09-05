@@ -2,8 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingPosition</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingPosition</control>
+		<type>simple</type>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Position</content>
@@ -46,8 +47,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
