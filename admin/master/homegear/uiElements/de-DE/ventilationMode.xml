@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.ventilationMode</uniqueUiElementId>
 		<type>simple</type>
 		<control>ventilationMode</control>
-        <role>201003</role>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Belüftung</content>
