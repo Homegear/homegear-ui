@@ -541,19 +541,21 @@ let ShifAllDevices = {
 
     template: `
         <div>
-            <template v-if="role in interfaceData.roles" v-for="(devs, role) in map_roles_devs">
-                <shif-ctrl-summary
-                    v-on:role_update="status"
-                    v-bind:actions="interfaceData.roles[role].invokeOutputs"
-                    v-bind:icon="interfaceData.roles[role].icon"
-                    v-bind:title="interfaceData.roles[role].name"
-                    v-bind:devs="devs"
-                    v-bind:role_id="role"
-                    v-bind:status="states[role]">
-                </shif-ctrl-summary>
-            </template>
-            <template v-else>
-                {{ log("This role is not defined: "+role) }}
+            <template v-for="(devs, role) in map_roles_devs">
+                <template v-if="role in interfaceData.roles">
+                    <shif-ctrl-summary
+                        v-on:role_update="status"
+                        v-bind:actions="interfaceData.roles[role].invokeOutputs"
+                        v-bind:icon="interfaceData.roles[role].icon"
+                        v-bind:title="interfaceData.roles[role].name"
+                        v-bind:devs="devs"
+                        v-bind:role_id="role"
+                        v-bind:status="states[role]">
+                    </shif-ctrl-summary>
+                </template>
+                <template v-else>
+                    {{ log("This role is not defined: " + role) }}
+                </template>
             </template>
         </div>
     `,
