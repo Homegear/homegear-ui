@@ -96,12 +96,12 @@
        {
            "name": "HUMIDITY",
            "type": "float",
-           "value": 51.51
+           "value": 51.6233
        },
        {
            "name": "TEMPERATURE",
            "type": "float",
-           "value": 21.21
+           "value": 21.3233
        },
        {
            "name": "REQUEST",
@@ -130,195 +130,6 @@
        }
    ],
    "roles": [
-       {
-           "id": 101000,
-           "metadata": {
-               "ui": {
-                   "simpleCreationInfo": {
-                       "element": "Base.lightingBrightness",
-                       "roleIdsIn": [
-                           [
-                               101000
-                           ]
-                       ],
-                       "roleIdsOut": [
-                           [
-                               101000
-                           ]
-                       ],
-                       "metadata": {
-                           "l2_only": true
-                       }
-                   },
-                   "icon": "light_dim_1",
-                   "invokeOutputs": [
-                       {
-                           "value": 0,
-                           "buttonText": "Zentral aus"
-                       }
-                   ],
-                   "translations": {
-                       "de-DE": {
-                           "0": "aus",
-                           "100": "an"
-                       },
-                       "en-US": {
-                           "0": "off",
-                           "100": "on"
-                       }
-                   }
-               }
-           }
-       },
-       {
-           "id": 502000,
-           "metadata": {
-               "ui": {
-                   "simpleCreationInfo": [
-                       {
-                           "element": "Base.shadingButtonsPositionSlats",
-                           "roleIdsIn": [
-                               [
-                                   502001,
-                                   502003,
-                                   502002
-                               ],
-                               [
-                                   502004
-                               ]
-                           ],
-                           "roleIdsOut": [
-                               [
-                                   502001,
-                                   502003,
-                                   502002
-                               ],
-                               [
-                                   502004
-                               ]
-                           ],
-                           "metadata": {
-                               "l2_action": {
-                                   "control": 0,
-                                   "input": 0
-                               }
-                           }
-                       },
-                       {
-                           "element": "Base.shadingButtonsUpDown",
-                           "roleIdsIn": [
-                               [
-                                   502001
-                               ]
-                           ],
-                           "roleIdsOut": [
-                               [
-                                   502001
-                               ]
-                           ],
-                           "metadata": {
-                               "l2_action": {
-                                   "control": 0,
-                                   "input": 0
-                               }
-                           }
-                       }
-                   ],
-                   "icon": "awning_1",
-                   "invokeOutputs": [
-                       {
-                           "roleId": 502001,
-                           "value": false,
-                           "buttonText": "Zentral auf"
-                       },
-                       {
-                           "roleId": 502002,
-                           "value": true,
-                           "buttonText": "Zentral ab"
-                       }
-                   ],
-                   "translations": {
-                       "de-DE": {
-                           "falseCount": "eingefahren",
-                           "trueCount": "ausgefahren"
-                       },
-                       "en-US": {
-                           "falseCount": "retracted",
-                           "trueCount": "extended"
-                       }
-                   },
-                   "rolesInclude": [
-                       {
-                           "aggregationType": 1,
-                           "roles": [
-                               502004
-                           ]
-                       }
-                   ]
-               }
-           }
-       },
-       {
-           "id": 600000,
-           "metadata": {
-               "ui": {
-                   "simpleCreationInfo": [
-                       {
-                           "element": "Base.windowButtonsUpDown",
-                           "roleIdsIn": [
-                               [
-                                   600001,
-                                   600002
-                               ]
-                           ],
-                           "roleIdsOut": [
-                               [
-                                   600001,
-                                   600002
-                               ]
-                           ],
-                           "metadata": {
-                               "l2_action": {
-                                   "control": 0,
-                                   "input": 0
-                               }
-                           }
-                       }
-                   ],
-                   "icon": "window_1",
-                   "invokeOutputs": [
-                       {
-                           "roleId": 600001,
-                           "value": false,
-                           "buttonText": "Zentral auf"
-                       },
-                       {
-                           "roleId": 600002,
-                           "value": true,
-                           "buttonText": "Zentral ab"
-                       }
-                   ],
-                   "translations": {
-                       "de-DE": {
-                           "falseCount": "eingefahren",
-                           "trueCount": "ausgefahren"
-                       },
-                       "en-US": {
-                           "falseCount": "retracted",
-                           "trueCount": "extended"
-                       }
-                   },
-                   "rolesInclude": [
-                       {
-                           "aggregationType": 1,
-                           "roles": [
-                               600004
-                           ]
-                       }
-                   ]
-               }
-           }
-       }
    ],
    "roles2var": [
        {
@@ -3107,15 +2918,34 @@
                    ]
                ],
                "label": "Tür",
-               "room": 3,
-               "categories": [
-                   4
-               ],
-               "metadata": {
-                   "l2_only": true
-               }
+               "room": 3
            }
        ],
+       [
+        "Base.doorLock",
+        {
+            "inputPeers": [
+                [
+                    {
+                        "peer": 69,
+                        "channel": 1,
+                        "name": "STATE"
+                    }
+                ]
+            ],
+            "outputPeers": [
+                [
+                    {
+                        "peer": 69,
+                        "channel": 1,
+                        "name": "STATE"
+                    }
+                ]
+            ],
+            "label": "Tür Verriegelung",
+            "room": 3
+        }
+    ],
        [
            "Base.ventilationMode",
            {
