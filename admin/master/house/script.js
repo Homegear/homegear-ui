@@ -148,7 +148,7 @@ function components_create(device, layer) {
             )];
         }
 
-        if ('l2_only' in device.metadata)
+        if (device.controls.length <= 1)
             layer = 'l3';
     }
 
@@ -289,7 +289,7 @@ Vue.component('shif-ctrl-summary', {
                                              {input: keys.input, control: keys.control})];
                 }
 
-                if ('l2_only' in device.metadata)
+                if (device.controls.length <= 1)
                     layer = 'l3';
             }
 
