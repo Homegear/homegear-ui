@@ -5,7 +5,7 @@
  * redistribute it and/or modify it under the terms of the GNU Lesser
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * 
+ *
  * Shif is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -79,8 +79,15 @@ if (class_exists('\Homegear\Homegear')) {
     }
     // https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
     //echo json_encode($hg_interfaceData, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
-    echo "var interfaceData = ".json_encode($hg_interfaceData, JSON_PRETTY_PRINT).";"."\n";
-    
+    $json_str = json_encode($hg_interfaceData, JSON_PRETTY_PRINT);
+
+    $pattern1 = '/"(input|control)": \[\n\s+\{\n\s+"UNDEFINED": \[\n\s+"(.*?)"\n\s+\],?\n\s+\}\n\s+\](,?)/s';
+    $pattern2 = '/"(l2_only|l3_force)": \{\n\s+"UNDEFINED": \[\n\s+"(.*?)"\n\s+\]\n\s+\}(,?)/s';
+    $json_str = preg_replace($pattern1, '"$1": $2$3', $json_str);
+    $json_str = preg_replace($pattern2, '"$1": $2$3', $json_str);
+
+    echo "var interfaceData = ".$json_str.";"."\n";
+
 }
 else {
     echo 'console.log("HOMEGEAR PHP API NOT FOUND!");'."\n";
@@ -133,24 +140,24 @@ echo '</script>';
 <?php
   if (file_exists("icons.js")) {
       echo '<script src="icons.js"></script>';
-  } 
+  }
   else {
       die("App icon file is missing!");
   }
 
   if (file_exists("script.vendor.js")) {
       echo '<script src="script.vendor.js"></script>';
-  } 
+  }
   else {
       die("Vendor script file is missing!");
   }
 
   if (file_exists("script.min.js")) {
       echo '<script src="script.min.js"></script>';
-  } 
+  }
   elseif (file_exists("script.js")) {
       echo '<script src="script.js"></script>';
-  } 
+  }
   else {
       die("App script file is missing!");
   }
