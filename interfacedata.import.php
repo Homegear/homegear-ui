@@ -3185,9 +3185,13 @@
                ],
                "label": "OpenWeatherMap",
                "room": 6,
-               "categories": [
-                   5
-               ]
+               "role": 201000,
+               "metadata": {
+                   "l2_action": {
+                       "control": 0,
+                       "input": 0
+                   }
+               }
            }
        ],
        [
