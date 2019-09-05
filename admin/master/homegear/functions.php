@@ -11,7 +11,6 @@ function homegear_init() {
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
-        $hg_cats     = $hg->getCategories($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
     } 
     catch (\Homegear\HomegearException $e) {
@@ -24,15 +23,6 @@ function homegear_init() {
     function array_move_element($key, &$from, &$dest) {
         $dest[$key] = $from[$key];
         unset($from[$key]);
-    }
-
-    function category_parse(&$house, &$category) {
-        $id = $category['ID'];
-
-        $house['categories'][$id]['name'] = $category['NAME'];
-
-        foreach ($category['METADATA'] as $name => &$data)
-            $house['categories'][$id][$name] = $data;
     }
 
     function floor_parse(&$house, &$floor) {
@@ -163,7 +153,6 @@ function homegear_init() {
         'devices'      => [],
         'floors'       => [],
         'rooms'        => [],
-        'categories'   => [],
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
         'menu'         => menu_parse(),
@@ -184,9 +173,6 @@ function homegear_init() {
 
     // will be filled while deviceparsing
     $map_invoke = [];
-
-    foreach ($hg_cats as &$category)
-        category_parse($house, $category);
 
     foreach($hg_roles as $key => $value){
         $aggregated = $hg->aggregateRoles(2, $value["ID"], array());

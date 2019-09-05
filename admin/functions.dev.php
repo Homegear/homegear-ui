@@ -47,7 +47,6 @@ function clean_json_to_js() {
     $interfaceDataOut["mainmenu"] = $interfaceData["mainmenu"];
     $interfaceDataOut["themes"] = $interfaceData["themes"];
     $interfaceDataOut["map_invoke"] = $interfaceData["map_invoke"];
-    $interfaceDataOut["categories"] = $interfaceData["categories"];
     $interfaceDataOut["roles"] = $interfaceData["roles"];
     $interfaceDataOut["options"] = $interfaceData["options"];
     $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
