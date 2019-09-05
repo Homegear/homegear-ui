@@ -100,5 +100,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+			<l3_force>true</l3_force>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

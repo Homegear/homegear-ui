@@ -17,7 +17,7 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>lock1</name>
+				<name>door-handle_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -36,7 +36,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>lock1</name>
+								<name>door-handle_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>lock1</name>
+								<name>door-handle_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
