@@ -24,10 +24,7 @@
                     [
                         100001
                     ]
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                ]
             },
             "icon": "light_on_1",
             "invokeOutputs": [
@@ -66,10 +63,7 @@
                     [
                         101000
                     ]
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                ]
             },
             "icon": "light_dim_1",
             "invokeOutputs": [
@@ -179,7 +173,7 @@
                 },
                 "en-US": {
                     "0": "Frost protection",
-                    "1": "Comffort",
+                    "1": "Comfort",
                     "2": "Eco"
                 }
             },
@@ -224,6 +218,7 @@
                 "max": 30.0,
                 "default": 21.0,
                 "roles": [
+                    201000,
                     201004
                 ]
             },
@@ -234,6 +229,7 @@
                 "max": 30.0,
                 "default": 18.0,
                 "roles": [
+                    201000,
                     201005
                 ]
             },
@@ -244,6 +240,7 @@
                 "max": 30.0,
                 "default": 5.0,
                 "roles": [
+                    201000,
                     201006
                 ]
             },
@@ -258,39 +255,70 @@
                     "eco"
                 ],
                 "roles": [
+                    201000,
                     201003
                 ]
             }
         ],
         "ui": {
-            "simpleCreationInfo": {
-                "element": "Base.heatingIsStateSliderMode",
-                "roleIdsIn": [
-                    [
-                        201001
+            "simpleCreationInfo": [
+                {
+                    "element": "Base.heatingIsStateSliderMode",
+                    "roleIdsIn": [
+                        [
+                            201001
+                        ],
+                        [
+                            201002
+                        ],
+                        [
+                            201003
+                        ]
                     ],
-                    [
-                        201002
-                    ],
-                    [
-                        201003
+                    "roleIdsOut": [
+                        [
+                            201001
+                        ],
+                        [
+                            201002
+                        ],
+                        [
+                            201003
+                        ]
                     ]
-                ],
-                "roleIdsOut": [
-                    [
-                        201001
+                },
+                {
+                    "element": "Base.heatingIsStateSliderModeWindow",
+                    "roleIdsIn": [
+                        [
+                            201001
+                        ],
+                        [
+                            201002
+                        ],
+                        [
+                            201003
+                        ],
+                        [
+                            301002
+                        ]
                     ],
-                    [
-                        201002
-                    ],
-                    [
-                        201003
+                    "roleIdsOut": [
+                        [
+                            201001
+                        ],
+                        [
+                            201002
+                        ],
+                        [
+                            201003
+                        ],
+                        [
+                            301002
+                        ]
                     ]
-                ],
-                "metadata": {
-                    "l2_only": true
                 }
-            },
+            ],
             "translations": {
                 "de-DE": {
                     "0": "Soll"
@@ -425,10 +453,7 @@
                     [
                         301002
                     ]
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                ]
             },
             "icon": "window_1",
             "translations": {
@@ -463,12 +488,9 @@
                     [
                         301003
                     ]
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                ]
             },
-            "icon": "lock_1",
+            "icon": "door-handle_1",
             "translations": {
                 "de-DE": {
                     "0": "verriegelt",
@@ -506,10 +528,7 @@
                     [
                         400001
                     ]
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                ]
             },
             "icon": "socket_1",
             "invokeOutputs": [
@@ -566,13 +585,7 @@
                         [
                             501004
                         ]
-                    ],
-                    "metadata": {
-                        "l2_action": {
-                            "control": 0,
-                            "input": 0
-                        }
-                    }
+                    ]
                 },
                 {
                     "element": "Base.shadingButtonsUpDown",
@@ -587,13 +600,7 @@
                             501001,
                             501002
                         ]
-                    ],
-                    "metadata": {
-                        "l2_action": {
-                            "control": 0,
-                            "input": 0
-                        }
-                    }
+                    ]
                 }
             ],
             "icon": "blind_1",
@@ -721,13 +728,7 @@
                         [
                             502004
                         ]
-                    ],
-                    "metadata": {
-                        "l2_action": {
-                            "control": 0,
-                            "input": 0
-                        }
-                    }
+                    ]
                 },
                 {
                     "element": "Base.shadingButtonsUpDown",
@@ -740,13 +741,7 @@
                         [
                             502001
                         ]
-                    ],
-                    "metadata": {
-                        "l2_action": {
-                            "control": 0,
-                            "input": 0
-                        }
-                    }
+                    ]
                 }
             ],
             "icon": "awning_1",
@@ -865,13 +860,7 @@
                             600001,
                             600002
                         ]
-                    ],
-                    "metadata": {
-                        "l2_action": {
-                            "control": 0,
-                            "input": 0
-                        }
-                    }
+                    ]
                 }
             ],
             "icon": "window_2",
