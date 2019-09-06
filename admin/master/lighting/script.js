@@ -82,3 +82,4 @@ lighting_button_l3.template = `
 `;
 
 shif_comps_create('lightingButton', lighting_button_l2, lighting_button_l3);
+shif_comps_create('refresh', lighting_button_l2, lighting_button_l3);

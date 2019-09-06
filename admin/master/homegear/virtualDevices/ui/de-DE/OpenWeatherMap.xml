@@ -2,13 +2,67 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>254.0x100.Refresh</uniqueUiElementId>
-		<type>simple</type>
 		<control>refresh</control>
+		<type>simple</type>
+		<texts>
+			<text id="title">
+				<content>Erneuern</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>State</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
 		<icons>
-			<icon id="refresh">
-				<name>refresh</name>
+			<icon id="l2">
+				<name>reload_1</name>
+                <color>inactive</color>
 			</icon>
+            <icon id="l3">
+                <name>arrow_right_1</name>
+                <color>iconArrow</color>
+            </icon>
 		</icons>
+		<variableInputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+				<visualizeInOverview>true</visualizeInOverview>
+				<rendering>
+					<condition operator="not" value="0">
+						<icons>
+							<icon id="state">
+								<name>reload_1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>gedrückt</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="e" value="0">
+						<icons>
+							<icon id="state">
+								<name>reload_1</name>
+								<color>inactive</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>ungedrückt</content>
+								<color>inactive</color>
+							</text>
+						</texts>
+					</condition>
+				</rendering>
+			</variable>
+		</variableInputs>
 		<variableOutputs>
 			<variable>
 				<family>254</family>
@@ -20,8 +74,9 @@
 	</homegearUiElement>
 	<homegearUiElement>
 		<id>254.0x100.OpenWeatherMap</id>
-		<type>complex</type>
         <control>OpenWeatherMap</control>
+		<type>complex</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>OpenWeatherMap</content>
@@ -65,12 +120,18 @@
 				<columns>1</columns>
 				<rows>1</rows>
 			</control>
-			<control id="Base.socketButton">
+			<control id="254.0x100.Refresh">
 				<x>0</x>
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
 			</control>
 		</controls>
+		<metadata>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
