@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.windowContact</uniqueUiElementId>
-		<type>simple</type>
 		<control>windowContact</control>
+		<type>simple</type>
         <role>301002</role>
 		<texts>
 			<text id="title">
@@ -72,5 +72,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+            <l2_only>true</l2_only>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

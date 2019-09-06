@@ -2,9 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.lightingBrightness</uniqueUiElementId>
-		<type>simple</type>
 		<control>lightingBrightness</control>
-		<role>100001</role>
+		<type>simple</type>
+		<role>101000</role>
 		<texts>
 			<text id="title">
 				<content>Helligkeit</content>

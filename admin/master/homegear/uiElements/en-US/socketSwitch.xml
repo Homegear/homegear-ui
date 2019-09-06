@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.socketSwitch</uniqueUiElementId>
-		<type>simple</type>
 		<control>socketSwitch</control>
+		<type>simple</type>
         <role>400001</role>
 		<texts>
 			<text id="title">
@@ -72,5 +72,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+            <l2_only>true</l2_only>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

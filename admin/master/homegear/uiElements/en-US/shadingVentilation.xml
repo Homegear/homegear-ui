@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingVentilation</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingVentilation</control>
+		<type>simple</type>
 		<role>501000</role>
 		<texts>
 			<text id="title">

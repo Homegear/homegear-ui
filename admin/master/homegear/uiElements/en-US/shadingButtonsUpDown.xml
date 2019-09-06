@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingButtonsUpDown</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingButtonsUpDown</control>
+		<type>simple</type>
 		<role>501000</role>
 		<texts>
 			<text id="title">

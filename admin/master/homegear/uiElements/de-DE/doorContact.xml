@@ -2,16 +2,16 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.doorContact</uniqueUiElementId>
-		<type>simple</type>
 		<control>doorContact</control>
+		<type>simple</type>
 		<role>301001</role>
 		<texts>
 			<text id="title">
-				<content>State</content>
+				<content>Status</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -72,5 +72,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+            <l2_only>true</l2_only>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

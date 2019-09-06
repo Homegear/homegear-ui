@@ -61,5 +61,11 @@
 				<rows>1</rows>
 			</control>
 		</controls>
+		<metadata>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.windowPosition</uniqueUiElementId>
-		<type>simple</type>
 		<control>windowPosition</control>
+		<type>simple</type>
 		<role>600000</role>
 		<texts>
 			<text id="title">

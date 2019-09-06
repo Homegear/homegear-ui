@@ -2,22 +2,22 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.windowButtonsUpDown</uniqueUiElementId>
-		<type>simple</type>
 		<control>windowButtonsUpDown</control>
+		<type>simple</type>
 		<role>600000</role>
 		<texts>
 			<text id="title">
-				<content>Trigger</content>
+				<content>Schalter</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>window_1</name>
+				<name>window_2</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -42,7 +42,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>on</content>
+								<content>an</content>
 								<color>active</color>
 							</text>
 						</texts>
@@ -56,7 +56,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>off</content>
+								<content>aus</content>
 								<color>inactive</color>
 							</text>
 						</texts>
@@ -79,7 +79,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>on</content>
+								<content>an</content>
 								<color>active</color>
 							</text>
 						</texts>
@@ -93,7 +93,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>off</content>
+								<content>aus</content>
 								<color>inactive</color>
 							</text>
 						</texts>
@@ -115,5 +115,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+			<l3_force>true</l3_force>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

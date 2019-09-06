@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingPositionSlats</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingPositionSlats</control>
+		<type>simple</type>
 		<role>501000</role>
 		<texts>
 			<text id="title">

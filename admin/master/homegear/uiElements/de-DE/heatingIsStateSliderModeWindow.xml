@@ -2,16 +2,16 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<id>Base.heatingIsStateSliderModeWindow</id>
-		<type>complex</type>
         <control>heatingIsStateSliderModeWindow</control>
-        <role>201003</role>
+		<type>complex</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
-				<content>Heating</content>
+				<content>Heizung</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Heating</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -61,5 +61,11 @@
 				<rows>1</rows>
 			</control>
 		</controls>
+		<metadata>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

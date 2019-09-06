@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.heatingSlider</uniqueUiElementId>
-		<type>simple</type>
 		<control>heatingSlider</control>
-        <role>201002</role>
+		<type>simple</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Set</content>

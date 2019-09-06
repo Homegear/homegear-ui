@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingWindalarm</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingWindalarm</control>
+		<type>simple</type>
         <role>400000</role>
 		<texts>
 			<text id="title">

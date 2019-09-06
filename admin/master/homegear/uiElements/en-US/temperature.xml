@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.temperature</uniqueUiElementId>
-		<type>simple</type>
 		<control>temperature</control>
+		<type>simple</type>
 		<role>201000</role>
 		<texts>
 			<text id="title">
@@ -42,5 +42,8 @@
 				<maximumValue>100.0</maximumValue>
 			</variable>
 		</variableInputs>
+		<metadata>
+			<l2_only>true</l2_only>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

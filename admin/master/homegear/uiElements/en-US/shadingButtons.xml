@@ -2,8 +2,8 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingButtons</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingButtons</control>
+		<type>simple</type>
 		<role>501000</role>
 		<texts>
 			<text id="title">
@@ -158,5 +158,11 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

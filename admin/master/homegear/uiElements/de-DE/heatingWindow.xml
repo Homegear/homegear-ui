@@ -2,9 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.heatingWindow</uniqueUiElementId>
-		<type>simple</type>
 		<control>heatingWindow</control>
-        <role>301002</role>
+		<type>simple</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Fenster</content>
