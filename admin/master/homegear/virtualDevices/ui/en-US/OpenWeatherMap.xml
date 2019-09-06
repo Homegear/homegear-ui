@@ -89,11 +89,11 @@
 		</texts>
 		<icons>
 			<icon id="weather">
-				<name>weather1</name>
+				<name>weather_1</name>
                 <color>inactive</color>
 			</icon>
 			<icon id="l2">
-				<name>weather1</name>
+				<name>weather_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">

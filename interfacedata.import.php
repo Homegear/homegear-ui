@@ -493,6 +493,12 @@
            "roleId": 201003
        },
        {
+           "deviceId": 78,
+           "channel": 1,
+           "varName": "CONTROL_MODE",
+           "roleId": 201000
+       },
+       {
            "deviceId": 79,
            "channel": 1,
            "varName": "TEMPERATURE",
@@ -509,6 +515,12 @@
            "channel": 1,
            "varName": "CONTROL_MODE",
            "roleId": 201003
+       },
+       {
+           "deviceId": 79,
+           "channel": 1,
+           "varName": "CONTROL_MODE",
+           "roleId": 201000
        },
        {
            "deviceId": 80,
@@ -529,6 +541,12 @@
            "roleId": 201003
        },
        {
+           "deviceId": 80,
+           "channel": 1,
+           "varName": "CONTROL_MODE",
+           "roleId": 201000
+       },
+       {
            "deviceId": 81,
            "channel": 1,
            "varName": "TEMPERATURE",
@@ -545,6 +563,12 @@
            "channel": 1,
            "varName": "CONTROL_MODE",
            "roleId": 201003
+       },
+       {
+           "deviceId": 81,
+           "channel": 1,
+           "varName": "CONTROL_MODE",
+           "roleId": 201000
        },
        {
            "deviceId": 82,
@@ -565,6 +589,12 @@
            "roleId": 201003
        },
        {
+           "deviceId": 82,
+           "channel": 1,
+           "varName": "CONTROL_MODE",
+           "roleId": 201000
+       },
+       {
            "deviceId": 83,
            "channel": 1,
            "varName": "TEMPERATURE",
@@ -581,6 +611,12 @@
            "channel": 1,
            "varName": "CONTROL_MODE",
            "roleId": 201003
+       },
+       {
+           "deviceId": 83,
+           "channel": 1,
+           "varName": "CONTROL_MODE",
+           "roleId": 201000
        },
        {
            "deviceId": 84,
@@ -1968,7 +2004,7 @@
            }
        ],
        [
-           "Base.shadingAwningButtonsPosition",
+           "Base.shadingAwningButtonsPositionWindalarm",
            {
                "inputPeers": [
                    [
@@ -1996,6 +2032,13 @@
                            "peer": 25,
                            "channel": 1,
                            "name": "CURRENT_POSITION"
+                       }
+                   ],
+                   [
+                       {
+                           "peer": 0,
+                           "channel": -1,
+                           "name": "WINDALARM"
                        }
                    ]
                ],
@@ -2025,6 +2068,13 @@
                            "peer": 25,
                            "channel": 1,
                            "name": "CURRENT_POSITION"
+                       }
+                   ],
+                   [
+                       {
+                           "peer": 0,
+                           "channel": -1,
+                           "name": "WINDALARM"
                        }
                    ]
                ],
