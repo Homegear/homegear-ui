@@ -66,11 +66,12 @@ function check_disabled(device, indexes) {
                'value'     in event.condition;
     }
 
+    const ret_enabled = {flag: false};
+
     if (! ('metadata'    in device &&
            'event_hooks' in device.metadata))
-        return false;
+        return ret_enabled;
 
-    let res = false;
     for (let event of device.metadata.event_hooks) {
         if (! check_event_trigger(event) ||
             ! check_event_disable(event, indexes.control) ||
@@ -86,16 +87,22 @@ function check_disabled(device, indexes) {
 
         let devices = interfaceData.map_invoke[trigger[0]][trigger[1]][trigger[2]];
         for (let dev of devices) {
-            res = res || condition_check(condition,
-                                         interfaceData.devices[dev.databaseId]
-                                                      .controls[dev.control]
-                                                      .variableInputs[dev.input]
-                                                      .properties
-                                                      .value);
+            let res = condition_check(condition,
+                                      interfaceData.devices[dev.databaseId]
+                                                   .controls[dev.control]
+                                                   .variableInputs[dev.input]
+                                                   .properties
+                                                   .value);
+            if (res)
+                return {
+                    flag: true,
+                    texts: event.texts,
+                };
         }
+
     }
 
-    return res;
+    return ret_enabled;
 }
 
 function component_create(constructor, data) {
