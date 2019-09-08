@@ -410,10 +410,17 @@ function clone(obj) {
 Vue.component('shif-title', {
     props: {
         classname: String,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
     },
     template: `
         <div class="device_title" v-bind:class="classname">
             <slot></slot>
+            <span v-if="disabled.flag" class="disabled_text">
+                {{ disabled.texts.title }}
+            </span>
         </div>
     `,
 });
@@ -498,7 +505,10 @@ Vue.component('shif-slider', {
         value: Number,
         title: String,
         step:  Number,
-        disabled: Boolean,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
         precision: {
             type: Number,
             default: 0,
@@ -508,13 +518,13 @@ Vue.component('shif-slider', {
     computed: {
         value_formatted: function () {
             return this.float_formatted(this.value, this.precision);
-        }
+        },
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled}">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device slider">
-                <shif-title>{{ title }}</shif-title>
+                <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
 
                 <div class="slider_action">
                     <div class="amount">
@@ -529,7 +539,7 @@ Vue.component('shif-slider', {
                         v-bind:min="min"
                         v-bind:max="max"
                         v-bind:value="value"
-                        v-bind:disabled="disabled"
+                        v-bind:disabled="disabled.flag"
                         v-on:change="$emit('change', parseFloat($event.target.value))"
                         v-on:input="$emit('input', parseFloat($event.target.value))" />
 
@@ -549,12 +559,15 @@ Vue.component('shif-slider', {
 
 
 Vue.component('shif-radio', {
-    props: [
-        'title',
-        'classname',
-        'values',
-        'disabled'
-    ],
+    props: {
+        title:     String,
+        classname: String,
+        values:    Array,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
+    },
 
     computed: {
         identifier: function () {
@@ -563,9 +576,9 @@ Vue.component('shif-radio', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled}">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
-                <shif-title>{{ title }}</shif-title>
+                <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_radio">
                     <template v-for="i in values">
                         <label class="rad">
@@ -574,7 +587,7 @@ Vue.component('shif-radio', {
                                    v-bind:name="identifier"
                                    v-bind:value="i.value"
                                    v-bind:checked="i.selected"
-                                   v-bind:disabled="disabled"
+                                   v-bind:disabled="disabled.flag"
                                    v-on:input="$emit('input', $event.target.value)" />
                             <i></i>
                         </label>
@@ -594,13 +607,16 @@ Vue.component('shif-button', {
             default: '100%',
         },
         classname: String,
-        disabled:  Boolean,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
     },
     template: `
         <div class="control_button"
-             v-bind:class="{[classname]: true, disabled: disabled}"
+             v-bind:class="{[classname]: true, disabled: disabled.flag}"
              v-bind:style="{width}"
-             v-on:click="(!disabled) && $emit('click', 1)">
+             v-on:click="(!disabled.flag) && $emit('click', 1)">
             <slot></slot>
         </div>
     `,
@@ -619,7 +635,10 @@ Vue.component('shif-generic-l2', {
         actions:     Boolean,
         icon_rotate: Boolean,
         accordion:   Boolean,
-        disabled:    Boolean,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
         active:  {
             type: Object,
 
@@ -641,7 +660,7 @@ Vue.component('shif-generic-l2', {
 
     methods: {
         emit: function (key, val) {
-            if (this.disabled)
+            if (this.disabled.flag)
                 return;
 
             if (val === undefined)
@@ -653,7 +672,7 @@ Vue.component('shif-generic-l2', {
 
     template: `
         <div class="device_wrapper"
-             v-bind:class="{disabled: disabled}"
+             v-bind:class="{disabled: disabled.flag}"
              v-on:mousedown="emit('mousedown')"
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
@@ -665,7 +684,7 @@ Vue.component('shif-generic-l2', {
                     </shif-icon>
                 </div>
                 <div class="device_text">
-                    <shif-title>{{ title }}</shif-title>
+                    <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                     <div v-if="place" class="device_location">
                         {{ place }}
                     </div>
