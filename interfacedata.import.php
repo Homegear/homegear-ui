@@ -1497,6 +1497,15 @@
                                 "5": true,
                                 "__dummy__": false
                             },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Windalarm"
+                                },
+                                "en-US": {
+                                    "title": "Windalarm"
+                                }
+                            },
                             "condition": {
                                 "operator": "e",
                                 "value": true
@@ -1760,6 +1769,15 @@
                                "2": true,
                                "__dummy__": false
                            },
+                           "icon": "warning_1",
+                           "translations": {
+                               "de-DE": {
+                                   "title": "Windalarm"
+                               },
+                               "en-US": {
+                                   "title": "Windalarm"
+                               }
+                           },
                            "condition": {
                                "operator": "e",
                                "value": true
@@ -1857,6 +1875,15 @@
                                "0": true,
                                "1": true,
                                "__dummy__": false
+                           },
+                           "icon": "warning_1",
+                           "translations": {
+                               "de-DE": {
+                                   "title": "Windalarm"
+                               },
+                               "en-US": {
+                                   "title": "Windalarm"
+                               }
                            },
                            "condition": {
                                "operator": "e",
@@ -2230,6 +2257,15 @@
                                 "2": true,
                                 "__dummy__": false
                             },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Fenster offen"
+                                },
+                                "en-US": {
+                                    "title": "Window opened"
+                                }
+                            },
                             "condition": {
                                 "operator": "e",
                                 "value": true
@@ -2240,6 +2276,15 @@
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
                             },
                             "condition": {
                                 "operator": "e",
@@ -2312,6 +2357,15 @@
                                 "1": true,
                                 "__dummy__": false
                             },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
                             "condition": {
                                 "operator": "e",
                                 "value": 0
@@ -2382,6 +2436,15 @@
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
                             },
                             "condition": {
                                 "operator": "e",
@@ -2454,6 +2517,15 @@
                                 "1": true,
                                 "__dummy__": false
                             },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
                             "condition": {
                                 "operator": "e",
                                 "value": 0
@@ -2525,6 +2597,15 @@
                                 "1": true,
                                 "__dummy__": false
                             },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
                             "condition": {
                                 "operator": "e",
                                 "value": 0
@@ -2595,6 +2676,15 @@
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
                             },
                             "condition": {
                                 "operator": "e",

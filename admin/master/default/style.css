@@ -144,6 +144,10 @@ img, .video {
   color: #e3a104;
 }
 
+.disabled .disabled_text{
+  color: #e3a104;
+}
+
 .disabled .range,
 .disabled.control_button,
 .disabled .device_radio{

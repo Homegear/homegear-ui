@@ -218,7 +218,8 @@
             "settings.about.table.rights": "Rights",
             "settings.about.table.license": "License",
             "settings.about.table.license.url": "License URL",
-            "logoff": "Logoff"
+            "logoff": "Logoff",
+            "disabled_text": "disabled"
         },
         "de-DE": {
             "login": {
@@ -263,7 +264,8 @@
             "settings.about.table.rights": "Rechte",
             "settings.about.table.license": "Lizenz",
             "settings.about.table.license.url": "Lizenz URL",
-            "logoff": "Abmelden"
+            "logoff": "Abmelden",
+            "disabled_text": "gesperrt"
         }
     },
     "iconFallback": {
