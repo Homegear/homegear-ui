@@ -2109,7 +2109,32 @@
                "room": 7,
                "categories": [
                    2
-               ]
+               ],
+               "metadata": {
+                   "event_hooks": [
+                       {
+                           "trigger": ["0", "-1", "WINDALARM"],
+                           "disable": {
+                               "0": true,
+                               "1": true,
+                               "__dummy__": false
+                           },
+                           "icon": "warning_1",
+                           "translations": {
+                               "de-DE": {
+                                   "title": "Windalarm"
+                               },
+                               "en-US": {
+                                   "title": "Windalarm"
+                               }
+                           },
+                           "condition": {
+                               "operator": "e",
+                               "value": true
+                           }
+                       }
+                   ]
+               }
            }
        ],
        [
@@ -2177,7 +2202,32 @@
                "room": 7,
                "categories": [
                    2
-               ]
+               ],
+               "metadata": {
+                   "event_hooks": [
+                       {
+                           "trigger": ["0", "-1", "WINDALARM"],
+                           "disable": {
+                               "0": true,
+                               "1": true,
+                               "__dummy__": false
+                           },
+                           "icon": "warning_1",
+                           "translations": {
+                               "de-DE": {
+                                   "title": "Windalarm"
+                               },
+                               "en-US": {
+                                   "title": "Windalarm"
+                               }
+                           },
+                           "condition": {
+                               "operator": "e",
+                               "value": true
+                           }
+                       }
+                   ]
+               }
            }
        ],
        [

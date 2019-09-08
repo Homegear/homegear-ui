@@ -20,17 +20,18 @@
     // &action=generateExtensions
     if(file_exists(getcwd()."/interfacedata.php")){
         include(getcwd()."/interfacedata.php");
-        $urlKey = $interfaceData["settings"]["directLoginApiKey"];
+        $interfaceData["options"] = array(
+            "language" => "en-US"
+        );
     }
     else{
         die("No interfaceData file!");
     }
 
-    if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
+    if( (isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["directLoginApiKey"]) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/admin.php");
-            $date = "\n"."SUCCESS: ".date("Y-m-d H:i:s");
-            die($date);
+            die();
         }
 
         if( isset($_GET["origin"]) && $_GET["origin"] == "cli" ){
@@ -46,7 +47,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(isset($_GET["json"])){
         header('Content-Type: application/json; charset=utf-8');
-        die("<pre>".json_encode($interfaceData, JSON_PRETTY_PRINT)."</pre>");
+        die(json_encode($interfaceData, JSON_PRETTY_PRINT));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,36 +55,34 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json-raw"])){
         header('Content-Type: application/json; charset=utf-8');
-        $homegear_json_lang = "en-US";
         try {
             $hg = new \Homegear\Homegear();
             $allInterfaceData = array();
-            $allInterfaceData["Stories"] = $hg->getStories($homegear_json_lang);
-            $allInterfaceData["Rooms"] = $hg->getRooms($homegear_json_lang);
+            $allInterfaceData["Stories"] = $hg->getStories($interfaceData["options"]["language"]);
+            $allInterfaceData["Rooms"] = $hg->getRooms($interfaceData["options"]["language"]);
             $allInterfaceData["Users"] = $hg->listUsers();
             $allInterfaceData["systemVariables"] = $hg->getAllSystemVariables();
-            $allInterfaceData["Roles"] = $hg->getRoles($homegear_json_lang);
-            $allInterfaceData["UiElements"] = $hg->getAllUiElements($homegear_json_lang);
+            $allInterfaceData["Roles"] = $hg->getRoles($interfaceData["options"]["language"]);
+            $allInterfaceData["UiElements"] = $hg->getAllUiElements($interfaceData["options"]["language"]);
             $allInterfaceData["Devices"] = $hg->getAllValues();
-            die("<pre>".json_encode($allInterfaceData, JSON_PRETTY_PRINT)."</pre>");
+            die(json_encode($allInterfaceData, JSON_PRETTY_PRINT));
         }
         catch (\Homegear\HomegearException $e) {
-            echo "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
+            die('{"error": "Exception catched"; "Code": "'.$e->getCode().'", "Message": "'.$e->getMessage().'"}');
         }
-        die();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // homegear json processed
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
+        header('Content-Type: application/json; charset=utf-8');
         if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
             include(getcwd()."/admin/master/homegear/functions.php");
-            header('Content-Type: application/json; charset=utf-8');
-            die("<pre>".json_encode(homegear_init(), JSON_PRETTY_PRINT)."</pre>");
+            die(json_encode(homegear_init(), JSON_PRETTY_PRINT));
         }
         else{
-            die("No homegear functions.php file!");
+            die('{"error": "No homegear functions.php file!"}');
         }
     }
 
@@ -96,7 +95,7 @@
             $hg = new \Homegear\Homegear();
         }
         catch(\Homegear\HomegearException $e) {
-            die("Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage());
+            die('{"error": "Exception catched"; "Code": "'.$e->getCode().'", "Message": "'.$e->getMessage().'"}');
         }
 
         if (file_exists(getcwd()."/interfacedata.import.php")) {
@@ -109,7 +108,7 @@
             $oldInterfaceData = json_decode($importInterfaceDataJson, true);
         }
         else {
-            die("No importInterfaceDataJson set!");
+            die('{"error": "No importInterfaceDataJson set!"}');
         }
 
         $allInterfaceData = array();
@@ -359,20 +358,13 @@
             $allInterfaceData["getAllSystemVariables"] = $hg->getAllSystemVariables();
         }
 
-        echo "\n";
-        echo "<pre>";
-        echo "\n";
-        echo json_encode($allInterfaceData, JSON_PRETTY_PRINT);
-        echo "\n";
-        echo "</pre>";
-        echo "\n";
-        die();
+        die(json_encode($allInterfaceData, JSON_PRETTY_PRINT));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Admin Button
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    $admin_url = 'setup.php?key='.$urlKey;
+    $admin_url = 'setup.php?key='.$interfaceData["settings"]["directLoginApiKey"];
 
 ?>
 
@@ -535,9 +527,8 @@
     <div id="output"></div>
     <script>
         function loadDoc(url, cFunction) {
-          var xhttp;
           document.getElementById("output").innerHTML = '<div class="loader_wrapper"><div class="loader"></div></div>';
-          xhttp=new XMLHttpRequest();
+          var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               cFunction(this);
@@ -548,7 +539,7 @@
         }
         function outputResult(xhttp) {
           console.log(xhttp.responseText);
-          document.getElementById("output").innerHTML = xhttp.responseText;
+          document.getElementById("output").innerHTML = "<pre>"+xhttp.responseText+"</pre>";
         }
     </script>
 </body>

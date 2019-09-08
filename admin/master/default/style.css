@@ -139,11 +139,6 @@ img, .video {
   padding: 1px !important;
 }
 
-.disabled .device_title:after{
-  content: " gesperrt!";
-  color: #e3a104;
-}
-
 .disabled .disabled_text{
   color: #e3a104;
 }
