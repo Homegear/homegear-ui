@@ -12,7 +12,7 @@ function homegear_init() {
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
-    } 
+    }
     catch (\Homegear\HomegearException $e) {
         die( $hg->log(2, 'Homegear Exception catched. ' .
                                "Code: {$e->getCode()} " .
@@ -69,6 +69,24 @@ function homegear_init() {
         unset($dev['type']);
     }
 
+    function device_cleanup_language_disabled(&$dev, $lang) {
+        if (! array_key_exists('metadata', $dev) ||
+            ! array_key_exists('event_hooks', $dev['metadata']))
+            return;
+
+        $event_hooks = &$dev['metadata']['event_hooks'];
+        foreach ($event_hooks as &$event) {
+            if (! array_key_exists('translations', $event))
+                continue;
+
+            $trans    = &$event['translations'];
+            $lang_sel = array_key_exists($lang, $trans) ? $lang : 'en-US';
+
+            $event['texts'] = $trans[$lang_sel];
+            unset($event['translations']);
+        }
+    }
+
     function device_make_complex($dev) {
         // Create an empty grid frame
         $dev['grid'] = null;
@@ -99,7 +117,7 @@ function homegear_init() {
         }
     }
 
-    function device_parse(&$house, &$map_invoke, $dev) {
+    function device_parse(&$house, &$map_invoke, &$dev, $lang) {
         $id = $dev['databaseId'];
 
         // Push device into the room it is located in
@@ -110,6 +128,7 @@ function homegear_init() {
 
         device_values_into_props($dev);
         device_cleanup_type($dev);
+        device_cleanup_language_disabled($dev, $lang);
 
         device_build_invoke_map($map_invoke, $dev, $id);
 
@@ -201,7 +220,7 @@ function homegear_init() {
         room_parse($house, $room);
 
     foreach ($hg_ui_elems as &$dev)
-        device_parse($house, $map_invoke, $dev);
+        device_parse($house, $map_invoke, $dev, $hg_lang);
 
     // Insert the cross references
     house_build_back_refs($house);
