@@ -7,11 +7,11 @@
         <role>400000</role>
 		<texts>
 			<text id="title">
-				<content>Windalarm</content>
+				<content>Alarm</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Windalarm</content>
+				<content>Wind</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>

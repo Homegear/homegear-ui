@@ -1,6 +1,21 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+let shading_windalarm = clone(shif_device);
+shading_windalarm.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="title"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status_minimal"
+                     v-bind:place="place">
+    </shif-generic-l2>
+`;
+
+shif_comps_create('shadingWindalarm', shading_windalarm, shading_windalarm);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 let shading_ventilation_l2 = clone(shif_device);
 shading_ventilation_l2.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
@@ -33,7 +48,6 @@ shading_ventilation_l3.template = `
 `;
 
 shif_comps_create('shadingVentilation', shading_ventilation_l2, shading_ventilation_l3);
-shif_comps_create('shadingWindalarm', shading_ventilation_l2, shading_ventilation_l3);
 
 
 

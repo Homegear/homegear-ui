@@ -7,11 +7,11 @@
         <role>201000</role>
 		<texts>
 			<text id="title">
-				<content>Window</content>
+				<content>Alarm</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Window</content>
+				<content>Fenster</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>

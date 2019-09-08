@@ -87,34 +87,14 @@ shif_comps_create('heatingMode', heating_is_state_l2, heating_mode_l3);
 
 
 
-let heating_window_l2 = clone(shif_device);
-heating_window_l2.methods.change = function(event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
-heating_window_l2.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="dev.label"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status"
-                     v-bind:place="place"
-                     v-bind:actions="true"
-                     v-on:click_icon="change"
-                     v-on:click="level3(device, breadcrumb)">
-    </shif-generic-l2>
-`;
-
-let heating_window_l3 = clone(shif_device);
-heating_window_l3.methods.change = function(event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
-heating_window_l3.template = `
+let heating_window = clone(shif_device);
+heating_window.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:place="place"
                      v-bind:status="status_minimal"
-                     v-on:click="change">
+                     v-bind:place="place">
     </shif-generic-l2>
 `;
 
-shif_comps_create('heatingWindow', heating_window_l2, heating_window_l3);
+shif_comps_create('heatingWindow', heating_window, heating_window);
