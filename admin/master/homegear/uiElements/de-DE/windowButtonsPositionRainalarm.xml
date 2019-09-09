@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
-		<id>Base.windowButtonsPosition</id>
-        <control>windowButtonsPosition</control>
+		<id>Base.windowButtonsPositionRainalarm</id>
+        <control>windowButtonsPositionRainalarm</control>
 		<type>complex</type>
         <role>600000</role>
 		<texts>
@@ -43,6 +43,12 @@
 				<rows>1</rows>
 			</control>
 			<control id="Base.windowPosition">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.windowRainalarm">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
-		<id>Base.windowButtonsPosition</id>
-        <control>windowButtonsPosition</control>
+		<id>Base.heatingIsStateSliderModeWindowHandle</id>
+        <control>heatingIsStateSliderModeWindowHandle</control>
 		<type>complex</type>
-        <role>600000</role>
+        <role>201000</role>
 		<texts>
 			<text id="title">
-				<content>Fenster</content>
+				<content>Heizung</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Fenster</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
-			<icon id="window_2">
-				<name>window_2</name>
-                <color>icon</color>
+			<icon id="temperature">
+				<name>heater_1</name>
+                <color>inactive</color>
 			</icon>
 			<icon id="l2">
-				<name>window_2</name>
-                <color>icon</color>
+				<name>heater_1</name>
+                <color>inactive</color>
 			</icon>
             <icon id="l3">
                 <name>arrow_right_1</name>
@@ -36,13 +36,25 @@
 			<rows>3</rows>
 		</grid>
 		<controls>
-			<control id="Base.windowButtons">
+			<control id="Base.heatingIsState">
 				<x>0</x>
 				<y>0</y>
 				<columns>1</columns>
 				<rows>1</rows>
 			</control>
-			<control id="Base.windowPosition">
+			<control id="Base.heatingSlider">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.heatingMode">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+			</control>
+			<control id="Base.windowHandle">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>

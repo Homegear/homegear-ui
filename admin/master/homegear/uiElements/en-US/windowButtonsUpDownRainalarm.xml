@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<homegearUiElements lang="de-DE">
+<homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<id>Base.windowButtonsPosition</id>
-        <control>windowButtonsPosition</control>
+		<id>Base.windowButtonsUpDownRainalarm</id>
+        <control>windowButtonsUpDownRainalarm</control>
 		<type>complex</type>
         <role>600000</role>
 		<texts>
 			<text id="title">
-				<content>Fenster</content>
+				<content>Window</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Fenster</content>
+				<content>Window</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -36,13 +36,13 @@
 			<rows>3</rows>
 		</grid>
 		<controls>
-			<control id="Base.windowButtons">
+			<control id="Base.windowButtonsUpDown">
 				<x>0</x>
 				<y>0</y>
 				<columns>1</columns>
 				<rows>1</rows>
 			</control>
-			<control id="Base.windowPosition">
+			<control id="Base.windowRainalarm">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>

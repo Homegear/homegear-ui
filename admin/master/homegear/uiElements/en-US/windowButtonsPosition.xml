@@ -7,11 +7,11 @@
         <role>600000</role>
 		<texts>
 			<text id="title">
-				<content>Shading</content>
+				<content>Window</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Shading</content>
+				<content>Window</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
