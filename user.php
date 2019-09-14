@@ -91,6 +91,8 @@ class User
         $this->firstFactorAuthMethods = $this->userSettings['firstFactorAuthMethods'] ?? array();
         $this->secondFactorAuthMethods = $this->userSettings['secondFactorAuthMethods'] ?? array();
 
+        if(!$this->language || $this->language == null) $this->userSettings['language'] = $_SESSION['locale'];
+
         $this->initialized = true;
     }
 

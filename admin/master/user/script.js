@@ -202,9 +202,8 @@ function user_edit_commit() {
     function updateUserSettingsData(data) {
         let newUserSettings = data.result;
 
-        newUserSettings.interface = newUserSettings.interface || {};
-
-        newUserSettings.locale  = interfaceData.options.language;
+        newUserSettings.interface           = newUserSettings.interface || {};
+        newUserSettings.locale              = interfaceData.options.language;
         newUserSettings.interface.language  = interfaceData.options.language;
         newUserSettings.interface.theme     = interfaceData.options.theme;
         newUserSettings.interface.highlight = interfaceData.options.highlight;

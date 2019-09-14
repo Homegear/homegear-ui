@@ -33,8 +33,13 @@ function i18n($langKey){
         $i18nOut = $interfaceData["i18n"][$interfaceData["options"]["language"]];
         $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
-    else if(isset($_SESSION['locale']) && $_SESSION['locale'] != 'en-US'){
+    else if(isset($_SESSION['locale']) && array_key_exists($_SESSION['locale'], $interfaceData["i18n"]) && $_SESSION['locale'] != 'en-US'){
         $i18nOut = $interfaceData["i18n"][$_SESSION['locale']];
+        $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
+    }
+    else if(array_key_exists("language", $interfaceData["settings"]["userDefaults"]) && array_key_exists($interfaceData["settings"]["userDefaults"]["language"], $interfaceData["i18n"]) && $interfaceData["settings"]["userDefaults"]["language"] != 'en-US'){
+        $i18nOut = $interfaceData["settings"]["userDefaults"]["language"];
+        $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else{
         $i18nOut = $interfaceData["i18n"]["en-US"];

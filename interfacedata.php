@@ -14,6 +14,7 @@
         "userDefaults": {
             "theme": "dark",
             "highlight": "#e3a104",
+            "language": "en-US",
             "firstBreadcrumb": "Haus",
             "firstBreadcrumbId": "house",
             "showFloor": true,
