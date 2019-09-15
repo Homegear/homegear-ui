@@ -33,10 +33,6 @@
             include(getcwd()."/admin/admin.php");
             die();
         }
-
-        if( isset($_GET["origin"]) && $_GET["origin"] == "cli" ){
-            die();
-          }
     }
     else{
         die("Access denied!");
@@ -188,6 +184,16 @@
 
         if(isset($_GET["getUIE"])){
             $allInterfaceData["getAllUiElements"] = $hg->getAllUiElements("en-US");
+        }
+
+        if(isset($_GET["getAvailableUIE"])){
+            $availableUiElements = $hg->getAvailableUiElements("en-US");
+            foreach ($availableUiElements as $key => $value) {
+                $allInterfaceData["getAvailableUiElements"][$value["uniqueUiElementId"]] = array (
+                    "role" => $value["role"]
+                );
+            }
+            $allInterfaceData["allAvailableUiElements"] = $availableUiElements;
         }
 
         if(isset($_GET["createUser"])){
@@ -378,14 +384,25 @@
             background: #222;
             color: #fff;
             font-family: Arial;
+            font-size: 14px;
         }
 
         h2, h4{
-            margin-bottom: 5px;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        h2{
+            font-size: 20px;
+        }
+
+        pre{
+            margin: 0;
         }
 
         #adminmenu{
-          width: 300px;
+          width: 240px;
           height: calc(100% - 20px);
           position: fixed;
           display: inline-block;
@@ -411,8 +428,7 @@
         }
 
         .adminButton {
-          width: 100%;
-          max-width: 240px;
+          width: calc(100% - 30px);
           background: #3498db;
           background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
           background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -421,10 +437,10 @@
           background-image: linear-gradient(to bottom, #3498db, #2980b9);
           font-family: Arial;
           color: #ffffff;
-          font-size: 16px;
+          font-size: 14px;
           display: inline-block;
           margin: 3px;
-          padding: 10px 15px 10px 15px;
+          padding: 4px 8px;
           text-decoration: none;
           -webkit-appearance: none;
           -moz-user-select: none;
@@ -462,7 +478,7 @@
         }
 
         #output{
-          width: calc(100% - 330px);
+          width: calc(100% - 280px);
           position: absolute;
           right: 10px;
           display: inline-block;
@@ -513,6 +529,7 @@
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUIE', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getUIE', outputResult)" class="adminButton">list</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIE', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getAvailableUIE', outputResult)" class="adminButton">list available</div>
 
         <h4>User</h4>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUser', outputResult)" class="adminButton">create</div>
