@@ -463,13 +463,6 @@ Vue.component('shif-icon', {
         rotate:    Boolean,
     },
 
-    methods: {
-        log: function (message) {
-            // call in vue.template with: {{ log(src) }}
-            console.log(message);
-        }
-    },
-
     template: `
         <div v-bind:class="classname">
             <template v-if="src in interfaceIcons">
