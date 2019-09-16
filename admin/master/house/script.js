@@ -504,12 +504,6 @@ let ShifAllDevices = {
                 });
             }
         },
-
-        log: function (message) {
-            // call in vue.template with: {{ log(message) }}
-            console.warn(message);
-        }
-
     },
 
     mounted: function () {
