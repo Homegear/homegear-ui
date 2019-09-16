@@ -379,8 +379,7 @@ Vue.component('shif-ctrl-summary', {
                         </component>
 
                         <template v-if="debug">
-                            <pre>{{ dev | pretty }}</pre>
-                            <hr />
+                            {{ dev | pretty | log }}
                         </template>
                     </template>
                 </div>
