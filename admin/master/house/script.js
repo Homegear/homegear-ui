@@ -235,7 +235,15 @@ Vue.mixin({
     filters: {
         pretty: function (val) {
             return JSON.stringify(val, null, 4);
-        }
+        },
+
+        warn: function (val) {
+            console.warn(val);
+        },
+
+        log: function (val) {
+            console.log(val);
+        },
     },
 
     methods: {
