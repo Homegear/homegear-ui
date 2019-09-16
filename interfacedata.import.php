@@ -134,7 +134,66 @@
             "value": false
         }
     ],
-    "roles": [],
+    "roles": [
+        {
+            "id": 600000,
+            "translations": {
+                "en-US": "window",
+                "de-DE": "Fenster"
+            },
+            "ui": {
+                "simpleCreationInfo": [
+                    {
+                        "element": "Base.windowButtonsUpDown",
+                        "roleIdsIn": [
+                            [
+                                600001,
+                                600002
+                            ]
+                        ],
+                        "roleIdsOut": [
+                            [
+                                600001,
+                                600002
+                            ]
+                        ]
+                    }
+                ],
+                "l2_status": false,
+                "icon": "window_2",
+                "invokeOutputs": [
+                    {
+                        "roleId": 600001,
+                        "value": false,
+                        "buttonText": "Zentral auf"
+                    },
+                    {
+                        "roleId": 600002,
+                        "value": true,
+                        "buttonText": "Zentral ab"
+                    }
+                ],
+                "translations": {
+                    "de-DE": {
+                        "falseCount": "eingefahren",
+                        "trueCount": "ausgefahren"
+                    },
+                    "en-US": {
+                        "falseCount": "retracted",
+                        "trueCount": "extended"
+                    }
+                },
+                "rolesInclude": [
+                    {
+                        "aggregationType": 1,
+                        "roles": [
+                            600004
+                        ]
+                    }
+                ]
+            }
+        }    
+    ],
     "roles2var": [
         {
             "deviceId": 0,
@@ -1154,146 +1213,6 @@
             }
         ],
         [
-            "Base.windowButtonsUpDown",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ]
-                ],
-                "label": "Dachflächenfenster",
-                "room": 3,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
-                            "disable": {
-                                "0": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
-            }
-        ],
-        [
-            "Base.windowButtonsUpDownRainalarm",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "RAINALARM"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "RAINALARM"
-                        }
-                    ]
-                ],
-                "label": "Dachflächenfenster Rainalarm",
-                "room": 3,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
-                            "disable": {
-                                "0": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
-            }
-        ],
-        [
             "Base.shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm",
             {
                 "inputPeers": [
@@ -1589,6 +1508,146 @@
             }
         ],
         [
+            "Base.windowButtonsUpDown",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ]
+                ],
+                "label": "Dachflächenfenster",
+                "room": 3,
+                "metadata": {
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        [
+            "Base.windowButtonsUpDownRainalarm",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "label": "Dachflächenfenster Rainalarm",
+                "room": 3,
+                "metadata": {
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        [
             "Base.windowButtonsPosition",
             {
                 "inputPeers": [
@@ -1728,7 +1787,7 @@
                         }
                     ]
                 ],
-                "label": "Fenstermotor",
+                "label": "Fenstermotor Rainalarm",
                 "room": 2,
                 "metadata": {
                     "event_hooks": [

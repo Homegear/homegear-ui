@@ -262,7 +262,9 @@
 
         if(isset($_GET["createRoles"])){
             foreach($oldInterfaceData["roles"] as $key => $value){
-                $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $value["metadata"]);
+                $roleMetadata = $hg->getRoleMetadata($value["id"]);
+                $roleMetadata["ui"] = $value["ui"];
+                $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $roleMetadata);
             }
         }
 
