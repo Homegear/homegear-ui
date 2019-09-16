@@ -339,7 +339,25 @@ Vue.component('shif-ctrl-summary', {
             for (const peer in varInRole)
                 for (const channel in varInRole[peer])
                     for (const name in varInRole[peer][channel]) {
-                        if(varInRole[peer][channel][name].hasOwnProperty('direction') && varInRole[peer][channel][name].direction == 0) continue;
+                        const cur = varInRole[peer][channel][name];
+
+                        if ('direction' in cur && cur.direction === 0)
+                            continue;
+
+                        if (! (peer    in this.interfaceData.map_invoke &&
+                               channel in this.interfaceData.map_invoke[peer] &&
+                               name    in this.interfaceData.map_invoke[peer][channel]))
+                            continue;
+                        const devs = this.interfaceData.map_invoke[peer][channel][name];
+
+                        let disabled = devs.some(dev => {
+                            let control = this.interfaceData.devices[dev.databaseId]
+                                                            .controls[dev.control];
+                            return 'disabled' in control && control.disabled().flag;
+                        });
+                        if (disabled)
+                            continue;
+
                         ops.push({
                             input: {peer, channel, name},
                             value: action.value
