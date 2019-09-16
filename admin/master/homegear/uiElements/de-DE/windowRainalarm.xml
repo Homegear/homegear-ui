@@ -43,7 +43,7 @@
 						<texts>
 							<text id="state">
 								<content>activ</content>
-								<color>active</color>
+								<color>aktiv</color>
 							</text>
 						</texts>
 					</condition>
@@ -57,7 +57,7 @@
 						<texts>
 							<text id="state">
 								<content>inaktiv</content>
-								<color>inactive</color>
+								<color>inaktiv</color>
 							</text>
 						</texts>
 					</condition>
