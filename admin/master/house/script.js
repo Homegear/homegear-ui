@@ -226,6 +226,7 @@ Vue.use({
 Vue.mixin({
     data: function () {
         return  {
+            debug:          false,
             interfaceIcons: icons,
             interfaceData:  interfaceData,
         };
@@ -271,7 +272,6 @@ Vue.component('shif-ctrl-summary', {
 
     data: function () {
         return {
-            debug:        false,
             submenu_show: false,
         };
     },
