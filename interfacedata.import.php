@@ -1232,7 +1232,9 @@
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
-                        },
+                        }
+                    ],
+                    [
                         {
                             "peer": 0,
                             "channel": -1,
@@ -1253,7 +1255,9 @@
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
-                        },
+                        }
+                    ],
+                    [
                         {
                             "peer": 0,
                             "channel": -1,
@@ -1680,11 +1684,13 @@
                             "name": "CURRENT_POSITION"
                         }
                     ],
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "RAINALARM"
-                    }
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
                 ],
                 "outputPeers": [
                     [
@@ -1714,11 +1720,13 @@
                             "name": "CURRENT_POSITION"
                         }
                     ],
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "RAINALARM"
-                    }
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
                 ],
                 "label": "Fenstermotor",
                 "room": 2,
@@ -1727,8 +1735,8 @@
                         {
                             "trigger": [ "0", "-1", "RAINALARM" ],
                             "disable": {
+                                "0": true,
                                 "1": true,
-                                "2": true,
                                 "__dummy__": false
                             },
                             "icon": "warning_1",
