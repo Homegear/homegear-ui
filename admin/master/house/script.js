@@ -338,11 +338,13 @@ Vue.component('shif-ctrl-summary', {
             let ops = [];
             for (const peer in varInRole)
                 for (const channel in varInRole[peer])
-                    for (const name of varInRole[peer][channel])
+                    for (const name in varInRole[peer][channel]) {
+                        if(varInRole[peer][channel][name].hasOwnProperty('direction') && varInRole[peer][channel][name].direction == 0) continue;
                         ops.push({
                             input: {peer, channel, name},
                             value: action.value
                         });
+                    }
 
             this.$homegear.value_set_multi(ops);
         }
@@ -432,17 +434,23 @@ let ShifAllDevices = {
         status_gather_invokes: function (role, role_id) {
             let ret = [{
                 type: get_or_default(role, 'aggregationType', 2),
-                ids:  [role_id],
+                ids:  [{'id':role_id,'direction':0}],
             }];
 
             if (!('rolesInclude' in role))
                 return ret;
 
-            for (const role_inc of role.rolesInclude)
+            for (const role_inc of role.rolesInclude) {
+                let ids = [];
+                for(const index in role_inc.roles) {
+                    ids.push({'id':role_inc.roles[index],'direction':0});
+                }
+
                 ret.push({
                     type: get_or_default(role_inc, 'aggregationType', 2),
-                    ids:  role_inc.roles,
+                    ids:  ids,
                 });
+            }
 
             return ret;
         },

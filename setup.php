@@ -326,7 +326,12 @@
             foreach($oldInterfaceData["roles2var"] as $value){
                 if($value["roleId"]){
                     try {
-                        $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"]);
+                        $directionString = $value['direction'] ?? 'both';
+                        if($directionString == 'in') $direction = 0;
+                        else if($directionString == 'out') $direction = 1;
+                        else $direction = 2; //both
+                        $invert = $value['invert'] ?? false;
+                        $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"], $direction, $invert);
                     }
                     catch(\Homegear\HomegearException $e) {
                         $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();

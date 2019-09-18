@@ -112,8 +112,11 @@ function handle_homegear_update(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        for (const role of input.roles) {
-            app.$root.$emit('role-update', role);
+        for (const roleIndex in input.roles) {
+            let role = input.roles[roleIndex];
+            if(!role.hasOwnProperty('id')) continue;
+            else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
+            app.$root.$emit('role-update', role.id);
         }
     }
 
