@@ -200,11 +200,20 @@ function homegear_init() {
             $house['roles'][$value["ID"]]["name"] = $value["NAME"];
             if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["translations"])){
                 $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"][$hg_lang];
+                unset($value["METADATA"]["ui"]["translations"]);
             }
             else if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"])){
                 $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"]["en-US"];
+                unset($value["METADATA"]["ui"]["translations"]);
             }
-            unset($value["METADATA"]["ui"]["translations"]);
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["label"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["label"])){
+                $house['roles'][$value["ID"]]["name"] = $value["METADATA"]["ui"]["label"][$hg_lang];
+                unset($value["METADATA"]["ui"]["label"]);
+            }
+            else if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["label"])){
+                $house['roles'][$value["ID"]]["name"] = $value["METADATA"]["ui"]["label"]["en-US"];
+                unset($value["METADATA"]["ui"]["label"]);
+            }
             if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
                 $house['roles'][$value["ID"]] = array_replace_recursive($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
             }

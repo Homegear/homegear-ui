@@ -14,3 +14,4 @@ REVISION=$(($REVISION + 1))
 echo $REVISION > $REVISION_FILE
 sed -i "s/\"revision\":.*/\"revision\": ${REVISION},/g" $MANIFEST_FILE
 git add revision.txt
+git add manifest.json
