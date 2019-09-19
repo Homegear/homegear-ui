@@ -90,8 +90,8 @@ function handle_homegear_update(resp) {
     // DEBUG: works as expected
     const peer    = resp.params[1],
           channel = resp.params[2],
-          name    = resp.params[3],
-          value   = resp.params[4];
+          name    = resp.params[3];
+    let   value   = resp.params[4];
 
     if (!(peer    in interfaceData.map_invoke &&
           channel in interfaceData.map_invoke[peer] &&
@@ -107,6 +107,20 @@ function handle_homegear_update(resp) {
                                                .controls[input.control]
                                                .variableInputs))
             continue;
+
+        //Does it improve reaction time to run the loop twice (does the "emit" hang shortly)? If not, only run it once.
+        let invert = false;
+        for (const roleIndex in input.roles) {
+            let role = input.roles[roleIndex];
+            if(!role.hasOwnProperty('id')) continue;
+            else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
+            
+            if(role.hasOwnProperty('invert'))
+            {
+                value = !value;
+                break; //Only invert once
+            }
+        }
 
         interfaceData.devices[input.databaseId]
             .controls[input.control]
