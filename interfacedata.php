@@ -197,7 +197,7 @@
             "settings.user": "User",
             "settings.user.description": "Manage",
             "settings.user.manage": "User Settings",
-            "settings.user.manage.description": "Theme, Colors and other settings",
+            "settings.user.manage.description": "Theme, colors and other settings",
             "settings.user.manage.twofa": "Two-factor authentication",
             "settings.user.manage.registerTwofa": "Register WebAuthn device",
             "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
