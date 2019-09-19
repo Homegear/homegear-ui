@@ -9,7 +9,7 @@
   "start_url": "index.php",
   "display": "fullscreen",
   "orientation": "any",
-  "revision": 95,
+  "revision": 96,
   "icons": [
     {
       "src": "media/logo/icon/smarthome36.png",

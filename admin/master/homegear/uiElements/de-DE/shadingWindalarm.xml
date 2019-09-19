@@ -11,7 +11,7 @@
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Wind</content>
+				<content>Windalarm</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
