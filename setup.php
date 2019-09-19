@@ -346,7 +346,7 @@
                 if(is_array($varInRole)){
                     foreach($varInRole as $deviceid => $deviceid_value){
                         foreach($deviceid_value as $channel => $channel_value){
-                            foreach($channel_value as $var){
+                            foreach($channel_value as $var => $var_value){
                                 $allInterfaceData["removeRolesFromVar"][$role["ID"]][$deviceid][$channel][$var] = $hg->removeRoleFromVariable(intval($deviceid), intval($channel), $var, intval($role["ID"]));
                             }
                         }
