@@ -58,7 +58,8 @@
     <link rel="apple-touch-startup-image" href="media/logo/icon/smarthome128.png">
 <?php
 if (file_exists("style.vendor.css")) {
-    echo '    <link href="style.vendor.css" rel="stylesheet" type="text/css">'."\n";
+    // TODO: https://gtmetrix.com/remove-query-strings-from-static-resources.html
+    echo '    <link href="style.vendor.css?revision='.$interfaceData["manifest"]["revision"].'" rel="stylesheet" type="text/css">'."\n";
 }
 else {
     die("Vendor style file is missing!");
@@ -139,24 +140,24 @@ echo '</script>';
 
 <?php
   if (file_exists("icons.js")) {
-      echo '<script src="icons.js"></script>';
+      echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
   }
   else {
       die("App icon file is missing!");
   }
 
   if (file_exists("script.vendor.js")) {
-      echo '<script src="script.vendor.js"></script>';
+      echo '<script src="script.vendor.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
   }
   else {
       die("Vendor script file is missing!");
   }
 
   if (file_exists("script.min.js")) {
-      echo '<script src="script.min.js"></script>';
+      echo '<script src="script.min.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
   }
   elseif (file_exists("script.js")) {
-      echo '<script src="script.js"></script>';
+      echo '<script src="script.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
   }
   else {
       die("App script file is missing!");
