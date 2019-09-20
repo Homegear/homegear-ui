@@ -13,7 +13,7 @@ function house_level1(){
                 </div>
             `;
 
-        house_level1_content += '<div class="rooms_wrapper"><center>';
+        house_level1_content += '<div class="rooms_wrapper">';
 
         $.each(floorValue.rooms, function(_, roomValue) {
             const floorBreadcrumbName = interfaceData.options.showFloor === true
@@ -34,12 +34,23 @@ function house_level1(){
             `;
         });
 
-        house_level1_content += '</center></div>';
+        house_level1_content += '</div>';
     });
 }
 
 // TODO: Return value?
 house_level1();
+
+function house_level1_fix(){
+    var maxWidth = 0;
+    $('.rooms_wrapper').each(function(){
+        if($(this).width() > maxWidth){
+            maxWidth = $(this).width();
+        }
+    });
+    $('.roomSelectTitle').width(maxWidth);
+    $('.rooms_wrapper').css('display', 'block');
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //

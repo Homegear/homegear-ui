@@ -1,18 +1,11 @@
-@media (min-width: 1024px) {
-	#houseJS {
-		padding-right: 15%;
-		padding-left: 15%;
-	}
-}
-
-@media (min-width: 1900px) {
-	#houseJS {
-		padding-right: 20%;
-		padding-left: 20%;
-	}
+#houseJS {
+	text-align: center;
 }
 
 
+.rooms_wrapper {
+	display: inline-block;
+}
 
 .roomSelectTitle {
 	width: 100%;
@@ -20,8 +13,9 @@
 	color: #fff;
 	font-weight: bold;
 	padding: 30px 0px 22px 0px;
-	display: block;
+	display: inline-block;
 	clear: both;
+	text-align: left;
 }
 
 .roomSelectTitle:first-child {
