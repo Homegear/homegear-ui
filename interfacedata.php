@@ -412,6 +412,12 @@ if(isset($customInterfaceDataJson)) {
     $interfaceData = array_replace_recursive($interfaceData, $customInterfaceData);
 }
 
+if (file_exists("manifest.json")) {
+    $manifestJson = file_get_contents("manifest.json");
+    $manifest = json_decode($manifestJson, true);
+    $interfaceData["manifest"] = $manifest;
+}
+
 function userSettings() {
     global $interfaceData;
     global $user;

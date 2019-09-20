@@ -336,13 +336,13 @@
         {
             "deviceId": 19,
             "channel": 1,
-            "varName": "UP",
+            "varName": "MOVE",
             "roleId": 501001
         },
         {
             "deviceId": 19,
             "channel": 1,
-            "varName": "DOWN",
+            "varName": "STEP",
             "roleId": 501002
         },
         {
