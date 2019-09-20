@@ -66,7 +66,7 @@ else {
 }
 
 echo '<style>'."\n";
-echo userStyle();
+echo userStyle()."\n";
 echo'</style>'."\n";
 
 echo '
@@ -140,32 +140,33 @@ echo '</script>';
 
 <?php
   if (file_exists("icons.js")) {
-      echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
+      echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }
   else {
       die("App icon file is missing!");
   }
 
   if (file_exists("script.vendor.js")) {
-      echo '<script src="script.vendor.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
+      echo '<script src="script.vendor.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }
   else {
       die("Vendor script file is missing!");
   }
 
   if (file_exists("script.min.js")) {
-      echo '<script src="script.min.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
+      echo '<script src="script.min.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }
   elseif (file_exists("script.js")) {
-      echo '<script src="script.js?revision='.$interfaceData["manifest"]["revision"].'"></script>';
+      echo '<script src="script.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }
   else {
       die("App script file is missing!");
   }
 
-  if (isset($javascript_options)) {
-    echo '<script>'.$javascript_options.'</script>';
-  }
+  echo '<script>
+    '.(isset($javascript_options) ? $javascript_options : "").'
+    console.log("UI revision: '.$interfaceData["manifest"]["revision"].'");
+  </script>';
 ?>
 
 </body>
