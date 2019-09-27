@@ -78,15 +78,9 @@ if (class_exists('\Homegear\Homegear')) {
     foreach($interfaceData["i18n"] as $key => $value){
         $hg_interfaceData["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
     }
-    // https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
+    // TODO: https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
     //echo json_encode($hg_interfaceData, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
     $json_str = json_encode($hg_interfaceData, JSON_PRETTY_PRINT);
-
-    $pattern1 = '/"(input|control)": \[\n\s+\{\n\s+"UNDEFINED": \[\n\s+"(.*?)"\n\s+\],?\n\s+\}\n\s+\](,?)/s';
-    $pattern2 = '/"(l2_only|l3_force)": \{\n\s+"UNDEFINED": \[\n\s+"(.*?)"\n\s+\]\n\s+\}(,?)/s';
-    $json_str = preg_replace($pattern1, '"$1": $2$3', $json_str);
-    $json_str = preg_replace($pattern2, '"$1": $2$3', $json_str);
-
     echo "var interfaceData = ".$json_str.";"."\n";
 
 }
@@ -124,21 +118,9 @@ echo '</script>';
     </div>
   </div>
 
-  <div id="inhalt">
-    <div id="house" class="content">
-      <?php echo tabs("".i18n("house.tab.rooms")."*;".i18n("house.tab.devices")."", '{"id":"house"}'); ?>
-      <div id="houseJS" class="tabWrapper activeTab">
-      </div>
-      <div class="tabWrapper">
-        <shif-all-devices></shif-all-devices>
-      </div>
-    </div>
-    <div id="widgets" class="content"></div>
-    <div id="settings" class="content"></div>
-    <div id="log" class="content"></div>
-  </div>
-
-<?php
+<?php 
+  echo content();
+  
   if (file_exists("icons.js")) {
       echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }

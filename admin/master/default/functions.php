@@ -52,67 +52,47 @@ function i18n($langKey){
         return $i18nOut["default"][$langKey];
     }
     else{
-        return "NoTranslation: ".$langKey;
+        return $langKey;
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Tabs
+// content
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function tabs($tabs, $options) {
-  $out = "";
-  $count = 0;
+function content() {
+    global $interfaceData;
+    $out = '<div id="inhalt">'."\n";
+    $activeArrow = '<div class="tab_pfeil"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="200" height="100" viewBox="0, 0, 200, 100"><g id="Ebene_1"><path d="M0,-0 L204,-0 L101.747,100.002" /></g></svg></div>';
 
-  $tabs = explode(";", $tabs);
-
-  $tabsCount = count($tabs);
-  $tabSize = 100 / $tabsCount;
-  
-  if($options != ""){
-      $options = json_decode($options, true);
-  }
-
-  $out .= '
-    <div id="tabs">
-  ';
-
-  foreach($tabs as $tab){
-    if(strpos($tab, '*') !== false){
-      $active = "active";
-      $activeArrow = '<div class="tab_pfeil"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="200" height="100" viewBox="0, 0, 200, 100"><g id="Ebene_1"><path d="M0,-0 L204,-0 L101.747,100.002" /></g></svg></div>';
+    foreach($interfaceData["mainmenu"] as $mainmenu) {
+        $out .= '<div id="'.$mainmenu["id"].'" class="content">'."\n";
+        if (isset($mainmenu["tabs"])) {
+            $out .= '<div id="tabs">'."\n";
+            $tabsCount = count($mainmenu["tabs"]);
+            $tabSize = 100 / $tabsCount;
+            $count = 0;
+            $tabWrappers = null;
+            foreach($mainmenu["tabs"] as $tab) {
+                $out .= '<div id="'.$mainmenu["id"].'_'.$tab["id"].'_button" class="tab button '.(isset($tab["active"]) && $tab["active"] == true ?  "active" : "" ).'" style="width:'.$tabSize.'%;" onclick="showTab(this, '.$count.');">'."\n";
+                $out .= i18n($tab["name"])."\n";
+                $out .= (isset($tab["active"]) && $tab["active"] == true ?  $activeArrow : "" )."\n";
+                $out .= '</div>'."\n";
+                $tabWrappers .= '<div id="'.$mainmenu["id"].'_'.$tab["id"].'" class="tabWrapper '.(isset($tab["active"]) && $tab["active"] == true ?  "activeTab" : "" ).'">'."\n";
+                if (isset($tab["content"])){
+                    $tabWrappers .= $tab["content"]."\n";
+                }
+                $tabWrappers .= '</div>'."\n";
+                $count++;
+            }
+            $out .= '</div>'."\n";
+            $out .= $tabWrappers."\n";
+        }
+        $out .= '</div>'."\n";
     }
-    else{
-      $active = "";
-      $activeArrow = "";
-    }
 
-    $tab = str_replace("*", "", $tab);
-    $tabID = preg_replace('/[^a-zA-Z0-9\']/', '_', $tab);
-    $tabID = strtolower($tabID);
+    $out .= '</div>'."\n";
 
-    if(is_array($options)){
-        $id = 'id="'.$options['id'].'_'.$tabID.'"';
-    }
-    else{
-        $id = "";
-    }
-    
-    $out .= '
-      <div '.$id.' class="tab button '.$active.'" style="width:'.$tabSize.'%;" test="'.$tabsCount.'" onclick="showTab(this, '.$count.');">
-        '.$tab.'
-        '.$activeArrow.'
-      </div>
-
-    ';
-
-    $count++;
-  }
-
-  $out .= '
-    </div>
-  ';
-
-  return $out;
+    return $out;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

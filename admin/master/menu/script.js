@@ -31,7 +31,7 @@ $(document).ready(function(){
     `);
 
     if (interfaceData.options.firstBreadcrumbId == 'house') {
-        $('#houseJS').html(house_level1_content);
+        $('#house_rooms').html(house_level1_content);
         house_level1_fix();
     }
 

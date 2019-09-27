@@ -14799,17 +14799,29 @@
     },
     "mainmenu": [
         {
-            "id": "1",
+            "id": "house",
             "name": "house",
             "icon": "house_1",
             "onclick": "main",
             "onclickOptions": {
                 "name": "house",
                 "content": "house"
-            }
+            },
+            "tabs": [
+                {
+                    "id": "rooms",
+                    "name": "house.tab.rooms",
+                    "active": true
+                },
+                {
+                    "id": "devices",
+                    "name": "house.tab.devices",
+                    "content": "<shif-all-devices></shif-all-devices>"
+                }
+            ]
         },
         {
-            "id": "2",
+            "id": "settings",
             "name": "settings",
             "icon": "settings_1",
             "onclick": "main",
@@ -14817,6 +14829,15 @@
                 "name": "settings",
                 "content": "settings",
                 "menu": "settings"
+            }
+        },
+        {
+            "id": "logoff",
+            "name": "logoff",
+            "icon": "power_1",
+            "onclick": "user_logoff",
+            "onclickOptions": {
+                "name": "logoff"
             }
         }
     ],
