@@ -2,7 +2,7 @@
 // globale Variablen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 var controlComponents = {};
-
+var logFrontend = '';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // write console logs to setting/about/nameClick/log page
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -10,17 +10,42 @@ if (typeof interfaceData.options.consoleLog !== 'undefined' && (interfaceData.op
     console.oldLog = console.log;
     console.log = function(value) {
         console.oldLog(value);
+        viewLog(value);
+    };
 
-        if (value !== null && typeof value === 'object')
-            value = JSON.stringify(value);
+    console.oldWarn = console.warn;
+    console.warn = function(value) {
+        console.oldWarn(value);
+        viewLog(value);
+    };
 
-        $('#log').append(value + '<br/>');
-        $('#log').scrollTop(9999999999);
+    console.oldError = console.error;
+    console.error = function(value) {
+        console.oldError(value);
+        viewLog(value);
+    };
+
+    console.oldInfo = console.info;
+    console.info = function(value) {
+        console.oldInfo(value);
+        viewLog(value);
     };
 }
 else {
     console.oldLog = console.log;
     console.log = function(){};
+}
+
+function viewLog(value) {
+    if (value !== null && typeof value === 'object')
+        value = JSON.stringify(value);
+
+    logFrontend += value + '<br/>';
+
+    if($('#log').length){
+        $('#log').html(logFrontend);
+        $('#log').scrollTop(9999999999);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,7 +288,7 @@ function license() {
         <div class="table1">
             <table>
                 <tr>
-                    <th onclick='main({"name":"Log","content":"log"})'>
+                    <th onclick='content(this, {\"name\":\"Log\",\"content\":\"<div id=log>\"+logFrontend+\"</div>\"})'>
                         ${i18n('settings.about.table.name')}
                     </th>
                     <th>${i18n('settings.about.table.version')}</th>
