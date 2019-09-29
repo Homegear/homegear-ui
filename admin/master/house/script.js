@@ -136,10 +136,8 @@ function component_object(control, device, input, output, is, indexes) {
         output:    output,
         props:     input.properties,
         indexes:   indexes,
-        rendering: input.rendering
+        rendering: input.rendering,
     };
-
-    ret.control.disabled = () => check_disabled(device, indexes);
 
     if (is)
         ret.is = is;
@@ -345,7 +343,6 @@ Vue.component('shif-ctrl-summary', {
                             ? this.interfaceData.roles[action.roleId].varInRole
                             : this.interfaceData.roles[this.role_id].varInRole;
 
-
             let ops = [];
             for (const peer in varInRole)
                 for (const channel in varInRole[peer])
@@ -361,18 +358,24 @@ Vue.component('shif-ctrl-summary', {
                             continue;
                         const devs = this.interfaceData.map_invoke[peer][channel][name];
 
-                        let disabled = devs.some(dev => {
-                            let control = this.interfaceData.devices[dev.databaseId]
-                                                            .controls[dev.control];
-                            return 'disabled' in control && control.disabled().flag;
-                        });
-                        if (disabled)
-                            continue;
+                        const disabled = devs.some(dev => {
+                            const device  = this.interfaceData.devices[dev.databaseId];
+                            const control = device.controls[dev.control];
 
-                        ops.push({
-                            input: {peer, channel, name},
-                            value: action.value
+                            for (const i in control.variableInputs) {
+                                if (check_disabled(device, {control: dev.control, input: i}).flag)
+                                    return true;
+                            }
+
+                            return false;
                         });
+
+
+                        if (! disabled)
+                            ops.push({
+                                input: {peer, channel, name},
+                                value: action.value
+                            });
                     }
 
             this.$homegear.value_set_multi(ops);
