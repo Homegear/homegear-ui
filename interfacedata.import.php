@@ -535,7 +535,8 @@
             "deviceId": 70,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "revernt": true
         },
         {
             "deviceId": 78,
@@ -703,7 +704,8 @@
             "deviceId": 92,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100001
+            "roleId": 100001,
+            "direction": 0
         },
         {
             "deviceId": 93,
@@ -721,7 +723,8 @@
             "deviceId": 92,
             "channel": 1,
             "varName": "LEVEL_FAST",
-            "roleId": 101000
+            "roleId": 101000,
+            "direction": 0
         },
         {
             "deviceId": 93,
