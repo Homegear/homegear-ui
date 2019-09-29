@@ -841,7 +841,7 @@ const shif_device = {
         },
 
         disabled: function () {
-            return this.control.disabled();
+            return check_disabled(this.uiElement, this.indexes);
         },
     },
 };
