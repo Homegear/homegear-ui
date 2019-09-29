@@ -114,6 +114,18 @@ function homegear_init() {
                         'roles'      => $roles
                 ];
             }
+
+            foreach ($control['variableOutputs'] as $key_output => $output) {
+                $roles = $output['roles'] ?? array();
+                $map[$output['peer']]
+                    [$output['channel']]
+                    [$output['name']][] = [
+                        'databaseId' => $id,
+                        'control'    => $key_control,
+                        'input'      => $key_input,
+                        'roles'      => $roles
+                ];
+            }
         }
     }
 
