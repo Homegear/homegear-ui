@@ -42,8 +42,8 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>activ</content>
-								<color>aktiv</color>
+								<content>aktiv</content>
+								<color>active</color>
 							</text>
 						</texts>
 					</condition>
@@ -57,7 +57,7 @@
 						<texts>
 							<text id="state">
 								<content>inaktiv</content>
-								<color>inaktiv</color>
+								<color>inactive</color>
 							</text>
 						</texts>
 					</condition>
