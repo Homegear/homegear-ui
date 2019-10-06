@@ -34,7 +34,7 @@
     <meta name="description" content="Shif" />
     <meta name="publisher" content="Homegear GmbH" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=0.65, minimum-scale = 0.65,  maximum-scale = 0.65, user-scalable=no">
+    <meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=<?php echo $interfaceData["options"]["viewportScale"]; ?>, minimum-scale=<?php echo $interfaceData["options"]["viewportScale"]; ?>,  maximum-scale=<?php echo $interfaceData["options"]["viewportScale"]; ?>, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="application-name" content="Shif">

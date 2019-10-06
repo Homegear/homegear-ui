@@ -21,6 +21,7 @@
             "languageChangeable": true,
             "twofaChangeable": true,
             "consoleLog": false,
+            "viewportScale": 0.65,
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
         }
@@ -442,6 +443,7 @@ function userSettings() {
     $interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
     $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+    $interfaceData["options"]["viewportScale"] = ($user->getSettings()["viewportScale"] ?? $interfaceData["settings"]["userDefaults"]["viewportScale"]);
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
     $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
     $interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
