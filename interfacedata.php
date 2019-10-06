@@ -20,7 +20,7 @@
             "showFloor": true,
             "languageChangeable": true,
             "twofaChangeable": true,
-            "consoleLog": true,
+            "consoleLog": false,
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
         }
