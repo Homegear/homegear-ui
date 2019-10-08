@@ -505,6 +505,11 @@ let ShifAllDevices = {
             const role = interfaceData.roles[role_id];
             const invokes_descs = this.status_gather_invokes(role, role_id);
 
+            if ('l2_status' in role) {
+                this.states[role_id] = [];
+                return;
+            }
+
             for (const invoke_desc of invokes_descs) {
                 this.$homegear.invoke({
                     jsonrpc: '2.0',
@@ -550,6 +555,12 @@ let ShifAllDevices = {
                     }
                 });
             }
+        },
+
+        states_clean: function (role_id) {
+            return this.states[role_id].some(x => x.value !== 0)
+                    ? this.states[role_id]
+                    : [];
         },
     },
 
@@ -601,7 +612,7 @@ let ShifAllDevices = {
                         v-bind:title="interfaceData.roles[role].name"
                         v-bind:devs="devs"
                         v-bind:role_id="role"
-                        v-bind:status="states[role]">
+                        v-bind:status="states_clean(role)">
                     </shif-ctrl-summary>
                 </template>
                 <template v-else>

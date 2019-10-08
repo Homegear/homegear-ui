@@ -14680,6 +14680,7 @@
                 "trueCount": "ausgefahren"
             },
             "icon": "window_2",
+            "l2_status": false,
             "invokeOutputs": [
                 {
                     "buttonText": "Zentral auf",
