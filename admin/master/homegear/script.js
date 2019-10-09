@@ -30,7 +30,7 @@ function homegear_new() {
         (interfaceData.options.websocket_url == 'location.hostname') ? location.hostname : interfaceData.options.websocket_url,
         (interfaceData.options.websocket_port == 'location.port') ? location.port : Number(interfaceData.options.websocket_port),
         homegearRandomUserName(),
-        location.protocol == 'https',
+        location.protocol == 'https:',
         ...arguments
     );
 }
