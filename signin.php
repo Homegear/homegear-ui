@@ -59,6 +59,11 @@ else
   }
 }
 
+if(array_search('login', $user->getFirstFactorAuthMethods(), true) === false)
+{
+  die("Unauthorized.");
+}
+
 $locales = explode(',', explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0]);
 $i18n = $interfaceData['i18n']['en-US'];
 
