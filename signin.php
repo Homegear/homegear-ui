@@ -47,7 +47,7 @@ else
     die();
   }
   else if($result === 1) $loginResult = $result;
-  
+
   if(isset($_POST["username"]) && isset($_POST["password"]) && $_POST["username"] && $_POST["password"])
   {
     $loginResult = $user->login($_POST["username"], urldecode($_POST["password"]));
@@ -59,7 +59,7 @@ else
   }
 }
 
-if(array_search('login', $user->getFirstFactorAuthMethods(), true) === false)
+if(in_array('login', $user->getFirstFactorAuthMethods(), true) === false)
 {
   die("Unauthorized.");
 }

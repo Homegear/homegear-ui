@@ -112,8 +112,12 @@ class User
             if(isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
             {
                 $authorized = $this->certificateLogin();
-                //$this->firstFactorAuthMethods is not set before this point.
-                if(!in_array('certificate', $this->firstFactorAuthMethods, true)) $authorized = -1;
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in certificateLogin().
+                if(!in_array('certificate', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
             }
         }
 
@@ -123,8 +127,12 @@ class User
             if(isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey']))
             {
                 $authorized = $this->oauthLogin();
-                //$this->firstFactorAuthMethods is not set before this point.
-                if(!in_array('oauth', $this->firstFactorAuthMethods, true)) $authorized = -1;
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in oauthLogin().
+                if(!in_array('oauth', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
             }
         }
 
@@ -138,11 +146,15 @@ class User
                 isset($_REQUEST['key']))
             {
                 $authorized = $this->apiKeyLogin();
-                //$this->firstFactorAuthMethods is not set before this point.
-                if(!in_array('apiKey', $this->firstFactorAuthMethods, true)) $authorized = -1;
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in apiKeyLogin().
+                if(!in_array('apiKey', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
             }
         }
-        
+
         if($authorized === -1 && $redirectToLogin)
         {
             header("Location: signin.php");
@@ -392,6 +404,13 @@ class User
         {
         }
         return -1;
+    }
+
+    public function resetSession()
+    {
+        unset($_SESSION['firstFactorAuthorized']);
+        unset($_SESSION['authorized']);
+        unset($_SESSION['user']);
     }
 
     public function logout()

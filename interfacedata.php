@@ -423,6 +423,17 @@ if (file_exists("interfacedata.custom.php")) {
 if(isset($customInterfaceDataJson)) {
     $customInterfaceData = json_decode($customInterfaceDataJson, true);
     $interfaceData = array_replace_recursive($interfaceData, $customInterfaceData);
+
+    //Overwrite auth methods if they exist in custom interface data
+    if(isset($customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods']))
+    {
+        $interfaceData['settings']['userDefaults']['firstFactorAuthMethods'] = $customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods'];
+    }
+
+    if(isset($customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods']))
+    {
+        $interfaceData['settings']['userDefaults']['secondFactorAuthMethods'] = $customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods'];
+    }
 }
 
 if (file_exists("manifest.json")) {
