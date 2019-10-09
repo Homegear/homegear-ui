@@ -68,6 +68,11 @@ class User
             ini_set('session.gc_maxlifetime', 5);
             session_start(array('name' => 'PHPSESSIDUI'));
         }
+
+        $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
+
+        $this->firstFactorAuthMethods = $this->userSettings['firstFactorAuthMethods'] ?? array();
+        $this->secondFactorAuthMethods = $this->userSettings['secondFactorAuthMethods'] ?? array();
     }
 
     private function initialize()
