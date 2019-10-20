@@ -1,28 +1,5 @@
 <?php
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ARRAY PRINT
-// Hilfsfunktion zur lesbaren Darstellung von PHP Arrays
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function print_array($result){
-  echo "<pre>";
-  print_r($result);
-  echo "</pre>";
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// in_array_r rcursive lookup 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function in_array_r($needle, $haystack, $strict = false) {
-    foreach ($haystack as $item) {
-        if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 // i18n
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function i18n($langKey){
@@ -31,10 +8,6 @@ function i18n($langKey){
 
     if(array_key_exists($interfaceData["options"]["language"], $interfaceData["i18n"]) && $interfaceData["options"]["language"] != "en-US"){
         $i18nOut = $interfaceData["i18n"][$interfaceData["options"]["language"]];
-        $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
-    }
-    else if(isset($_SESSION['locale']) && array_key_exists($_SESSION['locale'], $interfaceData["i18n"]) && $_SESSION['locale'] != 'en-US'){
-        $i18nOut = $interfaceData["i18n"][$_SESSION['locale']];
         $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else if(array_key_exists("language", $interfaceData["settings"]["userDefaults"]) && array_key_exists($interfaceData["settings"]["userDefaults"]["language"], $interfaceData["i18n"]) && $interfaceData["settings"]["userDefaults"]["language"] != 'en-US'){
