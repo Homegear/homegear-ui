@@ -454,11 +454,16 @@ Vue.component('shif-status', {
     template: `
         <div class="device_status" v-bind:class="classname">
             <template v-if="key_vals">
-                <span v-for="i in key_vals"
-                    class="device_status_entry">
-                    <span v-if="i.key" class="name">{{ i.key }}:</span>
-                    <span class="value">{{ i.value }}</span>
-                </span>
+                <template v-if="key_vals.length === 0">
+                    <div class="device_status_entry"></div>
+                </template>
+                <template v-else>
+                    <span v-for="i in key_vals"
+                        class="device_status_entry">
+                        <span v-if="i.key" class="name">{{ i.key }}:</span>
+                        <span class="value">{{ i.value }}</span>
+                    </span>
+                </template>
             </template>
             <template v-else>
                 <div class="device_status_entry">
