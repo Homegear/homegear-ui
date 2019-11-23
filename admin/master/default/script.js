@@ -791,7 +791,13 @@ const shif_device = {
         };
     },
 
-    methods: {},
+    methods: {
+        status_minimal: function (descs=true) {
+            const raw = status_impl(this.control);
+
+            return (descs) ? raw : raw.map(x => ({value: x.value}));
+        },
+    },
 
     computed: {
         cond: function () {
@@ -835,10 +841,6 @@ const shif_device = {
                 out = out.concat(status_impl(control));
 
             return out;
-        },
-
-        status_minimal: function () {
-            return status_impl(this.control);
         },
 
         breadcrumb: function () {
