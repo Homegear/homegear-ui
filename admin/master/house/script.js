@@ -148,6 +148,8 @@ function component_object(control, device, input, output, is, indexes) {
 function components_create(device, layer) {
     let out = [];
 
+    // console.log(device.label + ': ' + device.databaseId + ': ' + layer);
+
     if (layer == 'l2' && typeof(device.metadata) == 'object') {
         if ('l2_action' in device.metadata) {
             const keys = device.metadata.l2_action;
@@ -171,6 +173,8 @@ function components_create(device, layer) {
 
     for (let i = 0; i < device.controls.length; ++i) {
         const control = device.controls[i];
+
+        // console.log(device.label + ': ' + device.databaseId + ': ' + layer + ': ' + control.control);
 
         if (!(control.control in controlComponents) ||
             !(layer           in controlComponents[control.control]))
