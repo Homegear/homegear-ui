@@ -6,7 +6,7 @@ shading_windalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status_minimal"
+                     v-bind:status="status_minimal()"
                      v-bind:place="place">
     </shif-generic-l2>
 `;
@@ -41,7 +41,7 @@ shading_ventilation_l3.template = `
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
-                     v-bind:status="status_minimal"
+                     v-bind:status="status_minimal()"
                      v-bind:disabled="disabled"
                      v-on:click="change">
     </shif-generic-l2>
