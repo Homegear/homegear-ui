@@ -94,12 +94,143 @@
     },
     "systemVariables": [
         {
+            "name": "LAST_DATA",
+            "type": "unix_date",
+            "value": 1574254478
+        },
+        {
+            "name": "CITY",
+            "type": "string",
+            "value": "berlin"
+        },
+        {
+            "name": "CITY_LONGITUDE",
+            "type": "float",
+            "value": 7.42
+        },
+        {
+            "name": "CITY_LATITUDE",
+            "type": "float",
+            "value": 47.67
+        },
+        {
+            "name": "SUNRISE",
+            "type": "unix_date",
+            "value": 1574232149
+        },
+        {
+            "name": "SUNSET",
+            "type": "unix_date",
+            "value": 1574264972
+        },
+        {
+            "name": "WEATHER",
+            "type": "string",
+            "value": "Mist"
+        },
+        {
+            "name": "WEATHER_DESCRIPTION",
+            "type": "string",
+            "value": "Trüb"
+        },
+        {
+            "name": "WEATHER_ICON",
+            "type": "string",
+            "value": "50d"
+        },
+        {
+            "name": "WEATHER_ICON_URL",
+            "type": "string",
+            "value": "http://openweathermap.org/img/w/50d.png"
+        },
+        {
+            "name": "PRESSURE",
+            "type": "float",
+            "value": 1014,
+            "unit": "hPa"
+        },
+        {
+            "name": "WIND_SPEED",
+            "type": "float",
+            "value": 2.6,
+            "unit": "meter/sec"
+        },
+        {
+            "name": "WIND_GUST",
+            "type": "float",
+            "value": 0
+        },
+        {
+            "name": "WIND_DIRECTION",
+            "type": "float",
+            "value": 350,
+            "unit": "degrees"
+        },
+        {
+            "name": "RAIN_3H",
+            "type": "float",
+            "value": 0,
+            "unit": "mm"
+        },
+        {
+            "name": "SNOW_3H",
+            "type": "float",
+            "value": 0,
+            "unit": "volume"
+        },
+        {
+            "name": "CLOUD_COVERAGE",
+            "type": "float",
+            "value": 90,
+            "unit": "%"
+        },
+        {
             "name": "HUMIDITY",
+            "type": "float",
+            "value": 51
+        },
+        {
+            "name": "TEMPERATURE",
+            "type": "float",
+            "value": 21
+        },
+        {
+            "name": "HUMIDITY1",
+            "type": "float",
+            "value": 51.6
+        },
+        {
+            "name": "TEMPERATURE1",
+            "type": "float",
+            "value": 21.3
+        },
+        {
+            "name": "HUMIDITY2",
             "type": "float",
             "value": 51.6233
         },
         {
-            "name": "TEMPERATURE",
+            "name": "TEMPERATURE2",
+            "type": "float",
+            "value": 21.3233
+        },
+        {
+            "name": "HUMIDITY3",
+            "type": "float",
+            "value": 51.623
+        },
+        {
+            "name": "TEMPERATURE3",
+            "type": "float",
+            "value": 21.323
+        },
+        {
+            "name": "HUMIDITY4",
+            "type": "float",
+            "value": 51.6233
+        },
+        {
+            "name": "TEMPERATURE4",
             "type": "float",
             "value": 21.3233
         },
@@ -125,6 +256,11 @@
         },
         {
             "name": "RAINALARM",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "LIGHT",
             "type": "bool",
             "value": false
         },
@@ -3466,14 +3602,98 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEMPERATURE"
+                            "name": "TEMPERATURE4"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "HUMIDITY"
+                            "name": "HUMIDITY4"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CLOUD_COVERAGE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LAST_DATA"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "PRESSURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAIN_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SNOW_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNRISE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNSET"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WEATHER"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_DIRECTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_GUST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_SPEED"
                         }
                     ],
                     [
@@ -3489,14 +3709,98 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEMPERATURE"
+                            "name": "TEMPERATURE4"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "HUMIDITY"
+                            "name": "HUMIDITY4"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CLOUD_COVERAGE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LAST_DATA"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "PRESSURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAIN_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SNOW_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNRISE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNSET"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WEATHER"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_DIRECTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_GUST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_SPEED"
                         }
                     ],
                     [
@@ -3559,6 +3863,206 @@
                     ]
                 ],
                 "label": "Feuchte",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE1"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE1"
+                        }
+                    ]
+                ],
+                "label": "Temperatur1",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY1"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY1"
+                        }
+                    ]
+                ],
+                "label": "Feuchte1",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE2"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE2"
+                        }
+                    ]
+                ],
+                "label": "Temperatur2",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY2"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY2"
+                        }
+                    ]
+                ],
+                "label": "Feuchte2",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE3"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE3"
+                        }
+                    ]
+                ],
+                "label": "Temperatur3",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY3"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY3"
+                        }
+                    ]
+                ],
+                "label": "Feuchte3",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE4"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE4"
+                        }
+                    ]
+                ],
+                "label": "Temperatur4",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY4"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY4"
+                        }
+                    ]
+                ],
+                "label": "Feuchte4",
                 "room": 3
             }
         ]
