@@ -92,7 +92,7 @@ heating_window.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status_minimal"
+                     v-bind:status="status_minimal()"
                      v-bind:place="place">
     </shif-generic-l2>
 `;
