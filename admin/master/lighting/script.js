@@ -26,7 +26,7 @@ lighting_switch_l3.template = `
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
-                     v-bind:status="status_minimal"
+                     v-bind:status="status_minimal()"
                      v-on:click="change">
     </shif-generic-l2>
 `;
@@ -74,7 +74,7 @@ lighting_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status_minimal"
+                     v-bind:status="status_minimal()"
                      v-bind:place="place"
                      v-on:mousedown="change($event, true)"
                      v-on:mouseup="change($event, false)">
