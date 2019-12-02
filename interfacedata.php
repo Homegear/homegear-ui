@@ -8,8 +8,7 @@
         "directLoginApiKey": "",
         "homegear": {
             "url": "location.hostname",
-            "port": "location.port",
-            "ssl": true
+            "port": "location.port"
         },
         "userDefaults": {
             "theme": "dark",
@@ -20,7 +19,7 @@
             "showFloor": true,
             "languageChangeable": true,
             "twofaChangeable": true,
-            "consoleLog": false,
+            "consoleLog": true,
             "viewportScale": 0.65,
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
