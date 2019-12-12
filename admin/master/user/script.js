@@ -189,7 +189,7 @@ function user_register_webauthn_device() {
 function user_edit_commit() {
     interfaceData.options.theme     = $('#user_edit #theme').val()     || 'dark';
     interfaceData.options.highlight = $('#user_edit #highlight').val() || '#e3a104';
-    interfaceData.options.language  = $('#user_edit #language').val()  || 'en-US';
+    interfaceData.options.language  = $('#user_edit #language').val() || interfaceData.options.language || 'en-US';
 
     var rpc_obj_get = {
         jsonrpc: '2.0',
