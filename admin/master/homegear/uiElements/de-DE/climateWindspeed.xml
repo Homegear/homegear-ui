@@ -34,8 +34,8 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>false</visualizeInOverview>
-				<unit>%</unit>
+				<visualizeInOverview>true</visualizeInOverview>
+				<unit>meter/sec</unit>
 			</variable>
 		</variableInputs>
 	</homegearUiElement>

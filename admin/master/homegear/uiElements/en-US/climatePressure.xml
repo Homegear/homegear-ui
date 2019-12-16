@@ -35,7 +35,7 @@
 				<channel>*</channel>
 				<name>*</name>
 				<visualizeInOverview>false</visualizeInOverview>
-				<unit>%</unit>
+				<unit>hPa</unit>
 			</variable>
 		</variableInputs>
 	</homegearUiElement>
