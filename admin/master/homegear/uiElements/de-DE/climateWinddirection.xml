@@ -34,7 +34,7 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>false</visualizeInOverview>
+				<visualizeInOverview>true</visualizeInOverview>
 				<unit>°</unit>
 			</variable>
 		</variableInputs>
