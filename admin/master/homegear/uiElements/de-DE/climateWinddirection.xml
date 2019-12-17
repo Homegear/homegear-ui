@@ -15,12 +15,12 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="city">
-				<name>information_1</name>
+			<icon id="main">
+				<name>windhose_1</name>
                 <color>inactive</color>
 			</icon>
 			<icon id="l2">
-				<name>information_1</name>
+				<name>windhose_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">

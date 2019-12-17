@@ -16,13 +16,12 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="temperature">
+			<icon id="main">
 				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
-
 			<icon id="l2">
-				<name>thermomenter1</name>
+				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">

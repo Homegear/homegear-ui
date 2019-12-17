@@ -16,7 +16,7 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="humidity">
+			<icon id="main">
 				<name>waterdrops_1</name>
                 <color>inactive</color>
 			</icon>
