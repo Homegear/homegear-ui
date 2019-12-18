@@ -83,3 +83,30 @@ lighting_button_l3.template = `
 
 shif_comps_create('lightingButton', lighting_button_l2, lighting_button_l3);
 shif_comps_create('refresh', lighting_button_l2, lighting_button_l3);
+
+
+
+let lighting_color_l2 = clone(shif_device);
+lighting_color_l2.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status"
+                     v-bind:place="place"
+                     v-on:click="level3(device, breadcrumb)">
+    </shif-generic-l2>
+`;
+
+let lighting_color_l3 = clone(shif_device);
+lighting_color_l3.methods.change = function(event, down) {
+    homegear.value_set_clickcounter(this, this.output, down);
+}
+lighting_color_l3.template = `
+    <shif-colorpicker v-bind:width="500" 
+                     v-bind:height="520" 
+                     color="#fff" 
+                     style="margin-top: 100px;"
+                     v-on:color:change="set_color" />
+`;
+
+shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
