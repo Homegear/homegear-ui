@@ -101,7 +101,7 @@
         {
             "name": "CITY",
             "type": "string",
-            "value": "berlin"
+            "value": "Berlin"
         },
         {
             "name": "CITY_LONGITUDE",
@@ -265,9 +265,9 @@
             "value": false
         },
         {
-            "name": "LIGHT",
-            "type": "bool",
-            "value": false
+            "name": "COLOR",
+            "type": "string",
+            "value": "#ffffff"
         }
     ],
     "roles": [
@@ -3462,60 +3462,6 @@
             }
         ],
         [
-            "Base.lightingSwitchButtonBrightness",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ]
-                ],
-                "label": "LightComplex",
-                "room": 9,
-                "role": 101000
-            }
-        ],
-        [
             "Base.lightingSwitchBrightness",
             {
                 "inputPeers": [
@@ -3556,9 +3502,16 @@
             }
         ],
         [
-            "Base.lightingSwitchBrightness",
+            "Base.lightingSwitchButtonBrightness",
             {
                 "inputPeers": [
+                    [
+                        {
+                            "peer": 93,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 93,
@@ -3586,12 +3539,88 @@
                         {
                             "peer": 93,
                             "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 93,
+                            "channel": 1,
                             "name": "LEVEL_FAST"
                         }
                     ]
                 ],
-                "label": "LightComplex",
-                "room": 6
+                "label": "LightComplexButton",
+                "room": 9,
+                "role": 101000
+            }
+        ],
+        [
+            "Base.lightingSwitchButtonBrightnessColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "LightComplexColor",
+                "room": 9,
+                "role": 101000
             }
         ],
         [
