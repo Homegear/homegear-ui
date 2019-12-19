@@ -660,6 +660,13 @@ Vue.component('shif-colorpicker', {
         };
     },
 
+    watch: {
+        color: function (color_new) {
+            if (this.handle)
+                this.handle.color.hexString = color_new;
+        },
+    },
+
     mounted: function () {
         this.handle = new iro.ColorPicker(this.$refs.colorpicker, {
             width:         this.width,
