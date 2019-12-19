@@ -106,7 +106,7 @@ lighting_color_l3.template = `
     <shif-colorpicker v-bind:width="500"
                       v-bind:height="520"
                       v-bind:color="props.value"
-                      v-on:color:change="change" />
+                      v-on:input:end="change" />
 `;
 
 shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
