@@ -100,13 +100,12 @@ lighting_color_l2.template = `
 let lighting_color_l3 = clone(shif_device);
 lighting_color_l3.methods.change = function(event, down) {
     homegear.value_set_clickcounter(this, this.output, down);
-}
+};
 lighting_color_l3.template = `
-    <shif-colorpicker v-bind:width="500" 
-                     v-bind:height="520" 
-                     color="#fff" 
-                     style="margin-top: 100px;"
-                     v-on:color:change="set_color" />
+    <shif-colorpicker v-bind:width="500"
+                      v-bind:height="520"
+                      v-bind:color="props.value"
+                      v-on:color:change="(ev) => props.value = ev.hexString" />
 `;
 
 shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
