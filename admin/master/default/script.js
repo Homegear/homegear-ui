@@ -678,8 +678,14 @@ Vue.component('shif-colorpicker', {
         // So we need to back it up first.
         let outer = this;
         this.handle.on('color:change', function (color, changes) {
-            outer.$emit('color:change', {color: color, changes: changes})
+            outer.$emit('color:change', {color: color, changes: changes});
         });
+        this.handle.on('input:start', function (color, changes) {
+            outer.$emit('input:start', {color: color, changes: changes});
+        })
+        this.handle.on('input:end', function (color, changes) {
+            outer.$emit('input:end', {color: color, changes: changes});
+        })
     },
 
     template: `
