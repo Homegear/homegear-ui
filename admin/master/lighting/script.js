@@ -98,14 +98,15 @@ lighting_color_l2.template = `
 `;
 
 let lighting_color_l3 = clone(shif_device);
-lighting_color_l3.methods.change = function(event, down) {
-    homegear.value_set_clickcounter(this, this.output, down);
+lighting_color_l3.methods.change = function(event) {
+    this.props.value = event.color.hexString;
+    homegear.value_set_clickcounter(this, this.output, this.props.value);
 };
 lighting_color_l3.template = `
     <shif-colorpicker v-bind:width="500"
                       v-bind:height="520"
                       v-bind:color="props.value"
-                      v-on:color:change="(ev) => props.value = ev.color.hexString" />
+                      v-on:color:change="change" />
 `;
 
 shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
