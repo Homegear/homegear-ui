@@ -638,6 +638,55 @@ Vue.component('shif-button', {
         </div>
     `,
 });
+
+
+
+Vue.component('shif-colorpicker', {
+    props: {
+        width:  { type: Number, required: true, },
+        height: { type: Number, required: true, },
+        color:  { type: String, required: true, },
+        padding:      { type: Number, default:  1 },
+        borderWidth:  { type: Number, default:  3 },
+        markerRadius: { type: Number, default: 12 },
+        sliderMargin: { type: Number, default: 24 },
+        sliderHeight: { type: Number, default: 36 },
+        borderColor:  { type: String, default: '#fff' },
+    },
+
+    data: function () {
+        return {
+            handle: null,
+        };
+    },
+
+    mounted: function () {
+        this.handle = new iro.ColorPicker(this.$refs.colorpicker, {
+            width:         this.width,
+            height:        this.height,
+            color:         this.color,
+            markerRadius:  this.markerRadius,
+            padding:       this.padding,
+            sliderMargin:  this.sliderMargin,
+            sliderHeight:  this.sliderHeight,
+            borderWidth:   this.borderWidth,
+            borderColor:   this.borderColor,
+            anticlockwise: true,
+        });
+
+        // `on` patches `this`.
+        // So we need to back it up first.
+        let outer = this;
+        this.handle.on('color:change', function (color, changes) {
+            outer.$emit('color:change', {color: color, changes: changes})
+        });
+    },
+
+    template: `
+        <div ref="colorpicker">
+        </div>
+    `
+})
 // }}}
 
 
@@ -864,50 +913,3 @@ function shif_comps_create(name, l2, l3) {
     };
 }
 // }}}
-
-
-
-Vue.component('shif-colorpicker', {
-    props: {
-        width:  { type: Number, required: true, },
-        height: { type: Number, required: true, },
-        color:  { type: String, required: true, },
-        padding:      { type: Number, default:  1 },
-        borderWidth:  { type: Number, default:  3 },
-        markerRadius: { type: Number, default: 12 },
-        sliderMargin: { type: Number, default: 24 },
-        sliderHeight: { type: Number, default: 36 },
-        borderColor:  { type: String, default: '#fff' },
-    },
-
-    data: {
-        handle: null,
-    },
-
-    mounted: function () {
-        this.handle = new iro.ColorPicker(this.$refs.colorpicker, {
-            width:         this.width,
-            height:        this.height,
-            color:         this.color,
-            markerRadius:  this.markerRadius,
-            padding:       this.padding,
-            sliderMargin:  this.sliderMargin,
-            sliderHeight:  this.sliderHeight,
-            borderWidth:   this.borderWidth,
-            borderColor:   this.borderColor,
-            anticlockwise: true,
-        });
-
-        // `on` patches `this`.
-        // So we need to back it up first.
-        let outer = this;
-        this.handle.on('color:change', function (color, changes) {
-            outer.$emit('color:change', {color: color, changes: changes})
-        });
-    },
-
-    template: `
-        <div ref="colorpicker">
-        </div>
-    `
-})
