@@ -16,16 +16,16 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="rolladen1">
-				<name>rolladen1</name>
+			<icon id="blind_1">
+				<name>blind_1</name>
                 <color>icon</color>
 			</icon>
 			<icon id="l2">
-				<name>rolladen1</name>
+				<name>blind_1</name>
                 <color>icon</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -50,7 +50,10 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>501000</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

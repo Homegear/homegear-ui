@@ -2,26 +2,26 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingWindalarm</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingWindalarm</control>
-        <role>0x400000</role>
+		<type>simple</type>
+        <role>400000</role>
 		<texts>
 			<text id="title">
 				<content>Alarm</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Alarm</content>
+				<content>Windalarm</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>windalarm1</name>
+				<name>windhose_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -36,28 +36,28 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>windalarm1</name>
+								<name>windhose_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>on</content>
-								<color>active</color>
+								<content>an</content>
+								<color>aktiv</color>
 							</text>
 						</texts>
 					</condition>
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>windalarm1</name>
+								<name>windhose_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>off</content>
-								<color>inactive</color>
+								<content>aus</content>
+								<color>inaktiv</color>
 							</text>
 						</texts>
 					</condition>
@@ -72,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

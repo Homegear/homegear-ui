@@ -23,85 +23,216 @@
             "id": "1",
             "name": "Abstellraum",
             "floor": "1",
-            "icon": "clean1"
+            "icon": "broom_1"
         },
         "2": {
             "id": "2",
             "name": "Bad",
             "floor": "1",
-            "icon": "wc2"
+            "icon": "bathtube_1"
         },
         "3": {
             "id": "3",
             "name": "Diele",
             "floor": "3",
-            "icon": "floor1"
+            "icon": "floor_1"
         },
         "4": {
             "id": "4",
             "name": "Garage",
             "floor": "4",
-            "icon": "garage1"
+            "icon": "garage_1"
         },
         "5": {
             "id": "5",
             "name": "Gäste WC",
             "floor": "2",
-            "icon": "wc1"
+            "icon": "wc_1"
         },
         "6": {
             "id": "6",
             "name": "Kind",
             "floor": "2",
-            "icon": "player"
+            "icon": "hokeyplayer_1"
         },
         "7": {
             "id": "7",
             "name": "Loggia",
             "floor": "3",
-            "icon": "balcony1"
+            "icon": "balcony_1"
         },
         "8": {
             "id": "8",
             "name": "Lüftung",
             "floor": "4",
-            "icon": "ventilator"
+            "icon": "ventilator_2"
         },
         "9": {
             "id": "9",
             "name": "Schlafen",
             "floor": "1",
-            "icon": "bett1"
+            "icon": "bed_1"
         },
         "10": {
             "id": "10",
             "name": "Technikraum",
             "floor": "4",
-            "icon": "tools"
+            "icon": "tools_1"
         },
         "11": {
             "id": "11",
             "name": "Waschraum",
             "floor": "4",
-            "icon": "waschmaschiene1"
+            "icon": "washer_1"
         },
         "12": {
             "id": "12",
             "name": "Wohnbereich",
             "floor": "1",
-            "icon": "sofa1"
+            "icon": "sofa_1"
         }
     },
     "systemVariables": [
         {
+            "name": "LAST_DATA",
+            "type": "unix_date",
+            "value": 1574254478
+        },
+        {
+            "name": "CITY",
+            "type": "string",
+            "value": "Berlin"
+        },
+        {
+            "name": "CITY_LONGITUDE",
+            "type": "float",
+            "value": 7.42
+        },
+        {
+            "name": "CITY_LATITUDE",
+            "type": "float",
+            "value": 47.67
+        },
+        {
+            "name": "SUNRISE",
+            "type": "unix_date",
+            "value": 1574232149
+        },
+        {
+            "name": "SUNSET",
+            "type": "unix_date",
+            "value": 1574264972
+        },
+        {
+            "name": "WEATHER",
+            "type": "string",
+            "value": "Mist"
+        },
+        {
+            "name": "WEATHER_DESCRIPTION",
+            "type": "string",
+            "value": "Trüb"
+        },
+        {
+            "name": "WEATHER_ICON",
+            "type": "string",
+            "value": "50d"
+        },
+        {
+            "name": "WEATHER_ICON_URL",
+            "type": "string",
+            "value": "http://openweathermap.org/img/w/50d.png"
+        },
+        {
+            "name": "PRESSURE",
+            "type": "float",
+            "value": 1014,
+            "unit": "hPa"
+        },
+        {
+            "name": "WIND_SPEED",
+            "type": "float",
+            "value": 2.6,
+            "unit": "meter/sec"
+        },
+        {
+            "name": "WIND_GUST",
+            "type": "float",
+            "value": 0
+        },
+        {
+            "name": "WIND_DIRECTION",
+            "type": "float",
+            "value": 350,
+            "unit": "degrees"
+        },
+        {
+            "name": "RAIN_3H",
+            "type": "float",
+            "value": 0,
+            "unit": "mm"
+        },
+        {
+            "name": "SNOW_3H",
+            "type": "float",
+            "value": 0,
+            "unit": "volume"
+        },
+        {
+            "name": "CLOUD_COVERAGE",
+            "type": "float",
+            "value": 90,
+            "unit": "%"
+        },
+        {
             "name": "HUMIDITY",
             "type": "float",
-            "value": 51.51
+            "value": 51
         },
         {
             "name": "TEMPERATURE",
             "type": "float",
-            "value": 21.21
+            "value": 21
+        },
+        {
+            "name": "HUMIDITY1",
+            "type": "float",
+            "value": 51.6
+        },
+        {
+            "name": "TEMPERATURE1",
+            "type": "float",
+            "value": 21.3
+        },
+        {
+            "name": "HUMIDITY2",
+            "type": "float",
+            "value": 51.6233
+        },
+        {
+            "name": "TEMPERATURE2",
+            "type": "float",
+            "value": 21.3233
+        },
+        {
+            "name": "HUMIDITY3",
+            "type": "float",
+            "value": 51.623
+        },
+        {
+            "name": "TEMPERATURE3",
+            "type": "float",
+            "value": 21.323
+        },
+        {
+            "name": "HUMIDITY4",
+            "type": "float",
+            "value": 51.6233
+        },
+        {
+            "name": "TEMPERATURE4",
+            "type": "float",
+            "value": 21.3233
         },
         {
             "name": "REQUEST",
@@ -124,487 +255,201 @@
             "value": false
         },
         {
+            "name": "RAINALARM",
+            "type": "bool",
+            "value": false
+        },
+        {
             "name": "LIGHT",
             "type": "bool",
             "value": false
+        },
+        {
+            "name": "COLOR",
+            "type": "string",
+            "value": "#ffffff"
         }
     ],
     "roles": [
         {
-            "id": 100000,
-            "metadata": {
-                "interface": {
-                    "icon": "licht1",
-                    "invokeOutputs": [
-                        {
-                            "value": 0,
-                            "buttonText": "Zentral aus"
-                        }
-                    ],
-                    "translations": {
-                       "de-DE": {
-                         "0": "aus",
-                         "1": "an"
-                       },
-                       "en-US": {
-                         "0": "off",
-                         "1": "on"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201000,
-            "metadata": {
-                "interface": {
-                    "icon": "heater",
-                    "invokeOutputs": [
-                        {
-                            "roleId": 201003,
-                            "value": 0,
-                            "buttonText": "Zentral Frostschutz"
-                        },
-                        {
-                            "roleId": 201003,
-                            "value": 1,
-                            "buttonText": "Zentral Komfort"
-                        },
-                        {
-                            "roleId": 201003,
-                            "value": 2,
-                            "buttonText": "Zentral Spar"
-                        }
-                    ],
-                    "translations": {
-                        "de-DE": {
-                            "0": "Frostschutz",
-                            "1": "Komfort",
-                            "2": "Spar"
-                          },
-                        "en-US": {
-                            "0": "Frost",
-                            "1": "Comfort",
-                            "2": "Spar"
-                        }
-                    },
-                    "rolesInclude": [
-                        {
-                            "aggregationType": 2,
-                            "roles": [
-                                201003
+            "id": 600000,
+            "translations": {
+                "en-US": "window",
+                "de-DE": "Fenster"
+            },
+            "ui": {
+                "simpleCreationInfo": [
+                    {
+                        "element": "Base.windowButtonsUpDown",
+                        "roleIdsIn": [
+                            [
+                                600001,
+                                600002
                             ]
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "id": 201001,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Ist"
-                       },
-                       "en-US": {
-                         "0": "Current"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201002,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Soll"
-                       },
-                       "en-US": {
-                         "0": "Setpoint"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201003,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Frostschutz",
-                         "1": "Komfort",
-                         "2": "Spar"
-                       },
-                       "en-US": {
-                         "0": "Frost protection",
-                         "1": "Comfort",
-                         "2": "Eco"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201004,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Komfort"
-                       },
-                       "en-US": {
-                         "0": "Comfort"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201005,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Spar"
-                       },
-                       "en-US": {
-                         "0": "Eco"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 201006,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Frostschutz"
-                       },
-                       "en-US": {
-                         "0": "Frost protection"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 301001,
-            "metadata": {
-                "interface": {
-                    "icon": "door2",
-                    "translations": {
-                       "de-DE": {
-                         "0": "geschlossen",
-                         "1": "offen"
-                       },
-                       "en-US": {
-                         "0": "closed",
-                         "1": "opened"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 301002,
-            "metadata": {
-                "interface": {
-                    "icon": "fenster1",
-                    "translations": {
-                       "de-DE": {
-                         "0": "geschlossen",
-                         "1": "geöffnet",
-                         "2": "gekippt"
-                       },
-                       "en-US": {
-                         "0": "closed",
-                         "1": "opened",
-                         "2": "tilted"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 400000,
-            "metadata": {
-                "interface": {
-                    "icon": "socket1",
-                    "invokeOutputs": [
-                        {
-                            "value": 0,
-                            "buttonText": "Zentral aus"
-                        }
-                    ],
-                    "translations": {
-                       "de-DE": {
-                         "0": "aus",
-                         "1": "an"
-                       },
-                       "en-US": {
-                         "0": "off",
-                         "1": "on"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 500000,
-            "metadata": {
-                "interface": {
-                    "icon": "rolladen1",
-                    "invokeOutputs": [
-                        {
-                            "roleId": 501003,
-                            "value": 0,
-                            "buttonText": "Zentral auf"
-                        },
-                        {
-                            "roleId": 501003,
-                            "value": 100,
-                            "buttonText": "Zentral ab"
-                        }
-                    ],
-                    "translations": {
-                       "de-DE": {
-                         "falseCount": "eingefahren",
-                         "trueCount": "ausgefahren"
-                       },
-                       "en-US": {
-                         "falseCount": "retracted",
-                         "trueCount": "extended"
-                       }
-                    },
-                    "rolesInclude": [
-                        {
-                            "aggregationType": 1,
-                            "roles": [
-                                501003,
-                                502003
+                        ],
+                        "roleIdsOut": [
+                            [
+                                600001,
+                                600002
                             ]
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "id": 501001,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Hoch"
-                       },
-                       "en-US": {
-                         "0": "Up"
-                       }
+                        ]
                     }
-                }
-            }
-        },
-        {
-            "id": 501002,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Runter"
-                       },
-                       "en-US": {
-                         "0": "Down"
-                       }
+                ],
+                "l2_status": false,
+                "icon": "window_2",
+                "invokeOutputs": [
+                    {
+                        "roleId": 600001,
+                        "value": false,
+                        "buttonText": "Zentral auf"
+                    },
+                    {
+                        "roleId": 600002,
+                        "value": true,
+                        "buttonText": "Zentral ab"
                     }
-                }
-            }
-        },
-        {
-            "id": 501003,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Stop"
-                       },
-                       "en-US": {
-                         "0": "Stop"
-                       }
+                ],
+                "translations": {
+                    "de-DE": {
+                        "falseCount": "eingefahren",
+                        "trueCount": "ausgefahren"
+                    },
+                    "en-US": {
+                        "falseCount": "retracted",
+                        "trueCount": "extended"
                     }
-                }
-            }
-        },
-        {
-            "id": 502001,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "einfahren"
-                       },
-                       "en-US": {
-                         "0": "retract"
-                       }
+                },
+                "rolesInclude": [
+                    {
+                        "aggregationType": 1,
+                        "roles": [
+                            600004
+                        ]
                     }
-                }
+                ]
             }
-        },
-        {
-            "id": 502002,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "ausfahren"
-                       },
-                       "en-US": {
-                         "0": "extend"
-                       }
-                    }
-                }
-            }
-        },
-        {
-            "id": 502003,
-            "metadata": {
-                "interface": {
-                    "translations": {
-                       "de-DE": {
-                         "0": "Stop"
-                       },
-                       "en-US": {
-                         "0": "Stop"
-                       }
-                    }
-                }
-            }
-        }
+        }    
     ],
     "roles2var": [
         {
             "deviceId": 0,
             "channel": -1,
             "varName": "LIGHT",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 1,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 2,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 3,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 4,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 5,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 6,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 7,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 8,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 9,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 10,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 11,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 12,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 13,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 14,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 15,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 16,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 17,
             "channel": 1,
             "varName": "UP",
-            "roleId": 501001
+            "roleId": 600001
         },
         {
             "deviceId": 17,
             "channel": 1,
             "varName": "DOWN",
-            "roleId": 501002
+            "roleId": 600002
         },
         {
             "deviceId": 17,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 600004
         },
         {
             "deviceId": 18,
@@ -622,43 +467,43 @@
             "deviceId": 18,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 19,
             "channel": 1,
-            "varName": "UP",
+            "varName": "MOVE",
             "roleId": 501001
         },
         {
             "deviceId": 19,
             "channel": 1,
-            "varName": "DOWN",
+            "varName": "STEP",
             "roleId": 501002
         },
         {
             "deviceId": 19,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 20,
             "channel": 1,
             "varName": "UP",
-            "roleId": 501001
+            "roleId": 600001
         },
         {
             "deviceId": 20,
             "channel": 1,
             "varName": "DOWN",
-            "roleId": 501002
+            "roleId": 600002
         },
         {
             "deviceId": 20,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 600004
         },
         {
             "deviceId": 21,
@@ -676,7 +521,7 @@
             "deviceId": 21,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 22,
@@ -694,7 +539,7 @@
             "deviceId": 22,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 23,
@@ -712,7 +557,7 @@
             "deviceId": 23,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 24,
@@ -730,7 +575,7 @@
             "deviceId": 24,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 501004
         },
         {
             "deviceId": 25,
@@ -748,7 +593,7 @@
             "deviceId": 25,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 502004
         },
         {
             "deviceId": 26,
@@ -766,7 +611,7 @@
             "deviceId": 26,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501003
+            "roleId": 502004
         },
         {
             "deviceId": 60,
@@ -826,7 +671,8 @@
             "deviceId": 70,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "revernt": true
         },
         {
             "deviceId": 78,
@@ -847,6 +693,12 @@
             "roleId": 201003
         },
         {
+            "deviceId": 78,
+            "channel": 1,
+            "varName": "CONTROL_MODE",
+            "roleId": 201000
+        },
+        {
             "deviceId": 79,
             "channel": 1,
             "varName": "TEMPERATURE",
@@ -863,6 +715,12 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": 201003
+        },
+        {
+            "deviceId": 79,
+            "channel": 1,
+            "varName": "CONTROL_MODE",
+            "roleId": 201000
         },
         {
             "deviceId": 80,
@@ -883,6 +741,12 @@
             "roleId": 201003
         },
         {
+            "deviceId": 80,
+            "channel": 1,
+            "varName": "CONTROL_MODE",
+            "roleId": 201000
+        },
+        {
             "deviceId": 81,
             "channel": 1,
             "varName": "TEMPERATURE",
@@ -899,6 +763,12 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": 201003
+        },
+        {
+            "deviceId": 81,
+            "channel": 1,
+            "varName": "CONTROL_MODE",
+            "roleId": 201000
         },
         {
             "deviceId": 82,
@@ -919,6 +789,12 @@
             "roleId": 201003
         },
         {
+            "deviceId": 82,
+            "channel": 1,
+            "varName": "CONTROL_MODE",
+            "roleId": 201000
+        },
+        {
             "deviceId": 83,
             "channel": 1,
             "varName": "TEMPERATURE",
@@ -935,12 +811,18 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": 201003
+        },
+        {
+            "deviceId": 83,
+            "channel": 1,
+            "varName": "CONTROL_MODE",
+            "roleId": 201000
         },
         {
             "deviceId": 84,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 87,
@@ -952,31 +834,33 @@
             "deviceId": 91,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 400000
+            "roleId": 400001
         },
         {
             "deviceId": 92,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001,
+            "direction": 0
         },
         {
             "deviceId": 93,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 94,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100000
+            "roleId": 100001
         },
         {
             "deviceId": 92,
             "channel": 1,
             "varName": "LEVEL_FAST",
-            "roleId": 101000
+            "roleId": 101000,
+            "direction": 0
         },
         {
             "deviceId": 93,
@@ -1014,10 +898,7 @@
                     ]
                 ],
                 "label": "Licht SystemVar",
-                "room": 3,
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 3
             }
         ],
         [
@@ -1042,13 +923,7 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 3,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 3
             }
         ],
         [
@@ -1073,13 +948,7 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 6,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 6
             }
         ],
         [
@@ -1104,13 +973,7 @@
                     ]
                 ],
                 "label": "Licht Decke",
-                "room": 2,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 2
             }
         ],
         [
@@ -1135,13 +998,7 @@
                     ]
                 ],
                 "label": "Licht Spiegel",
-                "room": 2,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 2
             }
         ],
         [
@@ -1166,13 +1023,7 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 9,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 9
             }
         ],
         [
@@ -1197,13 +1048,7 @@
                     ]
                 ],
                 "label": "Licht c",
-                "room": 12,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -1228,13 +1073,7 @@
                     ]
                 ],
                 "label": "Licht b",
-                "room": 12,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -1259,13 +1098,7 @@
                     ]
                 ],
                 "label": "Licht d",
-                "room": 12,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -1290,13 +1123,7 @@
                     ]
                 ],
                 "label": "Steckdose",
-                "room": 12,
-                "categories": [
-                    7
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -1321,13 +1148,7 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 1,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 1
             }
         ],
         [
@@ -1352,13 +1173,7 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 7,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 7
             }
         ],
         [
@@ -1383,13 +1198,7 @@
                     ]
                 ],
                 "label": "Steckdose",
-                "room": 7,
-                "categories": [
-                    7
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 7
             }
         ],
         [
@@ -1414,13 +1223,7 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 10,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 10
             }
         ],
         [
@@ -1445,13 +1248,7 @@
                     ]
                 ],
                 "label": "Licht Decke",
-                "room": 5,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 5
             }
         ],
         [
@@ -1476,13 +1273,7 @@
                     ]
                 ],
                 "label": "Licht Spiegel",
-                "room": 5,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 5
             }
         ],
         [
@@ -1507,13 +1298,7 @@
                     ]
                 ],
                 "label": "Steckdose",
-                "room": 11,
-                "categories": [
-                    7
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 11
             }
         ],
         [
@@ -1538,13 +1323,7 @@
                     ]
                 ],
                 "label": "Licht Unterschrank",
-                "room": 12,
-                "categories": [
-                    1
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -1569,61 +1348,7 @@
                     ]
                 ],
                 "label": "Steckdose",
-                "room": 4,
-                "categories": [
-                    7
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
-            }
-        ],
-        [
-            "Base.shadingButtonsUpDown",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 17,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ]
-                ],
-                "label": "Dachflächenfenster",
-                "room": 3,
-                "categories": [
-                    2
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "room": 4
             }
         ],
         [
@@ -1811,14 +1536,34 @@
                 ],
                 "label": "Rollladen Windalarm",
                 "room": 6,
-                "categories": [
-                    2
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "2": true,
+                                "3": true,
+                                "4": true,
+                                "5": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Windalarm"
+                                },
+                                "en-US": {
+                                    "title": "Windalarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -1898,20 +1643,151 @@
                     ]
                 ],
                 "label": "Rollladen KNX",
-                "room": 6,
-                "categories": [
-                    2
+                "room": 6
+            }
+        ],
+        [
+            "Base.windowButtonsUpDown",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ]
                 ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ]
+                ],
+                "label": "Dachflächenfenster",
+                "room": 3,
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
         [
-            "Base.shadingButtonsPositionSlats",
+            "Base.windowButtonsUpDownRainalarm",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 17,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "label": "Dachflächenfenster Rainalarm",
+                "room": 3,
+                "metadata": {
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        [
+            "Base.windowButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -1971,16 +1847,111 @@
                         }
                     ]
                 ],
-                "label": "Rollladen",
-                "room": 2,
-                "categories": [
-                    2
+                "label": "Fenstermotor",
+                "room": 2
+            }
+        ],
+        [
+            "Base.windowButtonsPositionRainalarm",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
                 ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 20,
+                            "channel": 1,
+                            "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "label": "Fenstermotor Rainalarm",
+                "room": 2,
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2075,14 +2046,31 @@
                 ],
                 "label": "Rollladen links",
                 "room": 9,
-                "categories": [
-                    2
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "2": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Windalarm"
+                                },
+                                "en-US": {
+                                    "title": "Windalarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2163,14 +2151,30 @@
                 ],
                 "label": "Rollladen rechts",
                 "room": 9,
-                "categories": [
-                    2
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Windalarm"
+                                },
+                                "en-US": {
+                                    "title": "Windalarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2236,16 +2240,7 @@
                     ]
                 ],
                 "label": "Rollladen Wohnen",
-                "room": 12,
-                "categories": [
-                    2
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "room": 12
             }
         ],
         [
@@ -2310,20 +2305,11 @@
                     ]
                 ],
                 "label": "Rollladen Essen",
-                "room": 12,
-                "categories": [
-                    2
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "room": 12
             }
         ],
         [
-            "Base.shadingButtonsPosition",
+            "Base.shadingAwningButtonsPositionWindalarm",
             {
                 "inputPeers": [
                     [
@@ -2351,6 +2337,13 @@
                             "peer": 25,
                             "channel": 1,
                             "name": "CURRENT_POSITION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
                         }
                     ]
                 ],
@@ -2381,23 +2374,67 @@
                             "channel": 1,
                             "name": "CURRENT_POSITION"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
                     ]
                 ],
                 "label": "Markise Wohnen",
                 "room": 7,
-                "categories": [
-                    2
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Windalarm"
+                                },
+                                "en-US": {
+                                    "title": "Windalarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        },
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
         [
-            "Base.shadingButtonsPosition",
+            "Base.shadingAwningButtonsPosition",
             {
                 "inputPeers": [
                     [
@@ -2459,14 +2496,163 @@
                 ],
                 "label": "Markise Essen",
                 "room": 7,
-                "categories": [
-                    2
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Windalarm"
+                                },
+                                "en-US": {
+                                    "title": "Windalarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        },
+                        {
+                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "disable": {
+                                "0": true,
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Regenalarm"
+                                },
+                                "en-US": {
+                                    "title": "Rain alarm"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        [
+            "Base.heatingIsStateSliderModeWindowHandle",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 78,
+                            "channel": 1,
+                            "name": "TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 78,
+                            "channel": 1,
+                            "name": "SETPOINT_TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 78,
+                            "channel": 1,
+                            "name": "CONTROL_MODE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 60,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 78,
+                            "channel": 1,
+                            "name": "TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 78,
+                            "channel": 1,
+                            "name": "SETPOINT_TEMPERATURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 78,
+                            "channel": 1,
+                            "name": "CONTROL_MODE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 60,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "label": "Heizung",
+                "room": 3,
+                "metadata": {
+                    "event_hooks": [
+                        {
+                            "trigger": [ "60", "1", "STATE" ],
+                            "disable": {
+                                "1": true,
+                                "2": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Fenster offen"
+                                },
+                                "en-US": {
+                                    "title": "Window opened"
+                                }
+                            },
+                            "condition": {
+                                "operator": "g",
+                                "value": 0
+                            }
+                        },
+                        {
+                            "trigger": [ "78", "1", "CONTROL_MODE" ],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2476,21 +2662,21 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 78,
+                            "peer": 79,
                             "channel": 1,
                             "name": "TEMPERATURE"
                         }
                     ],
                     [
                         {
-                            "peer": 78,
+                            "peer": 79,
                             "channel": 1,
                             "name": "SETPOINT_TEMPERATURE"
                         }
                     ],
                     [
                         {
-                            "peer": 78,
+                            "peer": 79,
                             "channel": 1,
                             "name": "CONTROL_MODE"
                         }
@@ -2506,21 +2692,21 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 78,
+                            "peer": 79,
                             "channel": 1,
                             "name": "TEMPERATURE"
                         }
                     ],
                     [
                         {
-                            "peer": 78,
+                            "peer": 79,
                             "channel": 1,
                             "name": "SETPOINT_TEMPERATURE"
                         }
                     ],
                     [
                         {
-                            "peer": 78,
+                            "peer": 79,
                             "channel": 1,
                             "name": "CONTROL_MODE"
                         }
@@ -2530,84 +2716,55 @@
                             "peer": 0,
                             "channel": -1,
                             "name": "WINDOWALARM"
-                        }
-                    ]
-                ],
-                "label": "Heizung",
-                "room": 3,
-                "categories": [
-                    5
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    },
-                    "event_hooks": {
-                        "disabled": [1]
-                    } 
-                }
-            }
-        ],
-        [
-            "Base.heatingIsStateSliderMode",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 79,
-                            "channel": 1,
-                            "name": "TEMPERATURE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 79,
-                            "channel": 1,
-                            "name": "SETPOINT_TEMPERATURE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 79,
-                            "channel": 1,
-                            "name": "CONTROL_MODE"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 79,
-                            "channel": 1,
-                            "name": "TEMPERATURE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 79,
-                            "channel": 1,
-                            "name": "SETPOINT_TEMPERATURE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 79,
-                            "channel": 1,
-                            "name": "CONTROL_MODE"
                         }
                     ]
                 ],
                 "label": "Heizung",
                 "room": 6,
-                "categories": [
-                    5
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "79", "1", "CONTROL_MODE" ],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        },
+                        {
+                            "trigger": [ "0", "-1", "WINDOWALARM" ],
+                            "disable": {
+                                "1": true,
+                                "2": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Fenster offen"
+                                },
+                                "en-US": {
+                                    "title": "Window opened"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": true
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2662,14 +2819,29 @@
                 ],
                 "label": "Heizung",
                 "room": 2,
-                "categories": [
-                    5
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "80", "1", "CONTROL_MODE" ],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2724,19 +2896,34 @@
                 ],
                 "label": "Heizung",
                 "room": 9,
-                "categories": [
-                    5
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "81", "1", "CONTROL_MODE" ],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                    ]
                 }
             }
         ],
         [
-            "Base.heatingIsStateSliderMode",
+            "Base.heatingIsStateSliderModeWindowContact",
             {
                 "inputPeers": [
                     [
@@ -2758,6 +2945,13 @@
                             "peer": 82,
                             "channel": 1,
                             "name": "CONTROL_MODE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 87,
+                            "channel": 1,
+                            "name": "STATE"
                         }
                     ]
                 ],
@@ -2782,18 +2976,61 @@
                             "channel": 1,
                             "name": "CONTROL_MODE"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 87,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
                     ]
                 ],
                 "label": "Heizung",
                 "room": 12,
-                "categories": [
-                    5
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "82", "1", "CONTROL_MODE" ],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        },
+                        {
+                            "trigger": [ "87", "1", "STATE" ],
+                            "disable": {
+                                "1": true,
+                                "2": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Fenster offen"
+                                },
+                                "en-US": {
+                                    "title": "Window opened"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2848,14 +3085,29 @@
                 ],
                 "label": "Heizung",
                 "room": 5,
-                "categories": [
-                    5
-                ],
                 "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
+                    "event_hooks": [
+                        {
+                            "trigger": [ "83", "1", "CONTROL_MODE" ],
+                            "disable": {
+                                "1": true,
+                                "__dummy__": false
+                            },
+                            "icon": "warning_1",
+                            "translations": {
+                                "de-DE": {
+                                    "title": "Frostschutz"
+                                },
+                                "en-US": {
+                                    "title": "Frost"
+                                }
+                            },
+                            "condition": {
+                                "operator": "e",
+                                "value": 0
+                            }
+                        }
+                    ]
                 }
             }
         ],
@@ -2881,13 +3133,7 @@
                     ]
                 ],
                 "label": "Fenster Essen",
-                "room": 12,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -2911,14 +3157,8 @@
                         }
                     ]
                 ],
-                "label": "Fenster",
-                "room": 3,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "label": "Fenster Rund",
+                "room": 3
             }
         ],
         [
@@ -2943,13 +3183,7 @@
                     ]
                 ],
                 "label": "Fenster links",
-                "room": 6,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 6
             }
         ],
         [
@@ -2974,13 +3208,7 @@
                     ]
                 ],
                 "label": "Fenster rechts",
-                "room": 6,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 6
             }
         ],
         [
@@ -3005,13 +3233,7 @@
                     ]
                 ],
                 "label": "Fenster Bad",
-                "room": 2,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 2
             }
         ],
         [
@@ -3036,13 +3258,7 @@
                     ]
                 ],
                 "label": "Fenster links",
-                "room": 9,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 9
             }
         ],
         [
@@ -3067,13 +3283,7 @@
                     ]
                 ],
                 "label": "Fenster rechts",
-                "room": 9,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 9
             }
         ],
         [
@@ -3098,13 +3308,7 @@
                     ]
                 ],
                 "label": "Fenster Küche links",
-                "room": 12,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -3129,13 +3333,7 @@
                     ]
                 ],
                 "label": "Fenster Küche rechts",
-                "room": 12,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -3160,13 +3358,7 @@
                     ]
                 ],
                 "label": "Fenster Wohnen",
-                "room": 12,
-                "categories": [
-                    3
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 12
             }
         ],
         [
@@ -3191,13 +3383,7 @@
                     ]
                 ],
                 "label": "Tür",
-                "room": 3,
-                "categories": [
-                    4
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 3
             }
         ],
         [
@@ -3222,13 +3408,32 @@
                     ]
                 ],
                 "label": "Tür",
-                "room": 3,
-                "categories": [
-                    4
+                "room": 3
+            }
+        ],
+        [
+            "Base.doorLock",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 69,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
                 ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 69,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ]
+                ],
+                "label": "Tür Verriegelung",
+                "room": 3
             }
         ],
         [
@@ -3253,79 +3458,7 @@
                     ]
                 ],
                 "label": "Ventilation",
-                "room": 8,
-                "categories": [
-                    2
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
-            }
-        ],
-        [
-            "Base.lightingSwitchButtonBrightness",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ]
-                ],
-                "label": "LightComplex",
-                "room": 9,
-                "categories": [
-                    1
-                ],
-                "role": 101000,
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "room": 8
             }
         ],
         [
@@ -3365,22 +3498,20 @@
                 ],
                 "label": "LightComplex",
                 "room": 12,
-                "categories": [
-                    1
-                ],
-                "role": 101000,
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "role": 101000
             }
         ],
         [
-            "Base.lightingSwitchBrightness",
+            "Base.lightingSwitchButtonBrightness",
             {
                 "inputPeers": [
+                    [
+                        {
+                            "peer": 93,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 93,
@@ -3408,21 +3539,88 @@
                         {
                             "peer": 93,
                             "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 93,
+                            "channel": 1,
                             "name": "LEVEL_FAST"
                         }
                     ]
                 ],
-                "label": "LightComplex",
-                "room": 6,
-                "categories": [
-                    1
+                "label": "LightComplexButton",
+                "room": 9,
+                "role": 101000
+            }
+        ],
+        [
+            "Base.lightingSwitchButtonBrightnessColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
                 ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "LightComplexColor",
+                "room": 9,
+                "role": 101000
             }
         ],
         [
@@ -3433,14 +3631,98 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEMPERATURE"
+                            "name": "TEMPERATURE4"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "HUMIDITY"
+                            "name": "HUMIDITY4"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CLOUD_COVERAGE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LAST_DATA"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "PRESSURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAIN_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SNOW_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNRISE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNSET"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WEATHER"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_DIRECTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_GUST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_SPEED"
                         }
                     ],
                     [
@@ -3456,14 +3738,98 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "TEMPERATURE"
+                            "name": "TEMPERATURE4"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "HUMIDITY"
+                            "name": "HUMIDITY4"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CITY"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "CLOUD_COVERAGE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LAST_DATA"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "PRESSURE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAIN_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SNOW_3H"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNRISE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SUNSET"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WEATHER"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_DIRECTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_GUST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WIND_SPEED"
                         }
                     ],
                     [
@@ -3476,15 +3842,7 @@
                 ],
                 "label": "OpenWeatherMap",
                 "room": 6,
-                "categories": [
-                    5
-                ],
-                "metadata": {
-                    "l2_action": {
-                        "control": 0,
-                        "input": 0
-                    }
-                }
+                "role": 201000
             }
         ],
         [
@@ -3509,13 +3867,7 @@
                     ]
                 ],
                 "label": "Temperatur",
-                "room": 3,
-                "categories": [
-                    4
-                ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "room": 3
             }
         ],
         [
@@ -3540,15 +3892,781 @@
                     ]
                 ],
                 "label": "Feuchte",
-                "room": 3,
-                "categories": [
-                    4
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE1"
+                        }
+                    ]
                 ],
-                "metadata": {
-                    "l2_only": true
-                }
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE1"
+                        }
+                    ]
+                ],
+                "label": "Temperatur1",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY1"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY1"
+                        }
+                    ]
+                ],
+                "label": "Feuchte1",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE2"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE2"
+                        }
+                    ]
+                ],
+                "label": "Temperatur2",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY2"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY2"
+                        }
+                    ]
+                ],
+                "label": "Feuchte2",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE3"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE3"
+                        }
+                    ]
+                ],
+                "label": "Temperatur3",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY3"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY3"
+                        }
+                    ]
+                ],
+                "label": "Feuchte3",
+                "room": 3
+            }
+        ],
+        [
+            "Base.temperature",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE4"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE4"
+                        }
+                    ]
+                ],
+                "label": "Temperatur4",
+                "room": 3
+            }
+        ],
+        [
+            "Base.humidity",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY4"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "HUMIDITY4"
+                        }
+                    ]
+                ],
+                "label": "Feuchte4",
+                "room": 3
             }
         ]
+    ],
+    "devices": [
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Diele",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0001",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Kind",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0002",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Decke Bad",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0003",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Spiegel Bad",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0004",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Schlafen",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0005",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht c Wohn",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0006",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht b Wohn",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0007",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht d Wohn",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0008",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Steckdose e Wohn",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0009",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Abstellraum",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0010",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Loggia",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0011",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Steckdose Loggia",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0012",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Technikraum",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0013",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Decke GÃ¤ste WC",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0014",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Spiegel GÃ¤ste WC",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0015",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Steckdose Waschraum",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0016",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen Diele",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0017",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen links Kind",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0018",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen rechts Kind",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0019",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen Bad",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0020",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen links Schlafen",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0021",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen rechts Schlafen",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0022",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen Wohnen",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0023",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Rollladen Essen",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0024",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Markise Wohnen",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0025",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "JA Markise Essen",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xe011",
+            "SERIALNUMBER": "VirtBl0026",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster Diele",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin060",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster links Kind",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin061",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster recht Kind",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin062",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster Bad",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin063",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster links Schlafen",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin064",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster rechts Schlafen",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin065",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster links KÃ¼che",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin066",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "FG Fenster rechts KÃ¼che",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtWin067",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Virtual Logic Module",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtLog001",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Riegelkontakt TÃ¼r Diele",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtWin069",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Fenster Wohnen",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtWind70",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Sensor Diele",
+            "TYPE": "VirtualSensor",
+            "TYPE_ID": "0xa011",
+            "SERIALNUMBER": "VirtSens71",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Sensor Kind",
+            "TYPE": "VirtualSensor",
+            "TYPE_ID": "0xa011",
+            "SERIALNUMBER": "VirtSens72",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Sensor Bad",
+            "TYPE": "VirtualSensor",
+            "TYPE_ID": "0xa011",
+            "SERIALNUMBER": "VirtSens73",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Sensor Schlafen",
+            "TYPE": "VirtualSensor",
+            "TYPE_ID": "0xa011",
+            "SERIALNUMBER": "VirtSens74",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Sensor Wohnen",
+            "TYPE": "VirtualSensor",
+            "TYPE_ID": "0xa011",
+            "SERIALNUMBER": "VirtSens75",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Sensor GÃ¤ste WC",
+            "TYPE": "VirtualSensor",
+            "TYPE_ID": "0xa011",
+            "SERIALNUMBER": "VirtSens76",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Heizungsregler Diele",
+            "TYPE": "Heizungsregler",
+            "TYPE_ID": "0x1001",
+            "SERIALNUMBER": "VirtHeat78",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Heizungsregler Kind",
+            "TYPE": "Heizungsregler",
+            "TYPE_ID": "0x1001",
+            "SERIALNUMBER": "VirtHeat79",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Heizungsregler Bad",
+            "TYPE": "Heizungsregler",
+            "TYPE_ID": "0x1001",
+            "SERIALNUMBER": "VirtHeat80",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Heizungsregler Schlafen",
+            "TYPE": "Heizungsregler",
+            "TYPE_ID": "0x1001",
+            "SERIALNUMBER": "VirtHeat81",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Heizungsregler Wohnen",
+            "TYPE": "Heizungsregler",
+            "TYPE_ID": "0x1001",
+            "SERIALNUMBER": "VirtHeat82",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Heizungsregler WC Gast",
+            "TYPE": "Heizungsregler",
+            "TYPE_ID": "0x1001",
+            "SERIALNUMBER": "VirtHeat83",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "SA Licht Unterschrank KÃ¼che",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0084",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Lueftung",
+            "TYPE": "Lueftung",
+            "TYPE_ID": "0x1502",
+            "SERIALNUMBER": "Lueftung01",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Fenster Essen",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "Virtwind85",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Steckdose Garage",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0091",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Dimmer Wohnen",
+            "TYPE": "VirtualDimmer",
+            "TYPE_ID": "0xf001",
+            "SERIALNUMBER": "VirtDi0092",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Dimmer Kinder",
+            "TYPE": "VirtualDimmer",
+            "TYPE_ID": "0xf001",
+            "SERIALNUMBER": "VirtDi0093",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "Dimmer Schlafen",
+            "TYPE": "VirtualDimmer",
+            "TYPE_ID": "0xf001",
+            "SERIALNUMBER": "VirtDi0094",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "NAME": "OpenWeatherMap",
+            "TYPE": "OpenWeatherMap",
+            "TYPE_ID": "0x100",
+            "SERIALNUMBER": "ESY5110366",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        }
     ]
 }
 ';

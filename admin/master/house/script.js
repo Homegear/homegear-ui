@@ -13,10 +13,10 @@ function house_level1(){
                 </div>
             `;
 
-        house_level1_content += '<div class="rooms_wrapper"><center>';
+        house_level1_content += '<div class="rooms_wrapper">';
 
         $.each(floorValue.rooms, function(_, roomValue) {
-            const floorBreadcrumbName = showFloor === 'true'
+            const floorBreadcrumbName = interfaceData.options.showFloor === true
                                             ? floorValue.name + ' - '
                                             : '';
 
@@ -25,7 +25,7 @@ function house_level1(){
             house_level1_content += `
                 <div class="roomSelect_wrapper" ${action}>
                     <div class="roomSelect">
-                        ${icons[interfaceData.rooms[roomValue].icon]}
+                        ${showIcon(interfaceData.rooms[roomValue].icon)}
                     </div>
                     <div class="description">
                         ${interfaceData.rooms[roomValue].name}
@@ -34,16 +34,88 @@ function house_level1(){
             `;
         });
 
-        house_level1_content += '</center></div>';
+        house_level1_content += '</div>';
     });
 }
 
 // TODO: Return value?
 house_level1();
 
+function house_level1_fix(){
+    var maxWidth = 0;
+    $('.rooms_wrapper').each(function(){
+        if($(this).width() > maxWidth){
+            maxWidth = $(this).width();
+        }
+    });
+    $('.roomSelectTitle').width(maxWidth);
+    $('.rooms_wrapper').css('display', 'block');
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function check_disabled(device, indexes) {
+    function check_event_trigger(event) {
+        if (event.trigger == undefined || event.trigger.length != 3)
+            return false;
+
+        const trigger = event.trigger;
+        return trigger[0] in interfaceData.map_invoke &&
+               trigger[1] in interfaceData.map_invoke[trigger[0]] &&
+               trigger[2] in interfaceData.map_invoke[trigger[0]][trigger[1]];
+    }
+
+    function check_event_disable(event, control_idx) {
+        return 'disable' in event &&
+               control_idx in event.disable;
+    }
+
+    function check_event_condition(event) {
+        return 'condition' in event &&
+               'operator'  in event.condition &&
+               'value'     in event.condition;
+    }
+
+    const ret_enabled = {flag: false};
+
+    if (! ('metadata'    in device &&
+           'event_hooks' in device.metadata))
+        return ret_enabled;
+
+    for (let event of device.metadata.event_hooks) {
+        if (! check_event_trigger(event) ||
+            ! check_event_disable(event, indexes.control) ||
+            ! check_event_condition(event))
+            continue;
+
+        const trigger   = event.trigger;
+        const disable   = event.disable;
+        const condition = event.condition;
+
+        if (! disable[indexes.control])
+            continue;
+
+        let devices = interfaceData.map_invoke[trigger[0]][trigger[1]][trigger[2]];
+        for (let dev of devices) {
+            let res = condition_check(condition,
+                                      interfaceData.devices[dev.databaseId]
+                                                   .controls[dev.control]
+                                                   .variableInputs[dev.input]
+                                                   .properties
+                                                   .value);
+            if (res)
+                return {
+                    flag: true,
+                    texts: event.texts,
+                };
+        }
+
+    }
+
+    return ret_enabled;
+}
+
 function component_create(constructor, data) {
     let comp = new constructor({
         propsData: data,
@@ -54,17 +126,17 @@ function component_create(constructor, data) {
     return comp.$el;
 }
 
-function component_object(control, device, input, output, index, is) {
+function component_object(control, device, input, output, is, indexes) {
     let ret = {
-        uiElement:      device,
-        control:        control,
-        device:         device.databaseId,
-        icons:          device.icons,
-        texts:          device.texts,
-        output:         output,
-        props:          input.properties,
-        index:          index,
-        rendering:      input.rendering
+        uiElement: device,
+        control:   control,
+        device:    device.databaseId,
+        icons:     device.icons,
+        texts:     device.texts,
+        output:    output,
+        props:     input.properties,
+        indexes:   indexes,
+        rendering: input.rendering,
     };
 
     if (is)
@@ -76,6 +148,8 @@ function component_object(control, device, input, output, index, is) {
 function components_create(device, layer) {
     let out = [];
 
+    // console.log(device.label + ': ' + device.databaseId + ': ' + layer);
+
     if (layer == 'l2' && typeof(device.metadata) == 'object') {
         if ('l2_action' in device.metadata) {
             const keys = device.metadata.l2_action;
@@ -84,17 +158,24 @@ function components_create(device, layer) {
             const input   = control.variableInputs[keys.input];
             const output  = control.variableOutputs[keys.input];
 
+
             return [component_create(
                 controlComponents[control.control].l2,
-                component_object(control, device, input, output, keys.input, null)
+                component_object(control, device, input, output, null,
+                                 {input: keys.input, control: keys.control})
             )];
         }
 
-        if ('l2_only' in device.metadata)
+        if (device.controls.length <= 1 &&
+            (!('l3_force' in device.metadata) || device.metadata.l3_force !== true))
             layer = 'l3';
     }
 
-    for (const control of device.controls) {
+    for (let i = 0; i < device.controls.length; ++i) {
+        const control = device.controls[i];
+
+        // console.log(device.label + ': ' + device.databaseId + ': ' + layer + ': ' + control.control);
+
         if (!(control.control in controlComponents) ||
             !(layer           in controlComponents[control.control]))
             continue;
@@ -105,7 +186,8 @@ function components_create(device, layer) {
 
             out.push(component_create(
                 controlComponents[control.control][layer],
-                component_object(control, device, input, output, k, null)
+                component_object(control, device, input, output, null,
+                                 {input: k, control: i})
             ));
         }
     }
@@ -154,20 +236,45 @@ Vue.use({
 });
 
 
-
 Vue.mixin({
     data: function () {
         return  {
+            debug:          false,
             interfaceIcons: icons,
             interfaceData:  interfaceData,
         };
     },
+
+    filters: {
+        pretty: function (val) {
+            return JSON.stringify(val, null, 4);
+        },
+
+        warn: function (val) {
+            console.warn(val);
+        },
+
+        log: function (val) {
+            console.log(val);
+        },
+    },
+
     methods: {
         level3: function (device, name) {
             house_level3(this, {
                 device,
                 name,
             });
+        },
+
+        round: function (val, precision) {
+            let mul = Math.pow(10, precision || 0);
+
+            return Math.round(val * mul) / mul;
+        },
+
+        float_formatted: function (val, precision=1) {
+            return parseFloat(val).toFixed(precision);
         },
     },
 });
@@ -186,7 +293,6 @@ Vue.component('shif-ctrl-summary', {
 
     data: function () {
         return {
-            debug:        false,
             submenu_show: false,
         };
     },
@@ -194,10 +300,10 @@ Vue.component('shif-ctrl-summary', {
     computed: {
         dev_objs: function () {
             return this.devs.map(x => this.find_component(this.interfaceData.devices[x], 'l2'));
-        },
+        }
     },
 
-    methods: { // {{{
+    methods: {
         find_component: function (device, layer) {
             if (layer == 'l2' && typeof(device.metadata) == 'object') {
                 if ('l2_action' in device.metadata) {
@@ -208,21 +314,28 @@ Vue.component('shif-ctrl-summary', {
                     const output  = control.variableOutputs[keys.input];
                     const is      = 'shif-' + control.control + '-l2';
 
-                    return [component_object(control, device, input, output, keys.input, is)];
+                    return [component_object(control, device, input, output, is,
+                                             {input: keys.input, control: keys.control})];
                 }
 
-                if ('l2_only' in device.metadata)
+                if (device.controls.length <= 1 &&
+                    (!('l3_force' in device.metadata) ||
+                     device.metadata.l3_force !== true))
                     layer = 'l3';
             }
 
             let out = [];
-            for (const control of device.controls) {
+            // for (const control of device.controls) {
+            for (let i = 0; i < device.controls.length; ++i) {
+                const control = device.controls[i];
+
                 for (const k in control.variableInputs) {
                     const input  = control.variableInputs[k];
                     const output = control.variableOutputs[k];
                     const is     = 'shif-' + control.control + '-' + layer;
 
-                    out.push(component_object(control, device, input, output, k, is));
+                    out.push(component_object(control, device, input, output, is,
+                                              {input: k, control: i}));
                 }
             }
 
@@ -234,19 +347,45 @@ Vue.component('shif-ctrl-summary', {
                             ? this.interfaceData.roles[action.roleId].varInRole
                             : this.interfaceData.roles[this.role_id].varInRole;
 
-
             let ops = [];
             for (const peer in varInRole)
                 for (const channel in varInRole[peer])
-                    for (const name of varInRole[peer][channel])
-                        ops.push({
-                            input: {peer, channel, name},
-                            value: action.value
+                    for (const name in varInRole[peer][channel]) {
+                        const cur = varInRole[peer][channel][name];
+
+                        if ('direction' in cur && cur.direction === 0)
+                            continue;
+
+                        if (! (peer    in this.interfaceData.map_invoke &&
+                               channel in this.interfaceData.map_invoke[peer] &&
+                               name    in this.interfaceData.map_invoke[peer][channel]))
+                            continue;
+                        const devs = this.interfaceData.map_invoke[peer][channel][name];
+
+                        const disabled = devs.some(dev => {
+                            const device  = this.interfaceData.devices[dev.databaseId];
+                            const control = device.controls[dev.control];
+
+                            for (const i in control.variableInputs) {
+                                if (check_disabled(device, {control: dev.control, input: i}).flag)
+                                    return true;
+                            }
+
+                            return false;
                         });
 
+
+                        if (! disabled)
+                            ops.push({
+                                input: {peer, channel, name},
+                                value: action.value
+                            });
+                    }
+
             this.$homegear.value_set_multi(ops);
-        },
-    }, // }}}
+        }
+
+    },
 
     template: `
         <div>
@@ -274,10 +413,12 @@ Vue.component('shif-ctrl-summary', {
                     </div>
 
                     <template v-for="dev in dev_objs">
-                        <p v-if="debug">{{ dev }}</p>
                         <component v-bind="dev" v-bind:include_place="true">
                         </component>
-                        <hr v-if="debug" />
+
+                        <template v-if="debug">
+                            {{ dev | pretty | log }}
+                        </template>
                     </template>
                 </div>
             </transition>
@@ -310,10 +451,10 @@ let ShifAllDevices = {
 
             for (const dev_idx in interfaceData.devices) {
                 let dev = interfaceData.devices[dev_idx];
-                if (!('role' in dev.metadata))
+                if (!('role' in dev))
                     continue;
 
-                const role = dev.metadata.role;
+                const role = dev.role;
                 if (!(role in ret))
                     ret[role] = [];
 
@@ -329,17 +470,23 @@ let ShifAllDevices = {
         status_gather_invokes: function (role, role_id) {
             let ret = [{
                 type: get_or_default(role, 'aggregationType', 2),
-                ids:  [role_id],
+                ids:  [{'id':role_id,'direction':0}],
             }];
 
             if (!('rolesInclude' in role))
                 return ret;
 
-            for (const role_inc of role.rolesInclude)
+            for (const role_inc of role.rolesInclude) {
+                let ids = [];
+                for(const index in role_inc.roles) {
+                    ids.push({'id':role_inc.roles[index],'direction':0});
+                }
+
                 ret.push({
                     type: get_or_default(role_inc, 'aggregationType', 2),
-                    ids:  role_inc.roles,
+                    ids:  ids,
                 });
+            }
 
             return ret;
         },
@@ -361,6 +508,11 @@ let ShifAllDevices = {
         status: function (role_id) {
             const role = interfaceData.roles[role_id];
             const invokes_descs = this.status_gather_invokes(role, role_id);
+
+            if ('l2_status' in role) {
+                this.states[role_id] = [];
+                return;
+            }
 
             for (const invoke_desc of invokes_descs) {
                 this.$homegear.invoke({
@@ -408,6 +560,12 @@ let ShifAllDevices = {
                 });
             }
         },
+
+        states_clean: function (role_id) {
+            return this.states[role_id].some(x => x.value !== 0)
+                    ? this.states[role_id]
+                    : [];
+        },
     },
 
     mounted: function () {
@@ -450,15 +608,20 @@ let ShifAllDevices = {
     template: `
         <div>
             <template v-for="(devs, role) in map_roles_devs">
-                <shif-ctrl-summary
-                    v-on:role_update="status"
-                    v-bind:actions="interfaceData.roles[role].invokeOutputs"
-                    v-bind:icon="interfaceData.roles[role].icon"
-                    v-bind:title="interfaceData.roles[role].name"
-                    v-bind:devs="devs"
-                    v-bind:role_id="role"
-                    v-bind:status="states[role]">
-                </shif-ctrl-summary>
+                <template v-if="role in interfaceData.roles">
+                    <shif-ctrl-summary
+                        v-on:role_update="status"
+                        v-bind:actions="interfaceData.roles[role].invokeOutputs"
+                        v-bind:icon="interfaceData.roles[role].icon"
+                        v-bind:title="interfaceData.roles[role].name"
+                        v-bind:devs="devs"
+                        v-bind:role_id="role"
+                        v-bind:status="states_clean(role)">
+                    </shif-ctrl-summary>
+                </template>
+                <template v-else>
+                    {{ log("This role is not defined: " + role) }}
+                </template>
             </template>
         </div>
     `,

@@ -2,11 +2,12 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.socketSwitch</uniqueUiElementId>
-		<type>simple</type>
 		<control>socketSwitch</control>
+		<type>simple</type>
+		<role>400001</role>
 		<texts>
 			<text id="title">
-				<content>Toggle</content>
+				<content>Schalter</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
@@ -16,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>socket1</name>
+				<name>socket_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -35,7 +36,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>socket1</name>
+								<name>socket_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -49,7 +50,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>socket1</name>
+								<name>socket_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -72,7 +73,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>400001</role>
+			<l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

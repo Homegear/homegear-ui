@@ -2,26 +2,26 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.heatingWindow</uniqueUiElementId>
-		<type>simple</type>
 		<control>heatingWindow</control>
-        <role>0x201000</role>
+		<type>simple</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
-				<content>Window Mode</content>
+				<content>Alarm</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Window Mode</content>
+				<content>Fenster</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>warnung1</name>
+				<name>warning_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -36,13 +36,13 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>warnung1</name>
+								<name>warning_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>on</content>
+								<content>opened</content>
 								<color>active</color>
 							</text>
 						</texts>
@@ -50,13 +50,13 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>warnung1</name>
+								<name>warning_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>off</content>
+								<content>closed</content>
 								<color>inactive</color>
 							</text>
 						</texts>
@@ -72,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

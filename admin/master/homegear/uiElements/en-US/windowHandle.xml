@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.windowHandle</uniqueUiElementId>
-		<type>simple</type>
 		<control>windowHandle</control>
-        <role>0x301002</role>
+		<type>simple</type>
+        <role>301002</role>
 		<texts>
 			<text id="title">
 				<content>State</content>
@@ -17,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>fenster1</name>
+				<name>window_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -36,7 +36,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>fenster1</name>
+								<name>window_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="1">
 						<icons>
 							<icon id="state">
-								<name>fenster1</name>
+								<name>window_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -64,7 +64,7 @@
 					<condition operator="e" value="2">
 						<icons>
 							<icon id="state">
-								<name>fenster1</name>
+								<name>window_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -78,7 +78,7 @@
 					<condition operator="g" value="2">
 						<icons>
 							<icon id="state">
-								<name>fenster1</name>
+								<name>window_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -101,7 +101,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>301002</role>
+            <l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -2,8 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingButtons</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingButtons</control>
+		<type>simple</type>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Trigger</content>
@@ -16,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>switches</name>
+				<name>switches_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -35,7 +36,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -49,7 +50,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -72,7 +73,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>schliesen1</name>
+								<name>close_x_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -86,7 +87,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>schliesen1</name>
+								<name>close_x_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -109,7 +110,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil4</name>
+								<name>arrow_down_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -123,7 +124,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil4</name>
+								<name>arrow_down_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -158,7 +159,10 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>501000</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -1,28 +1,28 @@
 {
-    "_from": "@jaames\/iro@4.5.1",
-    "_id": "@jaames\/iro@4.5.1",
+    "_from": "@jaames\/iro@4.5.3",
+    "_id": "@jaames\/iro@4.5.3",
     "_inBundle": false,
-    "_integrity": "sha512-k5xVmnp2EI2lm8XyCUWGO+t4mlzda8lrrtnsJiVymIAHgS9ZuTNnIE1Qx7WYsUhUXxUh7ApkQh5bOhviyJdOQA==",
+    "_integrity": "sha512-knBqezLEprrpHCb9hHZbQLApzCZyI\/AuWg3mqQVkgTtQX3MNX3W2uVkX1hFwS6pmEUHbA022rid9fRqV0IshMA==",
     "_location": "\/@jaames\/iro",
     "_phantomChildren": [],
     "_requested": {
         "type": "version",
         "registry": true,
-        "raw": "@jaames\/iro@4.5.1",
+        "raw": "@jaames\/iro@4.5.3",
         "name": "@jaames\/iro",
         "escapedName": "@jaames%2firo",
         "scope": "@jaames",
-        "rawSpec": "4.5.1",
+        "rawSpec": "4.5.3",
         "saveSpec": null,
-        "fetchSpec": "4.5.1"
+        "fetchSpec": "4.5.3"
     },
     "_requiredBy": [
         "#USER",
         "\/"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/@jaames\/iro\/-\/iro-4.5.1.tgz",
-    "_shasum": "07ee4e55bd2f0f52701fd98a4b9bf49936fd0549",
-    "_spec": "@jaames\/iro@4.5.1",
+    "_resolved": "https:\/\/registry.npmjs.org\/@jaames\/iro\/-\/iro-4.5.3.tgz",
+    "_shasum": "4fbeabaf119b9f53ef5b88e262dbfc3477fa9e9a",
+    "_spec": "@jaames\/iro@4.5.3",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "James Daniel",
@@ -133,5 +133,5 @@
         "start": "rollup -c --watch --environment DEV_SERVER,BUILD:development",
         "test": "jest --verbose"
     },
-    "version": "4.5.1"
+    "version": "4.5.3"
 }

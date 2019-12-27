@@ -2,8 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingPosition</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingPosition</control>
+		<type>simple</type>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Position</content>
@@ -16,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>rolladen1</name>
+				<name>blind_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -46,8 +47,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

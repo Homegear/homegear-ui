@@ -5,7 +5,7 @@
  * redistribute it and/or modify it under the terms of the GNU Lesser
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * 
+ *
  * Shif is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,27 +16,23 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-    // http://localhost/setup.php?key=[interfaceData.settings.directLoginUrlKey]
+    // http://localhost/setup.php?key=[interfaceData.settings.directLoginApiKey]
     // &action=generateExtensions
     if(file_exists(getcwd()."/interfacedata.php")){
         include(getcwd()."/interfacedata.php");
-        $urlKey = $interfaceData["settings"]["directLoginUrlKey"];
+        $interfaceData["options"] = array(
+            "language" => "en-US"
+        );
     }
     else{
         die("No interfaceData file!");
     }
 
-    if( (isset($_GET["key"]) && $_GET["key"] == $urlKey) ){
+    if( (isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["directLoginApiKey"]) ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
-            include(getcwd()."/admin/settings.php");
             include(getcwd()."/admin/admin.php");
-            $date = "\n"."SUCCESS: ".date("Y-m-d H:i:s");
-            die($date);
-        }
-
-        if( isset($_GET["origin"]) && $_GET["origin"] == "cli" ){
             die();
-          }
+        }
     }
     else{
         die("Access denied!");
@@ -47,7 +43,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     if(isset($_GET["json"])){
         header('Content-Type: application/json; charset=utf-8');
-        die("<pre>".json_encode($interfaceData, JSON_PRETTY_PRINT)."</pre>");
+        die(json_encode($interfaceData, JSON_PRETTY_PRINT));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,36 +51,35 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json-raw"])){
         header('Content-Type: application/json; charset=utf-8');
-        $homegear_json_lang = "en-US";
         try {
             $hg = new \Homegear\Homegear();
             $allInterfaceData = array();
-            $allInterfaceData["UiElements"] = $hg->getAllUiElements($homegear_json_lang);
-            $allInterfaceData["Stories"] = $hg->getStories($homegear_json_lang);
-            $allInterfaceData["Rooms"] = $hg->getRooms($homegear_json_lang);
-            $allInterfaceData["Categories"] = $hg->getCategories($homegear_json_lang);
-            $allInterfaceData["Roles"] = $hg->getRoles($homegear_json_lang);
+            $allInterfaceData["Stories"] = $hg->getStories($interfaceData["options"]["language"]);
+            $allInterfaceData["Rooms"] = $hg->getRooms($interfaceData["options"]["language"]);
+            $allInterfaceData["Users"] = $hg->listUsers();
+            $allInterfaceData["systemVariables"] = $hg->getAllSystemVariables();
+            $allInterfaceData["Roles"] = $hg->getRoles($interfaceData["options"]["language"]);
+            $allInterfaceData["UiElements"] = $hg->getAllUiElements($interfaceData["options"]["language"]);
             $allInterfaceData["Devices"] = $hg->getAllValues();
-            die("<pre>".json_encode($allInterfaceData, JSON_PRETTY_PRINT)."</pre>");
-        } 
-        catch(\Homegear\HomegearException $e) {
-            print "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
+            die(json_encode($allInterfaceData, JSON_PRETTY_PRINT));
         }
-        die();
+        catch (\Homegear\HomegearException $e) {
+            die('{"error": "Exception catched"; "Code": "'.$e->getCode().'", "Message": "'.$e->getMessage().'"}');
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // homegear json processed 
+    // homegear json processed
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
+        header('Content-Type: application/json; charset=utf-8');
         if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
             include(getcwd()."/admin/master/homegear/functions.php");
+            die(json_encode(homegear_init(), JSON_PRETTY_PRINT));
         }
         else{
-            die("No homegear functions.php file!");
+            die('{"error": "No homegear functions.php file!"}');
         }
-        header('Content-Type: application/json; charset=utf-8');
-        die("<pre>".json_encode($hg_interfaceData, JSON_PRETTY_PRINT)."</pre>");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,19 +89,88 @@
         header('Content-Type: application/json; charset=utf-8');
         try {
             $hg = new \Homegear\Homegear();
-        } 
+        }
         catch(\Homegear\HomegearException $e) {
-            die("Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage());
+            die('{"error": "Exception catched"; "Code": "'.$e->getCode().'", "Message": "'.$e->getMessage().'"}');
+        }
+
+        if (file_exists(getcwd()."/interfacedata.import.php")) {
+            include_once(getcwd()."/interfacedata.import.php");
+        }
+        if (isset($customImportInterfaceDataJson)) {
+            $oldInterfaceData = json_decode($customImportInterfaceDataJson, true);
+        }
+        else if(isset($importInterfaceDataJson)){
+            $oldInterfaceData = json_decode($importInterfaceDataJson, true);
+        }
+        else {
+            die('{"error": "No importInterfaceDataJson set!"}');
         }
 
         $allInterfaceData = array();
 
+        if(isset($_GET["deleteDevice"])){
+            $CurrentDevices = $hg->getAllValues();
+            if(count($CurrentDevices) > 0){
+                foreach($CurrentDevices as $value){
+                    $allInterfaceData["deleteDevice"][$value["ID"]] = $hg->deleteDevice($value["ID"]);
+                }
+            }
+        }
+
+        if(isset($_GET["createDevice"])){
+            foreach($oldInterfaceData["devices"] as $value){
+                $device = $hg->createDevice($value["FAMILY"], $value["TYPE_ID"], $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]);
+                $deviceName = $hg->setName($device, $value["NAME"]);
+                if ($device != ""){
+                    $allInterfaceData["createDevice"][$device]["SERIALNUMBER"] = $value["SERIALNUMBER"];
+                    $allInterfaceData["createDevice"][$device]["name"] = $value["NAME"];
+                    $allInterfaceData["createDevice"][$device]["nameChange"] = $deviceName;
+                }
+                else {
+                    $allInterfaceData["createDevice"]["error"][$value["SERIALNUMBER"]] = true;
+                }
+            }
+        }
+
+        if(isset($_GET["getDevice"])){
+            $CurrentDevices = $hg->getAllValues();
+            foreach($CurrentDevices as $key => $value){
+                unset($CurrentDevices[$key]["CHANNELS"]);
+                unset($CurrentDevices[$key]["ID"]);
+                $CurrentDevices[$key]["TYPE_ID"] = "0x".dechex($value["TYPE_ID"]);
+                $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["ADDRESS"];
+                $CurrentDevices[$key]["ADDRESS"] = -1;
+                $CurrentDevices[$key]["FIRMWAREVERSION"] = -1;
+                $CurrentDevices[$key]["INTERFACEID"] = "";
+            }
+            $allInterfaceData["getAllValues"] = $CurrentDevices;
+        }
+
+        /*
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodHelp", "addUiElement"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "addUiElement"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getAllUiElements"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getAvailableUiElements"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getCategoryUiElements"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getRoomUiElements"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "removeUiElement"));'
+        */
+
         if(isset($_GET["deleteUIE"])){
             $CurrentUiElements = $hg->getAllUiElements("en-US");
-            if(count($CurrentUiElements) > 0){
-                for($i = 1; $i <= count($CurrentUiElements) + 1; $i++){
-                    $allInterfaceData["removeUiElement"][$i] = $CurrentUiElements[$i];
-                    $allInterfaceData["removeUiElement"][$i] = $hg->removeUiElement($i);
+            if(is_array($CurrentUiElements)){
+                foreach($CurrentUiElements as $value){
+                    try {
+                        $allInterfaceData["removeUiElement"][$value["databaseId"]] = $hg->removeUiElement($value["databaseId"]);
+                    }
+                    catch (\Homegear\HomegearException $e) {
+                        $allInterfaceData["removeUiElement"][$value["databaseId"]]["error"] =  $e->getMessage();
+                        $hg->log(2, 'Homegear Exception catched. ' .
+                                               "Code: {$e->getCode()} " .
+                                            "Message: {$e->getMessage()}");
+                        continue;
+                    }
                 }
             }
         }
@@ -120,6 +184,45 @@
 
         if(isset($_GET["getUIE"])){
             $allInterfaceData["getAllUiElements"] = $hg->getAllUiElements("en-US");
+        }
+
+        if(isset($_GET["getAvailableUIE"])){
+            $availableUiElements = $hg->getAvailableUiElements("en-US");
+            foreach ($availableUiElements as $key => $value) {
+                $allInterfaceData["getAvailableUiElements"][$value["uniqueUiElementId"]] = array (
+                    "role" => $value["role"]
+                );
+            }
+            $allInterfaceData["allAvailableUiElements"] = $availableUiElements;
+        }
+
+        if(isset($_GET["createUser"])){
+            foreach($oldInterfaceData["users"] as $key => $value){
+                $currentUserMeta = $hg->getUserMetadata($value["username"]);
+                $allInterfaceData["usermetadata"][$value["username"]]["currentUserMeta"] = $currentUserMeta;
+                unset($currentUserMeta["interface"]);
+                $allInterfaceData["usermetadata"][$value["username"]]["after InterfaceRemoval"] = $currentUserMeta;
+                $currentUserMeta["interface"] = $value["interface"];
+                $allInterfaceData["usermetadata"][$value["username"]]["newUserMeta"] = $value["interface"];
+                $allInterfaceData["usermetadata"][$value["username"]]["merged"] = $currentUserMeta;
+                $allInterfaceData["usermetadata"][$value["username"]]["state"] = $hg->setUserMetadata($value["username"], $currentUserMeta);
+            }
+        }
+
+        if(isset($_GET["listUsers"])){
+            $allInterfaceData["listUsers"] = $hg->listUsers();
+        }
+
+        if(isset($_GET["deleteUsersMetadata"])){
+            $currentUsers = $hg->listUsers();
+            foreach($currentUsers as $key => $value){
+                $currentUserMeta = $hg->getUserMetadata($value["name"]);
+                $allInterfaceData["deleteUsersMetadata"][$value["name"]]["currentUserMeta"] = $currentUserMeta;
+                unset($currentUserMeta["interface"]);
+                $currentUserMeta["interface"] = (object) array();
+                $allInterfaceData["deleteUsersMetadata"][$value["name"]]["newUserMeta"] = $currentUserMeta;
+                $allInterfaceData["deleteUsersMetadata"][$value["name"]]["status"] = $hg->setUserMetadata($value["name"], $currentUserMeta);
+            }
         }
 
         if(isset($_GET["createStories"])){
@@ -159,7 +262,9 @@
 
         if(isset($_GET["createRoles"])){
             foreach($oldInterfaceData["roles"] as $key => $value){
-                $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $value["metadata"]);
+                $roleMetadata = $hg->getRoleMetadata($value["id"]);
+                $roleMetadata["ui"] = $value["ui"];
+                $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $roleMetadata);
             }
         }
 
@@ -221,12 +326,16 @@
             foreach($oldInterfaceData["roles2var"] as $value){
                 if($value["roleId"]){
                     try {
-                        $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"]);
-                    } 
+                        $directionString = $value['direction'] ?? 'both';
+                        if($directionString == 'in') $direction = 0;
+                        else if($directionString == 'out') $direction = 1;
+                        else $direction = 2; //both
+                        $invert = $value['invert'] ?? false;
+                        $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"], $direction, $invert);
+                    }
                     catch(\Homegear\HomegearException $e) {
                         $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
                     }
-                    
                 }
             }
         }
@@ -237,7 +346,7 @@
                 if(is_array($varInRole)){
                     foreach($varInRole as $deviceid => $deviceid_value){
                         foreach($deviceid_value as $channel => $channel_value){
-                            foreach($channel_value as $var){
+                            foreach($channel_value as $var => $var_value){
                                 $allInterfaceData["removeRolesFromVar"][$role["ID"]][$deviceid][$channel][$var] = $hg->removeRoleFromVariable(intval($deviceid), intval($channel), $var, intval($role["ID"]));
                             }
                         }
@@ -262,317 +371,14 @@
             $allInterfaceData["getAllSystemVariables"] = $hg->getAllSystemVariables();
         }
 
-        echo "\n";
-        echo "<pre>";
-        echo "\n";
-        // https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
-        //echo json_encode($allInterfaceData, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
-        echo json_encode($allInterfaceData, JSON_PRETTY_PRINT);
-        echo "\n";
-        echo "</pre>";
-        echo "\n";
-        die();
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // jsoneditor
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-     else if(isset($_GET["jsoneditor"])){
-        function setupIcon(){
-            global $rootPath;
-            $files = null;
-            $out = null;
-            $path = "admin/media/icons/";
-            $handle=opendir($path);
-
-            while ($file = readdir($handle)){
-              if ($file != "." && $file != ".." && $file != str_replace('/','','thumbs')) {
-                  $files[] = $file;
-              }
-            }
-
-            sort($files);
-
-            $out .= '
-              <style>
-                #icons{
-                    background: rgba(0,0,0,.95);
-                    width:100%;
-                    height:100%;
-                    display: none;
-                    position: fixed;
-                    overflow: auto;
-                    padding: 4px;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    margin: auto;
-                    z-index: 999;
-                }
-                .icon{
-                    width:170px;
-                    height:170px;
-                    float: left;
-                    display: inline-block;
-                    border: 1px solid #222;
-                    padding: 4px;
-                    cursor: pointer;
-                    text-align: center;
-                }
-
-                .icon .title{
-                    padding-bottom: 6px;
-                    font-weight: bold;
-                    overflow-wrap: break-word;
-                    color: #ffffff;
-                }
-
-                .icon svg{
-                    width: 100px;
-                    height: 100px;
-                    font-size: 100px;
-                    fill: #ffffff;
-                }
-
-                #clipboardTextarea{
-                    width: 200px;
-                    height: 24px;
-                    background: #111;
-                    color: #999;
-                }
-              </style>
-
-              <div id="icons">
-                <p style="color:#ff0000;margin-bottom: 10px;">Per Klick auf ein Icon wird dessen Name in die Zwischenablage kopiert! <textarea id="clipboardTextarea" rows="1"></textarea></p>
-            ';
-
-            foreach($files as $icon){
-                $icon_data = file_get_contents($path.$icon);
-
-                $search  = array( "\n", "\r", '"');
-                $replace = array( "",   "",   "'");
-                $icon_data = str_replace($search, $replace, $icon_data);
-
-                $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
-                $icon_data = preg_replace('!\s+!', ' ', $icon_data);
-
-                $out .= '<div class="icon" onclick="selectIcon(\''.str_replace(".svg","",$icon).'\');"><div class="title">'.$icon.'</div> ' . $icon_data . '</div>';
-
-            }
-
-            $out .= '</div>';
-
-            return $out;
-        }
-
-        $content = '<style type="text/css">'."\n".str_replace("img/jsoneditor-icons.svg", "admin/assets/masters/jsoneditor/img/jsoneditor-icons.svg", file_get_contents("admin/assets/masters/jsoneditor/jsoneditor.min.css"))."\n".'</style>'."\n";
-
-        $content .= '<script>'."\n".file_get_contents("admin/assets/masters/jsoneditor/jsoneditor.min.js")."\n".'</script>'."\n";
-
-        $content .= setupIcon();
-
-        $content .= '
-            <a id="downloadAnchorElem" style="display:none"></a>
-            <button class="adminButton" style="display:inline-block; margin:0 0 5px 0;" onclick="setJSON();">Reset</button>
-            <button class="adminButton" style="display:inline-block; margin:0 0 5px 0;" onclick="saveJSON();">Speichern</button>
-            <button class="adminButton" style="display:inline-block; margin:0 0 5px 0;" onclick="alert(\'to be implemented...\');">Import Json</button>
-            <button class="adminButton" style="display:inline-block; margin:0 0 5px 0;" onclick="exportJSON();">Export Json</button>
-            <button class="adminButton" style="display:inline-block; margin:0 0 5px 0;" onclick="toggleElement(\'icons\')">Icons anzeigen</button>
-            <div id="message" style="width: 400px; height: 30px; display:inline-block; color: #fff;"></div>
-            <div id="jsoneditor" style="width: 400px; height: 400px; background: #fff;"></div>
-
-            <script>
-                var iWidth = window.innerWidth || (window.document.documentElement.clientWidth || window.document.body.clientWidth);
-                var iHeight = window.innerHeight || (window.document.documentElement.clientHeight || window.document.body.clientHeight);
-                document.getElementById("jsoneditor").style.width = (iWidth-30)+"px";
-                document.getElementById("jsoneditor").style.height = (iHeight-90)+"px";
-                var container = document.getElementById("jsoneditor");
-
-                var options = {
-                    modes: ["text", "code", "tree", "form", "view"],
-                    mode: "tree"
-                };
-
-                var editor = new JSONEditor(container, options);
-
-                // set json
-                var json = '.json_encode($interfaceData, JSON_PRETTY_PRINT).';
-                editor.set(json);
-
-                function setJSON () {
-                    editor.set(json);
-                    $("#message").html("Erfolgreich zurückgesetzt!");
-                }
-
-                // save json
-                function saveJSON(){
-                    var json = editor.get();
-                    var jsonString = JSON.stringify(json, null, 4);
-                    var dataString = "jsoneditor="+encodeURIComponent(jsonString);
-                    $.ajax({
-                        url: "index.php",
-                        type: "POST",
-                        data: dataString,
-                        processData: false,
-                        success: function(data){
-                            console.log(data);
-                            if(data == "true"){
-                                $("#message").html("Erfolgreich gespeichert!");
-                            }
-                            else{
-                                $("#message").html("Speichern fehlgeschlagen!");
-                            }
-                        },
-                        error: function(msg){
-                            console.log("Error:");
-                            console.log(msg);
-                        },
-                    });
-                }
-
-                // export json
-                function exportJSON(){
-                    var json = editor.get();
-                    var jsonString = JSON.stringify(json, null, 4);
-                    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonString);
-                    var dlAnchorElem = document.getElementById("downloadAnchorElem");
-                    dlAnchorElem.setAttribute("href", dataStr);
-                    dlAnchorElem.setAttribute("download", "interfacedata.json");
-                    dlAnchorElem.click();
-                }
-
-                function toggleElement(elementId){
-                    document.getElementById(elementId).style.display = "block";
-                }
-
-                function selectIcon(selectIconName){
-                    console.log(selectIconName);
-                    setClipboardText(selectIconName);
-                    document.getElementById("icons").style.display = "none";
-                }
-
-                function setClipboardText(text){
-                    var id = "clipboardTextarea";
-                    var existsTextarea = document.getElementById(id);
-
-                    if(!existsTextarea){
-                        console.log("Creating textarea");
-                        var textarea = document.createElement("textarea");
-                        textarea.id = id;
-                        // Place in top-left corner of screen regardless of scroll position.
-                        textarea.style.position = "fixed";
-                        textarea.style.top = 0;
-                        textarea.style.left = 0;
-
-                        // Ensure it has a small width and height. Setting to 1px / 1em
-                        // doesn"t work as this gives a negative w/h on some browsers.
-                        textarea.style.width = "1px";
-                        textarea.style.height = "1px";
-
-                        // We don"t need padding, reducing the size if it does flash render.
-                        textarea.style.padding = 0;
-
-                        // Clean up any borders.
-                        textarea.style.border = "none";
-                        textarea.style.outline = "none";
-                        textarea.style.boxShadow = "none";
-
-                        // Avoid flash of white box if rendered for any reason.
-                        textarea.style.background = "transparent";
-                        document.querySelector("body").appendChild(textarea);
-                        console.log("The textarea now exists :)");
-                        existsTextarea = document.getElementById(id);
-                    }else{
-                        console.log("The textarea already exists :3")
-                    }
-
-                    existsTextarea.value = text;
-                    existsTextarea.select();
-
-                    try {
-                        var status = document.execCommand("copy");
-                        if(!status){
-                            console.error("Cannot copy text");
-                        }else{
-                            console.log("The text is now on the clipboard");
-                        }
-                    } catch (err) {
-                        console.log("Unable to copy.");
-                    }
-                }
-            </script>
-        ';
-
-        die($content);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // jsoneditor save
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    else if( isset($_POST['jsoneditor']) && $_POST['jsoneditor'] != "" ){
-        if( $json = json_decode(mb_convert_encoding(rawurldecode ($_POST['jsoneditor']), 'UTF-8'), true) ){
-            //file_put_contents($databaseJsonPath, '<?php $interfaceData = \' '.mb_convert_encoding(rawurldecode ($_POST['jsoneditor']), 'UTF-8')."';");
-            die("true");
-        }
-        else{
-            die("false");
-        }
+        die(json_encode($allInterfaceData, JSON_PRETTY_PRINT));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Admin Button
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    $admin_url = 'setup.php?key='.$urlKey;
+    $admin_url = 'setup.php?key='.$interfaceData["settings"]["directLoginApiKey"];
 
-    $admin = '
-        <div id="adminButtonToggle" class="adminButton">ADMIN</div>
-        <div id="adminmenu">
-            <a href="/" class="adminButton">Login</a>
-            <div onclick="loadDoc(\''.$admin_url.'&action=generateExtensions\', outputResult)" class="adminButton">Erweiterungen generieren</div>
-            <div onclick="loadDoc(\''.$admin_url.'&action=getAssetMaster\', outputResult)" class="adminButton">Assets aktualisieren</div>
-            <div onclick="loadDoc(\''.$admin_url.'&json\', outputResult)" class="adminButton">Raw interfacedata json output</div>
-            <div onclick="loadDoc(\''.$admin_url.'&action=phpinfo\', outputResult)" class="adminButton">PHP Info</div>
-            <div onclick="passForm()" class="adminButton">Password</div>
-            <a href="/'.$admin_url.'&jsoneditor" class="adminButton">Jsoneditor</a>
-            <div onclick="loadDoc(\''.$admin_url.'&action=icons\', outputResult)" class="adminButton">Icons</div>
-
-            <h2>Homegear</h2>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear-json-raw\', outputResult)" class="adminButton">Raw json output</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear-json\', outputResult)" class="adminButton">Processed json output</div>
-
-            <h4>Stories</h4>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&createStories\', outputResult)" class="adminButton">create</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&getStories\', outputResult)" class="adminButton">list</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteStories\', outputResult)" class="adminButton">delete</div>
-
-            <h4>Rooms</h4>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&createRooms\', outputResult)" class="adminButton">create</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&getRooms\', outputResult)" class="adminButton">list</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteRooms\', outputResult)" class="adminButton">delete</div>
-
-            <h4>Roles</h4>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&createRoles\', outputResult)" class="adminButton">create</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&getRoles\', outputResult)" class="adminButton">list</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteRoles\', outputResult)" class="adminButton">delete</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&aggregateRoles\', outputResult)" class="adminButton">aggregate</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&roles2var\', outputResult)" class="adminButton">roles2var</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&removeRolesFromVar\', outputResult)" class="adminButton">removeRolesFromVar</div>
-
-            <h4>UI Element</h4>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&createUIE\', outputResult)" class="adminButton">create</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&getUIE\', outputResult)" class="adminButton">list</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteUIE\', outputResult)" class="adminButton">delete</div>
-
-            <h4>User</h4>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&createUser\', outputResult)" class="adminButton">create</div>
-
-            <h4>System Variables</h4>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&createSV\', outputResult)" class="adminButton">create</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&getSV\', outputResult)" class="adminButton">list</div>
-            <div onclick="loadDoc(\''.$admin_url.'&homegear&deleteSV\', outputResult)" class="adminButton">delete</div>
-        </div>
-    ';
 ?>
 
 <!DOCTYPE html>
@@ -585,14 +391,25 @@
             background: #222;
             color: #fff;
             font-family: Arial;
+            font-size: 14px;
         }
 
         h2, h4{
-            margin-bottom: 5px;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+
+        h2{
+            font-size: 20px;
+        }
+
+        pre{
+            margin: 0;
         }
 
         #adminmenu{
-          width: 300px;
+          width: 240px;
           height: calc(100% - 20px);
           position: fixed;
           display: inline-block;
@@ -618,8 +435,7 @@
         }
 
         .adminButton {
-          width: 100%;
-          max-width: 240px;
+          width: calc(100% - 30px);
           background: #3498db;
           background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
           background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -628,10 +444,10 @@
           background-image: linear-gradient(to bottom, #3498db, #2980b9);
           font-family: Arial;
           color: #ffffff;
-          font-size: 16px;
+          font-size: 14px;
           display: inline-block;
           margin: 3px;
-          padding: 10px 15px 10px 15px;
+          padding: 4px 8px;
           text-decoration: none;
           -webkit-appearance: none;
           -moz-user-select: none;
@@ -655,7 +471,7 @@
 
         .loader {
         border: 16px solid #f3f3f3;
-        border-top: 16px solid #3498db; 
+        border-top: 16px solid #3498db;
         border-radius: 50%;
         width: 120px;
         height: 120px;
@@ -669,7 +485,7 @@
         }
 
         #output{
-          width: calc(100% - 330px);
+          width: calc(100% - 280px);
           position: absolute;
           right: 10px;
           display: inline-block;
@@ -679,13 +495,64 @@
     </style>
 </head>
 <body>
-    <?php echo $admin; ?>
+    <div id="adminButtonToggle" class="adminButton">ADMIN</div>
+    <div id="adminmenu">
+        <a href="/" class="adminButton">Login</a>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&action=generateExtensions', outputResult)" class="adminButton">Erweiterungen generieren</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&action=getAssetMaster', outputResult)" class="adminButton">Assets aktualisieren</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&action=renameIcons', outputResult)" class="adminButton">Rename Icons</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&json', outputResult)" class="adminButton">Raw interfacedata json output</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&action=phpinfo', outputResult)" class="adminButton">PHP Info</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&action=icons', outputResult)" class="adminButton">Icons</div>
+
+        <h2>Homegear</h2>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear-json-raw', outputResult)" class="adminButton">Raw json output</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear-json', outputResult)" class="adminButton">Processed json output</div>
+
+        <h4>Devices</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createDevice', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getDevice', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteDevice', outputResult)" class="adminButton">delete</div>
+
+        <h4>Stories</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createStories', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getStories', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteStories', outputResult)" class="adminButton">delete</div>
+
+        <h4>Rooms</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createRooms', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getRooms', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteRooms', outputResult)" class="adminButton">delete</div>
+
+        <h4>Roles</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createRoles', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getRoles', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteRoles', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&aggregateRoles', outputResult)" class="adminButton">aggregate</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&roles2var', outputResult)" class="adminButton">roles2var</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&removeRolesFromVar', outputResult)" class="adminButton">removeRolesFromVar</div>
+
+        <h4>UI Element</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUIE', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getUIE', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIE', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getAvailableUIE', outputResult)" class="adminButton">list available</div>
+
+        <h4>User</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUser', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&listUsers', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUsersMetadata', outputResult)" class="adminButton">Delete Metadata</div>
+
+        <h4>System Variables</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createSV', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getSV', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteSV', outputResult)" class="adminButton">delete</div>
+    </div>
     <div id="output"></div>
     <script>
         function loadDoc(url, cFunction) {
-          var xhttp;
           document.getElementById("output").innerHTML = '<div class="loader_wrapper"><div class="loader"></div></div>';
-          xhttp=new XMLHttpRequest();
+          var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               cFunction(this);
@@ -696,17 +563,7 @@
         }
         function outputResult(xhttp) {
           console.log(xhttp.responseText);
-          document.getElementById("output").innerHTML = xhttp.responseText;
-        }
-        function passForm() {
-            var output = Array;
-            output["responseText"] = `
-                <form id="passForm" name="passForm" action="javascript:void(0);" onsubmit="loadDoc('<?php echo $admin_url; ?>&action=password&password='+document.getElementById('password'), outputResult);">
-                    <input id="password" type="text" name="password">
-                    <input type="submit" name="passForm" value="Hash">
-                </form>
-            `
-            outputResult(output);
+          document.getElementById("output").innerHTML = "<pre>"+xhttp.responseText+"</pre>";
         }
     </script>
 </body>

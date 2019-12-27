@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.lightingBrightness</uniqueUiElementId>
 		<type>simple</type>
 		<control>lightingBrightness</control>
-        <role>100001</role>
+        <role>101000</role>
 		<texts>
 			<text id="title">
 				<content>Brightness</content>
@@ -17,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>licht3</name>
+				<name>light_dim_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -47,8 +47,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>100001</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

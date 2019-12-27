@@ -2,8 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.heatingSlider</uniqueUiElementId>
-		<type>simple</type>
 		<control>heatingSlider</control>
+		<type>simple</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Soll-Temperatur</content>
@@ -16,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>thermometer1</name>
+				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -46,8 +47,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
