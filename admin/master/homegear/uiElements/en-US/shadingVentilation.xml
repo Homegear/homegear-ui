@@ -2,8 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingVentilation</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingVentilation</control>
+		<type>simple</type>
+		<role>501000</role>
 		<texts>
 			<text id="title">
 				<content>Ventilation</content>
@@ -16,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>air-quality</name>
+				<name>air-quality_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -35,7 +36,7 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>air-quality</name>
+								<name>air-quality_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -49,7 +50,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>air-quality</name>
+								<name>air-quality_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -71,8 +72,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>501000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

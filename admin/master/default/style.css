@@ -139,8 +139,14 @@ img, .video {
   padding: 1px !important;
 }
 
-.disabled {
-  opacity: .7;
+.disabled .disabled_text{
+  color: #e3a104;
+}
+
+.disabled .range,
+.disabled.control_button,
+.disabled .device_radio{
+  opacity: .1;
 }
 
 .none {
@@ -1346,4 +1352,51 @@ td {
   left: 0;
   margin: auto;
   fill: #fff;
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+.control_button_wrapper {
+  display: table;
+  clear: both;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.control_button {
+  background: #191b1f;
+  display: table-cell;
+  padding: 0px;
+  border-right: 1px solid #25282E;
+  height: 80px;
+  text-align: center;
+  position: relative;
+  vertical-align: middle;
+}
+
+.control_button:last-child {
+  border-right: 0px solid;
+}
+
+.control_button:active, .control_button:focus {
+  background: #898989;
+}
+
+.control_button svg {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  text-align: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  fill: #fff;
+}
+
+.control_button .close_x_1 svg {
+  width: 30px;
+  height: 30px;
 }

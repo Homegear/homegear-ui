@@ -1,26 +1,51 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// globale Variablen sind zusätzlich in der settings.php definiert
+// globale Variablen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 var controlComponents = {};
-
+var logFrontend = '';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // write console logs to setting/about/nameClick/log page
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (typeof console_log !== 'undefined' && (console_log == 'true' || console_log == true)) {
+if (typeof interfaceData.options.consoleLog !== 'undefined' && (interfaceData.options.consoleLog == 'true' || interfaceData.options.consoleLog == true)) {
     console.oldLog = console.log;
     console.log = function(value) {
         console.oldLog(value);
+        viewLog(value);
+    };
 
-        if (value !== null && typeof value === 'object')
-            value = JSON.stringify(value);
+    console.oldWarn = console.warn;
+    console.warn = function(value) {
+        console.oldWarn(value);
+        viewLog(value);
+    };
 
-        $('#log').append(value + '<br/>');
-        $('#log').scrollTop(9999999999);
+    console.oldError = console.error;
+    console.error = function(value) {
+        console.oldError(value);
+        viewLog(value);
+    };
+
+    console.oldInfo = console.info;
+    console.info = function(value) {
+        console.oldInfo(value);
+        viewLog(value);
     };
 }
 else {
     console.oldLog = console.log;
     console.log = function(){};
+}
+
+function viewLog(value) {
+    if (value !== null && typeof value === 'object')
+        value = JSON.stringify(value);
+
+    logFrontend += value + '<br/>';
+
+    if($('#log').length){
+        $('#log').html(logFrontend);
+        $('#log').scrollTop(9999999999);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,8 +63,8 @@ function isJSON(str) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-$('#'+breadcrumbs_id_array[0]).addClass('content_single');
-$('.breadcrumbsJump').html(firstBreadcrumb);
+$('#'+interfaceData.options.breadcrumbs_id_array[0]).addClass('content_single');
+$('.breadcrumbsJump').html(interfaceData.options.firstBreadcrumb);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // verhindert das die Zurück Funktion bei DesktopBrowsern ausgeführt werden kann
@@ -117,7 +142,7 @@ function content_hndl_breadcrumb_classes(ids, destSize) {
         $('#' + ids[ids.length - 1]).addClass(destSize);
         $('#' + ids[ids.length - 2]).addClass('content_small');
     }
-    else if (breadcrumbs_id_array.length == 1) {
+    else if (interfaceData.options.breadcrumbs_id_array.length == 1) {
         $('#' + ids[ids.length - 1]).addClass('content_single');
         $('#back').addClass('inactive');
     }
@@ -131,7 +156,7 @@ function content(element, options) {
     if (typeof options != 'object')
         options = $.parseJSON(options);
 
-    if ('back' in options && breadcrumbs_id_array.length <= 1) {
+    if ('back' in options && interfaceData.options.breadcrumbs_id_array.length <= 1) {
         $('#back').addClass('inactive');
         $('.content').scrollTop(0);
         return;
@@ -171,31 +196,31 @@ function content(element, options) {
     $('.content_back').remove();
 
     if ('jump' in options) {
-        for (let i = breadcrumbs_id_array.length - options.jump; i > 1; i--)
-            content_delete_breadcumb_container(breadcrumbs_id_array,
-                                               breadcrumbs_array);
+        for (let i = interfaceData.options.breadcrumbs_id_array.length - options.jump; i > 1; i--)
+            content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array,
+                                               interfaceData.options.breadcrumbs_array);
 
-        content_hndl_breadcrumb_classes(breadcrumbs_id_array, destSize);
+        content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
     }
 
     else if ('back' in options) {
         //löschen des aktuellen containers
-        content_delete_breadcumb_container(breadcrumbs_id_array, breadcrumbs_array);
+        content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array, interfaceData.options.breadcrumbs_array);
 
-        content_hndl_breadcrumb_classes(breadcrumbs_id_array, destSize);
+        content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
     }
 
     else {
-        breadcrumbs_array.push(`
+        interfaceData.options.breadcrumbs_array.push(`
             <div class="breadcrumbsJump"
-                 onclick='content(this, {"jump":"${breadcrumbs_array.length}"});'>
+                 onclick='content(this, {"jump":"${interfaceData.options.breadcrumbs_array.length}"});'>
                 ${options.name}
             </div>
         `);
 
         $('#' + id).addClass(destSize);
-        $('#' + breadcrumbs_id_array[breadcrumbs_id_array.length - 1]).addClass('content_small');
-        breadcrumbs_id_array.push(id);
+        $('#' + interfaceData.options.breadcrumbs_id_array[interfaceData.options.breadcrumbs_id_array.length - 1]).addClass('content_small');
+        interfaceData.options.breadcrumbs_id_array.push(id);
         $('#back').removeClass('inactive');
     }
 
@@ -205,10 +230,10 @@ function content(element, options) {
     `);
 
     let text = '';
-    for  (let i = 0; i < breadcrumbs_array.length; i++) {
-        text += breadcrumbs_array[i];
+    for  (let i = 0; i < interfaceData.options.breadcrumbs_array.length; i++) {
+        text += interfaceData.options.breadcrumbs_array[i];
 
-        if (i + 1 != breadcrumbs_array.length)
+        if (i + 1 != interfaceData.options.breadcrumbs_array.length)
             text += '<div class="breadcrumbs_separator">|</div>';
     }
 
@@ -223,12 +248,6 @@ function content(element, options) {
 function user_logoff() {
     window.location.href = 'signin.php?logout=1';
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Ladebildschirm
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-$(document).ready(function () {
-});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Tabs
@@ -269,7 +288,7 @@ function license() {
         <div class="table1">
             <table>
                 <tr>
-                    <th onclick='main(this, {"name":"Log","content":"log"})'>
+                    <th onclick='content(this, {\"name\":\"Log\",\"content\":\"<div id=log>\"+logFrontend+\"</div>\"})'>
                         ${i18n('settings.about.table.name')}
                     </th>
                     <th>${i18n('settings.about.table.version')}</th>
@@ -282,7 +301,7 @@ function license() {
         </div>
     `;
 
-    content('this', {'content':data,'name':'Lizenz'});
+    content('this', {'content':data,'name':i18n('settings.about')});
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -305,8 +324,8 @@ function i18n(key) {
     for (let i of [interfaceData.i18n, interfaceData.i18n.default])
         if (key in i)
             return i[key];
-
-    return 'NoTrans.';
+        else
+            return '?';
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -410,10 +429,17 @@ function clone(obj) {
 Vue.component('shif-title', {
     props: {
         classname: String,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
     },
     template: `
         <div class="device_title" v-bind:class="classname">
             <slot></slot>
+            <span v-if="disabled.flag" class="disabled_text">
+                {{ disabled.texts.title }}
+            </span>
         </div>
     `,
 });
@@ -428,11 +454,16 @@ Vue.component('shif-status', {
     template: `
         <div class="device_status" v-bind:class="classname">
             <template v-if="key_vals">
-                <span v-for="i in key_vals"
-                    class="device_status_entry">
-                    <span v-if="i.key" class="name">{{ i.key }}:</span>
-                    <span class="value">{{ i.value }}</span>
-                </span>
+                <template v-if="key_vals.length === 0">
+                    <div class="device_status_entry"></div>
+                </template>
+                <template v-else>
+                    <span v-for="i in key_vals"
+                        class="device_status_entry">
+                        <span v-if="i.key" class="name">{{ i.key }}:</span>
+                        <span class="value">{{ i.value }}</span>
+                    </span>
+                </template>
             </template>
             <template v-else>
                 <div class="device_status_entry">
@@ -464,8 +495,18 @@ Vue.component('shif-icon', {
                      v-html="interfaceIcons[src]">
                 </div>
             </template>
+            <template v-else-if="src in interfaceData.iconFallback">
+                <div class="svg_icon"
+                     v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
+                     v-html="interfaceIcons[interfaceData.iconFallback[src]]">
+                </div>
+            </template>
             <template v-else>
-                <div class="svg_icon icon_default"></div>
+                <div class="svg_icon icon_default">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="500" height="500" viewBox="0 0 500 500">
+                        <path d="M227.52 320.99L227.52 301.54Q227.52 289.25 229.31 279.52 231.1 269.79 234.94 261.09 238.78 252.38 245.18 244.19 251.58 236 261.31 226.78L284.35 204.77Q294.08 196.06 300.99 185.31 307.9 174.56 307.9 159.2 307.9 139.23 295.36 125.66 282.82 112.1 259.78 112.1 248 112.1 238.53 116.45 229.06 120.8 222.14 128.22 215.23 135.65 211.65 145.38 208.06 155.1 207.55 165.34L144.58 159.71Q147.65 135.14 157.63 115.94 167.62 96.74 183.49 83.42 199.36 70.11 219.84 63.2 240.32 56.29 263.87 56.29 285.89 56.29 305.6 62.69 325.31 69.09 340.42 81.63 355.52 94.18 364.22 112.61 372.93 131.04 372.93 155.1 372.93 171.49 369.34 183.78 365.76 196.06 359.1 206.3 352.45 216.54 342.98 226.02 333.5 235.49 321.73 245.73 311.49 254.43 305.09 261.09 298.69 267.74 294.85 274.4 291.01 281.06 289.47 288.74 287.94 296.42 287.94 307.68L287.94 320.99zM217.28 392.16Q217.28 375.78 229.31 364 241.34 352.22 258.24 352.22 274.62 352.22 286.91 363.49 299.2 374.75 299.2 391.14 299.2 407.52 287.17 419.3 275.14 431.07 258.24 431.07 250.05 431.07 242.62 428 235.2 424.93 229.57 419.81 223.94 414.69 220.61 407.52 217.28 400.35 217.28 392.16z"/>
+                    </svg>
+                </div>
             </template>
         </div>
     `,
@@ -480,28 +521,44 @@ Vue.component('shif-slider', {
         unit:  String,
         value: Number,
         title: String,
+        step:  Number,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
+        precision: {
+            type: Number,
+            default: 0,
+        }
+    },
+
+    computed: {
+        value_formatted: function () {
+            return this.float_formatted(this.value, this.precision);
+        },
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device slider">
-                <shif-title>{{ title }}</shif-title>
+                <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
 
                 <div class="slider_action">
                     <div class="amount">
-                        <p>{{ value }} {{ unit }}</p>
+                        <p>{{ value_formatted }} {{ unit }}</p>
                     </div>
                 </div>
 
                 <input type="range"
                         class="range"
                         name="range"
-                        step="1"
+                        v-bind:step="step"
                         v-bind:min="min"
                         v-bind:max="max"
                         v-bind:value="value"
-                        v-on:change="$emit('change', parseInt($event.target.value))"
-                        v-on:input="$emit('input', parseInt($event.target.value))" />
+                        v-bind:disabled="disabled.flag"
+                        v-on:change="$emit('change', parseFloat($event.target.value))"
+                        v-on:input="$emit('input', parseFloat($event.target.value))" />
 
                 <div class="slider_marks">
                     <div class="left">
@@ -519,11 +576,15 @@ Vue.component('shif-slider', {
 
 
 Vue.component('shif-radio', {
-    props: [
-        'title',
-        'classname',
-        'values',
-    ],
+    props: {
+        title:     String,
+        classname: String,
+        values:    Array,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
+    },
 
     computed: {
         identifier: function () {
@@ -532,9 +593,9 @@ Vue.component('shif-radio', {
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
-                <shif-title>{{ title }}</shif-title>
+                <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_radio">
                     <template v-for="i in values">
                         <label class="rad">
@@ -543,6 +604,7 @@ Vue.component('shif-radio', {
                                    v-bind:name="identifier"
                                    v-bind:value="i.value"
                                    v-bind:checked="i.selected"
+                                   v-bind:disabled="disabled.flag"
                                    v-on:input="$emit('input', $event.target.value)" />
                             <i></i>
                         </label>
@@ -562,16 +624,82 @@ Vue.component('shif-button', {
             default: '100%',
         },
         classname: String,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
     },
     template: `
         <div class="control_button"
-             v-bind:class="classname"
+             v-bind:class="{[classname]: true, disabled: disabled.flag}"
              v-bind:style="{width}"
-             v-on:click="$emit('click', 1)">
+             v-on:click="(!disabled.flag) && $emit('click', 1)">
             <slot></slot>
         </div>
     `,
 });
+
+
+
+Vue.component('shif-colorpicker', {
+    props: {
+        width:  { type: Number, required: true, },
+        height: { type: Number, required: true, },
+        color:  { type: String, required: true, },
+        padding:      { type: Number, default:  1 },
+        borderWidth:  { type: Number, default:  3 },
+        markerRadius: { type: Number, default: 12 },
+        sliderMargin: { type: Number, default: 24 },
+        sliderHeight: { type: Number, default: 36 },
+        borderColor:  { type: String, default: '#fff' },
+    },
+
+    data: function () {
+        return {
+            handle: null,
+        };
+    },
+
+    watch: {
+        color: function (color_new) {
+            if (this.handle)
+                this.handle.color.hexString = color_new;
+        },
+    },
+
+    mounted: function () {
+        this.handle = new iro.ColorPicker(this.$refs.colorpicker, {
+            width:         this.width,
+            height:        this.height,
+            color:         this.color,
+            markerRadius:  this.markerRadius,
+            padding:       this.padding,
+            sliderMargin:  this.sliderMargin,
+            sliderHeight:  this.sliderHeight,
+            borderWidth:   this.borderWidth,
+            borderColor:   this.borderColor,
+            anticlockwise: true,
+        });
+
+        // `on` patches `this`.
+        // So we need to back it up first.
+        let outer = this;
+        this.handle.on('color:change', function (color, changes) {
+            outer.$emit('color:change', {color: color, changes: changes});
+        });
+        this.handle.on('input:start', function (color, changes) {
+            outer.$emit('input:start', {color: color, changes: changes});
+        })
+        this.handle.on('input:end', function (color, changes) {
+            outer.$emit('input:end', {color: color, changes: changes});
+        })
+    },
+
+    template: `
+        <div ref="colorpicker">
+        </div>
+    `
+})
 // }}}
 
 
@@ -586,6 +714,10 @@ Vue.component('shif-generic-l2', {
         actions:     Boolean,
         icon_rotate: Boolean,
         accordion:   Boolean,
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
         active:  {
             type: Object,
 
@@ -605,20 +737,33 @@ Vue.component('shif-generic-l2', {
             this.$on('click_icon', this.$listeners.click);
     },
 
+    methods: {
+        emit: function (key, val) {
+            if (this.disabled.flag)
+                return;
+
+            if (val === undefined)
+                this.$emit(key);
+            else
+                this.$emit(key, val);
+        }
+    },
+
     template: `
         <div class="device_wrapper"
-             v-on:mousedown="$emit('mousedown')"
-             v-on:mouseup="$emit('mouseup')"
-             v-on:click="$emit('click')">
+             v-bind:class="{disabled: disabled.flag}"
+             v-on:mousedown="emit('mousedown')"
+             v-on:mouseup="emit('mouseup')"
+             v-on:click="emit('click')">
             <div class="device">
-                <div v-on:click.stop="$emit('click_icon')">
+                <div v-on:click.stop="emit('click_icon')">
                     <shif-icon v-bind:src="icon"
                                v-bind:active="active.icon"
                                classname="device_icon">
                     </shif-icon>
                 </div>
                 <div class="device_text">
-                    <shif-title>{{ title }}</shif-title>
+                    <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                     <div v-if="place" class="device_location">
                         {{ place }}
                     </div>
@@ -634,10 +779,16 @@ Vue.component('shif-generic-l2', {
                 <div v-if="actions"
                      class="device_action">
                     <template v-if="accordion">
-                        <shif-icon src="pfeil4" v-bind:rotate="icon_rotate"></shif-icon>
+                        <shif-icon src="arrow_down_1" v-bind:rotate="icon_rotate"></shif-icon>
                     </template>
                     <template v-else>
-                        <shif-icon src="pfeil3"></shif-icon>
+                        <div class="svg_icon arrow_right_1">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
+                                <g id="Ebene_1">
+                                    <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
+                                </g>
+                            </svg>
+                        </div>
                     </template>
                 </div>
             </div>
@@ -691,7 +842,7 @@ const shif_device = {
         'texts',
         'output',
         'props',
-        'index',
+        'indexes',
         'rendering',
         'include_place',
     ],
@@ -702,7 +853,13 @@ const shif_device = {
         };
     },
 
-    methods: {},
+    methods: {
+        status_minimal: function (descs=true) {
+            const raw = status_impl(this.control);
+
+            return (descs) ? raw : raw.map(x => ({value: x.value}));
+        },
+    },
 
     computed: {
         cond: function () {
@@ -723,7 +880,7 @@ const shif_device = {
                 return null;
 
             const room = interfaceData.rooms[this.dev.room];
-            if (userSettings.showFloor !== 'true')
+            if (interfaceData.options.showFloor !== true)
                 return room.name;
 
             return room.floors.map(x => interfaceData.floors[x])
@@ -748,25 +905,24 @@ const shif_device = {
             return out;
         },
 
-        status_minimal: function () {
-            return status_impl(this.control);
-        },
-
         breadcrumb: function () {
             return (this.place ? this.place + ' | ' : '') + this.dev.label;
-        }
+        },
+
+        disabled: function () {
+            return check_disabled(this.uiElement, this.indexes);
+        },
     },
 };
 
 
 
-function shif_comps_create(name, l2, l2_only_and_l3) {
+function shif_comps_create(name, l2, l3) {
     const shif_name = 'shif-' + name + '-';
 
     controlComponents[name] = {
-        l2:      Vue.component(shif_name + 'l2',      l2),
-        l2_only: Vue.component(shif_name + 'l2_only', l2_only_and_l3),
-        l3:      Vue.component(shif_name + 'l3',      l2_only_and_l3),
+        l2: Vue.component(shif_name + 'l2', l2),
+        l3: Vue.component(shif_name + 'l3', l3),
     };
 }
 // }}}

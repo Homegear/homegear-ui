@@ -70,8 +70,8 @@ function startWatchers() {
   //watch('admin/master/**/*.css', deploycss);
   //watch('admin/master/**/*.js', series(deployjs, babeljs));
   watch('admin/admin.php', series(execC));
+  watch('admin/functions.dev.php', series(execC));
   watch('admin/content.php', series(execC));
-  watch('admin/settings.php', series(execC));
   watch('admin/master/**/*.css', series(execC));
   watch('admin/master/**/*.php', series(execC));
   watch('admin/master/**/*.js', series(execC, execBabel));

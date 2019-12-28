@@ -2,25 +2,26 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.lightingButton</uniqueUiElementId>
-		<type>simple</type>
 		<control>lightingButton</control>
+		<type>simple</type>
+		<role>100001</role>
 		<texts>
 			<text id="title">
 				<content>Button</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>licht1</name>
+				<name>light_on_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -35,13 +36,13 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>licht1</name>
+								<name>light_on_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>pushed</content>
+								<content>Gedrückt</content>
 								<color>active</color>
 							</text>
 						</texts>
@@ -49,13 +50,13 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>licht1</name>
+								<name>light_on_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>unpushed</content>
+								<content>Ungedrückt</content>
 								<color>inactive</color>
 							</text>
 						</texts>

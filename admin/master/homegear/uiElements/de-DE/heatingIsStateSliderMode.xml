@@ -4,27 +4,28 @@
 		<id>Base.heatingIsStateSliderMode</id>
         <control>heatingIsStateSliderMode</control>
 		<type>complex</type>
+		<role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Heizung</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Status</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="temperature">
-				<name>thermometer1</name>
+				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
 			<icon id="l2">
-				<name>thermometer1</name>
+				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -55,7 +56,10 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>201000</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+	<homegearUiElement>
+		<uniqueUiElementId>Base.windowPosition</uniqueUiElementId>
+		<control>windowPosition</control>
+		<type>simple</type>
+		<role>600000</role>
+		<texts>
+			<text id="title">
+				<content>Position</content>
+				<color>title</color>
+			</text>
+			<text id="l2_state_title">
+				<content>Position</content>
+				<color>l2_state_title</color>
+			</text>
+		</texts>
+		<icons>
+			<icon id="l2">
+				<name>window_2</name>
+                <color>inactive</color>
+			</icon>
+            <icon id="l3">
+                <name>arrow_right_1</name>
+                <color>iconArrow</color>
+            </icon>
+		</icons>
+		<variableInputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+				<visualizeInOverview>true</visualizeInOverview>
+				<unit>%</unit>
+				<minimumValue>0</minimumValue>
+				<maximumValue>100</maximumValue>
+				<minimumValueScaled>0</minimumValueScaled>
+				<maximumValueScaled>100</maximumValueScaled>
+			</variable>
+		</variableInputs>
+		<variableOutputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+			</variable>
+		</variableOutputs>
+	</homegearUiElement>
+</homegearUiElements>

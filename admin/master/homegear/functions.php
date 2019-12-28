@@ -2,42 +2,31 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
-{
+function homegear_init() {
+    global $interfaceData;
+
+    if(!$_SERVER['WEBSOCKET_ENABLED']) die('WebSockets are not enabled on this server in "rpcservers.conf".');
+    if($_SERVER['WEBSOCKET_AUTH_TYPE'] != 'session') die('WebSocket authorization type is not set to "session" in "rpcservers.conf".');
+
     $hg = new \Homegear\Homegear();
 
-    try
-    {
-        $hg_lang = $_SESSION['locale'] ?? 'en-US';
-
+    try {
+        $hg_lang     = $interfaceData["options"]["language"] ?? 'en-US';
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
-        $hg_cats     = $hg->getCategories($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
-    } 
-    catch (\Homegear\HomegearException $e)
-    {
-        $hgMessage = $hg->log(2, 'Homegear Exception catched. ' .
+    }
+    catch (\Homegear\HomegearException $e) {
+        die( $hg->log(2, 'Homegear Exception catched. ' .
                                "Code: {$e->getCode()} " .
-                            "Message: {$e->getMessage()}");
-        return;
+                            "Message: {$e->getMessage()}")
+        );
     }
 
-    function array_move_element($key, &$from, &$dest)
-    {
+    function array_move_element($key, &$from, &$dest) {
         $dest[$key] = $from[$key];
         unset($from[$key]);
-    }
-
-    function category_parse(&$house, &$category)
-    {
-        $id = $category['ID'];
-
-        $house['categories'][$id]['name'] = $category['NAME'];
-
-        foreach ($category['METADATA'] as $name => &$data)
-            $house['categories'][$id][$name] = $data;
     }
 
     function floor_parse(&$house, &$floor) {
@@ -84,6 +73,24 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
         unset($dev['type']);
     }
 
+    function device_cleanup_language_disabled(&$dev, $lang) {
+        if (! array_key_exists('metadata', $dev) ||
+            ! array_key_exists('event_hooks', $dev['metadata']))
+            return;
+
+        $event_hooks = &$dev['metadata']['event_hooks'];
+        foreach ($event_hooks as &$event) {
+            if (! array_key_exists('translations', $event))
+                continue;
+
+            $trans    = &$event['translations'];
+            $lang_sel = array_key_exists($lang, $trans) ? $lang : 'en-US';
+
+            $event['texts'] = $trans[$lang_sel];
+            unset($event['translations']);
+        }
+    }
+
     function device_make_complex($dev) {
         // Create an empty grid frame
         $dev['grid'] = null;
@@ -111,10 +118,22 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
                         'roles'      => $roles
                 ];
             }
+
+            foreach ($control['variableOutputs'] as $key_output => $output) {
+                $roles = $output['roles'] ?? array();
+                $map[$output['peer']]
+                    [$output['channel']]
+                    [$output['name']][] = [
+                        'databaseId' => $id,
+                        'control'    => $key_control,
+                        'input'      => $key_input,
+                        'roles'      => $roles
+                ];
+            }
         }
     }
 
-    function device_parse(&$house, &$map_invoke, $dev) {
+    function device_parse(&$house, &$map_invoke, &$dev, $lang) {
         $id = $dev['databaseId'];
 
         // Push device into the room it is located in
@@ -125,6 +144,7 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
 
         device_values_into_props($dev);
         device_cleanup_type($dev);
+        device_cleanup_language_disabled($dev, $lang);
 
         device_build_invoke_map($map_invoke, $dev, $id);
 
@@ -144,15 +164,36 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
         }
     }
 
+    function mainmenu_parse() {
+        global $interfaceData;
+        foreach ($interfaceData["mainmenu"] as $key => $value) {
+            if ($value["name"] == "") {
+                unset($interfaceData["mainmenu"][$key]);
+            }
+        }
+        return $interfaceData["mainmenu"];
+    }
+
+    function menu_parse() {
+        global $interfaceData;
+        foreach ($interfaceData["menu"] as $key => $value) {
+            if ($value["name"] == "") {
+                unset($interfaceData["menu"][$key]);
+            }
+        }
+        return $interfaceData["menu"];
+    }
+
     $house = [
-        'devices'    => [],
-        'floors'     => [],
-        'rooms'      => [],
-        'categories' => [],
-        'roles'      => [],
-        'mainmenu'   => $interfaceData["mainmenu"],
-        'menu'       => $interfaceData["menu"],
-        'themes'     => $interfaceData["themes"],
+        'devices'      => [],
+        'floors'       => [],
+        'rooms'        => [],
+        'roles'        => [],
+        'mainmenu'     => mainmenu_parse(),
+        'menu'         => menu_parse(),
+        'themes'       => $interfaceData["themes"],
+        'options'      => $interfaceData["options"],
+        'iconFallback' => $interfaceData["iconFallback"],
     ];
 
     if($hg_lang != "en-US"){
@@ -168,9 +209,6 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
     // will be filled while deviceparsing
     $map_invoke = [];
 
-    foreach ($hg_cats as &$category)
-        category_parse($house, $category);
-
     foreach($hg_roles as $key => $value){
         $aggregated = $hg->aggregateRoles(2, $value["ID"], array());
         $varInRole = $hg->getVariablesInRole($value["ID"]);
@@ -178,13 +216,22 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
             $house['roles'][$value["ID"]]["name"] = $value["NAME"];
             if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["translations"])){
                 $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"][$hg_lang];
+                unset($value["METADATA"]["ui"]["translations"]);
             }
             else if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"])){
                 $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"]["en-US"];
+                unset($value["METADATA"]["ui"]["translations"]);
             }
-            unset($value["METADATA"]["ui"]["translations"]);
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["label"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["label"])){
+                $house['roles'][$value["ID"]]["name"] = $value["METADATA"]["ui"]["label"][$hg_lang];
+                unset($value["METADATA"]["ui"]["label"]);
+            }
+            else if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["label"])){
+                $house['roles'][$value["ID"]]["name"] = $value["METADATA"]["ui"]["label"]["en-US"];
+                unset($value["METADATA"]["ui"]["label"]);
+            }
             if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
-                $house['roles'][$value["ID"]] = array_merge($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
+                $house['roles'][$value["ID"]] = array_replace_recursive($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
             }
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
             $house['roles'][$value["ID"]]["varInRole"] = $varInRole;
@@ -198,15 +245,12 @@ if(class_exists('\Homegear\Homegear') && $user->checkAuth(true) === 0)
         room_parse($house, $room);
 
     foreach ($hg_ui_elems as &$dev)
-        device_parse($house, $map_invoke, $dev);
+        device_parse($house, $map_invoke, $dev, $hg_lang);
 
     // Insert the cross references
     house_build_back_refs($house);
 
     $house["map_invoke"] = $map_invoke;
 
-    $hg_interfaceData = $house;
-}
-else{
-    $hgMessage = 'console.log("HOMEGEAR PHP API NOT FOUND!");';
+    return $house;
 }

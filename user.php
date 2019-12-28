@@ -68,6 +68,11 @@ class User
             ini_set('session.gc_maxlifetime', 5);
             session_start(array('name' => 'PHPSESSIDUI'));
         }
+
+        $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
+
+        $this->firstFactorAuthMethods = $this->userSettings['firstFactorAuthMethods'] ?? array();
+        $this->secondFactorAuthMethods = $this->userSettings['secondFactorAuthMethods'] ?? array();
     }
 
     private function initialize()
@@ -81,7 +86,7 @@ class User
         if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
         else if($_SESSION['locale'] == 'en') $_SESSION['locale'] = 'en-US';
         hg_set_user_privileges($_SESSION['user']);
-        
+
         $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
         if(isset($metadata['interface'])) $this->userSettings = array_merge($this->userSettings, $metadata['interface']);
 
@@ -90,6 +95,8 @@ class User
 
         $this->firstFactorAuthMethods = $this->userSettings['firstFactorAuthMethods'] ?? array();
         $this->secondFactorAuthMethods = $this->userSettings['secondFactorAuthMethods'] ?? array();
+
+        if(!isset($this->userSettings['language']) || !$this->userSettings['language']) $this->userSettings['language'] = $_SESSION['locale'];
 
         $this->initialized = true;
     }
@@ -105,8 +112,12 @@ class User
             if(isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
             {
                 $authorized = $this->certificateLogin();
-                //$this->firstFactorAuthMethods is not set before this point.
-                if(!in_array('certificate', $this->firstFactorAuthMethods, true)) $authorized = -1;
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in certificateLogin().
+                if(!in_array('certificate', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
             }
         }
 
@@ -116,8 +127,12 @@ class User
             if(isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey']))
             {
                 $authorized = $this->oauthLogin();
-                //$this->firstFactorAuthMethods is not set before this point.
-                if(!in_array('oauth', $this->firstFactorAuthMethods, true)) $authorized = -1;
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in oauthLogin().
+                if(!in_array('oauth', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
             }
         }
 
@@ -131,11 +146,15 @@ class User
                 isset($_REQUEST['key']))
             {
                 $authorized = $this->apiKeyLogin();
-                //$this->firstFactorAuthMethods is not set before this point.
-                if(!in_array('apiKey', $this->firstFactorAuthMethods, true)) $authorized = -1;
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in apiKeyLogin().
+                if(!in_array('apiKey', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
             }
         }
-        
+
         if($authorized === -1 && $redirectToLogin)
         {
             header("Location: signin.php");
@@ -385,6 +404,13 @@ class User
         {
         }
         return -1;
+    }
+
+    public function resetSession()
+    {
+        unset($_SESSION['firstFactorAuthorized']);
+        unset($_SESSION['authorized']);
+        unset($_SESSION['user']);
     }
 
     public function logout()

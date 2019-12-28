@@ -2,11 +2,12 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.windowContact</uniqueUiElementId>
-		<type>simple</type>
 		<control>windowContact</control>
+		<type>simple</type>
+		<role>301002</role>
 		<texts>
 			<text id="title">
-				<content>State</content>
+				<content>Status</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
@@ -16,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>fenster1</name>
+				<name>window_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -32,10 +33,10 @@
 				<name>*</name>
 				<visualizeInOverview>true</visualizeInOverview>
 				<rendering>
-					<condition operator="not" value="0">
+					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>fenster1</name>
+								<name>window_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -46,10 +47,10 @@
 							</text>
 						</texts>
 					</condition>
-					<condition operator="e" value="0">
+					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>fenster1</name>
+								<name>window_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -72,7 +73,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-            <role>301002</role>
+            <l2_only>true</l2_only>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

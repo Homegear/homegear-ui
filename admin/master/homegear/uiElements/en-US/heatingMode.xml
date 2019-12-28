@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.heatingMode</uniqueUiElementId>
-		<type>simple</type>
 		<control>heatingMode</control>
-        <role>0x201003</role>
+		<type>simple</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Mode</content>
@@ -17,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>plus-minus</name>
+				<name>plus-minus_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -36,7 +36,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>plus-minus</name>
+								<name>plus-minus_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="1">
 						<icons>
 							<icon id="state">
-								<name>plus-minus</name>
+								<name>plus-minus_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -64,7 +64,7 @@
 					<condition operator="e" value="2">
 						<icons>
 							<icon id="state">
-								<name>plus-minus</name>
+								<name>plus-minus_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -86,8 +86,5 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
-		<metadata>
-            <role>201000</role>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

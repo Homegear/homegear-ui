@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<id>Base.heatingIsStateSliderModeWindow</id>
-		<type>complex</type>
         <control>heatingIsStateSliderModeWindow</control>
-        <role>0x201000</role>
+		<type>complex</type>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Heating</content>
@@ -17,15 +17,15 @@
 		</texts>
 		<icons>
 			<icon id="temperature">
-				<name>heater</name>
+				<name>heater_1</name>
                 <color>inactive</color>
 			</icon>
 			<icon id="l2">
-				<name>heater</name>
+				<name>heater_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -62,7 +62,10 @@
 			</control>
 		</controls>
 		<metadata>
-            <role>201000</role>
+			<l2_action>
+				<control>0</control>
+				<input>0</input>
+			</l2_action>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

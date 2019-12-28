@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.ventilationMode</uniqueUiElementId>
 		<type>simple</type>
 		<control>ventilationMode</control>
-        <role>0x201003</role>
+        <role>201000</role>
 		<texts>
 			<text id="title">
 				<content>Belüftung</content>
@@ -17,11 +17,11 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>ventilator</name>
+				<name>ventilator_2</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
-                <name>pfeil3</name>
+                <name>arrow_right_1</name>
                 <color>iconArrow</color>
             </icon>
 		</icons>
@@ -36,7 +36,7 @@
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -50,7 +50,7 @@
 					<condition operator="e" value="1">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -64,7 +64,7 @@
 					<condition operator="e" value="2">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -78,7 +78,7 @@
 					<condition operator="e" value="3">
 						<icons>
 							<icon id="state">
-								<name>pfeil2</name>
+								<name>arrow_up_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
@@ -101,6 +101,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
+			<l3_force>true</l3_force>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
