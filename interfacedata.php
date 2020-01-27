@@ -13,7 +13,7 @@
         "userDefaults": {
             "theme": "dark",
             "highlight": "#e3a104",
-            "language": "en-US",
+            "language": "de-DE",
             "firstBreadcrumb": "Haus",
             "firstBreadcrumbId": "house",
             "showFloor": true,
