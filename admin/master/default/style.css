@@ -21,6 +21,8 @@
   -ms-user-select: none;
   user-select: none;
   hyphens: auto;
+  scrollbar-color: #191b1f #898989;
+  scrollbar-width: thin;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -43,6 +45,21 @@ body, html {
   padding: 0;
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #898989;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #191b1f;
 }
 
 h1 {
