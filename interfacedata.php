@@ -6,6 +6,7 @@
         "interfacePath": "/",
         "directLoginUser": "",
         "directLoginApiKey": "",
+        "setupKey": "",
         "homegear": {
             "url": "location.hostname",
             "port": "location.port"

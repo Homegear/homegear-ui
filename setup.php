@@ -16,25 +16,25 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-    // http://localhost/setup.php?key=[interfaceData.settings.directLoginApiKey]
+    // http://localhost/setup.php?key=[interfaceData.settings.setupKey]
     // &action=generateExtensions
-    if(file_exists(getcwd()."/interfacedata.php")){
+    if (file_exists(getcwd()."/interfacedata.php")){
         include(getcwd()."/interfacedata.php");
         $interfaceData["options"] = array(
             "language" => "en-US"
         );
     }
-    else{
+    else {
         die("No interfaceData file!");
     }
 
-    if( (isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["directLoginApiKey"]) ){
+    if ( isset($interfaceData["settings"]["setupKey"]) && isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["setupKey"] ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/admin.php");
             die();
         }
     }
-    else{
+    else {
         die("Access denied!");
     }
 
@@ -377,7 +377,7 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Admin Button
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    $admin_url = 'setup.php?key='.$interfaceData["settings"]["directLoginApiKey"];
+    $admin_url = 'setup.php?key='.$interfaceData["settings"]["setupKey"];
 
 ?>
 
