@@ -690,13 +690,7 @@
             "deviceId": 78,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 78,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 79,
@@ -714,13 +708,7 @@
             "deviceId": 79,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 79,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 80,
@@ -738,13 +726,7 @@
             "deviceId": 80,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 80,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 81,
@@ -762,13 +744,7 @@
             "deviceId": 81,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 81,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 82,
@@ -786,13 +762,7 @@
             "deviceId": 82,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 82,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 83,
@@ -810,13 +780,7 @@
             "deviceId": 83,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 83,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 84,

@@ -325,13 +325,18 @@
         if(isset($_GET["roles2var"])){
             foreach($oldInterfaceData["roles2var"] as $value){
                 if($value["roleId"]){
+                    if (!is_array($value["roleId"])) {
+                        $value["roleId"] = array($value["roleId"]);
+                    }
                     try {
                         $directionString = $value['direction'] ?? 'both';
                         if($directionString == 'in') $direction = 0;
                         else if($directionString == 'out') $direction = 1;
-                        else $direction = 2; //both
+                        else $direction = 2; //both=2
                         $invert = $value['invert'] ?? false;
-                        $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"], $direction, $invert);
+                        foreach ($value["roleId"] as $roleId) {
+                            $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $roleId, $direction, $invert);
+                        }
                     }
                     catch(\Homegear\HomegearException $e) {
                         $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
