@@ -449,7 +449,7 @@
             "deviceId": 17,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 600004
+            "roleId": [600000,600004]
         },
         {
             "deviceId": 18,
@@ -467,7 +467,7 @@
             "deviceId": 18,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 19,
@@ -485,7 +485,7 @@
             "deviceId": 19,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 20,
@@ -503,7 +503,7 @@
             "deviceId": 20,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 600004
+            "roleId": [600000,600004]
         },
         {
             "deviceId": 21,
@@ -521,7 +521,7 @@
             "deviceId": 21,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 22,
@@ -539,7 +539,7 @@
             "deviceId": 22,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 23,
@@ -557,7 +557,7 @@
             "deviceId": 23,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 24,
@@ -575,7 +575,7 @@
             "deviceId": 24,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 25,
@@ -593,7 +593,7 @@
             "deviceId": 25,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 502004
+            "roleId": [502000,502004]
         },
         {
             "deviceId": 26,
@@ -611,7 +611,7 @@
             "deviceId": 26,
             "channel": 1,
             "varName": "CURRENT_POSITION",
-            "roleId": 502004
+            "roleId": [502000,502004]
         },
         {
             "deviceId": 60,
@@ -659,7 +659,7 @@
             "deviceId": 67,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301001
         },
         {
             "deviceId": 69,
@@ -804,8 +804,7 @@
             "deviceId": 92,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100001,
-            "direction": 0
+            "roleId": 100001
         },
         {
             "deviceId": 93,
@@ -823,8 +822,7 @@
             "deviceId": 92,
             "channel": 1,
             "varName": "LEVEL_FAST",
-            "roleId": 101000,
-            "direction": 0
+            "roleId": 101000
         },
         {
             "deviceId": 93,
@@ -1349,7 +1347,7 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "STOP",
+                            "name": "UP",
                             "value": 2
                         },
                         {
@@ -1439,7 +1437,7 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "STOP",
+                            "name": "UP",
                             "value": 2
                         },
                         {
@@ -3096,7 +3094,7 @@
                         }
                     ]
                 ],
-                "label": "Fenster Essen",
+                "label": "Fensterkontakt Essen",
                 "room": 12
             }
         ],
@@ -3281,31 +3279,6 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 67,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 67,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ]
-                ],
-                "label": "Fenster Küche rechts",
-                "room": 12
-            }
-        ],
-        [
-            "Base.windowHandle",
-            {
-                "inputPeers": [
-                    [
-                        {
                             "peer": 70,
                             "channel": 1,
                             "name": "STATE"
@@ -3346,17 +3319,18 @@
                         }
                     ]
                 ],
-                "label": "Tür",
+                "label": "Türkontakt",
                 "room": 3
             }
         ],
+
         [
             "Base.doorHandle",
             {
                 "inputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 67,
                             "channel": 1,
                             "name": "STATE"
                         }
@@ -3365,14 +3339,14 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 67,
                             "channel": 1,
                             "name": "STATE"
                         }
                     ]
                 ],
-                "label": "Tür",
-                "room": 3
+                "label": "Türgriff",
+                "room": 12
             }
         ],
         [
@@ -3460,7 +3434,7 @@
                         }
                     ]
                 ],
-                "label": "LightComplex",
+                "label": "Dimmlicht",
                 "room": 12,
                 "role": 101000
             }
@@ -3514,7 +3488,7 @@
                         }
                     ]
                 ],
-                "label": "LightComplexButton",
+                "label": "Dimmlicht Push",
                 "room": 9,
                 "role": 101000
             }
@@ -3582,7 +3556,7 @@
                         }
                     ]
                 ],
-                "label": "LightComplexColor",
+                "label": "Farblicht",
                 "room": 9,
                 "role": 101000
             }
@@ -3804,7 +3778,7 @@
                         }
                     ]
                 ],
-                "label": "OpenWeatherMap",
+                "label": "Wetter",
                 "room": 6,
                 "role": 201000
             }
