@@ -1,9 +1,14 @@
 #house_rooms {
-	text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
 }
 
 .rooms_wrapper {
-	display: inline-block;
+	width: 100%;
+	display: block;
+	text-align: left;
 }
 
 .roomSelectTitle {
@@ -11,8 +16,8 @@
 	font-size: 28px;
 	color: #fff;
 	font-weight: bold;
-	padding: 0px 0px 22px 0px;
-	display: inline-block;
+	padding: 0px 0px 22px 15px;
+	display: block;
 	clear: both;
 	text-align: left;
 }

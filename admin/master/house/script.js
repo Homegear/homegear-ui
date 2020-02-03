@@ -42,14 +42,41 @@ function house_level1(){
 house_level1();
 
 function house_level1_fix(){
-    var maxWidth = 0;
+    
+    var roomSelectWrapperWidth = 185 + 30;
+    var windowWidth = $( window ).width() - 20;
+    var rooms_wrapper_child_count_max = 0;
+
     $('.rooms_wrapper').each(function(){
-        if($(this).width() > maxWidth){
-            maxWidth = $(this).width();
+        if(this.childElementCount > rooms_wrapper_child_count_max){
+            rooms_wrapper_child_count_max = this.childElementCount;
         }
     });
-    $('.roomSelectTitle').width(maxWidth);
-    $('.rooms_wrapper').css('display', 'block');
+    
+    var roomSelectWrapperMaxCount = windowWidth / roomSelectWrapperWidth;
+    roomSelectWrapperMaxCount = roomSelectWrapperMaxCount.toString().split('.')[0];
+
+    if (rooms_wrapper_child_count_max > roomSelectWrapperMaxCount) {
+        var maxWidth = roomSelectWrapperMaxCount * roomSelectWrapperWidth + 20;
+        //console.log('1 roomSelectWrapperMaxCount');
+    }
+    else {
+        var maxWidth = rooms_wrapper_child_count_max * roomSelectWrapperWidth + 25;
+        //console.log('2 rooms_wrapper_child_count_max');
+    }
+
+    /*
+    console.log('roomSelectWrapperWidth: '+roomSelectWrapperWidth);
+    console.log('windowWidth: '+windowWidth);
+    console.log('rooms_wrapper_child_count_max: '+rooms_wrapper_child_count_max);
+    console.log('roomSelectWrapperMaxCount: '+roomSelectWrapperMaxCount);
+    console.log('maxWidth: '+maxWidth);
+    */
+
+    $('#house_rooms').width(maxWidth);
+    //$('.roomSelectTitle').width(maxWidth);
+    //$('.rooms_wrapper').width(maxWidth);
+    //$('.rooms_wrapper').css('display', 'inline-block');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
