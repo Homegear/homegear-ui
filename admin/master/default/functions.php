@@ -11,7 +11,7 @@ function i18n($langKey){
         $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else if(array_key_exists("language", $interfaceData["settings"]["userDefaults"]) && array_key_exists($interfaceData["settings"]["userDefaults"]["language"], $interfaceData["i18n"]) && $interfaceData["settings"]["userDefaults"]["language"] != 'en-US'){
-        $i18nOut = $interfaceData["settings"]["userDefaults"]["language"];
+        $i18nOut = $interfaceData["i18n"][$interfaceData["settings"]["userDefaults"]["language"]];
         $i18nOut["default"] = $interfaceData["i18n"]["en-US"];
     }
     else{
