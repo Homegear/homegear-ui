@@ -467,7 +467,7 @@ function userSettings() {
     $interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
-    $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"];
+    $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? true : false);
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");
