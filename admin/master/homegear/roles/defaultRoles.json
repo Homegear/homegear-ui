@@ -33,6 +33,10 @@
                     "buttonText": "Zentral aus"
                 }
             ],
+            "label": {
+                "en-US": "Lighting",
+                "de-DE": "Beleuchtung"
+            },
             "translations": {
                 "de-DE": {
                     "0": "aus",
@@ -165,6 +169,10 @@
                     "buttonText": "Zentral Spar"
                 }
             ],
+            "label": {
+                "en-US": "Heating",
+                "de-DE": "Heizung"
+            },
             "translations": {
                 "de-DE": {
                     "0": "Frostschutz",
@@ -436,14 +444,18 @@
                 ]
             },
             "icon": "door_open_2",
+            "label": {
+                "en-US": "Doors",
+                "de-DE": "Türen"
+            },
             "translations": {
                 "de-DE": {
-                    "0": "geschlossen",
-                    "1": "offen"
+                    "0": "geöffnet",
+                    "1": "geschlossen"
                 },
                 "en-US": {
-                    "0": "closed",
-                    "1": "opened"
+                    "0": "opened",
+                    "1": "closed"
                 }
             }
         }
@@ -469,15 +481,19 @@
                 ]
             },
             "icon": "window_1",
+            "label": {
+                "en-US": "Windows",
+                "de-DE": "Fenster"
+            },
             "translations": {
                 "de-DE": {
-                    "0": "geschlossen",
-                    "1": "geöffnet",
+                    "0": "geöffnet",
+                    "1": "geschlossen",
                     "2": "gekippt"
                 },
                 "en-US": {
-                    "0": "closed",
-                    "1": "opened",
+                    "0": "opened",
+                    "1": "closed",
                     "2": "Tilted"
                 }
             }
@@ -504,14 +520,18 @@
                 ]
             },
             "icon": "door-handle_1",
+            "label": {
+                "en-US": "Doors",
+                "de-DE": "Türen"
+            },
             "translations": {
                 "de-DE": {
-                    "0": "verriegelt",
-                    "1": "unverriegelt"
+                    "0": "unverriegelt",
+                    "1": "verriegelt"
                 },
                 "en-US": {
-                    "0": "locked",
-                    "1": "unlocked"
+                    "0": "unlocked",
+                    "1": "locked"
                 }
             }
         }
@@ -550,6 +570,10 @@
                     "buttonText": "Zentral aus"
                 }
             ],
+            "label": {
+                "en-US": "Sockets",
+                "de-DE": "Steckdosen"
+            },
             "translations": {
                 "de-DE": {
                     "0": "aus",
@@ -629,6 +653,10 @@
                     "buttonText": "Zentral ab"
                 }
             ],
+            "label": {
+                "en-US": "Shading",
+                "de-DE": "Beschattung"
+            },
             "translations": {
                 "de-DE": {
                     "falseCount": "eingefahren",
@@ -643,8 +671,7 @@
                 {
                     "aggregationType": 1,
                     "roles": [
-                        501001,
-                        502002
+                        501004
                     ]
                 }
             ]
@@ -877,6 +904,7 @@
                 }
             ],
             "icon": "window_2",
+            "l2_status": false,
             "invokeOutputs": [
                 {
                     "roleId": 600001,
@@ -891,19 +919,19 @@
             ],
             "translations": {
                 "de-DE": {
-                    "falseCount": "eingefahren",
-                    "trueCount": "ausgefahren"
+                    "falseCount": "geöffnet",
+                    "trueCount": "geschlossen"
                 },
                 "en-US": {
-                    "falseCount": "retracted",
-                    "trueCount": "extended"
+                    "falseCount": "open",
+                    "trueCount": "closed"
                 }
             },
             "rolesInclude": [
                 {
                     "aggregationType": 1,
                     "roles": [
-                        600004
+                        600001
                     ]
                 }
             ]

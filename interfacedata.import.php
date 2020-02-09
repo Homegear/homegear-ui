@@ -295,8 +295,8 @@
                         ]
                     }
                 ],
-                "l2_status": false,
                 "icon": "window_2",
+                "l2_status": false,
                 "invokeOutputs": [
                     {
                         "roleId": 600001,
@@ -311,24 +311,24 @@
                 ],
                 "translations": {
                     "de-DE": {
-                        "falseCount": "eingefahren",
-                        "trueCount": "ausgefahren"
+                        "falseCount": "geöffnet",
+                        "trueCount": "geschlossen"
                     },
                     "en-US": {
-                        "falseCount": "retracted",
-                        "trueCount": "extended"
+                        "falseCount": "open",
+                        "trueCount": "closed"
                     }
                 },
                 "rolesInclude": [
                     {
                         "aggregationType": 1,
                         "roles": [
-                            600004
+                            600001
                         ]
                     }
                 ]
             }
-        }    
+        } 
     ],
     "roles2var": [
         {
@@ -659,7 +659,8 @@
             "deviceId": 67,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301001
+            "roleId": 301001,
+            "invert": true
         },
         {
             "deviceId": 69,
@@ -672,7 +673,7 @@
             "channel": 1,
             "varName": "STATE",
             "roleId": 301002,
-            "revernt": true
+            "invert": true
         },
         {
             "deviceId": 78,
@@ -3294,7 +3295,7 @@
                         }
                     ]
                 ],
-                "label": "Fenster Wohnen",
+                "label": "Fenster Wohnen Inverted",
                 "room": 12
             }
         ],
