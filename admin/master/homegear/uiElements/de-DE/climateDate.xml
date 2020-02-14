@@ -34,7 +34,7 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>true</visualizeInOverview>
+				<visualizeInOverview>false</visualizeInOverview>
 			</variable>
 		</variableInputs>
 	</homegearUiElement>

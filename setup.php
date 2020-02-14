@@ -155,6 +155,7 @@
             homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getCategoryUiElements"));'
             homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getRoomUiElements"));'
             homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "removeUiElement"));'
+            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "addRoleToVariable"));'
         */
 
         if(isset($_GET["deleteUIE"])){

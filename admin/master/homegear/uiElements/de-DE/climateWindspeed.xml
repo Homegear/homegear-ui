@@ -34,7 +34,7 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>true</visualizeInOverview>
+				<visualizeInOverview>false</visualizeInOverview>
 				<unit>meter/sec</unit>
 			</variable>
 		</variableInputs>
