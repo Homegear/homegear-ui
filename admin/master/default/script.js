@@ -198,7 +198,7 @@ function content(element, options) {
     if ('jump' in options) {
         for (let i = interfaceData.options.breadcrumbs_id_array.length - options.jump; i > 1; i--)
             content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array,
-                                               interfaceData.options.breadcrumbs_array);
+                interfaceData.options.breadcrumbs_array);
 
         content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
     }
@@ -646,12 +646,14 @@ Vue.component('shif-colorpicker', {
         width:  { type: Number, required: true, },
         height: { type: Number, required: true, },
         color:  { type: String, required: true, },
+        title:  { type: String, required: true, },
         padding:      { type: Number, default:  1 },
-        borderWidth:  { type: Number, default:  3 },
-        markerRadius: { type: Number, default: 12 },
-        sliderMargin: { type: Number, default: 24 },
-        sliderHeight: { type: Number, default: 36 },
-        borderColor:  { type: String, default: '#fff' },
+        borderWidth:  { type: Number, default:  1 },
+        handleRadius: { type: Number, default: 30 },
+        sliderMargin: { type: Number, default: 32 },
+        sliderHeight: { type: Number, default: 64 },
+        borderColor:  { type: String, default: '#000' },
+        anticlockwise:  { type: Boolean, default: true }
     },
 
     data: function () {
@@ -672,13 +674,40 @@ Vue.component('shif-colorpicker', {
             width:         this.width,
             height:        this.height,
             color:         this.color,
-            markerRadius:  this.markerRadius,
+            title:         this.title,
+            handleRadius:  this.handleRadius,
             padding:       this.padding,
             sliderMargin:  this.sliderMargin,
             sliderHeight:  this.sliderHeight,
             borderWidth:   this.borderWidth,
             borderColor:   this.borderColor,
-            anticlockwise: true,
+            anticlockwise: this.anticlockwise,
+            display:       'inline-block',
+            layout:        [
+                {
+                    component: iro.ui.Wheel,
+                    options: {}
+                },
+                {
+                    // regular value slider
+                    component: iro.ui.Slider,
+                    options: {}
+                },
+                {
+                    // hue slider
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'hue'
+                    }
+                },
+                {
+                    // saturation slider
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'saturation'
+                    }
+                }
+            ]
         });
 
         // `on` patches `this`.
@@ -689,14 +718,19 @@ Vue.component('shif-colorpicker', {
         });
         this.handle.on('input:start', function (color, changes) {
             outer.$emit('input:start', {color: color, changes: changes});
-        })
+        });
         this.handle.on('input:end', function (color, changes) {
             outer.$emit('input:end', {color: color, changes: changes});
-        })
+        });
     },
 
     template: `
-        <div ref="colorpicker">
+        <div class="device_wrapper">
+            <div class="device color">
+                <shif-title>{{ title }}</shif-title>
+                <div ref="colorpicker">
+                </div>
+            </div>
         </div>
     `
 })
