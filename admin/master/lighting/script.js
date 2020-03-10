@@ -140,10 +140,10 @@ lighting_function_l3.computed.values = function () {
         }));
 };
 lighting_function_l3.template = `
-    <shif-radio v-bind:title="title"
+    <shif-dropdown v-bind:title="title"
                 v-bind:values="values"
                 v-on:input="x => change(parseInt(x))">
-    </shif-radio>
+    </shif-dropdown>
 `;
 
 shif_comps_create('lightingFunction', lighting_function_l2, lighting_function_l3);
