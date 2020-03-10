@@ -134,13 +134,13 @@ select {
   color: #fff;
   box-shadow: 0px 0px 0px 0px #000;
   border: 0px solid #000;
-  padding: 20px 40px;
-  margin: 4px;
+  padding: 20px 20px;
+  position: relative;
 }
 
 option {
   color: #fff;
-  padding: 2px 4px;
+  padding: 10px 20px;
 }
 
 fieldset {

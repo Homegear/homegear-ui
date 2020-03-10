@@ -632,12 +632,14 @@ Vue.component('shif-dropdown', {
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
-                <select class="device_dropdown" v-bind:class="{disabled: disabled.flag}" v-on:change="$emit('change', $event.target.value)">
-                    <template v-for="i in values">
-                            <option v-bind:value="i.value"
-                                    v-bind:selected="i.selected">{{ i.name }}</option>
-                    </template>
-                </select>
+                <div class="device_dropdown">
+                    <select v-bind:class="{disabled: disabled.flag}" v-on:change="$emit('change', $event.target.value)">
+                        <template v-for="i in values">
+                                <option v-bind:value="i.value"
+                                        v-bind:selected="i.selected">{{ i.name }}</option>
+                        </template>
+                    </select>
+                </div>
             </div>
         </div>
     `,
