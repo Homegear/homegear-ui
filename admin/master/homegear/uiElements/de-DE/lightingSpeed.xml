@@ -32,7 +32,7 @@
 				<channel>*</channel>
 				<name>*</name>
 				<visualizeInOverview>true</visualizeInOverview>
-				<unit>km/h</unit>
+				<unit></unit>
 				<minimumValue>0</minimumValue>
 				<maximumValue>255</maximumValue>
 				<minimumValueScaled>0</minimumValueScaled>

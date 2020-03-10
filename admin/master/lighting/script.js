@@ -52,6 +52,7 @@ lighting_brightness.template = `
 `;
 
 shif_comps_create('lightingBrightness', lighting_switch_l2, lighting_brightness);
+shif_comps_create('lightingSpeed', lighting_switch_l2, lighting_brightness);
 
 
 
@@ -142,7 +143,7 @@ lighting_function_l3.computed.values = function () {
 lighting_function_l3.template = `
     <shif-dropdown v-bind:title="title"
                 v-bind:values="values"
-                v-on:input="x => change(parseInt(x))">
+                v-on:change="x => change(parseInt(x))">
     </shif-dropdown>
 `;
 
