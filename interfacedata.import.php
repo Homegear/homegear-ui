@@ -268,6 +268,11 @@
             "name": "COLOR",
             "type": "string",
             "value": "#ffffff"
+        },
+        {
+            "name": "FUNCTION",
+            "type": "int",
+            "value": 0
         }
     ],
     "roles": [
@@ -3540,6 +3545,168 @@
                             "peer": 94,
                             "channel": 1,
                             "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101000
+            }
+        ],
+        [
+            "Base.lightingSwitchBrightnessColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101000
+            }
+        ],
+        [
+            "Base.lightingSwitchColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101000
+            }
+        ],
+        [
+            "Base.lightingSwitchFunctionBrightnessColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
                         }
                     ],
                     [
