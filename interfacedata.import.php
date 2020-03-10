@@ -267,10 +267,15 @@
         {
             "name": "COLOR",
             "type": "string",
-            "value": "#ffffff"
+            "value": "#ffff00"
         },
         {
             "name": "FUNCTION",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "SPEED",
             "type": "int",
             "value": 0
         }
@@ -3714,6 +3719,88 @@
                             "peer": 94,
                             "channel": 1,
                             "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101000
+            }
+        ],
+        [
+            "Base.lightingSwitchFunctionBrightnessSpeedColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SPEED"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SPEED"
                         }
                     ],
                     [
