@@ -15,7 +15,7 @@
   vertical-align: baseline;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -778,41 +778,80 @@ a:link, a:visited, a:focus, a:hover, a:active {
   box-shadow: inset 0 0 0 2px #fff;
 }
 
-.flick {
+/* The check */
+.check {
+  display: block;
+  position: absolute;
   cursor: pointer;
-  float: right;
-  position: relative;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   z-index: 2;
-  display: inline-block;
-  vertical-align: middle;
-  width: 130px;
-  height: 60px;
-  border-radius: 50px;
-  border: 0px solid #898989;
-  background: #898989;
-  box-shadow: inset 0 0 0 0px #898989;
-  transition: 0.2s;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 50px;
 }
 
-.flick.on {
-  background: #e3a104;
+/* Hide the browser's default checkbox */
+.check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
-.flick .thumb {
-  display: inline-block;
-  vertical-align: top;
-  width: 56px;
-  height: 56px;
-  margin: 2px;
-  background: #25282e;
-  border-radius: 50%;
-  transition: 0.2s;
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background-color: #898989;
+  border-radius: 4px;
 }
 
-.thumb.on {
-  margin-left: 72px;
+/* On mouse-over, add a grey background color */
+.check:hover input ~ .checkmark {
+  background-color: #eee;
 }
 
+/* When the checkbox is checked, add the highlight background */
+.check input:checked ~ .checkmark {
+  background-color: #e3a104;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+  left: 16px;
+  top: 4px;
+  width: 15px;
+  height: 30px;
+  border: solid #fff;
+  border-radius: 4px;
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 /* ///////////////////////////////////////////////////////////////////////// */
 
 /* Range */

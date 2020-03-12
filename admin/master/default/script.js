@@ -632,6 +632,10 @@ Vue.component('shif-generic-l2', {
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
+                <label class="check">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
                 <div v-on:click.stop="emit('click_icon')">
                     <shif-icon v-bind:src="icon"
                                v-bind:active="active.icon"
