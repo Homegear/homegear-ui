@@ -458,7 +458,7 @@
         {
             "deviceId": 17,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [600000,600004]
         },
         {
@@ -476,7 +476,7 @@
         {
             "deviceId": 18,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [501000,501004]
         },
         {
@@ -494,7 +494,7 @@
         {
             "deviceId": 19,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [501000,501004]
         },
         {
@@ -512,7 +512,7 @@
         {
             "deviceId": 20,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [600000,600004]
         },
         {
@@ -530,7 +530,7 @@
         {
             "deviceId": 21,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [501000,501004]
         },
         {
@@ -548,7 +548,7 @@
         {
             "deviceId": 22,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [501000,501004]
         },
         {
@@ -566,7 +566,7 @@
         {
             "deviceId": 23,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [501000,501004]
         },
         {
@@ -584,7 +584,7 @@
         {
             "deviceId": 24,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [501000,501004]
         },
         {
@@ -602,7 +602,7 @@
         {
             "deviceId": 25,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [502000,502004]
         },
         {
@@ -620,7 +620,7 @@
         {
             "deviceId": 26,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
+            "varName": "LEVEL",
             "roleId": [502000,502004]
         },
         {
@@ -1392,14 +1392,14 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1482,14 +1482,14 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1568,14 +1568,14 @@
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1604,14 +1604,14 @@
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1787,7 +1787,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1816,7 +1816,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1852,7 +1852,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1888,7 +1888,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1956,7 +1956,7 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1999,7 +1999,7 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2075,7 +2075,7 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2111,7 +2111,7 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2179,7 +2179,7 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2208,7 +2208,7 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2244,7 +2244,7 @@
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2273,7 +2273,7 @@
                         {
                             "peer": 24,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2309,7 +2309,7 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2345,7 +2345,7 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2434,7 +2434,7 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2463,7 +2463,7 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
