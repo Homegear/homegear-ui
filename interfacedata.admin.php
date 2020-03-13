@@ -16,6 +16,7 @@
                     "requiredAssets": [
                         "jquery",
                         "vue",
+                        "vue-router",
                         "flaticons"
                     ]
                 },
@@ -362,6 +363,24 @@
                             "rawMinUrl": "/dist/",
                             "rawMinUrlFile": "vue.js",
                             "outputName": "vue.js"
+                        }
+                    ],
+                    "license": {
+                        "name": "Vuejs",
+                        "version": "",
+                        "rights": "Evan You",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
+                "vue-router": {
+                    "user": "vuejs",
+                    "repository": "/node_modules/vue-router",
+                    "files": [
+                        {
+                            "rawMinUrl": "/dist/",
+                            "rawMinUrlFile": "vue-router.js",
+                            "outputName": "vue-router.js"
                         }
                     ],
                     "license": {

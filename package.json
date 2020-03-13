@@ -8,7 +8,8 @@
     "@homegear/homegearws": "^1.0.10",
     "@jaames/iro": "^4.5.3",
     "jquery": "^3.4.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
