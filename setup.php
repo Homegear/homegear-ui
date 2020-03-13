@@ -113,19 +113,21 @@
             $CurrentDevices = $hg->getAllValues();
             if(count($CurrentDevices) > 0){
                 foreach($CurrentDevices as $value){
-                    $allInterfaceData["deleteDevice"][$value["ID"]] = $hg->deleteDevice($value["ID"]);
+                    $allInterfaceData["deleteDevice"][$value["ID"]] = $hg->deleteDevice($value["ID"], 2);
                 }
             }
         }
 
         if(isset($_GET["createDevice"])){
             foreach($oldInterfaceData["devices"] as $value){
-                $device = $hg->createDevice($value["FAMILY"], $value["TYPE_ID"], $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]);
+                $device = $hg->createDevice($value["FAMILY"], intval($value["TYPE_ID"], 16), $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]);
                 $deviceName = $hg->setName($device, $value["NAME"]);
+                $deviceId = $hg->setId($device, $value["ID"]);
                 if ($device != ""){
                     $allInterfaceData["createDevice"][$device]["SERIALNUMBER"] = $value["SERIALNUMBER"];
                     $allInterfaceData["createDevice"][$device]["name"] = $value["NAME"];
                     $allInterfaceData["createDevice"][$device]["nameChange"] = $deviceName;
+                    $allInterfaceData["createDevice"][$device]["idChange"] = $deviceId;
                 }
                 else {
                     $allInterfaceData["createDevice"]["error"][$value["SERIALNUMBER"]] = true;
@@ -137,7 +139,6 @@
             $CurrentDevices = $hg->getAllValues();
             foreach($CurrentDevices as $key => $value){
                 unset($CurrentDevices[$key]["CHANNELS"]);
-                unset($CurrentDevices[$key]["ID"]);
                 $CurrentDevices[$key]["TYPE_ID"] = "0x".dechex($value["TYPE_ID"]);
                 $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["ADDRESS"];
                 $CurrentDevices[$key]["ADDRESS"] = -1;
@@ -367,6 +368,13 @@
             }
         }
 
+        if(isset($_GET["deleteAllSV"])){
+            $allSV = $hg->getAllSystemVariables();
+            foreach($allSV as $key => $value){
+                $allInterfaceData["deleteAllSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($key);
+            }
+        }
+
         if(isset($_GET["createSV"])){
             foreach($oldInterfaceData["systemVariables"] as $value){
                 $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
@@ -552,7 +560,8 @@
         <h4>System Variables</h4>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createSV', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getSV', outputResult)" class="adminButton">list</div>
-        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteSV', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteSV', outputResult)" class="adminButton">delete import vars</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteAllSV', outputResult)" class="adminButton">delete all</div>
     </div>
     <div id="output"></div>
     <script>

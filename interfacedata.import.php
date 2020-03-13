@@ -4293,6 +4293,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 1,
             "NAME": "SA Licht Diele",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4303,6 +4304,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 2,
             "NAME": "SA Licht Kind",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4313,6 +4315,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 3,
             "NAME": "SA Licht Decke Bad",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4323,6 +4326,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 4,
             "NAME": "SA Licht Spiegel Bad",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4333,6 +4337,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 5,
             "NAME": "SA Licht Schlafen",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4343,6 +4348,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 6,
             "NAME": "SA Licht c Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4353,6 +4359,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 7,
             "NAME": "SA Licht b Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4363,6 +4370,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 8,
             "NAME": "SA Licht d Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4373,6 +4381,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 9,
             "NAME": "SA Steckdose e Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4383,6 +4392,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 10,
             "NAME": "SA Licht Abstellraum",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4393,6 +4403,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 11,
             "NAME": "SA Licht Loggia",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4403,6 +4414,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 12,
             "NAME": "SA Steckdose Loggia",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4413,6 +4425,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 13,
             "NAME": "SA Licht Technikraum",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4423,7 +4436,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "SA Licht Decke GÃ¤ste WC",
+            "ID": 14,
+            "NAME": "SA Licht Decke G\u00e4ste WC",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtSw0014",
@@ -4433,7 +4447,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "SA Licht Spiegel GÃ¤ste WC",
+            "ID": 15,
+            "NAME": "SA Licht Spiegel G\u00e4ste WC",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtSw0015",
@@ -4443,6 +4458,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 16,
             "NAME": "SA Steckdose Waschraum",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4453,6 +4469,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 17,
             "NAME": "JA Rollladen Diele",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4463,6 +4480,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 18,
             "NAME": "JA Rollladen links Kind",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4473,6 +4491,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 19,
             "NAME": "JA Rollladen rechts Kind",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4483,6 +4502,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 20,
             "NAME": "JA Rollladen Bad",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4493,6 +4513,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 21,
             "NAME": "JA Rollladen links Schlafen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4503,6 +4524,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 22,
             "NAME": "JA Rollladen rechts Schlafen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4513,6 +4535,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 23,
             "NAME": "JA Rollladen Wohnen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4523,6 +4546,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 24,
             "NAME": "JA Rollladen Essen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4533,6 +4557,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 25,
             "NAME": "JA Markise Wohnen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4543,6 +4568,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 26,
             "NAME": "JA Markise Essen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4553,6 +4579,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 60,
             "NAME": "FG Fenster Diele",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4563,6 +4590,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 61,
             "NAME": "FG Fenster links Kind",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4573,6 +4601,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 62,
             "NAME": "FG Fenster recht Kind",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4583,6 +4612,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 63,
             "NAME": "FG Fenster Bad",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4593,6 +4623,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 64,
             "NAME": "FG Fenster links Schlafen",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4603,6 +4634,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 65,
             "NAME": "FG Fenster rechts Schlafen",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4613,7 +4645,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "FG Fenster links KÃ¼che",
+            "ID": 66,
+            "NAME": "FG Fenster links K\u00fcche",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
             "SERIALNUMBER": "VirtWin066",
@@ -4623,7 +4656,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "FG Fenster rechts KÃ¼che",
+            "ID": 67,
+            "NAME": "FG Fenster rechts K\u00fcche",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
             "SERIALNUMBER": "VirtWin067",
@@ -4633,17 +4667,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Virtual Logic Module",
-            "TYPE": "VirtualHeating",
-            "TYPE_ID": "0x1002",
-            "SERIALNUMBER": "VirtLog001",
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "ADDRESS": -1,
-            "FAMILY": 254,
-            "NAME": "Riegelkontakt TÃ¼r Diele",
+            "ID": 69,
+            "NAME": "Riegelkontakt T\u00fcr Diele",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtWin069",
@@ -4653,6 +4678,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 70,
             "NAME": "Fenster Wohnen",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4663,6 +4689,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 71,
             "NAME": "Sensor Diele",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4673,6 +4700,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 72,
             "NAME": "Sensor Kind",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4683,6 +4711,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 73,
             "NAME": "Sensor Bad",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4693,6 +4722,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 74,
             "NAME": "Sensor Schlafen",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4703,6 +4733,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 75,
             "NAME": "Sensor Wohnen",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4713,7 +4744,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Sensor GÃ¤ste WC",
+            "ID": 76,
+            "NAME": "Sensor G\u00e4ste WC",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
             "SERIALNUMBER": "VirtSens76",
@@ -4723,67 +4755,74 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Diele",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat78",
+            "ID": 78,
+            "NAME": "Heating 1",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat01",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Kind",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat79",
+            "ID": 79,
+            "NAME": "Heating 2",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat02",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Bad",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat80",
+            "ID": 80,
+            "NAME": "Heating 3",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat03",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Schlafen",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat81",
+            "ID": 81,
+            "NAME": "Heating 4",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat04",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Wohnen",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat82",
+            "ID": 82,
+            "NAME": "Heating 5",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat05",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler WC Gast",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat83",
+            "ID": 83,
+            "NAME": "Heating 6",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat06",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "SA Licht Unterschrank KÃ¼che",
+            "ID": 84,
+            "NAME": "SA Licht Unterschrank K\u00fcche",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtSw0084",
@@ -4793,6 +4832,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 86,
             "NAME": "Lueftung",
             "TYPE": "Lueftung",
             "TYPE_ID": "0x1502",
@@ -4803,6 +4843,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 87,
             "NAME": "Fenster Essen",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4813,6 +4854,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 91,
             "NAME": "Steckdose Garage",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4823,6 +4865,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 92,
             "NAME": "Dimmer Wohnen",
             "TYPE": "VirtualDimmer",
             "TYPE_ID": "0xf001",
@@ -4833,6 +4876,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 93,
             "NAME": "Dimmer Kinder",
             "TYPE": "VirtualDimmer",
             "TYPE_ID": "0xf001",
@@ -4843,6 +4887,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 94,
             "NAME": "Dimmer Schlafen",
             "TYPE": "VirtualDimmer",
             "TYPE_ID": "0xf001",
@@ -4853,6 +4898,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 95,
             "NAME": "OpenWeatherMap",
             "TYPE": "OpenWeatherMap",
             "TYPE_ID": "0x100",
