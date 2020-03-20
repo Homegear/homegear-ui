@@ -364,20 +364,35 @@
 
         if(isset($_GET["deleteSV"])){
             foreach($oldInterfaceData["systemVariables"] as $value){
-                $allInterfaceData["deleteSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($value["name"]);
+                try {
+                    $allInterfaceData["deleteSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($value["name"]);
+                }
+                catch(\Homegear\HomegearException $e) {
+                    $allInterfaceData["deleteSystemVariable"][$value["name"]] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage() . " | Value: ".$value;
+                }
             }
         }
 
         if(isset($_GET["deleteAllSV"])){
             $allSV = $hg->getAllSystemVariables();
             foreach($allSV as $key => $value){
-                $allInterfaceData["deleteAllSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($key);
+                try {
+                    $allInterfaceData["deleteAllSystemVariable"][$key] = $hg->deleteSystemVariable($key);
+                }
+                catch(\Homegear\HomegearException $e) {
+                    $allInterfaceData["deleteAllSystemVariable"][$key] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage() . " | Value: ".$value;
+                }
             }
         }
 
         if(isset($_GET["createSV"])){
             foreach($oldInterfaceData["systemVariables"] as $value){
-                $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
+                try {
+                    $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
+                }
+                catch(\Homegear\HomegearException $e) {
+                    $allInterfaceData["setSystemVariable"][$value["name"]] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage() . " | Value: ".$value;
+                }
             }
         }
 
