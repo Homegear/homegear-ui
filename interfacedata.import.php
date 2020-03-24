@@ -871,7 +871,12 @@
                     ]
                 ],
                 "label": "Licht SystemVar",
-                "room": 3
+                "room": 3,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -896,7 +901,12 @@
                     ]
                 ],
                 "label": "Licht",
-                "room": 3
+                "room": 3,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -1616,7 +1626,12 @@
                     ]
                 ],
                 "label": "Rollladen KNX",
-                "room": 6
+                "room": 6,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -2625,7 +2640,10 @@
                                 "value": 0
                             }
                         }
-                    ]
+                    ],
+                    "favorites": {
+                        "state": true
+                    }
                 }
             }
         ],
@@ -3106,7 +3124,12 @@
                     ]
                 ],
                 "label": "Fensterkontakt Essen",
-                "room": 12
+                "room": 12,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3331,7 +3354,12 @@
                     ]
                 ],
                 "label": "Türkontakt",
-                "room": 3
+                "room": 3,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
 
@@ -3357,7 +3385,12 @@
                     ]
                 ],
                 "label": "Türgriff",
-                "room": 12
+                "room": 12,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3382,7 +3415,12 @@
                     ]
                 ],
                 "label": "Tür Verriegelung",
-                "room": 3
+                "room": 3,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3407,7 +3445,12 @@
                     ]
                 ],
                 "label": "Ventilation",
-                "room": 8
+                "room": 8,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3447,7 +3490,12 @@
                 ],
                 "label": "Dimmlicht",
                 "room": 12,
-                "role": 101000
+                "role": 101000,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -4035,7 +4083,11 @@
                 ],
                 "label": "Wetter",
                 "room": 6,
-                "role": 201000
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -4060,7 +4112,12 @@
                     ]
                 ],
                 "label": "Temperatur",
-                "room": 3
+                "room": 3,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -4085,7 +4142,12 @@
                     ]
                 ],
                 "label": "Feuchte",
-                "room": 3
+                "room": 3,
+                "metadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
