@@ -129,30 +129,5 @@ userSettings();
 
 $interfaceData["options"]["websocket_user"] = $interfaceData['settings']['homegear']['user'];
 $interfaceData["options"]["websocket_password"] = $interfaceData['settings']['homegear']['password'];
-$interfaceData["options"]["websocket_security"] = $interfaceData['settings']['homegear']['security'];
 
-$javascript_options  = "
-    document.addEventListener('DOMContentLoaded', function(event) {
-        // var hg_new = homegear_new(interfaceData.options.websocket_user,
-                                  // interfaceData.options.websocket_password);
-
-        // hg_new.disconnected(function() {});
-        // hg_new.reconnected(function() {});
-
-
-        homegear.onDisconnected = [];
-        homegear.onReconnected = [];
-        homegear.disconnect();
-        homegear.wasConnected = false;
-
-        homegear = homegear_new(interfaceData.options.websocket_user,
-                                interfaceData.options.websocket_password);
-
-        homegear.connect();
-
-        homegear_prepare(homegear);
-
-        document.getElementById('loadingPage').style.display = 'none';
-    });
-
-";
+$javascript_options  = "";

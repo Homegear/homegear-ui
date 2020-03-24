@@ -14,7 +14,7 @@ function readCookie(key) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function homegearRandomUserName() {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let id = 'ui';
+    let id = 'shif-';
 
     for (let i = 0; i < 8; i++)
         id += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -30,16 +30,17 @@ function homegear_new() {
         (interfaceData.options.websocket_url == 'location.hostname') ? location.hostname : interfaceData.options.websocket_url,
         (interfaceData.options.websocket_port == 'location.port') ? location.port : Number(interfaceData.options.websocket_port),
         homegearRandomUserName(),
-        location.protocol == 'https:',
+        (location.protocol == 'https:') ? true : (interfaceData.options.websocket_security_ssl == 'location.protocol') ? location.protocol == 'https:' : (interfaceData.options.websocket_security_ssl !== true) ? false : true,
         ...arguments
     );
 }
 
-if (interfaceData.options.websocket_security_ssl === false && location.protocol == 'http:')
-    interfaceData.options.websocket_security_ssl = false;
-
-var homegear = homegear_new(readCookie('PHPSESSIDUI'));
-
+if (interfaceData.options.websocket_user && interfaceData.options.websocket_password) {
+    var homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
+}
+else {
+    var homegear = homegear_new(readCookie('PHPSESSIDUI'));
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,8 +79,8 @@ homegear.error(function (message) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(location.protocol == 'http:' && interfaceData.options.websocket_security_ssl === true)
-    console.log('Homegear security issue!');
+if(location.protocol == 'https:' && interfaceData.options.websocket_security_ssl == false)
+    alert('Error: If you connect to the interface via https you have to use a secure websocket connection!');
 else homegear.connect();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
