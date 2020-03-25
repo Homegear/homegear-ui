@@ -42,7 +42,6 @@ const mixin_components = {
 
 
 
-
 const mixin_print_mounted = function (name) {
     return {
         mounted: function () {
@@ -50,6 +49,49 @@ const mixin_print_mounted = function (name) {
         },
     };
 };
+
+
+
+Vue.component('shif-house-collected-entries', {
+    mixins: [mixin_components, mixin_print_mounted()],
+
+    props: {
+        layer: {
+            type: Number,
+            required: true,
+        },
+    },
+
+    computed: {
+        dev_objs: function () {
+            if (this.layer === 2) {
+                return interfaceData.rooms[this.$route.params.room]
+                                    .devices
+                                    .map(dev => this.find_component(interfaceData.devices[dev], 'l2'));
+            }
+
+            if (this.layer === 3) {
+                const device = interfaceData.devices[this.$route.params.device];
+                return this.find_component(device, 'l3');
+            }
+
+            throw 'Not implemented';
+        },
+    },
+
+    template: `
+        <div>
+            <template v-for="dev in dev_objs">
+                <component v-bind="dev" v-bind:include_place="false">
+                </component>
+
+                <template v-if="debug">
+                    {{ dev | pretty | log }}
+                </template>
+            </template>
+        </div>
+    `,
+});
 
 
 
