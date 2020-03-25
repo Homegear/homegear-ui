@@ -290,7 +290,12 @@ let router = new VueRouter({
             ],
         },
         { path: '/favorites', name: 'favorites', component: ShifFavorites, },
-        { path: '/log',       name: 'log',       component: ShifLog, },
+        {
+            path: '/log',
+            name: 'log',
+            component: ShifLog,
+            meta: {breadcrumbs: ['log']},
+        },
         { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
     ],
 });
@@ -350,6 +355,8 @@ let breadcrumbs = new Vue({
                 case 'house.tab.devices.device':
                     return interfaceData.devices[params.device].label;
 
+                case 'log':
+                    return 'Log';
             }
 
             return i18n(route_name);
