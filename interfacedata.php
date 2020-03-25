@@ -26,8 +26,19 @@
             "secondFactorAuthMethods": ["webauthn"]
         }
     },
-    "mainmenu": [
-        {
+    "mainmenu": {
+        "0": {
+            "id": "Favorites",
+            "name": "favorites",
+            "icon": "star_1",
+            "onclick": "main",
+            "onclickOptions": {
+                "name": "favorites",
+                "content": "favorites",
+                "menu": "favorites"
+            }
+        },
+        "1": {
             "id": "house",
             "name": "house",
             "icon": "house_1",
@@ -40,16 +51,24 @@
                 {
                     "id": "rooms",
                     "name": "house.tab.rooms",
+                    "icon": "house_1",
                     "active": true
                 },
                 {
                     "id": "devices",
                     "name": "house.tab.devices",
+                    "icon": "switches_1",
                     "content": "<shif-all-devices></shif-all-devices>"
+                },
+                {
+                    "id": "profiles",
+                    "name": "house.tab.profiles",
+                    "icon": "slider_1",
+                    "content": "<shif-profiles></shif-profiles>"
                 }
             ]
         },
-        {
+        "2": {
             "id": "settings",
             "name": "settings",
             "icon": "settings_1",
@@ -60,7 +79,7 @@
                 "menu": "settings"
             }
         },
-        {
+        "3": {
             "id": "logoff",
             "name": "logoff",
             "icon": "power_1",
@@ -69,10 +88,9 @@
                 "name": "logoff"
             }
         }
-    ],
+    },
     "menu": [
         {
-            "id": "1",
             "name": "settings.user",
             "mainmenu": "settings",
             "category": "user",
@@ -89,7 +107,6 @@
             "description": "settings.user.description"
         },
         {
-            "id": "2",
             "name": "settings.user.manage",
             "mainmenu": "settings",
             "category": "user",
@@ -103,7 +120,38 @@
             "description": "settings.user.manage.description"
         },
         {
-            "id": "3",
+            "name": "settings.favorites.mode",
+            "mainmenu": "settings",
+            "category": "favorites",
+            "level": "1",
+            "icon": "star_1",
+            "onclick": "menu",
+            "onclickOptions": {
+                "mainmenu":"settings",
+                "level":"2",
+                "category":"profiles",
+                "name":"settings.favorites.mode",
+                "content":"true"
+            },
+            "description": "settings.favorites.mode.description"
+        },
+        {
+            "name": "settings.profiles.mode",
+            "mainmenu": "settings",
+            "category": "profiles",
+            "level": "1",
+            "icon": "slider_1",
+            "onclick": "menu",
+            "onclickOptions": {
+                "mainmenu":"settings",
+                "level":"2",
+                "category":"profiles",
+                "name":"settings.profiles.mode",
+                "content":"true"
+            },
+            "description": "settings.profiles.mode.description"
+        },
+        {
             "name": "settings.about",
             "mainmenu": "settings",
             "category": "license",
@@ -205,8 +253,14 @@
             "house": "House",
             "house.tab.rooms": "Rooms",
             "house.tab.devices": "Devices",
+            "house.tab.profiles": "Profiles",
+            "favorites": "Favorites",
             "widgets": "Widgets",
             "settings": "Settings",
+            "settings.favorites.mode": "Favorite Modus",
+            "settings.favorites.mode.description": "Set and unset favorites",
+            "settings.profiles.mode": "Profiles Modus",
+            "settings.profiles.mode.description": "Add and delete Profiles",
             "settings.user": "User",
             "settings.user.description": "Manage",
             "settings.user.manage": "User Settings",
@@ -251,8 +305,14 @@
             "house": "Haus",
             "house.tab.rooms": "Räume",
             "house.tab.devices": "Geräte",
+            "house.tab.profiles": "Profile",
+            "favorites": "Favoriten",
             "widgets": "Widgets",
             "settings": "Einstellungen",
+            "settings.favorites.mode": "Favoriten Modus",
+            "settings.favorites.mode.description": "Favoriten auswählen",
+            "settings.profiles.mode": "Profile Modus",
+            "settings.profiles.mode.description": "Profile erstellen und löschen",
             "settings.user": "Benutzer",
             "settings.user.description": "Verwalten",
             "settings.user.manage": "Benutzereinstellungen",
