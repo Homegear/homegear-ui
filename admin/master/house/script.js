@@ -1,51 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Auflisten der Räume
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-var house_level1_content = '';
-
-function house_level1(){
-    $.each(interfaceData.floors, function(floorKey, floorValue) {
-        // Stockwerktitel anzeigen, wenn mehr als ein Stockwerk vorhanden ist
-        if (Object.keys(interfaceData.floors).length > 1)
-            house_level1_content += `
-                <div class="roomSelectTitle">
-                    ${floorValue.name}
-                </div>
-            `;
-
-        house_level1_content += '<div class="rooms_wrapper">';
-
-        $.each(floorValue.rooms, function(_, roomValue) {
-            const floorBreadcrumbName = interfaceData.options.showFloor === true
-                                            ? floorValue.name + ' - '
-                                            : '';
-
-            var action = `onclick='house_level2(this, {
-                name:  "${floorBreadcrumbName}${interfaceData.rooms[roomValue].name}",
-                floor: "${floorKey}",
-                room:  "${roomValue}"
-            });'
-            `;
-
-            house_level1_content += `
-                <div class="roomSelect_wrapper" ${action}>
-                    <div class="roomSelect">
-                        ${showIcon(interfaceData.rooms[roomValue].icon)}
-                    </div>
-                    <div class="description">
-                        ${interfaceData.rooms[roomValue].name}
-                    </div>
-                </div>
-            `;
-        });
-
-        house_level1_content += '</div>';
-    });
-}
-
-// TODO: Return value?
-// house_level1();
-
+/*
 function house_level1_fix(){
     var roomSelectWrapperWidth = 185 + 30;
     var windowWidth = $( window ).width() - 20;
@@ -75,13 +28,14 @@ function house_level1_fix(){
     console.log('rooms_wrapper_child_count_max: '+rooms_wrapper_child_count_max);
     console.log('roomSelectWrapperMaxCount: '+roomSelectWrapperMaxCount);
     console.log('maxWidth: '+maxWidth);
-    */
+    * /
 
     $('#house_rooms').width(maxWidth);
     //$('.roomSelectTitle').width(maxWidth);
     //$('.rooms_wrapper').width(maxWidth);
     //$('.rooms_wrapper').css('display', 'inline-block');
 }
+*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -147,16 +101,6 @@ function check_disabled(device, indexes) {
     return ret_enabled;
 }
 
-function component_create(constructor, data) {
-    let comp = new constructor({
-        propsData: data,
-    });
-
-    comp.$mount();
-
-    return comp.$el;
-}
-
 function component_object(control, device, input, output, is, indexes) {
     let ret = {
         uiElement: device,
@@ -174,130 +118,6 @@ function component_object(control, device, input, output, is, indexes) {
         ret.is = is;
 
     return ret;
-}
-
-function components_create(device, layer) {
-    let out = [];
-
-    // console.log(device.label + ': ' + device.databaseId + ': ' + layer);
-
-    if (layer == 'l2' && typeof(device.metadata) == 'object') {
-        if ('l2_action' in device.metadata) {
-            const keys = device.metadata.l2_action;
-
-            const control = device.controls[keys.control];
-            const input   = control.variableInputs[keys.input];
-            const output  = control.variableOutputs[keys.input];
-
-
-            return [component_create(
-                controlComponents[control.control].l2,
-                component_object(control, device, input, output, null,
-                                 {input: keys.input, control: keys.control})
-            )];
-        }
-
-        if (device.controls.length <= 1 &&
-            (!('l3_force' in device.metadata) || device.metadata.l3_force !== true))
-            layer = 'l3';
-    }
-
-    for (let i = 0; i < device.controls.length; ++i) {
-        const control = device.controls[i];
-
-        // console.log(device.label + ': ' + device.databaseId + ': ' + layer + ': ' + control.control);
-
-        if (!(control.control in controlComponents) ||
-            !(layer           in controlComponents[control.control]))
-            continue;
-
-        for (const k in control.variableInputs) {
-            const input  = control.variableInputs[k];
-            const output = control.variableOutputs[k];
-
-            out.push(component_create(
-                controlComponents[control.control][layer],
-                component_object(control, device, input, output, null,
-                                 {input: k, control: i})
-            ));
-        }
-    }
-
-    return out;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Auflisten der Geräte eines Raums
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function house_level2(element, options){
-    let elements  = [];
-    console.log(`house_level2: ${options.room}`)
-    const devices = interfaceData.rooms[options.room]
-        .devices.map(dev => interfaceData.devices[dev]);
-    console.log(`house_level2: ${JSON.stringify(devices, null, 4)}`)
-
-    // for (const dev of devices)
-        // elements = elements.concat(components_create(dev, 'l2'));
-    for (const dev of devices)
-        elements = elements.concat(find_component(dev, 'l2'));
-    console.log(`house_level2: ${JSON.stringify(elements, null, 4)}`)
-
-    content(this, {
-        content: elements,
-        name:    options.name,
-        vue:     true,
-    });
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function find_component(device, layer) {
-    if (layer == 'l2' && typeof(device.metadata) == 'object') {
-        if ('l2_action' in device.metadata) {
-            const keys = device.metadata.l2_action;
-
-            const control = device.controls[keys.control];
-            const input   = control.variableInputs[keys.input];
-            const output  = control.variableOutputs[keys.input];
-            const is      = 'shif-' + control.control + '-l2';
-
-            return [component_object(control, device, input, output, is,
-                                        {input: keys.input, control: keys.control})];
-        }
-
-        if (device.controls.length <= 1 &&
-            (!('l3_force' in device.metadata) ||
-                device.metadata.l3_force !== true))
-            layer = 'l3';
-    }
-
-    let out = [];
-    // for (const control of device.controls) {
-    for (let i = 0; i < device.controls.length; ++i) {
-        const control = device.controls[i];
-
-        for (const k in control.variableInputs) {
-            const input  = control.variableInputs[k];
-            const output = control.variableOutputs[k];
-            const is     = 'shif-' + control.control + '-' + layer;
-
-            out.push(component_object(control, device, input, output, is,
-                                        {input: k, control: i}));
-        }
-    }
-
-    return out;
-};
-function house_level3(element, options){
-    const device = interfaceData.devices[options.device];
-
-    content(this, {
-        content: find_component(device, 'l3'),
-        // content: components_create(device, 'l3'),
-        name:    options.name,
-        vue:     true,
-    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
