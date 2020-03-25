@@ -110,17 +110,12 @@ echo '</script>';
 
   <div id="breadcrumbs_wrapper">
     <div id="breadcrumbs">
-      <div id="back" class="inactive" onclick="content(this, {'back':'1'});">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81" xml:space="preserve" enable-background="new 0 0 370.814 370.814">
-          <polygon points="292.92 24.85 268.78 0 77.9 185.4 268.78 370.81 292.92 345.96 127.64 185.4 "/>
-        </svg>
-      </div><div id="breadcrumbsSub"><div class="breadcrumbsJump" onclick='content(this, {"back":"0"});'></div></div>
     </div>
   </div>
 
-<?php 
+<?php
   echo content();
-  
+
   if (file_exists("icons.js")) {
       echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }
