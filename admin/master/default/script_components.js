@@ -1,3 +1,48 @@
+const mixin_components = {
+    methods: {
+        find_component: function (device, layer) {
+            if (layer == 'l2' && typeof(device.metadata) == 'object') {
+                if ('l2_action' in device.metadata) {
+                    const keys = device.metadata.l2_action;
+
+                    const control = device.controls[keys.control];
+                    const input   = control.variableInputs[keys.input];
+                    const output  = control.variableOutputs[keys.input];
+                    const is      = 'shif-' + control.control + '-l2';
+
+                    return [component_object(control, device, input, output, is,
+                                             {input: keys.input, control: keys.control})];
+                }
+
+                if (device.controls.length <= 1 &&
+                    (!('l3_force' in device.metadata) ||
+                     device.metadata.l3_force !== true))
+                    layer = 'l3';
+            }
+
+            let out = [];
+            // for (const control of device.controls) {
+            for (let i = 0; i < device.controls.length; ++i) {
+                const control = device.controls[i];
+
+                for (const k in control.variableInputs) {
+                    const input  = control.variableInputs[k];
+                    const output = control.variableOutputs[k];
+                    const is     = 'shif-' + control.control + '-' + layer;
+
+                    out.push(component_object(control, device, input, output, is,
+                                              {input: k, control: i}));
+                }
+            }
+
+            return out;
+        },
+    },
+};
+
+
+
+
 const mixin_print_mounted = function (name) {
     return {
         mounted: function () {
