@@ -1045,8 +1045,6 @@ Vue.component('shif-room', {
         room:  [String, Number],
     },
     methods: {
-        showIcon: showIcon,
-
         link: function (floor_key, room_val) {
             return {
                 name: 'house.tab.rooms.room',
