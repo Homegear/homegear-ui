@@ -81,28 +81,6 @@ let ShifHouseRooms = {
 
 
 
-let ShifAllDevicesLvl3 = Vue.component('shif-all-devices-level-3', {
-    mixins: [mixin_print_mounted()],
-
-    template: `
-        <shif-house-collected-entries v-bind:layer="3" />
-    `
-});
-
-
-
-let ShifHouseDevices = {
-    mixins: [mixin_print_mounted('shif-house-devices')],
-
-    template: `
-        <shif-mainmenu-tabs>
-            <shif-all-devices />
-        </shif-mainmenu-tabs>
-    `
-};
-
-
-
 let ShifHouse = {
     mixins: [mixin_print_mounted('shif-house')],
 
