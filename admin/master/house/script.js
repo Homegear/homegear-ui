@@ -20,7 +20,12 @@ function house_level1(){
                                             ? floorValue.name + ' - '
                                             : '';
 
-            var action = 'onclick=\'house_level2( this, {"name":"'+ floorBreadcrumbName + interfaceData.rooms[roomValue]['name'] +'", "floor":"'+floorKey+'", "room":"'+roomValue+'"});\'';
+            var action = `onclick='house_level2(this, {
+                name:  "${floorBreadcrumbName}${interfaceData.rooms[roomValue].name}",
+                floor: "${floorKey}",
+                room:  "${roomValue}"
+            });'
+            `;
 
             house_level1_content += `
                 <div class="roomSelect_wrapper" ${action}>
@@ -39,10 +44,9 @@ function house_level1(){
 }
 
 // TODO: Return value?
-house_level1();
+// house_level1();
 
 function house_level1_fix(){
-    
     var roomSelectWrapperWidth = 185 + 30;
     var windowWidth = $( window ).width() - 20;
     var rooms_wrapper_child_count_max = 0;
@@ -52,7 +56,7 @@ function house_level1_fix(){
             rooms_wrapper_child_count_max = this.childElementCount;
         }
     });
-    
+
     var roomSelectWrapperMaxCount = windowWidth / roomSelectWrapperWidth;
     roomSelectWrapperMaxCount = roomSelectWrapperMaxCount.toString().split('.')[0];
 
@@ -227,11 +231,16 @@ function components_create(device, layer) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function house_level2(element, options){
     let elements  = [];
+    console.log(`house_level2: ${options.room}`)
     const devices = interfaceData.rooms[options.room]
         .devices.map(dev => interfaceData.devices[dev]);
+    console.log(`house_level2: ${JSON.stringify(devices, null, 4)}`)
 
+    // for (const dev of devices)
+        // elements = elements.concat(components_create(dev, 'l2'));
     for (const dev of devices)
-        elements = elements.concat(components_create(dev, 'l2'));
+        elements = elements.concat(find_component(dev, 'l2'));
+    console.log(`house_level2: ${JSON.stringify(elements, null, 4)}`)
 
     content(this, {
         content: elements,
@@ -243,11 +252,49 @@ function house_level2(element, options){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function find_component(device, layer) {
+    if (layer == 'l2' && typeof(device.metadata) == 'object') {
+        if ('l2_action' in device.metadata) {
+            const keys = device.metadata.l2_action;
+
+            const control = device.controls[keys.control];
+            const input   = control.variableInputs[keys.input];
+            const output  = control.variableOutputs[keys.input];
+            const is      = 'shif-' + control.control + '-l2';
+
+            return [component_object(control, device, input, output, is,
+                                        {input: keys.input, control: keys.control})];
+        }
+
+        if (device.controls.length <= 1 &&
+            (!('l3_force' in device.metadata) ||
+                device.metadata.l3_force !== true))
+            layer = 'l3';
+    }
+
+    let out = [];
+    // for (const control of device.controls) {
+    for (let i = 0; i < device.controls.length; ++i) {
+        const control = device.controls[i];
+
+        for (const k in control.variableInputs) {
+            const input  = control.variableInputs[k];
+            const output = control.variableOutputs[k];
+            const is     = 'shif-' + control.control + '-' + layer;
+
+            out.push(component_object(control, device, input, output, is,
+                                        {input: k, control: i}));
+        }
+    }
+
+    return out;
+};
 function house_level3(element, options){
     const device = interfaceData.devices[options.device];
 
     content(this, {
-        content: components_create(device, 'l3'),
+        content: find_component(device, 'l3'),
+        // content: components_create(device, 'l3'),
         name:    options.name,
         vue:     true,
     });
@@ -288,14 +335,41 @@ Vue.mixin({
 
     methods: {
         level3: function (device, name) {
-            house_level3(this, {
-                device,
-                name,
-            });
+            const matched = this.$route.matched.map(x => x.name);
+
+            if (matched.indexOf('house.tab.rooms.room') !== -1) {
+                return this.$router.push({
+                    name: `${matched[matched.length - 1]}.device`,
+                    params: {
+                        floor: this.$route.params.floor,
+                        room:  this.$route.params.room,
+                        device: device,
+                    },
+                });
+            }
+
+            if (matched.indexOf('house.tab.devices') !== -1) {
+                // TODO: verify that there is always at least a room and a floor
+                return this.$router.push({
+                    name: `${matched[matched.length - 1]}.device`,
+                    params: {
+                        floor: interfaceData.devices[device].floors[0],
+                        room:  interfaceData.devices[device].rooms[0],
+                        device: device,
+                    },
+                });
+            }
+
+            /**
+             * Only act in those two cases!
+             * There might have been a click on the disabled content
+             * (content_small) which we do not care about.
+             **/
+            // throw 'BUG: you should not get here';
         },
 
         round: function (val, precision) {
-            let mul = Math.pow(10, precision || 0);
+            const mul = Math.pow(10, precision || 0);
 
             return Math.round(val * mul) / mul;
         },
@@ -303,6 +377,10 @@ Vue.mixin({
         float_formatted: function (val, precision=1) {
             return parseFloat(val).toFixed(precision);
         },
+
+        alert: window.alert,
+
+        i18n: i18n,
     },
 });
 
@@ -410,8 +488,16 @@ Vue.component('shif-ctrl-summary', {
                     }
 
             this.$homegear.value_set_multi(ops);
-        }
+        },
 
+        link: function (device) {
+            return {
+                name: 'house.tab.devices.device',
+                params: {
+                    device: device
+                },
+            };
+        },
     },
 
     template: `
@@ -440,8 +526,7 @@ Vue.component('shif-ctrl-summary', {
                     </div>
 
                     <template v-for="dev in dev_objs">
-                        <component v-bind="dev" v-bind:include_place="true">
-                        </component>
+                        <component v-bind="dev" v-bind:include_place="true" />
 
                         <template v-if="debug">
                             {{ dev | pretty | log }}
@@ -455,7 +540,7 @@ Vue.component('shif-ctrl-summary', {
 
 
 
-let ShifAllDevices = {
+let ShifAllDevices = Vue.component('shif-all-devices', {
     data: function () {
         let states = {};
 
@@ -652,14 +737,172 @@ let ShifAllDevices = {
             </template>
         </div>
     `,
-};
+});
+
+
+
+let ShifLogoff = Vue.component('shif-logoff', {
+    mounted: function () {
+        user_logoff();
+    }
+});
+
+
+
+let router = new VueRouter({
+    routes: [
+        { path: '/',                                           redirect: {name: 'house'}, },
+        { path: '/house', name: 'house', component: ShifHouse, redirect: {name: 'house.tab.rooms'},
+            children: [
+                {
+                    name: 'house.tab.rooms',
+                    path: 'rooms',
+                    component: ShifHouseRooms,
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms']},
+                }, {
+                    name: 'house.tab.rooms.room',
+                    path: 'rooms/floor/:floor/room/:room',
+                    components: {small: ShifHouseRooms, big: ShifHouseLvl2},
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room']},
+                }, {
+                    name: 'house.tab.rooms.room.device',
+                    path: 'rooms/floor/:floor/room/:room/device/:device',
+                    components: {small: ShifHouseLvl2, big: ShifHouseLvl3},
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room', 'house.tab.rooms.room.device']},
+                },
+
+                {
+                    name: 'house.tab.devices',
+                    path: 'devices',
+                    component: ShifHouseDevices,
+                    meta: {breadcrumbs: ['house', 'house.tab.devices']},
+                }, {
+                    name: 'house.tab.devices.device',
+                    path: 'devices/floor/:floor/room/:room/device/:device',
+                    components: {small: ShifHouseDevices, big: ShifAllDevicesLvl3},
+                    meta: {breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device']},
+                },
+
+                { path: 'profiles', name: 'house.tab.profiles', component: ShifProfiles, }
+            ],
+        },
+        { path: '/settings', name: 'settings', component: ShifSettings, redirect: {name: 'settings.list'},
+            children: [
+                {
+                    name: 'settings.list',
+                    path: 'list',
+                    component: ShifSettingsItems(1),
+                    meta: {breadcrumbs: ['settings']},
+                },
+                {
+                    name: 'settings.about',
+                    path: 'about',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsLicenses},
+                    meta: {breadcrumbs: ['settings', 'settings.about']},
+                },
+                {
+                    path: 'user',
+                    name: 'settings.user',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsItems(2)},
+                    meta: {breadcrumbs: ['settings', 'settings.user']},
+                },
+                {
+                    path: 'user/manage',
+                    name: 'settings.user.manage',
+                    components: {small: ShifSettingsItems(2), big: ShifSettingsUser},
+                    meta: {breadcrumbs: ['settings', 'settings.user', 'settings.user.manage']},
+                },
+                {
+                    path: 'favoritesmode',
+                    name: 'settings.favorites.mode',
+                    component: ShifProfiles,
+                },
+                {
+                    path: 'profilessmode',
+                    name: 'settings.profiles.mode',
+                    component: ShifProfiles,
+                },
+            ],
+        },
+        { path: '/favorites', name: 'favorites', component: ShifFavorites, },
+        { path: '/log',       name: 'log',       component: ShifLog, },
+        { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
+    ],
+});
 
 
 
 let app = new Vue({
     el: '#inhalt',
 
-    components: {
-        ShifAllDevices
-    }
+    router: router,
+
+    template: `
+        <div id="inhalt">
+            <router-view />
+
+            <shif-mainmenu />
+        </div>
+    `,
+});
+
+
+
+let breadcrumbs = new Vue({
+    el: '#breadcrumbs',
+
+    router: router,
+
+    computed:  {
+        routes_with_proper_names: function () {
+            if (this.$route.meta === undefined ||
+                this.$route.meta.breadcrumbs === undefined)
+                return [];
+
+            return this.$route.meta.breadcrumbs.map(name => ({
+                                                    link: name,
+                                                    name: this.get_name(name),
+                                                }))
+                                               .filter(x => x.name !== '?');
+        },
+    },
+
+    methods: {
+        get_name: function (route_name) {
+            function floor() {
+                return interfaceData.options.showFloor === true
+                            ? interfaceData.floors[params.floor].name + ' - '
+                            : '';
+            }
+
+            const params  = this.$route.params;
+
+            switch (route_name) {
+                case 'house.tab.rooms.room':
+                    return floor() + interfaceData.rooms[params.room].name;
+
+                case 'house.tab.rooms.room.device':
+                case 'house.tab.devices.device':
+                    return interfaceData.devices[params.device].label;
+
+            }
+
+            return i18n(route_name);
+        },
+    },
+
+    template: `
+        <div id="breadcrumbs">
+            <template v-show="routes_with_proper_names.length > 1">
+                <shif-icon id="back" src="arrow_left_1"
+                           v-on:click="$router.back()"/>
+            </template>
+
+            <template v-for="i in routes_with_proper_names">
+                <router-link v-bind:to="{name: i.link}">
+                    {{ i.name }}
+                </router-link>
+            </template>
+        </div>
+    `
 });
