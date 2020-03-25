@@ -1,5 +1,5 @@
 Vue.component('shif-ctrl-summary', {
-    mixins: [mixin_components],
+    mixins: [mixin_components, mixin_print_mounted()],
 
     props: [
         'icon',
@@ -109,6 +109,8 @@ Vue.component('shif-ctrl-summary', {
 
 
 let ShifAllDevices = Vue.component('shif-all-devices', {
+    mixins: [mixin_print_mounted()],
+
     data: function () {
         let states = {};
 
@@ -321,10 +323,10 @@ let ShifHouseDevices = {
 
 
 
-let ShifAllDevicesLvl3 = Vue.component('shif-all-devices-level-3', {
-    mixins: [mixin_print_mounted()],
+let ShifAllDevicesLvl3 = {
+    mixins: [mixin_print_mounted('shif-all-devices-level-3')],
 
     template: `
         <shif-house-collected-entries v-bind:layer="3" />
     `
-});
+};
