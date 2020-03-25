@@ -34,11 +34,14 @@
   }
   
   #mainmenu li {
-    height: 38px;
     float: left;
-    position: relative;
-    padding: 46px 0px;
-    cursor: pointer;
+  }
+
+  #mainmenu li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 27px 0;
   }
   
   @-webkit-keyframes pulse {
@@ -65,14 +68,14 @@
     width: 38px;
     height: 38px;
     background: none;
-    display: inline-block;
+    display: block;
     color: #898989;
     text-align: center;
     font-size: 38px;
     line-height: 38px;
     padding: 0px 0px;
     margin: auto;
-    position: absolute;
+    position: relative;
     top: 0;
     right: 0;
     bottom: 0;
@@ -86,7 +89,7 @@
     fill: #898989;
   }
   
-  #mainmenu .active svg {
+  #mainmenu .router-link-active svg {
     color: #e3a104;
     fill: #e3a104;
   }
