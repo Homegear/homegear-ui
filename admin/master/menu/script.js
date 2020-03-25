@@ -1,52 +1,80 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-$(document).ready(function(){
-    const mainmenuItemWidth = 100 / Object.keys(interfaceData.mainmenu).length;
-    let mainmenuItem = '';
+Vue.component('shif-mainmenu', {
+    data: function () {
+        return {
+            width: (100 / interfaceData.mainmenu.length) + '%',
+            active: true,
+        };
+    },
 
-    $.each(interfaceData.mainmenu, function(key, value){
-        const active = value.name === interfaceData.options.firstBreadcrumbId ? 'active' : '';
-
-        if (value.name == 'house') {
-            value.onclickOptions.name = interfaceData.options.firstBreadcrumb;
-        }
-        else{
-            value.onclickOptions.name = i18n(value.name);
-        }
-
-        mainmenuItem += `
-            <li style="width: ${mainmenuItemWidth}%;" onclick='${value.onclick}(${JSON.stringify(value.onclickOptions)});'>
-                <div id="mainmenu_${value.name}" class="mainmenu_button ${active}">${showIcon(value.icon)}</div>
-            </li>
-        `;
-    });
-
-    $('#inhalt').after(`
+    template: `
         <div id="mainmenu">
             <ul class="menu">
-                ${mainmenuItem}
+                <li v-for="i in interfaceData.mainmenu"
+                    v-bind:style="{width: width}">
+
+                    <router-link v-bind:to="{name: i.name}">
+                        <div v-bind:id="'mainmenu_' + i.name"
+                             class="mainmenu_button">
+                             <shif-icon v-bind:src="i.icon" />
+                        </div>
+                    </router-link>
+
+                </li>
             </ul>
         </div>
-    `);
-
-    if (interfaceData.options.firstBreadcrumbId == 'house') {
-        $('#house_rooms').html(house_level1_content);
-        house_level1_fix();
-    }
-
-    else if (interfaceData.options.firstBreadcrumbId == 'widgets') {
-        main({
-            name:    'Widgets',
-            content: 'widgets',
-            menu:    'widgets'
-        });
-    }
+    `,
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+// $(document).ready(function(){
+    // const mainmenuItemWidth = 100 / Object.keys(interfaceData.mainmenu).length;
+    // let mainmenuItem = '';
+//
+    // $.each(interfaceData.mainmenu, function(key, value){
+        // const active = value.name === interfaceData.options.firstBreadcrumbId ? 'active' : '';
+//
+        // if (value.name == 'house') {
+            // value.onclickOptions.name = interfaceData.options.firstBreadcrumb;
+        // }
+        // else{
+            // value.onclickOptions.name = i18n(value.name);
+        // }
+//
+        // mainmenuItem += `
+            // <li style="width: ${mainmenuItemWidth}%;" onclick='${value.onclick}(${JSON.stringify(value.onclickOptions)});'>
+                // <div id="mainmenu_${value.name}" class="mainmenu_button ${active}">${showIcon(value.icon)}</div>
+            // </li>
+        // `;
+    // });
+//
+    // $('#inhalt').after(`
+        // <div id="mainmenu">
+            // <ul class="menu">
+                // ${mainmenuItem}
+            // </ul>
+        // </div>
+    // `);
+//
+    // if (interfaceData.options.firstBreadcrumbId == 'house') {
+        // $('#house_rooms').html(house_level1_content);
+        // house_level1_fix();
+    // }
+//
+    // else if (interfaceData.options.firstBreadcrumbId == 'widgets') {
+        // main({
+            // name:    'Widgets',
+            // content: 'widgets',
+            // menu:    'widgets'
+        // });
+    // }
+// });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 function main(options){
 
     for (let i = 1; i < interfaceData.options.breadcrumbs_id_array.length; i++)
@@ -90,9 +118,9 @@ function main(options){
             text += '<div class="breadcrumbs_separator">|</div>';
     }
 
-    document.getElementById('breadcrumbsSub').innerHTML = text;
+    // document.getElementById('breadcrumbsSub').innerHTML = text;
 
-    $('#breadcrumbsSub').scrollLeft(9999999999);
+    // $('#breadcrumbsSub').scrollLeft(9999999999);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,3 +170,4 @@ function menu(options){
     else
         return menu;
 }
+*/
