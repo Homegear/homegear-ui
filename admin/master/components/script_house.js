@@ -70,7 +70,6 @@ let ShifHouseLvl2 = {
 
 let ShifHouseRooms = {
     mixins: [mixin_print_mounted('shif-house-rooms')],
-    name: 'ShifHouseLvl1',
 
     template: `
         <shif-mainmenu-tabs>
