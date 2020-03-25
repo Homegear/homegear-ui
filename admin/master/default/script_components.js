@@ -44,9 +44,10 @@ const mixin_components = {
 
 const mixin_print_mounted = function (name) {
     return {
-        mounted: function () {
-            console.log(this.$options.name || name);
-        },
+        // This is for debug reasons only
+        // mounted: function () {
+            // console.log(this.$options.name || name);
+        // },
     };
 };
 
