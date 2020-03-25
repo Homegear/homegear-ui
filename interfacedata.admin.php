@@ -1,4 +1,4 @@
-<?php 
+<?php
     $adminInterfaceDataJson = '
 {
     "admin": {
@@ -18,6 +18,12 @@
                         "vue",
                         "vue-router",
                         "flaticons"
+                    ]
+                },
+                "menu": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
                     ]
                 },
                 "user": {
@@ -45,12 +51,6 @@
                         ""
                     ]
                 },
-                "house": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
                 "icons": {
                     "activated": true,
                     "requiredAssets": [
@@ -64,12 +64,6 @@
                     ]
                 },
                 "lighting": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
-                "menu": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -100,6 +94,18 @@
                     ]
                 },
                 "ventilation": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "components": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "house": {
                     "activated": true,
                     "requiredAssets": [
                         ""
