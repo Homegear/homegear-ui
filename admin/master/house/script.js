@@ -309,15 +309,6 @@ Vue.component('shif-ctrl-summary', {
 
             this.$homegear.value_set_multi(ops);
         },
-
-        link: function (device) {
-            return {
-                name: 'house.tab.devices.device',
-                params: {
-                    device: device
-                },
-            };
-        },
     },
 
     template: `
