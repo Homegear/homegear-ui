@@ -63,17 +63,18 @@ function isJSON(str) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-$('#'+interfaceData.options.breadcrumbs_id_array[0]).addClass('content_single');
-$('.breadcrumbsJump').html(interfaceData.options.firstBreadcrumb);
+// $('#'+interfaceData.options.breadcrumbs_id_array[0]).addClass('content_single');
+// $('.breadcrumbsJump').html(interfaceData.options.firstBreadcrumb);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // verhindert das die Zurück Funktion bei DesktopBrowsern ausgeführt werden kann
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-location.hash = 'nb';
-$(window).on('hashchange', function() {
-    content('back', {back: '1'});
-    location.hash = 'nb';
-});
+// TODO: ask marwin about this
+// location.hash = 'nb';
+// $(window).on('hashchange', function() {
+    // content('back', {back: '1'});
+    // location.hash = 'nb';
+// });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // verhindert, dass der PullFromTopToRefresh im Android Chrome Browser ausgeführt werden kann
@@ -131,6 +132,7 @@ function headerVisibility(state) {
 // ermoeglicht die gesamte Navigationslogik
 // Über ein Array wird zwischen den Ebenen gesprungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 function content_delete_breadcumb_container(ids, vals) {
     $('#' + ids[ids.length - 1]).remove();
     vals.pop();
@@ -176,10 +178,25 @@ function content(element, options) {
             id += possible.charAt(Math.floor(Math.random() * possible.length));
 
         if (options.vue) {
-            $('#inhalt').append(`<div id="${id}" class="content"></div>`);
-            let vueContent = app.$el.querySelector('#' + id);
-            for (let i in options.content)
-                vueContent.appendChild(options.content[i]);
+            new Vue({
+                el: '#house_layer_2',
+                // el: '#' + id,
+                data: {
+                    id: id,
+                    options: options,
+                },
+                template: `
+                    <div id="house_layer_2">
+                        <div v-bind:id="id" class="content">
+                            <template v-for="i in options.content">
+                                <keep-alive>
+                                    <component v-bind="i" />
+                                </keep-alive>
+                            </template>
+                        </div>
+                    </div>
+                `
+            })
         }
         else
             $('#inhalt').append(`
@@ -189,9 +206,13 @@ function content(element, options) {
             `);
     }
 
+    // basis
     $('.content_single').removeClass('content_single');
+    // links, wenn big offen ist
     $('.content_small').removeClass('content_small');
+    // rechts, layer 2, offen
     $('.content_big').removeClass('content_big');
+    // ganzer bildschirm
     $('.content_mega_big').removeClass('content_mega_big');
     $('.content_back').remove();
 
@@ -219,8 +240,10 @@ function content(element, options) {
         `);
 
         $('#' + id).addClass(destSize);
+        // $('#house_layer_2').addClass(destSize);
         $('#' + interfaceData.options.breadcrumbs_id_array[interfaceData.options.breadcrumbs_id_array.length - 1]).addClass('content_small');
         interfaceData.options.breadcrumbs_id_array.push(id);
+        // interfaceData.options.breadcrumbs_id_array.push('house_layer_2');
         $('#back').removeClass('inactive');
     }
 
@@ -237,11 +260,11 @@ function content(element, options) {
             text += '<div class="breadcrumbs_separator">|</div>';
     }
 
-    document.getElementById('breadcrumbsSub').innerHTML = text;
+    // document.getElementById('breadcrumbsSub').innerHTML = text;
 
-    $('#breadcrumbsSub').scrollLeft(9999999999);
+    // $('#breadcrumbsSub').scrollLeft(9999999999);
 }
-
+*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,6 +275,7 @@ function user_logoff() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Tabs
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 function showTab(element, tab) {
     // Aktiven Tab finden und deaktivieren
     $(element).parent().find('.active').removeClass('active');
@@ -269,7 +293,7 @@ function showTab(element, tab) {
 
     $(element).parents('.content').scrollTop(0);
 }
-
+*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // License
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -324,8 +348,8 @@ function i18n(key) {
     for (let i of [interfaceData.i18n, interfaceData.i18n.default])
         if (key in i)
             return i[key];
-        else
-            return '?';
+
+    return '?';
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -488,7 +512,7 @@ Vue.component('shif-icon', {
     },
 
     template: `
-        <div v-bind:class="classname">
+        <div v-bind:class="classname" v-on:click="$emit('click', this)">
             <template v-if="src in interfaceIcons">
                 <div class="svg_icon"
                      v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
@@ -673,17 +697,17 @@ Vue.component('shif-button', {
 
 Vue.component('shif-colorpicker', {
     props: {
-        width:  { type: Number, required: true, },
-        height: { type: Number, required: true, },
+        width:  { type: [Number, Object], required: true, },
+        height: { type: [Number, Object], required: true, },
         color:  { type: String, required: true, },
-        title:  { type: String, required: true, },
         padding:      { type: Number, default:  1 },
-        borderWidth:  { type: Number, default:  1 },
-        handleRadius: { type: Number, default: 30 },
-        sliderMargin: { type: Number, default: 32 },
-        sliderHeight: { type: Number, default: 64 },
-        borderColor:  { type: String, default: '#000' },
-        anticlockwise:  { type: Boolean, default: true }
+        borderWidth:  { type: Number, default:  3 },
+        handleRadius: { type: Number, default: 12 },
+        sliderMargin: { type: Number, default: 24 },
+        sliderHeight: { type: Number, default: 32 },
+        borderColor:  { type: String, default: '#fff' },
+        anticlockwise:  { type: Boolean, default: true },
+        title:  { type: String},
     },
 
     data: function () {
@@ -700,9 +724,30 @@ Vue.component('shif-colorpicker', {
     },
 
     mounted: function () {
-        this.handle = new iro.ColorPicker(this.$refs.colorpicker, {
-            width:         this.width,
-            height:        this.height,
+        function rel_to_abs_px(dim_elem, dim_wanted) {
+            let result = dim_elem;
+
+            if (typeof(dim_wanted) === 'number')
+                return result * (dim_wanted / 100);
+
+            if (typeof(dim_wanted) === 'object' &&
+                'percent' in dim_wanted &&
+                typeof(dim_wanted.percent) === 'number') {
+
+                result *= (dim_wanted.percent / 100);
+
+                if ('max_pixels' in dim_wanted &&
+                    typeof(dim_wanted.max_pixels) === 'number')
+                    result = Math.min(result, dim_wanted.max_pixels);
+            }
+
+            return result;
+        }
+
+        const elem = this.$refs.colorpicker;
+        this.handle = new iro.ColorPicker(elem, {
+            width:         rel_to_abs_px(elem.scrollWidth,  this.width),
+            height:        rel_to_abs_px(elem.scrollHeight, this.height),
             color:         this.color,
             title:         this.title,
             handleRadius:  this.handleRadius,
@@ -746,18 +791,18 @@ Vue.component('shif-colorpicker', {
         this.handle.on('color:change', function (color, changes) {
             outer.$emit('color:change', {color: color, changes: changes});
         });
-        this.handle.on('input:start', function (color, changes) {
-            outer.$emit('input:start', {color: color, changes: changes});
+        this.handle.on('input:start', function (color) {
+            outer.$emit('input:start', {color: color});
         });
-        this.handle.on('input:end', function (color, changes) {
-            outer.$emit('input:end', {color: color, changes: changes});
+        this.handle.on('input:end', function (color) {
+            outer.$emit('input', color.hexString);
         });
     },
 
     template: `
         <div class="device_wrapper">
             <div class="device color">
-                <shif-title>{{ title }}</shif-title>
+                <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
                 </div>
             </div>
@@ -990,3 +1035,111 @@ function shif_comps_create(name, l2, l3) {
     };
 }
 // }}}
+
+
+
+
+Vue.component('shif-room', {
+    props: {
+        floor: Object,
+        room:  [String, Number],
+    },
+    methods: {
+        showIcon: showIcon,
+
+        link: function (floor_key, room_val) {
+            return {
+                name: 'house.tab.rooms.room',
+                params: {
+                    floor: floor_key,
+                    room:  room_val,
+                },
+            };
+        },
+    },
+        // <div v-on:click="level2"
+    template: `
+        <div class="roomSelect_wrapper">
+            <router-link v-bind:to="link(floor.key, room)">
+                <shif-icon v-bind:src="interfaceData.rooms[room].icon"
+                           class="roomSelect" />
+
+                <div class="description">
+                    {{ interfaceData.rooms[room].name }}
+                </div>
+            </router-link>
+        </div>
+    `,
+});
+
+
+
+Vue.component('shif-tab', {
+    props: {
+        width: {
+            type:    String,
+            default: '50%',
+        }
+    },
+    template: `
+        <div class="tab button"
+             v-bind:style="{width: width}"
+             v-on:click="$emit('click', 1)">
+             <slot></slot>
+        </div>
+    `,
+});
+
+
+
+let ShifLog = Vue.component('shif-log', {
+    mounted: function () {
+        viewLog('<br /><hr />')
+    },
+
+    template: `
+        <div id="log" class="content content_single">
+        </div>
+    `
+});
+
+
+
+let ShifProfiles = Vue.component('shif-profiles', {
+    template: `
+        <div id="profiles" class="content content_single">
+            <p>tbd</p>
+        </div>
+    `
+});
+
+
+
+let ShifFavorites = Vue.component('shif-favorites', {
+    template: `
+        <div id="favorites" class="content content_single">
+            <p>tbd</p>
+        </div>
+    `
+});
+
+
+
+Vue.component('shif-content-single', {
+    props: {
+        name: {
+            type: String,
+            required: true,
+        },
+        props: {
+            type: Object,
+            required: true,
+        },
+    },
+
+    template: `
+        <div class="content content_single">
+            <component v-bind:is="name" v-bind="props" />
+        </div>
+    `
+})
