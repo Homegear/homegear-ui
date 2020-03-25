@@ -25,12 +25,38 @@ function homegearRandomUserName() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function homegear_websocket_security() {
+    const opts = interfaceData.options;
+
+    if (location.protocol === 'https:')
+        return true;
+
+    if (opts.websocket_user || opts.websocket_password)
+        return true;
+
+    if (opts.websocket_security_ssl === undefined ||
+        opts.websocket_security_ssl === 'location.protocol')
+        return location.protocol === 'https:'
+
+    return !! opts.websocket_security_ssl;
+
+}
+
 function homegear_new() {
+    const host = (interfaceData.options.websocket_url == 'location.hostname')
+                    ? location.hostname
+                    : interfaceData.options.websocket_url;
+    const port = (interfaceData.options.websocket_port == 'location.port')
+                    ? location.port
+                    : Number(interfaceData.options.websocket_port);
+
+    const secure = homegear_websocket_security();
+
     return new HomegearWS(
-        (interfaceData.options.websocket_url == 'location.hostname') ? location.hostname : interfaceData.options.websocket_url,
-        (interfaceData.options.websocket_port == 'location.port') ? location.port : Number(interfaceData.options.websocket_port),
+        host,
+        port,
         homegearRandomUserName(),
-        (location.protocol == 'https:') ? true : (interfaceData.options.websocket_security_ssl == 'location.protocol') ? location.protocol == 'https:' : (interfaceData.options.websocket_security_ssl !== true) ? false : true,
+        secure,
         ...arguments
     );
 }
@@ -114,7 +140,7 @@ function handle_homegear_update(resp) {
             let role = input.roles[roleIndex];
             if(!role.hasOwnProperty('id')) continue;
             else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
-            
+
             if(role.hasOwnProperty('invert'))
             {
                 value = !value;
