@@ -119,7 +119,7 @@
             "description": "settings.user.manage.description"
         },
         {
-            "name": "settings.favorites.mode",
+            "name": "settings.favorites",
             "mainmenu": "settings",
             "category": "favorites",
             "level": "1",
@@ -128,14 +128,14 @@
             "onclickOptions": {
                 "mainmenu":"settings",
                 "level":"2",
-                "category":"profiles",
-                "name":"settings.favorites.mode",
+                "category":"favorites",
+                "name":"settings.favorites",
                 "content":"true"
             },
-            "description": "settings.favorites.mode.description"
+            "description": "settings.favorites.description"
         },
         {
-            "name": "settings.profiles.mode",
+            "name": "settings.profiles",
             "mainmenu": "settings",
             "category": "profiles",
             "level": "1",
@@ -145,10 +145,10 @@
                 "mainmenu":"settings",
                 "level":"2",
                 "category":"profiles",
-                "name":"settings.profiles.mode",
+                "name":"settings.profiles",
                 "content":"true"
             },
-            "description": "settings.profiles.mode.description"
+            "description": "settings.profiles.description"
         },
         {
             "name": "settings.about",
@@ -261,7 +261,7 @@
             "settings.favorites.description": "Set and unset favorites",
             "settings.profiles": "Profiles",
             "settings.profiles.mode": "Profiles mode",
-            "settings.profiles.mode.description": "Add and delete profiles",
+            "settings.profiles.description": "Add and delete profiles",
             "settings.user": "User",
             "settings.user.description": "Manage",
             "settings.user.manage": "User Settings",
@@ -315,7 +315,7 @@
             "settings.favorites.description": "Favoriten auswählen",
             "settings.profiles": "Profile",
             "settings.profiles.mode": "Profile Modus",
-            "settings.profiles.mode.description": "Profile erstellen und löschen",
+            "settings.profiles.description": "Profile erstellen und löschen",
             "settings.user": "Benutzer",
             "settings.user.description": "Verwalten",
             "settings.user.manage": "Benutzereinstellungen",

@@ -275,13 +275,13 @@ let router = new VueRouter({
                 },
                 {
                     path: 'favorites',
-                    name: 'settings.favorites.mode',
+                    name: 'settings.favorites',
                     components: {small: ShifSettingsItems(1), big: ShifSettingsFavorites},
-                    meta: {breadcrumbs: ['settings', 'settings.favorites.mode']}
+                    meta: {breadcrumbs: ['settings', 'settings.favorites']}
                 },
                 {
                     path: 'profiles',
-                    name: 'settings.profiles.mode',
+                    name: 'settings.profiles',
                     component: ShifProfiles,
                 },
             ],
