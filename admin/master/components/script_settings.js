@@ -1,3 +1,19 @@
+let ShifSettingsFavorites = {
+    template: `
+        <div class="device_wrapper" v-on:click.prevent="$root.favorites_enabled = !$root.favorites_enabled">
+            <div class="device">
+                <shif-title>TBD: i18n: Favoriten Modus an-/aus schalten</shif-title>
+                <label class="check">
+                    <input type="checkbox" v-model="$root.favorites_enabled">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    `
+};
+
+
+
 Vue.component('shif-settings-element', {
     mixins: [mixin_print_mounted()],
 
