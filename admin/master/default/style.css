@@ -358,6 +358,7 @@ a:link, a:visited, a:focus, a:hover, a:active {
 }
 
 #breadcrumbs_wrapper #back {
+  width: 50px;
   height: 35px;
   display: inline-block;
   margin: 0 auto;
@@ -399,24 +400,6 @@ a:link, a:visited, a:focus, a:hover, a:active {
   padding: 0;
   font-size: 30px;
   line-height: 35px;
-}
-
-#breadcrumbsSub::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-#breadcrumbsSub::-webkit-scrollbar-track {
-  background-color: #222222;
-  border: 0px solid #000000;
-}
-
-#breadcrumbsSub::-webkit-scrollbar-thumb {
-  background-color: #111111;
-}
-
-#breadcrumbsSub::-webkit-scrollbar-thumb:hover {
-  background-color: #333333;
 }
 
 #breadcrumbsSub .breadcrumbs_separator {
