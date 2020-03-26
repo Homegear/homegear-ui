@@ -1,6 +1,6 @@
 let ShifSettingsFavorites = {
     template: `
-        <div class="device_wrapper" v-on:click.prevent="$root.favorites_enabled = !$root.favorites_enabled">
+        <div class="device_wrapper">
             <div class="device">
                 <shif-title>TBD: i18n: Favoriten Modus an-/aus schalten</shif-title>
                 <label class="check">
