@@ -78,6 +78,13 @@ let ShifSettingsLicenses = {
                     <th>{{ i18n('settings.about.table.license.url') }}</th>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td>{{ interfaceData.manifest.name }}</td>
+                        <td>{{ interfaceData.manifest.revision }}</td>
+                        <td>{{ interfaceData.manifest.author }}</td>
+                        <td>{{ interfaceData.manifest.license }}</td>
+                        <td>{{ interfaceData.manifest.licenseurl }}</td>
+                    </tr>
                     <tr v-for="i in data">
                         <td>{{ i.name }}</td>
                         <td>{{ i.version }}</td>

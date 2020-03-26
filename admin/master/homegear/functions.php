@@ -193,6 +193,7 @@ function homegear_init() {
         'menu'         => menu_parse(),
         'themes'       => $interfaceData["themes"],
         'options'      => $interfaceData["options"],
+        'manifest'      => $interfaceData["manifest"],
         'iconFallback' => $interfaceData["iconFallback"],
     ];
 

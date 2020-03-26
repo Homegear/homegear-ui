@@ -3,13 +3,24 @@
   "name": "Shif",
   "short_name": "Shif",
   "description": "Smart Home Interface",
+  "author": "Homegear GmbH",
+  "license": "LGPLv3",
+  "licenseurl": "https://opensource.org/licenses/alphabetical",
   "background_color": "#333",
   "theme_color": "#333",
   "dir": "ltr",
   "start_url": "index.php",
   "display": "fullscreen",
   "orientation": "any",
-  "revision": 187,
+  "manifest_version": 2,
+  "revision": 188,
+  "developer": {
+    "name": "Marwin Hubach",
+    "url": "https://marwinh.de/"
+  },
+  "options_ui": {
+    "page": "/#/setting"
+  },
   "icons": [
     {
       "src": "media/logo/icon/smarthome36.png",

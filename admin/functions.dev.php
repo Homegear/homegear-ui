@@ -71,6 +71,7 @@ function clean_json_to_js() {
     $interfaceDataOut["map_invoke"] = $interfaceData["map_invoke"];
     $interfaceDataOut["roles"] = $interfaceData["roles"];
     $interfaceDataOut["options"] = $interfaceData["options"];
+    $interfaceDataOut["manifest"] = $interfaceData["manifest"];
     $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
 
     foreach ($interfaceDataOut as $key => $type ){
