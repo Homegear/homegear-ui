@@ -223,7 +223,7 @@ let router = new VueRouter({
                     name: 'house.tab.rooms',
                     path: 'rooms',
                     component: ShifHouseRooms,
-                    meta: {breadcrumbs: ['house', 'house.tab.rooms']},
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms'], base: true,},
                 }, {
                     name: 'house.tab.rooms.room',
                     path: 'rooms/floor/:floor/room/:room',
@@ -240,7 +240,7 @@ let router = new VueRouter({
                     name: 'house.tab.devices',
                     path: 'devices',
                     component: ShifHouseDevices,
-                    meta: {breadcrumbs: ['house', 'house.tab.devices']},
+                    meta: {breadcrumbs: ['house', 'house.tab.devices'], base: true,},
                 }, {
                     name: 'house.tab.devices.device',
                     path: 'devices/floor/:floor/room/:room/device/:device',
@@ -257,7 +257,7 @@ let router = new VueRouter({
                     name: 'settings.list',
                     path: 'list',
                     component: ShifSettingsItems(1),
-                    meta: {breadcrumbs: ['settings']},
+                    meta: {breadcrumbs: ['settings'], base: true,},
                 },
                 {
                     name: 'settings.about',
@@ -335,6 +335,11 @@ let breadcrumbs = new Vue({
                                                 }))
                                                .filter(x => x.name !== '?');
         },
+
+        back_wanted: function () {
+            return (! this.$route.meta.base) &&
+                   this.routes_with_proper_names.length > 1;
+        },
     },
 
     methods: {
@@ -365,8 +370,9 @@ let breadcrumbs = new Vue({
 
     template: `
         <div id="breadcrumbs">
-            <template v-show="routes_with_proper_names.length > 1">
+            <template>
                 <shif-icon id="back" src="arrow_left_1"
+                           v-bind:style="{visibility: back_wanted ? 'visible' : 'hidden'}"
                            v-on:click="$router.back()"/>
             </template>
             <div id="breadcrumb_wrapper">
