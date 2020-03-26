@@ -101,25 +101,6 @@ function check_disabled(device, indexes) {
     return ret_enabled;
 }
 
-function component_object(control, device, input, output, is, indexes) {
-    let ret = {
-        uiElement: device,
-        control:   control,
-        device:    device.databaseId,
-        icons:     device.icons,
-        texts:     device.texts,
-        output:    output,
-        props:     input.properties,
-        indexes:   indexes,
-        rendering: input.rendering,
-    };
-
-    if (is)
-        ret.is = is;
-
-    return ret;
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,10 +137,11 @@ Vue.mixin({
     methods: {
         level3: function (device, name) {
             const matched = this.$route.matched.map(x => x.name);
+            const last    = matched[matched.length - 1]
 
             if (matched.indexOf('house.tab.rooms.room') !== -1) {
                 return this.$router.push({
-                    name: `${matched[matched.length - 1]}.device`,
+                    name: `${last}.device`,
                     params: {
                         floor: this.$route.params.floor,
                         room:  this.$route.params.room,
@@ -171,7 +153,19 @@ Vue.mixin({
             if (matched.indexOf('house.tab.devices') !== -1) {
                 // TODO: verify that there is always at least a room and a floor
                 return this.$router.push({
-                    name: `${matched[matched.length - 1]}.device`,
+                    name: `${last}.device`,
+                    params: {
+                        floor: interfaceData.devices[device].floors[0],
+                        room:  interfaceData.devices[device].rooms[0],
+                        device: device,
+                    },
+                });
+            }
+
+            if (matched.indexOf('favorites.list') !== -1) {
+                // TODO: verify that there is always at least a room and a floor
+                return this.$router.push({
+                    name: 'favorites.device',
                     params: {
                         floor: interfaceData.devices[device].floors[0],
                         room:  interfaceData.devices[device].rooms[0],
@@ -217,6 +211,7 @@ let ShifLogoff = Vue.component('shif-logoff', {
 let router = new VueRouter({
     routes: [
         { path: '/',                                           redirect: {name: 'house'}, },
+
         { path: '/house', name: 'house', component: ShifHouse, redirect: {name: 'house.tab.rooms'},
             children: [
                 {
@@ -251,6 +246,7 @@ let router = new VueRouter({
                 { path: 'profiles', name: 'house.tab.profiles', component: ShifProfiles, }
             ],
         },
+
         { path: '/settings', name: 'settings', component: ShifSettings, redirect: {name: 'settings.list'},
             children: [
                 {
@@ -278,18 +274,35 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['settings', 'settings.user', 'settings.user.manage']},
                 },
                 {
-                    path: 'favoritesmode',
+                    path: 'favorites',
                     name: 'settings.favorites.mode',
                     component: ShifProfiles,
                 },
                 {
-                    path: 'profilessmode',
+                    path: 'profiles',
                     name: 'settings.profiles.mode',
                     component: ShifProfiles,
                 },
             ],
         },
-        { path: '/favorites', name: 'favorites', component: ShifFavorites, },
+
+        { path: '/favorites', name: 'favorites', component: ShifFavorites, redirect: {name: 'favorites.list'},
+            children: [
+                {
+                    name: 'favorites.list',
+                    path: 'list',
+                    component: ShifFavoritesLvl1,
+                    meta: {breadcrumbs: ['favorites'], base: true},
+                },
+                {
+                    name: 'favorites.device',
+                    path: 'floor/:floor/room/:room/device/:device',
+                    components: {small: ShifFavoritesLvl1, big: ShifFavoritesLvl3},
+                    meta: {breadcrumbs: ['favorites', 'house.tab.rooms.room', 'favorites.device']},
+                }
+            ],
+        },
+
         {
             path: '/log',
             name: 'log',
@@ -358,6 +371,7 @@ let breadcrumbs = new Vue({
 
                 case 'house.tab.rooms.room.device':
                 case 'house.tab.devices.device':
+                case 'favorites.device':
                     return interfaceData.devices[params.device].label;
 
                 case 'log':
