@@ -109,13 +109,11 @@ echo '</script>';
   </div>
 
   <div id="breadcrumbs_wrapper">
-    <div id="breadcrumbs">
-    </div>
+    <div id="breadcrumbs"></div>
   </div>
+  <div id="inhalt"></div>
 
 <?php
-  echo content();
-
   if (file_exists("icons.js")) {
       echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }
