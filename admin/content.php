@@ -27,7 +27,7 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
 <head>
-    <title>Shif - <?php echo $interfaceData["options"]["firstBreadcrumb"]; ?></title>
+    <title>Shif</title>
     <meta charset="UTF-8">
     <meta name="author" content="Homegear GmbH" />
     <meta name="keywords" content="Shif" />
@@ -67,6 +67,13 @@ else {
 
 echo '<style>'."\n";
 echo userStyle()."\n";
+
+echo '
+/* scrollbar */
+::-webkit-scrollbar {
+  width: '.$interfaceData["options"]["scrollbarScale"].'px;
+}
+';
 echo'</style>'."\n";
 
 echo '
