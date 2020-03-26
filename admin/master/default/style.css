@@ -813,18 +813,18 @@ a:link, a:visited, a:focus, a:hover, a:active {
   left: 0;
   height: 50px;
   width: 50px;
-  background-color: #898989;
+  border: 4px solid #fff;
   border-radius: 4px;
 }
 
 /* On mouse-over, add a grey background color */
 .check:hover input ~ .checkmark {
-  background-color: #eee;
+  border: 4px solid #898989;
 }
 
 /* When the checkbox is checked, add the highlight background */
 .check input:checked ~ .checkmark {
-  background-color: #e3a104;
+  border: 4px solid #e3a104;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -841,8 +841,8 @@ a:link, a:visited, a:focus, a:hover, a:active {
 
 /* Style the checkmark/indicator */
 .check .checkmark:after {
-  left: 16px;
-  top: 4px;
+  left: 11px;
+  top: 0px;
   width: 15px;
   height: 30px;
   border: solid #fff;
