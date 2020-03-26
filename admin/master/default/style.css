@@ -336,18 +336,40 @@ a:link, a:visited, a:focus, a:hover, a:active {
   z-index: 999999;
   font-size: 30px;
   line-height: 35px;
-  text-align: left;
+  text-align: right;
   text-decoration: none;
   padding: 0px 0px 0px 0px;
+  white-space: pre;
+}
+
+#breadcrumbs_wrapper #breadcrumbs a {
+  display: inline-block;
+}
+
+#breadcrumbs_wrapper #breadcrumbs a::after {
+  padding: 0px 10px;
+}
+
+#breadcrumbs_wrapper #breadcrumbs #breadcrumb_wrapper {
+  display: inline-block;
+  overflow-y: auto;
+  width: calc(100% - 70px);
+  text-align: left;
 }
 
 #breadcrumbs_wrapper #back {
   height: 35px;
   display: inline-block;
   margin: 0 auto;
-  padding: 0px 35px 0px 0px;
-  position: relative;
+  padding: 0px;
+  position: absolute;
   cursor: pointer;
+  left: 0;
+}
+
+#breadcrumbs_wrapper #back > div {
+  width: 35px;
+  height: 35px;
 }
 
 #breadcrumbs_wrapper #back svg {

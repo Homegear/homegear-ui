@@ -369,12 +369,11 @@ let breadcrumbs = new Vue({
                 <shif-icon id="back" src="arrow_left_1"
                            v-on:click="$router.back()"/>
             </template>
-
-            <template v-for="i in routes_with_proper_names">
-                <router-link v-bind:to="{name: i.link}">
-                    {{ i.name }}
-                </router-link>
-            </template>
+            <div id="breadcrumb_wrapper">
+                <template v-for="i in routes_with_proper_names">
+                    <router-link v-bind:to="{name: i.link}">{{ i.name }}</router-link>
+                </template>
+            </div>
         </div>
     `
 });
