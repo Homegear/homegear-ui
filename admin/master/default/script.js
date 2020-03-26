@@ -881,13 +881,3 @@ let ShifProfiles = Vue.component('shif-profiles', {
         </div>
     `
 });
-
-
-
-let ShifFavorites = Vue.component('shif-favorites', {
-    template: `
-        <div id="favorites" class="content content_single">
-            <p>tbd</p>
-        </div>
-    `
-});
