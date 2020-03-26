@@ -275,7 +275,8 @@ let router = new VueRouter({
                 {
                     path: 'favorites',
                     name: 'settings.favorites.mode',
-                    component: ShifProfiles,
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsFavorites},
+                    meta: {breadcrumbs: ['settings', 'settings.favorites.mode']}
                 },
                 {
                     path: 'profiles',
@@ -316,6 +317,10 @@ let router = new VueRouter({
 
 let app = new Vue({
     el: '#inhalt',
+
+    data: {
+        favorites_enabled: false,
+    },
 
     router: router,
 
