@@ -508,7 +508,7 @@ Vue.component('shif-colorpicker', {
                     result = Math.min(result, dim_wanted.max_pixels);
             }
 
-            return result;
+            return result - 30;
         }
 
         const elem = this.$refs.colorpicker;
@@ -524,7 +524,7 @@ Vue.component('shif-colorpicker', {
             borderWidth:   this.borderWidth,
             borderColor:   this.borderColor,
             anticlockwise: this.anticlockwise,
-            display:       'inline-block',
+            display:       'block',
             layout:        [
                 {
                     component: iro.ui.Wheel,

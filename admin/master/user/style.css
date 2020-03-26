@@ -1,15 +1,29 @@
-#user_wrapper .form-group{
-  margin-bottom: 20px;
+.user_wrapper .form-group{
+  
 }
 
-#color-picker-container{
-  margin-top: 20px;
+.user_wrapper .form-group {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #898989;
 }
 
-#color-picker-container > .iro__colorPicker{
-  margin: auto;
+.user_wrapper .form-group .device_wrapper .device{
+  border-bottom: 0px solid #898989;
+  padding: 0px;
 }
 
-#color-picker-container > svg{
-  margin: 0 auto;
+.user_wrapper .form-group .label {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.user_wrapper .form-group input, 
+.user_wrapper .form-group textarea {
+  font-size: 20px;
+  background: #191b1f;
+}
+
+.user_wrapper .form-group .ui-select span {
+  display: none;
 }
