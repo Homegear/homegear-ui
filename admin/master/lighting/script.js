@@ -104,8 +104,8 @@ lighting_color_l3.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
 };
 lighting_color_l3.template = `
-    <shif-colorpicker v-bind:width="520"
-                      v-bind:height="520"
+    <shif-colorpicker v-bind:width="{max_pixels: 600, percent: 100}"
+                      v-bind:height="{max_pixels: 620, percent: 100}"
                       v-bind:color="props.value"
                       v-bind:title="title"
                       v-on:input:end="change" />
