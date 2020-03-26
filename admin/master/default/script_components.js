@@ -1,3 +1,24 @@
+function comp_obj(control, device, input, output, is, indexes) {
+    let ret = {
+        uiElement: device,
+        control:   control,
+        device:    device.databaseId,
+        icons:     device.icons,
+        texts:     device.texts,
+        output:    output,
+        props:     input.properties,
+        indexes:   indexes,
+        rendering: input.rendering,
+    };
+
+    if (is)
+        ret.is = is;
+
+    return ret;
+}
+
+
+
 const mixin_components = {
     methods: {
         find_component: function (device, layer) {
@@ -10,8 +31,8 @@ const mixin_components = {
                     const output  = control.variableOutputs[keys.input];
                     const is      = 'shif-' + control.control + '-l2';
 
-                    return [component_object(control, device, input, output, is,
-                                             {input: keys.input, control: keys.control})];
+                    return [comp_obj(control, device, input, output, is,
+                                     {input: keys.input, control: keys.control})];
                 }
 
                 if (device.controls.length <= 1 &&
@@ -30,8 +51,8 @@ const mixin_components = {
                     const output = control.variableOutputs[k];
                     const is     = 'shif-' + control.control + '-' + layer;
 
-                    out.push(component_object(control, device, input, output, is,
-                                              {input: k, control: i}));
+                    out.push(comp_obj(control, device, input, output, is,
+                                      {input: k, control: i}));
                 }
             }
 
@@ -61,14 +82,31 @@ Vue.component('shif-house-collected-entries', {
             type: Number,
             required: true,
         },
+
+        favorites: {
+            type: Boolean,
+            default: false,
+        },
+
+        include_place: {
+            type: Boolean,
+            default: false,
+        }
     },
 
     computed: {
         dev_objs: function () {
             if (this.layer === 2) {
-                return interfaceData.rooms[this.$route.params.room]
-                                    .devices
-                                    .map(dev => this.find_component(interfaceData.devices[dev], 'l2'));
+                const devices = this.favorites === true
+                                    ? Object.keys(interfaceData.devices)
+                                            .map(dev => interfaceData.devices[dev])
+                                            .filter(dev => dev.metadata.favorites &&
+                                                           dev.metadata.favorites.state)
+                                    : interfaceData.rooms[this.$route.params.room]
+                                                   .devices
+                                                   .map(dev => interfaceData.devices[dev]);
+
+                return devices.map(dev => this.find_component(dev, 'l2'));
             }
 
             if (this.layer === 3) {
@@ -83,8 +121,7 @@ Vue.component('shif-house-collected-entries', {
     template: `
         <div>
             <template v-for="dev in dev_objs">
-                <component v-bind="dev" v-bind:include_place="false">
-                </component>
+                <component v-bind="dev" v-bind:include_place="include_place" />
 
                 <template v-if="debug">
                     {{ dev | pretty | log }}
@@ -140,11 +177,12 @@ Vue.component('shif-paging', {
 
     computed: {
         is_single_view: function () {
-            const idx = this.$route.matched.length - 1;
+            const idx   = this.$route.matched.length - 1;
+            const route = this.$route.matched[idx];
 
-            return this.$route.matched[idx] !== undefined &&
-                   this.$route.matched[idx].components !== undefined &&
-                   this.$route.matched[idx].components.default !== undefined;
+            return route !== undefined &&
+                   route.components !== undefined &&
+                   route.components.default !== undefined;
         }
     },
 
