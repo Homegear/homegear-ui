@@ -4,6 +4,7 @@
 let window_rainalarm = clone(shif_device);
 window_rainalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
@@ -19,6 +20,7 @@ shif_comps_create('windowRainalarm', window_rainalarm, window_rainalarm);
 let window_status = clone(shif_device);
 window_status.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -29,6 +31,7 @@ window_status.template = `
 let window_status_l3 = clone(shif_device);
 window_status_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
@@ -42,6 +45,7 @@ shif_comps_create('windowHandle',  window_status, window_status_l3);
 let window_buttons_l2 = clone(shif_device);
 window_buttons_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
                      v-bind:place="place"
