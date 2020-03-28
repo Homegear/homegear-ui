@@ -191,9 +191,10 @@ function homegear_init() {
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
         'menu'         => menu_parse(),
+        'profiles'     => $interfaceData["profiles"],
         'themes'       => $interfaceData["themes"],
         'options'      => $interfaceData["options"],
-        'manifest'      => $interfaceData["manifest"],
+        'manifest'     => $interfaceData["manifest"],
         'iconFallback' => $interfaceData["iconFallback"],
     ];
 
