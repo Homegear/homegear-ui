@@ -575,6 +575,26 @@ Vue.component('shif-colorpicker', {
             </div>
         </div>
     `
+});
+
+
+
+Vue.component('shif-checkbox', {
+    props: {
+        value: {
+            type: Boolean,
+            required: true
+        },
+    },
+    template: `
+        <label class="check">
+            <input type="checkbox"
+                   v-bind:checked="value"
+                   v-on:click="$emit('click', $event.target.checked)"
+                   v-on:input="$emit('input', $event.target.checked)">
+            <span class="checkmark"></span>
+        </label>
+    `,
 })
 // }}}
 
@@ -584,6 +604,7 @@ Vue.component('shif-colorpicker', {
 Vue.component('shif-generic-l2', {
     props: {
         icon:        String,
+        dev:         Object,
         place:       String,
         title:       String,
         status:      [Array, String],
@@ -606,6 +627,15 @@ Vue.component('shif-generic-l2', {
         },
     },
 
+    data: function () {
+        return {
+            favorites_state: this.dev !== undefined &&
+                             this.dev.metadata !== undefined &&
+                             this.dev.metadata.favorites !== undefined &&
+                             this.dev.metadata.favorites.state === true,
+        };
+    },
+
     mounted: function () {
         if (this.$listeners &&
             this.$listeners.click !== undefined &&
@@ -622,7 +652,11 @@ Vue.component('shif-generic-l2', {
                 this.$emit(key);
             else
                 this.$emit(key, val);
-        }
+        },
+
+        dump: function () {
+            console.log(this.favorites_state)
+        },
     },
 
     template: `
@@ -632,10 +666,11 @@ Vue.component('shif-generic-l2', {
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
-                <label class="check">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
+                <div v-if="$root.favorites.enabled"
+                     v-on:click.stop="$root.$emit('favorites-clicked', favorites_state)">
+                    <shif-checkbox v-model="favorites_state" />
+                </div>
+
                 <div v-on:click.stop="emit('click_icon')">
                     <shif-icon v-bind:src="icon"
                                v-bind:active="active.icon"
@@ -826,7 +861,7 @@ Vue.component('shif-room', {
             };
         },
     },
-        // <div v-on:click="level2"
+
     template: `
         <div class="roomSelect_wrapper">
             <router-link v-bind:to="link(floor.key, room)">
@@ -857,27 +892,4 @@ Vue.component('shif-tab', {
              <slot></slot>
         </div>
     `,
-});
-
-
-
-let ShifLog = Vue.component('shif-log', {
-    mounted: function () {
-        viewLog('<br /><hr />')
-    },
-
-    template: `
-        <div id="log" class="content content_single">
-        </div>
-    `
-});
-
-
-
-let ShifProfiles = Vue.component('shif-profiles', {
-    template: `
-        <div id="profiles" class="content content_single">
-            <p>tbd</p>
-        </div>
-    `
 });
