@@ -74,8 +74,50 @@ const mixin_print_mounted = function (name) {
 
 
 
+const mixin_profiles = {
+    computed: {
+        global_profiles: function () {
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(x => x.global === true);
+        },
+
+        local_profiles: function () {
+            const floor = parseInt(this.$route.params.floor);
+            const room  = parseInt(this.$route.params.room);
+
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(
+                x => x.locations.findIndex(
+                    loc => loc.floorId === floor &&
+                          (loc.roomId === undefined || loc.roomId === room)
+                ) !== -1
+            );
+        }
+    },
+
+    methods: {
+        load_profile: function (profile) {
+            return this.$homegear.value_set_multi(profile.outputPeers.map(x => ({
+                input: x,
+                value: x.value,
+            })));
+        },
+
+        unload_profile: function (profile) {
+            return this.$homegear.value_set_multi(profile.outputPeers.map(x => ({
+                input: x,
+                value: x.value,
+            })));
+        },
+    },
+};
+
+
+
 Vue.component('shif-house-collected-entries', {
-    mixins: [mixin_components, mixin_print_mounted()],
+    mixins: [mixin_components, mixin_profiles, mixin_print_mounted()],
 
     props: {
         layer: {
@@ -118,10 +160,28 @@ Vue.component('shif-house-collected-entries', {
         },
     },
 
+    methods: {
+        favorites_handle: function (value) {
+            throw 'Not yet implemented: homegear needs to implement api call';
+        },
+    },
+
+    mounted: function () {
+        this.$root.$on('favorites-clicked', this.favorites_handle);
+    },
+
     template: `
         <div>
+            <template v-if="layer === 2 && ! favorites"
+                      v-for="i in local_profiles">
+                <shif-button v-bind:classname="'profiles_button'" v-on:click="load_profile(i)">
+                    {{ i.name }}
+                </shif-button>
+            </template>
+
             <template v-for="dev in dev_objs">
-                <component v-bind="dev" v-bind:include_place="include_place" />
+                <component v-bind="dev"
+                           v-bind:include_place="include_place" />
 
                 <template v-if="debug">
                     {{ dev | pretty | log }}
