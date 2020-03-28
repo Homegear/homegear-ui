@@ -4,6 +4,7 @@
 let ventilation_mode_l2 = clone(shif_device);
 ventilation_mode_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
                      v-bind:place="place"
