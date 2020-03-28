@@ -278,6 +278,26 @@
             "name": "SPEED",
             "type": "int",
             "value": 0
+        },
+        {
+            "name": "PROFILE1",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "PROFILE2",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "PROFILE3",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "PROFILE4",
+            "type": "int",
+            "value": 0
         }
     ],
     "roles": [
