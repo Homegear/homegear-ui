@@ -243,7 +243,12 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device']},
                 },
 
-                { path: 'profiles', name: 'house.tab.profiles', component: ShifProfiles, }
+                {
+                    path: 'profiles',
+                    name: 'house.tab.profiles',
+                    component: ShifProfiles,
+                    meta: {breadcrumbs: ['house', 'house.tab.profiles'], base: true}
+                }
             ],
         },
 
@@ -282,7 +287,13 @@ let router = new VueRouter({
                 {
                     path: 'profiles',
                     name: 'settings.profiles',
-                    component: ShifProfiles,
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
+                    meta: {breadcrumbs: ['settings', 'settings.profiles']}
+                }, {
+                    path: 'profiles/:profile',
+                    name: 'settings.profiles.profile',
+                    components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
+                    meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']}
                 },
             ],
         },
@@ -320,7 +331,13 @@ let app = new Vue({
     el: '#inhalt',
 
     data: {
-        favorites_enabled: false,
+        favorites: {
+            enabled: false,
+        },
+        profiles: {
+            id:       null,
+            enabled:  false
+        },
     },
 
     router: router,
@@ -381,6 +398,9 @@ let breadcrumbs = new Vue({
 
                 case 'log':
                     return 'Log';
+
+                case 'settings.profiles.profile':
+                    return interfaceData.profiles[params.profile].name;
             }
 
             return i18n(route_name);
