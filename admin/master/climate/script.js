@@ -26,6 +26,7 @@ climate_main.computed.icon = function () {
 };
 climate_main.template = `
     <shif-generic-l2 v-bind:icon="icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: icon.color, text: texts.title.color}"
                      v-bind:status="status_formatted"
@@ -41,6 +42,7 @@ openweathermap_l2.computed.status_formatted = function () {
 };
 openweathermap_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.weather.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icons.weather.color, text: texts.title.color}"
                      v-bind:status="status_formatted"
