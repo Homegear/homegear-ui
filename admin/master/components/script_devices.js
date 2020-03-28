@@ -108,7 +108,7 @@ Vue.component('shif-ctrl-summary', {
 
 
 
-let ShifAllDevices = Vue.component('shif-all-devices', {
+let ShifAllDevices = {
     mixins: [mixin_print_mounted()],
 
     data: function () {
@@ -286,7 +286,9 @@ let ShifAllDevices = Vue.component('shif-all-devices', {
         this.$root.$on('role-update', (role_id) => this.status(Number(role_id)));
     },
 
-
+    // TODO: figure out why there's a `role_update` handler in templates,
+    //       a) there's a programmatically set handler right above
+    //       b) the event is called `role-update`
     template: `
         <div>
             <template v-for="(devs, role) in map_roles_devs">
@@ -307,12 +309,16 @@ let ShifAllDevices = Vue.component('shif-all-devices', {
             </template>
         </div>
     `,
-});
+};
 
 
 
 let ShifHouseDevices = {
     mixins: [mixin_print_mounted('shif-house-devices')],
+
+    components: {
+        ShifAllDevices,
+    },
 
     template: `
         <shif-mainmenu-tabs>
