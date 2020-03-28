@@ -4,6 +4,7 @@
 let door_status = clone(shif_device);
 door_status.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
