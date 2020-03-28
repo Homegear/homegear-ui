@@ -1,44 +1,25 @@
-let ShifSettingsFavorites = {
-    template: `
-        <div class="device_wrapper">
-            <div class="device"
-                 v-on:click.prevent="$root.favorites_enabled = !$root.favorites_enabled">
-                <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <label class="check">
-                    <input type="checkbox" v-model="$root.favorites_enabled">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-        </div>
-    `
-};
-
-
-
 Vue.component('shif-settings-element', {
     mixins: [mixin_print_mounted()],
 
     props: {
-        icon: {
-            type: String,
-            required: true,
-        },
-        name: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
+        name:        { type: String, required: true, },
+        description: { type: String, },
+        icon:        { type: String, },
+        translate:   { type: Boolean, default: true, }
     },
     template: `
         <div class="button">
-            <shif-icon classname="button_icon" v-bind:src="icon" />
+            <shif-icon v-if="icon" classname="button_icon" v-bind:src="icon" />
             <div class="button_text">
-                <div class="button_title">{{ i18n(name) }}</div>
-                <br/>
-                <div class="button_status">{{ i18n(description) }}</div>
+                <template v-if="description && description.length > 0">
+                    <div class="button_title">{{ translate ? i18n(name) : name }}</div>
+                </template>
+                <template v-else="description && description.length > 0">
+                    <div class="button_title button_no_description">{{ translate ? i18n(name) : name }}</div>
+                </template>
+                <template v-if="description && description.length > 0">
+                    <div class="button_status" style="display:block;">{{ translate ? i18n(description) : description }}</div>
+                </template>
             </div>
             <div class="button_action">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
@@ -266,6 +247,183 @@ let ShifSettingsItems = function (level) {
         `,
     };
 };
+
+
+
+let ShifSettingsFavorites = {
+    template: `
+        <div class="device_wrapper">
+            <div class="device"
+                 v-on:click.prevent="$root.favorites.enabled = !$root.favorites.enabled">
+                <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
+                <shif-checkbox v-model="$root.favorites.enabled" />
+            </div>
+        </div>
+    `
+};
+
+
+
+let ShifSettingsProfiles = {
+    methods: {
+        link: function (profile_id) {
+            return {
+                name: 'settings.profiles.profile',
+                params: {
+                    profile: profile_id,
+                },
+            };
+        },
+    },
+
+    template: `
+        <div class="device_wrapper">
+            <template v-for="i in interfaceData.profiles">
+                <router-link v-bind:to="link(i.id)">
+                    <shif-settings-element v-bind:key="i.name"
+                                           v-bind:name="i.name"
+                                           v-bind:description="''"
+                                           v-bind:translate="false"
+                                           icon="slider_1"
+                                           />
+                </router-link>
+            </template>
+        </div>
+    `
+            // <div class="device"
+                 // v-on:click.prevent="$root.profiles_enabled = !$root.profiles_enabled">
+                // <shif-title>{{ i18n('settings.profiles.mode') }}</shif-title>
+                // <shif-checkbox v-model="$root.profiles_enabled" />
+            // </div>
+};
+
+let ShifSettingsProfile = {
+    mixins: [mixin_profiles],
+
+    data: function () {
+        const profile = interfaceData.profiles[this.$route.params.profile];
+
+        const [floor, room, global] = profile.locations.length === 0
+                ? [null, null, false]
+                : [ profile.locations[0].floorId, profile.locations[0].roomId,
+                    profile.global === true, ];
+
+        return {
+            form: {
+                name: 'profile_edit',
+                profile: profile,
+                profile_name: profile.name,
+                location: {
+                    floor:  floor,
+                    room:   room,
+                    global: global,
+                }
+            },
+        };
+    },
+
+    computed: {
+        floors: function () {
+            return Object.keys(interfaceData.floors)
+                         .map(x => interfaceData.floors[x])
+                         .concat({id: null, name: '---'});
+        },
+
+        filtered_rooms: function () {
+            let rooms = Object.keys(interfaceData.rooms);
+
+            if (this.form.location.floor !== undefined ||
+                this.form.location.floor in interfaceData.floors)
+                rooms = interfaceData.floors[this.form.location.floor]
+                                     .rooms
+
+            return rooms.map(x => interfaceData.rooms[x])
+                        .concat({id: null, name: '---'});
+        },
+    },
+
+    methods: {
+        form_submit: function (event) {
+            const funcs = {
+                load: () => {
+                    this.$root.favorites.enabled = false;
+                    this.load_profile(profile);
+                },
+            };
+
+            const origin = event.explicitOriginalTarget.name;
+            if (origin in funcs)
+                funcs[origin]();
+        },
+    },
+
+    template: `
+        <div class="profiles_wrapper">
+            <form v-bind:id="form.name"
+                  v-bind:name="form.name"
+                  action="javascript:void(0);"
+                  v-on:submit.stop="form_submit">
+
+                <div class="form-group">
+                    <div class="label">{{ i18n('settings.profiles.profile.name') }}:</div>
+                    <input id="profile_name"
+                           type="text"
+                           name="profile_name"
+                           v-model="form.profile_name" />
+                </div>
+
+                <div class="form-group">
+                    <div class="label">{{ i18n('settings.profiles.profile.locations') }}:</div>
+                    <div class="global">
+                        <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
+                        <shif-checkbox v-model="form.location.global" />
+                    </div>
+                    <select id="locationsFloors"
+                            name="locationsFloors"
+                            v-model="form.location.floor">
+                        <option v-for="i, key in floors"
+                                v-bind:value="key"
+                                autocomplete="off">
+                            {{ i.name }}
+                        </option>
+                    </select>
+
+                    <select id="locationsRooms"
+                            name="locationsRooms"
+                            v-model="form.location.room">
+                        <option v-for="i, key in filtered_rooms"
+                                v-bind:value="key"
+                                autocomplete="off">
+                            {{ i.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit"
+                           name="load"
+                           v-bind:value="i18n('settings.profiles.profile.load')" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit"
+                           name="save"
+                           v-bind:value="i18n('settings.profiles.profile.save')" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit"
+                           name="delete"
+                           v-bind:value="i18n('settings.profiles.profile.delete')" />
+                </div>
+
+            </form>
+        </div>
+    `,
+};
+
+
+
 
 
 
