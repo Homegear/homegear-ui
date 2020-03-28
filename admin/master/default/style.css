@@ -572,6 +572,7 @@ a:link, a:visited, a:focus, a:hover, a:active {
   vertical-align: middle;
   margin: auto;
   padding: 8px 140px 0 0;
+  position: relative;
 }
 
 .button .button_title {
@@ -579,6 +580,17 @@ a:link, a:visited, a:focus, a:hover, a:active {
   line-height: 28px;
   display: inline-block;
   margin-bottom: 8px;
+}
+
+.button .button_title.button_no_description {
+  font-size: 28px;
+  line-height: 28px;
+  display: inline-block;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 28px;
 }
 
 .button .button_status {
@@ -1438,4 +1450,67 @@ td {
 .control_button .close_x_1 svg {
   width: 30px;
   height: 30px;
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+.profiles_button,
+#profiles .control_button {
+  display: block;
+  padding: 27px 15px;
+  margin-bottom: 20px;
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+.profiles_wrapper .global {
+  position: relative;
+  height: 70px;
+  margin-bottom: 30px;
+  background: #191b1f;
+}
+
+.profiles_wrapper .global .label{
+  padding-top: 16px;
+  padding-left: 10px;
+}
+
+.profiles_wrapper .global .check{
+  right: 10px;
+}
+
+.profiles_wrapper #locationsFloors {
+margin-bottom: 30px;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+.form-group {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #898989;
+}
+
+.form-group .device_wrapper .device{
+  border-bottom: 0px solid #898989;
+  padding: 0px;
+}
+
+.form-group .label {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.form-group input, 
+.form-group textarea {
+  font-size: 20px;
+  background: #191b1f;
+}
+
+.form-group .ui-select span {
+  display: none;
 }
