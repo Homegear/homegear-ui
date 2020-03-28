@@ -4,6 +4,7 @@
 let shading_windalarm = clone(shif_device);
 shading_windalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
@@ -22,6 +23,7 @@ shading_ventilation_l2.methods.change = function(event) {
 }
 shading_ventilation_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -38,6 +40,7 @@ shading_ventilation_l3.methods.change = function(event) {
 }
 shading_ventilation_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
@@ -76,6 +79,7 @@ shif_comps_create('shadingPositionSlats', shading_ventilation_l2, shading_slider
 let shading_buttons_l2 = clone(shif_device);
 shading_buttons_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
                      v-bind:place="place"
