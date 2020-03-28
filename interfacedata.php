@@ -260,7 +260,19 @@
             "settings.favorites.mode": "Favorites mode",
             "settings.favorites.description": "Set and unset favorites",
             "settings.profiles": "Profiles",
-            "settings.profiles.mode": "Profiles mode",
+            "settings.profiles.add.new": "New",
+            "settings.profiles.add.create": "Create",
+            "settings.profiles.profile.name": "Name",
+            "settings.profiles.profile.locations": "Locations",
+            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.floor": "Story",
+            "settings.profiles.profile.locations.room": "Room",
+            "settings.profiles.profile.locations.add": "Add",
+            "settings.profiles.profile.locations.remove": "Remove",
+            "settings.profiles.profile.delete": "Delete",
+            "settings.profiles.profile.load": "Load",
+            "settings.profiles.profile.save": "Save",
+            "settings.profiles.profile.edit": "Edit",
             "settings.profiles.description": "Add and delete profiles",
             "settings.user": "User",
             "settings.user.description": "Manage",
@@ -314,7 +326,19 @@
             "settings.favorites.mode": "Favoriten Modus",
             "settings.favorites.description": "Favoriten auswählen",
             "settings.profiles": "Profile",
-            "settings.profiles.mode": "Profile Modus",
+            "settings.profiles.add.new": "New",
+            "settings.profiles.add.create": "Create",
+            "settings.profiles.profile.name": "Name",
+            "settings.profiles.profile.locations": "Locations",
+            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.floor": "Story",
+            "settings.profiles.profile.locations.room": "Room",
+            "settings.profiles.profile.locations.add": "Add",
+            "settings.profiles.profile.locations.remove": "Remove",
+            "settings.profiles.profile.delete": "Delete",
+            "settings.profiles.profile.load": "Load",
+            "settings.profiles.profile.save": "Save",
+            "settings.profiles.profile.edit": "Edit",
             "settings.profiles.description": "Profile erstellen und löschen",
             "settings.user": "Benutzer",
             "settings.user.description": "Verwalten",
@@ -472,6 +496,210 @@
         "wind": "wind_1",
         "blinds_1": "blind_2",
         "blinds_2": "blind_3"
+    },
+    "profiles": {
+        "1": {
+            "id": 1,
+            "name": "Arbeiten",
+            "locations": [
+                {
+                    "floorId": 1,
+                    "roomId": 12
+                },
+                {
+                    "floorId": 1,
+                    "roomId": 9
+                }
+            ],
+            "inputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE1"
+                }
+            ],
+            "outputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE1",
+                    "value": 1
+                }
+            ],
+            "devices": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "LIGHT",
+                    "state": 1
+                },
+                {
+                    "peer": 1,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 1
+                },
+                {
+                    "peer": 2,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 1
+                }
+            ]
+        },
+        "2": {
+            "id": 2,
+            "name": "Schlafen",
+            "locations": [
+                {
+                    "floorId": 1,
+                    "roomId": 9
+                }
+            ],
+            "inputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE2"
+                }
+            ],
+            "outputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE2",
+                    "value": 1
+                }
+            ],
+            "devices": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "LIGHT",
+                    "state": 0
+                },
+                {
+                    "peer": 3,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 0
+                },
+                {
+                    "peer": 4,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 0
+                }
+            ]
+        },
+        "3": {
+            "id": 3,
+            "name": "Abwesend",
+            "global": true,
+            "locations": [
+            ],
+            "inputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE3"
+                }
+            ],
+            "outputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE3",
+                    "value": 1
+                }
+            ],
+            "devices": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "LIGHT",
+                    "state": 0
+                },
+                {
+                    "peer": 1,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 0
+                },
+                {
+                    "peer": 2,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 0
+                },
+                {
+                    "peer": 3,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 0
+                },
+                {
+                    "peer": 4,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 0
+                }
+            ]
+        },
+        "4": {
+            "id": 4,
+            "name": "Anwesend",
+            "global": true,
+            "locations": [
+            ],
+            "inputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE4"
+                }
+            ],
+            "outputPeers": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "PROFILE4",
+                    "value": 1
+                }
+            ],
+            "devices": [
+                {
+                    "peer": 0,
+                    "channel": -1,
+                    "name": "LIGHT",
+                    "state": 1
+                },
+                {
+                    "peer": 1,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 1
+                },
+                {
+                    "peer": 2,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 1
+                },
+                {
+                    "peer": 3,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 1
+                },
+                {
+                    "peer": 4,
+                    "channel": 1,
+                    "name": "STATE",
+                    "state": 1
+                }
+            ]
+        }
     }
 }
 ';
