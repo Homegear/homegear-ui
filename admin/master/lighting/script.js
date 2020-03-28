@@ -7,6 +7,7 @@ lighting_switch_l2.methods.change = function(event) {
 }
 lighting_switch_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -20,9 +21,10 @@ lighting_switch_l2.template = `
 let lighting_switch_l3 = clone(shif_device);
 lighting_switch_l3.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 lighting_switch_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
@@ -59,6 +61,7 @@ shif_comps_create('lightingSpeed', lighting_switch_l2, lighting_brightness);
 let lighting_button_l2 = clone(shif_device);
 lighting_button_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -73,6 +76,7 @@ lighting_button_l3.methods.change = function(event, down) {
 }
 lighting_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
@@ -90,6 +94,7 @@ shif_comps_create('refresh', lighting_button_l2, lighting_button_l3);
 let lighting_color_l2 = clone(shif_device);
 lighting_color_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -119,6 +124,7 @@ shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
 let lighting_function_l2 = clone(shif_device);
 lighting_function_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
                      v-bind:place="place"
