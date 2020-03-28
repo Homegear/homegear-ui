@@ -4,6 +4,7 @@
 let timer_l2 = clone(shif_device);
 timer_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -19,6 +20,7 @@ timer_l3.methods.change = function(event) {
 }
 timer_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
