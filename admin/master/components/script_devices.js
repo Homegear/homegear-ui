@@ -22,6 +22,12 @@ Vue.component('shif-ctrl-summary', {
         }
     },
 
+    provide: function () {
+        return {
+            layer: 2,
+        };
+    },
+
     methods: {
         toggle_all: function(action) {
             const varInRole = 'roleId' in action
