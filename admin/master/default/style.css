@@ -1460,24 +1460,34 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
-#profiles {
+#profiles,
+#house .profiles_wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: left;
+  align-content: flex-start;
+  margin: 0;
+  padding: 0;
 }
 
-#profiles > div {
-  min-width: 200px;
+#profiles .control_button,
+#house .profiles_wrapper .control_button {
+  min-width: 300px;
+  width: auto !important;
+  display: inline-block;
   margin: 10px;
+  padding: 0;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
+  cursor: pointer;
 }
 
-.profiles_button,
-#profiles .control_button {
+.profiles_button {
   display: block;
   padding: 27px 15px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
