@@ -136,8 +136,11 @@ const mixin_favorites = {
                     jsonrpc: '2.0',
                     method: 'setUiElementMetadata',
                     params: [dev, new_metadata],
-                })
-            })
+                }, () => {
+                    interfaceData.devices[dev].dynamicMetadata.favorites =
+                        new_metadata.favorites;
+                });
+            });
         },
     },
 };
@@ -167,6 +170,12 @@ Vue.component('shif-house-collected-entries', {
             type: Boolean,
             default: false,
         }
+    },
+
+    data: function() {
+        return {
+            update_view_hack: true,
+        };
     },
 
     provide: function () {
@@ -201,7 +210,6 @@ Vue.component('shif-house-collected-entries', {
 
     methods: {
         favorites_handle: function (value) {
-            console.log(value)
             return this.dev_toggle_favorite(value.dev.databaseId, value.state);
         },
     },
@@ -219,8 +227,9 @@ Vue.component('shif-house-collected-entries', {
                 </shif-button>
             </template>
 
-            <template v-for="dev in dev_objs">
-                <component v-bind="dev"
+            <template v-if="update_view_hack" v-for="dev in dev_objs">
+                <component v-bind:key="dev.databaseId"
+                           v-bind="dev"
                            v-bind:include_place="include_place" />
 
                 <template v-if="debug">
