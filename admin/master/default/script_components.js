@@ -181,8 +181,8 @@ Vue.component('shif-house-collected-entries', {
                 const devices = this.favorites === true
                                     ? Object.keys(interfaceData.devices)
                                             .map(dev => interfaceData.devices[dev])
-                                            .filter(dev => dev.metadata.favorites &&
-                                                           dev.metadata.favorites.state)
+                                            .filter(dev => dev.dynamicMetadata.favorites &&
+                                                           dev.dynamicMetadata.favorites.state)
                                     : interfaceData.rooms[this.$route.params.room]
                                                    .devices
                                                    .map(dev => interfaceData.devices[dev]);
