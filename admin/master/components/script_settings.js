@@ -404,15 +404,11 @@ let ShifSettingsProfile = {
                     <input type="submit"
                            name="load"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
-                </div>
-
-                <div class="form-group">
+                           
                     <input type="submit"
                            name="save"
                            v-bind:value="i18n('settings.profiles.profile.save')" />
-                </div>
 
-                <div class="form-group">
                     <input type="submit"
                            name="delete"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
