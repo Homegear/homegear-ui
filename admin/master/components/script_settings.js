@@ -325,19 +325,20 @@ let ShifSettingsProfile = {
     computed: {
         floors: function () {
             return Object.keys(interfaceData.floors)
-                         .map(x => interfaceData.floors[x])
+                         .map(x => ({id: x, name: interfaceData.floors[x].name}))
                          .concat({id: null, name: '---'});
         },
 
         filtered_rooms: function () {
             let rooms = Object.keys(interfaceData.rooms);
 
-            if (this.form.location.floor !== undefined ||
+            if (this.form.location.floor !== undefined &&
+                this.form.location.floor !== null &&
                 this.form.location.floor in interfaceData.floors)
                 rooms = interfaceData.floors[this.form.location.floor]
-                                     .rooms
+                                     .rooms;
 
-            return rooms.map(x => interfaceData.rooms[x])
+            return rooms.map(x => ({id: x, name: interfaceData.rooms[x].name}))
                         .concat({id: null, name: '---'});
         },
     },
@@ -381,8 +382,8 @@ let ShifSettingsProfile = {
                     <select id="locationsFloors"
                             name="locationsFloors"
                             v-model="form.location.floor">
-                        <option v-for="i, key in floors"
-                                v-bind:value="key"
+                        <option v-for="i in floors"
+                                v-bind:value="i.id"
                                 autocomplete="off">
                             {{ i.name }}
                         </option>
@@ -391,8 +392,8 @@ let ShifSettingsProfile = {
                     <select id="locationsRooms"
                             name="locationsRooms"
                             v-model="form.location.room">
-                        <option v-for="i, key in filtered_rooms"
-                                v-bind:value="key"
+                        <option v-for="i in filtered_rooms"
+                                v-bind:value="i.id"
                                 autocomplete="off">
                             {{ i.name }}
                         </option>
@@ -416,7 +417,6 @@ let ShifSettingsProfile = {
                            name="delete"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
                 </div>
-
             </form>
         </div>
     `,
