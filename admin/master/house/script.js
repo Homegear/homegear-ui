@@ -364,11 +364,18 @@ let breadcrumbs = new Vue({
                 this.$route.meta.breadcrumbs === undefined)
                 return [];
 
-            return this.$route.meta.breadcrumbs.map(name => ({
-                                                    link: name,
-                                                    name: this.get_name(name),
-                                                }))
-                                               .filter(x => x.name !== '?');
+            let routes = this.$route.meta.breadcrumbs
+                                         .map(name => ({
+                                            link: name,
+                                            name: this.get_name(name),
+                                            disabled: false,
+                                         }))
+                                         .filter(x => x.name !== '?');
+
+            if (routes.length > 0)
+                routes[routes.length - 1].disabled = true;
+
+            return routes;
         },
 
         back_wanted: function () {
@@ -416,7 +423,8 @@ let breadcrumbs = new Vue({
             </template>
             <div id="breadcrumb_wrapper">
                 <template v-for="i in routes_with_proper_names">
-                    <router-link v-bind:to="{name: i.link}">{{ i.name }}</router-link>
+                    <router-link v-bind:to="{name: i.link}"
+                                 v-bind:disabled="i.disabled">{{ i.name }}</router-link>
                 </template>
             </div>
         </div>
