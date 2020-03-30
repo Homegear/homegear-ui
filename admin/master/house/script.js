@@ -332,7 +332,7 @@ let app = new Vue({
 
     data: {
         favorites: {
-            enabled: false,
+            enabled: true,
         },
         profiles: {
             id:       null,
@@ -366,8 +366,8 @@ let breadcrumbs = new Vue({
 
             let routes = this.$route.meta.breadcrumbs
                                          .map(name => ({
-                                            link: name,
-                                            name: this.get_name(name),
+                                            link:     name,
+                                            name:     this.get_name(name),
                                             disabled: false,
                                          }))
                                          .filter(x => x.name !== '?');
@@ -424,7 +424,9 @@ let breadcrumbs = new Vue({
             <div id="breadcrumb_wrapper">
                 <template v-for="i in routes_with_proper_names">
                     <router-link v-bind:to="{name: i.link}"
-                                 v-bind:disabled="i.disabled">{{ i.name }}</router-link>
+                                 v-bind:disabled="i.disabled"
+                                 v-bind:class="{disabled: i.disabled}"
+                                 >{{ i.name }}</router-link>
                 </template>
             </div>
         </div>

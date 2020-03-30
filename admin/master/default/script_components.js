@@ -106,6 +106,7 @@ const mixin_profiles = {
         },
 
         unload_profile: function (profile) {
+            throw 'TBD'
             return this.$homegear.value_set_multi(profile.outputPeers.map(x => ({
                 input: x,
                 value: x.value,
@@ -116,8 +117,40 @@ const mixin_profiles = {
 
 
 
+const mixin_favorites = {
+    methods: {
+        dev_toggle_favorite: function (dev, state) {
+            this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'getUiElementMetadata',
+                params: [dev],
+            }, (data) => {
+                let new_metadata = data.result;
+
+                if (new_metadata.favorites === undefined)
+                    new_metadata.favorites = {};
+
+                new_metadata.favorites.state = state;
+
+                this.$homegear.invoke({
+                    jsonrpc: '2.0',
+                    method: 'setUiElementMetadata',
+                    params: [dev, new_metadata],
+                })
+            })
+        },
+    },
+};
+
+
+
 Vue.component('shif-house-collected-entries', {
-    mixins: [mixin_components, mixin_profiles, mixin_print_mounted()],
+    mixins: [
+        mixin_components,
+        mixin_favorites,
+        mixin_profiles,
+        mixin_print_mounted(),
+    ],
 
     props: {
         layer: {
@@ -162,7 +195,8 @@ Vue.component('shif-house-collected-entries', {
 
     methods: {
         favorites_handle: function (value) {
-            throw 'Not yet implemented: homegear needs to implement api call';
+            console.log(value)
+            return this.dev_toggle_favorite(value.dev.databaseId, value.state);
         },
     },
 

@@ -633,6 +633,8 @@ Vue.component('shif-generic-l2', {
                              this.dev.metadata !== undefined &&
                              this.dev.metadata.favorites !== undefined &&
                              this.dev.metadata.favorites.state === true,
+
+            profile_state: true, // TODO:
         };
     },
 
@@ -667,7 +669,11 @@ Vue.component('shif-generic-l2', {
              v-on:click="emit('click')">
             <div class="device">
                 <div v-if="$root.favorites.enabled"
-                     v-on:click.stop="$root.$emit('favorites-clicked', favorites_state)">
+                     v-on:click.stop="$root.$emit('favorites-clicked', {dev: dev, state: favorites_state})">
+                    <shif-checkbox v-model="favorites_state" />
+                </div>
+                <div v-else-if="$root.profiles.enabled"
+                     v-on:click.stop="$root.$emit('profiles-clicked', {dev: dev, state: profile_state})">
                     <shif-checkbox v-model="favorites_state" />
                 </div>
 
