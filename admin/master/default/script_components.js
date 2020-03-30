@@ -169,6 +169,12 @@ Vue.component('shif-house-collected-entries', {
         }
     },
 
+    provide: function () {
+        return {
+            layer: this.layer,
+        };
+    },
+
     computed: {
         dev_objs: function () {
             if (this.layer === 2) {
