@@ -632,9 +632,9 @@ Vue.component('shif-generic-l2', {
     data: function () {
         return {
             favorites_state: this.dev !== undefined &&
-                             this.dev.metadata !== undefined &&
-                             this.dev.metadata.favorites !== undefined &&
-                             this.dev.metadata.favorites.state === true,
+                             this.dev.dynamicMetadata !== undefined &&
+                             this.dev.dynamicMetadata.favorites !== undefined &&
+                             this.dev.dynamicMetadata.favorites.state === true,
 
             profile_state: true, // TODO:
         };
