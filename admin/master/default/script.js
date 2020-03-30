@@ -627,6 +627,8 @@ Vue.component('shif-generic-l2', {
         },
     },
 
+    inject: ['layer'],
+
     data: function () {
         return {
             favorites_state: this.dev !== undefined &&
@@ -668,7 +670,7 @@ Vue.component('shif-generic-l2', {
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
-                <div v-if="$root.favorites.enabled"
+                <div v-if="layer === 2 && $root.favorites.enabled"
                      v-on:click.stop="$root.$emit('favorites-clicked', {dev: dev, state: favorites_state})">
                     <shif-checkbox v-model="favorites_state" />
                 </div>
