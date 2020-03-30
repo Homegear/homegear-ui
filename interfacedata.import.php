@@ -868,6 +868,42 @@
             "roleId": 101000
         }
     ],
+    "profiles": [
+        [
+            [
+                "en-US": "Testprofile",
+                "de-DE": "Testprofil"
+            ],
+            [
+                "global": true,
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    }
+                ],
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE1"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE1",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [101, 1, "STATE", true],
+                    [102, 1, "STATE", true]
+                ]
+            ]
+        ]
+    ],
     "uiElements": [
         [
             "Base.lightingSwitch",

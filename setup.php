@@ -153,6 +153,46 @@
             $allInterfaceData["getAllValues"] = $CurrentDevices;
         }
 
+        if(isset($_GET["deleteProfiles"])){
+            $CurrentProfiles = $hg->getAllVariableProfiles("en-US");
+            if(is_array($CurrentProfiles)){
+                foreach($CurrentProfiles as $value){
+                    try {
+                        $allInterfaceData["deleteProfiles"][$value["id"]] = $hg->deleteVariableProfile($value["databaseId"]);
+                    }
+                    catch (\Homegear\HomegearException $e) {
+                        $allInterfaceData["deleteProfiles"][$value["id"]]["error"] =  $e->getMessage();
+                        $hg->log(2, 'Homegear Exception catched. ' .
+                                               "Code: {$e->getCode()} " .
+                                            "Message: {$e->getMessage()}");
+                        continue;
+                    }
+                }
+            }
+        }
+
+        if(isset($_GET["createProfiles"])){
+            foreach($oldInterfaceData["profiles"] as $value){
+                try {
+                    $profile = $hg->addVariableProfile($value);
+                    //$profile = $hg->addVariableProfile($value["translations"], ["...", "values" => [[112, 1, "STATE", true], [11, 1, "STATE", true]]]);
+                    //$profile = $hg->addVariableProfile(["en-US" => "Testprofile", "de-DE" => "Testprofil"], ["...", "values" => [[112, 1, "STATE", true], [11, 1, "STATE", true]]]);
+                    $allInterfaceData["createProfiles"][$value[0][0]]["label"] = $value["translations"][0];
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createProfiles"][$value[0][0]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
+            }
+        }
+
+        if(isset($_GET["getProfiles"])){
+            $allInterfaceData["getAllVariableProfiles"] = $hg->getAllVariableProfiles("en-US");
+        }
+
         if(isset($_GET["deleteUIE"])){
             $CurrentUiElements = $hg->getAllUiElements("en-US");
             if(is_array($CurrentUiElements)){
@@ -176,7 +216,6 @@
                 try {
                     if(isset($value[2])){
                         $uielement = $hg->addUiElement($value[0], $value[1], $value[2]);
-                        $allInterfaceData["addUiElement"][$value[0]][$uielement]["============="] = $value[2];
                     }
                     else {
                         $uielement = $hg->addUiElement($value[0], $value[1]);
@@ -551,6 +590,11 @@
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createDevice', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getDevice', outputResult)" class="adminButton">list</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteDevice', outputResult)" class="adminButton">delete</div>
+
+        <h4>Profiles</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createProfiles', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getProfiles', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteProfiles', outputResult)" class="adminButton">delete</div>
 
         <h4>Stories</h4>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createStories', outputResult)" class="adminButton">create</div>
