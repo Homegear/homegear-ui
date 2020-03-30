@@ -479,7 +479,7 @@ a.disabled {
 
 .tabWrapper {
   width: 100%;
-  height: calc(100% - 85px - 92px);
+  height: 100%;
   display: none;
   padding-top: 100px;
   position: relative;
@@ -1460,6 +1460,19 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
+#profiles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#profiles > div {
+  min-width: 200px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
 .profiles_button,
 #profiles .control_button {
   display: block;
