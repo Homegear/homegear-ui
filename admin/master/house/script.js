@@ -332,7 +332,7 @@ let app = new Vue({
 
     data: {
         favorites: {
-            enabled: true,
+            enabled: false,
         },
         profiles: {
             id:       null,
