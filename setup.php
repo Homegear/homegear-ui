@@ -153,17 +153,6 @@
             $allInterfaceData["getAllValues"] = $CurrentDevices;
         }
 
-        /*
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodHelp", "addUiElement"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "addUiElement"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getAllUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getAvailableUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getCategoryUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getRoomUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "removeUiElement"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "addRoleToVariable"));'
-        */
-
         if(isset($_GET["deleteUIE"])){
             $CurrentUiElements = $hg->getAllUiElements("en-US");
             if(is_array($CurrentUiElements)){
@@ -184,8 +173,23 @@
 
         if(isset($_GET["createUIE"])){
             foreach($oldInterfaceData["uiElements"] as $value){
-                $uielement = $hg->addUiElement($value[0], $value[1]);
-                $allInterfaceData["addUiElement"][$value[0]][$uielement]["label"] = $value[1]["label"];
+                try {
+                    if(isset($value[2])){
+                        $uielement = $hg->addUiElement($value[0], $value[1], $value[2]);
+                        $allInterfaceData["addUiElement"][$value[0]][$uielement]["============="] = $value[2];
+                    }
+                    else {
+                        $uielement = $hg->addUiElement($value[0], $value[1]);
+                    }
+                    $allInterfaceData["addUiElement"][$value[0]][$uielement]["label"] = $value[1]["label"];
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["addUiElement"][$value[0]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 

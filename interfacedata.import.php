@@ -892,7 +892,7 @@
                 ],
                 "label": "Licht SystemVar",
                 "room": 3,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -922,7 +922,7 @@
                 ],
                 "label": "Licht",
                 "room": 3,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -1647,7 +1647,7 @@
                 ],
                 "label": "Rollladen KNX",
                 "room": 6,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -2660,7 +2660,9 @@
                                 "value": 0
                             }
                         }
-                    ],
+                    ]
+                },
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -3145,7 +3147,7 @@
                 ],
                 "label": "Fensterkontakt Essen",
                 "room": 12,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -3375,7 +3377,7 @@
                 ],
                 "label": "Türkontakt",
                 "room": 3,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -3406,7 +3408,7 @@
                 ],
                 "label": "Türgriff",
                 "room": 12,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -3436,7 +3438,7 @@
                 ],
                 "label": "Tür Verriegelung",
                 "room": 3,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -3466,7 +3468,7 @@
                 ],
                 "label": "Ventilation",
                 "room": 8,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -3511,7 +3513,7 @@
                 "label": "Dimmlicht",
                 "room": 12,
                 "role": 101000,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -4103,7 +4105,7 @@
                 ],
                 "label": "Wetter",
                 "room": 6,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -4133,7 +4135,7 @@
                 ],
                 "label": "Temperatur",
                 "room": 3,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
@@ -4163,7 +4165,7 @@
                 ],
                 "label": "Feuchte",
                 "room": 3,
-                "metadata": {
+                "dynamicMetadata": {
                     "favorites": {
                         "state": true
                     }
