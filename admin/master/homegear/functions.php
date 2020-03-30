@@ -16,6 +16,7 @@ function homegear_init() {
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
+        $hg_profiles = $hg->getAllVariableProfiles($hg_lang);
     }
     catch (\Homegear\HomegearException $e) {
         die( $hg->log(2, 'Homegear Exception catched. ' .
@@ -52,6 +53,17 @@ function homegear_init() {
 
         foreach ($room['METADATA'] as $name => &$data)
             $house['rooms'][$id][$name] = $data;
+    }
+
+    function profile_parse(&$house, &$profile) {
+        $id = $profile['ID'];
+
+        $house['profiles'][$id] = [
+            'name'    => $profile['name'],
+        ];
+
+        foreach ($profile['METADATA'] as $name => &$data)
+            $house['profiles'][$id][$name] = $data;
     }
 
     function device_is_simple(&$dev) {
@@ -191,7 +203,7 @@ function homegear_init() {
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
         'menu'         => menu_parse(),
-        'profiles'     => $interfaceData["profiles"],
+        'profiles'     => $hg_profiles,
         'themes'       => $interfaceData["themes"],
         'options'      => $interfaceData["options"],
         'manifest'     => $interfaceData["manifest"],
@@ -245,6 +257,9 @@ function homegear_init() {
 
     foreach ($hg_rooms as &$room)
         room_parse($house, $room);
+
+    //foreach ($hg_profiles as &$profile)
+        //profile_parse($house, $profile);
 
     foreach ($hg_ui_elems as &$dev)
         device_parse($house, $map_invoke, $dev, $hg_lang);

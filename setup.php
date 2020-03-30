@@ -158,7 +158,7 @@
             if(is_array($CurrentProfiles)){
                 foreach($CurrentProfiles as $value){
                     try {
-                        $allInterfaceData["deleteProfiles"][$value["id"]] = $hg->deleteVariableProfile($value["databaseId"]);
+                        $allInterfaceData["deleteProfiles"][$value["id"]] = $hg->deleteVariableProfile($value["id"]);
                     }
                     catch (\Homegear\HomegearException $e) {
                         $allInterfaceData["deleteProfiles"][$value["id"]]["error"] =  $e->getMessage();
@@ -173,14 +173,14 @@
 
         if(isset($_GET["createProfiles"])){
             foreach($oldInterfaceData["profiles"] as $value){
+                print_r($value);
                 try {
-                    $profile = $hg->addVariableProfile($value);
-                    //$profile = $hg->addVariableProfile($value["translations"], ["...", "values" => [[112, 1, "STATE", true], [11, 1, "STATE", true]]]);
+                    $profile = $hg->addVariableProfile($value[0], $value[1]);
                     //$profile = $hg->addVariableProfile(["en-US" => "Testprofile", "de-DE" => "Testprofil"], ["...", "values" => [[112, 1, "STATE", true], [11, 1, "STATE", true]]]);
-                    $allInterfaceData["createProfiles"][$value[0][0]]["label"] = $value["translations"][0];
+                    $allInterfaceData["createProfiles"][$value[0]["en-US"]]["label"] = $value["translations"][0];
                 }
                 catch (\Homegear\HomegearException $e) {
-                    $allInterfaceData["createProfiles"][$value[0][0]]["error"] =  $e->getMessage();
+                    $allInterfaceData["createProfiles"][$value[0]["en-US"]]["error"] =  $e->getMessage();
                     $hg->log(2, 'Homegear Exception catched. ' .
                                            "Code: {$e->getCode()} " .
                                         "Message: {$e->getMessage()}");

@@ -870,11 +870,11 @@
     ],
     "profiles": [
         [
-            [
+            {
                 "en-US": "Testprofile",
                 "de-DE": "Testprofil"
-            ],
-            [
+            },
+            {
                 "global": true,
                 "locations": [
                     {
@@ -898,10 +898,10 @@
                     }
                 ],
                 "values": [
-                    [101, 1, "STATE", true],
-                    [102, 1, "STATE", true]
+                    [0, -1, "LIGHT", 1],
+                    [1, 1, "STATE", 1]
                 ]
-            ]
+            }
         ]
     ],
     "uiElements": [
