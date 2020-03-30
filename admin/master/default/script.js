@@ -671,11 +671,13 @@ Vue.component('shif-generic-l2', {
              v-on:click="emit('click')">
             <div class="device">
                 <div v-if="layer === 2 && $root.favorites.enabled"
-                     v-on:click.stop="$root.$emit('favorites-clicked', {dev: dev, state: favorites_state})">
+                     v-on:click.stop=""
+                     v-on:change.stop="$root.$emit('favorites-clicked', {dev: dev, state: favorites_state})">
                     <shif-checkbox v-model="favorites_state" />
                 </div>
                 <div v-else-if="$root.profiles.enabled"
-                     v-on:click.stop="$root.$emit('profiles-clicked', {dev: dev, state: profile_state})">
+                     v-on:click.stop=""
+                     v-on:change.stop="$root.$emit('profiles-clicked', {dev: dev, state: profile_state})">
                     <shif-checkbox v-model="favorites_state" />
                 </div>
 
