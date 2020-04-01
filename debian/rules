@@ -28,6 +28,7 @@ override_dh_auto_install:
 	cp -R $(CURDIR)/user.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/setup.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/interfacedata.php $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
+	cp -R $(CURDIR)/interfacedata.custom.php.tmpl $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/interfacedata.custom.php.tmpl
 	cp -R $(CURDIR)/manifest.json $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/manifest.webapp $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
 	cp -R $(CURDIR)/media $(CURDIR)/debian/homegear-ui/var/lib/homegear/ui/
