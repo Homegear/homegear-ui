@@ -887,7 +887,7 @@ function status_impl(control) {
         }
 
         const unit = input.properties.unit ? input.properties.unit : '';
-        val.push(input.properties.value + unit);
+        val.push(input.properties.value + ' ' + unit);
     }
 
     if (val.length > 0)

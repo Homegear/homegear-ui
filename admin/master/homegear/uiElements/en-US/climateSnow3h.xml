@@ -34,8 +34,8 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>false</visualizeInOverview>
-				<unit>Volume</unit>
+				<visualizeInOverview>true</visualizeInOverview>
+				<unit>mm</unit>
 			</variable>
 		</variableInputs>
 	</homegearUiElement>
