@@ -15,18 +15,18 @@
 			</text>
 		</texts>
 		<icons>
-			<icon id="humidity">
+			<icon id="main">
 				<name>humidity_1</name>
-                <color>inactive</color>
+                                <color>inactive</color>
 			</icon>
 			<icon id="l2">
 				<name>humidity_1</name>
-                <color>inactive</color>
+				<color>inactive</color>
 			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
+			<icon id="l3">
+				<name>arrow_right_1</name>
+				<color>iconArrow</color>
+			</icon>
 		</icons>
 		<variableInputs>
 			<variable>
