@@ -90,6 +90,9 @@ if (class_exists('\Homegear\Homegear')) {
     $json_str = json_encode($hg_interfaceData, JSON_PRETTY_PRINT);
     echo "var interfaceData = ".$json_str.";"."\n";
 
+    // json_encode translates empty objects into arrays... dumb!
+    echo "if (Array.isArray(interfaceData.profiles)) interfaceData.profiles = {}";
+
 }
 else {
     echo 'console.log("HOMEGEAR PHP API NOT FOUND!");'."\n";
