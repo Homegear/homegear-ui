@@ -118,7 +118,7 @@ input, radio, checkbox, textarea {
   font-size: 20px;
   box-shadow: 0px 0px 0px 0px #aaa;
   border: 0px solid #000;
-  padding: 20px 40px;
+  padding: 20px;
   margin: 4px;
 }
 
@@ -579,6 +579,7 @@ a.disabled {
   margin: auto;
   padding: 8px 140px 0 0;
   position: relative;
+  width: 100%;
 }
 
 .button .button_title {
@@ -1478,6 +1479,10 @@ td {
   padding: 0;
 }
 
+.profiles_wrapper .button_action svg {
+  left: auto;
+}
+
 #profiles .control_button,
 #house .profiles_wrapper .control_button {
   flex-basis: fit-content;
@@ -1505,14 +1510,15 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 .profiles_wrapper .global {
   position: relative;
-  height: 70px;
+  height: 66px;
   margin-bottom: 30px;
   background: #191b1f;
 }
 
 .profiles_wrapper .global .label{
-  padding-top: 16px;
-  padding-left: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 20px;
 }
 
 .profiles_wrapper .global .check{

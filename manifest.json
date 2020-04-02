@@ -13,7 +13,7 @@
   "display": "fullscreen",
   "orientation": "any",
   "manifest_version": 2,
-  "revision": 225,
+  "revision": 226,
   "developer": {
     "name": "Marwin Hubach",
     "url": "https://marwinh.de/"
