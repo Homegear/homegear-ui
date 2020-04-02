@@ -7,7 +7,6 @@ heating_slider_l2.methods.change = function(event) {
 }
 heating_slider_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -32,6 +31,11 @@ heating_slider_l3.template = `
                  v-on:change="change"
                  v-bind:disabled="disabled"
                  v-model:value="props.value">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-slider>
 `;
 
@@ -42,19 +46,22 @@ shif_comps_create('heatingSlider', heating_slider_l2, heating_slider_l3);
 let heating_is_state_l2 = clone(shif_device);
 heating_is_state_l2.template = `
     <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
                      v-bind:status="status"
                      v-bind:actions="true"
                      v-bind:place="place"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 let heating_is_state_l3 = clone(shif_device);
 heating_is_state_l3.template = `
     <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
-                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
                      v-bind:status="status"
@@ -83,6 +90,11 @@ heating_mode_l3.template = `
                 v-bind:values="values"
                 v-bind:disabled="disabled"
                 v-on:input="x => change(parseInt(x))">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-radio>
 `;
 
@@ -93,7 +105,6 @@ shif_comps_create('heatingMode', heating_is_state_l2, heating_mode_l3);
 let heating_window = clone(shif_device);
 heating_window.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
