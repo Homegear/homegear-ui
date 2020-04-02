@@ -282,27 +282,46 @@ let ShifSettingsProfiles = {
                 <template v-for="i in interfaceData.profiles">
                     <router-link v-bind:to="link(i.id)">
                         <shif-settings-element v-bind:key="i.name"
-                                            v-bind:name="i.name"
-                                            v-bind:description="''"
-                                            v-bind:translate="false"
-                                            icon="slider_1"
-                                            />
+                                               v-bind:name="i.name"
+                                               v-bind:translate="false"
+                                               description=""
+                                               icon="slider_1"
+                                               />
                     </router-link>
                 </template>
+
+                <router-link v-bind:to="{name: 'settings.profiles.new'}">
+                    <shif-settings-element v-bind:name="i18n('settings.profiles.new')"
+                                           v-bind:translate="false"
+                                           description=""
+                                           icon="plus_1"
+                                           />
+                </router-link>
             </div>
         </div>
     `
-            // <div class="device"
-                 // v-on:click.prevent="$root.profiles_enabled = !$root.profiles_enabled">
-                // <shif-title>{{ i18n('settings.profiles.mode') }}</shif-title>
-                // <shif-checkbox v-model="$root.profiles_enabled" />
-            // </div>
 };
 
 let ShifSettingsProfile = {
     mixins: [mixin_profiles],
 
     data: function () {
+        if (this.$route.params.profile === undefined ||
+            ! (this.$route.params.profile in interfaceData.profiles))
+            return {
+                mode: 'add',
+                profile: null,
+                form: {
+                    name: 'profile_add',
+                    profile_name: '',
+                    location: {
+                        floor:  null,
+                        room:   null,
+                        global: false,
+                    },
+                }
+            };
+
         const profile = interfaceData.profiles[this.$route.params.profile];
 
         const [floor, room, global] = profile.locations.length === 0
@@ -311,13 +330,14 @@ let ShifSettingsProfile = {
                     profile.global === true, ];
 
         return {
+            mode: 'edit',
+            profile: profile,
             form: {
                 name: 'profile_edit',
-                profile: profile,
                 profile_name: profile.name,
                 location: {
-                    floor:  floor,
-                    room:   room,
+                    floor:  floor === undefined ? null : floor,
+                    room:   room  === undefined ? null : room,
                     global: global,
                 }
             },
@@ -347,17 +367,36 @@ let ShifSettingsProfile = {
 
     methods: {
         form_submit: function (event) {
-            const funcs = {
-                load: () => {
-                    this.$root.favorites.enabled = false;
-                    this.load_profile(profile);
-                },
-            };
+            switch (event.explicitOriginalTarget.name) {
+                case 'load':
+                    return this.profile_load(this.profile,
+                        () => this.$router.push({name: 'house.tab.rooms'})
+                    );
 
-            const origin = event.explicitOriginalTarget.name;
-            if (origin in funcs)
-                funcs[origin]();
+                case 'save':
+                    if (this.mode === 'edit')
+                        return this.profile_update(this.profile, this.form);
+
+                    return this.profile_add(this.form,
+                        (result) => this.$router.replace({
+                            name: 'settings.profiles.profile',
+                            params: {
+                                profile: result.result
+                            },
+                        })
+                    );
+
+                case 'delete':
+                    return this.profile_delete(this.profile,
+                        () => this.$router.replace({name: 'settings.profiles'})
+                    );
+            };
         },
+    },
+
+    mounted: function () {
+        if (this.mode === 'edit' && ! this.$root.profiles.enabled)
+            this.profile_build_root_devs(this.profile);
     },
 
     template: `
@@ -403,15 +442,17 @@ let ShifSettingsProfile = {
                 </div>
 
                 <div class="form-group">
-                    <input type="submit"
+                    <input v-if="mode === 'edit'"
+                           type="submit"
                            name="load"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
-                           
+
                     <input type="submit"
                            name="save"
                            v-bind:value="i18n('settings.profiles.profile.save')" />
 
-                    <input type="submit"
+                    <input v-if="mode === 'edit'"
+                           type="submit"
                            name="delete"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
                 </div>
