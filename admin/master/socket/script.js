@@ -7,7 +7,6 @@ socket_switch_l2.methods.change = function(event) {
 }
 socket_switch_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -15,6 +14,11 @@ socket_switch_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change"
                      v-on:click="level3(device, breadcrumb)">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-generic-l2>
 `;
 
@@ -24,12 +28,22 @@ socket_switch_l3.methods.change = function(event) {
 }
 socket_switch_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
                      v-bind:status="status_minimal()"
                      v-on:click="change">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -40,7 +54,6 @@ shif_comps_create('socketSwitch', socket_switch_l2, socket_switch_l3);
 let socket_button_l2 = clone(shif_device);
 socket_button_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -55,13 +68,17 @@ socket_button_l3.methods.change = function(event, down) {
 }
 socket_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place"
                      v-on:mousedown="change($event, true)"
                      v-on:mouseup="change($event, false)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 
