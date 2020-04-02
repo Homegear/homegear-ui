@@ -290,12 +290,10 @@ let router = new VueRouter({
 let app = new Vue({
     data: {
         favorites: {
-            // enabled: true,
             enabled: false,
         },
         profiles: {
             devs:    {},
-            // enabled: true,
             enabled: false,
         },
     },
