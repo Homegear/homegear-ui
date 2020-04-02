@@ -56,14 +56,8 @@ function homegear_init() {
     }
 
     function profile_parse(&$house, &$profile) {
-        $id = $profile['ID'];
-
-        $house['profiles'][$id] = [
-            'name'    => $profile['name'],
-        ];
-
-        foreach ($profile['METADATA'] as $name => &$data)
-            $house['profiles'][$id][$name] = $data;
+        $id = $profile['id'];
+        $house['profiles'][$id] = $profile;
     }
 
     function device_is_simple(&$dev) {
@@ -203,7 +197,7 @@ function homegear_init() {
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
         'menu'         => menu_parse(),
-        'profiles'     => $hg_profiles,
+        'profiles'     => [],
         'themes'       => $interfaceData["themes"],
         'options'      => $interfaceData["options"],
         'manifest'     => $interfaceData["manifest"],
@@ -258,8 +252,8 @@ function homegear_init() {
     foreach ($hg_rooms as &$room)
         room_parse($house, $room);
 
-    //foreach ($hg_profiles as &$profile)
-        //profile_parse($house, $profile);
+    foreach ($hg_profiles as &$profile)
+        profile_parse($house, $profile);
 
     foreach ($hg_ui_elems as &$dev)
         device_parse($house, $map_invoke, $dev, $hg_lang);
