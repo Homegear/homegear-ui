@@ -332,6 +332,10 @@ Vue.component('shif-slider', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device slider">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
 
                 <div class="slider_action">
@@ -386,6 +390,10 @@ Vue.component('shif-radio', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_radio">
                     <template v-for="i in values">
@@ -413,22 +421,35 @@ Vue.component('shif-dropdown', {
         title:     String,
         classname: String,
         values:    Array,
+        selected:  [String, Number],
         disabled: {
             type: Object,
             default: () => ({flag: false})
         },
     },
 
+    data: function () {
+        return {
+            selected_entry: this.selected,
+        };
+    },
+
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_dropdown">
-                    <select v-bind:class="{disabled: disabled.flag}" v-on:change="$emit('change', $event.target.value)">
-                        <template v-for="i in values">
-                                <option v-bind:value="i.value"
-                                        v-bind:selected="i.selected">{{ i.name }}</option>
-                        </template>
+                    <select v-bind:class="{disabled: disabled.flag}"
+                            v-model="selected_entry"
+                            v-on:change="$emit('change', selected_entry)">
+                        <option v-for="i in values"
+                                v-bind:value="i.value">
+                            {{ i.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -569,6 +590,10 @@ Vue.component('shif-colorpicker', {
     template: `
         <div class="device_wrapper">
             <div class="device color">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
                 <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
                 </div>
@@ -604,7 +629,6 @@ Vue.component('shif-checkbox', {
 Vue.component('shif-generic-l2', {
     props: {
         icon:        String,
-        dev:         Object,
         place:       String,
         title:       String,
         status:      [Array, String],
@@ -627,19 +651,6 @@ Vue.component('shif-generic-l2', {
         },
     },
 
-    inject: ['layer'],
-
-    data: function () {
-        return {
-            favorites_state: this.dev !== undefined &&
-                             this.dev.dynamicMetadata !== undefined &&
-                             this.dev.dynamicMetadata.favorites !== undefined &&
-                             this.dev.dynamicMetadata.favorites.state === true,
-
-            profile_state: true, // TODO:
-        };
-    },
-
     mounted: function () {
         if (this.$listeners &&
             this.$listeners.click !== undefined &&
@@ -657,10 +668,6 @@ Vue.component('shif-generic-l2', {
             else
                 this.$emit(key, val);
         },
-
-        dump: function () {
-            console.log(this.favorites_state)
-        },
     },
 
     template: `
@@ -670,15 +677,14 @@ Vue.component('shif-generic-l2', {
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
-                <div v-if="layer === 2 && $root.favorites.enabled"
-                     v-on:click.stop=""
-                     v-on:change.stop="$root.$emit('favorites-clicked', {dev: dev, state: favorites_state})">
-                    <shif-checkbox v-model="favorites_state" />
+
+                <div v-if="$slots.favorites"
+                     class="checkbox_right_50">
+                    <slot name="favorites" />
                 </div>
-                <div v-else-if="$root.profiles.enabled"
-                     v-on:click.stop=""
-                     v-on:change.stop="$root.$emit('profiles-clicked', {dev: dev, state: profile_state})">
-                    <shif-checkbox v-model="favorites_state" />
+                <div v-else-if="$slots.profiles"
+                     class="checkbox_right_50">
+                    <slot name="profiles" />
                 </div>
 
                 <div v-on:click.stop="emit('click_icon')">
@@ -774,9 +780,12 @@ const shif_device = {
 
     data: function() {
         return {
-            lastClickCount: 0
+            lastClickCount: 0,
+            profile_state: false,
         };
     },
+
+    inject: ['layer'],
 
     methods: {
         status_minimal: function (descs=true) {
