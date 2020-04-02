@@ -323,12 +323,12 @@ Vue.component('shif-house-collected-entries', {
     template: `
         <div>
             <div class="profiles_wrapper">
-            <template v-if="layer === 2 && ! favorites"
-                      v-for="i in local_profiles">
-                <shif-button v-bind:classname="'profiles_button'" v-on:click="profile_start(i)">
-                    {{ i.name }}
-                </shif-button>
-            </template>
+                <template v-if="layer === 2 && ! favorites"
+                          v-for="i in local_profiles">
+                    <shif-button v-bind:classname="'profiles_button'" v-on:click="profile_start(i)">
+                        {{ i.name }}
+                    </shif-button>
+                </template>
             </div>
 
             <template v-for="dev in dev_objs">
