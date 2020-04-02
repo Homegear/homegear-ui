@@ -251,12 +251,27 @@ let ShifSettingsItems = function (level) {
 
 
 let ShifSettingsFavorites = {
+    data: function () {
+        return {
+            state: this.$root.favorites.enabled,
+        },
+    },
+
+    methods: {
+        change: function () {
+            this.$root.profiles.enabled = false;
+            this.$root.favorites = this.state;
+        },
+    },
+
     template: `
         <div class="device_wrapper">
             <div class="device"
-                 v-on:click.prevent="$root.favorites.enabled = !$root.favorites.enabled">
+                 v-on:click.prevent="state = ! state">
+                 v-on:change="change"
                 <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <shif-checkbox v-model="$root.favorites.enabled" />
+                <shif-checkbox v-model="state"
+                               v-on:change="change" />
             </div>
         </div>
     `
@@ -460,9 +475,6 @@ let ShifSettingsProfile = {
         </div>
     `,
 };
-
-
-
 
 
 
