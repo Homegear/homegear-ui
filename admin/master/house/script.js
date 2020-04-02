@@ -1,45 +1,3 @@
-/*
-function house_level1_fix(){
-    var roomSelectWrapperWidth = 185 + 30;
-    var windowWidth = $( window ).width() - 20;
-    var rooms_wrapper_child_count_max = 0;
-
-    $('.rooms_wrapper').each(function(){
-        if(this.childElementCount > rooms_wrapper_child_count_max){
-            rooms_wrapper_child_count_max = this.childElementCount;
-        }
-    });
-
-    var roomSelectWrapperMaxCount = windowWidth / roomSelectWrapperWidth;
-    roomSelectWrapperMaxCount = roomSelectWrapperMaxCount.toString().split('.')[0];
-
-    if (rooms_wrapper_child_count_max > roomSelectWrapperMaxCount) {
-        var maxWidth = roomSelectWrapperMaxCount * roomSelectWrapperWidth + 20;
-        //console.log('1 roomSelectWrapperMaxCount');
-    }
-    else {
-        var maxWidth = rooms_wrapper_child_count_max * roomSelectWrapperWidth + 25;
-        //console.log('2 rooms_wrapper_child_count_max');
-    }
-
-    /*
-    console.log('roomSelectWrapperWidth: '+roomSelectWrapperWidth);
-    console.log('windowWidth: '+windowWidth);
-    console.log('rooms_wrapper_child_count_max: '+rooms_wrapper_child_count_max);
-    console.log('roomSelectWrapperMaxCount: '+roomSelectWrapperMaxCount);
-    console.log('maxWidth: '+maxWidth);
-    * /
-
-    $('#house_rooms').width(maxWidth);
-    //$('.roomSelectTitle').width(maxWidth);
-    //$('.rooms_wrapper').width(maxWidth);
-    //$('.rooms_wrapper').css('display', 'inline-block');
-}
-*/
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 function check_disabled(device, indexes) {
     function check_event_trigger(event) {
         if (event.trigger == undefined || event.trigger.length != 3)
@@ -101,9 +59,6 @@ function check_disabled(device, indexes) {
     return ret_enabled;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 Vue.use({
     install: function (Vue, opts) {
         Vue.prototype.$homegear = homegear;
@@ -290,7 +245,12 @@ let router = new VueRouter({
                     components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
                     meta: {breadcrumbs: ['settings', 'settings.profiles']}
                 }, {
-                    path: 'profiles/:profile',
+                    path: 'profiles/add',
+                    name: 'settings.profiles.new',
+                    components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
+                    meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.new']}
+                }, {
+                    path: 'profiles/edit/:profile',
                     name: 'settings.profiles.profile',
                     components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
                     meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']}
@@ -328,15 +288,15 @@ let router = new VueRouter({
 
 
 let app = new Vue({
-    el: '#inhalt',
-
     data: {
         favorites: {
+            // enabled: true,
             enabled: false,
         },
         profiles: {
-            id:       null,
-            enabled:  false
+            devs:    {},
+            // enabled: true,
+            enabled: false,
         },
     },
 
@@ -354,8 +314,6 @@ let app = new Vue({
 
 
 let breadcrumbs = new Vue({
-    el: '#breadcrumbs',
-
     router: router,
 
     computed:  {
