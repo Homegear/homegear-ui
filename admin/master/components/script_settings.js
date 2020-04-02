@@ -254,13 +254,13 @@ let ShifSettingsFavorites = {
     data: function () {
         return {
             state: this.$root.favorites.enabled,
-        },
+        };
     },
 
-    methods: {
-        change: function () {
+    watch: {
+        state: function () {
             this.$root.profiles.enabled = false;
-            this.$root.favorites = this.state;
+            this.$root.favorites.enabled = this.state;
         },
     },
 
@@ -268,10 +268,8 @@ let ShifSettingsFavorites = {
         <div class="device_wrapper">
             <div class="device"
                  v-on:click.prevent="state = ! state">
-                 v-on:change="change"
                 <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <shif-checkbox v-model="state"
-                               v-on:change="change" />
+                <shif-checkbox v-model="state" />
             </div>
         </div>
     `
@@ -381,8 +379,8 @@ let ShifSettingsProfile = {
     },
 
     methods: {
-        form_submit: function (event) {
-            switch (event.explicitOriginalTarget.name) {
+        form_submit: function (source) {
+            switch (source) {
                 case 'load':
                     return this.profile_load(this.profile,
                         () => this.$router.push({name: 'house.tab.rooms'})
@@ -419,7 +417,7 @@ let ShifSettingsProfile = {
             <form v-bind:id="form.name"
                   v-bind:name="form.name"
                   action="javascript:void(0);"
-                  v-on:submit.stop="form_submit">
+                  v-on:submit.stop="">
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.name') }}:</div>
@@ -460,15 +458,18 @@ let ShifSettingsProfile = {
                     <input v-if="mode === 'edit'"
                            type="submit"
                            name="load"
+                           v-on:click="form_submit('load')"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
 
                     <input type="submit"
                            name="save"
+                           v-on:click="form_submit('save')"
                            v-bind:value="i18n('settings.profiles.profile.save')" />
 
                     <input v-if="mode === 'edit'"
                            type="submit"
                            name="delete"
+                           v-on:click="form_submit('delete')"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
                 </div>
             </form>

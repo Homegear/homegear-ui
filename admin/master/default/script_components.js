@@ -132,6 +132,7 @@ const mixin_profiles = {
 
         profile_load: function (profile, cb) {
             this.profile_start(profile, (result) => {
+                this.$root.favorites.enabled = false;
                 this.$root.profiles.enabled = true;
 
                 if (cb)
