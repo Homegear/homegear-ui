@@ -99,6 +99,18 @@
                         ""
                     ]
                 },
+                "timer": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "media": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
                 "components": {
                     "activated": true,
                     "requiredAssets": [
