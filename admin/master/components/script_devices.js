@@ -254,10 +254,14 @@ let ShifAllDevices = {
                     ? this.states[role_id]
                     : [];
         },
+
+        role_update_handle: function (role_id) {
+            return this.status(Number(role_id));
+        },
     },
 
     mounted: function () {
-        this.$homegear.ready(() => {
+        // this.$homegear.ready(() => {
             for (const key of Object.keys(interfaceData.roles).map(Number)) {
                 const role = interfaceData.roles[key];
 
@@ -286,10 +290,13 @@ let ShifAllDevices = {
                     );
                 this.status(key);
             }
+        // });
 
-        });
+        this.$root.$on('role-update', this.role_update_handle);
+    },
 
-        this.$root.$on('role-update', (role_id) => this.status(Number(role_id)));
+    beforeDestroy: function () {
+        // this.$root.$off('role-update', this.role_update_handle);
     },
 
     // TODO: figure out why there's a `role_update` handler in templates,
@@ -310,7 +317,7 @@ let ShifAllDevices = {
                     </shif-ctrl-summary>
                 </template>
                 <template v-else>
-                    {{ log("This role is not defined: " + role) }}
+                    {{ "This role is not defined: " + role | log }}
                 </template>
             </template>
         </div>
