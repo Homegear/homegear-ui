@@ -183,8 +183,12 @@ function params_create(input, value) {
 function homegear_prepare(homegear) {
     homegear.event(x => console.log(JSON.stringify(x, null, 4)));
     homegear.event(handle_homegear_update);
+    homegear.ready(() => {
+        app.$mount('#inhalt');
+        breadcrumbs.$mount('#breadcrumbs');
+    });
 
-    homegear.invoke_multi = function (ops) {
+    homegear.invoke_multi = function (ops, cb) {
         const object = {
             jsonrpc: '2.0',
             method: 'system.multicall',
@@ -193,16 +197,16 @@ function homegear_prepare(homegear) {
 
         console.log(JSON.stringify(object, null, 4));
 
-        return this.invoke(object);
+        return this.invoke(object, cb);
     };
 
-    homegear.value_set_multi = function (ops) {
+    homegear.value_set_multi = function (ops, cb) {
         return this.invoke_multi([
             ops.map(op => ({
                 methodName: 'setValue',
                 params: params_create(op.input, op.value),
             }))
-        ]);
+        ], cb);
     };
 
     homegear.value_set_clickcounter = function(control, params, value) {
