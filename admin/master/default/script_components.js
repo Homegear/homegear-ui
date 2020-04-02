@@ -499,6 +499,12 @@ Vue.component('shif-checkbox-profiles', {
         };
     },
 
+    watch: {
+        'props.value': function () {
+            this.$root.profiles.devs[this.idx].value = this.props.value;
+        },
+    },
+
     methods: {
         change: function () {
             if (this.state)
