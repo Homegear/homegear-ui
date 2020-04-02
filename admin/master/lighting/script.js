@@ -7,7 +7,6 @@ lighting_switch_l2.methods.change = function(event) {
 }
 lighting_switch_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -15,6 +14,17 @@ lighting_switch_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change($event, true)"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -24,12 +34,22 @@ lighting_switch_l3.methods.change = function(event) {
 };
 lighting_switch_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
                      v-bind:status="status_minimal()"
                      v-on:click="change">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -50,6 +70,12 @@ lighting_brightness.template = `
                  v-bind:step=5
                  v-on:change="change"
                  v-model:value="props.value">
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-slider>
 `;
 
@@ -61,7 +87,6 @@ shif_comps_create('lightingSpeed', lighting_switch_l2, lighting_brightness);
 let lighting_button_l2 = clone(shif_device);
 lighting_button_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -76,7 +101,6 @@ lighting_button_l3.methods.change = function(event, down) {
 }
 lighting_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
@@ -94,7 +118,6 @@ shif_comps_create('refresh', lighting_button_l2, lighting_button_l3);
 let lighting_color_l2 = clone(shif_device);
 lighting_color_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
@@ -113,7 +136,15 @@ lighting_color_l3.template = `
                       v-bind:height="{max_pixels: 620, percent: 100}"
                       v-bind:color="props.value"
                       v-bind:title="title"
-                      v-on:input:end="change" />
+                      v-on:input:end="change">
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
+    </shif-colorpicker>
 `;
 
 shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
@@ -124,7 +155,6 @@ shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
 let lighting_function_l2 = clone(shif_device);
 lighting_function_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
-                     v-bind:dev="dev"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
                      v-bind:place="place"
@@ -143,13 +173,18 @@ lighting_function_l3.computed.values = function () {
         .map(x => ({
             name:     x.definitions.texts.state.content,
             value:    x.condition.value,
-            selected: x.condition.value == this.props.value,
         }));
 };
 lighting_function_l3.template = `
     <shif-dropdown v-bind:title="title"
-                v-bind:values="values"
-                v-on:change="x => change(parseInt(x))">
+                   v-bind:values="values"
+                   v-bind:selected="props.value"
+                   v-on:change="x => change(parseInt(x))">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-dropdown>
 `;
 
