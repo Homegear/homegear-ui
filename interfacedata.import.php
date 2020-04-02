@@ -875,8 +875,47 @@
                 "de-DE": "Testprofil"
             },
             {
+                "id": 0,
                 "global": true,
                 "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    }
+                ],
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE0"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE0",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [0, -1, "LIGHT", 1],
+                    [1, 1, "STATE", 1]
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Arbeiten",
+                "de-DE": "Arbeiten"
+            },
+            {
+                "id": 1,
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 12
+                    },
                     {
                         "floorId": 1,
                         "roomId": 9
@@ -898,8 +937,192 @@
                     }
                 ],
                 "values": [
-                    [0, -1, "LIGHT", 1],
-                    [1, 1, "STATE", 1]
+                    [
+                        0,
+                        -1,
+                        "LIGHT",
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        "STATE",
+                        1
+                    ],
+                    [
+                        2,
+                        1,
+                        "STATE",
+                        1
+                    ]
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Schlafen",
+                "de-DE": "Schlafen"
+            },
+            {
+                "id": 2,
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    }
+                ],
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE2"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE2",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [
+                        0,
+                        -1,
+                        "LIGHT",
+                        0
+                    ],
+                    [
+                        3,
+                        1,
+                        "STATE",
+                        0
+                    ],
+                    [
+                        4,
+                        1,
+                        "STATE",
+                        0
+                    ]
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Abwesend",
+                "de-DE": "Abwesend"
+            },
+            {
+                "id": 3,
+                "global": true,
+                "locations": [
+                ],
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE3"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE3",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [
+                        0,
+                        -1,
+                        "LIGHT",
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        "STATE",
+                        0
+                    ],
+                    [
+                        2,
+                        1,
+                        "STATE",
+                        0
+                    ],
+                    [
+                        3,
+                        1,
+                        "STATE",
+                        0
+                    ],
+                    [
+                        4,
+                        1,
+                        "STATE",
+                        0
+                    ]
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Anwesend",
+                "de-DE": "Anwesend"
+            },
+            {
+                "id": 4,
+                "global": true,
+                "locations": [
+                ],
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE4"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE4",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [
+                        0,
+                        -1,
+                        "LIGHT",
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        "STATE",
+                        1
+                    ],
+                    [
+                        2,
+                        1,
+                        "STATE",
+                        1
+                    ],
+                    [
+                        3,
+                        1,
+                        "STATE",
+                        1
+                    ],
+                    [
+                        4,
+                        1,
+                        "STATE",
+                        1
+                    ]
                 ]
             }
         ]
@@ -1341,9 +1564,16 @@
             }
         ],
         [
-            "Base.lightingSwitch",
+            "Base.lightingSwitchTimer",
             {
                 "inputPeers": [
+                    [
+                        {
+                            "peer": 84,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 84,
@@ -1359,9 +1589,16 @@
                             "channel": 1,
                             "name": "STATE"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 84,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
                     ]
                 ],
-                "label": "Licht Unterschrank",
+                "label": "Licht Zeitschaltuhr",
                 "room": 12
             }
         ],
@@ -2288,7 +2525,7 @@
             }
         ],
         [
-            "Base.shadingButtonsPosition",
+            "Base.mediaButtons",
             {
                 "inputPeers": [
                     [
@@ -2302,6 +2539,24 @@
                             "peer": 24,
                             "channel": 1,
                             "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 24,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        },
+                        {
+                            "peer": 24,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        },
+                        {
+                            "peer": 24,
+                            "channel": 1,
+                            "name": "DOWN",
                             "value": true
                         },
                         {
@@ -2338,6 +2593,24 @@
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
+                        },
+                        {
+                            "peer": 24,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        },
+                        {
+                            "peer": 24,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        },
+                        {
+                            "peer": 24,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
                         }
                     ],
                     [
@@ -2348,7 +2621,7 @@
                         }
                     ]
                 ],
-                "label": "Rollladen Essen",
+                "label": "Media",
                 "room": 12
             }
         ],
