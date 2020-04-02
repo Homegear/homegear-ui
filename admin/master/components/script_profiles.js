@@ -4,7 +4,7 @@ let ShifProfilesGlobal = {
     template: `
         <div id="profiles" class="content content_single">
             <template v-for="i in global_profiles">
-                <shif-button  v-on:click="load_profile(i)">
+                <shif-button  v-on:click="profile_start(i)">
                     {{ i.name }}
                 </shif-button>
             </template>
