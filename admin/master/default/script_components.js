@@ -74,6 +74,11 @@ const mixin_print_mounted = function (name) {
 
 
 
+function root_profiles_idx(peer, channel, name) {
+    return `${peer}.${channel}.${name}`;
+}
+
+
 const mixin_profiles = {
     computed: {
         global_profiles: function () {
@@ -98,19 +103,131 @@ const mixin_profiles = {
     },
 
     methods: {
-        load_profile: function (profile) {
-            return this.$homegear.value_set_multi(profile.outputPeers.map(x => ({
-                input: x,
-                value: x.value,
-            })));
+        locations: function (floor, room) {
+            if (floor === undefined && room === undefined)
+                return [];
+
+            return [
+                {
+                    floorId: floor === null ? undefined : floor,
+                    roomId:  room  === null ? undefined : room,
+                }
+            ];
         },
 
-        unload_profile: function (profile) {
-            throw 'TBD'
-            return this.$homegear.value_set_multi(profile.outputPeers.map(x => ({
-                input: x,
-                value: x.value,
-            })));
+        profile_build_root_devs: function (profile) {
+            // Overwrite current profile on new load
+            this.$root.profiles.devs = {};
+
+            for (const i of profile.values) {
+                const idx = root_profiles_idx(i[0], i[1], i[2]);
+                this.$root.profiles.devs[idx] = {
+                    peer:    i[0],
+                    channel: i[1],
+                    name:    i[2],
+                    value:   i[3],
+                };
+            }
+        },
+
+        profile_load: function (profile, cb) {
+            this.profile_start(profile, (result) => {
+                this.$root.profiles.enabled = true;
+
+                if (cb)
+                    return cb(result);
+            });
+        },
+
+        profile_start: function (profile, cb) {
+            return this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'activateVariableProfile',
+                params: [profile.id],
+            }, cb);
+        },
+
+        profile_delete: function (profile, cb) {
+            return this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'deleteVariableProfile',
+                params: [profile.id],
+            }, (result) => {
+                delete interfaceData.profiles[this.profile.id];
+
+                if (cb)
+                    return cb(result);
+            });
+        },
+
+        profile_add: function (form, cb) {
+            const locations = this.locations(form.location.floor,
+                                             form.location.room);
+
+            return this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'addVariableProfile',
+                params: [
+                    {
+                        [interfaceData.options.language]: form.profile_name,
+                    },
+                    {
+                        global: form.location.global,
+                        locations: locations,
+                        values: [],
+                    }
+                ],
+            }, (result) => {
+                interfaceData.profiles[result.result] = {
+                    id:        result.result,
+                    locations: locations,
+                    global:    form.location.global,
+                    name:      form.profile_name,
+                    values:    [],
+                }
+
+                this.$root.profiles.enabled = false;
+
+                if (cb)
+                    return cb(result);
+            });
+        },
+
+        profile_update: function (profile, form, cb) {
+            const locations = this.locations(form.location.floor,
+                                             form.location.room);
+            const values = Object.keys(this.$root.profiles.devs)
+                                 .map(x => this.$root.profiles.devs[x])
+                                 .map(x => [x.peer, x.channel, x.name, x.value]);
+
+            return this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'updateVariableProfile',
+                params: [
+                    profile.id,
+                    {
+                        [interfaceData.options.language]: form.profile_name,
+                    },
+                    {
+                        global: form.location.global,
+                        locations: locations,
+                        values: values,
+                    }
+                ],
+            }, (result) => {
+                interfaceData.profiles[profile.id] = {
+                    id:        profile.id,
+                    locations: locations,
+                    global:    form.location.global,
+                    name:      form.profile_name,
+                    values:    values,
+                }
+
+                this.$root.profiles.enabled = false;
+
+                if (cb)
+                    return cb(result);
+            });
         },
     },
 };
@@ -150,7 +267,6 @@ const mixin_favorites = {
 Vue.component('shif-house-collected-entries', {
     mixins: [
         mixin_components,
-        mixin_favorites,
         mixin_profiles,
         mixin_print_mounted(),
     ],
@@ -172,12 +288,7 @@ Vue.component('shif-house-collected-entries', {
         }
     },
 
-    data: function() {
-        return {
-            update_view_hack: true,
-        };
-    },
-
+    // TODO: remove
     provide: function () {
         return {
             layer: this.layer,
@@ -208,30 +319,19 @@ Vue.component('shif-house-collected-entries', {
         },
     },
 
-    methods: {
-        favorites_handle: function (value) {
-            return this.dev_toggle_favorite(value.dev.databaseId, value.state);
-        },
-    },
-
-    mounted: function () {
-        this.$root.$on('favorites-clicked', this.favorites_handle);
-    },
-
     template: `
         <div>
             <div class="profiles_wrapper">
             <template v-if="layer === 2 && ! favorites"
                       v-for="i in local_profiles">
-                <shif-button v-bind:classname="'profiles_button'" v-on:click="load_profile(i)">
+                <shif-button v-bind:classname="'profiles_button'" v-on:click="profile_start(i)">
                     {{ i.name }}
                 </shif-button>
             </template>
             </div>
 
-            <template v-if="update_view_hack" v-for="dev in dev_objs">
-                <component v-bind:key="dev.databaseId"
-                           v-bind="dev"
+            <template v-for="dev in dev_objs">
+                <component v-bind="dev"
                            v-bind:include_place="include_place" />
 
                 <template v-if="debug">
@@ -315,4 +415,114 @@ Vue.component('shif-paging', {
             </template>
         </div>
     `,
+});
+
+
+
+Vue.component('shif-checkbox-favorites', {
+    mixins: [mixin_favorites],
+
+    props: {
+        dev: {
+            type: Object,
+            required: true,
+        },
+        classname: {
+            type: String,
+            default: 'checkbox_right_50',
+        },
+    },
+
+    inject: ['layer'],
+
+    data: function () {
+        return {
+            state: this.dev !== undefined &&
+                   this.dev.dynamicMetadata !== undefined &&
+                   this.dev.dynamicMetadata.favorites !== undefined &&
+                   this.dev.dynamicMetadata.favorites.state === true,
+        };
+    },
+
+    methods: {
+        change: function () {
+            return this.dev_toggle_favorite(this.dev.databaseId, this.state);
+        },
+    },
+
+    template: `
+        <div>
+            <template v-if="layer === 2 && $root.favorites.enabled">
+                <div v-on:click.stop=""
+                     v-on:change.stop="change">
+                    <div v-bind:class="classname">
+                        <shif-checkbox v-model="state" />
+                    </div>
+                </div>
+            </template>
+        </div>
+    `
+});
+
+
+
+Vue.component('shif-checkbox-profiles', {
+    mixinx: [mixin_profiles],
+
+    props: {
+        dev: {
+            type: Object,
+            required: true,
+        },
+        output: {
+            type: Object,
+            required: true,
+        },
+        props: {
+            type: Object,
+            required: true,
+        },
+        classname: {
+            type: String,
+            default: '',
+        },
+    },
+
+    data: function () {
+        const idx = root_profiles_idx(this.output.peer, this.output.channel,
+                                      this.output.name);
+
+        return {
+            idx:   idx,
+            state: (idx in this.$root.profiles.devs),
+        };
+    },
+
+    methods: {
+        change: function () {
+            if (this.state)
+                this.$root.profiles.devs[this.idx] = {
+                    peer:    this.output.peer,
+                    channel: this.output.channel,
+                    name:    this.output.name,
+                    value:   this.props.value,
+                };
+
+            else if (this.idx in this.$root.profiles.devs)
+                delete this.$root.profiles.devs[this.idx];
+        },
+    },
+
+    template: `
+        <div>
+            <template v-if="$root.profiles.enabled">
+                <div v-on:click.stop=""
+                     v-on:change.stop="change">
+                    <div v-bind:class="classname">
+                        <shif-checkbox v-model="state" />
+                    </div>
+                </div>
+            </template>
+        </div>
+    `
 });
