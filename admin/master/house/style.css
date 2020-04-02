@@ -2,7 +2,13 @@
     margin: 0 auto;
     left: 0;
     right: 0;
-    position: absolute;
+	position: absolute;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	flex-direction: row;
+	align-content: flex-start;
+	box-sizing: content-box;
 }
 
 .rooms_wrapper {
