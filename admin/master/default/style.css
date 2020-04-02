@@ -244,6 +244,11 @@ a.disabled {
   -webkit-overflow-scrolling: touch;
 }
 
+
+.content.clinched {
+  width: calc(100% - 193px);
+}
+
 .content_single {
   width: 100%;
   left: 0px;
@@ -321,8 +326,6 @@ a.disabled {
   padding: 25px 35px 25px 35px;
   position: fixed;
   top: 0;
-  right: 0;
-  left: 0;
   font-size: 30px;
   line-height: 35px;
   background: #191b1f;
@@ -342,7 +345,7 @@ a.disabled {
   z-index: 999999;
   font-size: 30px;
   line-height: 35px;
-  text-align: right;
+  text-align: left;
   text-decoration: none;
   padding: 0px 0px 0px 0px;
   white-space: pre;
@@ -361,6 +364,7 @@ a.disabled {
   overflow-y: auto;
   width: calc(100% - 70px);
   text-align: left;
+  margin-left: 50px;
 }
 
 #breadcrumbs_wrapper #back {

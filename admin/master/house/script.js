@@ -304,6 +304,7 @@ let app = new Vue({
         <div id="inhalt">
             <router-view />
 
+            <shif-modemenu />
             <shif-mainmenu />
         </div>
     `,

@@ -24,3 +24,28 @@ Vue.component('shif-mainmenu', {
         </div>
     `,
 });
+
+Vue.component('shif-modemenu', {
+    template: `
+        <div id="modemenu">
+            <div id="mode_wrapper_favorites">
+                <div class="mode_text">
+                    <span class="mode_name">Favoriten bearbeiten</span>
+                </div>
+                <div class="mode_buttons">
+                    <div class="mode_end">Favoriten bearbeiten beenden</div>
+                </div>
+            </div>
+            <div id="mode_wrapper_profiles">
+                <div class="mode_text">
+                    <span>Profil: </span>
+                    <span class="mode_name">Testprofil 123</span>
+                </div>
+                <div class="mode_buttons">
+                    <div class="mode_settings">Profil Einstellungen</div>
+                    <div class="mode_end">Profil Speichern & Beenden</div>
+                </div>
+            </div>
+        </div>
+    `,
+});

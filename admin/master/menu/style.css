@@ -93,3 +93,56 @@
     color: #e3a104;
     fill: #e3a104;
   }
+  
+/* ///////////////////////////////////////////////////////////////////////// */
+/*  */
+/* ///////////////////////////////////////////////////////////////////////// */
+
+#modemenu {
+  width: 100%;
+  list-style: none;
+  box-shadow: 0px 0px 0px 0px #000000;
+  margin: auto;
+  padding: 0px 0px;
+  position: fixed;
+  bottom: 93px;
+  right: 0;
+  left: 0;
+  background: #191b1f;
+  border-top: 1px solid #25282e;
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+}
+
+#mode_wrapper_profiles{
+
+}
+
+#modemenu .mode_text{
+  display: inline-block;
+  padding: 8px 10px;
+  font-size: 20px;
+}
+
+#modemenu .mode_buttons{
+  display: inline-block;
+}
+
+#modemenu .mode_buttons .mode_settings{
+  display: inline-block;
+  background: #00aaff;
+  padding: 8px 10px;
+  font-size: 20px;
+}
+
+#modemenu .mode_buttons .mode_end{
+  display: inline-block;
+  background: #ffaa00;
+  padding: 8px 10px;
+  font-size: 20px;
+}
+
+#mode_wrapper_favorites {
+  display: none;
+}
