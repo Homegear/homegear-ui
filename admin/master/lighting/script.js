@@ -19,12 +19,6 @@ lighting_switch_l2.template = `
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
 
-        <template v-slot:profiles>
-            <shif-checkbox-profiles v-bind:dev="dev"
-                                    v-bind:output="output"
-                                    v-bind:props="props" />
-        </template>
-
     </shif-generic-l2>
 `;
 
