@@ -25,25 +25,59 @@ Vue.component('shif-mainmenu', {
     `,
 });
 
+
+
 Vue.component('shif-modemenu', {
+    mixins: [mixin_profiles],
+
+    methods: {
+        link_profile: function () {
+            return {
+                name: 'settings.profiles.profile',
+                params: {
+                    profile: this.$root.profiles.id,
+                },
+            };
+        },
+
+        submit_profile: function () {
+            this.profile_update(interfaceData.profiles[this.$root.profiles.id],
+                                this.$root.profiles.form);
+        },
+    },
+
     template: `
         <div id="modemenu">
-            <div id="mode_wrapper_favorites">
+            <div v-if="$root.favorites.enabled">
                 <div class="mode_text">
                     <span class="mode_name">{{ i18n('modemenu.favorites.name') }}</span>
                 </div>
                 <div class="mode_buttons">
-                    <div class="mode_end">{{ i18n('modemenu.favorites.button.end') }}</div>
+                    <div v-on:click="$root.favorites.enabled = false" class="mode_end">
+                        {{ i18n('modemenu.favorites.button.end') }}
+                    </div>
                 </div>
             </div>
-            <div id="mode_wrapper_profiles">
+
+            <div v-if="$root.profiles.enabled" id="mode_wrapper_profiles">
                 <div class="mode_text">
-                    <span class="mode_label">{{ i18n('modemenu.profiles.name.label') }}</span>
-                    <span class="mode_name"></span>
+                    <span class="mode_label">
+                        {{ i18n('modemenu.profiles.name.label') }}
+                    </span>
+                    <span class="mode_name">
+                        {{ $root.profiles.form.profile_name }}
+                    </span>
                 </div>
                 <div class="mode_buttons">
-                    <div class="mode_settings">{{ i18n('modemenu.profiles.button.settings') }}</div>
-                    <div class="mode_end">{{ i18n('modemenu.profiles.button.end') }}</div>
+                    <router-link v-bind:to="link_profile()">
+                        <div class="mode_settings">
+                            {{ i18n('modemenu.profiles.button.settings') }}
+                        </div>
+                    </router-link>
+                    <div v-on:click="submit_profile"
+                         class="mode_end">
+                        {{ i18n('modemenu.profiles.button.end') }}
+                    </div>
                 </div>
             </div>
         </div>
