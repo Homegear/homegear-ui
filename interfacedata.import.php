@@ -708,7 +708,7 @@
             "deviceId": 69,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301003,
+            "roleId": 301001,
             "invert": true
         },
         {
@@ -837,6 +837,13 @@
             "channel": 1,
             "varName": "STATE",
             "roleId": 301002,
+            "invert": true
+        },
+        {
+            "deviceId": 88,
+            "channel": 1,
+            "varName": "STATE",
+            "roleId": 301003,
             "invert": true
         },
         {
@@ -3673,7 +3680,7 @@
                         }
                     ]
                 ],
-                "label": "Fenster Wohnen Inverted",
+                "label": "Fenster Wohnen",
                 "room": 12
             }
         ],
@@ -3744,7 +3751,7 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 88,
                             "channel": 1,
                             "name": "STATE"
                         }
@@ -3753,7 +3760,7 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 88,
                             "channel": 1,
                             "name": "STATE"
                         }
@@ -5255,6 +5262,17 @@
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "Virtwind85",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "ID": 88,
+            "NAME": "Türschloss",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "Virtwind86",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },

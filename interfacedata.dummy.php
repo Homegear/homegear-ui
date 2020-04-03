@@ -4523,7 +4523,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 100
+                                "value": 90
                             },
                             "rendering": [],
                             "roles": [
@@ -6326,7 +6326,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 100
+                                "value": 90
                             },
                             "rendering": [],
                             "roles": [
@@ -7738,7 +7738,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 100
+                                "value": 90
                             },
                             "rendering": [],
                             "roles": [
@@ -21723,6 +21723,14 @@
                     "value": 2
                 }
             ],
+            "rolesInclude": [
+                {
+                    "aggregationType": 2,
+                    "roles": [
+                        201003
+                    ]
+                }
+            ],
             "aggregated": {
                 "0": 6,
                 "1": 6,
@@ -22743,7 +22751,7 @@
             "aggregated": {
                 "0": 12,
                 "1": 7,
-                "100": 3,
+                "90": 3,
                 "variableCount": 22
             },
             "varInRole": {
@@ -22906,10 +22914,18 @@
                     ]
                 }
             ],
+            "rolesInclude": [
+                {
+                    "aggregationType": 1,
+                    "roles": [
+                        501004
+                    ]
+                }
+            ],
             "aggregated": {
                 "0": 8,
                 "1": 5,
-                "100": 3,
+                "90": 3,
                 "variableCount": 16
             },
             "varInRole": {
@@ -23095,7 +23111,7 @@
             "name": "Beschattung - Position",
             "aggregated": {
                 "0": 3,
-                "100": 3,
+                "90": 3,
                 "variableCount": 6
             },
             "varInRole": {
@@ -23197,6 +23213,14 @@
                         [
                             502001
                         ]
+                    ]
+                }
+            ],
+            "rolesInclude": [
+                {
+                    "aggregationType": 1,
+                    "roles": [
+                        502004
                     ]
                 }
             ],
@@ -23352,6 +23376,14 @@
                             600001,
                             600002
                         ]
+                    ]
+                }
+            ],
+            "rolesInclude": [
+                {
+                    "aggregationType": 1,
+                    "roles": [
+                        600001
                     ]
                 }
             ],
@@ -23750,7 +23782,7 @@
         "display": "fullscreen",
         "orientation": "any",
         "manifest_version": 2,
-        "revision": 236,
+        "revision": 239,
         "developer": {
             "name": "Marwin Hubach",
             "url": "https:\/\/marwinh.de\/"

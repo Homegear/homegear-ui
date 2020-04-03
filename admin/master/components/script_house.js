@@ -22,39 +22,25 @@ Vue.component('shif-house-floors-rooms', {
 
     data: function () {
         let roomSelectWrapperWidth = 185 + 30;
-        let windowWidth = $( window ).width() - 20;
-        let rooms_wrapper_child_count_max = 0;
+        let windowWidth = $( window ).width() - 100;
+        let maxWidth = 1080;
 
         const rooms_per_floor = Object.keys(interfaceData.floors)
-                                      .map(x => interfaceData.floors[x].rooms.length)
+                                      .map(x => interfaceData.floors[x].rooms.length);
         const max_rooms_per_floor = Math.max.apply(this, rooms_per_floor);
-
-        $('.rooms_wrapper').each(function(){
-            if(this.childElementCount > rooms_wrapper_child_count_max){
-                rooms_wrapper_child_count_max = this.childElementCount;
-            }
-        });
 
         let roomSelectWrapperMaxCount = windowWidth / roomSelectWrapperWidth;
         roomSelectWrapperMaxCount = roomSelectWrapperMaxCount.toString().split('.')[0];
 
-        if (rooms_wrapper_child_count_max > roomSelectWrapperMaxCount) {
-            var maxWidth = roomSelectWrapperMaxCount * roomSelectWrapperWidth + 20;
-            //console.log('1 roomSelectWrapperMaxCount');
+        if (max_rooms_per_floor > roomSelectWrapperMaxCount) {
+            maxWidth = roomSelectWrapperMaxCount * roomSelectWrapperWidth + 20;
         }
         else {
-            var maxWidth = rooms_wrapper_child_count_max * roomSelectWrapperWidth + 25;
-            //console.log('2 rooms_wrapper_child_count_max');
+            maxWidth = max_rooms_per_floor * roomSelectWrapperWidth + 25;
         }
 
-        //console.log('roomSelectWrapperWidth: '+roomSelectWrapperWidth);
-        //console.log('windowWidth: '+windowWidth);
-        //console.log('rooms_wrapper_child_count_max: '+rooms_wrapper_child_count_max);
-        //console.log('roomSelectWrapperMaxCount: '+roomSelectWrapperMaxCount);
-        console.log('maxWidth: '+maxWidth);
-
         return {
-            maxWidth: 1080 + 'px',
+            maxWidth: maxWidth + 'px',
         };
     },
 
