@@ -683,8 +683,7 @@ Vue.component('shif-generic-l2', {
                     <slot name="favorites" />
                 </div>
 
-                <div v-if="$slots.profiles"
-                     class="checkbox_right_50">
+                <div v-if="$slots.profiles">
                     <slot name="profiles" />
                 </div>
 
