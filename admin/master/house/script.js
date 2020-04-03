@@ -344,9 +344,12 @@ let breadcrumbs = new Vue({
     methods: {
         get_name: function (route_name) {
             function floor() {
-                return interfaceData.options.showFloor === true
-                            ? interfaceData.floors[params.floor].name + ' - '
-                            : '';
+                if (! interfaceData.options.showFloor)
+                    return ''
+
+                return Number(params.floor) === -1
+                    ? i18n('house.storyless') + ' - '
+                    : interfaceData.floors[params.floor].name + ' - ';
             }
 
             const params  = this.$route.params;
