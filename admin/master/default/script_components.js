@@ -109,8 +109,8 @@ const mixin_profiles = {
 
             return [
                 {
-                    floorId: floor === null ? undefined : floor,
-                    roomId:  room  === null ? undefined : room,
+                    floorId: floor === null ? undefined : Number(floor),
+                    roomId:  room  === null ? undefined : Number(room),
                 }
             ];
         },
@@ -501,7 +501,8 @@ Vue.component('shif-checkbox-profiles', {
 
     watch: {
         'props.value': function () {
-            if (this.$root.profiles.enabled)
+            if (this.$root.profiles.enabled &&
+                (this.idx in this.$root.profiles.devs))
                 this.$root.profiles.devs[this.idx].value = this.props.value;
         },
     },
