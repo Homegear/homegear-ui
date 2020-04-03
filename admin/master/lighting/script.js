@@ -128,7 +128,7 @@ lighting_color_l2.template = `
 
 let lighting_color_l3 = clone(shif_device);
 lighting_color_l3.methods.change = function(event) {
-    this.props.value = event.color.hexString;
+    this.props.value = event;
     homegear.value_set_clickcounter(this, this.output, this.props.value);
 };
 lighting_color_l3.template = `
@@ -136,7 +136,7 @@ lighting_color_l3.template = `
                       v-bind:height="{max_pixels: 620, percent: 100}"
                       v-bind:color="props.value"
                       v-bind:title="title"
-                      v-on:input:end="change">
+                      v-on:input="change">
 
         <template v-slot:profiles>
             <shif-checkbox-profiles v-bind:dev="dev"
