@@ -21,9 +21,13 @@ Vue.component('shif-house-floors-rooms', {
     },
 
     data: function () {
-        var roomSelectWrapperWidth = 185 + 30;
-        var windowWidth = $( window ).width() - 20;
-        var rooms_wrapper_child_count_max = 0;
+        let roomSelectWrapperWidth = 185 + 30;
+        let windowWidth = $( window ).width() - 20;
+        let rooms_wrapper_child_count_max = 0;
+
+        const rooms_per_floor = Object.keys(interfaceData.floors)
+                                      .map(x => interfaceData.floors[x].rooms.length)
+        const max_rooms_per_floor = Math.max.apply(this, rooms_per_floor);
 
         $('.rooms_wrapper').each(function(){
             if(this.childElementCount > rooms_wrapper_child_count_max){
@@ -31,7 +35,7 @@ Vue.component('shif-house-floors-rooms', {
             }
         });
 
-        var roomSelectWrapperMaxCount = windowWidth / roomSelectWrapperWidth;
+        let roomSelectWrapperMaxCount = windowWidth / roomSelectWrapperWidth;
         roomSelectWrapperMaxCount = roomSelectWrapperMaxCount.toString().split('.')[0];
 
         if (rooms_wrapper_child_count_max > roomSelectWrapperMaxCount) {
