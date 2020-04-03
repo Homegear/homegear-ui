@@ -241,6 +241,11 @@ function homegear_init() {
             if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
                 $house['roles'][$value["ID"]] = array_replace_recursive($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
             }
+
+            if (array_key_exists($key, $interfaceData["rolesIncludes"])) {
+                echo "isIn! : ".$key;
+            }
+
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
             $house['roles'][$value["ID"]]["varInRole"] = $varInRole;
         }

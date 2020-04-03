@@ -177,10 +177,10 @@
                 try {
                     $profile = $hg->addVariableProfile($value[0], $value[1]);
                     //$profile = $hg->addVariableProfile(["en-US" => "Testprofile", "de-DE" => "Testprofil"], ["...", "values" => [[112, 1, "STATE", true], [11, 1, "STATE", true]]]);
-                    $allInterfaceData["createProfiles"][$value[0]["en-US"]]["label"] = $value["translations"][0];
+                    $allInterfaceData["createProfiles"][$profile]["id"] = $profile;
                 }
                 catch (\Homegear\HomegearException $e) {
-                    $allInterfaceData["createProfiles"][$value[0]["en-US"]]["error"] =  $e->getMessage();
+                    $allInterfaceData["createProfiles"][$profile]["error"] = $e->getMessage();
                     $hg->log(2, 'Homegear Exception catched. ' .
                                            "Code: {$e->getCode()} " .
                                         "Message: {$e->getMessage()}");
@@ -277,7 +277,16 @@
 
         if(isset($_GET["createStories"])){
             foreach($oldInterfaceData["floors"] as $key => $value){
-                $allInterfaceData["createStory"][$value["name"]] = $hg->createStory(array("en-US" => $value["name"], "de-DE" => $value["name"]));
+                try {
+                    $allInterfaceData["createStory"][$value["name"]] = $hg->createStory(array("en-US" => $value["name"], "de-DE" => $value["name"]));
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createStory"][$value["name"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 
@@ -294,8 +303,19 @@
 
         if(isset($_GET["createRooms"])){
             foreach($oldInterfaceData["rooms"] as $key => $value){
-                $roomId = $hg->createRoom(array("en-US" => $value["name"], "de-DE" => $value["name"]), array("icon" => $value["icon"]));
-                $allInterfaceData["createRooms"][$roomId]["addRoomToStory"] = $hg->addRoomToStory(intval($value["floor"]), $roomId);
+                try {
+                    $roomId = $hg->createRoom(array("en-US" => $value["name"], "de-DE" => $value["name"]), array("icon" => $value["icon"]));
+                    if (isset($value["floor"]) && $value["floor"] != ""){
+                        $allInterfaceData["createRooms"][$roomId]["addRoomToStory"] = $hg->addRoomToStory(intval($value["floor"]), $roomId);
+                    }
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createRooms"][$roomId]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 

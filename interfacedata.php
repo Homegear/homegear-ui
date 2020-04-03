@@ -510,6 +510,40 @@
         "wind": "wind_1",
         "blinds_1": "blind_2",
         "blinds_2": "blind_3"
+    },
+    "rolesIncludes": {
+        "201000": [
+            {
+                "aggregationType": 2,
+                "roles": [
+                    201003
+                ]
+            }
+        ],
+        "501000": [
+            {
+                "aggregationType": 1,
+                "roles": [
+                    501004
+                ]
+            }
+        ],
+        "502000": [
+            {
+                "aggregationType": 1,
+                "roles": [
+                    502004
+                ]
+            }
+        ],
+        "600000": [
+            {
+                "aggregationType": 1,
+                "roles": [
+                    600001
+                ]
+            }
+        ]
     }
 }
 ';

@@ -90,6 +90,11 @@
             "name": "Wohnbereich",
             "floor": "1",
             "icon": "sofa_1"
+        },
+        "13": {
+            "id": "13",
+            "name": "Stockwerkslos",
+            "icon": "notification_update_1"
         }
     },
     "systemVariables": [
@@ -1188,8 +1193,8 @@
                         }
                     ]
                 ],
-                "label": "Licht",
-                "room": 3,
+                "label": "Licht in Stockwerkslos",
+                "room": 13,
                 "dynamicMetadata": {
                     "favorites": {
                         "state": true
