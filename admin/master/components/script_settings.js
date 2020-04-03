@@ -253,23 +253,25 @@ let ShifSettingsItems = function (level) {
 let ShifSettingsFavorites = {
     data: function () {
         return {
-            state: this.$root.favorites.enabled,
+            state: this.$root.favorites,
         };
     },
 
     watch: {
         state: function () {
-            this.$root.profiles.enabled = false;
-            this.$root.favorites.enabled = this.state;
+            if (this.state.enabled)
+                this.$root.profiles.enabled = false;
+
+            this.$root.favorites.enabled = this.state.enabled;
         },
     },
 
     template: `
         <div class="device_wrapper">
             <div class="device"
-                 v-on:click.prevent="state = ! state">
+                 v-on:click.prevent="state.enabled = ! state.enabled">
                 <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <shif-checkbox v-model="state" />
+                <shif-checkbox v-model="state.enabled" />
             </div>
         </div>
     `
@@ -337,6 +339,14 @@ let ShifSettingsProfile = {
 
         const profile = interfaceData.profiles[this.$route.params.profile];
 
+        if (this.$root.profiles.enabled) {
+            return {
+                mode: 'edit',
+                profile: profile,
+                form: this.$root.profiles.form,
+            };
+        }
+
         const [floor, room, global] = profile.locations.length === 0
                 ? [null, null, false]
                 : [ profile.locations[0].floorId, profile.locations[0].roomId,
@@ -382,6 +392,9 @@ let ShifSettingsProfile = {
         form_submit: function (source) {
             switch (source) {
                 case 'load':
+                    this.$root.profiles.form = this.form;
+                    this.$root.profiles.id   = this.profile.id;
+
                     return this.profile_load(this.profile,
                         () => this.$router.push({name: 'house.tab.rooms'})
                     );
@@ -409,7 +422,7 @@ let ShifSettingsProfile = {
 
     mounted: function () {
         if (this.mode === 'edit' && ! this.$root.profiles.enabled)
-            this.profile_build_root_devs(this.profile);
+            return this.profile_build_root_devs(this.profile);
     },
 
     template: `
