@@ -300,6 +300,11 @@
             "settings.about.table.rights": "Rights",
             "settings.about.table.license": "License",
             "settings.about.table.license.url": "License URL",
+            "modemenu.favorites.name": "Favorites mode",
+            "modemenu.favorites.button.end": "Exit Favorites mode",
+            "modemenu.profiles.name.label": "Profil",
+            "modemenu.profiles.button.settings": "Profil Einstellungen",
+            "modemenu.profiles.button.end": "speichern & beenden",
             "logoff": "Logoff",
             "disabled_text": "disabled"
         },
@@ -367,6 +372,11 @@
             "settings.about.table.rights": "Rechte",
             "settings.about.table.license": "Lizenz",
             "settings.about.table.license.url": "Lizenz URL",
+            "modemenu.favorites.name": "Favorites mode",
+            "modemenu.favorites.button.end": "Exit Favorites mode",
+            "modemenu.profiles.name.label": "Profil",
+            "modemenu.profiles.button.settings": "Profil Einstellungen",
+            "modemenu.profiles.button.end": "speichern & beenden",
             "logoff": "Abmelden",
             "disabled_text": "gesperrt"
         }
