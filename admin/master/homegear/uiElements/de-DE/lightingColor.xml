@@ -73,7 +73,7 @@
 			</variable>
 		</variableOutputs>
 		<metadata>
-			<l2_only>true</l2_only>
+			<statusColor>true</statusColor>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
