@@ -261,36 +261,34 @@ let ShifAllDevices = {
     },
 
     mounted: function () {
-        // this.$homegear.ready(() => {
-            for (const key of Object.keys(interfaceData.roles).map(Number)) {
-                const role = interfaceData.roles[key];
+        for (const key of Object.keys(interfaceData.roles).map(Number)) {
+            const role = interfaceData.roles[key];
 
-                if (! ('texts' in role))
-                    continue;
+            if (! ('texts' in role))
+                continue;
 
-                /**
-                 * Always reinitialize to an empty array here.
-                 * In case of a homegear reconnect, we would duplicate the
-                 * status text otherwise.
-                 **/
-                this.states[key] = [];
-                /**
-                 * This must be a for-in loop! Do not change it into a
-                 * traditional for loop or a map.
-                 * We need iterate over both, integer keys, as well as object
-                 * keys (iteration order does not matter for the integer keys).
-                 **/
-                for (const text_idx in role.texts)
-                    this.states[key].push(
-                        {
-                            key:   this.status_text(role, text_idx),
-                            raw:   text_idx + '',
-                            value: 0,
-                        }
-                    );
-                this.status(key);
-            }
-        // });
+            /**
+             * Always reinitialize to an empty array here.
+             * In case of a homegear reconnect, we would duplicate the
+             * status text otherwise.
+             **/
+            this.states[key] = [];
+            /**
+             * This must be a for-in loop! Do not change it into a
+             * traditional for loop or a map.
+             * We need iterate over both, integer keys, as well as object
+             * keys (iteration order does not matter for the integer keys).
+             **/
+            for (const text_idx in role.texts)
+                this.states[key].push(
+                    {
+                        key:   this.status_text(role, text_idx),
+                        raw:   text_idx + '',
+                        value: 0,
+                    }
+                );
+            this.status(key);
+        }
 
         this.$root.$on('role-update', this.role_update_handle);
     },
