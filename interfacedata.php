@@ -250,6 +250,7 @@
                 }
             },
             "house": "House",
+            "house.storyless": "Other",
             "house.tab.rooms": "Rooms",
             "house.tab.devices": "Devices",
             "house.tab.profiles": "Profiles",
@@ -322,6 +323,7 @@
                 }
             },
             "house": "Haus",
+            "house.storyless": "Sonstige",
             "house.tab.rooms": "Räume",
             "house.tab.devices": "Geräte",
             "house.tab.profiles": "Profile",
