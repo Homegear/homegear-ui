@@ -6,11 +6,11 @@
 		<control>timer</control>
 		<texts>
 			<text id="title">
-				<content>Timer</content>
+				<content>Zeitschaltung</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>State</content>
+				<content>Zeitschaltung</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -30,7 +30,7 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>true</visualizeInOverview>
+				<visualizeInOverview>false</visualizeInOverview>
 				<rendering>
 					<condition operator="not" value="0">
 						<icons>

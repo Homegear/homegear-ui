@@ -7,11 +7,11 @@
         <role>100001</role>
 		<texts>
 			<text id="title">
-				<content>Lighting</content>
+				<content>Beleuchtung</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Lighting</content>
+				<content>Beleuchtung</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>

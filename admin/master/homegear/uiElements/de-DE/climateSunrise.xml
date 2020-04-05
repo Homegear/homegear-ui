@@ -6,11 +6,11 @@
 		<type>simple</type>
 		<texts>
 			<text id="title">
-				<content>Sunrise</content>
+				<content>Sonnenaufgang</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Sunrise</content>
+				<content>Sonnenaufgang</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
@@ -34,7 +34,7 @@
 				<deviceTypeId>*</deviceTypeId>
 				<channel>*</channel>
 				<name>*</name>
-				<visualizeInOverview>false</visualizeInOverview>
+				<visualizeInOverview>true</visualizeInOverview>
 			</variable>
 		</variableInputs>
 	</homegearUiElement>
