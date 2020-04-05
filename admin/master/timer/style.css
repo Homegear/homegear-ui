@@ -36,6 +36,7 @@
     display: inline-block;
     background: #191b1f;
     color: #fff;
+    margin: 0;
 }
 
 .timer_wrapper .select_day {

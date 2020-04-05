@@ -137,6 +137,7 @@ select {
   padding: 20px 20px;
   position: relative;
   scrollbar-width: auto;
+  margin: 10px 0;
 }
 
 option {
@@ -1317,7 +1318,7 @@ td {
 .device_wrapper .device_title {
   font-size: 28px;
   line-height: 28px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .device_wrapper .device_location {
@@ -1344,6 +1345,7 @@ td {
   color: #898989;
   display: inline-block;
   white-space: nowrap;
+  margin-bottom: 4px;
 }
 
 
@@ -1486,10 +1488,10 @@ td {
   left: auto;
 }
 
-#profile_edit #profile_icons {
+#profile_icons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
   align-content: flex-start;
   box-sizing: content-box;
@@ -1498,28 +1500,29 @@ td {
   overflow-x: hidden;
 }
 
-#profile_edit #profile_icons .profile_icon_wrapper {
+#profile_icons .profile_icon_wrapper {
   background: #191b1f;
   height: 80px;
+  margin-right: 4px;
   margin-bottom: 4px;
   text-align: center;
   min-width: 100px;
 }
 
-#profile_edit #profile_icons .profile_icon_wrapper.selected {
+#profile_icons .profile_icon_wrapper.selected {
   border: 2px solid #e3a104;
 }
 
-#profile_edit .profil_icon_name {
+#profile_icons .profil_icon_name {
 
 }
 
-#profile_edit .profile_icon {
+#profile_icons .profile_icon {
   height: 50px;
   position: relative;
 }
 
-#profile_edit .profile_icon .svg_icon {
+#profile_icons .profile_icon .svg_icon {
   width:50px;
   height: 50px;
   position: absolute;
@@ -1529,9 +1532,7 @@ td {
   margin: auto;
 }
 
-
-
-#profile_edit .profile_icon svg {
+#profile_icons .profile_icon svg {
   width:50px;
   height: 50px;
   fill: #fff;
@@ -1623,9 +1624,9 @@ margin-bottom: 30px;
 }
 
 .status_color_bullet {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+    width: 30px;
+    height: 18px;
+    border-radius: 3px;
     display: inline-block;
 }
 

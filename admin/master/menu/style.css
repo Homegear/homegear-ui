@@ -132,14 +132,14 @@
 #modemenu .mode_buttons .mode_settings{
   display: inline-block;
   background: #00aaff;
-  padding: 8px 10px;
+  padding: 16px 10px;
   font-size: 20px;
 }
 
 #modemenu .mode_buttons .mode_end{
   display: inline-block;
   background: #ffaa00;
-  padding: 8px 10px;
+  padding: 16px 10px;
   font-size: 20px;
 }
 

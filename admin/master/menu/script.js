@@ -62,7 +62,7 @@ Vue.component('shif-modemenu', {
             <div v-if="$root.profiles.enabled" id="mode_wrapper_profiles">
                 <div class="mode_text">
                     <span class="mode_label">
-                        {{ i18n('modemenu.profiles.name.label') }}
+                        {{ i18n('modemenu.profiles.name.label') }}:
                     </span>
                     <span class="mode_name">
                         {{ $root.profiles.form.profile_name }}
