@@ -278,11 +278,11 @@ let ShifSettingsFavorites = {
     },
 
     watch: {
-        state: function () {
-            if (this.state.enabled)
+        'state.enabled': function () {
+            if (this.state.enabled) {
                 this.$root.profiles.enabled = false;
-
-            this.$root.favorites.enabled = this.state.enabled;
+                this.$router.push({name: 'house.tab.rooms'});
+            }
         },
     },
 
