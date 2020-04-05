@@ -195,11 +195,9 @@ function homegear_prepare(homegear) {
             if (ret.error === undefined)
                 return cb(ret);
 
-            error.push(ret.error.message
-                            ? ret.error.message
-                            : 'Some invoke error happened');
+            console.log('Invoke Error: ' + JSON.stringify(ret.error, null, 4));
         })
-    }
+    };
 
 
     homegear.invoke_multi = function (ops, cb) {
