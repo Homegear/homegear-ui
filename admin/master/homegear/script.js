@@ -113,6 +113,12 @@ else homegear.connect();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function roles_relevant(roles) {
+    return roles.filter(x => x.hasOwnProperty('id') && x.direction !== 1);
+}
+
+
+
 function handle_homegear_update(resp) {
     // DEBUG: works as expected
     const peer    = resp.params[1],
@@ -135,16 +141,14 @@ function handle_homegear_update(resp) {
                                                .variableInputs))
             continue;
 
-        //Does it improve reaction time to run the loop twice (does the "emit" hang shortly)? If not, only run it once.
-        let invert = false;
-        for (const roleIndex in input.roles) {
-            let role = input.roles[roleIndex];
-            if(!role.hasOwnProperty('id')) continue;
-            else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
+        if (input.roles === undefined)
+            continue;
 
-            if(role.hasOwnProperty('invert'))
-            {
-                value = !value;
+        let roles = roles_relevant(input.roles);
+
+        for (const role of roles) {
+            if(role.hasOwnProperty('invert')) {
+                value = Number(!value);
                 break; //Only invert once
             }
         }
@@ -153,14 +157,9 @@ function handle_homegear_update(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        for (const roleIndex in input.roles) {
-            let role = input.roles[roleIndex];
-            if(!role.hasOwnProperty('id')) continue;
-            else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
+        for (const role of roles)
             app.$root.$emit('role-update', role.id);
-        }
     }
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +197,6 @@ function homegear_prepare(homegear) {
             console.log('Invoke Error: ' + JSON.stringify(ret.error, null, 4));
         })
     };
-
 
     homegear.invoke_multi = function (ops, cb) {
         const object = {
