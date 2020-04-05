@@ -208,11 +208,6 @@ let ShifAllDevices = {
                     method: 'aggregateRoles',
                     params: [invoke_desc.type, invoke_desc.ids, []],
                 }, (res) => {
-                    if (res.error) {
-                        console.log('[' + invoke_desc.ids.join(', ') + ']: ' + res.error.message);
-                        return;
-                    }
-
                     /**
                      * Updating this is a two step process:
                      * 1) We need to fetch the new values from upstream.
