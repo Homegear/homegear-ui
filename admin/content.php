@@ -118,6 +118,9 @@ echo '</script>';
     </div>
   </div>
 
+  <div id="error">
+  </div>
+
   <div id="breadcrumbs_wrapper">
     <div id="breadcrumbs"></div>
   </div>
