@@ -1563,11 +1563,20 @@ margin-bottom: 30px;
   display: none;
 }
 
-
-
 .status_color_bullet {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     display: inline-block;
+}
+
+.toast {
+    border: 1px red solid;
+    border-radius: .05rem;
+    color: black;
+    display: block;
+    width: 100%;
+    background-color: red;
+    z-index: 10000;
+    position: relative;
 }
