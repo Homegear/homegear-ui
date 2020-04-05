@@ -392,3 +392,34 @@ let breadcrumbs = new Vue({
         </div>
     `
 });
+
+
+
+let error = new Vue({
+    el: '#error',
+
+    data: {
+        msgs: [],
+    },
+
+    methods: {
+        remove_msg: function (msg_idx) {
+            this.msgs.splice(msg_idx, 1);
+        },
+
+        push: function (msg) {
+            this.msgs.unshift(msg);
+        },
+    },
+
+    template: `
+        <div id="error">
+            <div v-for="msg, i in msgs"
+                 class="toast">
+                 <button v-on:click="remove_msg(i)">x</button>
+                {{ msg }}
+            </div>
+            </div>
+        </div>
+    `
+})
