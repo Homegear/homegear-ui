@@ -1,10 +1,10 @@
 let ShifLog = Vue.component('shif-log', {
     mounted: function () {
-        viewLog('<br /><hr />')
+        viewLog('-----------------------------')
     },
 
     template: `
-        <div id="log" class="content content_single">
-        </div>
+        <pre id="log" class="content content_single">
+        </pre>
     `
 });
