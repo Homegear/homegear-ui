@@ -99,6 +99,7 @@ homegear.reconnected(function() {
 //print Homegear errors
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 homegear.error(function (message) {
+    error.push(message);
     console.log(message);
 });
 
@@ -187,6 +188,19 @@ function homegear_prepare(homegear) {
         app.$mount('#inhalt');
         breadcrumbs.$mount('#breadcrumbs');
     });
+
+    homegear.invoke_raw = homegear.invoke;
+    homegear.invoke = function (op, cb) {
+        homegear.invoke_raw(op, function (ret) {
+            if (ret.error === undefined)
+                return cb(ret);
+
+            error.push(ret.error.message
+                            ? ret.error.message
+                            : 'Some invoke error happened');
+        })
+    }
+
 
     homegear.invoke_multi = function (ops, cb) {
         const object = {
