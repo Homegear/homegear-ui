@@ -222,7 +222,7 @@ let ShifAllDevices = {
                          * 1) In case we need to insert a value, push is needed.
                          * 2) In case we need to change a value, direct
                          *    assignment of the single object members at
-                         *    relative array index is needed.
+                         *    respective array index is needed.
                          **/
                         for (let i = 0; i < this.states[role_id].length; ++i) {
                             if (this.states[role_id][i].raw == key) {
@@ -245,9 +245,11 @@ let ShifAllDevices = {
         },
 
         states_clean: function (role_id) {
-            return this.states[role_id].some(x => x.value !== 0)
-                    ? this.states[role_id]
-                    : [];
+            return this.states[role_id];
+
+            // return this.states[role_id].some(x => x.value !== 0)
+                    // ? this.states[role_id]
+                    // : [];
         },
 
         role_update_handle: function (role_id) {
@@ -289,7 +291,7 @@ let ShifAllDevices = {
     },
 
     beforeDestroy: function () {
-        // this.$root.$off('role-update', this.role_update_handle);
+        this.$root.$off('role-update', this.role_update_handle);
     },
 
     // TODO: figure out why there's a `role_update` handler in templates,
@@ -300,7 +302,6 @@ let ShifAllDevices = {
             <template v-for="(devs, role) in map_roles_devs">
                 <template v-if="role in interfaceData.roles">
                     <shif-ctrl-summary
-                        v-on:role_update="status"
                         v-bind:actions="interfaceData.roles[role].invokeOutputs"
                         v-bind:icon="interfaceData.roles[role].icon"
                         v-bind:title="interfaceData.roles[role].name"
