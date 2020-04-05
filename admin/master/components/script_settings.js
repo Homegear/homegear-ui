@@ -348,6 +348,7 @@ let ShifSettingsProfile = {
                 profile: null,
                 form: {
                     name: 'profile_add',
+                    icon: 'slider_1',
                     profile_name: '',
                     location: {
                         floor:  null,
@@ -377,6 +378,7 @@ let ShifSettingsProfile = {
             profile: profile,
             form: {
                 name: 'profile_edit',
+                icon: profile.icon,
                 profile_name: profile.name,
                 location: {
                     floor:  floor === undefined ? null : floor,
@@ -462,7 +464,17 @@ let ShifSettingsProfile = {
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.icon') }}:</div>
-                        <div v-for="icon in interfaceIcons" v-html="icon">
+                        <div id="profile_icons">
+                            <label v-for="icon, key in interfaceIcons"
+                                   v-bind:class="{selected: form.icon == key}"
+                                   class="profile_icon_wrapper">
+                                <shif-icon classname="profile_icon" v-bind:src="key" />
+                                <input type="radio"
+                                       name="profile_icon"
+                                       v-bind:value="key"
+                                       v-model="form.icon"
+                                       hidden />
+                            </label>
                         </div>
                 </div>
 

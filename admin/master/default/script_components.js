@@ -174,6 +174,7 @@ const mixin_profiles = {
                     },
                     {
                         global: form.location.global,
+                        icon:   form.icon,
                         locations: locations,
                         values: [],
                     }
@@ -181,6 +182,7 @@ const mixin_profiles = {
             }, (result) => {
                 interfaceData.profiles[result.result] = {
                     id:        result.result,
+                    icon:      form.icon,
                     locations: locations,
                     global:    form.location.global,
                     name:      form.profile_name,
@@ -210,9 +212,10 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global: form.location.global,
+                        global:    form.location.global,
+                        icon:      form.icon,
                         locations: locations,
-                        values: values,
+                        values:    values,
                     }
                 ],
             }, (result) => {
@@ -220,6 +223,7 @@ const mixin_profiles = {
                     id:        profile.id,
                     locations: locations,
                     global:    form.location.global,
+                    icon:      form.icon,
                     name:      form.profile_name,
                     values:    values,
                 }

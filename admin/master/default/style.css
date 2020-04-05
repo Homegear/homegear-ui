@@ -1486,6 +1486,57 @@ td {
   left: auto;
 }
 
+#profile_edit #profile_icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  align-content: flex-start;
+  box-sizing: content-box;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#profile_edit #profile_icons .profile_icon_wrapper {
+  background: #191b1f;
+  height: 80px;
+  margin-bottom: 4px;
+  text-align: center;
+  min-width: 100px;
+}
+
+#profile_edit #profile_icons .profile_icon_wrapper.selected {
+  border: 2px solid #e3a104;
+}
+
+#profile_edit .profil_icon_name {
+
+}
+
+#profile_edit .profile_icon {
+  height: 50px;
+  position: relative;
+}
+
+#profile_edit .profile_icon .svg_icon {
+  width:50px;
+  height: 50px;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+
+
+#profile_edit .profile_icon svg {
+  width:50px;
+  height: 50px;
+  fill: #fff;
+}
+
 #profiles .control_button,
 #house .profiles_wrapper .control_button {
   flex-basis: fit-content;
