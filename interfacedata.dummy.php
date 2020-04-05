@@ -12,39 +12,748 @@
                         "x": 0,
                         "y": 0
                     },
-                    "control": "lightingSwitch",
+                    "control": "temperature",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "light_on_1"
+                            "name": "thermomenter1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "thermometer_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Temp."
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Temperatur"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.temperature",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "TEMPERATURE4",
+                            "peer": 0,
+                            "properties": {
+                                "maximum": 100,
+                                "minimum": -273.150000095,
+                                "unit": "\u00b0C",
+                                "visualizeInOverview": true,
+                                "value": 21.3233
+                            },
+                            "rendering": [],
+                            "type": "float"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "humidity",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "humidity_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "humidity_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Feuchte"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Luftfeuchtigkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.humidity",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "HUMIDITY4",
+                            "peer": 0,
+                            "properties": {
+                                "maximum": 100,
+                                "minimum": 0,
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 51.6233
+                            },
+                            "rendering": [],
+                            "type": "float"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "climateCity",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "house_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "house_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Stadt"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Stadt"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateCity",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "CITY",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": "Berlin"
+                            },
+                            "rendering": [],
+                            "type": "string"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "climateCloudcoverage",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "weather_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "weather_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Wolkendichte"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Wolkendichte"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateCloudcoverage",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "CLOUD_COVERAGE",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 90
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "climateDate",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "calendar-time_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "calendar-time_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Datum"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Datum"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateDate",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "LAST_DATA",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 1574254478
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "climatePressure",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "speedometer_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "speedometer_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Luftdruck"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Luftdruck"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climatePressure",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "PRESSURE",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "hPa",
+                                "visualizeInOverview": true,
+                                "value": 1014
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "climateRain3h",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "waterdrops_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "waterdrops_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Regen 3h"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Regen 3h"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateRain3h",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "RAIN_3H",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "mm",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "climateSnow3h",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "weather_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "weather_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Schneefall 3h"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Schneefall 3h"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateSnow3h",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "SNOW_3H",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "mm",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "climateSunrise",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "calendar-time_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "calendar-time_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Sonnenaufgang"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Sonnenaufgang"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateSunrise",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "SUNRISE",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 1574232149
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "climateSunset",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "calendar-time_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "calendar-time_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Sonnenuntergang"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Sonnenuntergang"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateSunset",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "SUNSET",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 1574264972
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "climateWeather",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "weather_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "weather_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Wetter"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Wetter"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateWeather",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "WEATHER",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": "Mist"
+                            },
+                            "rendering": [],
+                            "type": "string"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "climateWinddirection",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "windhose_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "windhose_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Windrichtung"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Windrichtung"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateWinddirection",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "WIND_DIRECTION",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "\u00b0",
+                                "visualizeInOverview": true,
+                                "value": 350
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "climateWindgust",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "wind_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "wind_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Windb\u00f6en"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Windb\u00f6en"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateWindgust",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "WIND_GUST",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "m\/s",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "climateWindspeed",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "windhose_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "main": {
+                            "color": "inactive",
+                            "name": "windhose_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 0,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Windgeschwindigkeit"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Windgeschwindigkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.climateWindspeed",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "WIND_SPEED",
+                            "peer": 0,
+                            "properties": {
+                                "unit": "m\/s",
+                                "visualizeInOverview": true,
+                                "value": 2.6000000000000001
+                            },
+                            "rendering": [],
+                            "type": "float"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 2
+                    },
+                    "control": "refresh",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "reload_1"
                         },
                         "l3": {
                             "color": "iconArrow",
                             "name": "arrow_right_1"
                         }
                     },
-                    "metadata": {
-                        "l2_only": true
-                    },
-                    "role": 100001,
+                    "metadata": [],
+                    "role": 0,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Status"
+                            "content": "State"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Schalter"
+                            "content": "Erneuern"
                         }
                     },
-                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "uniqueUiElementId": "254.0x100.Refresh",
                     "variableInputs": [
                         {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
+                            "channel": -1,
+                            "name": "REQUEST",
+                            "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": false
@@ -59,7 +768,168 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "light_on_1"
+                                                "name": "reload_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "gedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "reload_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "ungedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": -1,
+                            "deviceTypeId": 256,
+                            "family": 254,
+                            "name": "REQUEST",
+                            "peer": 0,
+                            "properties": [],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "databaseId": 57,
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
+            "grid": {
+                "columns": 1,
+                "height": 3,
+                "rows": 3,
+                "width": 3
+            },
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "weather_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "weather": {
+                    "color": "inactive",
+                    "name": "weather_1"
+                }
+            },
+            "label": "Wetter",
+            "metadata": {
+                "l2_action": {
+                    "control": [
+                        0
+                    ],
+                    "input": [
+                        0
+                    ]
+                }
+            },
+            "role": 201000,
+            "room": 6,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "OpenWeatherMap"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "OpenWeatherMap"
+                }
+            },
+            "uniqueUiElementId": "254.0x100.OpenWeatherMap",
+            "floors": [
+                2
+            ],
+            "rooms": [
+                6
+            ]
+        },
+        "29": {
+            "categories": [],
+            "clickCount": 28,
+            "controls": [
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "shadingButtons",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "blind_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 501000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Schalter"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.shadingButtons",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "UP",
+                            "peer": 25,
+                            "properties": {
+                                "visualizeInOverview": false,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
                                             }
                                         },
                                         "texts": {
@@ -79,7 +949,7 @@
                                         "icons": {
                                             "state": {
                                                 "color": "inactive",
-                                                "name": "light_on_1"
+                                                "name": "arrow_up_1"
                                             }
                                         },
                                         "texts": {
@@ -94,117 +964,46 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 502001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 500000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000
                                 }
                             ],
                             "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
+                        },
                         {
                             "channel": 1,
                             "maximumValue": true,
                             "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "lightingFunction",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "slider_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "l3_force": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Function"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Function"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingFunction",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "FUNCTION",
-                            "peer": 0,
+                            "name": "STOP",
+                            "peer": 25,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": 4
+                                "visualizeInOverview": false,
+                                "value": false
                             },
                             "rendering": [
                                 {
                                     "condition": {
-                                        "operator": "e",
-                                        "value": "off"
+                                        "operator": "not",
+                                        "value": "0"
                                     },
                                     "definitions": {
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "arrow_up_1"
+                                                "name": "close_x_1"
                                             }
                                         },
                                         "texts": {
                                             "state": {
                                                 "color": "active",
-                                                "content": "OFF (off)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "custom"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "CUSTOM WS (custom)"
+                                                "content": "an"
                                             }
                                         }
                                     }
@@ -217,1209 +1016,148 @@
                                     "definitions": {
                                         "icons": {
                                             "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
+                                                "color": "inactive",
+                                                "name": "close_x_1"
                                             }
                                         },
                                         "texts": {
                                             "state": {
-                                                "color": "active",
-                                                "content": "Static (0)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "1"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Blink (1)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "2"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Breath (2)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "3"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Color Wipe (3)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "4"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Color Wipe Inverse (4)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "5"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Color Wipe Reverse (5)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "6"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Color Wipe Reverse Inverse (6)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "7"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Color Wipe Random (7)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "8"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Random Color (8)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "9"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Single Dynamic (9)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "10"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Multi Dynamic (10)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "11"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Rainbow (11)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "12"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Rainbow Cycle (12)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "13"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Scan (13)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "14"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Dual Scan (14)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "15"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Fade (15)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "16"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Theater Chase (16)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "17"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Theater Chase Rainbow (17)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "18"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Running Lights (18)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "19"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Twinkle (19)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "20"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Twinkle Random (20)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "21"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Twinkle Fade (21)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "22"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Twinkle Fade Random (22)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "23"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Sparkle (23)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "24"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Flash Sparkle (24)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "25"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Hyper Sparkle (25)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "26"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Strobe (26)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "27"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Strobe Rainbow (27)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "28"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Multi Strobe (28)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "29"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Blink Rainbow (29)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "30"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase White (30)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "31"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Color (31)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "32"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Random (32)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "33"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Rainbow (33)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "34"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Flash (34)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "35"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Flash Random (35)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "36"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Rainbow White (36)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "37"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Blackout (37)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "38"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Chase Blackout Rainbow (38)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "39"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Color Sweep Random (39)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "40"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Running Color (40)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "41"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Running Red Blue (41)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "42"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Running Random (42)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "43"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Larson Scanner (43)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "44"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Comet (44)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "45"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Fireworks (45)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "46"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Fireworks Random (46)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "47"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Merry Christmas (47)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "48"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Fire Flicker (48)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "49"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Fire Flicker (soft) (49)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "50"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Fire Flicker (intense) (50)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "51"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Circus Combustus (51)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "52"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Halloween (52)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "53"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Bicolor Chase (53)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "54"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Tricolor Chase (54)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "55"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "ICU (55)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "56"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Custom 0 (56)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "57"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Custom 1 (57)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "58"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Custom 2 (58)"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "59"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Custom 3 (59)"
+                                                "color": "inactive",
+                                                "content": "aus"
                                             }
                                         }
                                     }
                                 }
                             ],
-                            "type": "integer"
+                            "type": "bool"
+                        },
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "DOWN",
+                            "peer": 25,
+                            "properties": {
+                                "visualizeInOverview": false,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_down_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "arrow_down_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 502000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502002
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 500000
+                                }
+                            ],
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
-                            "channel": -1,
-                            "name": "FUNCTION",
-                            "peer": 0,
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "UP",
+                            "peer": 25,
                             "properties": [],
-                            "type": "integer"
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 502001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 500000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000
+                                }
+                            ],
+                            "type": "bool",
+                            "value": true
+                        },
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STOP",
+                            "peer": 25,
+                            "properties": [],
+                            "type": "bool",
+                            "value": true
+                        },
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "DOWN",
+                            "peer": 25,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 502000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502002
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 500000
+                                }
+                            ],
+                            "type": "bool",
+                            "value": true
                         }
                     ]
                 },
@@ -1430,11 +1168,11 @@
                         "x": 0,
                         "y": 1
                     },
-                    "control": "lightingBrightness",
+                    "control": "shadingPosition",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "light_dim_1"
+                            "name": "blind_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1442,25 +1180,25 @@
                         }
                     },
                     "metadata": [],
-                    "role": 101000,
+                    "role": 501000,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Helligkeit"
+                            "content": "Position"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Helligkeit"
+                            "content": "Position"
                         }
                     },
-                    "uniqueUiElementId": "Base.lightingBrightness",
+                    "uniqueUiElementId": "Base.shadingPosition",
                     "variableInputs": [
                         {
                             "channel": 1,
                             "maximumValue": 100,
                             "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 94,
+                            "name": "LEVEL",
+                            "peer": 25,
                             "properties": {
                                 "maximum": 100,
                                 "maximumScaled": 100,
@@ -1474,11 +1212,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 502000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 101000
+                                    "id": 502004
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 500000
                                 }
                             ],
                             "type": "integer"
@@ -1489,17 +1231,21 @@
                             "channel": 1,
                             "maximumValue": 100,
                             "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 94,
+                            "name": "LEVEL",
+                            "peer": 25,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 502000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 101000
+                                    "id": 502004
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 500000
                                 }
                             ],
                             "type": "integer"
@@ -1513,11 +1259,11 @@
                         "x": 0,
                         "y": 1
                     },
-                    "control": "lightingSpeed",
+                    "control": "shadingWindalarm",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "light_dim_1"
+                            "name": "windhose_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -1525,86 +1271,26 @@
                         }
                     },
                     "metadata": [],
-                    "role": 101000,
+                    "role": 400000,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Speed"
+                            "content": "Windalarm"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Speed"
+                            "content": "Alarm"
                         }
                     },
-                    "uniqueUiElementId": "Base.lightingSpeed",
+                    "uniqueUiElementId": "Base.shadingWindalarm",
                     "variableInputs": [
                         {
                             "channel": -1,
-                            "name": "SPEED",
-                            "peer": 0,
-                            "properties": {
-                                "maximum": 255,
-                                "maximumScaled": 255,
-                                "minimum": 0,
-                                "minimumScaled": 0,
-                                "visualizeInOverview": true,
-                                "value": 115
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": -1,
-                            "name": "SPEED",
-                            "peer": 0,
-                            "properties": [],
-                            "type": "integer"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "lightingColor",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "statusColor": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Farbe"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Farbe"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingColor",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "COLOR",
+                            "name": "WINDALARM",
                             "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": "#a8ff52"
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -1616,13 +1302,13 @@
                                         "icons": {
                                             "state": {
                                                 "color": "active",
-                                                "name": "light_on_1"
+                                                "name": "windhose_1"
                                             }
                                         },
                                         "texts": {
                                             "state": {
-                                                "color": "active",
-                                                "content": "on"
+                                                "color": "aktiv",
+                                                "content": "an"
                                             }
                                         }
                                     }
@@ -1636,33 +1322,33 @@
                                         "icons": {
                                             "state": {
                                                 "color": "inactive",
-                                                "name": "light_on_1"
+                                                "name": "windhose_1"
                                             }
                                         },
                                         "texts": {
                                             "state": {
-                                                "color": "inactive",
-                                                "content": "off"
+                                                "color": "inaktiv",
+                                                "content": "aus"
                                             }
                                         }
                                     }
                                 }
                             ],
-                            "type": "string"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": -1,
-                            "name": "COLOR",
+                            "name": "WINDALARM",
                             "peer": 0,
                             "properties": [],
-                            "type": "string"
+                            "type": "bool"
                         }
                     ]
                 }
             ],
-            "databaseId": 57,
+            "databaseId": 29,
             "dynamicMetadata": [],
             "grid": {
                 "columns": 1,
@@ -1671,21 +1357,61 @@
                 "width": 3
             },
             "icons": {
+                "awning_1": {
+                    "color": "icon",
+                    "name": "awning_1"
+                },
                 "l2": {
                     "color": "icon",
-                    "name": "light_dim_1"
+                    "name": "awning_1"
                 },
                 "l3": {
                     "color": "iconArrow",
                     "name": "arrow_right_1"
-                },
-                "light_dim_1": {
-                    "color": "icon",
-                    "name": "light_dim_1"
                 }
             },
-            "label": "Farblicht",
+            "label": "Markise Wohnen",
             "metadata": {
+                "event_hooks": [
+                    {
+                        "condition": {
+                            "operator": "e",
+                            "value": true
+                        },
+                        "disable": [
+                            true,
+                            true
+                        ],
+                        "icon": "warning_1",
+                        "trigger": [
+                            "0",
+                            "-1",
+                            "WINDALARM"
+                        ],
+                        "texts": {
+                            "title": "Windalarm"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "operator": "e",
+                            "value": true
+                        },
+                        "disable": [
+                            true,
+                            true
+                        ],
+                        "icon": "warning_1",
+                        "trigger": [
+                            "0",
+                            "-1",
+                            "RAINALARM"
+                        ],
+                        "texts": {
+                            "title": "Regenalarm"
+                        }
+                    }
+                ],
                 "l2_action": {
                     "control": [
                         0
@@ -1695,615 +1421,33 @@
                     ]
                 }
             },
-            "role": 100001,
-            "room": 9,
+            "role": 502000,
+            "room": 7,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Lighting"
+                    "content": "Beschattung"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Lighting"
+                    "content": "Beschattung"
                 }
             },
-            "uniqueUiElementId": "Base.lightingSwitchFunctionBrightnessSpeedColor",
+            "uniqueUiElementId": "Base.shadingAwningButtonsPositionWindalarm",
             "floors": [
-                1
+                3
             ],
             "rooms": [
-                9
-            ]
-        },
-        "29": {
-            "categories": [],
-            "clickCount": 28,
-            "databaseId": 29,
-            "dynamicMetadata": [],
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "switches_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                }
-            },
-            "label": "Media",
-            "metadata": {
-                "l2_action": {
-                    "control": [
-                        0
-                    ],
-                    "input": [
-                        0
-                    ]
-                },
-                "l3_force": true
-            },
-            "role": 0,
-            "room": 12,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "State"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Trigger"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "mediaButtons",
-                    "uniqueUiElementId": "Base.mediaButtons",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "UP",
-                            "peer": 24,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_left_step_2"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "arrow_left_step_2"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501001
-                                }
-                            ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STOP",
-                            "peer": 24,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "speaker_3"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "speaker_3"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "play_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "play_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "stop_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "stop_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "speaker_4"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "speaker_4"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_right_step_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "arrow_right_step_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "UP",
-                            "peer": 24,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501001
-                                }
-                            ],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STOP",
-                            "peer": 24,
-                            "properties": [],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 24,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
-                                }
-                            ],
-                            "type": "bool",
-                            "value": true
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                12
+                7
             ]
         },
         "1": {
             "categories": [],
-            "clickCount": 17,
+            "clickCount": 19,
             "databaseId": 1,
             "dynamicMetadata": {
                 "favorites": {
-                    "state": false
+                    "state": true
                 }
             },
             "icons": {
@@ -2392,11 +1536,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -2411,11 +1555,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -2432,7 +1576,7 @@
         },
         "2": {
             "categories": [],
-            "clickCount": 9,
+            "clickCount": 10,
             "databaseId": 2,
             "dynamicMetadata": {
                 "favorites": {
@@ -2480,7 +1624,7 @@
                             "peer": 1,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -2527,11 +1671,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -2548,11 +1692,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -2565,11 +1709,7 @@
             "categories": [],
             "clickCount": 9,
             "databaseId": 11,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": false
-                }
-            },
+            "dynamicMetadata": [],
             "icons": {
                 "l2": {
                     "color": "inactive",
@@ -2658,11 +1798,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -2679,11 +1819,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -2700,7 +1840,7 @@
         },
         "28": {
             "categories": [],
-            "clickCount": 6,
+            "clickCount": 8,
             "controls": [
                 {
                     "cell": {
@@ -2742,7 +1882,7 @@
                             "peer": 23,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -2793,11 +1933,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -2810,7 +1950,7 @@
                             "peer": 23,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -2864,7 +2004,7 @@
                             "peer": 23,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -2911,15 +2051,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -2940,11 +2080,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -2970,15 +2110,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -3031,10 +2171,14 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 40
                             },
                             "rendering": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 501000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 501004
@@ -3042,10 +2186,6 @@
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -3062,15 +2202,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -3226,11 +2366,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -3297,7 +2437,7 @@
                             "peer": 18,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -3344,15 +2484,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -3373,11 +2513,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -3403,15 +2543,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -3510,11 +2650,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -3578,11 +2718,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 501001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -3595,7 +2735,7 @@
                             "peer": 18,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -3642,15 +2782,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -3663,7 +2803,7 @@
                             "peer": 18,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -3710,15 +2850,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -3739,11 +2879,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -3763,11 +2903,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -3783,15 +2923,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -3807,15 +2947,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -3914,11 +3054,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -3931,7 +3071,7 @@
                             "peer": 18,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -3978,15 +3118,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -4007,11 +3147,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -4027,15 +3167,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -4088,10 +3228,14 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 30
                             },
                             "rendering": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 501000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 501004
@@ -4099,10 +3243,6 @@
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -4119,15 +3259,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -4179,10 +3319,14 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 30
                             },
                             "rendering": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 501000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 501004
@@ -4190,10 +3334,6 @@
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -4210,15 +3350,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -4500,7 +3640,7 @@
             "databaseId": 5,
             "dynamicMetadata": {
                 "favorites": {
-                    "state": false
+                    "state": true
                 }
             },
             "icons": {
@@ -4591,11 +3731,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -4612,11 +3752,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -4637,7 +3777,7 @@
             "databaseId": 4,
             "dynamicMetadata": {
                 "favorites": {
-                    "state": false
+                    "state": true
                 }
             },
             "icons": {
@@ -4728,11 +3868,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -4749,11 +3889,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -4813,7 +3953,7 @@
                             "maximumValue": 100,
                             "minimumValue": -273.19999980900002,
                             "name": "TEMPERATURE",
-                            "peer": 78,
+                            "peer": 79,
                             "properties": {
                                 "maximum": 100,
                                 "minimum": -273.150000095,
@@ -4829,11 +3969,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000
+                                    "id": 201001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201001
+                                    "id": 200000
                                 }
                             ],
                             "type": "float"
@@ -4878,7 +4018,7 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 78,
+                            "peer": 79,
                             "properties": {
                                 "maximum": 25,
                                 "maximumScaled": 25,
@@ -4892,15 +4032,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 200000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -4912,9 +4052,13 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 78,
+                            "peer": 79,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201002
+                                },
                                 {
                                     "direction": 2,
                                     "id": 200000
@@ -4922,10 +4066,6 @@
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -4969,7 +4109,7 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 78,
+                            "peer": 79,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": 0
@@ -5039,15 +4179,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 201003
                                 },
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -5059,9 +4199,13 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 78,
+                            "peer": 79,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 201003
@@ -5069,10 +4213,6 @@
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -5086,44 +4226,60 @@
                         "x": 0,
                         "y": 1
                     },
-                    "control": "windowHandle",
+                    "control": "heatingWindow",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "window_1"
+                            "name": "warning_1"
                         },
                         "l3": {
                             "color": "iconArrow",
                             "name": "arrow_right_1"
                         }
                     },
-                    "metadata": {
-                        "l2_only": true
-                    },
-                    "role": 301002,
+                    "metadata": [],
+                    "role": 201000,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Status"
+                            "content": "Fenster"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Status"
+                            "content": "Alarm"
                         }
                     },
-                    "uniqueUiElementId": "Base.windowHandle",
+                    "uniqueUiElementId": "Base.heatingWindow",
                     "variableInputs": [
                         {
-                            "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
-                            "name": "STATE",
-                            "peer": 60,
+                            "channel": -1,
+                            "name": "WINDOWALARM",
+                            "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": false
                             },
                             "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "warning_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "aktiv",
+                                                "content": "ge\u00f6ffnet"
+                                            }
+                                        }
+                                    }
+                                },
                                 {
                                     "condition": {
                                         "operator": "e",
@@ -5133,134 +4289,34 @@
                                         "icons": {
                                             "state": {
                                                 "color": "inactive",
-                                                "name": "window_1"
+                                                "name": "warning_1"
                                             }
                                         },
                                         "texts": {
                                             "state": {
-                                                "color": "inactive",
+                                                "color": "inaktiv",
                                                 "content": "geschlossen"
                                             }
                                         }
                                     }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "1"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "window_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "offen"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "2"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "window_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "gekippt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "g",
-                                        "value": "2"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "window_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "undefined"
-                                            }
-                                        }
-                                    }
                                 }
                             ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 300000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
-                                    "invert": true
-                                }
-                            ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
-                            "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
-                            "name": "STATE",
-                            "peer": 60,
+                            "channel": -1,
+                            "name": "WINDOWALARM",
+                            "peer": 0,
                             "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 300000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
-                                    "invert": true
-                                }
-                            ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ]
                 }
             ],
             "databaseId": 32,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": false
-                }
-            },
+            "dynamicMetadata": [],
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -5270,7 +4326,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "heater_1"
+                    "name": "thermometer_1"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -5278,32 +4334,12 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "heater_1"
+                    "name": "thermometer_1"
                 }
             },
             "label": "Heizung",
             "metadata": {
                 "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "g",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "2": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "60",
-                            "1",
-                            "STATE"
-                        ],
-                        "texts": {
-                            "title": "Fenster offen"
-                        }
-                    },
                     {
                         "condition": {
                             "operator": "e",
@@ -5315,12 +4351,32 @@
                         },
                         "icon": "warning_1",
                         "trigger": [
-                            "78",
+                            "79",
                             "1",
                             "CONTROL_MODE"
                         ],
                         "texts": {
                             "title": "Frostschutz"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "operator": "e",
+                            "value": true
+                        },
+                        "disable": {
+                            "1": true,
+                            "2": true,
+                            "__dummy__": false
+                        },
+                        "icon": "warning_1",
+                        "trigger": [
+                            "0",
+                            "-1",
+                            "WINDOWALARM"
+                        ],
+                        "texts": {
+                            "title": "Fenster offen"
                         }
                     }
                 ],
@@ -5334,7 +4390,7 @@
                 }
             },
             "role": 201000,
-            "room": 3,
+            "room": 6,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
@@ -5345,12 +4401,12 @@
                     "content": "Heizung"
                 }
             },
-            "uniqueUiElementId": "Base.heatingIsStateSliderModeWindowHandle",
+            "uniqueUiElementId": "Base.heatingIsStateSliderModeWindow",
             "floors": [
-                3
+                2
             ],
             "rooms": [
-                3
+                6
             ]
         },
         "26": {
@@ -5448,11 +4504,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -5519,7 +4575,7 @@
                             "peer": 21,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -5566,15 +4622,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -5595,11 +4651,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -5625,15 +4681,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -5686,10 +4742,14 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 30
                             },
                             "rendering": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 501000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 501004
@@ -5697,10 +4757,6 @@
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -5717,15 +4773,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -5924,11 +4980,7 @@
                 }
             ],
             "databaseId": 26,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": true
-                }
-            },
+            "dynamicMetadata": [],
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -6002,7 +5054,7 @@
                 9
             ]
         },
-        "51": {
+        "52": {
             "categories": [],
             "clickCount": 3,
             "controls": [
@@ -6045,7 +5097,7 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "STATE",
-                            "peer": 92,
+                            "peer": 94,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": false
@@ -6095,11 +5147,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -6111,16 +5163,135 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "STATE",
-                            "peer": 92,
+                            "peer": 94,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingButton",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Button"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingButton",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 94,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Gedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "Ungedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
                                     "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 94,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -6164,7 +5335,7 @@
                             "maximumValue": 100,
                             "minimumValue": 0,
                             "name": "LEVEL_FAST",
-                            "peer": 92,
+                            "peer": 94,
                             "properties": {
                                 "maximum": 100,
                                 "maximumScaled": 100,
@@ -6178,11 +5349,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 101000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 101000
+                                    "id": 100000
                                 }
                             ],
                             "type": "integer"
@@ -6194,29 +5365,122 @@
                             "maximumValue": 100,
                             "minimumValue": 0,
                             "name": "LEVEL_FAST",
-                            "peer": 92,
+                            "peer": 94,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 101000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 101000
+                                    "id": 100000
                                 }
                             ],
                             "type": "integer"
                         }
                     ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingColor",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "statusColor": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Farbe"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Farbe"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingColor",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "COLOR",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": "#00ddff"
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "string"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": -1,
+                            "name": "COLOR",
+                            "peer": 0,
+                            "properties": [],
+                            "type": "string"
+                        }
+                    ]
                 }
             ],
-            "databaseId": 51,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": true
-                }
-            },
+            "databaseId": 52,
+            "dynamicMetadata": [],
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -6237,7 +5501,7 @@
                     "name": "light_dim_1"
                 }
             },
-            "label": "Dimmlicht",
+            "label": "Farblicht",
             "metadata": {
                 "l2_action": {
                     "control": [
@@ -6249,23 +5513,404 @@
                 }
             },
             "role": 100001,
-            "room": 12,
+            "room": 9,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Status"
+                    "content": "Beleuchtung"
                 },
                 "title": {
                     "color": "title",
                     "content": "Beleuchtung"
                 }
             },
-            "uniqueUiElementId": "Base.lightingSwitchBrightness",
+            "uniqueUiElementId": "Base.lightingSwitchButtonBrightnessColor",
             "floors": [
                 1
             ],
             "rooms": [
-                12
+                9
+            ]
+        },
+        "51": {
+            "categories": [],
+            "clickCount": 3,
+            "controls": [
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingSwitch",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l2_only": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Schalter"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 93,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 93,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingButton",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Button"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingButton",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 93,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Gedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "Ungedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 93,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingBrightness",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_dim_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 101000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Helligkeit"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Helligkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingBrightness",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 93,
+                            "properties": {
+                                "maximum": 100,
+                                "maximumScaled": 100,
+                                "minimum": 0,
+                                "minimumScaled": 0,
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 93,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ]
+                }
+            ],
+            "databaseId": 51,
+            "dynamicMetadata": [],
+            "grid": {
+                "columns": 1,
+                "height": 3,
+                "rows": 3,
+                "width": 3
+            },
+            "icons": {
+                "l2": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "light_dim_1": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                }
+            },
+            "label": "Dimmlicht Push",
+            "metadata": {
+                "l2_action": {
+                    "control": [
+                        0
+                    ],
+                    "input": [
+                        0
+                    ]
+                }
+            },
+            "role": 100001,
+            "room": 9,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Beleuchtung"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Beleuchtung"
+                }
+            },
+            "uniqueUiElementId": "Base.lightingSwitchButtonBrightness",
+            "floors": [
+                1
+            ],
+            "rooms": [
+                9
             ]
         },
         "34": {
@@ -6313,7 +5958,7 @@
                             "maximumValue": 100,
                             "minimumValue": -273.19999980900002,
                             "name": "TEMPERATURE",
-                            "peer": 80,
+                            "peer": 81,
                             "properties": {
                                 "maximum": 100,
                                 "minimum": -273.150000095,
@@ -6329,11 +5974,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000
+                                    "id": 201001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201001
+                                    "id": 200000
                                 }
                             ],
                             "type": "float"
@@ -6378,7 +6023,7 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 80,
+                            "peer": 81,
                             "properties": {
                                 "maximum": 25,
                                 "maximumScaled": 25,
@@ -6392,15 +6037,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 200000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -6412,9 +6057,13 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 80,
+                            "peer": 81,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201002
+                                },
                                 {
                                     "direction": 2,
                                     "id": 200000
@@ -6422,10 +6071,6 @@
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -6469,7 +6114,7 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 80,
+                            "peer": 81,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": 0
@@ -6539,15 +6184,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 201003
                                 },
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -6559,9 +6204,13 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 80,
+                            "peer": 81,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 201003
@@ -6569,10 +6218,6 @@
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -6616,7 +6261,7 @@
                         },
                         "icon": "warning_1",
                         "trigger": [
-                            "80",
+                            "81",
                             "1",
                             "CONTROL_MODE"
                         ],
@@ -6635,7 +6280,7 @@
                 }
             },
             "role": 201000,
-            "room": 2,
+            "room": 9,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
@@ -6651,7 +6296,7 @@
                 1
             ],
             "rooms": [
-                2
+                9
             ]
         },
         "27": {
@@ -6749,11 +6394,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -6820,7 +6465,7 @@
                             "peer": 22,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -6867,15 +6512,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool"
@@ -6896,11 +6541,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 501001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501001
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -6926,15 +6571,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 501000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501002
                                 }
                             ],
                             "type": "bool",
@@ -6987,10 +6632,14 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 30
                             },
                             "rendering": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 501000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 501004
@@ -6998,10 +6647,6 @@
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -7018,15 +6663,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -7130,11 +6775,7 @@
                 }
             ],
             "databaseId": 27,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": true
-                }
-            },
+            "dynamicMetadata": [],
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -7207,387 +6848,6 @@
                 9
             ]
         },
-        "52": {
-            "categories": [],
-            "clickCount": 2,
-            "controls": [
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "lightingSwitch",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "l2_only": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Status"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Schalter"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 93,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 93,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "lightingButton",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Status"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Button"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingButton",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 93,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Gedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "Ungedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 93,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "lightingBrightness",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_dim_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 101000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Helligkeit"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Helligkeit"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingBrightness",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 93,
-                            "properties": {
-                                "maximum": 100,
-                                "maximumScaled": 100,
-                                "minimum": 0,
-                                "minimumScaled": 0,
-                                "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 101000
-                                }
-                            ],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 93,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 101000
-                                }
-                            ],
-                            "type": "integer"
-                        }
-                    ]
-                }
-            ],
-            "databaseId": 52,
-            "dynamicMetadata": [],
-            "grid": {
-                "columns": 1,
-                "height": 3,
-                "rows": 3,
-                "width": 3
-            },
-            "icons": {
-                "l2": {
-                    "color": "icon",
-                    "name": "light_dim_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                },
-                "light_dim_1": {
-                    "color": "icon",
-                    "name": "light_dim_1"
-                }
-            },
-            "label": "Dimmlicht Push",
-            "metadata": {
-                "l2_action": {
-                    "control": [
-                        0
-                    ],
-                    "input": [
-                        0
-                    ]
-                }
-            },
-            "role": 100001,
-            "room": 9,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Beleuchtung"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Beleuchtung"
-                }
-            },
-            "uniqueUiElementId": "Base.lightingSwitchButtonBrightness",
-            "floors": [
-                1
-            ],
-            "rooms": [
-                9
-            ]
-        },
         "35": {
             "categories": [],
             "clickCount": 2,
@@ -7633,7 +6893,7 @@
                             "maximumValue": 100,
                             "minimumValue": -273.19999980900002,
                             "name": "TEMPERATURE",
-                            "peer": 81,
+                            "peer": 82,
                             "properties": {
                                 "maximum": 100,
                                 "minimum": -273.150000095,
@@ -7649,11 +6909,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000
+                                    "id": 201001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201001
+                                    "id": 200000
                                 }
                             ],
                             "type": "float"
@@ -7698,7 +6958,7 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 81,
+                            "peer": 82,
                             "properties": {
                                 "maximum": 25,
                                 "maximumScaled": 25,
@@ -7712,15 +6972,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 200000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -7732,9 +6992,13 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 81,
+                            "peer": 82,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201002
+                                },
                                 {
                                     "direction": 2,
                                     "id": 200000
@@ -7742,10 +7006,6 @@
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -7789,7 +7049,7 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 81,
+                            "peer": 82,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": 0
@@ -7859,15 +7119,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 201003
                                 },
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -7879,9 +7139,13 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 81,
+                            "peer": 82,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 201003
@@ -7889,10 +7153,135 @@
                                 {
                                     "direction": 2,
                                     "id": 200000
+                                }
+                            ],
+                            "type": "enum"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "windowContact",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "window_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l2_only": true
+                    },
+                    "role": 301002,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Status"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.windowContact",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 2,
+                            "minimumValue": 0,
+                            "name": "STATE",
+                            "peer": 87,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "window_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "offen"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "window_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "geschlossen"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 301002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000
+                                    "id": 300000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 301000
+                                }
+                            ],
+                            "type": "enum"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 2,
+                            "minimumValue": 0,
+                            "name": "STATE",
+                            "peer": 87,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 301002
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 300000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 301000
                                 }
                             ],
                             "type": "enum"
@@ -7901,11 +7290,7 @@
                 }
             ],
             "databaseId": 35,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": false
-                }
-            },
+            "dynamicMetadata": [],
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -7915,7 +7300,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "thermometer_1"
+                    "name": "heater_1"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -7923,7 +7308,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "thermometer_1"
+                    "name": "heater_1"
                 }
             },
             "label": "Heizung",
@@ -7940,12 +7325,32 @@
                         },
                         "icon": "warning_1",
                         "trigger": [
-                            "81",
+                            "82",
                             "1",
                             "CONTROL_MODE"
                         ],
                         "texts": {
                             "title": "Frostschutz"
+                        }
+                    },
+                    {
+                        "condition": {
+                            "operator": "e",
+                            "value": 0
+                        },
+                        "disable": {
+                            "1": true,
+                            "2": true,
+                            "__dummy__": false
+                        },
+                        "icon": "warning_1",
+                        "trigger": [
+                            "87",
+                            "1",
+                            "STATE"
+                        ],
+                        "texts": {
+                            "title": "Fenster offen"
                         }
                     }
                 ],
@@ -7959,7 +7364,7 @@
                 }
             },
             "role": 201000,
-            "room": 9,
+            "room": 12,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
@@ -7970,12 +7375,12 @@
                     "content": "Heizung"
                 }
             },
-            "uniqueUiElementId": "Base.heatingIsStateSliderMode",
+            "uniqueUiElementId": "Base.heatingIsStateSliderModeWindowContact",
             "floors": [
                 1
             ],
             "rooms": [
-                9
+                12
             ]
         },
         "21": {
@@ -8240,15 +7645,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -8265,15 +7670,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -8331,15 +7736,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -8356,15 +7761,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 501000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 501004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 501000
                                 }
                             ],
                             "type": "integer"
@@ -8375,7 +7780,7 @@
             "databaseId": 21,
             "dynamicMetadata": {
                 "favorites": {
-                    "state": false
+                    "state": true
                 }
             },
             "grid": {
@@ -8427,6 +7832,139 @@
             ],
             "rooms": [
                 6
+            ]
+        },
+        "10": {
+            "categories": [],
+            "clickCount": 2,
+            "databaseId": 10,
+            "dynamicMetadata": [],
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "socket_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                }
+            },
+            "label": "Steckdose",
+            "metadata": {
+                "l2_only": true
+            },
+            "role": 400001,
+            "room": 12,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Status"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Button"
+                }
+            },
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "socketButton",
+                    "uniqueUiElementId": "Base.socketButton",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 9,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "play_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "gedr\u00fcckt"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "play_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "losgelassen"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 400001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 400000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 9,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 400001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 400000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                }
+            ],
+            "floors": [
+                1
+            ],
+            "rooms": [
+                12
             ]
         },
         "8": {
@@ -8522,11 +8060,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -8543,11 +8081,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -8655,11 +8193,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -8676,11 +8214,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -8699,11 +8237,7 @@
             "categories": [],
             "clickCount": 1,
             "databaseId": 6,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": true
-                }
-            },
+            "dynamicMetadata": [],
             "icons": {
                 "l2": {
                     "color": "inactive",
@@ -8792,11 +8326,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -8813,11 +8347,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -8832,59 +8366,75 @@
                 9
             ]
         },
-        "50": {
+        "53": {
             "categories": [],
             "clickCount": 1,
-            "databaseId": 50,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": true
-                }
-            },
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "ventilator_2"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                }
-            },
-            "label": "Ventilation",
-            "metadata": {
-                "l3_force": true
-            },
-            "role": 201000,
-            "room": 8,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Stufe"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Bel\u00fcftung"
-                }
-            },
-            "grid": null,
             "controls": [
                 {
-                    "cell": null,
-                    "control": "ventilationMode",
-                    "uniqueUiElementId": "Base.ventilationMode",
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingSwitch",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l2_only": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Schalter"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 4,
-                            "minimumValue": 1,
-                            "name": "LEVEL",
-                            "peer": 86,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 94,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 1
+                                "value": false
                             },
                             "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
                                 {
                                     "condition": {
                                         "operator": "e",
@@ -8893,77 +8443,110 @@
                                     "definitions": {
                                         "icons": {
                                             "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
+                                                "color": "inactive",
+                                                "name": "light_on_1"
                                             }
                                         },
                                         "texts": {
                                             "state": {
-                                                "color": "active",
-                                                "content": "Stufe 1"
+                                                "color": "inactive",
+                                                "content": "aus"
                                             }
                                         }
                                     }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
                                 },
                                 {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "1"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Stufe 2"
-                                            }
-                                        }
-                                    }
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 94,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
                                 },
                                 {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "2"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Stufe 3"
-                                            }
-                                        }
-                                    }
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingBrightness",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_dim_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 101000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Helligkeit"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Helligkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingBrightness",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 94,
+                            "properties": {
+                                "maximum": 100,
+                                "maximumScaled": 100,
+                                "minimum": 0,
+                                "minimumScaled": 0,
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
                                 },
                                 {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "3"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Stufe 4"
-                                            }
-                                        }
-                                    }
+                                    "direction": 2,
+                                    "id": 100000
                                 }
                             ],
                             "type": "integer"
@@ -8972,21 +8555,440 @@
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 4,
-                            "minimumValue": 1,
-                            "name": "LEVEL",
-                            "peer": 86,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 94,
                             "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingColor",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "statusColor": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Farbe"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Farbe"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingColor",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "COLOR",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": "#00ddff"
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "string"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": -1,
+                            "name": "COLOR",
+                            "peer": 0,
+                            "properties": [],
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "databaseId": 53,
+            "dynamicMetadata": [],
+            "grid": {
+                "columns": 1,
+                "height": 3,
+                "rows": 3,
+                "width": 3
+            },
+            "icons": {
+                "l2": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "light_dim_1": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                }
+            },
+            "label": "Farblicht",
+            "metadata": {
+                "l2_action": {
+                    "control": [
+                        0
+                    ],
+                    "input": [
+                        0
+                    ]
+                }
+            },
+            "role": 100001,
+            "room": 9,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Beleuchtung"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Beleuchtung"
+                }
+            },
+            "uniqueUiElementId": "Base.lightingSwitchBrightnessColor",
+            "floors": [
+                1
+            ],
+            "rooms": [
+                9
+            ]
+        },
+        "50": {
+            "categories": [],
+            "clickCount": 1,
+            "controls": [
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingSwitch",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l2_only": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Schalter"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 92,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 92,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingBrightness",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_dim_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 101000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Helligkeit"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Helligkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingBrightness",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 92,
+                            "properties": {
+                                "maximum": 100,
+                                "maximumScaled": 100,
+                                "minimum": 0,
+                                "minimumScaled": 0,
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 92,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
                             "type": "integer"
                         }
                     ]
                 }
             ],
+            "databaseId": 50,
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
+            "grid": {
+                "columns": 1,
+                "height": 3,
+                "rows": 3,
+                "width": 3
+            },
+            "icons": {
+                "l2": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "light_dim_1": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                }
+            },
+            "label": "Dimmlicht",
+            "metadata": {
+                "l2_action": {
+                    "control": [
+                        0
+                    ],
+                    "input": [
+                        0
+                    ]
+                }
+            },
+            "role": 100001,
+            "room": 12,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Status"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Beleuchtung"
+                }
+            },
+            "uniqueUiElementId": "Base.lightingSwitchBrightness",
             "floors": [
-                4
+                1
             ],
             "rooms": [
-                8
+                12
             ]
         },
         "30": {
@@ -9030,7 +9032,7 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "UP",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": {
                                 "visualizeInOverview": false,
                                 "value": false
@@ -9080,15 +9082,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 502001
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 500000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 502000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 502001
                                 }
                             ],
                             "type": "bool"
@@ -9098,7 +9100,7 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "STOP",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": {
                                 "visualizeInOverview": false,
                                 "value": false
@@ -9152,7 +9154,7 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "DOWN",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": {
                                 "visualizeInOverview": false,
                                 "value": false
@@ -9206,11 +9208,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 502002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502002
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool"
@@ -9222,9 +9224,13 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "UP",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 502001
+                                },
                                 {
                                     "direction": 2,
                                     "id": 500000
@@ -9232,10 +9238,6 @@
                                 {
                                     "direction": 2,
                                     "id": 502000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 502001
                                 }
                             ],
                             "type": "bool",
@@ -9246,7 +9248,7 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "STOP",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": [],
                             "type": "bool",
                             "value": true
@@ -9256,7 +9258,7 @@
                             "maximumValue": true,
                             "minimumValue": false,
                             "name": "DOWN",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": [],
                             "roles": [
                                 {
@@ -9265,11 +9267,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 502002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502002
+                                    "id": 500000
                                 }
                             ],
                             "type": "bool",
@@ -9314,7 +9316,7 @@
                             "maximumValue": 100,
                             "minimumValue": 0,
                             "name": "LEVEL",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": {
                                 "maximum": 100,
                                 "maximumScaled": 100,
@@ -9328,15 +9330,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 502000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 502004
                                 },
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 502000
                                 }
                             ],
                             "type": "integer"
@@ -9348,9 +9350,13 @@
                             "maximumValue": 100,
                             "minimumValue": 0,
                             "name": "LEVEL",
-                            "peer": 25,
+                            "peer": 26,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 502000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 502004
@@ -9358,108 +9364,9 @@
                                 {
                                     "direction": 2,
                                     "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 502000
                                 }
                             ],
                             "type": "integer"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "shadingWindalarm",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "windhose_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 400000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Windalarm"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Alarm"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.shadingWindalarm",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "WINDALARM",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "windhose_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "aktiv",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "windhose_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inaktiv",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": -1,
-                            "name": "WINDALARM",
-                            "peer": 0,
-                            "properties": [],
-                            "type": "bool"
                         }
                     ]
                 }
@@ -9486,7 +9393,7 @@
                     "name": "arrow_right_1"
                 }
             },
-            "label": "Markise Wohnen",
+            "label": "Markise Essen",
             "metadata": {
                 "event_hooks": [
                     {
@@ -9549,7 +9456,7 @@
                     "content": "Beschattung"
                 }
             },
-            "uniqueUiElementId": "Base.shadingAwningButtonsPositionWindalarm",
+            "uniqueUiElementId": "Base.shadingAwningButtonsPosition",
             "floors": [
                 3
             ],
@@ -9648,11 +9555,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -9766,11 +9673,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -9787,11 +9694,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -9817,11 +9724,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -9880,11 +9787,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600004
+                                    "id": 600000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600004
                                 }
                             ],
                             "type": "integer"
@@ -9901,11 +9808,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600004
+                                    "id": 600000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600004
                                 }
                             ],
                             "type": "integer"
@@ -9914,7 +9821,11 @@
                 }
             ],
             "databaseId": 24,
-            "dynamicMetadata": [],
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -10059,11 +9970,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400000
+                                    "id": 400001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400001
+                                    "id": 400000
                                 }
                             ],
                             "type": "bool"
@@ -10080,11 +9991,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400000
+                                    "id": 400001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400001
+                                    "id": 400000
                                 }
                             ],
                             "type": "bool"
@@ -10192,11 +10103,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400000
+                                    "id": 400001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400001
+                                    "id": 400000
                                 }
                             ],
                             "type": "bool"
@@ -10213,11 +10124,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400000
+                                    "id": 400001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400001
+                                    "id": 400000
                                 }
                             ],
                             "type": "bool"
@@ -10325,11 +10236,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400000
+                                    "id": 400001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400001
+                                    "id": 400000
                                 }
                             ],
                             "type": "bool"
@@ -10346,11 +10257,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400000
+                                    "id": 400001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400001
+                                    "id": 400000
                                 }
                             ],
                             "type": "bool"
@@ -10363,139 +10274,6 @@
             ],
             "rooms": [
                 7
-            ]
-        },
-        "10": {
-            "categories": [],
-            "clickCount": 1,
-            "databaseId": 10,
-            "dynamicMetadata": [],
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "socket_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                }
-            },
-            "label": "Steckdose",
-            "metadata": {
-                "l2_only": true
-            },
-            "role": 400001,
-            "room": 12,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Button"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "socketButton",
-                    "uniqueUiElementId": "Base.socketButton",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 9,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "play_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "gedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "play_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "losgelassen"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 400000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 400001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 9,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 400000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 400001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
-            "floors": [
-                1
-            ],
-            "rooms": [
-                12
             ]
         },
         "36": {
@@ -10543,7 +10321,7 @@
                             "maximumValue": 100,
                             "minimumValue": -273.19999980900002,
                             "name": "TEMPERATURE",
-                            "peer": 82,
+                            "peer": 83,
                             "properties": {
                                 "maximum": 100,
                                 "minimum": -273.150000095,
@@ -10559,11 +10337,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000
+                                    "id": 201001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201001
+                                    "id": 200000
                                 }
                             ],
                             "type": "float"
@@ -10608,7 +10386,7 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 82,
+                            "peer": 83,
                             "properties": {
                                 "maximum": 25,
                                 "maximumScaled": 25,
@@ -10622,15 +10400,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 200000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -10642,9 +10420,13 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 82,
+                            "peer": 83,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201002
+                                },
                                 {
                                     "direction": 2,
                                     "id": 200000
@@ -10652,10 +10434,6 @@
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -10699,7 +10477,7 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 82,
+                            "peer": 83,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": 0
@@ -10769,15 +10547,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 201003
                                 },
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -10789,9 +10567,13 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 82,
+                            "peer": 83,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 201003
@@ -10799,139 +10581,6 @@
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
-                                }
-                            ],
-                            "type": "enum"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "windowContact",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "window_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "l2_only": true
-                    },
-                    "role": 301002,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Status"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Status"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.windowContact",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
-                            "name": "STATE",
-                            "peer": 87,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "window_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "offen"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "window_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "geschlossen"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 300000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002
-                                }
-                            ],
-                            "type": "enum"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
-                            "name": "STATE",
-                            "peer": 87,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 300000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002
                                 }
                             ],
                             "type": "enum"
@@ -10950,7 +10599,7 @@
             "icons": {
                 "l2": {
                     "color": "inactive",
-                    "name": "heater_1"
+                    "name": "thermometer_1"
                 },
                 "l3": {
                     "color": "iconArrow",
@@ -10958,7 +10607,7 @@
                 },
                 "temperature": {
                     "color": "inactive",
-                    "name": "heater_1"
+                    "name": "thermometer_1"
                 }
             },
             "label": "Heizung",
@@ -10975,32 +10624,12 @@
                         },
                         "icon": "warning_1",
                         "trigger": [
-                            "82",
+                            "83",
                             "1",
                             "CONTROL_MODE"
                         ],
                         "texts": {
                             "title": "Frostschutz"
-                        }
-                    },
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "2": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "87",
-                            "1",
-                            "STATE"
-                        ],
-                        "texts": {
-                            "title": "Fenster offen"
                         }
                     }
                 ],
@@ -11014,7 +10643,7 @@
                 }
             },
             "role": 201000,
-            "room": 12,
+            "room": 5,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
@@ -11025,12 +10654,12 @@
                     "content": "Heizung"
                 }
             },
-            "uniqueUiElementId": "Base.heatingIsStateSliderModeWindowContact",
+            "uniqueUiElementId": "Base.heatingIsStateSliderMode",
             "floors": [
-                1
+                2
             ],
             "rooms": [
-                12
+                5
             ]
         },
         "33": {
@@ -11078,7 +10707,7 @@
                             "maximumValue": 100,
                             "minimumValue": -273.19999980900002,
                             "name": "TEMPERATURE",
-                            "peer": 79,
+                            "peer": 80,
                             "properties": {
                                 "maximum": 100,
                                 "minimum": -273.150000095,
@@ -11094,11 +10723,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000
+                                    "id": 201001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201001
+                                    "id": 200000
                                 }
                             ],
                             "type": "float"
@@ -11143,7 +10772,7 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 79,
+                            "peer": 80,
                             "properties": {
                                 "maximum": 25,
                                 "maximumScaled": 25,
@@ -11157,15 +10786,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 200000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -11177,9 +10806,13 @@
                             "maximumValue": 25,
                             "minimumValue": 5,
                             "name": "SETPOINT_TEMPERATURE",
-                            "peer": 79,
+                            "peer": 80,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201002
+                                },
                                 {
                                     "direction": 2,
                                     "id": 200000
@@ -11187,10 +10820,6 @@
                                 {
                                     "direction": 2,
                                     "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
                                 }
                             ],
                             "type": "float"
@@ -11234,7 +10863,7 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 79,
+                            "peer": 80,
                             "properties": {
                                 "visualizeInOverview": true,
                                 "value": 0
@@ -11304,15 +10933,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 201000
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 201003
                                 },
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
@@ -11324,9 +10953,13 @@
                             "maximumValue": 2,
                             "minimumValue": 0,
                             "name": "CONTROL_MODE",
-                            "peer": 79,
+                            "peer": 80,
                             "properties": [],
                             "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201000
+                                },
                                 {
                                     "direction": 2,
                                     "id": 201003
@@ -11334,114 +10967,19 @@
                                 {
                                     "direction": 2,
                                     "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
                                 }
                             ],
                             "type": "enum"
                         }
                     ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "heatingWindow",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "warning_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 201000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Fenster"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Alarm"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.heatingWindow",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "WINDOWALARM",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "warning_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "aktiv",
-                                                "content": "ge\u00f6ffnet"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "warning_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inaktiv",
-                                                "content": "geschlossen"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": -1,
-                            "name": "WINDOWALARM",
-                            "peer": 0,
-                            "properties": [],
-                            "type": "bool"
-                        }
-                    ]
                 }
             ],
             "databaseId": 33,
-            "dynamicMetadata": [],
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -11476,32 +11014,12 @@
                         },
                         "icon": "warning_1",
                         "trigger": [
-                            "79",
+                            "80",
                             "1",
                             "CONTROL_MODE"
                         ],
                         "texts": {
                             "title": "Frostschutz"
-                        }
-                    },
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": {
-                            "1": true,
-                            "2": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDOWALARM"
-                        ],
-                        "texts": {
-                            "title": "Fenster offen"
                         }
                     }
                 ],
@@ -11515,7 +11033,7 @@
                 }
             },
             "role": 201000,
-            "room": 6,
+            "room": 2,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
@@ -11526,12 +11044,12 @@
                     "content": "Heizung"
                 }
             },
-            "uniqueUiElementId": "Base.heatingIsStateSliderModeWindow",
+            "uniqueUiElementId": "Base.heatingIsStateSliderMode",
             "floors": [
-                2
+                1
             ],
             "rooms": [
-                6
+                2
             ]
         },
         "31": {
@@ -11545,11 +11063,80 @@
                         "x": 0,
                         "y": 0
                     },
-                    "control": "shadingButtons",
+                    "control": "heatingIsState",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "blind_1"
+                            "name": "floor_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        },
+                        "temperature": {
+                            "color": "inactive",
+                            "name": "thermometer_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 201000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Ist"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Temperatur"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.heatingIsState",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": -273.19999980900002,
+                            "name": "TEMPERATURE",
+                            "peer": 78,
+                            "properties": {
+                                "maximum": 100,
+                                "minimum": -273.150000095,
+                                "unit": "\u00b0C",
+                                "visualizeInOverview": true,
+                                "value": 21
+                            },
+                            "rendering": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 201000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 201001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 200000
+                                }
+                            ],
+                            "type": "float"
+                        }
+                    ],
+                    "variableOutputs": []
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "heatingSlider",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "thermometer_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -11557,268 +11144,75 @@
                         }
                     },
                     "metadata": [],
-                    "role": 501000,
+                    "role": 201000,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Status"
+                            "content": "Soll"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Schalter"
+                            "content": "Soll-Temperatur"
                         }
                     },
-                    "uniqueUiElementId": "Base.shadingButtons",
+                    "uniqueUiElementId": "Base.heatingSlider",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "UP",
-                            "peer": 26,
+                            "maximumValue": 25,
+                            "minimumValue": 5,
+                            "name": "SETPOINT_TEMPERATURE",
+                            "peer": 78,
                             "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
+                                "maximum": 25,
+                                "maximumScaled": 25,
+                                "minimum": 5,
+                                "minimumScaled": 5,
+                                "unit": "\u00b0C",
+                                "visualizeInOverview": true,
+                                "value": 21
                             },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
+                            "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 201002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502000
+                                    "id": 200000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502001
+                                    "id": 201000
                                 }
                             ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STOP",
-                            "peer": 26,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "close_x_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "close_x_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "bool"
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 26,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_down_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "arrow_down_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 502000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 502002
-                                }
-                            ],
-                            "type": "bool"
+                            "type": "float"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "UP",
-                            "peer": 26,
+                            "maximumValue": 25,
+                            "minimumValue": 5,
+                            "name": "SETPOINT_TEMPERATURE",
+                            "peer": 78,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 201002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502000
+                                    "id": 200000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502001
+                                    "id": 201000
                                 }
                             ],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STOP",
-                            "peer": 26,
-                            "properties": [],
-                            "type": "bool",
-                            "value": true
-                        },
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "DOWN",
-                            "peer": 26,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 502000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 500000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 502002
-                                }
-                            ],
-                            "type": "bool",
-                            "value": true
+                            "type": "float"
                         }
                     ]
                 },
@@ -11829,11 +11223,11 @@
                         "x": 0,
                         "y": 1
                     },
-                    "control": "shadingPosition",
+                    "control": "heatingMode",
                     "icons": {
                         "l2": {
                             "color": "inactive",
-                            "name": "blind_1"
+                            "name": "thermometer_1"
                         },
                         "l3": {
                             "color": "iconArrow",
@@ -11841,81 +11235,316 @@
                         }
                     },
                     "metadata": [],
-                    "role": 501000,
+                    "role": 201000,
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Position"
+                            "content": "Modus"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Position"
+                            "content": "Betriebsmodus"
                         }
                     },
-                    "uniqueUiElementId": "Base.shadingPosition",
+                    "uniqueUiElementId": "Base.heatingMode",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
+                            "maximumValue": 2,
                             "minimumValue": 0,
-                            "name": "LEVEL",
-                            "peer": 26,
+                            "name": "CONTROL_MODE",
+                            "peer": 78,
                             "properties": {
-                                "maximum": 100,
-                                "maximumScaled": 100,
-                                "minimum": 0,
-                                "minimumScaled": 0,
-                                "unit": "%",
                                 "visualizeInOverview": true,
                                 "value": 0
                             },
-                            "rendering": [],
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Frostschutz"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "1"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Komfort"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "2"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Spar"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502004
+                                    "id": 201000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 201003
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502000
+                                    "id": 200000
                                 }
                             ],
-                            "type": "integer"
+                            "type": "enum"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
+                            "maximumValue": 2,
                             "minimumValue": 0,
-                            "name": "LEVEL",
-                            "peer": 26,
+                            "name": "CONTROL_MODE",
+                            "peer": 78,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502004
+                                    "id": 201000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000
+                                    "id": 201003
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502000
+                                    "id": 200000
                                 }
                             ],
-                            "type": "integer"
+                            "type": "enum"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "windowHandle",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "window_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l2_only": true
+                    },
+                    "role": 301002,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Status"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.windowHandle",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 2,
+                            "minimumValue": 0,
+                            "name": "STATE",
+                            "peer": 60,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "window_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "geschlossen"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "1"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "window_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "offen"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "2"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "window_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "gekippt"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "g",
+                                        "value": "2"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "window_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "undefined"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 300000,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 301000,
+                                    "invert": true
+                                }
+                            ],
+                            "type": "enum"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 2,
+                            "minimumValue": 0,
+                            "name": "STATE",
+                            "peer": 60,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 300000,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 301000,
+                                    "invert": true
+                                }
+                            ],
+                            "type": "enum"
                         }
                     ]
                 }
             ],
             "databaseId": 31,
-            "dynamicMetadata": [],
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -11923,58 +11552,59 @@
                 "width": 3
             },
             "icons": {
-                "awning_1": {
-                    "color": "icon",
-                    "name": "awning_1"
-                },
                 "l2": {
-                    "color": "icon",
-                    "name": "awning_1"
+                    "color": "inactive",
+                    "name": "heater_1"
                 },
                 "l3": {
                     "color": "iconArrow",
                     "name": "arrow_right_1"
+                },
+                "temperature": {
+                    "color": "inactive",
+                    "name": "heater_1"
                 }
             },
-            "label": "Markise Essen",
+            "label": "Heizung",
             "metadata": {
                 "event_hooks": [
                     {
                         "condition": {
-                            "operator": "e",
-                            "value": true
+                            "operator": "g",
+                            "value": 0
                         },
-                        "disable": [
-                            true,
-                            true
-                        ],
+                        "disable": {
+                            "1": true,
+                            "2": true,
+                            "__dummy__": false
+                        },
                         "icon": "warning_1",
                         "trigger": [
-                            "0",
-                            "-1",
-                            "WINDALARM"
+                            "60",
+                            "1",
+                            "STATE"
                         ],
                         "texts": {
-                            "title": "Windalarm"
+                            "title": "Fenster offen"
                         }
                     },
                     {
                         "condition": {
                             "operator": "e",
-                            "value": true
+                            "value": 0
                         },
-                        "disable": [
-                            true,
-                            true
-                        ],
+                        "disable": {
+                            "1": true,
+                            "__dummy__": false
+                        },
                         "icon": "warning_1",
                         "trigger": [
-                            "0",
-                            "-1",
-                            "RAINALARM"
+                            "78",
+                            "1",
+                            "CONTROL_MODE"
                         ],
                         "texts": {
-                            "title": "Regenalarm"
+                            "title": "Frostschutz"
                         }
                     }
                 ],
@@ -11987,24 +11617,24 @@
                     ]
                 }
             },
-            "role": 502000,
-            "room": 7,
+            "role": 201000,
+            "room": 3,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Beschattung"
+                    "content": "Status"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Beschattung"
+                    "content": "Heizung"
                 }
             },
-            "uniqueUiElementId": "Base.shadingAwningButtonsPosition",
+            "uniqueUiElementId": "Base.heatingIsStateSliderModeWindowHandle",
             "floors": [
                 3
             ],
             "rooms": [
-                7
+                3
             ]
         },
         "25": {
@@ -12098,11 +11728,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -12216,11 +11846,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -12237,11 +11867,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -12267,11 +11897,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -12330,11 +11960,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600004
+                                    "id": 600000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600004
                                 }
                             ],
                             "type": "integer"
@@ -12351,11 +11981,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600004
+                                    "id": 600000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600004
                                 }
                             ],
                             "type": "integer"
@@ -12459,7 +12089,11 @@
                 }
             ],
             "databaseId": 25,
-            "dynamicMetadata": [],
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
             "grid": {
                 "columns": 1,
                 "height": 3,
@@ -12625,11 +12259,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -12689,11 +12323,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -12710,11 +12344,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -12730,11 +12364,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -13024,11 +12658,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -13088,11 +12722,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool"
@@ -13109,11 +12743,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600001
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -13129,11 +12763,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600000
+                                    "id": 600002
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600002
+                                    "id": 600000
                                 }
                             ],
                             "type": "bool",
@@ -13242,11 +12876,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13263,11 +12897,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13299,11 +12933,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "State"
+                            "content": "Zeitschaltung"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Timer"
+                            "content": "Zeitschaltung"
                         }
                     },
                     "uniqueUiElementId": "Base.timer",
@@ -13315,7 +12949,7 @@
                             "name": "STATE",
                             "peer": 84,
                             "properties": {
-                                "visualizeInOverview": true,
+                                "visualizeInOverview": false,
                                 "value": false
                             },
                             "rendering": [
@@ -13363,11 +12997,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13384,11 +13018,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13434,11 +13068,11 @@
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Lighting"
+                    "content": "Beleuchtung"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Lighting"
+                    "content": "Beleuchtung"
                 }
             },
             "uniqueUiElementId": "Base.lightingSwitchTimer",
@@ -13495,7 +13129,7 @@
                             "peer": 2,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": false
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -13542,11 +13176,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13563,11 +13197,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13675,11 +13309,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13696,11 +13330,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13808,11 +13442,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13829,11 +13463,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13941,11 +13575,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -13962,11 +13596,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -14074,11 +13708,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -14095,11 +13729,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -14204,16 +13838,6 @@
                                     }
                                 }
                             ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
                             "type": "bool"
                         }
                     ],
@@ -14225,16 +13849,6 @@
                             "name": "STATE",
                             "peer": 15,
                             "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
                             "type": "bool"
                         }
                     ]
@@ -14250,396 +13864,10 @@
         "37": {
             "categories": [],
             "clickCount": 0,
-            "controls": [
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "heatingIsState",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "floor_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "temperature": {
-                            "color": "inactive",
-                            "name": "thermometer_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 201000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Ist"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Temperatur"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.heatingIsState",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": -273.19999980900002,
-                            "name": "TEMPERATURE",
-                            "peer": 83,
-                            "properties": {
-                                "maximum": 100,
-                                "minimum": -273.150000095,
-                                "unit": "\u00b0C",
-                                "visualizeInOverview": true,
-                                "value": 21
-                            },
-                            "rendering": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201001
-                                }
-                            ],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "heatingSlider",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "thermometer_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 201000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Soll"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Soll-Temperatur"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.heatingSlider",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 25,
-                            "minimumValue": 5,
-                            "name": "SETPOINT_TEMPERATURE",
-                            "peer": 83,
-                            "properties": {
-                                "maximum": 25,
-                                "maximumScaled": 25,
-                                "minimum": 5,
-                                "minimumScaled": 5,
-                                "unit": "\u00b0C",
-                                "visualizeInOverview": true,
-                                "value": 21
-                            },
-                            "rendering": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
-                                }
-                            ],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 25,
-                            "minimumValue": 5,
-                            "name": "SETPOINT_TEMPERATURE",
-                            "peer": 83,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201002
-                                }
-                            ],
-                            "type": "float"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "heatingMode",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "thermometer_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 201000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Modus"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Betriebsmodus"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.heatingMode",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
-                            "name": "CONTROL_MODE",
-                            "peer": 83,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Frostschutz"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "1"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Komfort"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "2"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "arrow_up_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Spar"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 201003
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
-                                }
-                            ],
-                            "type": "enum"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
-                            "name": "CONTROL_MODE",
-                            "peer": 83,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 201003
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 200000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 201000
-                                }
-                            ],
-                            "type": "enum"
-                        }
-                    ]
-                }
-            ],
             "databaseId": 37,
-            "dynamicMetadata": [],
-            "grid": {
-                "columns": 1,
-                "height": 3,
-                "rows": 3,
-                "width": 3
-            },
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "thermometer_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                },
-                "temperature": {
-                    "color": "inactive",
-                    "name": "thermometer_1"
-                }
-            },
-            "label": "Heizung",
-            "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "83",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    }
-                ],
-                "l2_action": {
-                    "control": [
-                        0
-                    ],
-                    "input": [
-                        0
-                    ]
-                }
-            },
-            "role": 201000,
-            "room": 5,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Status"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Heizung"
-                }
-            },
-            "uniqueUiElementId": "Base.heatingIsStateSliderMode",
-            "floors": [
-                2
-            ],
-            "rooms": [
-                5
-            ]
-        },
-        "38": {
-            "categories": [],
-            "clickCount": 0,
-            "databaseId": 38,
             "dynamicMetadata": {
                 "favorites": {
-                    "state": false
+                    "state": true
                 }
             },
             "icons": {
@@ -14730,15 +13958,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002
                                 }
                             ],
                             "type": "enum"
@@ -14755,15 +13983,15 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002
                                 }
                             ],
                             "type": "enum"
@@ -14778,10 +14006,10 @@
                 12
             ]
         },
-        "39": {
+        "38": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 39,
+            "databaseId": 38,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -14911,17 +14139,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -14939,17 +14167,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -14965,10 +14193,10 @@
                 3
             ]
         },
-        "40": {
+        "39": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 40,
+            "databaseId": 39,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -15098,17 +14326,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15126,17 +14354,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15152,10 +14380,10 @@
                 6
             ]
         },
-        "41": {
+        "40": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 41,
+            "databaseId": 40,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -15285,17 +14513,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15313,17 +14541,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15339,11 +14567,15 @@
                 6
             ]
         },
-        "42": {
+        "41": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 42,
-            "dynamicMetadata": [],
+            "databaseId": 41,
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
+                }
+            },
             "icons": {
                 "l2": {
                     "color": "inactive",
@@ -15472,17 +14704,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15500,17 +14732,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15526,10 +14758,10 @@
                 2
             ]
         },
-        "43": {
+        "42": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 43,
+            "databaseId": 42,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -15659,17 +14891,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15687,17 +14919,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15713,10 +14945,10 @@
                 9
             ]
         },
-        "44": {
+        "43": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 44,
+            "databaseId": 43,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -15846,17 +15078,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15874,17 +15106,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -15900,10 +15132,10 @@
                 9
             ]
         },
-        "45": {
+        "44": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 45,
+            "databaseId": 44,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -16033,17 +15265,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -16061,17 +15293,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -16087,10 +15319,10 @@
                 12
             ]
         },
-        "46": {
+        "45": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 46,
+            "databaseId": 45,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -16220,17 +15452,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -16248,17 +15480,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301002,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301002,
                                     "invert": true
                                 }
                             ],
@@ -16274,10 +15506,10 @@
                 12
             ]
         },
-        "47": {
+        "46": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 47,
+            "databaseId": 46,
             "dynamicMetadata": {
                 "favorites": {
                     "state": true
@@ -16375,11 +15607,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000
+                                    "id": 301001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 301001
+                                    "id": 300000
                                 }
                             ],
                             "type": "enum"
@@ -16400,11 +15632,11 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000
+                                    "id": 301001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 301001
+                                    "id": 300000
                                 }
                             ],
                             "type": "enum"
@@ -16419,10 +15651,10 @@
                 3
             ]
         },
-        "48": {
+        "47": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 48,
+            "databaseId": 47,
             "dynamicMetadata": {
                 "favorites": {
                     "state": true
@@ -16541,12 +15773,12 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
+                                    "id": 301001,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 301001,
+                                    "id": 300000,
                                     "invert": true
                                 }
                             ],
@@ -16569,12 +15801,12 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
+                                    "id": 301001,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 301001,
+                                    "id": 300000,
                                     "invert": true
                                 }
                             ],
@@ -16590,10 +15822,10 @@
                 12
             ]
         },
-        "49": {
+        "48": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 49,
+            "databaseId": 48,
             "dynamicMetadata": {
                 "favorites": {
                     "state": true
@@ -16687,17 +15919,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301003,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301003,
                                     "invert": true
                                 }
                             ],
@@ -16715,17 +15947,17 @@
                             "roles": [
                                 {
                                     "direction": 2,
+                                    "id": 301003,
+                                    "invert": true
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 300000,
                                     "invert": true
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301000,
-                                    "invert": true
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 301003,
                                     "invert": true
                                 }
                             ],
@@ -16741,482 +15973,161 @@
                 3
             ]
         },
-        "53": {
+        "49": {
             "categories": [],
             "clickCount": 0,
-            "controls": [
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "lightingSwitch",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "l2_only": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Status"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Schalter"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "lightingButton",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Status"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Button"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingButton",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "Gedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "Ungedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "lightingBrightness",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_dim_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 101000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Helligkeit"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Helligkeit"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingBrightness",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 94,
-                            "properties": {
-                                "maximum": 100,
-                                "maximumScaled": 100,
-                                "minimum": 0,
-                                "minimumScaled": 0,
-                                "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 101000
-                                }
-                            ],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 101000
-                                }
-                            ],
-                            "type": "integer"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "lightingColor",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "statusColor": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Farbe"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Farbe"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingColor",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "COLOR",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": "#a8ff52"
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "string"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": -1,
-                            "name": "COLOR",
-                            "peer": 0,
-                            "properties": [],
-                            "type": "string"
-                        }
-                    ]
+            "databaseId": 49,
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": true
                 }
-            ],
-            "databaseId": 53,
-            "dynamicMetadata": [],
-            "grid": {
-                "columns": 1,
-                "height": 3,
-                "rows": 3,
-                "width": 3
             },
             "icons": {
                 "l2": {
-                    "color": "icon",
-                    "name": "light_dim_1"
+                    "color": "inactive",
+                    "name": "ventilator_2"
                 },
                 "l3": {
                     "color": "iconArrow",
                     "name": "arrow_right_1"
-                },
-                "light_dim_1": {
-                    "color": "icon",
-                    "name": "light_dim_1"
                 }
             },
-            "label": "Farblicht",
+            "label": "Ventilation",
             "metadata": {
-                "l2_action": {
-                    "control": [
-                        0
-                    ],
-                    "input": [
-                        0
-                    ]
-                }
+                "l3_force": true
             },
-            "role": 100001,
-            "room": 9,
+            "role": 201000,
+            "room": 8,
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Lighting"
+                    "content": "Stufe"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Lighting"
+                    "content": "Bel\u00fcftung"
                 }
             },
-            "uniqueUiElementId": "Base.lightingSwitchButtonBrightnessColor",
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "ventilationMode",
+                    "uniqueUiElementId": "Base.ventilationMode",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 4,
+                            "minimumValue": 1,
+                            "name": "LEVEL",
+                            "peer": 86,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 1
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Stufe 1"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "1"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Stufe 2"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "2"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Stufe 3"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "3"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Stufe 4"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 4,
+                            "minimumValue": 1,
+                            "name": "LEVEL",
+                            "peer": 86,
+                            "properties": [],
+                            "type": "integer"
+                        }
+                    ]
+                }
+            ],
             "floors": [
-                1
+                4
             ],
             "rooms": [
-                9
+                8
             ]
         },
         "54": {
@@ -17312,11 +16223,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -17333,97 +16244,14 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "lightingBrightness",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_dim_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 101000,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Helligkeit"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Helligkeit"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingBrightness",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 94,
-                            "properties": {
-                                "maximum": 100,
-                                "maximumScaled": 100,
-                                "minimum": 0,
-                                "minimumScaled": 0,
-                                "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 101000
-                                }
-                            ],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
-                            "name": "LEVEL_FAST",
-                            "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 101000
-                                }
-                            ],
-                            "type": "integer"
                         }
                     ]
                 },
@@ -17467,7 +16295,7 @@
                             "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": "#a8ff52"
+                                "value": "#00ddff"
                             },
                             "rendering": [
                                 {
@@ -17563,14 +16391,14 @@
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Lighting"
+                    "content": "Beleuchtung"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Lighting"
+                    "content": "Beleuchtung"
                 }
             },
-            "uniqueUiElementId": "Base.lightingSwitchBrightnessColor",
+            "uniqueUiElementId": "Base.lightingSwitchColor",
             "floors": [
                 1
             ],
@@ -17671,11 +16499,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 100001
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100001
+                                    "id": 100000
                                 }
                             ],
                             "type": "bool"
@@ -17692,287 +16520,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ]
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "lightingColor",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "statusColor": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Farbe"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Farbe"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingColor",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "COLOR",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": "#a8ff52"
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "on"
-                                            }
-                                        }
-                                    }
                                 },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "off"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "string"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": -1,
-                            "name": "COLOR",
-                            "peer": 0,
-                            "properties": [],
-                            "type": "string"
-                        }
-                    ]
-                }
-            ],
-            "databaseId": 55,
-            "dynamicMetadata": [],
-            "grid": {
-                "columns": 1,
-                "height": 3,
-                "rows": 3,
-                "width": 3
-            },
-            "icons": {
-                "l2": {
-                    "color": "icon",
-                    "name": "light_dim_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                },
-                "light_dim_1": {
-                    "color": "icon",
-                    "name": "light_dim_1"
-                }
-            },
-            "label": "Farblicht",
-            "metadata": {
-                "l2_action": {
-                    "control": [
-                        0
-                    ],
-                    "input": [
-                        0
-                    ]
-                }
-            },
-            "role": 100001,
-            "room": 9,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Lighting"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Lighting"
-                }
-            },
-            "uniqueUiElementId": "Base.lightingSwitchColor",
-            "floors": [
-                1
-            ],
-            "rooms": [
-                9
-            ]
-        },
-        "56": {
-            "categories": [],
-            "clickCount": 0,
-            "controls": [
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "lightingSwitch",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "light_on_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": {
-                        "l2_only": true
-                    },
-                    "role": 100001,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Status"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Schalter"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.lightingSwitch",
-                    "variableInputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "an"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "light_on_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "aus"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "roles": [
                                 {
                                     "direction": 2,
                                     "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
-                            "name": "STATE",
-                            "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100000
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100001
                                 }
                             ],
                             "type": "bool"
@@ -18004,11 +16556,11 @@
                     "texts": {
                         "l2_state_title": {
                             "color": "l2_state_title",
-                            "content": "Function"
+                            "content": "Funktion"
                         },
                         "title": {
                             "color": "title",
-                            "content": "Function"
+                            "content": "Funktion"
                         }
                     },
                     "uniqueUiElementId": "Base.lightingFunction",
@@ -19327,11 +17879,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 101000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 101000
+                                    "id": 100000
                                 }
                             ],
                             "type": "integer"
@@ -19348,11 +17900,11 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100000
+                                    "id": 101000
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 101000
+                                    "id": 100000
                                 }
                             ],
                             "type": "integer"
@@ -19399,7 +17951,1721 @@
                             "peer": 0,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": "#a8ff52"
+                                "value": "#00ddff"
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "on"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "off"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "string"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": -1,
+                            "name": "COLOR",
+                            "peer": 0,
+                            "properties": [],
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "databaseId": 55,
+            "dynamicMetadata": [],
+            "grid": {
+                "columns": 1,
+                "height": 3,
+                "rows": 3,
+                "width": 3
+            },
+            "icons": {
+                "l2": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "light_dim_1": {
+                    "color": "icon",
+                    "name": "light_dim_1"
+                }
+            },
+            "label": "Farblicht",
+            "metadata": {
+                "l2_action": {
+                    "control": [
+                        0
+                    ],
+                    "input": [
+                        0
+                    ]
+                }
+            },
+            "role": 100001,
+            "room": 9,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Beleuchtung"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Beleuchtung"
+                }
+            },
+            "uniqueUiElementId": "Base.lightingSwitchFunctionBrightnessColor",
+            "floors": [
+                1
+            ],
+            "rooms": [
+                9
+            ]
+        },
+        "56": {
+            "categories": [],
+            "clickCount": 0,
+            "controls": [
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingSwitch",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l2_only": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Status"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Schalter"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingSwitch",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 94,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": false
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "not",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "an"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "name": "light_on_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "inactive",
+                                                "content": "aus"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": true,
+                            "minimumValue": false,
+                            "name": "STATE",
+                            "peer": 94,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100001
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "bool"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "control": "lightingFunction",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "slider_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "l3_force": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Funktion"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Funktion"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingFunction",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "FUNCTION",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": 4
+                            },
+                            "rendering": [
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "off"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "OFF (off)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "custom"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "CUSTOM WS (custom)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "0"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Static (0)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "1"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Blink (1)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "2"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Breath (2)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "3"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Color Wipe (3)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "4"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Color Wipe Inverse (4)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "5"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Color Wipe Reverse (5)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "6"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Color Wipe Reverse Inverse (6)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "7"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Color Wipe Random (7)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "8"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Random Color (8)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "9"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Single Dynamic (9)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "10"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Multi Dynamic (10)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "11"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Rainbow (11)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "12"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Rainbow Cycle (12)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "13"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Scan (13)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "14"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Dual Scan (14)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "15"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Fade (15)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "16"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Theater Chase (16)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "17"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Theater Chase Rainbow (17)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "18"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Running Lights (18)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "19"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Twinkle (19)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "20"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Twinkle Random (20)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "21"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Twinkle Fade (21)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "22"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Twinkle Fade Random (22)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "23"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Sparkle (23)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "24"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Flash Sparkle (24)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "25"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Hyper Sparkle (25)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "26"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Strobe (26)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "27"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Strobe Rainbow (27)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "28"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Multi Strobe (28)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "29"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Blink Rainbow (29)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "30"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase White (30)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "31"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Color (31)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "32"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Random (32)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "33"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Rainbow (33)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "34"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Flash (34)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "35"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Flash Random (35)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "36"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Rainbow White (36)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "37"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Blackout (37)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "38"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Chase Blackout Rainbow (38)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "39"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Color Sweep Random (39)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "40"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Running Color (40)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "41"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Running Red Blue (41)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "42"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Running Random (42)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "43"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Larson Scanner (43)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "44"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Comet (44)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "45"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Fireworks (45)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "46"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Fireworks Random (46)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "47"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Merry Christmas (47)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "48"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Fire Flicker (48)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "49"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Fire Flicker (soft) (49)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "50"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Fire Flicker (intense) (50)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "51"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Circus Combustus (51)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "52"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Halloween (52)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "53"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Bicolor Chase (53)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "54"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Tricolor Chase (54)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "55"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "ICU (55)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "56"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Custom 0 (56)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "57"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Custom 1 (57)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "58"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Custom 2 (58)"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "condition": {
+                                        "operator": "e",
+                                        "value": "59"
+                                    },
+                                    "definitions": {
+                                        "icons": {
+                                            "state": {
+                                                "color": "active",
+                                                "name": "arrow_up_1"
+                                            }
+                                        },
+                                        "texts": {
+                                            "state": {
+                                                "color": "active",
+                                                "content": "Custom 3 (59)"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": -1,
+                            "name": "FUNCTION",
+                            "peer": 0,
+                            "properties": [],
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingBrightness",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_dim_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 101000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Helligkeit"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Helligkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingBrightness",
+                    "variableInputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 94,
+                            "properties": {
+                                "maximum": 100,
+                                "maximumScaled": 100,
+                                "minimum": 0,
+                                "minimumScaled": 0,
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 0
+                            },
+                            "rendering": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": 1,
+                            "maximumValue": 100,
+                            "minimumValue": 0,
+                            "name": "LEVEL_FAST",
+                            "peer": 94,
+                            "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 101000
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100000
+                                }
+                            ],
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingSpeed",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_dim_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": [],
+                    "role": 101000,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Geschwindigkeit"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Geschwindigkeit"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingSpeed",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "SPEED",
+                            "peer": 0,
+                            "properties": {
+                                "maximum": 255,
+                                "maximumScaled": 255,
+                                "minimum": 0,
+                                "minimumScaled": 0,
+                                "visualizeInOverview": true,
+                                "value": 115
+                            },
+                            "rendering": [],
+                            "type": "integer"
+                        }
+                    ],
+                    "variableOutputs": [
+                        {
+                            "channel": -1,
+                            "name": "SPEED",
+                            "peer": 0,
+                            "properties": [],
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "cell": {
+                        "columns": 1,
+                        "rows": 1,
+                        "x": 0,
+                        "y": 1
+                    },
+                    "control": "lightingColor",
+                    "icons": {
+                        "l2": {
+                            "color": "inactive",
+                            "name": "light_on_1"
+                        },
+                        "l3": {
+                            "color": "iconArrow",
+                            "name": "arrow_right_1"
+                        }
+                    },
+                    "metadata": {
+                        "statusColor": true
+                    },
+                    "role": 100001,
+                    "texts": {
+                        "l2_state_title": {
+                            "color": "l2_state_title",
+                            "content": "Farbe"
+                        },
+                        "title": {
+                            "color": "title",
+                            "content": "Farbe"
+                        }
+                    },
+                    "uniqueUiElementId": "Base.lightingColor",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "COLOR",
+                            "peer": 0,
+                            "properties": {
+                                "visualizeInOverview": true,
+                                "value": "#00ddff"
                             },
                             "rendering": [
                                 {
@@ -19495,14 +19761,14 @@
             "texts": {
                 "l2_state_title": {
                     "color": "l2_state_title",
-                    "content": "Lighting"
+                    "content": "Beleuchtung"
                 },
                 "title": {
                     "color": "title",
-                    "content": "Lighting"
+                    "content": "Beleuchtung"
                 }
             },
-            "uniqueUiElementId": "Base.lightingSwitchFunctionBrightnessColor",
+            "uniqueUiElementId": "Base.lightingSwitchFunctionBrightnessSpeedColor",
             "floors": [
                 1
             ],
@@ -19513,879 +19779,7 @@
         "58": {
             "categories": [],
             "clickCount": 0,
-            "controls": [
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 0
-                    },
-                    "control": "temperature",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "thermomenter1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "thermometer_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Temp."
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Temperatur"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.temperature",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "TEMPERATURE4",
-                            "peer": 0,
-                            "properties": {
-                                "maximum": 100,
-                                "minimum": -273.150000095,
-                                "unit": "\u00b0C",
-                                "visualizeInOverview": true,
-                                "value": 21.3233
-                            },
-                            "rendering": [],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "humidity",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "humidity_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "humidity_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Feuchte"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Luftfeuchtigkeit"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.humidity",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "HUMIDITY4",
-                            "peer": 0,
-                            "properties": {
-                                "maximum": 100,
-                                "minimum": 0,
-                                "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 51.6233
-                            },
-                            "rendering": [],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "climateCity",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "house_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "house_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "City"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "City"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateCity",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "CITY",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": "Berlin"
-                            },
-                            "rendering": [],
-                            "type": "string"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "climateCloudcoverage",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "weather_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "weather_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Cloudcoverage"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Cloudcoverage"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateCloudcoverage",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "CLOUD_COVERAGE",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 90
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "climateDate",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "calendar-time_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "calendar-time_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Date"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Date"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateDate",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "LAST_DATA",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": 1574254478
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "climatePressure",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "speedometer_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "speedometer_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Pressure"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Pressure"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climatePressure",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "PRESSURE",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "hPa",
-                                "visualizeInOverview": true,
-                                "value": 1014
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "climateRain3h",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "waterdrops_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "waterdrops_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Rain3h"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Rain3h"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateRain3h",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "RAIN_3H",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "mm",
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 1
-                    },
-                    "control": "climateSnow3h",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "weather_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "weather_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Snow3h"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Snow3h"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateSnow3h",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "SNOW_3H",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "mm",
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "climateSunrise",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "calendar-time_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "calendar-time_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Sunrise"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Sunrise"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateSunrise",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "SUNRISE",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": 1574232149
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "climateSunset",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "calendar-time_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "calendar-time_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Sunset"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Sunset"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateSunset",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "SUNSET",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": false,
-                                "value": 1574264972
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "climateWeather",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "weather_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "weather_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Weather"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Weather"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateWeather",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "WEATHER",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": "Mist"
-                            },
-                            "rendering": [],
-                            "type": "string"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "climateWinddirection",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "windhose_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "windhose_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Winddirection"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Winddirection"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateWinddirection",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "WIND_DIRECTION",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "\u00b0",
-                                "visualizeInOverview": true,
-                                "value": 350
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "climateWindgust",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "wind_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "wind_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Windgust"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Windgust"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateWindgust",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "WIND_GUST",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "m\/s",
-                                "visualizeInOverview": true,
-                                "value": 0
-                            },
-                            "rendering": [],
-                            "type": "integer"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "climateWindspeed",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "windhose_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        },
-                        "main": {
-                            "color": "inactive",
-                            "name": "windhose_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "Windspeed"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Windspeed"
-                        }
-                    },
-                    "uniqueUiElementId": "Base.climateWindspeed",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "WIND_SPEED",
-                            "peer": 0,
-                            "properties": {
-                                "unit": "m\/s",
-                                "visualizeInOverview": true,
-                                "value": 2.6000000000000001
-                            },
-                            "rendering": [],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": []
-                },
-                {
-                    "cell": {
-                        "columns": 1,
-                        "rows": 1,
-                        "x": 0,
-                        "y": 2
-                    },
-                    "control": "refresh",
-                    "icons": {
-                        "l2": {
-                            "color": "inactive",
-                            "name": "reload_1"
-                        },
-                        "l3": {
-                            "color": "iconArrow",
-                            "name": "arrow_right_1"
-                        }
-                    },
-                    "metadata": [],
-                    "role": 0,
-                    "texts": {
-                        "l2_state_title": {
-                            "color": "l2_state_title",
-                            "content": "State"
-                        },
-                        "title": {
-                            "color": "title",
-                            "content": "Erneuern"
-                        }
-                    },
-                    "uniqueUiElementId": "254.0x100.Refresh",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "REQUEST",
-                            "peer": 0,
-                            "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
-                            },
-                            "rendering": [
-                                {
-                                    "condition": {
-                                        "operator": "not",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "active",
-                                                "name": "reload_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "active",
-                                                "content": "gedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                },
-                                {
-                                    "condition": {
-                                        "operator": "e",
-                                        "value": "0"
-                                    },
-                                    "definitions": {
-                                        "icons": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "name": "reload_1"
-                                            }
-                                        },
-                                        "texts": {
-                                            "state": {
-                                                "color": "inactive",
-                                                "content": "ungedr\u00fcckt"
-                                            }
-                                        }
-                                    }
-                                }
-                            ],
-                            "type": "bool"
-                        }
-                    ],
-                    "variableOutputs": [
-                        {
-                            "channel": -1,
-                            "deviceTypeId": 256,
-                            "family": 254,
-                            "name": "REQUEST",
-                            "peer": 0,
-                            "properties": [],
-                            "type": "bool"
-                        }
-                    ]
-                }
-            ],
             "databaseId": 58,
-            "dynamicMetadata": {
-                "favorites": {
-                    "state": true
-                }
-            },
-            "grid": {
-                "columns": 1,
-                "height": 3,
-                "rows": 3,
-                "width": 3
-            },
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "weather_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                },
-                "weather": {
-                    "color": "inactive",
-                    "name": "weather_1"
-                }
-            },
-            "label": "Wetter",
-            "metadata": {
-                "l2_action": {
-                    "control": [
-                        0
-                    ],
-                    "input": [
-                        0
-                    ]
-                }
-            },
-            "role": 201000,
-            "room": 6,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "OpenWeatherMap"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "OpenWeatherMap"
-                }
-            },
-            "uniqueUiElementId": "254.0x100.OpenWeatherMap",
-            "floors": [
-                2
-            ],
-            "rooms": [
-                6
-            ]
-        },
-        "59": {
-            "categories": [],
-            "clickCount": 0,
-            "databaseId": 59,
             "dynamicMetadata": {
                 "favorites": {
                     "state": true
@@ -20451,10 +19845,10 @@
                 3
             ]
         },
-        "60": {
+        "59": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 60,
+            "databaseId": 59,
             "dynamicMetadata": {
                 "favorites": {
                     "state": true
@@ -20520,10 +19914,10 @@
                 3
             ]
         },
-        "61": {
+        "60": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 61,
+            "databaseId": 60,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20585,10 +19979,10 @@
                 3
             ]
         },
-        "62": {
+        "61": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 62,
+            "databaseId": 61,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20650,10 +20044,10 @@
                 3
             ]
         },
-        "63": {
+        "62": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 63,
+            "databaseId": 62,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20715,10 +20109,10 @@
                 3
             ]
         },
-        "64": {
+        "63": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 64,
+            "databaseId": 63,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20780,10 +20174,10 @@
                 3
             ]
         },
-        "65": {
+        "64": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 65,
+            "databaseId": 64,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20845,10 +20239,10 @@
                 3
             ]
         },
-        "66": {
+        "65": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 66,
+            "databaseId": 65,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20910,10 +20304,10 @@
                 3
             ]
         },
-        "67": {
+        "66": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 67,
+            "databaseId": 66,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -20975,10 +20369,10 @@
                 3
             ]
         },
-        "68": {
+        "67": {
             "categories": [],
             "clickCount": 0,
-            "databaseId": 68,
+            "databaseId": 67,
             "dynamicMetadata": [],
             "icons": {
                 "l2": {
@@ -21090,10 +20484,10 @@
             "devices": [
                 5,
                 4,
-                34,
                 24,
+                33,
                 25,
-                42
+                41
             ],
             "floors": [
                 1
@@ -21104,12 +20498,13 @@
         "3": {
             "devices": [
                 1,
-                32,
+                31,
                 23,
                 22,
-                39,
-                47,
-                49,
+                38,
+                46,
+                48,
+                58,
                 59,
                 60,
                 61,
@@ -21118,8 +20513,7 @@
                 64,
                 65,
                 66,
-                67,
-                68
+                67
             ],
             "floors": [
                 3
@@ -21139,9 +20533,9 @@
         },
         "5": {
             "devices": [
+                36,
                 15,
-                16,
-                37
+                16
             ],
             "floors": [
                 2
@@ -21151,13 +20545,13 @@
         },
         "6": {
             "devices": [
+                57,
                 20,
+                32,
                 21,
-                33,
                 3,
-                40,
-                41,
-                58
+                39,
+                40
             ],
             "floors": [
                 2
@@ -21167,9 +20561,9 @@
         },
         "7": {
             "devices": [
+                29,
                 30,
                 13,
-                31,
                 12
             ],
             "floors": [
@@ -21180,7 +20574,7 @@
         },
         "8": {
             "devices": [
-                50
+                49
             ],
             "floors": [
                 4
@@ -21190,15 +20584,15 @@
         },
         "9": {
             "devices": [
-                57,
                 26,
-                27,
                 52,
-                35,
+                51,
+                34,
+                27,
                 6,
-                43,
-                44,
                 53,
+                42,
+                43,
                 54,
                 55,
                 56
@@ -21231,19 +20625,18 @@
         },
         "12": {
             "devices": [
-                29,
                 28,
-                51,
+                35,
+                10,
                 8,
                 7,
-                10,
-                36,
+                50,
                 18,
                 9,
-                38,
+                37,
+                44,
                 45,
-                46,
-                48
+                47
             ],
             "floors": [
                 1
@@ -21264,8 +20657,9 @@
         "100000": {
             "name": "Licht",
             "aggregated": {
-                "0": 21,
-                "variableCount": 21
+                "0": 18,
+                "1": 2,
+                "variableCount": 20
             },
             "varInRole": {
                 "0": {
@@ -21304,13 +20698,6 @@
                     }
                 },
                 "14": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2
-                        }
-                    }
-                },
-                "15": {
                     "1": {
                         "STATE": {
                             "direction": 2
@@ -21446,8 +20833,9 @@
                 ]
             },
             "aggregated": {
-                "0": 18,
-                "variableCount": 18
+                "0": 15,
+                "1": 2,
+                "variableCount": 17
             },
             "varInRole": {
                 "0": {
@@ -21486,13 +20874,6 @@
                     }
                 },
                 "14": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2
-                        }
-                    }
-                },
-                "15": {
                     "1": {
                         "STATE": {
                             "direction": 2
@@ -21754,9 +21135,11 @@
                 }
             ],
             "aggregated": {
-                "0": 6,
-                "21": 12,
-                "variableCount": 18
+                "0": 12,
+                "18": 6,
+                "21": 18,
+                "5": 6,
+                "variableCount": 42
             },
             "varInRole": {
                 "78": {
@@ -21765,6 +21148,18 @@
                             "direction": 2
                         },
                         "SETPOINT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2
                         },
                         "TEMPERATURE": {
@@ -21780,6 +21175,18 @@
                         "SETPOINT_TEMPERATURE": {
                             "direction": 2
                         },
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
+                            "direction": 2
+                        },
                         "TEMPERATURE": {
                             "direction": 2
                         }
@@ -21791,6 +21198,18 @@
                             "direction": 2
                         },
                         "SETPOINT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2
                         },
                         "TEMPERATURE": {
@@ -21806,6 +21225,18 @@
                         "SETPOINT_TEMPERATURE": {
                             "direction": 2
                         },
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
+                            "direction": 2
+                        },
                         "TEMPERATURE": {
                             "direction": 2
                         }
@@ -21819,6 +21250,18 @@
                         "SETPOINT_TEMPERATURE": {
                             "direction": 2
                         },
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
+                            "direction": 2
+                        },
                         "TEMPERATURE": {
                             "direction": 2
                         }
@@ -21830,6 +21273,18 @@
                             "direction": 2
                         },
                         "SETPOINT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2
                         },
                         "TEMPERATURE": {
@@ -22013,13 +21468,16 @@
                 "Spar"
             ],
             "aggregated": {
-                "0": 6,
-                "variableCount": 6
+                "0": 12,
+                "variableCount": 12
             },
             "varInRole": {
                 "78": {
                     "1": {
                         "CONTROL_MODE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2
                         }
                     }
@@ -22028,12 +21486,18 @@
                     "1": {
                         "CONTROL_MODE": {
                             "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
+                            "direction": 2
                         }
                     }
                 },
                 "80": {
                     "1": {
                         "CONTROL_MODE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2
                         }
                     }
@@ -22042,6 +21506,9 @@
                     "1": {
                         "CONTROL_MODE": {
                             "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
+                            "direction": 2
                         }
                     }
                 },
@@ -22049,12 +21516,18 @@
                     "1": {
                         "CONTROL_MODE": {
                             "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
+                            "direction": 2
                         }
                     }
                 },
                 "83": {
                     "1": {
                         "CONTROL_MODE": {
+                            "direction": 2
+                        },
+                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2
                         }
                     }
@@ -22067,9 +21540,53 @@
                 "Komfort"
             ],
             "aggregated": {
-                "variableCount": 0
+                "21": 6,
+                "variableCount": 6
             },
-            "varInRole": []
+            "varInRole": {
+                "78": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "79": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "80": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "81": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "82": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "83": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                }
+            }
         },
         "201005": {
             "name": "Heizung - Absenktemperatur",
@@ -22077,9 +21594,53 @@
                 "Spar"
             ],
             "aggregated": {
-                "variableCount": 0
+                "18": 6,
+                "variableCount": 6
             },
-            "varInRole": []
+            "varInRole": {
+                "78": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "79": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "80": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "81": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "82": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "83": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                }
+            }
         },
         "201006": {
             "name": "Heizung - Frostschutztemperatur",
@@ -22087,9 +21648,53 @@
                 "Frostschutz"
             ],
             "aggregated": {
-                "variableCount": 0
+                "5": 6,
+                "variableCount": 6
             },
-            "varInRole": []
+            "varInRole": {
+                "78": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "79": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "80": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "81": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "82": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                },
+                "83": {
+                    "1": {
+                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
+                            "direction": 2
+                        }
+                    }
+                }
+            }
         },
         "300000": {
             "name": "Sicherheit",
@@ -22560,7 +22165,10 @@
         "500000": {
             "name": "Beschattung",
             "aggregated": {
-                "0": 22,
+                "0": 11,
+                "1": 6,
+                "30": 4,
+                "40": 1,
                 "variableCount": 22
             },
             "varInRole": {
@@ -22732,7 +22340,10 @@
                 }
             ],
             "aggregated": {
-                "0": 16,
+                "0": 5,
+                "1": 6,
+                "30": 4,
+                "40": 1,
                 "variableCount": 16
             },
             "varInRole": {
@@ -22816,7 +22427,8 @@
                 "Hoch"
             ],
             "aggregated": {
-                "0": 5,
+                "0": 4,
+                "1": 1,
                 "variableCount": 5
             },
             "varInRole": {
@@ -22863,7 +22475,7 @@
                 "Runter"
             ],
             "aggregated": {
-                "0": 5,
+                "1": 5,
                 "variableCount": 5
             },
             "varInRole": {
@@ -22917,7 +22529,9 @@
         "501004": {
             "name": "Beschattung - Position",
             "aggregated": {
-                "0": 6,
+                "0": 1,
+                "30": 4,
+                "40": 1,
                 "variableCount": 6
             },
             "varInRole": {
@@ -23451,10 +23065,10 @@
         }
     ],
     "profiles": {
-        "5": {
+        "4": {
             "global": true,
             "icon": "statistic_1",
-            "id": 5,
+            "id": 4,
             "inputPeers": [
                 {
                     "channel": -1,
@@ -23505,10 +23119,10 @@
                 ]
             ]
         },
-        "4": {
+        "3": {
             "global": true,
             "icon": "statistic_1",
-            "id": 4,
+            "id": 3,
             "inputPeers": [
                 {
                     "channel": -1,
@@ -23559,81 +23173,17 @@
                 ]
             ]
         },
-        "3": {
-            "icon": "statistic_1",
-            "id": 3,
-            "inputPeers": [
-                {
-                    "channel": -1,
-                    "name": "PROFILE2",
-                    "peer": 0
-                }
-            ],
-            "locations": [
-                {
-                    "floorId": 1,
-                    "roomId": 9
-                }
-            ],
-            "name": "Schlafen",
-            "outputPeers": [
-                {
-                    "channel": -1,
-                    "name": "PROFILE2",
-                    "peer": 0,
-                    "value": 1
-                }
-            ],
-            "values": [
-                [
-                    0,
-                    -1,
-                    "LIGHT",
-                    0
-                ],
-                [
-                    3,
-                    1,
-                    "STATE",
-                    0
-                ],
-                [
-                    4,
-                    1,
-                    "STATE",
-                    0
-                ]
-            ]
-        },
-        "2": {
-            "icon": "statistic_1",
-            "id": 2,
-            "inputPeers": [
-                {
-                    "channel": -1,
-                    "name": "PROFILE1",
-                    "peer": 0
-                }
-            ],
+        "1": {
+            "global": true,
+            "icon": "aircondition_1",
+            "id": 1,
             "locations": [
                 {
                     "floorId": 1,
                     "roomId": 12
-                },
-                {
-                    "floorId": 1,
-                    "roomId": 9
                 }
             ],
             "name": "Arbeiten",
-            "outputPeers": [
-                {
-                    "channel": -1,
-                    "name": "PROFILE1",
-                    "peer": 0,
-                    "value": 1
-                }
-            ],
             "values": [
                 [
                     0,
@@ -23652,47 +23202,56 @@
                     1,
                     "STATE",
                     1
+                ],
+                [
+                    7,
+                    1,
+                    "STATE",
+                    false
+                ],
+                [
+                    6,
+                    1,
+                    "STATE",
+                    false
+                ],
+                [
+                    8,
+                    1,
+                    "STATE",
+                    false
                 ]
             ]
         },
-        "1": {
+        "2": {
             "global": true,
-            "icon": "statistic_1",
-            "id": 1,
-            "inputPeers": [
-                {
-                    "channel": -1,
-                    "name": "PROFILE0",
-                    "peer": 0
-                }
-            ],
+            "icon": "abort_1",
+            "id": 2,
             "locations": [
                 {
                     "floorId": 1,
                     "roomId": 9
                 }
             ],
-            "name": "Testprofil",
-            "outputPeers": [
-                {
-                    "channel": -1,
-                    "name": "PROFILE0",
-                    "peer": 0,
-                    "value": 1
-                }
-            ],
+            "name": "Schlafen",
             "values": [
                 [
                     0,
                     -1,
                     "LIGHT",
-                    1
+                    0
                 ],
                 [
-                    1,
+                    3,
                     1,
                     "STATE",
-                    1
+                    0
+                ],
+                [
+                    4,
+                    1,
+                    "STATE",
+                    0
                 ]
             ]
         }
@@ -23772,7 +23331,7 @@
         "twofaEnabled": true,
         "userHasTwofaRegistrations": false,
         "theme": "dark",
-        "highlight": "#ee00ff",
+        "highlight": "#00d9ff",
         "language": "de-DE",
         "startPath": "house.tab.rooms",
         "viewportScale": 0.65000000000000002,
@@ -23800,7 +23359,7 @@
         "display": "fullscreen",
         "orientation": "any",
         "manifest_version": 2,
-        "revision": 250,
+        "revision": 255,
         "developer": {
             "name": "Marwin Hubach",
             "url": "https:\/\/marwinh.de\/"
@@ -24004,11 +23563,11 @@
         "settings": "Einstellungen",
         "settings.favorites": "Favoriten",
         "settings.favorites.mode": "Favoriten bearbeiten",
-        "settings.favorites.description": "Favoriten ausw\u00e4hlen",
+        "settings.favorites.description": "Favoriten hinzuf\u00fcgen und entfernen",
         "settings.profiles": "Profile",
         "settings.profiles.new": "Neu",
         "settings.profiles.profile.name": "Name",
-        "settings.profiles.profile.Icon": "Icon",
+        "settings.profiles.profile.icon": "Icon",
         "settings.profiles.profile.locations": "Ort",
         "settings.profiles.profile.locations.global": "Global",
         "settings.profiles.profile.locations.floor": "Stockwerk",
@@ -24047,8 +23606,8 @@
         "settings.about.table.rights": "Rechte",
         "settings.about.table.license": "Lizenz",
         "settings.about.table.license.url": "Lizenz URL",
-        "modemenu.favorites.name": "Favorites mode",
-        "modemenu.favorites.button.end": "Exit Favorites mode",
+        "modemenu.favorites.name": "Favoriten Modus",
+        "modemenu.favorites.button.end": "Bearbeiten beenden",
         "modemenu.profiles.name.label": "Profil",
         "modemenu.profiles.button.settings": "Profil Einstellungen",
         "modemenu.profiles.button.end": "speichern & beenden",
@@ -24081,7 +23640,7 @@
             "settings.profiles": "Profiles",
             "settings.profiles.new": "New",
             "settings.profiles.profile.name": "Name",
-            "settings.profiles.profile.Icon": "Icon",
+            "settings.profiles.profile.icon": "Icon",
             "settings.profiles.profile.locations": "Locations",
             "settings.profiles.profile.locations.global": "Global",
             "settings.profiles.profile.locations.floor": "Story",
@@ -24138,414 +23697,192 @@
         }
     },
     "map_invoke": {
-        "94": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 57,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 57,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 54,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 54,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 55,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 55,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 56,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 56,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    }
-                ],
-                "LEVEL_FAST": [
-                    {
-                        "databaseId": 57,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 57,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 54,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 54,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 56,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 56,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
         "0": {
             "-1": {
-                "FUNCTION": [
+                "TEMPERATURE4": [
                     {
                         "databaseId": 57,
-                        "control": 1,
+                        "control": 0,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 57,
-                        "control": 1,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 56,
-                        "control": 1,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 56,
-                        "control": 1,
+                        "databaseId": 66,
+                        "control": 0,
                         "input": 0,
                         "roles": []
                     }
                 ],
-                "SPEED": [
+                "HUMIDITY4": [
+                    {
+                        "databaseId": 57,
+                        "control": 1,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 67,
+                        "control": 0,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "CITY": [
+                    {
+                        "databaseId": 57,
+                        "control": 2,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "CLOUD_COVERAGE": [
                     {
                         "databaseId": 57,
                         "control": 3,
                         "input": 0,
                         "roles": []
-                    },
-                    {
-                        "databaseId": 57,
-                        "control": 3,
-                        "input": 0,
-                        "roles": []
                     }
                 ],
-                "COLOR": [
+                "LAST_DATA": [
                     {
                         "databaseId": 57,
                         "control": 4,
                         "input": 0,
                         "roles": []
+                    }
+                ],
+                "PRESSURE": [
+                    {
+                        "databaseId": 57,
+                        "control": 5,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "RAIN_3H": [
+                    {
+                        "databaseId": 57,
+                        "control": 6,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "SNOW_3H": [
+                    {
+                        "databaseId": 57,
+                        "control": 7,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "SUNRISE": [
+                    {
+                        "databaseId": 57,
+                        "control": 8,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "SUNSET": [
+                    {
+                        "databaseId": 57,
+                        "control": 9,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "WEATHER": [
+                    {
+                        "databaseId": 57,
+                        "control": 10,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "WIND_DIRECTION": [
+                    {
+                        "databaseId": 57,
+                        "control": 11,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "WIND_GUST": [
+                    {
+                        "databaseId": 57,
+                        "control": 12,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "WIND_SPEED": [
+                    {
+                        "databaseId": 57,
+                        "control": 13,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "REQUEST": [
+                    {
+                        "databaseId": 57,
+                        "control": 14,
+                        "input": 0,
+                        "roles": []
                     },
                     {
                         "databaseId": 57,
-                        "control": 4,
+                        "control": 14,
                         "input": 0,
                         "roles": []
-                    },
+                    }
+                ],
+                "WINDALARM": [
                     {
-                        "databaseId": 53,
-                        "control": 3,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 53,
-                        "control": 3,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 54,
+                        "databaseId": 29,
                         "control": 2,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 54,
+                        "databaseId": 29,
                         "control": 2,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 55,
-                        "control": 1,
+                        "databaseId": 20,
+                        "control": 6,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 55,
-                        "control": 1,
+                        "databaseId": 20,
+                        "control": 6,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 56,
+                        "databaseId": 26,
                         "control": 3,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 56,
+                        "databaseId": 26,
                         "control": 3,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 27,
+                        "control": 2,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 27,
+                        "control": 2,
                         "input": 0,
                         "roles": []
                     }
@@ -24558,11 +23895,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -24573,11 +23910,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -24608,66 +23945,78 @@
                         "roles": []
                     }
                 ],
-                "WINDALARM": [
+                "WINDOWALARM": [
                     {
-                        "databaseId": 20,
-                        "control": 6,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 20,
-                        "control": 6,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 26,
+                        "databaseId": 32,
                         "control": 3,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 26,
+                        "databaseId": 32,
                         "control": 3,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 27,
-                        "control": 2,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 27,
-                        "control": 2,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 30,
-                        "control": 2,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 30,
-                        "control": 2,
                         "input": 0,
                         "roles": []
                     }
                 ],
-                "WINDOWALARM": [
+                "COLOR": [
                     {
-                        "databaseId": 33,
+                        "databaseId": 52,
                         "control": 3,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 33,
+                        "databaseId": 52,
                         "control": 3,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 53,
+                        "control": 2,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 53,
+                        "control": 2,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 54,
+                        "control": 1,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 54,
+                        "control": 1,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 55,
+                        "control": 3,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 55,
+                        "control": 3,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 4,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 4,
                         "input": 0,
                         "roles": []
                     }
@@ -24698,147 +24047,49 @@
                         "roles": []
                     }
                 ],
-                "TEMPERATURE4": [
+                "FUNCTION": [
                     {
-                        "databaseId": 58,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 67,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "HUMIDITY4": [
-                    {
-                        "databaseId": 58,
+                        "databaseId": 55,
                         "control": 1,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 68,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "CITY": [
-                    {
-                        "databaseId": 58,
-                        "control": 2,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "CLOUD_COVERAGE": [
-                    {
-                        "databaseId": 58,
-                        "control": 3,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "LAST_DATA": [
-                    {
-                        "databaseId": 58,
-                        "control": 4,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "PRESSURE": [
-                    {
-                        "databaseId": 58,
-                        "control": 5,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "RAIN_3H": [
-                    {
-                        "databaseId": 58,
-                        "control": 6,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "SNOW_3H": [
-                    {
-                        "databaseId": 58,
-                        "control": 7,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "SUNRISE": [
-                    {
-                        "databaseId": 58,
-                        "control": 8,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "SUNSET": [
-                    {
-                        "databaseId": 58,
-                        "control": 9,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "WEATHER": [
-                    {
-                        "databaseId": 58,
-                        "control": 10,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "WIND_DIRECTION": [
-                    {
-                        "databaseId": 58,
-                        "control": 11,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "WIND_GUST": [
-                    {
-                        "databaseId": 58,
-                        "control": 12,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "WIND_SPEED": [
-                    {
-                        "databaseId": 58,
-                        "control": 13,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "REQUEST": [
-                    {
-                        "databaseId": 58,
-                        "control": 14,
+                        "databaseId": 55,
+                        "control": 1,
                         "input": 0,
                         "roles": []
                     },
                     {
-                        "databaseId": 58,
-                        "control": 14,
+                        "databaseId": 56,
+                        "control": 1,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 1,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "SPEED": [
+                    {
+                        "databaseId": 56,
+                        "control": 3,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 3,
                         "input": 0,
                         "roles": []
                     }
                 ],
                 "TEMPERATURE": [
                     {
-                        "databaseId": 59,
+                        "databaseId": 58,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24846,7 +24097,7 @@
                 ],
                 "HUMIDITY": [
                     {
-                        "databaseId": 60,
+                        "databaseId": 59,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24854,7 +24105,7 @@
                 ],
                 "TEMPERATURE1": [
                     {
-                        "databaseId": 61,
+                        "databaseId": 60,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24862,7 +24113,7 @@
                 ],
                 "HUMIDITY1": [
                     {
-                        "databaseId": 62,
+                        "databaseId": 61,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24870,7 +24121,7 @@
                 ],
                 "TEMPERATURE2": [
                     {
-                        "databaseId": 63,
+                        "databaseId": 62,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24878,7 +24129,7 @@
                 ],
                 "HUMIDITY2": [
                     {
-                        "databaseId": 64,
+                        "databaseId": 63,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24886,7 +24137,7 @@
                 ],
                 "TEMPERATURE3": [
                     {
-                        "databaseId": 65,
+                        "databaseId": 64,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24894,7 +24145,7 @@
                 ],
                 "HUMIDITY3": [
                     {
-                        "databaseId": 66,
+                        "databaseId": 65,
                         "control": 0,
                         "input": 0,
                         "roles": []
@@ -24902,7 +24153,7 @@
                 ]
             }
         },
-        "24": {
+        "25": {
             "1": {
                 "UP": [
                     {
@@ -24912,7 +24163,7 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000
+                                "id": 502001
                             },
                             {
                                 "direction": 2,
@@ -24920,18 +24171,18 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 502000
                             }
                         ]
                     },
                     {
                         "databaseId": 29,
                         "control": 0,
-                        "input": 5,
+                        "input": 2,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000
+                                "id": 502001
                             },
                             {
                                 "direction": 2,
@@ -24939,7 +24190,7 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 502000
                             }
                         ]
                     }
@@ -24954,7 +24205,7 @@
                     {
                         "databaseId": 29,
                         "control": 0,
-                        "input": 5,
+                        "input": 2,
                         "roles": []
                     }
                 ],
@@ -24966,148 +24217,74 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 502000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
                     {
                         "databaseId": 29,
                         "control": 0,
-                        "input": 3,
+                        "input": 2,
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 502000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
+                            }
+                        ]
+                    }
+                ],
+                "LEVEL": [
+                    {
+                        "databaseId": 29,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 502000
                             },
                             {
                                 "direction": 2,
-                                "id": 501000
+                                "id": 502004
                             },
                             {
                                 "direction": 2,
-                                "id": 501002
+                                "id": 500000
                             }
                         ]
                     },
                     {
                         "databaseId": 29,
-                        "control": 0,
-                        "input": 4,
+                        "control": 1,
+                        "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 502000
                             },
                             {
                                 "direction": 2,
-                                "id": 501000
+                                "id": 502004
                             },
-                            {
-                                "direction": 2,
-                                "id": 501002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 29,
-                        "control": 0,
-                        "input": 5,
-                        "roles": [
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 29,
-                        "control": 0,
-                        "input": 5,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 29,
-                        "control": 0,
-                        "input": 5,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 29,
-                        "control": 0,
-                        "input": 5,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 29,
-                        "control": 0,
-                        "input": 5,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     }
@@ -25124,11 +24301,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -25139,11 +24316,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -25160,11 +24337,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -25175,11 +24352,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -25200,11 +24377,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25219,11 +24396,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     }
@@ -25250,15 +24427,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25269,15 +24446,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     }
@@ -25290,15 +24467,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -25309,15 +24486,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     }
@@ -25338,11 +24515,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25357,11 +24534,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25376,11 +24553,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25395,11 +24572,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25414,11 +24591,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25433,11 +24610,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25452,11 +24629,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -25471,11 +24648,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     }
@@ -25502,15 +24679,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25521,15 +24698,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25540,15 +24717,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25559,15 +24736,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25578,15 +24755,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25597,15 +24774,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25616,15 +24793,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -25635,15 +24812,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     }
@@ -25656,15 +24833,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -25675,15 +24852,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -25694,15 +24871,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -25713,15 +24890,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     }
@@ -25738,11 +24915,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -25753,11 +24930,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -25774,11 +24951,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -25789,18 +24966,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
                 ]
             }
         },
-        "78": {
+        "79": {
             "1": {
                 "TEMPERATURE": [
                     {
@@ -25814,11 +24991,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 200000
+                                "id": 201001
                             },
                             {
                                 "direction": 2,
-                                "id": 201001
+                                "id": 200000
                             }
                         ]
                     }
@@ -25831,15 +25008,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 200000
                             },
                             {
                                 "direction": 2,
                                 "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
                             }
                         ]
                     },
@@ -25850,15 +25027,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 200000
                             },
                             {
                                 "direction": 2,
                                 "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
                             }
                         ]
                     }
@@ -25871,15 +25048,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 201003
                             },
                             {
                                 "direction": 2,
                                 "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
                             }
                         ]
                     },
@@ -25890,109 +25067,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 201003
                             },
                             {
                                 "direction": 2,
                                 "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "60": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 32,
-                        "control": 3,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 300000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
-                                "invert": true
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 32,
-                        "control": 3,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 300000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
-                                "invert": true
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 39,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 300000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
-                                "invert": true
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 39,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 300000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
-                                "invert": true
                             }
                         ]
                     }
@@ -26013,11 +25096,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -26032,11 +25115,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     }
@@ -26063,15 +25146,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -26082,15 +25165,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     }
@@ -26103,15 +25186,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -26122,22 +25205,330 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     }
                 ]
             }
         },
-        "92": {
+        "94": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 52,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 52,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 52,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 52,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 53,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 53,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 54,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 54,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 55,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 55,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    }
+                ],
+                "LEVEL_FAST": [
+                    {
+                        "databaseId": 52,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 52,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 53,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 53,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 55,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 55,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 56,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "93": {
             "1": {
                 "STATE": [
                     {
@@ -26147,11 +25538,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -26162,28 +25553,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
                                 "id": 100001
-                            }
-                        ]
-                    }
-                ],
-                "LEVEL_FAST": [
-                    {
-                        "databaseId": 51,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
                             },
                             {
                                 "direction": 2,
-                                "id": 101000
+                                "id": 100000
                             }
                         ]
                     },
@@ -26194,18 +25568,65 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 51,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    }
+                ],
+                "LEVEL_FAST": [
+                    {
+                        "databaseId": 51,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
                                 "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 51,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 101000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
                             }
                         ]
                     }
                 ]
             }
         },
-        "80": {
+        "81": {
             "1": {
                 "TEMPERATURE": [
                     {
@@ -26219,11 +25640,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 200000
+                                "id": 201001
                             },
                             {
                                 "direction": 2,
-                                "id": 201001
+                                "id": 200000
                             }
                         ]
                     }
@@ -26236,15 +25657,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 200000
                             },
                             {
                                 "direction": 2,
                                 "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
                             }
                         ]
                     },
@@ -26255,15 +25676,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 200000
                             },
                             {
                                 "direction": 2,
                                 "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
                             }
                         ]
                     }
@@ -26276,15 +25697,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 201003
                             },
                             {
                                 "direction": 2,
                                 "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
                             }
                         ]
                     },
@@ -26295,15 +25716,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 201003
                             },
                             {
                                 "direction": 2,
                                 "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
                             }
                         ]
                     }
@@ -26324,11 +25745,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     },
@@ -26343,11 +25764,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 501001
                             },
                             {
                                 "direction": 2,
-                                "id": 501001
+                                "id": 500000
                             }
                         ]
                     }
@@ -26374,15 +25795,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     },
@@ -26393,15 +25814,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 501000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501002
                             }
                         ]
                     }
@@ -26414,15 +25835,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -26433,120 +25854,22 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     }
                 ]
             }
         },
-        "93": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 52,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 52,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 52,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 52,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    }
-                ],
-                "LEVEL_FAST": [
-                    {
-                        "databaseId": 52,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 52,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 101000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "81": {
+        "82": {
             "1": {
                 "TEMPERATURE": [
                     {
@@ -26560,11 +25883,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 200000
+                                "id": 201001
                             },
                             {
                                 "direction": 2,
-                                "id": 201001
+                                "id": 200000
                             }
                         ]
                     }
@@ -26577,15 +25900,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 200000
                             },
                             {
                                 "direction": 2,
                                 "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
                             }
                         ]
                     },
@@ -26596,15 +25919,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
                                 "id": 200000
                             },
                             {
                                 "direction": 2,
                                 "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
                             }
                         ]
                     }
@@ -26617,15 +25940,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 201003
                             },
                             {
                                 "direction": 2,
                                 "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
                             }
                         ]
                     },
@@ -26636,15 +25959,97 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 201003
                             },
                             {
                                 "direction": 2,
                                 "id": 200000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "87": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 35,
+                        "control": 3,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002
                             },
                             {
                                 "direction": 2,
-                                "id": 201000
+                                "id": 300000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 35,
+                        "control": 3,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 37,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 37,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000
                             }
                         ]
                     }
@@ -26701,15 +26106,15 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -26720,23 +26125,8 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
                                 "id": 501000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 21,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
+                            },
                             {
                                 "direction": 2,
                                 "id": 501004
@@ -26744,10 +26134,6 @@
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 501000
                             }
                         ]
                     },
@@ -26758,603 +26144,34 @@
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 501000
+                            },
+                            {
+                                "direction": 2,
                                 "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 21,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
                             {
                                 "direction": 2,
                                 "id": 501000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "7": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 8,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 8,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "6": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 7,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 7,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "5": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 6,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 6,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "86": {
-            "1": {
-                "LEVEL": [
-                    {
-                        "databaseId": 50,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 50,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    }
-                ]
-            }
-        },
-        "25": {
-            "1": {
-                "UP": [
-                    {
-                        "databaseId": 30,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 30,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502001
-                            }
-                        ]
-                    }
-                ],
-                "STOP": [
-                    {
-                        "databaseId": 30,
-                        "control": 0,
-                        "input": 1,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 30,
-                        "control": 0,
-                        "input": 2,
-                        "roles": []
-                    }
-                ],
-                "DOWN": [
-                    {
-                        "databaseId": 30,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 502000
+                                "id": 501004
                             },
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 30,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 502000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502002
-                            }
-                        ]
-                    }
-                ],
-                "LEVEL": [
-                    {
-                        "databaseId": 30,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 502004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 30,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 502004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 500000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "20": {
-            "1": {
-                "UP": [
-                    {
-                        "databaseId": 24,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 24,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600001
-                            }
-                        ]
-                    }
-                ],
-                "STOP": [
-                    {
-                        "databaseId": 24,
-                        "control": 0,
-                        "input": 1,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 24,
-                        "control": 0,
-                        "input": 2,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 0,
-                        "input": 1,
-                        "roles": []
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 0,
-                        "input": 2,
-                        "roles": []
-                    }
-                ],
-                "DOWN": [
-                    {
-                        "databaseId": 24,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 24,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 0,
-                        "input": 2,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600002
-                            }
-                        ]
-                    }
-                ],
-                "LEVEL": [
-                    {
-                        "databaseId": 24,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 24,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 25,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 600004
-                            },
-                            {
-                                "direction": 2,
-                                "id": 600000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "91": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 19,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 19,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400001
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "16": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 17,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 17,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400001
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "12": {
-            "1": {
-                "STATE": [
-                    {
-                        "databaseId": 13,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400001
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 13,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400001
                             }
                         ]
                     }
@@ -27371,11 +26188,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400000
+                                "id": 400001
                             },
                             {
                                 "direction": 2,
-                                "id": 400001
+                                "id": 400000
                             }
                         ]
                     },
@@ -27386,303 +26203,187 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400000
-                            },
-                            {
-                                "direction": 2,
                                 "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
                             }
                         ]
                     }
                 ]
             }
         },
-        "82": {
-            "1": {
-                "TEMPERATURE": [
-                    {
-                        "databaseId": 36,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201001
-                            }
-                        ]
-                    }
-                ],
-                "SETPOINT_TEMPERATURE": [
-                    {
-                        "databaseId": 36,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 36,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
-                            }
-                        ]
-                    }
-                ],
-                "CONTROL_MODE": [
-                    {
-                        "databaseId": 36,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201003
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 36,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201003
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "87": {
+        "7": {
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 36,
-                        "control": 3,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 300000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 36,
-                        "control": 3,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 300000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 38,
+                        "databaseId": 8,
                         "control": 0,
                         "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 300000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 301000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002
+                                "id": 100000
                             }
                         ]
                     },
                     {
-                        "databaseId": 38,
+                        "databaseId": 8,
                         "control": 0,
                         "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 300000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 301000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002
+                                "id": 100000
                             }
                         ]
                     }
                 ]
             }
         },
-        "79": {
+        "6": {
             "1": {
-                "TEMPERATURE": [
+                "STATE": [
                     {
-                        "databaseId": 33,
+                        "databaseId": 7,
                         "control": 0,
                         "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 200000
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 7,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 201001
+                                "id": 100000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "5": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 6,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 6,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "92": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 50,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 50,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100000
                             }
                         ]
                     }
                 ],
-                "SETPOINT_TEMPERATURE": [
+                "LEVEL_FAST": [
                     {
-                        "databaseId": 33,
+                        "databaseId": 50,
                         "control": 1,
                         "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 200000
+                                "id": 101000
                             },
                             {
                                 "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
+                                "id": 100000
                             }
                         ]
                     },
                     {
-                        "databaseId": 33,
+                        "databaseId": 50,
                         "control": 1,
                         "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 200000
+                                "id": 101000
                             },
                             {
                                 "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
-                            }
-                        ]
-                    }
-                ],
-                "CONTROL_MODE": [
-                    {
-                        "databaseId": 33,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201003
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 33,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201003
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
+                                "id": 100000
                             }
                         ]
                     }
@@ -27693,53 +26394,53 @@
             "1": {
                 "UP": [
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 0,
                         "input": 0,
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 502001
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 502000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502001
                             }
                         ]
                     },
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 0,
                         "input": 2,
                         "roles": [
                             {
                                 "direction": 2,
+                                "id": 502001
+                            },
+                            {
+                                "direction": 2,
                                 "id": 500000
                             },
                             {
                                 "direction": 2,
                                 "id": 502000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 502001
                             }
                         ]
                     }
                 ],
                 "STOP": [
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 0,
                         "input": 1,
                         "roles": []
                     },
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 0,
                         "input": 2,
                         "roles": []
@@ -27747,7 +26448,7 @@
                 ],
                 "DOWN": [
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 0,
                         "input": 2,
                         "roles": [
@@ -27757,16 +26458,16 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 502002
                             },
                             {
                                 "direction": 2,
-                                "id": 502002
+                                "id": 500000
                             }
                         ]
                     },
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 0,
                         "input": 2,
                         "roles": [
@@ -27776,21 +26477,25 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 502002
                             },
                             {
                                 "direction": 2,
-                                "id": 502002
+                                "id": 500000
                             }
                         ]
                     }
                 ],
                 "LEVEL": [
                     {
-                        "databaseId": 31,
+                        "databaseId": 30,
                         "control": 1,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 502000
+                            },
                             {
                                 "direction": 2,
                                 "id": 502004
@@ -27798,10 +26503,605 @@
                             {
                                 "direction": 2,
                                 "id": 500000
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 30,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
                             {
                                 "direction": 2,
                                 "id": 502000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502004
+                            },
+                            {
+                                "direction": 2,
+                                "id": 500000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "20": {
+            "1": {
+                "UP": [
+                    {
+                        "databaseId": 24,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 24,
+                        "control": 0,
+                        "input": 2,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 0,
+                        "input": 2,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    }
+                ],
+                "STOP": [
+                    {
+                        "databaseId": 24,
+                        "control": 0,
+                        "input": 1,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 24,
+                        "control": 0,
+                        "input": 2,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 0,
+                        "input": 1,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 0,
+                        "input": 2,
+                        "roles": []
+                    }
+                ],
+                "DOWN": [
+                    {
+                        "databaseId": 24,
+                        "control": 0,
+                        "input": 2,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 24,
+                        "control": 0,
+                        "input": 2,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 0,
+                        "input": 2,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 0,
+                        "input": 2,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            }
+                        ]
+                    }
+                ],
+                "LEVEL": [
+                    {
+                        "databaseId": 24,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600004
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 24,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600004
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600004
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 25,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 600000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 600004
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "91": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 19,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 19,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "16": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 17,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 17,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "12": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 13,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 13,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 400001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 400000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "83": {
+            "1": {
+                "TEMPERATURE": [
+                    {
+                        "databaseId": 36,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    }
+                ],
+                "SETPOINT_TEMPERATURE": [
+                    {
+                        "databaseId": 36,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 36,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            }
+                        ]
+                    }
+                ],
+                "CONTROL_MODE": [
+                    {
+                        "databaseId": 36,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201003
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 36,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201003
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "80": {
+            "1": {
+                "TEMPERATURE": [
+                    {
+                        "databaseId": 33,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    }
+                ],
+                "SETPOINT_TEMPERATURE": [
+                    {
+                        "databaseId": 33,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 33,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            }
+                        ]
+                    }
+                ],
+                "CONTROL_MODE": [
+                    {
+                        "databaseId": 33,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201003
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 33,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201003
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "78": {
+            "1": {
+                "TEMPERATURE": [
+                    {
+                        "databaseId": 31,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201001
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    }
+                ],
+                "SETPOINT_TEMPERATURE": [
+                    {
+                        "databaseId": 31,
+                        "control": 1,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201002
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201000
                             }
                         ]
                     },
@@ -27812,15 +27112,149 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502004
+                                "id": 201002
                             },
                             {
                                 "direction": 2,
-                                "id": 500000
+                                "id": 200000
                             },
                             {
                                 "direction": 2,
-                                "id": 502000
+                                "id": 201000
+                            }
+                        ]
+                    }
+                ],
+                "CONTROL_MODE": [
+                    {
+                        "databaseId": 31,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201003
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 31,
+                        "control": 2,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 201000
+                            },
+                            {
+                                "direction": 2,
+                                "id": 201003
+                            },
+                            {
+                                "direction": 2,
+                                "id": 200000
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "60": {
+            "1": {
+                "STATE": [
+                    {
+                        "databaseId": 31,
+                        "control": 3,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000,
+                                "invert": true
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 31,
+                        "control": 3,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000,
+                                "invert": true
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 38,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000,
+                                "invert": true
+                            }
+                        ]
+                    },
+                    {
+                        "databaseId": 38,
+                        "control": 0,
+                        "input": 0,
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 300000,
+                                "invert": true
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000,
+                                "invert": true
                             }
                         ]
                     }
@@ -27837,11 +27271,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600001
                             },
                             {
                                 "direction": 2,
-                                "id": 600001
+                                "id": 600000
                             }
                         ]
                     },
@@ -27852,11 +27286,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600001
                             },
                             {
                                 "direction": 2,
-                                "id": 600001
+                                "id": 600000
                             }
                         ]
                     },
@@ -27867,11 +27301,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600001
                             },
                             {
                                 "direction": 2,
-                                "id": 600001
+                                "id": 600000
                             }
                         ]
                     },
@@ -27882,11 +27316,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600001
                             },
                             {
                                 "direction": 2,
-                                "id": 600001
+                                "id": 600000
                             }
                         ]
                     }
@@ -27899,11 +27333,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600002
                             },
                             {
                                 "direction": 2,
-                                "id": 600002
+                                "id": 600000
                             }
                         ]
                     },
@@ -27914,11 +27348,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600002
                             },
                             {
                                 "direction": 2,
-                                "id": 600002
+                                "id": 600000
                             }
                         ]
                     },
@@ -27929,11 +27363,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600002
                             },
                             {
                                 "direction": 2,
-                                "id": 600002
+                                "id": 600000
                             }
                         ]
                     },
@@ -27944,11 +27378,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600000
+                                "id": 600002
                             },
                             {
                                 "direction": 2,
-                                "id": 600002
+                                "id": 600000
                             }
                         ]
                     }
@@ -27965,11 +27399,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -27980,11 +27414,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -27995,11 +27429,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -28010,11 +27444,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -28031,11 +27465,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -28046,11 +27480,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -28067,11 +27501,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -28082,11 +27516,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -28103,11 +27537,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -28118,11 +27552,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -28139,11 +27573,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -28154,11 +27588,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -28175,11 +27609,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     },
@@ -28190,11 +27624,11 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100000
+                                "id": 100001
                             },
                             {
                                 "direction": 2,
-                                "id": 100001
+                                "id": 100000
                             }
                         ]
                     }
@@ -28208,136 +27642,13 @@
                         "databaseId": 16,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 16,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100001
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        "83": {
-            "1": {
-                "TEMPERATURE": [
-                    {
-                        "databaseId": 37,
-                        "control": 0,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201001
-                            }
-                        ]
-                    }
-                ],
-                "SETPOINT_TEMPERATURE": [
-                    {
-                        "databaseId": 37,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 37,
-                        "control": 1,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201002
-                            }
-                        ]
-                    }
-                ],
-                "CONTROL_MODE": [
-                    {
-                        "databaseId": 37,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201003
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            }
-                        ]
-                    },
-                    {
-                        "databaseId": 37,
-                        "control": 2,
-                        "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 201003
-                            },
-                            {
-                                "direction": 2,
-                                "id": 200000
-                            },
-                            {
-                                "direction": 2,
-                                "id": 201000
-                            }
-                        ]
+                        "roles": []
                     }
                 ]
             }
@@ -28346,10 +27657,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 40,
+                        "databaseId": 39,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28358,20 +27674,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 40,
+                        "databaseId": 39,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28380,11 +27696,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28396,10 +27707,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 41,
+                        "databaseId": 40,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28408,20 +27724,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 41,
+                        "databaseId": 40,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28430,11 +27746,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28446,10 +27757,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 42,
+                        "databaseId": 41,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28458,20 +27774,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 42,
+                        "databaseId": 41,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28480,11 +27796,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28496,10 +27807,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 43,
+                        "databaseId": 42,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28508,20 +27824,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 43,
+                        "databaseId": 42,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28530,11 +27846,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28546,10 +27857,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 44,
+                        "databaseId": 43,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28558,20 +27874,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 44,
+                        "databaseId": 43,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28580,11 +27896,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28596,10 +27907,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 45,
+                        "databaseId": 44,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28608,20 +27924,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 45,
+                        "databaseId": 44,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28630,11 +27946,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28646,10 +27957,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 46,
+                        "databaseId": 45,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28658,20 +27974,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 46,
+                        "databaseId": 45,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301002,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28680,11 +27996,6 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301002,
                                 "invert": true
                             }
                         ]
@@ -28696,7 +28007,7 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 47,
+                        "databaseId": 46,
                         "control": 0,
                         "input": 0,
                         "roles": [
@@ -28706,16 +28017,16 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 300000
+                                "id": 301001
                             },
                             {
                                 "direction": 2,
-                                "id": 301001
+                                "id": 300000
                             }
                         ]
                     },
                     {
-                        "databaseId": 47,
+                        "databaseId": 46,
                         "control": 0,
                         "input": 0,
                         "roles": [
@@ -28725,11 +28036,11 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 300000
+                                "id": 301001
                             },
                             {
                                 "direction": 2,
-                                "id": 301001
+                                "id": 300000
                             }
                         ]
                     }
@@ -28740,7 +28051,7 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 48,
+                        "databaseId": 47,
                         "control": 0,
                         "input": 0,
                         "roles": [
@@ -28751,18 +28062,18 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
+                                "id": 301001,
                                 "invert": true
                             },
                             {
                                 "direction": 2,
-                                "id": 301001,
+                                "id": 300000,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 48,
+                        "databaseId": 47,
                         "control": 0,
                         "input": 0,
                         "roles": [
@@ -28773,12 +28084,12 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
+                                "id": 301001,
                                 "invert": true
                             },
                             {
                                 "direction": 2,
-                                "id": 301001,
+                                "id": 300000,
                                 "invert": true
                             }
                         ]
@@ -28790,10 +28101,15 @@
             "1": {
                 "STATE": [
                     {
-                        "databaseId": 49,
+                        "databaseId": 48,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301003,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28802,20 +28118,20 @@
                             {
                                 "direction": 2,
                                 "id": 301000,
-                                "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301003,
                                 "invert": true
                             }
                         ]
                     },
                     {
-                        "databaseId": 49,
+                        "databaseId": 48,
                         "control": 0,
                         "input": 0,
                         "roles": [
+                            {
+                                "direction": 2,
+                                "id": 301003,
+                                "invert": true
+                            },
                             {
                                 "direction": 2,
                                 "id": 300000,
@@ -28825,13 +28141,26 @@
                                 "direction": 2,
                                 "id": 301000,
                                 "invert": true
-                            },
-                            {
-                                "direction": 2,
-                                "id": 301003,
-                                "invert": true
                             }
                         ]
+                    }
+                ]
+            }
+        },
+        "86": {
+            "1": {
+                "LEVEL": [
+                    {
+                        "databaseId": 49,
+                        "control": 0,
+                        "input": 0,
+                        "roles": []
+                    },
+                    {
+                        "databaseId": 49,
+                        "control": 0,
+                        "input": 0,
+                        "roles": []
                     }
                 ]
             }
