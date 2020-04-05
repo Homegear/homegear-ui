@@ -2,7 +2,7 @@
     $defaultInterfaceDataJson = '
 {
     "settings": {
-        "errorReporting": "-1",
+        "errorReporting": "0",
         "directLoginUser": "",
         "directLoginApiKey": "",
         "setupKey": "",
