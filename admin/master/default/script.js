@@ -40,7 +40,7 @@ function viewLog(value) {
     if (value !== null && typeof value === 'object')
         value = JSON.stringify(value);
 
-    logFrontend += value + '<br/>';
+    logFrontend += value + '\r\n';
 
     if($('#log').length){
         $('#log').html(logFrontend);
