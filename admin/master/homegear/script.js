@@ -192,7 +192,7 @@ function homegear_prepare(homegear) {
     homegear.invoke = function (op, cb) {
         homegear.invoke_raw(op, function (ret) {
             if (ret.error === undefined)
-                return cb(ret);
+                return cb ? cb(ret) : undefined;
 
             console.log('Invoke Error: ' + JSON.stringify(ret.error, null, 4));
         })
