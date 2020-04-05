@@ -708,8 +708,7 @@
             "deviceId": 69,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301001,
-            "invert": true
+            "roleId": 301001
         },
         {
             "deviceId": 70,
@@ -836,8 +835,7 @@
             "deviceId": 87,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 88,
@@ -5088,8 +5086,8 @@
             "FAMILY": 254,
             "ID": 69,
             "NAME": "Riegelkontakt T\u00fcr Diele",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xa001",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
             "SERIALNUMBER": "VirtDoor03",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
@@ -5099,8 +5097,8 @@
             "FAMILY": 254,
             "ID": 70,
             "NAME": "Fenster Wohnen",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xa001",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
             "SERIALNUMBER": "VirtWind70",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
