@@ -738,7 +738,7 @@ Vue.component('shif-generic-l2', {
 
 
 // [shif_device] Generic Shif Device Component Object {{{
-function status_impl(control) {
+function status_impl(control, layer) {
     let out = [];
 
     const key = (control.texts &&
@@ -760,7 +760,7 @@ function status_impl(control) {
 
     let val = [];
     for (const input of control.variableInputs) {
-        if (!input.properties.visualizeInOverview)
+        if (input.properties.visualizeInOverview === false && layer == 2)
             continue;
 
         if (input.rendering) {
@@ -807,7 +807,7 @@ const shif_device = {
 
     methods: {
         status_minimal: function (descs=true) {
-            const raw = status_impl(this.control);
+            const raw = status_impl(this.control, this.layer);
 
             return (descs) ? raw : raw.map(x => ({value: x.value}));
         },
