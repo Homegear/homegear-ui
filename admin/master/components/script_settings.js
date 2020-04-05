@@ -88,11 +88,13 @@ let ShifSettingsUser = {
     data: function () {
         return {
             options:   interfaceData.options,
+            startpath: interfaceData.i18n.startpath,
             languages: interfaceData.i18n.languages,
             name:      this.$route.name,
 
             form: {
                 name: 'user_edit',
+                startpath: interfaceData.options.startpath,
                 language: interfaceData.options.language,
                 theme:    interfaceData.options.theme,
                 color:    interfaceData.options.highlight,
@@ -122,13 +124,15 @@ let ShifSettingsUser = {
             }, (data) => {
                 let new_settings = data.result;
 
+                new_settings.startpath = this.form.startpath;
                 new_settings.locale = this.form.language;
 
                 if (new_settings.interface === undefined)
                     new_settings.interface = {};
 
                 Object.assign(new_settings.interface, {
-                    language:  this.form.language || this.options.langauge || 'en-US',
+                    startpath:  this.form.startpath || this.options.startpath || 'en-US',
+                    language:  this.form.language || this.options.language || 'en-US',
                     theme:     this.form.theme    || 'dark',
                     highlight: this.form.color    || '#e3a104',
                 });
@@ -181,6 +185,18 @@ let ShifSettingsUser = {
                         </select>
                     </div>
                 </template>
+
+                <div class="form-group">
+                    <div class="label">{{ i18n(name + '.startpath') }}:</div>
+                    <select id="startpath"
+                            name="startpath"
+                            v-model="form.startpath">
+                        <option value="/favorites/list" autocomplete="off">{{ i18n('favorites') }}</option>
+                        <option value="/house/rooms" autocomplete="off">{{ i18n('house.tab.rooms') }}</option>
+                        <option value="/house/devices" autocomplete="off">{{ i18n('house.tab.devices') }}</option>
+                        <option value="/house/profiles" autocomplete="off">{{ i18n('house.tab.profiles') }}</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <div class="label">{{ i18n(name + '.theme') }}:</div>

@@ -11,7 +11,7 @@ let ShifProfilesGlobal = {
         <div id="profiles" class="content content_single">
             <template v-for="i in global_profiles">
                 <shif-button v-on:click="profile_start(i)">
-                    <shif-icon v-bind:src="get_icon_or_default(profile)"
+                    <shif-icon v-bind:src="get_icon_or_default(i)"
                                classname="profile_button_icon">
                     </shif-icon>
                     {{ i.name }}
