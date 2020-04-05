@@ -59,6 +59,34 @@ function check_disabled(device, indexes) {
     return ret_enabled;
 }
 
+
+
+// Initially patch inverted values
+for (const dev_idx in interfaceData.devices) {
+    const dev = interfaceData.devices[dev_idx];
+
+    for (const ctrl_idx in dev.controls) {
+        const ctrl = dev.controls[ctrl_idx];
+
+        for (const input_idx in ctrl.variableInputs) {
+            const input = ctrl.variableInputs[input_idx];
+
+            if (input.roles === undefined)
+                continue;
+
+            let roles = roles_relevant(input.roles);
+            for (const role of roles) {
+                if ('invert' in role) {
+                    input.properties.value = Number(! input.properties.value);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
+
 Vue.use({
     install: function (Vue, opts) {
         Vue.prototype.$homegear = homegear;
