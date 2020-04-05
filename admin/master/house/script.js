@@ -192,7 +192,7 @@ let ShifLogoff = Vue.component('shif-logoff', {
 
 let router = new VueRouter({
     routes: [
-        { path: '/',   name: 'index',  redirect: (interfaceData.options.startPath || {name: 'house'}), },
+        { path: '/',   name: 'index',  redirect: {name: interfaceData.options.startPath || 'house'}, },
         { path: '/nb', name: 'legacy', redirect: {name: 'index'}},
 
         { path: '/house', name: 'house', component: ShifHouse, redirect: {name: 'house.tab.rooms'},
