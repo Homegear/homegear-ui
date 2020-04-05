@@ -249,10 +249,17 @@ Vue.component('shif-status', {
                     <div class="device_status_entry"></div>
                 </template>
                 <template v-else>
-                    <span v-for="i in key_vals"
-                        class="device_status_entry">
+                    <span v-for="i in key_vals" class="device_status_entry">
                         <span v-if="i.key" class="name">{{ i.key }}:</span>
-                        <span class="value">{{ i.value }}</span>
+
+                        <template v-if="typeof(i.value) === 'object' && i.value.type === 'color'">
+                            <span class="status_color_bullet"
+                                  v-bind:style="{backgroundColor: i.value.color}">
+                            </span>
+                        </template>
+                        <template v-else>
+                            <span class="value">{{ i.value }}</span>
+                        </template>
                     </span>
                 </template>
             </template>
@@ -739,8 +746,19 @@ function status_impl(control) {
                  control.texts.l2_state_title.content) ?
         control.texts.l2_state_title.content :
         null;
-    let val = [];
 
+    if (control.metadata !== undefined &&
+        control.metadata.statusColor === true &&
+        control.variableInputs.length > 0)
+        return [{
+            key: key,
+            value: {
+                type: 'color',
+                color: control.variableInputs[0].properties.value,
+            },
+        }];
+
+    let val = [];
     for (const input of control.variableInputs) {
         if (!input.properties.visualizeInOverview)
             continue;
