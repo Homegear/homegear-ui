@@ -333,7 +333,7 @@
             "settings": "Einstellungen",
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
-            "settings.favorites.description": "Favoriten auswählen",
+            "settings.favorites.description": "Favoriten hinzufügen und entfernen",
             "settings.profiles": "Profile",
             "settings.profiles.new": "Neu",
             "settings.profiles.profile.name": "Name",
@@ -376,8 +376,8 @@
             "settings.about.table.rights": "Rechte",
             "settings.about.table.license": "Lizenz",
             "settings.about.table.license.url": "Lizenz URL",
-            "modemenu.favorites.name": "Favorites mode",
-            "modemenu.favorites.button.end": "Exit Favorites mode",
+            "modemenu.favorites.name": "Favoriten Modus",
+            "modemenu.favorites.button.end": "Bearbeiten beenden",
             "modemenu.profiles.name.label": "Profil",
             "modemenu.profiles.button.settings": "Profil Einstellungen",
             "modemenu.profiles.button.end": "speichern & beenden",
@@ -512,32 +512,6 @@
         "wind": "wind_1",
         "blinds_1": "blind_2",
         "blinds_2": "blind_3"
-    },
-    "rolesIncludes": {
-        "501000": [
-            {
-                "aggregationType": 1,
-                "roles": [
-                    501004
-                ]
-            }
-        ],
-        "502000": [
-            {
-                "aggregationType": 1,
-                "roles": [
-                    502004
-                ]
-            }
-        ],
-        "600000": [
-            {
-                "aggregationType": 1,
-                "roles": [
-                    600004
-                ]
-            }
-        ]
     }
 }
 ';
