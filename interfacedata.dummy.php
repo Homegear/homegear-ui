@@ -23649,6 +23649,7 @@
     "profiles": {
         "1": {
             "global": true,
+            "icon": "statistic_1",
             "id": 1,
             "locations": [
                 {
@@ -23657,6 +23658,37 @@
                 }
             ],
             "name": "asdf",
+            "values": [
+                [
+                    94,
+                    1,
+                    "LEVEL_FAST",
+                    50
+                ],
+                [
+                    0,
+                    -1,
+                    "SPEED",
+                    115
+                ],
+                [
+                    94,
+                    1,
+                    "STATE",
+                    true
+                ]
+            ]
+        },
+        "2": {
+            "global": true,
+            "id": 1,
+            "locations": [
+                {
+                    "floorId": 1,
+                    "roomId": 9
+                }
+            ],
+            "name": "asdsd fsdf sdff",
             "values": [
                 [
                     94,

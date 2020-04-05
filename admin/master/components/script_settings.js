@@ -4,7 +4,7 @@ Vue.component('shif-settings-element', {
     props: {
         name:        { type: String, required: true, },
         description: { type: String, },
-        icon:        { type: String, },
+        icon:        { type: String, default: 'slider_1'},
         translate:   { type: Boolean, default: true, }
     },
     template: `
@@ -299,8 +299,8 @@ let ShifSettingsProfiles = {
                         <shif-settings-element v-bind:key="i.name"
                                                v-bind:name="i.name"
                                                v-bind:translate="false"
+                                               v-bind:icon="i.icon"
                                                description=""
-                                               icon="slider_1"
                                                />
                     </router-link>
                 </template>
@@ -438,6 +438,12 @@ let ShifSettingsProfile = {
                            type="text"
                            name="profile_name"
                            v-model="form.profile_name" />
+                </div>
+
+                <div class="form-group">
+                    <div class="label">{{ i18n('settings.profiles.profile.icon') }}:</div>
+                        <div v-for="icon in interfaceIcons" v-html="icon">
+                        </div>
                 </div>
 
                 <div class="form-group">

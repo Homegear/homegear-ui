@@ -665,7 +665,6 @@ a.disabled {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
   margin: auto;
   fill: #fff;
 }
@@ -1507,6 +1506,15 @@ td {
   padding: 27px 15px;
   margin-bottom: 20px;
   cursor: pointer;
+}
+
+.profile_button_icon {
+  width:50px;
+  height: 50px;
+  position: relative;
+  display: inline-block;
+  top: 15px;
+  margin-right: 10px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */

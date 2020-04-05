@@ -897,6 +897,7 @@
             },
             {
                 "id": 0,
+                "icon": "statistic_1",
                 "global": true,
                 "locations": [
                     {
@@ -932,6 +933,7 @@
             },
             {
                 "id": 1,
+                "icon": "statistic_1",
                 "locations": [
                     {
                         "floorId": 1,
@@ -986,6 +988,7 @@
             },
             {
                 "id": 2,
+                "icon": "statistic_1",
                 "locations": [
                     {
                         "floorId": 1,
@@ -1036,6 +1039,7 @@
             },
             {
                 "id": 3,
+                "icon": "statistic_1",
                 "global": true,
                 "locations": [
                 ],
@@ -1095,6 +1099,7 @@
             },
             {
                 "id": 4,
+                "icon": "statistic_1",
                 "global": true,
                 "locations": [
                 ],
