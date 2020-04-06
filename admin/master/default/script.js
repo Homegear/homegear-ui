@@ -852,7 +852,7 @@ const shif_device = {
             let out = [];
 
             for (const control of this.dev.controls)
-                out = out.concat(status_impl(control));
+                out = out.concat(status_impl(control, this.layer));
 
             return out;
         },
