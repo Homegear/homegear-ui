@@ -14,7 +14,7 @@
             "theme": "dark",
             "highlight": "#e3a104",
             "language": "de-DE",
-            "startPath": "/favorites",
+            "startPath": "house.tab.rooms",
             "showFloor": true,
             "languageChangeable": true,
             "twofaChangeable": true,
