@@ -1,5 +1,5 @@
 Vue.component('shif-ctrl-summary', {
-    mixins: [mixin_components, mixin_print_mounted()],
+    mixins: [mixin_components, mixin_print_mounted(), mixin_profiles, mixin_print_mounted('shif-profiles-global'), mixin_print_mounted('shif-profiles')],
 
     props: [
         'icon',
@@ -71,6 +71,9 @@ Vue.component('shif-ctrl-summary', {
 
             this.$homegear.value_set_multi(ops);
         },
+        get_icon_or_default: function (profile) {
+            return get_or_default(profile, 'icon', 'slider_1');
+        },
     },
 
     template: `
@@ -89,12 +92,13 @@ Vue.component('shif-ctrl-summary', {
                 <div v-if="submenu_show"
                      class="categoryContainer"
                      style="margin-top: 15px;">
-                    <div class="control_button_wrapper">
-                        <template v-for="action in actions">
-                            <shif-button v-bind:width="(100 / actions.length) + '%'"
-                                         v-on:click="toggle_all(action)">
-                                {{ action.buttonText }}
-                            </shif-button>
+                    <div class="profiles_wrapper">
+                        <template v-for="i in global_profiles">
+                            <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+                                            v-bind:title="i.name"
+                                            v-bind:status="i18n('modemenu.profiles.name.label')"
+                                            v-on:click="profile_start(i)">
+                            </shif-generic-l2>
                         </template>
                     </div>
 
