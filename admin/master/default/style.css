@@ -208,6 +208,7 @@ img, .video {
 a:link, a:visited, a:focus, a:hover, a:active {
   color: #fff;
   text-decoration: none;
+  outline : none;
 }
 
 a.disabled {
@@ -1546,7 +1547,7 @@ td {
   width: auto !important;
   display: inline-block;
   margin: 10px;
-  padding: 0;
+  padding: 0 15px;
   text-align: center;
   line-height: 75px;
   font-size: 30px;
