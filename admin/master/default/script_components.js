@@ -324,14 +324,22 @@ Vue.component('shif-house-collected-entries', {
         },
     },
 
+    methods: {
+        get_icon_or_default: function (profile) {
+            return get_or_default(profile, 'icon', 'slider_1');
+        },
+    },
+
     template: `
         <div>
             <div class="profiles_wrapper">
                 <template v-if="layer === 2 && ! favorites"
                           v-for="i in local_profiles">
-                    <shif-button v-bind:classname="'profiles_button'" v-on:click="profile_start(i)">
-                        {{ i.name }}
-                    </shif-button>
+                    <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+                                    v-bind:title="i.name"
+                                    v-bind:status="i18n('modemenu.profiles.name.label')"
+                                    v-on:click="profile_start(i)">
+                    </shif-generic-l2>
                 </template>
             </div>
 

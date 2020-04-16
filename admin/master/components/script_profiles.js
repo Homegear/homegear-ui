@@ -9,14 +9,14 @@ let ShifProfilesGlobal = {
 
     template: `
         <div id="profiles" class="content content_single">
-            <template v-for="i in global_profiles">
-                <shif-button v-on:click="profile_start(i)">
-                    <shif-icon v-bind:src="get_icon_or_default(i)"
-                               classname="profile_button_icon">
-                    </shif-icon>
-                    {{ i.name }}
-                </shif-button>
-            </template>
+            <div class="profiles_wrapper">
+                <template v-for="i in global_profiles">
+                    <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+                                    v-bind:title="i.name"
+                                    v-on:click="profile_start(i)">
+                    </shif-generic-l2>
+                </template>
+            </div>
         </div>
     `
 };

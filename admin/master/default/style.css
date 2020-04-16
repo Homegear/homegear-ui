@@ -138,6 +138,15 @@ select {
   position: relative;
   scrollbar-width: auto;
   margin: 10px 0;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 option {
@@ -488,7 +497,7 @@ a.disabled {
   width: 100%;
   height: 100%;
   display: none;
-  padding-top: 100px;
+  padding-top: 60px;
   position: relative;
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
@@ -1475,12 +1484,6 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 #profiles,
 #house .profiles_wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  flex-direction: row;
-  align-content: flex-start;
-  box-sizing: content-box;
   margin: 0;
   padding: 0;
 }
