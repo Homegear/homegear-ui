@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
 	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
-		<device id="VirtualBlind">
-			<description>VirtualBlind</description>
-			<typeNumber>0xE011</typeNumber>
+		<device id="VirtualImage">
+			<description>VirtualImage</description>
+			<typeNumber>0xF008</typeNumber>
 		</device>
 	</supportedDevices>
 	<properties/>
@@ -15,7 +15,7 @@
 			<configParameters>config</configParameters>
 			<variables>maint_ch0_values</variables>
 		</function>
-		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="VirtualBlind">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="VirtualImage">
 			<variables>custom_ch1_values</variables>
 		</function>
 	</functions>
@@ -33,60 +33,42 @@
 			</parameter>
 		</variables>
 		<variables id="custom_ch1_values">
-			<parameter id="LEVEL">
-				<properties>
-					<readable>true</readable>
-					<writeable>true</writeable>
-				</properties>
-				<logicalInteger>
-					<minimumValue>0</minimumValue>
-					<maximumValue>100</maximumValue>
-					<defaultValue>0</defaultValue>
-				</logicalInteger>
-				<physicalNone>
+	      <parameter id="IMAGE_URL">
+	        <properties>
+	          <readable>true</readable>
+	          <writeable>true</writeable>
+	          <formFieldType>text</formFieldType>
+	          <formPosition>0</formPosition>
+	          <casts>
+	            <rpcBinary />
+	          </casts>
+	        </properties>
+	        <logicalString />
+			<physicalNone>
 					<operationType>store</operationType>
-				</physicalNone>
-			</parameter>
-			<parameter id="UP">
-				<properties>
-					<readable>true</readable>
-					<writeable>true</writeable>
-				</properties>
-				<logicalBoolean/>
-				<physicalNone>
+			</physicalNone>
+	      </parameter>
+	      <parameter id="BINARY_IMAGE">
+	        <properties>
+	          <readable>true</readable>
+	          <writeable>true</writeable>
+	          <formFieldType>text</formFieldType>
+	          <formPosition>0</formPosition>
+	          <casts>
+	            <rpcBinary />
+	          </casts>
+	        </properties>
+	        <logicalString />
+			<physicalNone>
 					<operationType>store</operationType>
-				</physicalNone>
-			</parameter>
-			<parameter id="DOWN">
+			</physicalNone>
+	      </parameter>
+			<parameter id="MODE">
 				<properties>
 					<readable>true</readable>
 					<writeable>true</writeable>
 				</properties>
-				<logicalBoolean/>
-				<physicalNone>
-					<operationType>store</operationType>
-				</physicalNone>
-			</parameter>
-			<parameter id="STOP">
-				<properties>
-					<readable>true</readable>
-					<writeable>true</writeable>
-				</properties>
-				<logicalBoolean/>
-				<physicalNone>
-					<operationType>store</operationType>
-				</physicalNone>
-			</parameter>
-			<parameter id="STATE_LEVEL">
-				<properties>
-					<readable>true</readable>
-					<writeable>true</writeable>
-				</properties>
-				<logicalInteger>
-					<minimumValue>0</minimumValue>
-					<maximumValue>100</maximumValue>
-					<defaultValue>0</defaultValue>
-				</logicalInteger>
+				<logicalString/>
 				<physicalNone>
 					<operationType>store</operationType>
 				</physicalNone>

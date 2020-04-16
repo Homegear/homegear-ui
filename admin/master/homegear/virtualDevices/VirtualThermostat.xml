@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
 	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
-		<device id="VirtualBlind">
-			<description>VirtualBlind</description>
-			<typeNumber>0xE011</typeNumber>
+		<device id="VirtualThermostat">
+			<description>VirtualThermostat</description>
+			<typeNumber>0xF003</typeNumber>
 		</device>
 	</supportedDevices>
 	<properties/>
@@ -15,7 +15,7 @@
 			<configParameters>config</configParameters>
 			<variables>maint_ch0_values</variables>
 		</function>
-		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="VirtualBlind">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="VirtualThermostat">
 			<variables>custom_ch1_values</variables>
 		</function>
 	</functions>
@@ -33,60 +33,54 @@
 			</parameter>
 		</variables>
 		<variables id="custom_ch1_values">
-			<parameter id="LEVEL">
+			<parameter id="ACTUAL_TEMPERATURE">
 				<properties>
 					<readable>true</readable>
 					<writeable>true</writeable>
 				</properties>
-				<logicalInteger>
+				<logicalDecimal>
+					<minimumValue>5.000000</minimumValue>
+					<maximumValue>30.000000</maximumValue>
+					<defaultValue>17.000000</defaultValue>
+				</logicalDecimal>
+				<physicalNone>
+					<operationType>store</operationType>
+				</physicalNone>
+			</parameter>
+			<parameter id="ACTUAL_HUMIDITY">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+				</properties>
+				<logicalFloat>
 					<minimumValue>0</minimumValue>
 					<maximumValue>100</maximumValue>
-					<defaultValue>0</defaultValue>
-				</logicalInteger>
+					<defaultValue>50</defaultValue>
+				</logicalFloat>
 				<physicalNone>
 					<operationType>store</operationType>
 				</physicalNone>
 			</parameter>
-			<parameter id="UP">
+			<parameter id="SET_TEMPERATURE">
 				<properties>
 					<readable>true</readable>
 					<writeable>true</writeable>
 				</properties>
-				<logicalBoolean/>
+				<logicalDecimal>
+					<minimumValue>5.000000</minimumValue>
+					<maximumValue>30.000000</maximumValue>
+					<defaultValue>17.000000</defaultValue>
+				</logicalDecimal>
 				<physicalNone>
 					<operationType>store</operationType>
 				</physicalNone>
 			</parameter>
-			<parameter id="DOWN">
+			<parameter id="MODE">
 				<properties>
 					<readable>true</readable>
 					<writeable>true</writeable>
 				</properties>
-				<logicalBoolean/>
-				<physicalNone>
-					<operationType>store</operationType>
-				</physicalNone>
-			</parameter>
-			<parameter id="STOP">
-				<properties>
-					<readable>true</readable>
-					<writeable>true</writeable>
-				</properties>
-				<logicalBoolean/>
-				<physicalNone>
-					<operationType>store</operationType>
-				</physicalNone>
-			</parameter>
-			<parameter id="STATE_LEVEL">
-				<properties>
-					<readable>true</readable>
-					<writeable>true</writeable>
-				</properties>
-				<logicalInteger>
-					<minimumValue>0</minimumValue>
-					<maximumValue>100</maximumValue>
-					<defaultValue>0</defaultValue>
-				</logicalInteger>
+				<logicalString/>
 				<physicalNone>
 					<operationType>store</operationType>
 				</physicalNone>
