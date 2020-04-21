@@ -35,4 +35,4 @@ let ShifProfiles = {
             <shif-profiles-global />
         </shif-mainmenu-tabs>
     `
-}
+};

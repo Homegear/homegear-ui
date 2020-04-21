@@ -122,6 +122,14 @@ input, radio, checkbox, textarea {
   margin: 4px;
 }
 
+input {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+
 input[type=submit] {
   background: #e3a104;
   color: #fff;
@@ -138,7 +146,11 @@ select {
   position: relative;
   scrollbar-width: auto;
   margin: 10px 0;
-
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
   -webkit-appearance: none;
   -moz-appearance: none;
   text-indent: 1px;
