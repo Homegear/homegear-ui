@@ -130,9 +130,16 @@ input {
   user-select: initial;
 }
 
+input[type=button],
 input[type=submit] {
   background: #e3a104;
   color: #fff;
+  cursor: pointer;
+}
+
+input[type=button]:active,
+input[type=submit]:active {
+  background: #191b1f !important;
 }
 
 select {
@@ -155,6 +162,7 @@ select {
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
+  cursor: pointer;
 }
 
 select::-ms-expand {
@@ -1500,6 +1508,11 @@ td {
   padding: 0;
 }
 
+#profiles .profiles_wrapper .device:active,
+#house .profiles_wrapper .device:active {
+  background: #e3a104;
+}
+
 .profiles_wrapper .button_action svg {
   left: auto;
 }
@@ -1523,6 +1536,7 @@ td {
   margin-bottom: 4px;
   text-align: center;
   min-width: 100px;
+  cursor: pointer;
 }
 
 #profile_icons .profile_icon_wrapper.selected {
@@ -1635,6 +1649,7 @@ margin-bottom: 30px;
   background: #191b1f;
 }
 
+.form-group input[type=button],
 .form-group input[type=submit] {
   background: #e3a104;
   color: #fff;
