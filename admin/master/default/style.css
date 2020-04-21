@@ -362,6 +362,7 @@ a.disabled {
   background: #191b1f;
   border-bottom: 1px solid #25282e;
   z-index: 999;
+  white-space: nowrap;
 }
 
 #breadcrumbs_wrapper #breadcrumbs {
@@ -396,6 +397,7 @@ a.disabled {
   width: calc(100% - 70px);
   text-align: left;
   margin-left: 50px;
+  white-space: nowrap;
 }
 
 #breadcrumbs_wrapper #back {
