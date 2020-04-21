@@ -132,4 +132,10 @@ userSettings();
 $interfaceData["options"]["websocket_user"] = $interfaceData['settings']['homegear']['user'];
 $interfaceData["options"]["websocket_password"] = $interfaceData['settings']['homegear']['password'];
 
-$javascript_options  = "";
+$javascript_options  = "
+    document.addEventListener('DOMContentLoaded', function(event) {
+        homegear.onDisconnected = [];
+        homegear.onReconnected = [];
+        document.getElementById('loadingPage').style.display = 'none';
+    });
+";
