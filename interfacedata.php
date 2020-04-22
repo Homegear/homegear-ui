@@ -311,8 +311,10 @@
             "modemenu.favorites.name": "Favorites mode",
             "modemenu.favorites.button.end": "Exit Favorites mode",
             "modemenu.profiles.name.label": "Profil",
-            "modemenu.profiles.button.settings": "Profil Einstellungen",
-            "modemenu.profiles.button.end": "speichern & beenden",
+            "modemenu.profiles.button.settings": "Profil settings",
+            "modemenu.profiles.button.end": "Save & close",
+            "refresh.message": "Please reload the interface",
+            "refresh.message.button.text": "reload",
             "logoff": "Logoff",
             "disabled_text": "disabled"
         },
@@ -387,6 +389,8 @@
             "modemenu.profiles.name.label": "Profil",
             "modemenu.profiles.button.settings": "Profil Einstellungen",
             "modemenu.profiles.button.end": "speichern & beenden",
+            "refresh.message": "Bitte das Interface neuladen",
+            "refresh.message.button.text": "neuladen",
             "logoff": "Abmelden",
             "disabled_text": "gesperrt"
         }
