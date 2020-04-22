@@ -244,7 +244,7 @@ let ShifSettingsUser = {
 
 let ShifSettingsItems = function (level) {
     return {
-        mixins: [mixin_print_mounted('shif-settings-items')],
+        mixins: [mixin_menus, mixin_print_mounted('shif-settings-items')],
 
         methods: {
             elements: function (level) {
@@ -255,7 +255,8 @@ let ShifSettingsItems = function (level) {
 
         template: `
             <div>
-                <template v-for="i in elements(${level})">
+                <template v-for="i in elements(${level})"
+                          v-if="check_disabled('menu', i.name)">
                     <router-link v-bind:to="{name: i.name}">
                         <shif-settings-element v-bind:key="i.name"
                                                v-bind:icon="i.icon"
