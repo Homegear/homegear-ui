@@ -21,6 +21,12 @@
             "consoleLog": true,
             "viewportScale": 0.65,
             "scrollbarScale": 4,
+            "disabledMainmenus": {
+                "logoff": true
+            },
+            "disabledMenus": {
+                "settings.about": true
+            },
             "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
         }
@@ -568,6 +574,8 @@ function userSettings() {
     }
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
     $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
+    $interfaceData["options"]["disabledMainmenus"] = ($user->getSettings()["disabledMainmenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMainmenus"]);
+    $interfaceData["options"]["disabledMenus"] = ($user->getSettings()["disabledMenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMenus"]);
     $interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
     $interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
