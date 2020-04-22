@@ -923,10 +923,10 @@
                     }
                 ],
                 "values": [
-                    [
+                    {
                         "role": 100001,
                         "value": true
-                    ]
+                    }
                 ]
             }
         ],
@@ -965,10 +965,10 @@
                     }
                 ],
                 "values": [
-                    [
+                    {
                         "role": 100001,
                         "value": false
-                    ]
+                    }
                 ]
             }
         ],
@@ -1006,24 +1006,24 @@
                     }
                 ],
                 "values": [
-                    [
+                    {
                         "peerId": 0,
                         "channel": -1,
                         "variable": "LIGHT",
                         "value": 1
-                    ],
-                    [
+                    },
+                    {
                         "peerId": 1,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 1
-                    ],
-                    [
+                    },
+                    {
                         "peerId": 2,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 1
-                    ]
+                    }
                 ]
             }
         ],

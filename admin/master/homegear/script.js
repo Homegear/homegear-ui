@@ -170,12 +170,18 @@ function handle_update_request_ui_refresh(resp) {
 
 
 
+function handle_update_variable_profile_state_changed(resp) {
+}
+
+
+
 function homegear_handle_update(resp) {
     console.log(JSON.stringify(resp, null, 4));
 
     const funcs = {
-        'event':            handle_update_event,
+        'event': handle_update_event,
         'requestUiRefresh': handle_update_request_ui_refresh,
+        'variableProfileStateChanged': handle_update_variable_profile_state_changed,
     };
 
     if (resp.method in funcs)
