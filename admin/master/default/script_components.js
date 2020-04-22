@@ -21,7 +21,7 @@ function comp_obj(control, device, input, output, is, indexes) {
 
 const mixin_menus = {
     methods: {
-        check_disabled: function (type, key) {
+        disabled: function (type, key) {
             const key_type = ({
                 'mainmenu': 'disabledMainmenus',
                 'menu':     'disabledMenus',

@@ -1,15 +1,24 @@
 Vue.component('shif-mainmenu', {
+    mixins: [mixin_menus, mixin_print_mounted()],
+
     data: function () {
         return {
-            width: (100 / interfaceData.mainmenu.length) + '%',
+            enabled_menus: interfaceData.mainmenu
+                            .filter(x => ! this.disabled('mainmenu', x.name)),
             active: true,
         };
+    },
+
+    computed: {
+        width: function () {
+            return (100 / this.enabled_menus.length) + '%';
+        },
     },
 
     template: `
         <div id="mainmenu">
             <ul class="menu">
-                <li v-for="i in interfaceData.mainmenu"
+                <li v-for="i in enabled_menus"
                     v-bind:style="{width: width}">
 
                     <router-link v-bind:to="{name: i.name}">

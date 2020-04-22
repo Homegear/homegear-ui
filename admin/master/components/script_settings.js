@@ -249,14 +249,14 @@ let ShifSettingsItems = function (level) {
         methods: {
             elements: function (level) {
                 return interfaceData.menu.filter(x => x.mainmenu === 'settings' &&
-                                                      x.level    === String(level));
+                                                      x.level    === String(level) &&
+                                                      ! this.disabled('menu', x.name));
             },
         },
 
         template: `
             <div>
-                <template v-for="i in elements(${level})"
-                          v-if="check_disabled('menu', i.name)">
+                <template v-for="i in elements(${level})">
                     <router-link v-bind:to="{name: i.name}">
                         <shif-settings-element v-bind:key="i.name"
                                                v-bind:icon="i.icon"
