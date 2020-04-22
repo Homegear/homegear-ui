@@ -890,6 +890,90 @@
     "profiles": [
         [
             {
+                "en-US": "Role 100001 true",
+                "de-DE": "Role 100001 true"
+            },
+            {
+                "id": 10,
+                "icon": "statistic_1",
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    },
+                    {
+                        "floorId": 1,
+                        "roomId": 12
+                    }
+                ],
+                "global": true,
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE1"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE1",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [
+                        "role": 100001,
+                        "value": true
+                    ]
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Role 100001 false",
+                "de-DE": "Role 100001 false"
+            },
+            {
+                "id": 10,
+                "icon": "statistic_1",
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    },
+                    {
+                        "floorId": 1,
+                        "roomId": 12
+                    }
+                ],
+                "global": true,
+                "inputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE1"
+                    }
+                ],
+                "outputPeers": [
+                    {
+                        "peer": 0,
+                        "channel": -1,
+                        "name": "PROFILE1",
+                        "value": 1
+                    }
+                ],
+                "values": [
+                    [
+                        "role": 100001,
+                        "value": false
+                    ]
+                ]
+            }
+        ],
+        [
+            {
                 "en-US": "Arbeiten",
                 "de-DE": "Arbeiten"
             },
@@ -899,11 +983,11 @@
                 "locations": [
                     {
                         "floorId": 1,
-                        "roomId": 12
+                        "roomId": 9
                     },
                     {
                         "floorId": 1,
-                        "roomId": 9
+                        "roomId": 12
                     }
                 ],
                 "inputPeers": [
@@ -923,22 +1007,22 @@
                 ],
                 "values": [
                     [
-                        0,
-                        -1,
-                        "LIGHT",
-                        1
+                        "peerId": 0,
+                        "channel": -1,
+                        "variable": "LIGHT",
+                        "value": 1
                     ],
                     [
-                        1,
-                        1,
-                        "STATE",
-                        1
+                        "peerId": 1,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
                     ],
                     [
-                        2,
-                        1,
-                        "STATE",
-                        1
+                        "peerId": 2,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
                     ]
                 ]
             }
