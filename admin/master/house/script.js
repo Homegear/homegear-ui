@@ -444,8 +444,8 @@ let error = new Vue({
         <div id="error">
             <div v-for="msg, i in msgs"
                  class="toast">
-                 <button v-on:click="remove_msg(i)">x</button>
-                {{ msg }}
+                <button v-on:click="remove_msg(i)">x</button>
+                <div v-html="msg"></div>
             </div>
             </div>
         </div>
