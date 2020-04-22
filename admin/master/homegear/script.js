@@ -99,7 +99,6 @@ homegear.reconnected(function() {
 //print Homegear errors
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 homegear.error(function (message) {
-    error.push(message);
     console.log(message);
 });
 
@@ -119,7 +118,8 @@ function roles_relevant(roles) {
 
 
 
-function handle_homegear_update(resp) {
+
+function handle_update_event(resp) {
     // DEBUG: works as expected
     const peer    = resp.params[1],
           channel = resp.params[2],
@@ -162,6 +162,28 @@ function handle_homegear_update(resp) {
     }
 }
 
+
+
+function handle_update_request_ui_refresh(resp) {
+    error.push(`<button onclick="window.location.reload(true)">${i18n('refresh.message')}</button>`);
+}
+
+
+
+function homegear_handle_update(resp) {
+    console.log(JSON.stringify(resp, null, 4));
+
+    const funcs = {
+        'event':            handle_update_event,
+        'requestUiRefresh': handle_update_request_ui_refresh,
+    };
+
+    if (resp.method in funcs)
+        funcs[resp.method](resp)
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Extensions to the homegear object
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,8 +203,7 @@ function params_create(input, value) {
 
 
 function homegear_prepare(homegear) {
-    homegear.event(x => console.log(JSON.stringify(x, null, 4)));
-    homegear.event(handle_homegear_update);
+    homegear.event(homegear_handle_update);
     homegear.ready(() => {
         app.$mount('#inhalt');
         breadcrumbs.$mount('#breadcrumbs');
