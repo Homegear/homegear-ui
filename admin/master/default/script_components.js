@@ -19,6 +19,23 @@ function comp_obj(control, device, input, output, is, indexes) {
 
 
 
+const mixin_menus = {
+    methods: {
+        check_disabled: function (type, key) {
+            const key_type = ({
+                'mainmenu': 'disabledMainmenus',
+                'menu':     'disabledMenus',
+            })[type];
+
+            return interfaceData.options &&
+                   interfaceData.options[key_type] &&
+                   interfaceData.options[key_type][key] === true;
+        },
+    },
+};
+
+
+
 const mixin_components = {
     methods: {
         find_component: function (device, layer) {
