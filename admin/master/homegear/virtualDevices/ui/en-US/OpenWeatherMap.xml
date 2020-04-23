@@ -125,12 +125,18 @@
 				<y>1</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateCloudcoverage">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateDate">
 				<x>0</x>
@@ -143,30 +149,45 @@
 				<y>1</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateRain3h">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateSnow3h">
 				<x>0</x>
 				<y>1</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateSunrise">
 				<x>0</x>
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateSunset">
 				<x>0</x>
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateWeather">
 				<x>0</x>
@@ -179,24 +200,36 @@
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateWindgust">
 				<x>0</x>
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="Base.climateWindspeed">
 				<x>0</x>
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 			<control id="254.0x100.Refresh">
 				<x>0</x>
 				<y>2</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<visualizeInOverview>true</visualizeInOverview>
+				</metadata>
 			</control>
 		</controls>
 		<metadata>
