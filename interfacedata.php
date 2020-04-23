@@ -322,7 +322,9 @@
             "refresh.message": "Please reload the interface",
             "refresh.message.button.text": "reload",
             "logoff": "Logoff",
-            "disabled_text": "disabled"
+            "disabled_text": "disabled",
+            "hide": "hide",
+            "close": "close"
         },
         "de-DE": {
             "login": {
@@ -404,7 +406,9 @@
             "refresh.message": "Bitte das Interface neuladen",
             "refresh.message.button.text": "neuladen",
             "logoff": "Abmelden",
-            "disabled_text": "gesperrt"
+            "disabled_text": "gesperrt",
+            "hide": "ausblenden",
+            "close": "schließen"
         }
     },
     "iconFallback": {

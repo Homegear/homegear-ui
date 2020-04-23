@@ -444,10 +444,9 @@ let error = new Vue({
         <div id="error">
             <div v-for="msg, i in msgs"
                  class="toast">
-                <button v-on:click="remove_msg(i)">x</button>
-                <div v-html="msg"></div>
-            </div>
+                <button class="toast_close" v-on:click="remove_msg(i)">{{i18n('hide')}}</button>
+                <div class="toast_content" v-html="msg"></div>
             </div>
         </div>
     `
-})
+});

@@ -112,7 +112,7 @@ hr {
   padding: 0;
 }
 
-input, radio, checkbox, textarea {
+button, input, radio, checkbox, textarea {
   width: 100%;
   color: #fff;
   font-size: 20px;
@@ -130,6 +130,7 @@ input {
   user-select: initial;
 }
 
+button,
 input[type=button],
 input[type=submit] {
   background: #e3a104;
@@ -137,6 +138,7 @@ input[type=submit] {
   cursor: pointer;
 }
 
+button,
 input[type=button]:active,
 input[type=submit]:active {
   background: #191b1f !important;
@@ -1625,7 +1627,6 @@ td {
 margin-bottom: 30px;
 }
 
-
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -1669,13 +1670,39 @@ margin-bottom: 30px;
     display: inline-block;
 }
 
-.toast {
-    border: 1px red solid;
-    border-radius: .05rem;
-    color: black;
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+#error {
+  width: 100%;
+    background: #191b1f;
     display: block;
+    z-index: 10000000;
+    position: fixed;
+}
+
+.toast {
+    display: flex;
     width: 100%;
-    background-color: red;
     z-index: 10000;
     position: relative;
+}
+
+.toast button.toast_close {
+  background: #a70000 !important;
+  width: max-content;
+}
+
+.toast .toast_content {
+  display: flex;
+}
+
+
+.toast .toast_content .toast_text {
+  
+}
+
+.toast .toast_content .toast_action {
+  background: #e3a104 !important;
+  width: max-content;
 }

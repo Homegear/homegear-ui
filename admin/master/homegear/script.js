@@ -165,7 +165,7 @@ function handle_update_event(resp) {
 
 
 function handle_update_request_ui_refresh(resp) {
-    error.push(`<button onclick="window.location.reload(true)">${i18n('refresh.message')}</button>`);
+    error.push(`<div class="toast_text">${i18n('refresh.message')}</div><button class="toast_action" onclick="window.location.reload(true)">${i18n('refresh.message.button.text')}</button>`);
 }
 
 
