@@ -171,6 +171,13 @@ function handle_update_request_ui_refresh(resp) {
 
 
 function handle_update_variable_profile_state_changed(resp) {
+    const id    = resp.params[0],
+          state = resp.params[1];
+
+    if (interfaceData.profiles[id] === undefined)
+        return;
+
+    interfaceData.profiles[id].isActive = state;
 }
 
 
