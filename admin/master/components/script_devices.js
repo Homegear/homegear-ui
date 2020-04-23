@@ -1,5 +1,5 @@
 Vue.component('shif-ctrl-summary', {
-    mixins: [mixin_components, mixin_print_mounted(), mixin_profiles, mixin_print_mounted('shif-profiles-global'), mixin_print_mounted('shif-profiles')],
+    mixins: [mixin_components, mixin_profiles, mixin_print_mounted()],
 
     props: [
         'icon',
@@ -97,6 +97,7 @@ Vue.component('shif-ctrl-summary', {
                             <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
                                             v-bind:title="i.name"
                                             v-bind:status="i18n('modemenu.profiles.name.label')"
+                                            v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                             v-on:click="profile_start(i)">
                             </shif-generic-l2>
                         </template>
