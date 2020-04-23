@@ -1677,32 +1677,37 @@ margin-bottom: 30px;
   width: 100%;
     background: #191b1f;
     display: block;
-    z-index: 10000000;
+    z-index: 10000;
     position: fixed;
 }
 
 .toast {
     display: flex;
-    width: 100%;
-    z-index: 10000;
-    position: relative;
+    justify-content: center;
+    border-bottom: 1px solid #25282e;
 }
 
 .toast button.toast_close {
   background: #a70000 !important;
   width: max-content;
+  padding: 4px 6px;
 }
 
 .toast .toast_content {
   display: flex;
+  align-items: center;
+  width: -webkit-fill-available;
+  width: -moz-available;
 }
 
-
 .toast .toast_content .toast_text {
-  
+  padding: 4px 10px;
+  width: -webkit-fill-available;
+  width: -moz-available;
 }
 
 .toast .toast_content .toast_action {
   background: #e3a104 !important;
   width: max-content;
+  padding: 4px 6px;
 }
