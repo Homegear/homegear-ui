@@ -1034,7 +1034,7 @@
                     {
                         "peerId": 3,
                         "channel": 1,
-                        "variable": "LIGHT",
+                        "variable": "STATE",
                         "value": 0
                     },
                     {
@@ -1067,7 +1067,7 @@
                     {
                         "peerId": 6,
                         "channel": 1,
-                        "variable": "LIGHT",
+                        "variable": "STATE",
                         "value": 0
                     },
                     {
@@ -1100,7 +1100,7 @@
                     {
                         "peerId": 9,
                         "channel": 1,
-                        "variable": "LIGHT",
+                        "variable": "STATE",
                         "value": 1
                     },
                     {
