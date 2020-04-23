@@ -137,12 +137,12 @@ const mixin_profiles = {
             this.$root.profiles.devs = {};
 
             for (const i of profile.values) {
-                const idx = root_profiles_idx(i[0], i[1], i[2]);
+                const idx = root_profiles_idx(i.peerId, i.channel, i.variable);
                 this.$root.profiles.devs[idx] = {
-                    peer:    i[0],
-                    channel: i[1],
-                    name:    i[2],
-                    value:   i[3],
+                    peer:    i.peerId,
+                    channel: i.channel,
+                    name:    i.variable,
+                    value:   i.value,
                 };
             }
         },
@@ -218,7 +218,12 @@ const mixin_profiles = {
                                              form.location.room);
             const values = Object.keys(this.$root.profiles.devs)
                                  .map(x => this.$root.profiles.devs[x])
-                                 .map(x => [x.peer, x.channel, x.name, x.value]);
+                                 .map(x => ({
+                                    peerId: x.peer,
+                                    channel: x.channel,
+                                    variable: x.name,
+                                    value: x.value,
+                                 }));
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
