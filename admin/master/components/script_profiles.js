@@ -12,8 +12,9 @@ let ShifProfilesGlobal = {
             <div class="profiles_wrapper">
                 <template v-for="i in global_profiles">
                     <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
-                                    v-bind:title="i.name"
-                                    v-on:click="profile_start(i)">
+                                     v-bind:title="i.name"
+                                     v-bind:active="{icon: i.isActive ? 'active' : ''}"
+                                     v-on:click="profile_start(i)">
                     </shif-generic-l2>
                 </template>
             </div>
