@@ -323,6 +323,7 @@ let app = new Vue({
         profiles: {
             devs:    {},
             enabled: false,
+            active:  null,
         },
     },
 
