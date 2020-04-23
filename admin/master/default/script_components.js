@@ -358,9 +358,10 @@ Vue.component('shif-house-collected-entries', {
                 <template v-if="layer === 2 && ! favorites"
                           v-for="i in local_profiles">
                     <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
-                                    v-bind:title="i.name"
-                                    v-bind:status="i18n('modemenu.profiles.name.label')"
-                                    v-on:click="profile_start(i)">
+                                     v-bind:title="i.name"
+                                     v-bind:status="i18n('modemenu.profiles.name.label')"
+                                     v-bind:active="{icon: i.isActive ? 'active' : ''}"
+                                     v-on:click="profile_start(i)">
                     </shif-generic-l2>
                 </template>
             </div>
