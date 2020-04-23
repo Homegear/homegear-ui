@@ -897,31 +897,8 @@
                 "id": 10,
                 "icon": "statistic_1",
                 "locations": [
-                    {
-                        "floorId": 1,
-                        "roomId": 9
-                    },
-                    {
-                        "floorId": 1,
-                        "roomId": 12
-                    }
                 ],
                 "global": true,
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1",
-                        "value": 1
-                    }
-                ],
                 "values": [
                     {
                         "role": 100001,
@@ -939,31 +916,8 @@
                 "id": 10,
                 "icon": "statistic_1",
                 "locations": [
-                    {
-                        "floorId": 1,
-                        "roomId": 9
-                    },
-                    {
-                        "floorId": 1,
-                        "roomId": 12
-                    }
                 ],
                 "global": true,
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1",
-                        "value": 1
-                    }
-                ],
                 "values": [
                     {
                         "role": 100001,
@@ -981,31 +935,8 @@
                 "id": 10,
                 "icon": "statistic_1",
                 "locations": [
-                    {
-                        "floorId": 1,
-                        "roomId": 9
-                    },
-                    {
-                        "floorId": 1,
-                        "roomId": 12
-                    }
                 ],
                 "global": true,
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1",
-                        "value": 1
-                    }
-                ],
                 "roles": [
                     {
                         "roleId": 100001,
@@ -1029,31 +960,8 @@
                 "id": 10,
                 "icon": "statistic_1",
                 "locations": [
-                    {
-                        "floorId": 1,
-                        "roomId": 9
-                    },
-                    {
-                        "floorId": 1,
-                        "roomId": 12
-                    }
                 ],
                 "global": true,
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1",
-                        "value": 1
-                    }
-                ],
                 "roles": [
                     {
                         "roleId": 100001,
@@ -1084,21 +992,6 @@
                     {
                         "floorId": 1,
                         "roomId": 12
-                    }
-                ],
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE1",
-                        "value": 1
                     }
                 ],
                 "values": [
@@ -1137,36 +1030,21 @@
                         "roomId": 9
                     }
                 ],
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE2"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE2",
-                        "value": 1
-                    }
-                ],
                 "values": [
                     {
-                        "peerId": 0,
-                        "channel": -1,
+                        "peerId": 3,
+                        "channel": 1,
                         "variable": "LIGHT",
                         "value": 0
                     },
                     {
-                        "peerId": 1,
+                        "peerId": 4,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 0
                     },
                     {
-                        "peerId": 2,
+                        "peerId": 5,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 0
@@ -1185,36 +1063,21 @@
                 "global": true,
                 "locations": [
                 ],
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE3"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE3",
-                        "value": 1
-                    }
-                ],
                 "values": [
                     {
-                        "peerId": 0,
-                        "channel": -1,
+                        "peerId": 6,
+                        "channel": 1,
                         "variable": "LIGHT",
                         "value": 0
                     },
                     {
-                        "peerId": 1,
+                        "peerId": 7,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 0
                     },
                     {
-                        "peerId": 2,
+                        "peerId": 8,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 0
@@ -1233,36 +1096,21 @@
                 "global": true,
                 "locations": [
                 ],
-                "inputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE4"
-                    }
-                ],
-                "outputPeers": [
-                    {
-                        "peer": 0,
-                        "channel": -1,
-                        "name": "PROFILE4",
-                        "value": 1
-                    }
-                ],
                 "values": [
                     {
-                        "peerId": 0,
-                        "channel": -1,
+                        "peerId": 9,
+                        "channel": 1,
                         "variable": "LIGHT",
                         "value": 1
                     },
                     {
-                        "peerId": 1,
+                        "peerId": 10,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 1
                     },
                     {
-                        "peerId": 2,
+                        "peerId": 11,
                         "channel": 1,
                         "variable": "STATE",
                         "value": 1
