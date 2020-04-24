@@ -165,7 +165,16 @@ function handle_update_event(resp) {
 
 
 function handle_update_request_ui_refresh(resp) {
-    error.push(`<div class="toast_text">${i18n('refresh.message')}</div><button class="toast_action" onclick="window.location.reload(true)">${i18n('refresh.message.button.text')}</button>`);
+    var dt = new Date ();
+    var fixedDate = `${
+        (dt.getMonth()+1).toString().padStart(2, '0')}.${
+        dt.getDate().toString().padStart(2, '0')}.${
+        dt.getFullYear().toString().padStart(4, '0')} ${
+        dt.getHours().toString().padStart(2, '0')}:${
+        dt.getMinutes().toString().padStart(2, '0')}:${
+        dt.getSeconds().toString().padStart(2, '0')}`;
+        
+    error.push(`<div class="toast_text">${fixedDate} | ${i18n('refresh.message')}</div><button class="toast_action" onclick="window.location.reload(true)">${i18n('refresh.message.button.text')}</button>`);
 }
 
 
