@@ -95,6 +95,10 @@
                     "false": "aus"
                 }
             },
+            "label": {
+                "en-US": "Lighting - brightness",
+                "de-DE": "Beleuchtung - Helligkeit"
+            },
             "translations": {
                 "de-DE": {
                     "0": "aus",

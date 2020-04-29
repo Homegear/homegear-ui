@@ -885,13 +885,19 @@
             "channel": 1,
             "varName": "LEVEL_FAST",
             "roleId": 101000
+        },
+        {
+            "deviceId": 96,
+            "channel": 1,
+            "varName": "LEVEL_FAST",
+            "roleId": 101000
         }
     ],
     "profiles": [
         [
             {
-                "en-US": "Old RoleProfile 100001 true",
-                "de-DE": "Old RoleProfile 100001 true"
+                "en-US": "global on",
+                "de-DE": "global an"
             },
             {
                 "id": 10,
@@ -899,76 +905,30 @@
                 "locations": [
                 ],
                 "global": true,
-                "values": [
+                "roles": [
                     {
                         "role": 100001,
                         "value": true
                     }
+                ],
+                "values": [
                 ]
             }
         ],
         [
             {
-                "en-US": "Old RoleProfile  100001 false",
-                "de-DE": "Old RoleProfile  100001 false"
+                "en-US": "global off",
+                "de-DE": "global aus"
             },
             {
-                "id": 10,
+                "id": 11,
                 "icon": "statistic_1",
                 "locations": [
                 ],
                 "global": true,
-                "values": [
+                "roles": [
                     {
                         "role": 100001,
-                        "value": false
-                    }
-                ]
-            }
-        ],
-        [
-            {
-                "en-US": "New RoleProfile 100001 true",
-                "de-DE": "New RoleProfile 100001 true"
-            },
-            {
-                "id": 10,
-                "icon": "statistic_1",
-                "locations": [
-                ],
-                "global": true,
-                "roles": [
-                    {
-                        "roleId": 100001,
-                        "value": false
-                    },
-                    {
-                        "roleId": 400001,
-                        "value": false
-                    }
-                ],
-                "values": [
-                ]
-            }
-        ],
-        [
-            {
-                "en-US": "New RoleProfile  100001 false",
-                "de-DE": "New RoleProfile  100001 false"
-            },
-            {
-                "id": 10,
-                "icon": "statistic_1",
-                "locations": [
-                ],
-                "global": true,
-                "roles": [
-                    {
-                        "roleId": 100001,
-                        "value": false
-                    },
-                    {
-                        "roleId": 400001,
                         "value": false
                     }
                 ],
@@ -3676,6 +3636,37 @@
             }
         ],
         [
+            "Base.lightingBrightness",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 96,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 96,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ]
+                ],
+                "label": "Dimmlicht Ohne Switsh",
+                "room": 12,
+                "role": 101000,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
+            }
+        ],
+        [
             "Base.lightingSwitchBrightness",
             {
                 "inputPeers": [
@@ -5198,6 +5189,17 @@
             "TYPE": "OpenWeatherMap",
             "TYPE_ID": "0x100",
             "SERIALNUMBER": "ESY5110366",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "ID": 96,
+            "NAME": "Dimmer Ohne Switsh",
+            "TYPE": "VirtualDimmer",
+            "TYPE_ID": "0xf001",
+            "SERIALNUMBER": "VirtDi0096",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         }
