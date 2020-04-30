@@ -53,7 +53,7 @@
             "id": "6",
             "name": "Kind",
             "floor": "2",
-            "icon": "hokeyplayer_1"
+            "icon": "rockinghorse_1"
         },
         "7": {
             "id": "7",
@@ -95,6 +95,30 @@
             "id": "13",
             "name": "Stockwerkslos",
             "icon": "notification_update_1"
+        },
+        "14": {
+            "id": "14",
+            "name": "Baby",
+            "floor": "2",
+            "icon": "child_1"
+        },
+        "15": {
+            "id": "15",
+            "name": "Bad",
+            "floor": "2",
+            "icon": "shower_1"
+        },
+        "16": {
+            "id": "16",
+            "name": "Studio",
+            "floor": "3",
+            "icon": "library_1"
+        },
+        "17": {
+            "id": "17",
+            "name": "Fitness",
+            "floor": "3",
+            "icon": "sport_1"
         }
     },
     "systemVariables": [
@@ -283,87 +307,9 @@
             "name": "SPEED",
             "type": "int",
             "value": 0
-        },
-        {
-            "name": "PROFILE1",
-            "type": "int",
-            "value": 0
-        },
-        {
-            "name": "PROFILE2",
-            "type": "int",
-            "value": 0
-        },
-        {
-            "name": "PROFILE3",
-            "type": "int",
-            "value": 0
-        },
-        {
-            "name": "PROFILE4",
-            "type": "int",
-            "value": 0
         }
     ],
     "roles": [
-        {
-            "id": 600000,
-            "translations": {
-                "en-US": "window",
-                "de-DE": "Fenster"
-            },
-            "ui": {
-                "simpleCreationInfo": [
-                    {
-                        "element": "Base.windowButtonsUpDown",
-                        "roleIdsIn": [
-                            [
-                                600001,
-                                600002
-                            ]
-                        ],
-                        "roleIdsOut": [
-                            [
-                                600001,
-                                600002
-                            ]
-                        ]
-                    }
-                ],
-                "icon": "window_2",
-                "l2_status": false,
-                "invokeOutputs": [
-                    {
-                        "roleId": 600001,
-                        "value": false,
-                        "buttonText": "Zentral auf"
-                    },
-                    {
-                        "roleId": 600002,
-                        "value": true,
-                        "buttonText": "Zentral ab"
-                    }
-                ],
-                "translations": {
-                    "de-DE": {
-                        "falseCount": "geöffnet",
-                        "trueCount": "geschlossen"
-                    },
-                    "en-US": {
-                        "falseCount": "open",
-                        "trueCount": "closed"
-                    }
-                },
-                "rolesInclude": [
-                    {
-                        "aggregationType": 1,
-                        "roles": [
-                            600001
-                        ]
-                    }
-                ]
-            }
-        } 
     ],
     "roles2var": [
         {
@@ -896,18 +842,123 @@
     "profiles": [
         [
             {
-                "en-US": "global on",
-                "de-DE": "global an"
+                "en-US": "zentral off",
+                "de-DE": "zentral aus"
             },
             {
-                "id": 10,
-                "icon": "statistic_1",
+                "id": 1,
+                "icon": "power_1",
                 "locations": [
                 ],
-                "global": true,
+                "global": false,
                 "roles": [
                     {
                         "role": 100001,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Frost",
+                "de-DE": "Frostschutz"
+            },
+            {
+                "id": 2,
+                "icon": "thermometer_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 201000,
+                        "value": 0
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Comfort",
+                "de-DE": "Komfort"
+            },
+            {
+                "id": 3,
+                "icon": "thermometer_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 201000,
+                        "value": 1
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Spar",
+                "de-DE": "Spar"
+            },
+            {
+                "id": 4,
+                "icon": "thermometer_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 201000,
+                        "value": 2
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "zentral off",
+                "de-DE": "zentral aus"
+            },
+            {
+                "id": 5,
+                "icon": "power_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 400001,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "retract",
+                "de-DE": "einfahren"
+            },
+            {
+                "id": 7,
+                "icon": "arrow_up_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 501000,
                         "value": true
                     }
                 ],
@@ -917,18 +968,60 @@
         ],
         [
             {
-                "en-US": "global off",
-                "de-DE": "global aus"
+                "en-US": "extend",
+                "de-DE": "ausfahren"
             },
             {
-                "id": 11,
-                "icon": "statistic_1",
+                "id": 6,
+                "icon": "arrow_down_1",
                 "locations": [
                 ],
-                "global": true,
+                "global": false,
                 "roles": [
                     {
-                        "role": 100001,
+                        "role": 501000,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "retract",
+                "de-DE": "einfahren"
+            },
+            {
+                "id": 9,
+                "icon": "arrow_up_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 502000,
+                        "value": true
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "extend",
+                "de-DE": "ausfahren"
+            },
+            {
+                "id": 8,
+                "icon": "arrow_down_1",
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 502000,
                         "value": false
                     }
                 ],
@@ -942,7 +1035,7 @@
                 "de-DE": "Arbeiten"
             },
             {
-                "id": 1,
+                "id": 10,
                 "icon": "statistic_1",
                 "locations": [
                     {
@@ -982,7 +1075,7 @@
                 "de-DE": "Schlafen"
             },
             {
-                "id": 2,
+                "id": 11,
                 "icon": "statistic_1",
                 "locations": [
                     {
@@ -1018,7 +1111,7 @@
                 "de-DE": "Abwesend"
             },
             {
-                "id": 3,
+                "id": 12,
                 "icon": "statistic_1",
                 "global": true,
                 "locations": [
@@ -1051,7 +1144,7 @@
                 "de-DE": "Anwesend"
             },
             {
-                "id": 4,
+                "id": 13,
                 "icon": "statistic_1",
                 "global": true,
                 "locations": [
