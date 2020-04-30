@@ -301,6 +301,8 @@ let ShifSettingsFavorites = {
 
 
 let ShifSettingsProfiles = {
+    mixins: [mixin_print_mounted('shif-settings-profile')],
+
     methods: {
         link: function (profile_id) {
             return {
@@ -338,8 +340,66 @@ let ShifSettingsProfiles = {
     `
 };
 
+
+
+let ShifSettingsProfileRoleValue = {
+    mixins: [mixin_print_mounted('shif-settings-profile-role-value')],
+
+    props: {
+        value: {
+            required: true,
+        },
+        role_id: {
+            required: true,
+        },
+    },
+
+    data: function () {
+        return {
+            value_: this.value,
+        };
+    },
+
+    computed: {
+        role: function () {
+            return interfaceData.roles[this.role_id];
+        },
+
+        role_values: function () {
+            return Object.keys(this.role.roleProfileValues.options)
+                         .map(x => ({id: x, name: this.role.roleProfileValues.options[x]}))
+                         .concat({id: null, name: '---'});
+        },
+    },
+
+    watch: {
+        value_: function () {
+            this.$emit('input', this.value_);
+            this.$emit('change', this.value_);
+        },
+    },
+
+    template: `
+        <div>
+            <select v-if="role.roleProfileValues.type === 'select'"
+                    v-model="value_">
+                <option v-for="i in role_values"
+                        v-bind:value="i.id">
+                    {{ i.name }}
+                </option>
+            </select>
+        </div>
+    `,
+};
+
+
+
 let ShifSettingsProfile = {
-    mixins: [mixin_profiles],
+    mixins: [mixin_profiles, mixin_print_mounted('shif-settings-profile')],
+
+    components: {
+        ShifSettingsProfileRoleValue,
+    },
 
     data: function () {
         if (this.$route.params.profile === undefined ||
@@ -351,6 +411,10 @@ let ShifSettingsProfile = {
                     name: 'profile_add',
                     icon: 'slider_1',
                     profile_name: '',
+                    role: {
+                        role: null,
+                        value: null,
+                    },
                     location: {
                         floor:  null,
                         room:   null,
@@ -370,9 +434,13 @@ let ShifSettingsProfile = {
         }
 
         const [floor, room, global] = profile.locations.length === 0
-                ? [null, null, false]
+                ? [null, null, false, null]
                 : [ profile.locations[0].floorId, profile.locations[0].roomId,
-                    profile.global === true, ];
+                    profile.global === true];
+
+        const role = profile.roles !== undefined && profile.roles.length > 0
+                        ? profile.roles[0]
+                        : {role: null, value: null};
 
         return {
             mode: 'edit',
@@ -385,7 +453,8 @@ let ShifSettingsProfile = {
                     floor:  floor === undefined ? null : floor,
                     room:   room  === undefined ? null : room,
                     global: global,
-                }
+                },
+                role: role,
             },
         };
     },
@@ -408,6 +477,13 @@ let ShifSettingsProfile = {
 
             return rooms.map(x => ({id: x, name: interfaceData.rooms[x].name}))
                         .concat({id: null, name: '---'});
+        },
+
+        filtered_roles: function () {
+            return Object.keys(interfaceData.roles)
+                         .filter(x => interfaceData.roles[x].roleProfileValues !== undefined)
+                         .map(x => ({id: x, name: interfaceData.roles[x].name}))
+                         .concat({id: null, name: '---'});
         },
     },
 
@@ -507,7 +583,24 @@ let ShifSettingsProfile = {
                 </div>
 
                 <div class="form-group">
-                    <input v-if="mode === 'edit'"
+                    <div class="label">{{ i18n('settings.profiles.profile.roles') }}:</div>
+
+                    <select v-model="form.role.role">
+                        <option v-for="i in filtered_roles"
+                                v-bind:value="i.id"
+                                autocomplete="off">
+                            {{ i.name }}
+                        </option>
+                    </select>
+
+                    <shif-settings-profile-role-value
+                        v-if="form.role.role"
+                        v-model="form.role.value"
+                        v-bind:role_id="form.role.role" />
+                </div>
+
+                <div class="form-group">
+                    <input v-if="mode === 'edit' && form.role.role === null"
                            type="submit"
                            name="load"
                            v-on:click="form_submit('load')"
