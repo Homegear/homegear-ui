@@ -126,7 +126,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateCloudcoverage">
@@ -135,7 +135,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateDate">
@@ -150,7 +150,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateRain3h">
@@ -159,7 +159,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateSnow3h">
@@ -168,7 +168,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateSunrise">
@@ -177,7 +177,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateSunset">
@@ -186,7 +186,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateWeather">
@@ -201,7 +201,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateWindgust">
@@ -210,7 +210,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="Base.climateWindspeed">
@@ -219,7 +219,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 			<control id="254.0x100.Refresh">
@@ -228,7 +228,7 @@
 				<columns>1</columns>
 				<rows>1</rows>
 				<metadata>
-					<visualizeInOverview>true</visualizeInOverview>
+					<visualizeInOverview>false</visualizeInOverview>
 				</metadata>
 			</control>
 		</controls>
