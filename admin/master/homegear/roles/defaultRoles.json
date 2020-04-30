@@ -88,7 +88,7 @@
                 }
             ],
             "icon": "light_dim_1",
-            "l2_status": false,
+            "aggregationType": 1,
             "roleProfileValues": {
                 "type": "select",
                 "options": {

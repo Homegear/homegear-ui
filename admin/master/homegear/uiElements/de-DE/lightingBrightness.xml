@@ -16,6 +16,10 @@
 			</text>
 		</texts>
 		<icons>
+			<icon id="main">
+				<name>light_dim_1</name>
+                <color>inactive</color>
+			</icon>
 			<icon id="l2">
 				<name>light_dim_1</name>
                 <color>inactive</color>
