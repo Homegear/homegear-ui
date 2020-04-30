@@ -313,9 +313,6 @@ let ShifAllDevices = {
         this.$root.$off('role-update', this.role_update_handle);
     },
 
-    // TODO: figure out why there's a `role_update` handler in templates,
-    //       a) there's a programmatically set handler right above
-    //       b) the event is called `role-update`
     template: `
         <div>
             <template v-for="(devs, role) in map_roles_devs">
