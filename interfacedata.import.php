@@ -4478,7 +4478,7 @@
                     ]
                 ],
                 "label": "Temperatur1",
-                "room": 3
+                "room": 15
             }
         ],
         [
@@ -4503,7 +4503,7 @@
                     ]
                 ],
                 "label": "Feuchte1",
-                "room": 3
+                "room": 15
             }
         ],
         [
@@ -4528,7 +4528,7 @@
                     ]
                 ],
                 "label": "Temperatur2",
-                "room": 3
+                "room": 16
             }
         ],
         [
@@ -4553,7 +4553,7 @@
                     ]
                 ],
                 "label": "Feuchte2",
-                "room": 3
+                "room": 16
             }
         ],
         [
@@ -4578,7 +4578,7 @@
                     ]
                 ],
                 "label": "Temperatur3",
-                "room": 3
+                "room": 17
             }
         ],
         [
@@ -4603,7 +4603,7 @@
                     ]
                 ],
                 "label": "Feuchte3",
-                "room": 3
+                "room": 17
             }
         ],
         [
@@ -4628,7 +4628,7 @@
                     ]
                 ],
                 "label": "Temperatur4",
-                "room": 3
+                "room": 14
             }
         ],
         [
@@ -4653,7 +4653,7 @@
                     ]
                 ],
                 "label": "Feuchte4",
-                "room": 3
+                "room": 14
             }
         ]
     ],
