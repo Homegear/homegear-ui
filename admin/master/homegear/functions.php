@@ -222,6 +222,14 @@ function homegear_init() {
         $varInRole = $hg->getVariablesInRole($value["ID"]);
         if($aggregated["variableCount"] > 0 || isset($value["METADATA"]["ui"])){
             $house['roles'][$value["ID"]]["name"] = $value["NAME"];
+
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["translations"]) && is_array($value["METADATA"]["ui"]["translations"])){
+                foreach ($value["METADATA"]["ui"]["translations"] as $key => $translation) {
+                    $translation = array("dummy" => "toBeRemoved") + $translation;
+                    $value["METADATA"]["ui"]["translations"][$key] = $translation;
+                }
+            }
+
             if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["translations"])){
                 $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"][$hg_lang];
                 unset($value["METADATA"]["ui"]["translations"]);
@@ -238,8 +246,18 @@ function homegear_init() {
                 $house['roles'][$value["ID"]]["name"] = $value["METADATA"]["ui"]["label"]["en-US"];
                 unset($value["METADATA"]["ui"]["label"]);
             }
+
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["simpleCreationInfo"])){
+                unset($value["METADATA"]["ui"]["simpleCreationInfo"]);
+            }
+
             if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
                 $house['roles'][$value["ID"]] = array_replace_recursive($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
+            }
+
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["roleProfileValues"]["options"])){
+                $house['roles'][$value["ID"]]["roleProfileValues"]["options"] = array("dummy" => "toBeRemoved") + $value["METADATA"]["ui"]["roleProfileValues"]["options"];
+                
             }
 
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
