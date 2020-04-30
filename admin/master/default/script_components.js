@@ -349,7 +349,6 @@ Vue.component('shif-house-collected-entries', {
         }
     },
 
-    // TODO: remove
     provide: function () {
         return {
             layer: this.layer,
