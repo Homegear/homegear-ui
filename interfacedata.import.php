@@ -815,24 +815,6 @@
             "roleId": 100001
         },
         {
-            "deviceId": 92,
-            "channel": 1,
-            "varName": "LEVEL_FAST",
-            "roleId": 101000
-        },
-        {
-            "deviceId": 93,
-            "channel": 1,
-            "varName": "LEVEL_FAST",
-            "roleId": 101000
-        },
-        {
-            "deviceId": 94,
-            "channel": 1,
-            "varName": "LEVEL_FAST",
-            "roleId": 101000
-        },
-        {
             "deviceId": 96,
             "channel": 1,
             "varName": "LEVEL_FAST",
@@ -3749,7 +3731,7 @@
                         }
                     ]
                 ],
-                "label": "Dimmlicht Ohne Switsh",
+                "label": "Dimmlicht Ohne Switch",
                 "room": 12,
                 "role": 101000,
                 "dynamicMetadata": {
