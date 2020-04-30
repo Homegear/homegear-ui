@@ -441,6 +441,7 @@
         "heater": "heater_1",
         "hood": "hood_1",
         "humidity1": "waterdrops_1",
+        "humidity_1": "waterdrops_1",
         "information1": "information_1",
         "kind1": "rockinghorse_1",
         "kind2": "child_1",

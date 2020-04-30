@@ -842,7 +842,7 @@
     "profiles": [
         [
             {
-                "en-US": "zentral off",
+                "en-US": "central off",
                 "de-DE": "zentral aus"
             },
             {
@@ -863,8 +863,8 @@
         ],
         [
             {
-                "en-US": "Frost",
-                "de-DE": "Frostschutz"
+                "en-US": "central frost",
+                "de-DE": "zentral frostschutz"
             },
             {
                 "id": 2,
@@ -884,8 +884,8 @@
         ],
         [
             {
-                "en-US": "Comfort",
-                "de-DE": "Komfort"
+                "en-US": "central comfort",
+                "de-DE": "zentral komfort"
             },
             {
                 "id": 3,
@@ -905,8 +905,8 @@
         ],
         [
             {
-                "en-US": "Spar",
-                "de-DE": "Spar"
+                "en-US": "central spar",
+                "de-DE": "zentral spar"
             },
             {
                 "id": 4,
@@ -926,7 +926,7 @@
         ],
         [
             {
-                "en-US": "zentral off",
+                "en-US": "central off",
                 "de-DE": "zentral aus"
             },
             {
@@ -947,8 +947,8 @@
         ],
         [
             {
-                "en-US": "retract",
-                "de-DE": "einfahren"
+                "en-US": "central retract",
+                "de-DE": "zentral einfahren"
             },
             {
                 "id": 7,
@@ -968,8 +968,8 @@
         ],
         [
             {
-                "en-US": "extend",
-                "de-DE": "ausfahren"
+                "en-US": "central extend",
+                "de-DE": "zentral ausfahren"
             },
             {
                 "id": 6,
@@ -989,8 +989,8 @@
         ],
         [
             {
-                "en-US": "retract",
-                "de-DE": "einfahren"
+                "en-US": "central retract",
+                "de-DE": "zentral einfahren"
             },
             {
                 "id": 9,
@@ -1010,8 +1010,8 @@
         ],
         [
             {
-                "en-US": "extend",
-                "de-DE": "ausfahren"
+                "en-US": "central extend",
+                "de-DE": "zentral ausfahren"
             },
             {
                 "id": 8,
