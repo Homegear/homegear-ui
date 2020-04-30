@@ -332,30 +332,64 @@
 
         if(isset($_GET["createRoles"])){
             foreach($oldInterfaceData["roles"] as $key => $value){
-                $roleMetadata = $hg->getRoleMetadata($value["id"]);
-                $roleMetadata["ui"] = $value["ui"];
-                $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $roleMetadata);
+                try {
+                    $roleMetadata = $hg->getRoleMetadata($value["id"]);
+                    $roleMetadata["ui"] = $value["ui"];
+                    $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $roleMetadata);
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["setRoleMetadata"][$value["id"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 
         if(isset($_GET["getRoles"])){
-            $aggregationType = 2;
             foreach($hg->getRoles() as $role){
-                if(isset($role["METADATA"]["interface"]["aggregationType"])){
-                    $aggregationType = $role["METADATA"]["interface"]["aggregationType"];
-                }
-                if(isset($role["METADATA"]["interface"]["rolesInclude"])){
-                    foreach($role["METADATA"]["interface"]["rolesInclude"] as $include){
-                        $rolesInclude["test"] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                $aggregationType = 2;
+                try {
+                    if(isset($role["METADATA"]["ui"]["aggregationType"])){
+                        $aggregationType = $role["METADATA"]["ui"]["aggregationType"];
                     }
+                    $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
+                    $varInRole = $hg->getVariablesInRole($role["ID"]);
+
+                    $role["aggregated"] = $aggregated;
+                    $role["varInRole"] = $varInRole;
+                    if(isset($role["METADATA"]["ui"]["roleProfileValues"]["options"])){
+                        $role["METADATA"]["ui"]["roleProfileValues"]["options"] = array("dummy" => "toBeRemoved")+$role["METADATA"]["ui"]["roleProfileValues"]["options"];
+                    }
+                    if(isset($role["METADATA"]["ui"]["translations"])){
+                        foreach ($role["METADATA"]["ui"]["translations"] as $key => $translation) {
+                            $translation = array("dummy" => "toBeRemoved")+$translation;
+                            $role["METADATA"]["ui"]["translations"][$key] = $translation;
+                        }                        
+                    }
+                    if(isset($role["METADATA"]["ui"]["rolesInclude"])){
+                        foreach($role["METADATA"]["ui"]["rolesInclude"] as $include){
+                            try {
+                                $rolesInclude[] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                            }
+                            catch (\Homegear\HomegearException $e) {
+                                $role["rolesInclude"]["error"][] = $e->getMessage();
+                                continue;
+                            }
+                        }
+                    }
+                    if(isset($rolesInclude)){
+                        $allInterfaceData[$role["ID"]]["rolesInclude"] = $rolesInclude;
+                    }
+                    $allInterfaceData[$role["ID"]] = $role;
                 }
-                $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
-                $varInRole = $hg->getVariablesInRole($role["ID"]);
-                $allInterfaceData[$role["ID"]] = $role;
-                $allInterfaceData[$role["ID"]]["aggregated"] = $aggregated;
-                $allInterfaceData[$role["ID"]]["varInRole"] = $varInRole;
-                if(isset($rolesInclude)){
-                    $allInterfaceData[$role["ID"]]["rolesInclude"] = $rolesInclude;
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData[$role["ID"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
                 }
             }
         }
@@ -373,21 +407,36 @@
         }
 
         if(isset($_GET["aggregateRoles"])){
-            $aggregationType = 2;
             foreach($hg->getRoles() as $role){
-                unset($rolesInclude);
-                if(isset($role["METADATA"]["interface"]["aggregationType"])){
-                    $aggregationType = $role["METADATA"]["rolesInclude"]["aggregationType"];
-                }
-                if(isset($role["METADATA"]["interface"]["rolesInclude"])){
-                    foreach($role["METADATA"]["interface"]["rolesInclude"] as $include){
-                        $rolesInclude[] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                $aggregationType = 2;
+                try {
+                    unset($rolesInclude);
+                    if(isset($role["METADATA"]["ui"]["aggregationType"])){
+                        $aggregationType = $role["METADATA"]["ui"]["aggregationType"];
+                    }
+                    if(isset($role["METADATA"]["ui"]["rolesInclude"])){
+                        foreach($role["METADATA"]["ui"]["rolesInclude"] as $include){
+                            try {
+                                $rolesInclude[] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                            }
+                            catch (\Homegear\HomegearException $e) {
+                                $allInterfaceData["aggregateRoles"][$role["ID"]]["error"]["rolesInclude"][] = $e->getMessage();
+                                continue;
+                            }
+                        }
+                    }
+                    $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
+                    $allInterfaceData["aggregateRoles"][$role["ID"]] = $aggregated;
+                    if(isset($rolesInclude)){
+                        $allInterfaceData["aggregateRoles"][$role["ID"]]["rolesInclude"] = $rolesInclude;
                     }
                 }
-                $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
-                $allInterfaceData["aggregateRoles"][$role["ID"]] = $aggregated;
-                if(isset($rolesInclude)){
-                    $allInterfaceData["aggregateRoles"][$role["ID"]]["rolesInclude"] = $rolesInclude;
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["aggregateRoles"][$role["ID"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
                 }
             }
         }
@@ -467,8 +516,9 @@
         if(isset($_GET["getSV"])){
             $allInterfaceData["getAllSystemVariables"] = $hg->getAllSystemVariables();
         }
-
-        die(json_encode($allInterfaceData, JSON_PRETTY_PRINT));
+        $allInterfaceData_json = json_encode($allInterfaceData, JSON_PRETTY_PRINT);
+        $allInterfaceData_json= str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"'), array("", ""), $allInterfaceData_json);
+        die($allInterfaceData_json);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
