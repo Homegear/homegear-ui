@@ -19,9 +19,13 @@
 				<name>thermometer_1</name>
 				<color>inactive</color>
 			</icon>
+			<icon id="temperature">
+				<name>thermometer_1</name>
+                <color>inactive</color>
+			</icon>
 			<icon id="l2">
-				<name>thermomenter1</name>
-			<color>inactive</color>
+				<name>thermomenter_1</name>
+				<color>inactive</color>
 			</icon>
 			<icon id="l3">
 				<name>arrow_right_1</name>

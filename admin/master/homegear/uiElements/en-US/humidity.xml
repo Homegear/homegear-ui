@@ -15,6 +15,10 @@
 			</text>
 		</texts>
 		<icons>
+			<icon id="main">
+				<name>humidity_1</name>
+                <color>inactive</color>
+			</icon>
 			<icon id="humidity">
 				<name>humidity_1</name>
                 <color>inactive</color>
