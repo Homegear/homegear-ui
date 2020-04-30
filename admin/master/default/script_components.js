@@ -116,7 +116,8 @@ const mixin_profiles = {
                           (loc.roomId === undefined || loc.roomId === room)
                 ) !== -1
             );
-        }
+        },
+
     },
 
     methods: {
@@ -130,6 +131,14 @@ const mixin_profiles = {
                     roomId:  room  === null ? undefined : Number(room),
                 }
             ];
+        },
+
+        role_profiles: function (role_id) {
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(x => x.roles !== undefined &&
+                                      x.roles.length > 0 &&
+                                      x.roles.findIndex(x => x.role === Number(role_id)) !== -1);
         },
 
         profile_build_root_devs: function (profile) {
@@ -190,10 +199,11 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global: form.location.global,
-                        icon:   form.icon,
+                        global:    form.location.global,
+                        icon:      form.icon,
                         locations: locations,
-                        values: [],
+                        roles:     [],
+                        values:    [],
                     }
                 ],
             }, (result) => {
@@ -203,6 +213,7 @@ const mixin_profiles = {
                     locations: locations,
                     global:    form.location.global,
                     name:      form.profile_name,
+                    roles:     [],
                     values:    [],
                 }
 
@@ -214,16 +225,37 @@ const mixin_profiles = {
         },
 
         profile_update: function (profile, form, cb) {
+            function val_into_proper_type(value) {
+                if (value === 'true')
+                    return true;
+                if (value === 'false')
+                    return false;
+
+                const as_nr = Number(value);
+                if (! Number.isNaN(as_nr))
+                    return as_nr;
+
+                return value;
+            }
+
             const locations = this.locations(form.location.floor,
                                              form.location.room);
-            const values = Object.keys(this.$root.profiles.devs)
-                                 .map(x => this.$root.profiles.devs[x])
-                                 .map(x => ({
-                                    peerId: x.peer,
-                                    channel: x.channel,
-                                    variable: x.name,
-                                    value: x.value,
-                                 }));
+
+            const [roles, values] = form.role.role !== null &&
+                                    form.role.value !== undefined &&
+                                    form.role.value !== null
+                ? [[{
+                        role: Number(form.role.role),
+                        value: val_into_proper_type(form.role.value)
+                  }], []]
+                : [[], Object.keys(this.$root.profiles.devs)
+                             .map(x => this.$root.profiles.devs[x])
+                             .map(x => ({
+                                peerId: x.peer,
+                                channel: x.channel,
+                                variable: x.name,
+                                value: x.value,
+                             }))];
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
@@ -237,16 +269,18 @@ const mixin_profiles = {
                         global:    form.location.global,
                         icon:      form.icon,
                         locations: locations,
+                        roles:     roles,
                         values:    values,
                     }
                 ],
             }, (result) => {
                 interfaceData.profiles[profile.id] = {
                     id:        profile.id,
-                    locations: locations,
+                    name:      form.profile_name,
                     global:    form.location.global,
                     icon:      form.icon,
-                    name:      form.profile_name,
+                    locations: locations,
+                    roles:     roles,
                     values:    values,
                 }
 
