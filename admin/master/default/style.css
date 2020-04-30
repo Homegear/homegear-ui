@@ -763,7 +763,8 @@ a.disabled {
 
 .slider .slider_marks .left {
   float: left;
-  width: 50%
+  width: 50%;
+  text-align: left;
 }
 
 .slider .slider_marks .right {
@@ -775,6 +776,7 @@ a.disabled {
 .slider .slider_action {
   position: relative;
   left: 0px;
+  text-align: left;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -1353,6 +1355,7 @@ td {
   font-size: 28px;
   line-height: 28px;
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .device_wrapper .device_location {
@@ -1365,6 +1368,7 @@ td {
   color: #898989;
   font-size: 24px;
   line-height: 24px;
+  text-align: left;
 }
 
 .device_wrapper .device_status.active {
