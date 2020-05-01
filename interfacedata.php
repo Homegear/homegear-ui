@@ -550,16 +550,23 @@ if (file_exists("interfacedata.custom.php")) {
 
 if(isset($customInterfaceDataJson)) {
     $customInterfaceData = json_decode($customInterfaceDataJson, true);
+
+    if(isset($customInterfaceData['mainmenu']) && is_array($customInterfaceData['mainmenu'])){
+        foreach ($customInterfaceData['mainmenu'] as $key => $mainmenu) {
+            if (isset($mainmenu["name"]) && $mainmenu["name"] == "") {
+                unset($customInterfaceData['mainmenu'][$key]);
+            }
+        }
+    }
+
     $interfaceData = array_replace_recursive($interfaceData, $customInterfaceData);
 
     //Overwrite auth methods if they exist in custom interface data
-    if(isset($customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods']))
-    {
+    if(isset($customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods'])){
         $interfaceData['settings']['userDefaults']['firstFactorAuthMethods'] = $customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods'];
     }
 
-    if(isset($customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods']))
-    {
+    if(isset($customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods'])){
         $interfaceData['settings']['userDefaults']['secondFactorAuthMethods'] = $customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods'];
     }
 }
