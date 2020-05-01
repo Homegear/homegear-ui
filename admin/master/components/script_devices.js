@@ -98,6 +98,15 @@ Vue.component('shif-ctrl-summary', {
                      class="categoryContainer"
                      style="margin-top: 15px;">
 
+                    <div class="control_button_wrapper">
+                        <template v-for="action in actions">
+                            <shif-button v-bind:width="(100 / actions.length) + '%'"
+                                         v-on:click="toggle_all(action)">
+                                {{ action.buttonText }}
+                            </shif-button>
+                        </template>
+                    </div>
+
                     <div class="profiles_wrapper">
                         <template v-for="i in profiles_by_role">
                             <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
@@ -106,15 +115,6 @@ Vue.component('shif-ctrl-summary', {
                                              v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                              v-on:click="profile_start(i)">
                             </shif-generic-l2>
-                        </template>
-                    </div>
-
-                    <div class="control_button_wrapper">
-                        <template v-for="action in actions">
-                            <shif-button v-bind:width="(100 / actions.length) + '%'"
-                                         v-on:click="toggle_all(action)">
-                                {{ action.buttonText }}
-                            </shif-button>
                         </template>
                     </div>
 
