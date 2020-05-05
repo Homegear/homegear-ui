@@ -93,7 +93,7 @@ Vue.component('shif-ctrl-summary', {
                              class="accordion">
             </shif-generic-l2>
 
-            <transition name="slide-fade">
+            <shif-trans-drop-down>
                 <div v-if="submenu_show"
                      class="categoryContainer"
                      style="margin-top: 15px;">
@@ -126,7 +126,7 @@ Vue.component('shif-ctrl-summary', {
                         </template>
                     </template>
                 </div>
-            </transition>
+            </shif-trans-drop-down>
         </div>
     `,
 });
