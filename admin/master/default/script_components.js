@@ -325,6 +325,26 @@ const mixin_favorites = {
 
 
 
+Vue.component('shif-trans-drop-down', {
+    template: `
+        <transition name="trans-drop-down">
+            <slot />
+        </transition>
+    `,
+});
+
+
+
+Vue.component('shif-trans-right-in-out', {
+    template: `
+        <transition name="trans-right-in-out" tag="div">
+            <slot />
+        </transition>
+    `,
+});
+
+
+
 Vue.component('shif-house-collected-entries', {
     mixins: [
         mixin_components,
@@ -469,19 +489,22 @@ Vue.component('shif-paging', {
     template: `
         <div>
             <router-view v-if="is_single_view"
+                         name="default"
                          class="content content_single"
-                         v-bind:key="$route.fullPath" />
+                         v-bind:key="$route.fullPath + '_left'" />
 
-            <template v-else>
-                <router-view name="small"
-                             class="content content_small"
-                             v-on:click.native="$router.go(-1)"
-                             v-bind:key="$route.fullPath + '_left'" />
+            <router-view v-else
+                         name="small"
+                         class="content content_small"
+                         v-on:click.native="$router.back()"
+                         v-bind:key="$route.fullPath + '_left'" />
 
+            <shif-trans-right-in-out>
                 <router-view name="big"
+                             v-if="!is_single_view"
                              class="content content_big"
                              v-bind:key="$route.fullPath" />
-            </template>
+            </shif-trans-right-in-out>
         </div>
     `,
 });
