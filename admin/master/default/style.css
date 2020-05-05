@@ -1716,3 +1716,50 @@ margin-bottom: 30px;
   width: max-content;
   padding: 4px 6px;
 }
+
+/* From (slightly changed): https://codepen.io/kdydesign/pen/VrQZqx */
+.trans-drop-down-enter-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
+
+.trans-drop-down-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.trans-drop-down-enter-to, .trans-drop-down-leave {
+    max-height: 1000px;
+    overflow: hidden;
+}
+
+.trans-drop-down-enter, .trans-drop-down-leave-to {
+    overflow: hidden;
+    max-height: 0;
+}
+
+
+
+.trans-right-in-out-leave-active,
+.trans-right-in-out-enter-active {
+  transition: .3s;
+  overflow: hidden;
+}
+.trans-right-in-out-enter {
+  transform: translate(100%, 0);
+}
+.trans-right-in-out-leave-to {
+  transform: translate(100%, 0);
+}
