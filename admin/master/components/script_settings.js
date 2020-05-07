@@ -50,6 +50,7 @@ let ShifSettingsLicenses = {
     },
 
     template: `
+        <div>
         <div class="table1">
             <table>
                 <thead>
@@ -76,6 +77,7 @@ let ShifSettingsLicenses = {
                     </tr>
                 </tbody>
             </table>
+        </div>
         </div>
     `
 };
