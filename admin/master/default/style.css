@@ -508,6 +508,7 @@ a.disabled {
   height: 0px;
   position: absolute;
   -webkit-transform:rotate(360deg);
+  transform:rotate(360deg);
   border-style: solid;
   border-width: 24px 24px 0 24px;
   border-color: #191b1f transparent transparent transparent;
@@ -547,6 +548,7 @@ a.disabled {
 }
 
 .accordion_arrow_rotated {
+  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
   margin-top: 16px;
 }
@@ -821,6 +823,10 @@ a.disabled {
   border-radius: 50%;
   border: 0px solid #898989;
   background: #898989;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
   transition: 0.2s;
   float: right;
 }
@@ -1442,6 +1448,7 @@ td {
   margin: auto;
   -webkit-transition: .4s ease-in-out;
   -moz-transition: .4s ease-in-out;
+  -ms-transition: .4s ease-in-out;
   -o-transition: .4s ease-in-out;
   transition: .4s ease-in-out;
 }
@@ -1717,25 +1724,28 @@ margin-bottom: 30px;
   padding: 4px 6px;
 }
 
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
 /* From (slightly changed): https://codepen.io/kdydesign/pen/VrQZqx */
 .trans-drop-down-enter-active {
-    -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     transition-duration: 0.3s;
-    -moz-transition-timing-function: ease-in;
     -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
     -o-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
 }
 
 .trans-drop-down-leave-active {
-    -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     transition-duration: 0.3s;
-    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
@@ -1750,16 +1760,31 @@ margin-bottom: 30px;
     max-height: 0;
 }
 
-
-
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
 .trans-right-in-out-leave-active,
 .trans-right-in-out-enter-active {
+  -o-transition: .3s;
+  -ms-transition: .3s;
+  -moz-transition: .3s;
+  -webkit-transition: .3s;
   transition: .3s;
   overflow: hidden;
 }
+
 .trans-right-in-out-enter {
+  -o-transform: translate(100%, 0);
+  -ms-transform: translate(100%, 0);
+  -moz-transform: translate(100%, 0);
+  -webkit-transform: translate(100%, 0);
   transform: translate(100%, 0);
 }
+
 .trans-right-in-out-leave-to {
+  -o-transform: translate(100%, 0);
+  -ms-transform: translate(100%, 0);
+  -moz-transform: translate(100%, 0);
+  -webkit-transform: translate(100%, 0);
   transform: translate(100%, 0);
 }
