@@ -223,7 +223,7 @@
                 "background": "#367cc1",
                 "foreground": "#205388",
                 "text": "#ffffff",
-                "highlight_active": "#c0cb03",
+                "highlight_active": "",
                 "highlight_inactive": "#cccccc"
             }
         },
@@ -234,7 +234,7 @@
                 "background": "#9644fa",
                 "foreground": "#6735a4",
                 "text": "#ffffff",
-                "highlight_active": "#e2d000",
+                "highlight_active": "",
                 "highlight_inactive": "#cccccc"
             }
         }
