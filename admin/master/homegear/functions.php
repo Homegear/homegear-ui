@@ -154,6 +154,13 @@ function homegear_init() {
 
         device_build_invoke_map($map_invoke, $dev, $id);
 
+        foreach ($dev['controls'] as $key => $control) {
+            if (isset($control['controlMetadata']['visualizeInOverview'])) {
+                $dev['controls'][$key]['variableInputs'][0]['properties']['visualizeInOverview'] = $control['controlMetadata']['visualizeInOverview'];
+            }
+            //$dev['controls'][$key]['metadata'] = array_replace_recursive($control['metadata'], $control['controlMetadata']);
+        }
+
         $house['devices'][$id] = $dev;
     }
 
