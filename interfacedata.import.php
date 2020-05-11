@@ -143,14 +143,14 @@
             "value": 47.67
         },
         {
-            "name": "SUNRISE",
-            "type": "unix_date",
-            "value": 1574232149
+            "name": "SUNRISE_STRING",
+            "type": "string",
+            "value": "05.01:34"
         },
         {
-            "name": "SUNSET",
-            "type": "unix_date",
-            "value": 1574264972
+            "name": "SUNSET_STRING",
+            "type": "string",
+            "value": "20.01:34"
         },
         {
             "name": "WEATHER",
@@ -4216,14 +4216,14 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNRISE"
+                            "name": "SUNRISE_STRING"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNSET"
+                            "name": "SUNSET_STRING"
                         }
                     ],
                     [
@@ -4323,14 +4323,14 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNRISE"
+                            "name": "SUNRISE_STRING"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNSET"
+                            "name": "SUNSET_STRING"
                         }
                     ],
                     [
