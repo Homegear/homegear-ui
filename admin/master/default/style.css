@@ -32,6 +32,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 body, html {
+  height: 100%;
   background: #25282e;
   color: #fff;
   font-family: Avenir, Arial;
