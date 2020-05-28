@@ -144,20 +144,11 @@ function handle_update_event(resp) {
         if (input.roles === undefined)
             continue;
 
-        let roles = roles_relevant(input.roles);
-
-        for (const role of roles) {
-            if(role.hasOwnProperty('invert')) {
-                value = Number(!value);
-                break; //Only invert once
-            }
-        }
-
         interfaceData.devices[input.databaseId]
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        for (const role of roles)
+        for (const role of roles_relevant(input.roles))
             app.$root.$emit('role-update', role.id);
     }
 }
@@ -173,7 +164,7 @@ function handle_update_request_ui_refresh(resp) {
         dt.getHours().toString().padStart(2, '0')}:${
         dt.getMinutes().toString().padStart(2, '0')}:${
         dt.getSeconds().toString().padStart(2, '0')}`;
-        
+
     error.push(`<div class="toast_text">${fixedDate} | ${i18n('refresh.message')}</div><button class="toast_action" onclick="window.location.reload(true)">${i18n('refresh.message.button.text')}</button>`);
 }
 
