@@ -156,16 +156,25 @@ function handle_update_event(resp) {
 
 
 function handle_update_request_ui_refresh(resp) {
-    var dt = new Date ();
-    var fixedDate = `${
-        (dt.getMonth()+1).toString().padStart(2, '0')}.${
-        dt.getDate().toString().padStart(2, '0')}.${
-        dt.getFullYear().toString().padStart(4, '0')} ${
-        dt.getHours().toString().padStart(2, '0')}:${
-        dt.getMinutes().toString().padStart(2, '0')}:${
-        dt.getSeconds().toString().padStart(2, '0')}`;
+    const dt = new Date ();
 
-    error.push(`<div class="toast_text">${fixedDate} | ${i18n('refresh.message')}</div><button class="toast_action" onclick="window.location.reload(true)">${i18n('refresh.message.button.text')}</button>`);
+    const month  = (dt.getMonth()+1).toString().padStart(2, '0');
+    const day    = dt.getDate().toString().padStart(2, '0');
+    const year   = dt.getFullYear().toString().padStart(4, '0');
+    const hour   = dt.getHours().toString().padStart(2, '0');
+    const minute = dt.getMinutes().toString().padStart(2, '0')
+    const second = dt.getSeconds().toString().padStart(2, '0');
+
+
+    const fixedDate = `${month}.${day}.${year} ${hour}:${minute}:${second}`;
+    error.set(`
+        <div class="toast_text">
+            ${fixedDate} | ${i18n('refresh.message')}
+        </div>
+        <button class="toast_action" onclick="window.location.reload(true)">
+            ${i18n('refresh.message.button.text')}
+        </button>
+    `);
 }
 
 
