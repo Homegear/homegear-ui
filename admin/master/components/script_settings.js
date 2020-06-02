@@ -559,7 +559,8 @@ let ShifSettingsProfile = {
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.locations') }}:</div>
-                    <div class="global">
+                    <div class="global"
+                         v-on:click.prevent="form.location.global = !form.location.global">
                         <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
                         <shif-checkbox v-model="form.location.global" />
                     </div>
