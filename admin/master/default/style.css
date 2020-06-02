@@ -295,12 +295,8 @@ a.disabled {
 .content_small {
   left: 0px;
   opacity: 0.5;
-  border-right: 2px solid #191b1f;
   cursor: pointer !important;
   display: inline-block;
-  overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 .content_small * {
