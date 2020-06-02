@@ -563,6 +563,7 @@ let ShifSettingsProfile = {
                         <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
                         <shif-checkbox v-model="form.location.global" />
                     </div>
+                    <div class="label">{{ i18n('settings.profiles.profile.locations.floor') }}:</div>
                     <select id="locationsFloors"
                             name="locationsFloors"
                             v-model="form.location.floor">
@@ -573,6 +574,7 @@ let ShifSettingsProfile = {
                         </option>
                     </select>
 
+                    <div class="label">{{ i18n('settings.profiles.profile.locations.room') }}:</div>
                     <select id="locationsRooms"
                             name="locationsRooms"
                             v-model="form.location.room">
