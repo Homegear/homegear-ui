@@ -413,6 +413,10 @@ let error = new Vue({
         push: function (msg) {
             this.msgs.unshift(msg);
         },
+
+        set: function (msg) {
+            this.msgs = [msg];
+        },
     },
 
     template: `
