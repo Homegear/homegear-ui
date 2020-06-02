@@ -487,6 +487,10 @@ let ShifSettingsProfile = {
                          .map(x => ({id: x, name: interfaceData.roles[x].name}))
                          .concat({id: null, name: '---'});
         },
+
+        show_roles: function () {
+            return interfaceData.options.roleProfileDefinable === true;
+        },
     },
 
     methods: {
@@ -587,7 +591,8 @@ let ShifSettingsProfile = {
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div v-if="show_roles"
+                     class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.roles') }}:</div>
 
                     <select v-model="form.role.role">
