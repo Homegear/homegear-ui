@@ -830,6 +830,7 @@
             {
                 "id": 1,
                 "icon": "power_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -851,6 +852,7 @@
             {
                 "id": 2,
                 "icon": "thermometer_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -872,6 +874,7 @@
             {
                 "id": 3,
                 "icon": "thermometer_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -893,6 +896,7 @@
             {
                 "id": 4,
                 "icon": "thermometer_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -914,6 +918,7 @@
             {
                 "id": 5,
                 "icon": "power_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -935,6 +940,7 @@
             {
                 "id": 7,
                 "icon": "arrow_up_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -956,6 +962,7 @@
             {
                 "id": 6,
                 "icon": "arrow_down_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -977,6 +984,7 @@
             {
                 "id": 9,
                 "icon": "arrow_up_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
@@ -998,6 +1006,7 @@
             {
                 "id": 8,
                 "icon": "arrow_down_1",
+                "editable": false,
                 "locations": [
                 ],
                 "global": false,
