@@ -402,7 +402,7 @@
                         }
                     ],
                     "license": {
-                        "name": "Vuejs",
+                        "name": "Vuejs Router",
                         "version": "",
                         "rights": "Evan You",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",
