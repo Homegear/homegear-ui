@@ -320,14 +320,16 @@ let ShifSettingsProfiles = {
         <div>
             <div class="profiles_wrapper">
                 <template v-for="i in interfaceData.profiles">
-                    <router-link v-bind:to="link(i.id)">
-                        <shif-settings-element v-bind:key="i.name"
-                                               v-bind:name="i.name"
-                                               v-bind:translate="false"
-                                               v-bind:icon="i.icon"
-                                               description=""
-                                               />
-                    </router-link>
+                    <template v-if="i.editable != '' || !('editable' in i)">
+                        <router-link v-bind:to="link(i.id)">
+                            <shif-settings-element v-bind:key="i.name"
+                                                v-bind:name="i.name"
+                                                v-bind:translate="false"
+                                                v-bind:icon="i.icon"
+                                                description=""
+                                                />
+                        </router-link>
+                    </template>
                 </template>
 
                 <router-link v-bind:to="{name: 'settings.profiles.new'}">
