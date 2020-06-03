@@ -278,6 +278,9 @@ a.disabled {
   -webkit-overflow-scrolling: touch;
 }
 
+#inhalt.modemenu-visible .content {
+    height: calc(100% - 85px - 92px - 59px);
+}
 
 .content.clinched {
   width: calc(100% - 193px);
