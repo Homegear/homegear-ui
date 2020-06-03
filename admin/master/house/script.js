@@ -301,10 +301,18 @@ let app = new Vue({
         },
     },
 
+    // Hack: decrease .content height when modemenu is enabled.
+    computed: {
+        modemenu_show: function () {
+            return this.favorites.enabled === true ||
+                   this.profiles.enabled === true;
+        },
+    },
+
     router: router,
 
     template: `
-        <div id="inhalt">
+        <div id="inhalt" v-bind:class="{'modemenu-visible': modemenu_show}">
             <router-view />
 
             <shif-modemenu />
