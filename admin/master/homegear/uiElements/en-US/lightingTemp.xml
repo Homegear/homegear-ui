@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+        <homegearUiElement>
+                <uniqueUiElementId>Base.lightingTemp</uniqueUiElementId>
+                <type>simple</type>
+                <control>lightingBrightness</control>
+        <role>103000</role>
+                <texts>
+                        <text id="title">
+                                <content>Color temperature</content>
+                                <color>title</color>
+                        </text>
+                        <text id="l2_state_title">
+                                <content>Color temperature</content>
+                                <color>l2_state_title</color>
+                        </text>
+                </texts>
+                <icons>
+                        <icon id="l2">
+                                <name>light_dim_1</name>
+                <color>inactive</color>
+                        </icon>
+            <icon id="l3">
+                <name>arrow_right_1</name>
+                <color>iconArrow</color>
+            </icon>
+                </icons>
+                <variableInputs>
+                        <variable>
+                                <familyId>*</familyId>
+                                <deviceTypeId>*</deviceTypeId>
+                                <channel>*</channel>
+                                <name>*</name>
+                                <visualizeInOverview>true</visualizeInOverview>
+                                <unit>K</unit>
+                                <minimumValue>2000</minimumValue>
+                                <maximumValue>6000</maximumValue>
+                                <minimumValueScaled>2000</minimumValueScaled>
+                                <maximumValueScaled>6000</maximumValueScaled>
+                        </variable>
+                </variableInputs>
+                <variableOutputs>
+                        <variable>
+                                <familyId>*</familyId>
+                                <deviceTypeId>*</deviceTypeId>
+                                <channel>*</channel>
+                                <name>*</name>
+                        </variable>
+                </variableOutputs>
+        </homegearUiElement>
+</homegearUiElements>
