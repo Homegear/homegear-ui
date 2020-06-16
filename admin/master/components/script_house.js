@@ -16,7 +16,8 @@ Vue.component('shif-house-floors-rooms', {
                 assigned[i] = true;
 
             return Object.keys(interfaceData.rooms)
-                         .filter(x => ! assigned[x]);
+                         .filter(x => ! assigned[x])
+                         .filter(x => this.room_has_devices(x));
         },
     },
 
@@ -44,6 +45,14 @@ Vue.component('shif-house-floors-rooms', {
         };
     },
 
+    methods: {
+        room_has_devices: function (room_key) {
+            const room = interfaceData.rooms[room_key];
+
+            return room.devices !== undefined && room.devices.length > 0;
+        },
+    },
+
     template: `
         <div id="house_rooms" v-bind:style="{'max-width': maxWidth}">
             <template v-for="floor_val, floor_key in interfaceData.floors">
@@ -53,10 +62,11 @@ Vue.component('shif-house-floors-rooms', {
                 </div>
 
                 <div class="rooms_wrapper">
-                    <shif-room v-for="room_val in floor_val.rooms"
-                               v-bind:key="room_val"
+                    <shif-room v-for="room_key in floor_val.rooms"
+                               v-if="room_has_devices(room_key)"
+                               v-bind:key="room_key"
                                v-bind:floor="{key: floor_key, value: floor_val}"
-                               v-bind:room="room_val" />
+                               v-bind:room="room_key" />
                 </div>
             </template>
 
