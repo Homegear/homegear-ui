@@ -1664,7 +1664,7 @@
             }
         ],
         [
-            "Base.shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm",
+            "Base.shadingButtonsSingleStepButtonsUpDownPositionPositionSlatsWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1677,26 +1677,6 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "STOP",
-                            "value": 2
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": 3
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": 1
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
                             "name": "UP",
                             "value": 2
                         },
@@ -1739,13 +1719,6 @@
                             "peer": 18,
                             "channel": 1,
                             "name": "LEVEL"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "VENTILATION"
                         }
                     ],
                     [
@@ -1767,26 +1740,6 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "STOP",
-                            "value": 2
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": 3
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": 1
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
                             "name": "UP",
                             "value": 2
                         },
@@ -1829,13 +1782,6 @@
                             "peer": 18,
                             "channel": 1,
                             "name": "LEVEL"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "VENTILATION"
                         }
                     ],
                     [
@@ -1846,7 +1792,7 @@
                         }
                     ]
                 ],
-                "label": "Rollladen Windalarm",
+                "label": "Rollladen Test",
                 "room": 6,
                 "metadata": {
                     "event_hooks": [
@@ -1857,8 +1803,6 @@
                                 "1": true,
                                 "2": true,
                                 "3": true,
-                                "4": true,
-                                "5": true,
                                 "__dummy__": false
                             },
                             "icon": "warning_1",
