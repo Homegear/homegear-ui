@@ -1702,7 +1702,8 @@ margin-bottom: 30px;
 .toast button.toast_close {
   background: #a70000 !important;
   width: max-content;
-  padding: 4px 6px;
+  padding: 4px 14px;
+  border-radius: 4px;
 }
 
 .toast .toast_content {
@@ -1722,6 +1723,8 @@ margin-bottom: 30px;
   background: #e3a104 !important;
   width: max-content;
   padding: 4px 6px;
+  white-space: nowrap;
+  border-radius: 4px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
