@@ -9,7 +9,7 @@
     "@jaames/iro": "^4.5.3",
     "jquery": "^3.5.1",
     "vue": "^2.6.11",
-    "vue-router": "^3.3.2"
+    "vue-router": "^3.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

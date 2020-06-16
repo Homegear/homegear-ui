@@ -231,7 +231,7 @@
                     "files": [
                         {
                             "rawMinUrl": "/",
-                            "rawMinUrlFile": "homegear-ws-1.0.10.min.js",
+                            "rawMinUrlFile": "homegear-ws-1.0.11.min.js",
                             "outputName": "homegearws.min.js"
                         }
                     ],
