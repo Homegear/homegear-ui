@@ -120,6 +120,11 @@
             "floor": "3",
             "icon": "sport_1"
         }
+        "18": {
+            "id": "18",
+            "name": "Leer",
+            "icon": "lock_1"
+        }
     },
     "systemVariables": [
         {
