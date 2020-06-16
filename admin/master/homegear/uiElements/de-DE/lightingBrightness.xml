@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.lightingBrightness</uniqueUiElementId>
 		<control>lightingBrightness</control>
 		<type>simple</type>
-		<role>101000</role>
+		<role>101001</role>
 		<texts>
 			<text id="title">
 				<content>Helligkeit</content>

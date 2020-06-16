@@ -119,7 +119,7 @@
             "name": "Fitness",
             "floor": "3",
             "icon": "sport_1"
-        }
+        },
         "18": {
             "id": "18",
             "name": "Leer",
@@ -823,7 +823,7 @@
             "deviceId": 96,
             "channel": 1,
             "varName": "LEVEL_FAST",
-            "roleId": 101000
+            "roleId": 101001
         }
     ],
     "profiles": [
@@ -3691,7 +3691,7 @@
                 ],
                 "label": "Dimmlicht Ohne Switch",
                 "room": 12,
-                "role": 101000,
+                "role": 101001,
                 "dynamicMetadata": {
                     "favorites": {
                         "state": true
@@ -3736,7 +3736,7 @@
                 ],
                 "label": "Dimmlicht",
                 "room": 12,
-                "role": 101000,
+                "role": 101001,
                 "dynamicMetadata": {
                     "favorites": {
                         "state": true
@@ -3795,7 +3795,7 @@
                 ],
                 "label": "Dimmlicht Push",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
@@ -3863,7 +3863,7 @@
                 ],
                 "label": "Farblicht",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
@@ -3917,7 +3917,7 @@
                 ],
                 "label": "Farblicht",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
@@ -3957,7 +3957,7 @@
                 ],
                 "label": "Farblicht",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
@@ -4025,7 +4025,7 @@
                 ],
                 "label": "Farblicht",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
@@ -4107,7 +4107,7 @@
                 ],
                 "label": "Farblicht",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
