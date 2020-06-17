@@ -1669,7 +1669,7 @@
             }
         ],
         [
-            "Base.shadingButtonsSingleStepButtonsUpDownPositionPositionSlatsWindalarm",
+            "Base.shadingButtonsSingleStepPositionPositionSlatsWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1696,20 +1696,6 @@
                             "channel": 1,
                             "name": "DOWN",
                             "value": 2
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
                         }
                     ],
                     [
@@ -1765,20 +1751,6 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 18,
-                            "channel": 1,
                             "name": "LEVEL"
                         }
                     ],
@@ -1807,7 +1779,6 @@
                                 "0": true,
                                 "1": true,
                                 "2": true,
-                                "3": true,
                                 "__dummy__": false
                             },
                             "icon": "warning_1",

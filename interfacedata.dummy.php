@@ -1024,7 +1024,7 @@
                     "content": "Beschattung"
                 }
             },
-            "uniqueUiElementId": "Base.shadingButtonsSingleStepButtonsUpDownPositionPositionSlatsWindalarm",
+            "uniqueUiElementId": "Base.shadingButtonsSingleStepPositionPositionSlatsWindalarm",
             "floors": [
                 2
             ],
