@@ -95,8 +95,10 @@ function clean_json_to_js() {
     foreach($defaultInterfaceData["i18n"] as $key => $value){
         $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
     }
+    $interfaceDataOutJson = json_encode($interfaceDataOut, JSON_PRETTY_PRINT);
+    $interfaceDataOutJson = str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"', '"dynamicMetadata": null,'), array("", "", '"dynamicMetadata":[],'), $interfaceDataOutJson);
 
-    $out = "var interfaceData = ".json_encode($interfaceDataOut, JSON_PRETTY_PRINT).';'."\n";
+    $out = "var interfaceData = ".$interfaceDataOutJson.';'."\n";
 
     return $out;
 }

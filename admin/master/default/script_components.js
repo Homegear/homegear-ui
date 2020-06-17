@@ -303,7 +303,9 @@ const mixin_favorites = {
                 method: 'getUiElementMetadata',
                 params: [dev],
             }, (data) => {
-                let new_metadata = data.result;
+                let new_metadata = {};
+                if (Array.isArray(data.result)) 
+                    new_metadata = data.result;
 
                 if (new_metadata.favorites === undefined)
                     new_metadata.favorites = {};
