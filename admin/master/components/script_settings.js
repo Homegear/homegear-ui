@@ -246,7 +246,11 @@ let ShifSettingsUser = {
 
 let ShifSettingsItems = function (level) {
     return {
-        mixins: [mixin_menus, mixin_print_mounted('shif-settings-items')],
+        mixins: [
+            mixin_scroll_position,
+            mixin_menus,
+            mixin_print_mounted('shif-settings-items')
+        ],
 
         methods: {
             elements: function (level) {
@@ -303,7 +307,7 @@ let ShifSettingsFavorites = {
 
 
 let ShifSettingsProfiles = {
-    mixins: [mixin_print_mounted('shif-settings-profile')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-settings-profile')],
 
     methods: {
         link: function (profile_id) {
