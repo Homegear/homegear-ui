@@ -803,7 +803,7 @@ const shif_device = {
         };
     },
 
-    inject: ['layer'],
+    inject: ['layer', 'room_id', 'floor_id'],
 
     methods: {
         status_minimal: function (descs=true) {
@@ -892,8 +892,8 @@ Vue.component('shif-room', {
             return {
                 name: 'house.tab.rooms.room',
                 params: {
-                    floor: floor_key,
-                    room:  room_val,
+                    floor_id: floor_key,
+                    room_id:  room_val,
                 },
             };
         },
