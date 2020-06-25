@@ -71,7 +71,6 @@ Vue.use({
 Vue.mixin({
     data: function () {
         return  {
-            debug:          false,
             interfaceIcons: icons,
             interfaceData:  interfaceData,
         };
@@ -112,8 +111,9 @@ Vue.mixin({
                 return this.$router.push({
                     name: `${last}.device`,
                     params: {
-                        floor_id: interfaceData.devices[device].floors[0],
-                        room_id:  interfaceData.devices[device].rooms[0],
+                        role_id:   this.role_id,
+                        floor_id:  interfaceData.devices[device].floors[0],
+                        room_id:   interfaceData.devices[device].rooms[0],
                         device_id: device,
                     },
                 });
@@ -152,6 +152,8 @@ Vue.mixin({
         alert: window.alert,
 
         i18n: i18n,
+
+        date: date_format,
     },
 });
 
@@ -162,6 +164,9 @@ let ShifLogoff = Vue.component('shif-logoff', {
         user_logoff();
     }
 });
+
+
+const scroll_positions = {};
 
 
 let router = new VueRouter({
@@ -176,17 +181,25 @@ let router = new VueRouter({
                     path: 'rooms',
                     component: ShifHouseRooms,
                     meta: {breadcrumbs: ['house', 'house.tab.rooms'], base: true,},
-                }, {
+                },
+                {
                     name: 'house.tab.rooms.room',
                     path: 'rooms/floor/:floor_id/room/:room_id',
                     components: {small: ShifHouseRooms, big: ShifHouseLvl2},
-                    meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room']},
+                    meta: {
+                        breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room'],
+                        cache_ident: {big: {params: ['room_id']}}
+                    },
                     props: {small: false, big: true},
-                }, {
+                },
+                {
                     name: 'house.tab.rooms.room.device',
                     path: 'rooms/floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifHouseLvl2, big: ShifHouseLvl3},
-                    meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room', 'house.tab.rooms.room.device']},
+                    meta: {
+                        breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room', 'house.tab.rooms.room.device'],
+                        cache_ident: {small: {params: ['room_id']}, big: {params: ['room_id', 'device_id']}},
+                    },
                     props: {small: true, big: true},
                 },
 
@@ -195,12 +208,17 @@ let router = new VueRouter({
                     path: 'devices',
                     component: ShifHouseDevices,
                     meta: {breadcrumbs: ['house', 'house.tab.devices'], base: true,},
-                }, {
+                    props: true,
+                },
+                {
                     name: 'house.tab.devices.device',
-                    path: 'devices/floor/:floor_id/room/:room_id/device/:device_id',
+                    path: 'devices/role/:role_id/floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifHouseDevices, big: ShifAllDevicesLvl3},
-                    meta: {breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device']},
-                    props: {small: false, big: true},
+                    meta: {
+                        breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device'],
+                        cache_ident: {small: {bc_idx: 1}, big: {params: ['role_id', 'room_id', 'device_id']}},
+                    },
+                    props: {small: true, big: true},
                 },
 
                 {
@@ -276,7 +294,10 @@ let router = new VueRouter({
                     name: 'favorites.device',
                     path: 'floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifFavoritesLvl1, big: ShifFavoritesLvl3},
-                    meta: {breadcrumbs: ['favorites', 'house.tab.rooms.room', 'favorites.device']},
+                    meta: {
+                        breadcrumbs: ['favorites', 'house.tab.rooms.room', 'favorites.device'],
+                        cache_ident: {small: {bc_idx: 0}, big: {params: ['room_id', 'device_id']}}
+                    },
                     props: {small: false, big: true},
                 }
             ],
@@ -296,6 +317,8 @@ let router = new VueRouter({
 
 let app = new Vue({
     data: {
+        debug: false,
+
         favorites: {
             enabled: false,
         },
