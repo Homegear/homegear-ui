@@ -155,6 +155,21 @@ function handle_update_event(resp) {
 
 
 
+function date_format() {
+    const dt = new Date ();
+
+    const month  = (dt.getMonth()+1).toString().padStart(2, '0');
+    const day    = dt.getDate().toString().padStart(2, '0');
+    const year   = dt.getFullYear().toString().padStart(4, '0');
+    const hour   = dt.getHours().toString().padStart(2, '0');
+    const minute = dt.getMinutes().toString().padStart(2, '0')
+    const second = dt.getSeconds().toString().padStart(2, '0');
+
+    return `${month}.${day}.${year} ${hour}:${minute}:${second}`;
+}
+
+
+
 function handle_update_request_ui_refresh(resp) {
     error.set(`
         <div class="toast_text">
