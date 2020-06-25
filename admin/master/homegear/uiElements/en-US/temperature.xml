@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<homegearUiElements lang="de-DE">
+<homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.temperature</uniqueUiElementId>
-		<control>temperature</control>
 		<type>simple</type>
-		<role>201000</role>
+		<control>temperature</control>
 		<texts>
 			<text id="title">
-				<content>Temperatur</content>
+				<content>Temperature</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
@@ -20,8 +19,12 @@
 				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
-			<icon id="l2">
+			<icon id="temperature">
 				<name>thermometer_1</name>
+                <color>inactive</color>
+			</icon>
+			<icon id="l2">
+				<name>thermomenter_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -41,8 +44,5 @@
 				<maximumValue>100.0</maximumValue>
 			</variable>
 		</variableInputs>
-		<metadata>
-			<l2_only>true</l2_only>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -1,4 +1,4 @@
-<?php 
+<?php
     $adminInterfaceDataJson = '
 {
     "admin": {
@@ -16,7 +16,14 @@
                     "requiredAssets": [
                         "jquery",
                         "vue",
+                        "vue-router",
                         "flaticons"
+                    ]
+                },
+                "menu": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
                     ]
                 },
                 "user": {
@@ -44,12 +51,6 @@
                         ""
                     ]
                 },
-                "house": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
                 "icons": {
                     "activated": true,
                     "requiredAssets": [
@@ -63,12 +64,6 @@
                     ]
                 },
                 "lighting": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
-                "menu": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -99,6 +94,30 @@
                     ]
                 },
                 "ventilation": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "timer": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "media": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "components": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "house": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -212,7 +231,7 @@
                     "files": [
                         {
                             "rawMinUrl": "/",
-                            "rawMinUrlFile": "homegear-ws-1.0.10.min.js",
+                            "rawMinUrlFile": "homegear-ws-1.0.11.min.js",
                             "outputName": "homegearws.min.js"
                         }
                     ],
@@ -366,6 +385,24 @@
                     ],
                     "license": {
                         "name": "Vuejs",
+                        "version": "",
+                        "rights": "Evan You",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
+                "vue-router": {
+                    "user": "vuejs",
+                    "repository": "/node_modules/vue-router",
+                    "files": [
+                        {
+                            "rawMinUrl": "/dist/",
+                            "rawMinUrlFile": "vue-router.js",
+                            "outputName": "vue-router.js"
+                        }
+                    ],
+                    "license": {
+                        "name": "Vuejs Router",
                         "version": "",
                         "rights": "Evan You",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",

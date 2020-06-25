@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<uniqueUiElementId>Base.temperature</uniqueUiElementId>
-		<control>temperature</control>
+		<uniqueUiElementId>Base.lightingSpeed</uniqueUiElementId>
 		<type>simple</type>
-		<role>201000</role>
+		<control>lightingSpeed</control>
+        <role>101001</role>
 		<texts>
 			<text id="title">
-				<content>Temperature</content>
+				<content>Speed</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Temp.</content>
+				<content>Speed</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
-			<icon id="main">
-				<name>thermometer_1</name>
-                <color>inactive</color>
-			</icon>
 			<icon id="l2">
-				<name>thermometer_1</name>
+				<name>light_dim_1</name>
                 <color>inactive</color>
 			</icon>
             <icon id="l3">
@@ -36,13 +32,20 @@
 				<channel>*</channel>
 				<name>*</name>
 				<visualizeInOverview>true</visualizeInOverview>
-				<unit>°C</unit>
-				<minimumValue>-273.15</minimumValue>
-				<maximumValue>100.0</maximumValue>
+				<unit></unit>
+				<minimumValue>0</minimumValue>
+				<maximumValue>255</maximumValue>
+				<minimumValueScaled>0</minimumValueScaled>
+				<maximumValueScaled>255</maximumValueScaled>
 			</variable>
 		</variableInputs>
-		<metadata>
-			<l2_only>true</l2_only>
-		</metadata>
+		<variableOutputs>
+			<variable>
+				<familyId>*</familyId>
+				<deviceTypeId>*</deviceTypeId>
+				<channel>*</channel>
+				<name>*</name>
+			</variable>
+		</variableOutputs>
 	</homegearUiElement>
 </homegearUiElements>

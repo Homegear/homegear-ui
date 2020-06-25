@@ -10,6 +10,11 @@ ventilation_mode_l2.template = `
                      v-bind:actions="true"
                      v-bind:status="status"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -29,6 +34,11 @@ ventilation_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
                 v-on:input="x => change(parseInt(x))">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-radio>
 `;
 

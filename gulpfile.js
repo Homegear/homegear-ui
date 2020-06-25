@@ -78,5 +78,7 @@ function startWatchers() {
 }
 
 exports.watcher = startWatchers;
+exports.builddev = series(execC, execBabel);
+exports.buildprod = series(execC, execBabel);
 exports.vendor = series(vendorjs, vendorcss);
 exports.default = series(deployjs, babeljs, deploycss)

@@ -1,6 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 let shading_windalarm = clone(shif_device);
 shading_windalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
@@ -13,13 +10,13 @@ shading_windalarm.template = `
 
 shif_comps_create('shadingWindalarm', shading_windalarm, shading_windalarm);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 let shading_ventilation_l2 = clone(shif_device);
 shading_ventilation_l2.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
+
 shading_ventilation_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -35,7 +32,8 @@ shading_ventilation_l2.template = `
 let shading_ventilation_l3 = clone(shif_device);
 shading_ventilation_l3.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
+
 shading_ventilation_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
@@ -44,6 +42,11 @@ shading_ventilation_l3.template = `
                      v-bind:status="status_minimal()"
                      v-bind:disabled="disabled"
                      v-on:click="change">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-generic-l2>
 `;
 
@@ -54,7 +57,8 @@ shif_comps_create('shadingVentilation', shading_ventilation_l2, shading_ventilat
 let shading_slider = clone(shif_device);
 shading_slider.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
-}
+};
+
 shading_slider.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"
@@ -65,6 +69,11 @@ shading_slider.template = `
                  v-bind:disabled="disabled"
                  v-on:change="change"
                  v-model:value="props.value">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-slider>
 `;
 
@@ -82,8 +91,14 @@ shading_buttons_l2.template = `
                      v-bind:actions="true"
                      v-bind:status="status"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
+
 let shading_buttons_l3 = clone(shif_device);
 shading_buttons_l3.methods.change = function(event) {
     let upVar = this.control.variableOutputs[0];
@@ -111,7 +126,8 @@ shading_buttons_l3.methods.change = function(event) {
         }
     }
     else homegear.value_set_clickcounter(this, this.output, true);
-}
+};
+
 shading_buttons_l3.template = `
     <div class="control_button_wrapper">
         <shif-button v-bind:disabled="disabled"

@@ -14,13 +14,18 @@ lighting_switch_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change($event, true)"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 
 let lighting_switch_l3 = clone(shif_device);
 lighting_switch_l3.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 lighting_switch_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
@@ -28,6 +33,17 @@ lighting_switch_l3.template = `
                      v-bind:place="place"
                      v-bind:status="status_minimal()"
                      v-on:click="change">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -48,10 +64,17 @@ lighting_brightness.template = `
                  v-bind:step=5
                  v-on:change="change"
                  v-model:value="props.value">
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-slider>
 `;
 
 shif_comps_create('lightingBrightness', lighting_switch_l2, lighting_brightness);
+shif_comps_create('lightingSpeed', lighting_switch_l2, lighting_brightness);
 
 
 
@@ -99,14 +122,64 @@ lighting_color_l2.template = `
 
 let lighting_color_l3 = clone(shif_device);
 lighting_color_l3.methods.change = function(event) {
-    this.props.value = event.color.hexString;
+    this.props.value = event;
     homegear.value_set_clickcounter(this, this.output, this.props.value);
 };
 lighting_color_l3.template = `
-    <shif-colorpicker v-bind:width="500"
-                      v-bind:height="520"
+    <shif-colorpicker v-bind:width="{max_pixels: 600, percent: 100}"
+                      v-bind:height="{max_pixels: 620, percent: 100}"
                       v-bind:color="props.value"
-                      v-on:input:end="change" />
+                      v-bind:title="title"
+                      v-on:input="change">
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
+    </shif-colorpicker>
 `;
 
 shif_comps_create('lightingColor', lighting_color_l2, lighting_color_l3);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+let lighting_function_l2 = clone(shif_device);
+lighting_function_l2.template = `
+    <shif-generic-l2 v-bind:icon="icons.l2.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: icons.l2.color, text: texts.title.color}"
+                     v-bind:place="place"
+                     v-bind:actions="true"
+                     v-bind:status="status"
+                     v-on:click="level3(device, breadcrumb)">
+    </shif-generic-l2>
+`;
+
+let lighting_function_l3 = clone(shif_device);
+lighting_function_l3.methods.change = function(x) {
+    homegear.value_set_clickcounter(this, this.output, x);
+};
+lighting_function_l3.computed.values = function () {
+    return this.rendering
+        .map(x => ({
+            name:     x.definitions.texts.state.content,
+            value:    x.condition.value,
+        }));
+};
+lighting_function_l3.template = `
+    <shif-dropdown v-bind:title="title"
+                   v-bind:values="values"
+                   v-bind:selected="props.value"
+                   v-on:change="x => change(parseInt(x))">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+    </shif-dropdown>
+`;
+
+shif_comps_create('lightingFunction', lighting_function_l2, lighting_function_l3);

@@ -31,6 +31,11 @@ heating_slider_l3.template = `
                  v-on:change="change"
                  v-bind:disabled="disabled"
                  v-model:value="props.value">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-slider>
 `;
 
@@ -47,6 +52,11 @@ heating_is_state_l2.template = `
                      v-bind:actions="true"
                      v-bind:place="place"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 let heating_is_state_l3 = clone(shif_device);
@@ -80,6 +90,11 @@ heating_mode_l3.template = `
                 v-bind:values="values"
                 v-bind:disabled="disabled"
                 v-on:input="x => change(parseInt(x))">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-radio>
 `;
 

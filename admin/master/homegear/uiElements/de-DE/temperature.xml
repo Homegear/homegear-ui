@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
-		<uniqueUiElementId>Base.humidity</uniqueUiElementId>
-		<control>humidity</control>
+		<uniqueUiElementId>Base.temperature</uniqueUiElementId>
 		<type>simple</type>
-		<role>201000</role>
+		<control>temperature</control>
 		<texts>
 			<text id="title">
-				<content>Luftfeuchtigkeit</content>
+				<content>Temperatur</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Feuchte</content>
+				<content>Temp.</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="main">
-				<name>waterdrops_1</name>
+				<name>thermometer_1</name>
+				<color>inactive</color>
+			</icon>
+			<icon id="temperature">
+				<name>thermometer_1</name>
                 <color>inactive</color>
 			</icon>
 			<icon id="l2">
-				<name>waterdrops_1</name>
-                <color>inactive</color>
+				<name>thermomenter_1</name>
+				<color>inactive</color>
 			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
+			<icon id="l3">
+				<name>arrow_right_1</name>
+				<color>iconArrow</color>
+			</icon>
 		</icons>
 		<variableInputs>
 			<variable>
@@ -36,13 +39,10 @@
 				<channel>*</channel>
 				<name>*</name>
 				<visualizeInOverview>true</visualizeInOverview>
-				<unit>%</unit>
-				<minimumValue>0</minimumValue>
-				<maximumValue>100</maximumValue>
+				<unit>°C</unit>
+				<minimumValue>-273.15</minimumValue>
+				<maximumValue>100.0</maximumValue>
 			</variable>
 		</variableInputs>
-		<metadata>
-            <l2_only>true</l2_only>
-		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

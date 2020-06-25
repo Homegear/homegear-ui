@@ -40,7 +40,7 @@ function viewLog(value) {
     if (value !== null && typeof value === 'object')
         value = JSON.stringify(value);
 
-    logFrontend += value + '<br/>';
+    logFrontend += value + '\r\n';
 
     if($('#log').length){
         $('#log').html(logFrontend);
@@ -48,32 +48,6 @@ function viewLog(value) {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// isJSON
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function isJSON(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-$('#'+interfaceData.options.breadcrumbs_id_array[0]).addClass('content_single');
-$('.breadcrumbsJump').html(interfaceData.options.firstBreadcrumb);
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// verhindert das die Zurück Funktion bei DesktopBrowsern ausgeführt werden kann
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-location.hash = 'nb';
-$(window).on('hashchange', function() {
-    content('back', {back: '1'});
-    location.hash = 'nb';
-});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // verhindert, dass der PullFromTopToRefresh im Android Chrome Browser ausgeführt werden kann
@@ -128,193 +102,10 @@ function headerVisibility(state) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ermoeglicht die gesamte Navigationslogik
-// Über ein Array wird zwischen den Ebenen gesprungen
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function content_delete_breadcumb_container(ids, vals) {
-    $('#' + ids[ids.length - 1]).remove();
-    vals.pop();
-    ids.pop();
-}
-
-function content_hndl_breadcrumb_classes(ids, destSize) {
-    if (ids.length > 1) {
-        $('#' + ids[ids.length - 1]).addClass(destSize);
-        $('#' + ids[ids.length - 2]).addClass('content_small');
-    }
-    else if (interfaceData.options.breadcrumbs_id_array.length == 1) {
-        $('#' + ids[ids.length - 1]).addClass('content_single');
-        $('#back').addClass('inactive');
-    }
-    else
-        $('#back').addClass('inactive');
-}
-
-function content(element, options) {
-    var destSize = 'content_big';
-
-    if (typeof options != 'object')
-        options = $.parseJSON(options);
-
-    if ('back' in options && interfaceData.options.breadcrumbs_id_array.length <= 1) {
-        $('#back').addClass('inactive');
-        $('.content').scrollTop(0);
-        return;
-    }
-
-    if ('existing' in options)
-        var id = options.existing;
-
-    if ('size' in options && options.size === 'mega_big')
-        destSize = 'content_mega_big';
-
-    if ('content' in options) {
-        var id = '';
-        const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-
-        for (let i = 0; i < 8; i++)
-            id += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        if (options.vue) {
-            $('#inhalt').append(`<div id="${id}" class="content"></div>`);
-            let vueContent = app.$el.querySelector('#' + id);
-            for (let i in options.content)
-                vueContent.appendChild(options.content[i]);
-        }
-        else
-            $('#inhalt').append(`
-                <div id="${id}" class="content">
-                    ${options['content']}
-                </div>
-            `);
-    }
-
-    $('.content_single').removeClass('content_single');
-    $('.content_small').removeClass('content_small');
-    $('.content_big').removeClass('content_big');
-    $('.content_mega_big').removeClass('content_mega_big');
-    $('.content_back').remove();
-
-    if ('jump' in options) {
-        for (let i = interfaceData.options.breadcrumbs_id_array.length - options.jump; i > 1; i--)
-            content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array,
-                                               interfaceData.options.breadcrumbs_array);
-
-        content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
-    }
-
-    else if ('back' in options) {
-        //löschen des aktuellen containers
-        content_delete_breadcumb_container(interfaceData.options.breadcrumbs_id_array, interfaceData.options.breadcrumbs_array);
-
-        content_hndl_breadcrumb_classes(interfaceData.options.breadcrumbs_id_array, destSize);
-    }
-
-    else {
-        interfaceData.options.breadcrumbs_array.push(`
-            <div class="breadcrumbsJump"
-                 onclick='content(this, {"jump":"${interfaceData.options.breadcrumbs_array.length}"});'>
-                ${options.name}
-            </div>
-        `);
-
-        $('#' + id).addClass(destSize);
-        $('#' + interfaceData.options.breadcrumbs_id_array[interfaceData.options.breadcrumbs_id_array.length - 1]).addClass('content_small');
-        interfaceData.options.breadcrumbs_id_array.push(id);
-        $('#back').removeClass('inactive');
-    }
-
-    $('.content_small').append(`
-        <div class="content_back" onclick='content(this, {"back":"1"});'>
-        </div>
-    `);
-
-    let text = '';
-    for  (let i = 0; i < interfaceData.options.breadcrumbs_array.length; i++) {
-        text += interfaceData.options.breadcrumbs_array[i];
-
-        if (i + 1 != interfaceData.options.breadcrumbs_array.length)
-            text += '<div class="breadcrumbs_separator">|</div>';
-    }
-
-    document.getElementById('breadcrumbsSub').innerHTML = text;
-
-    $('#breadcrumbsSub').scrollLeft(9999999999);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_logoff() {
     window.location.href = 'signin.php?logout=1';
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Tabs
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function showTab(element, tab) {
-    // Aktiven Tab finden und deaktivieren
-    $(element).parent().find('.active').removeClass('active');
-    $(element).parent().find('.tab_pfeil').remove();
-
-    // Angeklickten Tab aktivieren
-    $(element).addClass('active');
-    $(element).append('<div class="tab_pfeil"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="200" height="100" viewBox="0, 0, 200, 100"><g id="Ebene_1"><path d="M0,-0 L204,-0 L101.747,100.002" /></g></svg></div>');
-
-    // Content im aktiven Tab finden und deaktivieren
-    $(element).parents('.content').find('.activeTab').removeClass('activeTab');
-
-    // Content im angeklicktem Tab aktivieren
-    $(element).parents('.content').find('.tabWrapper:eq(' + tab + ')').addClass('activeTab');
-
-    $(element).parents('.content').scrollTop(0);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// License
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function license() {
-    const table_rows = licenses.map(x => `
-        <tr>
-            <td>${x.name}</td>
-            <td>${x.version}</td>
-            <td>${x.rights}</td>
-            <td>${x.licensename}</td>
-            <td>${x.licenseurl}</td>
-        </tr>
-    `).join('\n');
-
-    let data = `
-        <div class="table1">
-            <table>
-                <tr>
-                    <th onclick='content(this, {\"name\":\"Log\",\"content\":\"<div id=log>\"+logFrontend+\"</div>\"})'>
-                        ${i18n('settings.about.table.name')}
-                    </th>
-                    <th>${i18n('settings.about.table.version')}</th>
-                    <th>${i18n('settings.about.table.rights')}</th>
-                    <th>${i18n('settings.about.table.license')}</th>
-                    <th>${i18n('settings.about.table.license.url')}</th>
-                </tr>
-                ${table_rows}
-            </table>
-        </div>
-    `;
-
-    content('this', {'content':data,'name':i18n('settings.about')});
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function check_value_in_key(haystack, haystackkey, haystackneedle) {
-    $.each(haystack, function(_, value) {
-        if (value[haystackkey] === haystackneedle) {
-            return true;
-        }
-    });
-
-    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -324,8 +115,8 @@ function i18n(key) {
     for (let i of [interfaceData.i18n, interfaceData.i18n.default])
         if (key in i)
             return i[key];
-        else
-            return '?';
+
+    return '?';
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -458,10 +249,17 @@ Vue.component('shif-status', {
                     <div class="device_status_entry"></div>
                 </template>
                 <template v-else>
-                    <span v-for="i in key_vals"
-                        class="device_status_entry">
+                    <span v-for="i in key_vals" class="device_status_entry">
                         <span v-if="i.key" class="name">{{ i.key }}:</span>
-                        <span class="value">{{ i.value }}</span>
+
+                        <template v-if="typeof(i.value) === 'object' && i.value.type === 'color'">
+                            <span class="status_color_bullet"
+                                  v-bind:style="{backgroundColor: i.value.color}">
+                            </span>
+                        </template>
+                        <template v-else>
+                            <span class="value">{{ i.value }}</span>
+                        </template>
                     </span>
                 </template>
             </template>
@@ -488,7 +286,7 @@ Vue.component('shif-icon', {
     },
 
     template: `
-        <div v-bind:class="classname">
+        <div v-bind:class="classname" v-on:click="$emit('click', this)">
             <template v-if="src in interfaceIcons">
                 <div class="svg_icon"
                      v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
@@ -541,6 +339,10 @@ Vue.component('shif-slider', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device slider">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
 
                 <div class="slider_action">
@@ -595,6 +397,10 @@ Vue.component('shif-radio', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_radio">
                     <template v-for="i in values">
@@ -609,6 +415,49 @@ Vue.component('shif-radio', {
                             <i></i>
                         </label>
                     </template>
+                </div>
+            </div>
+        </div>
+    `,
+});
+
+
+
+Vue.component('shif-dropdown', {
+    props: {
+        title:     String,
+        classname: String,
+        values:    Array,
+        selected:  [String, Number],
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
+    },
+
+    data: function () {
+        return {
+            selected_entry: this.selected,
+        };
+    },
+
+    template: `
+        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+            <div class="device">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
+                <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
+                <div class="device_dropdown">
+                    <select v-bind:class="{disabled: disabled.flag}"
+                            v-model="selected_entry"
+                            v-on:change="$emit('change', selected_entry)">
+                        <option v-for="i in values"
+                                v-bind:value="i.value">
+                            {{ i.name }}
+                        </option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -643,15 +492,17 @@ Vue.component('shif-button', {
 
 Vue.component('shif-colorpicker', {
     props: {
-        width:  { type: Number, required: true, },
-        height: { type: Number, required: true, },
+        width:  { type: [Number, Object], required: true, },
+        height: { type: [Number, Object], required: true, },
         color:  { type: String, required: true, },
         padding:      { type: Number, default:  1 },
         borderWidth:  { type: Number, default:  3 },
-        markerRadius: { type: Number, default: 12 },
+        handleRadius: { type: Number, default: 12 },
         sliderMargin: { type: Number, default: 24 },
-        sliderHeight: { type: Number, default: 36 },
+        sliderHeight: { type: Number, default: 32 },
         borderColor:  { type: String, default: '#fff' },
+        anticlockwise:  { type: Boolean, default: true },
+        title:  { type: String},
     },
 
     data: function () {
@@ -668,17 +519,65 @@ Vue.component('shif-colorpicker', {
     },
 
     mounted: function () {
-        this.handle = new iro.ColorPicker(this.$refs.colorpicker, {
-            width:         this.width,
-            height:        this.height,
+        function rel_to_abs_px(dim_elem, dim_wanted) {
+            let result = dim_elem;
+
+            if (typeof(dim_wanted) === 'number')
+                return result * (dim_wanted / 100);
+
+            if (typeof(dim_wanted) === 'object' &&
+                'percent' in dim_wanted &&
+                typeof(dim_wanted.percent) === 'number') {
+
+                result *= (dim_wanted.percent / 100);
+
+                if ('max_pixels' in dim_wanted &&
+                    typeof(dim_wanted.max_pixels) === 'number')
+                    result = Math.min(result, dim_wanted.max_pixels);
+            }
+
+            return result - 30;
+        }
+
+        const elem = this.$refs.colorpicker;
+        this.handle = new iro.ColorPicker(elem, {
+            width:         rel_to_abs_px(elem.scrollWidth,  this.width),
+            height:        rel_to_abs_px(elem.scrollHeight, this.height),
             color:         this.color,
-            markerRadius:  this.markerRadius,
+            title:         this.title,
+            handleRadius:  this.handleRadius,
             padding:       this.padding,
             sliderMargin:  this.sliderMargin,
             sliderHeight:  this.sliderHeight,
             borderWidth:   this.borderWidth,
             borderColor:   this.borderColor,
-            anticlockwise: true,
+            anticlockwise: this.anticlockwise,
+            display:       'block',
+            layout:        [
+                {
+                    component: iro.ui.Wheel,
+                    options: {}
+                },
+                {
+                    // regular value slider
+                    component: iro.ui.Slider,
+                    options: {}
+                },
+                {
+                    // hue slider
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'hue'
+                    }
+                },
+                {
+                    // saturation slider
+                    component: iro.ui.Slider,
+                    options: {
+                        sliderType: 'saturation'
+                    }
+                }
+            ]
         });
 
         // `on` patches `this`.
@@ -687,18 +586,47 @@ Vue.component('shif-colorpicker', {
         this.handle.on('color:change', function (color, changes) {
             outer.$emit('color:change', {color: color, changes: changes});
         });
-        this.handle.on('input:start', function (color, changes) {
-            outer.$emit('input:start', {color: color, changes: changes});
-        })
-        this.handle.on('input:end', function (color, changes) {
-            outer.$emit('input:end', {color: color, changes: changes});
-        })
+        this.handle.on('input:start', function (color) {
+            outer.$emit('input:start', {color: color});
+        });
+        this.handle.on('input:end', function (color) {
+            outer.$emit('input', color.hexString);
+        });
     },
 
     template: `
-        <div ref="colorpicker">
+        <div class="device_wrapper">
+            <div class="device color">
+                <div v-if="$slots.profiles"
+                     class="checkbox_wrapper">
+                    <slot name="profiles" />
+                </div>
+                <shif-title v-if="title">{{ title }}</shif-title>
+                <div ref="colorpicker">
+                </div>
+            </div>
         </div>
     `
+});
+
+
+
+Vue.component('shif-checkbox', {
+    props: {
+        value: {
+            type: Boolean,
+            required: true
+        },
+    },
+    template: `
+        <label class="check">
+            <input type="checkbox"
+                   v-bind:checked="value"
+                   v-on:click="$emit('click', $event.target.checked)"
+                   v-on:input="$emit('input', $event.target.checked)">
+            <span class="checkmark"></span>
+        </label>
+    `,
 })
 // }}}
 
@@ -746,7 +674,7 @@ Vue.component('shif-generic-l2', {
                 this.$emit(key);
             else
                 this.$emit(key, val);
-        }
+        },
     },
 
     template: `
@@ -756,6 +684,16 @@ Vue.component('shif-generic-l2', {
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
+
+                <div v-if="$slots.favorites"
+                     class="checkbox_right_50">
+                    <slot name="favorites" />
+                </div>
+
+                <div v-if="$slots.profiles">
+                    <slot name="profiles" />
+                </div>
+
                 <div v-on:click.stop="emit('click_icon')">
                     <shif-icon v-bind:src="icon"
                                v-bind:active="active.icon"
@@ -800,7 +738,7 @@ Vue.component('shif-generic-l2', {
 
 
 // [shif_device] Generic Shif Device Component Object {{{
-function status_impl(control) {
+function status_impl(control, layer) {
     let out = [];
 
     const key = (control.texts &&
@@ -808,10 +746,21 @@ function status_impl(control) {
                  control.texts.l2_state_title.content) ?
         control.texts.l2_state_title.content :
         null;
-    let val = [];
 
+    if (control.metadata !== undefined &&
+        control.metadata.statusColor === true &&
+        control.variableInputs.length > 0)
+        return [{
+            key: key,
+            value: {
+                type: 'color',
+                color: control.variableInputs[0].properties.value,
+            },
+        }];
+
+    let val = [];
     for (const input of control.variableInputs) {
-        if (!input.properties.visualizeInOverview)
+        if (input.properties.visualizeInOverview === false && layer == 2)
             continue;
 
         if (input.rendering) {
@@ -823,7 +772,7 @@ function status_impl(control) {
         }
 
         const unit = input.properties.unit ? input.properties.unit : '';
-        val.push(input.properties.value + unit);
+        val.push(input.properties.value + ' ' + unit);
     }
 
     if (val.length > 0)
@@ -849,13 +798,16 @@ const shif_device = {
 
     data: function() {
         return {
-            lastClickCount: 0
+            lastClickCount: 0,
+            profile_state: false,
         };
     },
 
+    inject: ['layer'],
+
     methods: {
         status_minimal: function (descs=true) {
-            const raw = status_impl(this.control);
+            const raw = status_impl(this.control, this.layer);
 
             return (descs) ? raw : raw.map(x => ({value: x.value}));
         },
@@ -900,7 +852,7 @@ const shif_device = {
             let out = [];
 
             for (const control of this.dev.controls)
-                out = out.concat(status_impl(control));
+                out = out.concat(status_impl(control, this.layer));
 
             return out;
         },
@@ -926,3 +878,55 @@ function shif_comps_create(name, l2, l3) {
     };
 }
 // }}}
+
+
+
+
+Vue.component('shif-room', {
+    props: {
+        floor: Object,
+        room:  [String, Number],
+    },
+    methods: {
+        link: function (floor_key, room_val) {
+            return {
+                name: 'house.tab.rooms.room',
+                params: {
+                    floor: floor_key,
+                    room:  room_val,
+                },
+            };
+        },
+    },
+
+    template: `
+        <div class="roomSelect_wrapper">
+            <router-link v-bind:to="link(floor.key, room)">
+                <shif-icon v-bind:src="interfaceData.rooms[room].icon"
+                           class="roomSelect" />
+
+                <div class="description">
+                    {{ interfaceData.rooms[room].name }}
+                </div>
+            </router-link>
+        </div>
+    `,
+});
+
+
+
+Vue.component('shif-tab', {
+    props: {
+        width: {
+            type:    String,
+            default: '50%',
+        }
+    },
+    template: `
+        <div class="tab button"
+             v-bind:style="{width: width}"
+             v-on:click="$emit('click', 1)">
+             <slot></slot>
+        </div>
+    `,
+});

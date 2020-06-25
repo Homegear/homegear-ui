@@ -16,6 +16,7 @@ function homegear_init() {
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
+        $hg_profiles = $hg->getAllVariableProfiles($hg_lang);
     }
     catch (\Homegear\HomegearException $e) {
         die( $hg->log(2, 'Homegear Exception catched. ' .
@@ -52,6 +53,11 @@ function homegear_init() {
 
         foreach ($room['METADATA'] as $name => &$data)
             $house['rooms'][$id][$name] = $data;
+    }
+
+    function profile_parse(&$house, &$profile) {
+        $id = $profile['id'];
+        $house['profiles'][$id] = $profile;
     }
 
     function device_is_simple(&$dev) {
@@ -148,6 +154,13 @@ function homegear_init() {
 
         device_build_invoke_map($map_invoke, $dev, $id);
 
+        foreach ($dev['controls'] as $key => $control) {
+            if (isset($control['controlMetadata']['visualizeInOverview'])) {
+                $dev['controls'][$key]['variableInputs'][0]['properties']['visualizeInOverview'] = $control['controlMetadata']['visualizeInOverview'];
+            }
+            //$dev['controls'][$key]['metadata'] = array_replace_recursive($control['metadata'], $control['controlMetadata']);
+        }
+
         $house['devices'][$id] = $dev;
     }
 
@@ -191,8 +204,10 @@ function homegear_init() {
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
         'menu'         => menu_parse(),
+        'profiles'     => [],
         'themes'       => $interfaceData["themes"],
         'options'      => $interfaceData["options"],
+        'manifest'     => $interfaceData["manifest"],
         'iconFallback' => $interfaceData["iconFallback"],
     ];
 
@@ -214,6 +229,14 @@ function homegear_init() {
         $varInRole = $hg->getVariablesInRole($value["ID"]);
         if($aggregated["variableCount"] > 0 || isset($value["METADATA"]["ui"])){
             $house['roles'][$value["ID"]]["name"] = $value["NAME"];
+
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["translations"]) && is_array($value["METADATA"]["ui"]["translations"])){
+                foreach ($value["METADATA"]["ui"]["translations"] as $key => $translation) {
+                    $translation = array("dummy" => "toBeRemoved") + $translation;
+                    $value["METADATA"]["ui"]["translations"][$key] = $translation;
+                }
+            }
+
             if(isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"]["translations"]) && array_key_exists($hg_lang, $value["METADATA"]["ui"]["translations"])){
                 $house['roles'][$value["ID"]]["texts"] = $value["METADATA"]["ui"]["translations"][$hg_lang];
                 unset($value["METADATA"]["ui"]["translations"]);
@@ -230,9 +253,20 @@ function homegear_init() {
                 $house['roles'][$value["ID"]]["name"] = $value["METADATA"]["ui"]["label"]["en-US"];
                 unset($value["METADATA"]["ui"]["label"]);
             }
+
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["simpleCreationInfo"])){
+                unset($value["METADATA"]["ui"]["simpleCreationInfo"]);
+            }
+
             if(is_array($house['roles'][$value["ID"]]) && isset($value["METADATA"]["ui"]) && is_array($value["METADATA"]["ui"])){
                 $house['roles'][$value["ID"]] = array_replace_recursive($house['roles'][$value["ID"]], $value["METADATA"]["ui"]);
             }
+
+            if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["roleProfileValues"]["options"])){
+                $house['roles'][$value["ID"]]["roleProfileValues"]["options"] = array("dummy" => "toBeRemoved") + $value["METADATA"]["ui"]["roleProfileValues"]["options"];
+                
+            }
+
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
             $house['roles'][$value["ID"]]["varInRole"] = $varInRole;
         }
@@ -243,6 +277,9 @@ function homegear_init() {
 
     foreach ($hg_rooms as &$room)
         room_parse($house, $room);
+
+    foreach ($hg_profiles as &$profile)
+        profile_parse($house, $profile);
 
     foreach ($hg_ui_elems as &$dev)
         device_parse($house, $map_invoke, $dev, $hg_lang);

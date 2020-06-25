@@ -14,6 +14,11 @@ socket_switch_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change"
                      v-on:click="level3(device, breadcrumb)">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
     </shif-generic-l2>
 `;
 
@@ -28,6 +33,17 @@ socket_switch_l3.template = `
                      v-bind:place="place"
                      v-bind:status="status_minimal()"
                      v-on:click="change">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -58,6 +74,11 @@ socket_button_l3.template = `
                      v-bind:place="place"
                      v-on:mousedown="change($event, true)"
                      v-on:mouseup="change($event, false)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 

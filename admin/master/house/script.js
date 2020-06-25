@@ -1,60 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Auflisten der Räume
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-var house_level1_content = '';
-
-function house_level1(){
-    $.each(interfaceData.floors, function(floorKey, floorValue) {
-        // Stockwerktitel anzeigen, wenn mehr als ein Stockwerk vorhanden ist
-        if (Object.keys(interfaceData.floors).length > 1)
-            house_level1_content += `
-                <div class="roomSelectTitle">
-                    ${floorValue.name}
-                </div>
-            `;
-
-        house_level1_content += '<div class="rooms_wrapper">';
-
-        $.each(floorValue.rooms, function(_, roomValue) {
-            const floorBreadcrumbName = interfaceData.options.showFloor === true
-                                            ? floorValue.name + ' - '
-                                            : '';
-
-            var action = 'onclick=\'house_level2( this, {"name":"'+ floorBreadcrumbName + interfaceData.rooms[roomValue]['name'] +'", "floor":"'+floorKey+'", "room":"'+roomValue+'"});\'';
-
-            house_level1_content += `
-                <div class="roomSelect_wrapper" ${action}>
-                    <div class="roomSelect">
-                        ${showIcon(interfaceData.rooms[roomValue].icon)}
-                    </div>
-                    <div class="description">
-                        ${interfaceData.rooms[roomValue].name}
-                    </div>
-                </div>
-            `;
-        });
-
-        house_level1_content += '</div>';
-    });
-}
-
-// TODO: Return value?
-house_level1();
-
-function house_level1_fix(){
-    var maxWidth = 0;
-    $('.rooms_wrapper').each(function(){
-        if($(this).width() > maxWidth){
-            maxWidth = $(this).width();
-        }
-    });
-    $('.roomSelectTitle').width(maxWidth);
-    $('.rooms_wrapper').css('display', 'block');
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 function check_disabled(device, indexes) {
     function check_event_trigger(event) {
         if (event.trigger == undefined || event.trigger.length != 3)
@@ -116,119 +59,8 @@ function check_disabled(device, indexes) {
     return ret_enabled;
 }
 
-function component_create(constructor, data) {
-    let comp = new constructor({
-        propsData: data,
-    });
-
-    comp.$mount();
-
-    return comp.$el;
-}
-
-function component_object(control, device, input, output, is, indexes) {
-    let ret = {
-        uiElement: device,
-        control:   control,
-        device:    device.databaseId,
-        icons:     device.icons,
-        texts:     device.texts,
-        output:    output,
-        props:     input.properties,
-        indexes:   indexes,
-        rendering: input.rendering,
-    };
-
-    if (is)
-        ret.is = is;
-
-    return ret;
-}
-
-function components_create(device, layer) {
-    let out = [];
-
-    // console.log(device.label + ': ' + device.databaseId + ': ' + layer);
-
-    if (layer == 'l2' && typeof(device.metadata) == 'object') {
-        if ('l2_action' in device.metadata) {
-            const keys = device.metadata.l2_action;
-
-            const control = device.controls[keys.control];
-            const input   = control.variableInputs[keys.input];
-            const output  = control.variableOutputs[keys.input];
 
 
-            return [component_create(
-                controlComponents[control.control].l2,
-                component_object(control, device, input, output, null,
-                                 {input: keys.input, control: keys.control})
-            )];
-        }
-
-        if (device.controls.length <= 1 &&
-            (!('l3_force' in device.metadata) || device.metadata.l3_force !== true))
-            layer = 'l3';
-    }
-
-    for (let i = 0; i < device.controls.length; ++i) {
-        const control = device.controls[i];
-
-        // console.log(device.label + ': ' + device.databaseId + ': ' + layer + ': ' + control.control);
-
-        if (!(control.control in controlComponents) ||
-            !(layer           in controlComponents[control.control]))
-            continue;
-
-        for (const k in control.variableInputs) {
-            const input  = control.variableInputs[k];
-            const output = control.variableOutputs[k];
-
-            out.push(component_create(
-                controlComponents[control.control][layer],
-                component_object(control, device, input, output, null,
-                                 {input: k, control: i})
-            ));
-        }
-    }
-
-    return out;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Auflisten der Geräte eines Raums
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function house_level2(element, options){
-    let elements  = [];
-    const devices = interfaceData.rooms[options.room]
-        .devices.map(dev => interfaceData.devices[dev]);
-
-    for (const dev of devices)
-        elements = elements.concat(components_create(dev, 'l2'));
-
-    content(this, {
-        content: elements,
-        name:    options.name,
-        vue:     true,
-    });
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function house_level3(element, options){
-    const device = interfaceData.devices[options.device];
-
-    content(this, {
-        content: components_create(device, 'l3'),
-        name:    options.name,
-        vue:     true,
-    });
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 Vue.use({
     install: function (Vue, opts) {
         Vue.prototype.$homegear = homegear;
@@ -261,14 +93,54 @@ Vue.mixin({
 
     methods: {
         level3: function (device, name) {
-            house_level3(this, {
-                device,
-                name,
-            });
+            const matched = this.$route.matched.map(x => x.name);
+            const last    = matched[matched.length - 1]
+
+            if (matched.indexOf('house.tab.rooms.room') !== -1) {
+                return this.$router.push({
+                    name: `${last}.device`,
+                    params: {
+                        floor: this.$route.params.floor,
+                        room:  this.$route.params.room,
+                        device: device,
+                    },
+                });
+            }
+
+            if (matched.indexOf('house.tab.devices') !== -1) {
+                // TODO: verify that there is always at least a room and a floor
+                return this.$router.push({
+                    name: `${last}.device`,
+                    params: {
+                        floor: interfaceData.devices[device].floors[0],
+                        room:  interfaceData.devices[device].rooms[0],
+                        device: device,
+                    },
+                });
+            }
+
+            if (matched.indexOf('favorites.list') !== -1) {
+                // TODO: verify that there is always at least a room and a floor
+                return this.$router.push({
+                    name: 'favorites.device',
+                    params: {
+                        floor: interfaceData.devices[device].floors[0],
+                        room:  interfaceData.devices[device].rooms[0],
+                        device: device,
+                    },
+                });
+            }
+
+            /**
+             * Only act in those two cases!
+             * There might have been a click on the disabled content
+             * (content_small) which we do not care about.
+             **/
+            // throw 'BUG: you should not get here';
         },
 
         round: function (val, precision) {
-            let mul = Math.pow(10, precision || 0);
+            const mul = Math.pow(10, precision || 0);
 
             return Math.round(val * mul) / mul;
         },
@@ -276,363 +148,292 @@ Vue.mixin({
         float_formatted: function (val, precision=1) {
             return parseFloat(val).toFixed(precision);
         },
+
+        alert: window.alert,
+
+        i18n: i18n,
     },
 });
 
 
 
-Vue.component('shif-ctrl-summary', {
-    props: [
-        'icon',
-        'title',
-        'status',
-        'actions',
-        'devs',
-        'role_id',
-    ],
-
-    data: function () {
-        return {
-            submenu_show: false,
-        };
-    },
-
-    computed: {
-        dev_objs: function () {
-            return this.devs.map(x => this.find_component(this.interfaceData.devices[x], 'l2'));
-        }
-    },
-
-    methods: {
-        find_component: function (device, layer) {
-            if (layer == 'l2' && typeof(device.metadata) == 'object') {
-                if ('l2_action' in device.metadata) {
-                    const keys = device.metadata.l2_action;
-
-                    const control = device.controls[keys.control];
-                    const input   = control.variableInputs[keys.input];
-                    const output  = control.variableOutputs[keys.input];
-                    const is      = 'shif-' + control.control + '-l2';
-
-                    return [component_object(control, device, input, output, is,
-                                             {input: keys.input, control: keys.control})];
-                }
-
-                if (device.controls.length <= 1 &&
-                    (!('l3_force' in device.metadata) ||
-                     device.metadata.l3_force !== true))
-                    layer = 'l3';
-            }
-
-            let out = [];
-            // for (const control of device.controls) {
-            for (let i = 0; i < device.controls.length; ++i) {
-                const control = device.controls[i];
-
-                for (const k in control.variableInputs) {
-                    const input  = control.variableInputs[k];
-                    const output = control.variableOutputs[k];
-                    const is     = 'shif-' + control.control + '-' + layer;
-
-                    out.push(component_object(control, device, input, output, is,
-                                              {input: k, control: i}));
-                }
-            }
-
-            return out;
-        },
-
-        toggle_all: function(action) {
-            const varInRole = 'roleId' in action
-                            ? this.interfaceData.roles[action.roleId].varInRole
-                            : this.interfaceData.roles[this.role_id].varInRole;
-
-            let ops = [];
-            for (const peer in varInRole)
-                for (const channel in varInRole[peer])
-                    for (const name in varInRole[peer][channel]) {
-                        const cur = varInRole[peer][channel][name];
-
-                        if ('direction' in cur && cur.direction === 0)
-                            continue;
-
-                        if (! (peer    in this.interfaceData.map_invoke &&
-                               channel in this.interfaceData.map_invoke[peer] &&
-                               name    in this.interfaceData.map_invoke[peer][channel]))
-                            continue;
-                        const devs = this.interfaceData.map_invoke[peer][channel][name];
-
-                        const disabled = devs.some(dev => {
-                            const device  = this.interfaceData.devices[dev.databaseId];
-                            const control = device.controls[dev.control];
-
-                            for (const i in control.variableInputs) {
-                                if (check_disabled(device, {control: dev.control, input: i}).flag)
-                                    return true;
-                            }
-
-                            return false;
-                        });
-
-
-                        if (! disabled)
-                            ops.push({
-                                input: {peer, channel, name},
-                                value: action.value
-                            });
-                    }
-
-            this.$homegear.value_set_multi(ops);
-        }
-
-    },
-
-    template: `
-        <div>
-            <shif-generic-l2 v-bind:icon="icon"
-                             v-bind:icon_rotate="submenu_show"
-                             v-bind:title="title"
-                             v-bind:status="status"
-                             v-bind:actions="true"
-                             v-bind:accordion="true"
-                             v-on:click="submenu_show = !submenu_show"
-                             class="accordion">
-            </shif-generic-l2>
-
-            <transition name="slide-fade">
-                <div v-if="submenu_show"
-                     class="categoryContainer"
-                     style="margin-top: 15px;">
-                    <div class="control_button_wrapper">
-                        <template v-for="action in actions">
-                            <shif-button v-bind:width="(100 / actions.length) + '%'"
-                                         v-on:click="toggle_all(action)">
-                                {{ action.buttonText }}
-                            </shif-button>
-                        </template>
-                    </div>
-
-                    <template v-for="dev in dev_objs">
-                        <component v-bind="dev" v-bind:include_place="true">
-                        </component>
-
-                        <template v-if="debug">
-                            {{ dev | pretty | log }}
-                        </template>
-                    </template>
-                </div>
-            </transition>
-        </div>
-    `,
-});
-
-
-
-let ShifAllDevices = {
-    data: function () {
-        let states = {};
-
-        /**
-         * Initialize the states so that the status component can show an empty
-         * status line without error.
-         **/
-        for (const key of Object.keys(interfaceData.roles).map(Number))
-            states[key] = [];
-
-        return {
-            status_initialized: false,
-            states: states,
-        };
-    },
-
-    computed: {
-        map_roles_devs: function () {
-            let ret = {};
-
-            for (const dev_idx in interfaceData.devices) {
-                let dev = interfaceData.devices[dev_idx];
-                if (!('role' in dev))
-                    continue;
-
-                const role = dev.role;
-                if (!(role in ret))
-                    ret[role] = [];
-
-                if (ret[role].indexOf(dev_idx) === -1)
-                    ret[role].push(dev_idx);
-            }
-
-            return ret;
-        },
-    },
-
-    methods: {
-        status_gather_invokes: function (role, role_id) {
-            let ret = [{
-                type: get_or_default(role, 'aggregationType', 2),
-                ids:  [{'id':role_id,'direction':0}],
-            }];
-
-            if (!('rolesInclude' in role))
-                return ret;
-
-            for (const role_inc of role.rolesInclude) {
-                let ids = [];
-                for(const index in role_inc.roles) {
-                    ids.push({'id':role_inc.roles[index],'direction':0});
-                }
-
-                ret.push({
-                    type: get_or_default(role_inc, 'aggregationType', 2),
-                    ids:  ids,
-                });
-            }
-
-            return ret;
-        },
-
-        status_text: function (role, texts_idx) {
-            if (!('texts' in role))
-                return '?';
-
-            if ((typeof(texts_idx) === 'number' && role.texts.length > texts_idx) ||
-                (typeof(texts_idx) === 'string' && texts_idx in role.texts))
-                return role.texts[texts_idx];
-
-            if (role.texts.length == 1)
-                return role.texts[0];
-
-            return '?';
-        },
-
-        status: function (role_id) {
-            const role = interfaceData.roles[role_id];
-            const invokes_descs = this.status_gather_invokes(role, role_id);
-
-            if ('l2_status' in role) {
-                this.states[role_id] = [];
-                return;
-            }
-
-            for (const invoke_desc of invokes_descs) {
-                this.$homegear.invoke({
-                    jsonrpc: '2.0',
-                    method: 'aggregateRoles',
-                    params: [invoke_desc.type, invoke_desc.ids, []],
-                }, (res) => {
-                    if (res.error) {
-                        console.log('[' + invoke_desc.ids.join(', ') + ']: ' + res.error.message);
-                        return;
-                    }
-
-                    /**
-                     * Updating this is a two step process:
-                     * 1) We need to fetch the new values from upstream.
-                     * 2) We need to zero out the outdated old values.
-                     **/
-                    const keys = Object.keys(res.result)
-                                       .filter(x => x !== 'variableCount');
-                    for (const key of keys) {
-                        /**
-                         * We have to be very careful here, to not break Vue's
-                         * reactiveness.
-                         * 1) In case we need to insert a value, push is needed.
-                         * 2) In case we need to change a value, direct
-                         *    assignment of the single object members at
-                         *    relative array index is needed.
-                         **/
-                        for (let i = 0; i < this.states[role_id].length; ++i) {
-                            if (this.states[role_id][i].raw == key) {
-                                set_or_extend(this.states[role_id], i, {
-                                    key:   this.status_text(role, key),
-                                    value: res.result[key],
-                                    raw:   key,
-                                });
-                                break;
-                            }
-                        }
-                    }
-
-                    for (let j = this.states[role_id].length - 1; j >= 0; --j) {
-                        if (keys.indexOf(this.states[role_id][j].raw) === -1)
-                            this.states[role_id][j].value = 0;
-                    }
-                });
-            }
-        },
-
-        states_clean: function (role_id) {
-            return this.states[role_id].some(x => x.value !== 0)
-                    ? this.states[role_id]
-                    : [];
-        },
-    },
-
+let ShifLogoff = Vue.component('shif-logoff', {
     mounted: function () {
-        this.$homegear.ready(() => {
-            for (const key of Object.keys(interfaceData.roles).map(Number)) {
-                const role = interfaceData.roles[key];
-
-                if (! ('texts' in role))
-                    continue;
-
-                /**
-                 * Always reinitialize to an empty array here.
-                 * In case of a homegear reconnect, we would duplicate the
-                 * status text otherwise.
-                 **/
-                this.states[key] = [];
-                /**
-                 * This must be a for-in loop! Do not change it into a
-                 * traditional for loop or a map.
-                 * We need iterate over both, integer keys, as well as object
-                 * keys (iteration order does not matter for the integer keys).
-                 **/
-                for (const text_idx in role.texts)
-                    this.states[key].push(
-                        {
-                            key:   this.status_text(role, text_idx),
-                            raw:   text_idx + '',
-                            value: 0,
-                        }
-                    );
-                this.status(key);
-            }
-
-        });
-
-        this.$root.$on('role-update', (role_id) => this.status(Number(role_id)));
-    },
+        user_logoff();
+    }
+});
 
 
-    template: `
-        <div>
-            <template v-for="(devs, role) in map_roles_devs">
-                <template v-if="role in interfaceData.roles">
-                    <shif-ctrl-summary
-                        v-on:role_update="status"
-                        v-bind:actions="interfaceData.roles[role].invokeOutputs"
-                        v-bind:icon="interfaceData.roles[role].icon"
-                        v-bind:title="interfaceData.roles[role].name"
-                        v-bind:devs="devs"
-                        v-bind:role_id="role"
-                        v-bind:status="states_clean(role)">
-                    </shif-ctrl-summary>
-                </template>
-                <template v-else>
-                    {{ log("This role is not defined: " + role) }}
-                </template>
-            </template>
-        </div>
-    `,
-};
+let router = new VueRouter({
+    routes: [
+        { path: '/',   name: 'index',  redirect: {name: interfaceData.options.startPath || 'house'}, },
+        { path: '/nb', name: 'legacy', redirect: {name: 'index'}},
+
+        { path: '/house', name: 'house', component: ShifHouse, redirect: {name: 'house.tab.rooms'},
+            children: [
+                {
+                    name: 'house.tab.rooms',
+                    path: 'rooms',
+                    component: ShifHouseRooms,
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms'], base: true,},
+                }, {
+                    name: 'house.tab.rooms.room',
+                    path: 'rooms/floor/:floor/room/:room',
+                    components: {small: ShifHouseRooms, big: ShifHouseLvl2},
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room']},
+                }, {
+                    name: 'house.tab.rooms.room.device',
+                    path: 'rooms/floor/:floor/room/:room/device/:device',
+                    components: {small: ShifHouseLvl2, big: ShifHouseLvl3},
+                    meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room', 'house.tab.rooms.room.device']},
+                },
+
+                {
+                    name: 'house.tab.devices',
+                    path: 'devices',
+                    component: ShifHouseDevices,
+                    meta: {breadcrumbs: ['house', 'house.tab.devices'], base: true,},
+                }, {
+                    name: 'house.tab.devices.device',
+                    path: 'devices/floor/:floor/room/:room/device/:device',
+                    components: {small: ShifHouseDevices, big: ShifAllDevicesLvl3},
+                    meta: {breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device']},
+                },
+
+                {
+                    path: 'profiles',
+                    name: 'house.tab.profiles',
+                    component: ShifProfiles,
+                    meta: {breadcrumbs: ['house', 'house.tab.profiles'], base: true}
+                }
+            ],
+        },
+
+        { path: '/settings', name: 'settings', component: ShifSettings, redirect: {name: 'settings.list'},
+            children: [
+                {
+                    name: 'settings.list',
+                    path: 'list',
+                    component: ShifSettingsItems(1),
+                    meta: {breadcrumbs: ['settings'], base: true,},
+                },
+                {
+                    name: 'settings.about',
+                    path: 'about',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsLicenses},
+                    meta: {breadcrumbs: ['settings', 'settings.about']},
+                },
+                {
+                    path: 'user',
+                    name: 'settings.user',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsItems(2)},
+                    meta: {breadcrumbs: ['settings', 'settings.user']},
+                },
+                {
+                    path: 'user/manage',
+                    name: 'settings.user.manage',
+                    components: {small: ShifSettingsItems(2), big: ShifSettingsUser},
+                    meta: {breadcrumbs: ['settings', 'settings.user', 'settings.user.manage']},
+                },
+                {
+                    path: 'favorites',
+                    name: 'settings.favorites',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsFavorites},
+                    meta: {breadcrumbs: ['settings', 'settings.favorites']}
+                },
+                {
+                    path: 'profiles',
+                    name: 'settings.profiles',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
+                    meta: {breadcrumbs: ['settings', 'settings.profiles']}
+                }, {
+                    path: 'profiles/add',
+                    name: 'settings.profiles.new',
+                    components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
+                    meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.new']}
+                }, {
+                    path: 'profiles/edit/:profile',
+                    name: 'settings.profiles.profile',
+                    components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
+                    meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']}
+                },
+            ],
+        },
+
+        { path: '/favorites', name: 'favorites', component: ShifFavorites, redirect: {name: 'favorites.list'},
+            children: [
+                {
+                    name: 'favorites.list',
+                    path: 'list',
+                    component: ShifFavoritesLvl1,
+                    meta: {breadcrumbs: ['favorites'], base: true},
+                },
+                {
+                    name: 'favorites.device',
+                    path: 'floor/:floor/room/:room/device/:device',
+                    components: {small: ShifFavoritesLvl1, big: ShifFavoritesLvl3},
+                    meta: {breadcrumbs: ['favorites', 'house.tab.rooms.room', 'favorites.device']},
+                }
+            ],
+        },
+
+        {
+            path: '/log',
+            name: 'log',
+            component: ShifLog,
+            meta: {breadcrumbs: ['log']},
+        },
+        { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
+    ],
+});
 
 
 
 let app = new Vue({
-    el: '#inhalt',
+    data: {
+        favorites: {
+            enabled: false,
+        },
+        profiles: {
+            devs:    {},
+            enabled: false,
+            active:  null,
+        },
+    },
 
-    components: {
-        ShifAllDevices
-    }
+    // Hack: decrease .content height when modemenu is enabled.
+    computed: {
+        modemenu_show: function () {
+            return this.favorites.enabled === true ||
+                   this.profiles.enabled === true;
+        },
+    },
+
+    router: router,
+
+    template: `
+        <div id="inhalt" v-bind:class="{'modemenu-visible': modemenu_show}">
+            <router-view />
+
+            <shif-modemenu />
+            <shif-mainmenu />
+        </div>
+    `,
+});
+
+
+
+let breadcrumbs = new Vue({
+    router: router,
+
+    computed:  {
+        routes_with_proper_names: function () {
+            if (this.$route.meta === undefined ||
+                this.$route.meta.breadcrumbs === undefined)
+                return [];
+
+            let routes = this.$route.meta.breadcrumbs
+                                         .map(name => ({
+                                            link:     name,
+                                            name:     this.get_name(name),
+                                            disabled: false,
+                                         }))
+                                         .filter(x => x.name !== '?');
+
+            if (routes.length > 0)
+                routes[routes.length - 1].disabled = true;
+
+            return routes;
+        },
+
+        back_wanted: function () {
+            return (! this.$route.meta.base) &&
+                   this.routes_with_proper_names.length > 1;
+        },
+    },
+
+    methods: {
+        get_name: function (route_name) {
+            function floor() {
+                if (! interfaceData.options.showFloor)
+                    return ''
+
+                return Number(params.floor) === -1
+                    ? i18n('house.storyless') + ' - '
+                    : interfaceData.floors[params.floor].name + ' - ';
+            }
+
+            const params  = this.$route.params;
+
+            switch (route_name) {
+                case 'house.tab.rooms.room':
+                    return floor() + interfaceData.rooms[params.room].name;
+
+                case 'house.tab.rooms.room.device':
+                case 'house.tab.devices.device':
+                case 'favorites.device':
+                    return interfaceData.devices[params.device].label;
+
+                case 'log':
+                    return 'Log';
+
+                case 'settings.profiles.profile':
+                    return interfaceData.profiles[params.profile].name;
+            }
+
+            return i18n(route_name);
+        },
+    },
+
+    template: `
+        <div id="breadcrumbs">
+            <template>
+                <shif-icon id="back" src="arrow_left_1"
+                           v-bind:style="{visibility: back_wanted ? 'visible' : 'hidden'}"
+                           v-on:click="$router.back()"/>
+            </template>
+            <div id="breadcrumb_wrapper">
+                <template v-for="i in routes_with_proper_names">
+                    <router-link v-bind:to="{name: i.link}"
+                                 v-bind:disabled="i.disabled"
+                                 v-bind:class="{disabled: i.disabled}"
+                                 >{{ i.name }}</router-link>
+                </template>
+            </div>
+        </div>
+    `
+});
+
+
+
+let error = new Vue({
+    el: '#error',
+
+    data: {
+        msgs: [],
+    },
+
+    methods: {
+        remove_msg: function (msg_idx) {
+            this.msgs.splice(msg_idx, 1);
+        },
+
+        push: function (msg) {
+            this.msgs.unshift(msg);
+        },
+
+        set: function (msg) {
+            this.msgs = [msg];
+        },
+    },
+
+    template: `
+        <div id="error">
+            <div v-for="msg, i in msgs"
+                 class="toast">
+                <button class="toast_close" v-on:click="remove_msg(i)">X</button>
+                <div class="toast_content" v-html="msg"></div>
+            </div>
+        </div>
+    `
 });

@@ -33,6 +33,11 @@ window_status_l3.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 
@@ -48,6 +53,11 @@ window_buttons_l2.template = `
                      v-bind:actions="true"
                      v-bind:status="status"
                      v-on:click="level3(device, breadcrumb)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
     </shif-generic-l2>
 `;
 let window_buttons_l3 = clone(shif_device);
@@ -91,13 +101,18 @@ window_buttons_l3.template = `
     </div>
 `;
 
-shif_comps_create('windowButtonsUpDown', window_buttons_l2, window_buttons_l3, window_buttons_l3);
-shif_comps_create('windowButtons', window_buttons_l2, window_buttons_l3, window_buttons_l3);
+shif_comps_create('windowButtonsUpDown', window_buttons_l2, window_buttons_l3);
+shif_comps_create('windowButtons', window_buttons_l2, window_buttons_l3);
 
 let window_slider = clone(shif_device);
 window_slider.methods.change = function(event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
 }
+window_slider.provides = function () {
+    return {
+        checkbox_wanted: true,
+    };
+},
 window_slider.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"

@@ -53,7 +53,7 @@
             "id": "6",
             "name": "Kind",
             "floor": "2",
-            "icon": "hokeyplayer_1"
+            "icon": "rockinghorse_1"
         },
         "7": {
             "id": "7",
@@ -90,6 +90,40 @@
             "name": "Wohnbereich",
             "floor": "1",
             "icon": "sofa_1"
+        },
+        "13": {
+            "id": "13",
+            "name": "Stockwerkslos",
+            "icon": "notification_update_1"
+        },
+        "14": {
+            "id": "14",
+            "name": "Baby",
+            "floor": "2",
+            "icon": "child_1"
+        },
+        "15": {
+            "id": "15",
+            "name": "Bad",
+            "floor": "2",
+            "icon": "shower_1"
+        },
+        "16": {
+            "id": "16",
+            "name": "Studio",
+            "floor": "3",
+            "icon": "library_1"
+        },
+        "17": {
+            "id": "17",
+            "name": "Fitness",
+            "floor": "3",
+            "icon": "sport_1"
+        },
+        "18": {
+            "id": "18",
+            "name": "Leer",
+            "icon": "lock_1"
         }
     },
     "systemVariables": [
@@ -114,14 +148,14 @@
             "value": 47.67
         },
         {
-            "name": "SUNRISE",
-            "type": "unix_date",
-            "value": 1574232149
+            "name": "SUNRISE_STRING",
+            "type": "string",
+            "value": "05.01:34"
         },
         {
-            "name": "SUNSET",
-            "type": "unix_date",
-            "value": 1574264972
+            "name": "SUNSET_STRING",
+            "type": "string",
+            "value": "20.01:34"
         },
         {
             "name": "WEATHER",
@@ -267,68 +301,20 @@
         {
             "name": "COLOR",
             "type": "string",
-            "value": "#ffffff"
+            "value": "#ffff00"
+        },
+        {
+            "name": "FUNCTION",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "SPEED",
+            "type": "int",
+            "value": 0
         }
     ],
     "roles": [
-        {
-            "id": 600000,
-            "translations": {
-                "en-US": "window",
-                "de-DE": "Fenster"
-            },
-            "ui": {
-                "simpleCreationInfo": [
-                    {
-                        "element": "Base.windowButtonsUpDown",
-                        "roleIdsIn": [
-                            [
-                                600001,
-                                600002
-                            ]
-                        ],
-                        "roleIdsOut": [
-                            [
-                                600001,
-                                600002
-                            ]
-                        ]
-                    }
-                ],
-                "l2_status": false,
-                "icon": "window_2",
-                "invokeOutputs": [
-                    {
-                        "roleId": 600001,
-                        "value": false,
-                        "buttonText": "Zentral auf"
-                    },
-                    {
-                        "roleId": 600002,
-                        "value": true,
-                        "buttonText": "Zentral ab"
-                    }
-                ],
-                "translations": {
-                    "de-DE": {
-                        "falseCount": "eingefahren",
-                        "trueCount": "ausgefahren"
-                    },
-                    "en-US": {
-                        "falseCount": "retracted",
-                        "trueCount": "extended"
-                    }
-                },
-                "rolesInclude": [
-                    {
-                        "aggregationType": 1,
-                        "roles": [
-                            600004
-                        ]
-                    }
-                ]
-            }
-        }    
     ],
     "roles2var": [
         {
@@ -448,8 +434,8 @@
         {
             "deviceId": 17,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 600004
+            "varName": "LEVEL",
+            "roleId": [600000,600004]
         },
         {
             "deviceId": 18,
@@ -466,8 +452,8 @@
         {
             "deviceId": 18,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "varName": "LEVEL",
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 19,
@@ -484,8 +470,8 @@
         {
             "deviceId": 19,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "varName": "LEVEL",
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 20,
@@ -502,8 +488,8 @@
         {
             "deviceId": 20,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 600004
+            "varName": "LEVEL",
+            "roleId": [600000,600004]
         },
         {
             "deviceId": 21,
@@ -520,8 +506,8 @@
         {
             "deviceId": 21,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "varName": "LEVEL",
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 22,
@@ -538,8 +524,8 @@
         {
             "deviceId": 22,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "varName": "LEVEL",
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 23,
@@ -556,8 +542,8 @@
         {
             "deviceId": 23,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "varName": "LEVEL",
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 24,
@@ -574,8 +560,8 @@
         {
             "deviceId": 24,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 501004
+            "varName": "LEVEL",
+            "roleId": [501000,501004]
         },
         {
             "deviceId": 25,
@@ -592,8 +578,8 @@
         {
             "deviceId": 25,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 502004
+            "varName": "LEVEL",
+            "roleId": [502000,502004]
         },
         {
             "deviceId": 26,
@@ -610,56 +596,64 @@
         {
             "deviceId": 26,
             "channel": 1,
-            "varName": "CURRENT_POSITION",
-            "roleId": 502004
+            "varName": "LEVEL",
+            "roleId": [502000,502004]
         },
         {
             "deviceId": 60,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 61,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 62,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 63,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 64,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 65,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 66,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 67,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301001,
+            "invert": true
         },
         {
             "deviceId": 69,
@@ -672,7 +666,7 @@
             "channel": 1,
             "varName": "STATE",
             "roleId": 301002,
-            "revernt": true
+            "invert": true
         },
         {
             "deviceId": 78,
@@ -690,13 +684,7 @@
             "deviceId": 78,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 78,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 79,
@@ -714,13 +702,7 @@
             "deviceId": 79,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 79,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 80,
@@ -738,13 +720,7 @@
             "deviceId": 80,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 80,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 81,
@@ -762,13 +738,7 @@
             "deviceId": 81,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 81,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 82,
@@ -786,13 +756,7 @@
             "deviceId": 82,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 82,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 83,
@@ -810,13 +774,7 @@
             "deviceId": 83,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": 201003
-        },
-        {
-            "deviceId": 83,
-            "channel": 1,
-            "varName": "CONTROL_MODE",
-            "roleId": 201000
+            "roleId": [201000, 201003]
         },
         {
             "deviceId": 84,
@@ -831,6 +789,13 @@
             "roleId": 301002
         },
         {
+            "deviceId": 88,
+            "channel": 1,
+            "varName": "STATE",
+            "roleId": 301003,
+            "invert": true
+        },
+        {
             "deviceId": 91,
             "channel": 1,
             "varName": "STATE",
@@ -840,8 +805,7 @@
             "deviceId": 92,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 100001,
-            "direction": 0
+            "roleId": 100001
         },
         {
             "deviceId": 93,
@@ -856,24 +820,353 @@
             "roleId": 100001
         },
         {
-            "deviceId": 92,
+            "deviceId": 96,
             "channel": 1,
             "varName": "LEVEL_FAST",
-            "roleId": 101000,
-            "direction": 0
-        },
-        {
-            "deviceId": 93,
-            "channel": 1,
-            "varName": "LEVEL_FAST",
-            "roleId": 101000
-        },
-        {
-            "deviceId": 94,
-            "channel": 1,
-            "varName": "LEVEL_FAST",
-            "roleId": 101000
+            "roleId": 101001
         }
+    ],
+    "profiles": [
+        [
+            {
+                "en-US": "central off",
+                "de-DE": "zentral aus"
+            },
+            {
+                "id": 1,
+                "icon": "power_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 100001,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central frost",
+                "de-DE": "zentral frostschutz"
+            },
+            {
+                "id": 2,
+                "icon": "thermometer_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 201000,
+                        "value": 0
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central comfort",
+                "de-DE": "zentral komfort"
+            },
+            {
+                "id": 3,
+                "icon": "thermometer_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 201000,
+                        "value": 1
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central spar",
+                "de-DE": "zentral spar"
+            },
+            {
+                "id": 4,
+                "icon": "thermometer_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 201000,
+                        "value": 2
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central off",
+                "de-DE": "zentral aus"
+            },
+            {
+                "id": 5,
+                "icon": "power_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 400001,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central retract",
+                "de-DE": "zentral einfahren"
+            },
+            {
+                "id": 7,
+                "icon": "arrow_up_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 501000,
+                        "value": true
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central extend",
+                "de-DE": "zentral ausfahren"
+            },
+            {
+                "id": 6,
+                "icon": "arrow_down_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 501000,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central retract",
+                "de-DE": "zentral einfahren"
+            },
+            {
+                "id": 9,
+                "icon": "arrow_up_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 502000,
+                        "value": true
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "central extend",
+                "de-DE": "zentral ausfahren"
+            },
+            {
+                "id": 8,
+                "icon": "arrow_down_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 502000,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Arbeiten",
+                "de-DE": "Arbeiten"
+            },
+            {
+                "id": 10,
+                "icon": "statistic_1",
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    },
+                    {
+                        "floorId": 1,
+                        "roomId": 12
+                    }
+                ],
+                "values": [
+                    {
+                        "peerId": 0,
+                        "channel": -1,
+                        "variable": "LIGHT",
+                        "value": 1
+                    },
+                    {
+                        "peerId": 1,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
+                    },
+                    {
+                        "peerId": 2,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Schlafen",
+                "de-DE": "Schlafen"
+            },
+            {
+                "id": 11,
+                "icon": "statistic_1",
+                "locations": [
+                    {
+                        "floorId": 1,
+                        "roomId": 9
+                    }
+                ],
+                "values": [
+                    {
+                        "peerId": 3,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 0
+                    },
+                    {
+                        "peerId": 4,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 0
+                    },
+                    {
+                        "peerId": 5,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 0
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Abwesend",
+                "de-DE": "Abwesend"
+            },
+            {
+                "id": 12,
+                "icon": "statistic_1",
+                "global": true,
+                "locations": [
+                ],
+                "values": [
+                    {
+                        "peerId": 6,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 0
+                    },
+                    {
+                        "peerId": 7,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 0
+                    },
+                    {
+                        "peerId": 8,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 0
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "en-US": "Anwesend",
+                "de-DE": "Anwesend"
+            },
+            {
+                "id": 13,
+                "icon": "statistic_1",
+                "global": true,
+                "locations": [
+                ],
+                "values": [
+                    {
+                        "peerId": 9,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
+                    },
+                    {
+                        "peerId": 10,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
+                    },
+                    {
+                        "peerId": 11,
+                        "channel": 1,
+                        "variable": "STATE",
+                        "value": 1
+                    }
+                ]
+            }
+        ]
     ],
     "uiElements": [
         [
@@ -898,7 +1191,12 @@
                     ]
                 ],
                 "label": "Licht SystemVar",
-                "room": 3
+                "room": 3,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -922,8 +1220,13 @@
                         }
                     ]
                 ],
-                "label": "Licht",
-                "room": 3
+                "label": "Licht in Stockwerkslos",
+                "room": 13,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -1302,9 +1605,16 @@
             }
         ],
         [
-            "Base.lightingSwitch",
+            "Base.lightingSwitchTimer",
             {
                 "inputPeers": [
+                    [
+                        {
+                            "peer": 84,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
                     [
                         {
                             "peer": 84,
@@ -1320,9 +1630,16 @@
                             "channel": 1,
                             "name": "STATE"
                         }
+                    ],
+                    [
+                        {
+                            "peer": 84,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
                     ]
                 ],
-                "label": "Licht Unterschrank",
+                "label": "Licht Zeitschaltuhr",
                 "room": 12
             }
         ],
@@ -1352,7 +1669,7 @@
             }
         ],
         [
-            "Base.shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm",
+            "Base.shadingButtonsSingleStepButtonsUpDownPositionPositionSlatsWindalarm",
             {
                 "inputPeers": [
                     [
@@ -1365,27 +1682,7 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "STOP",
-                            "value": 2
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": 3
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 18,
-                            "channel": 1,
                             "name": "UP",
-                            "value": 1
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "STOP",
                             "value": 2
                         },
                         {
@@ -1419,21 +1716,14 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "VENTILATION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1455,27 +1745,7 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "STOP",
-                            "value": 2
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": 3
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 18,
-                            "channel": 1,
                             "name": "UP",
-                            "value": 1
-                        },
-                        {
-                            "peer": 18,
-                            "channel": 1,
-                            "name": "STOP",
                             "value": 2
                         },
                         {
@@ -1509,21 +1779,14 @@
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 18,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "VENTILATION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1534,7 +1797,7 @@
                         }
                     ]
                 ],
-                "label": "Rollladen Windalarm",
+                "label": "Rollladen Test",
                 "room": 6,
                 "metadata": {
                     "event_hooks": [
@@ -1545,8 +1808,6 @@
                                 "1": true,
                                 "2": true,
                                 "3": true,
-                                "4": true,
-                                "5": true,
                                 "__dummy__": false
                             },
                             "icon": "warning_1",
@@ -1595,14 +1856,14 @@
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1631,19 +1892,24 @@
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
                         {
                             "peer": 19,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
                 "label": "Rollladen KNX",
-                "room": 6
+                "room": 6,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -1814,7 +2080,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1843,7 +2109,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -1879,7 +2145,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1915,7 +2181,7 @@
                         {
                             "peer": 20,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -1983,7 +2249,7 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2026,7 +2292,7 @@
                         {
                             "peer": 21,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2102,7 +2368,7 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2138,7 +2404,7 @@
                         {
                             "peer": 22,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2206,7 +2472,7 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2235,76 +2501,11 @@
                         {
                             "peer": 23,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
                 "label": "Rollladen Wohnen",
-                "room": 12
-            }
-        ],
-        [
-            "Base.shadingButtonsPosition",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "STOP",
-                            "value": true
-                        },
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "UP",
-                            "value": true
-                        },
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "STOP",
-                            "value": true
-                        },
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "DOWN",
-                            "value": true
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 24,
-                            "channel": 1,
-                            "name": "CURRENT_POSITION"
-                        }
-                    ]
-                ],
-                "label": "Rollladen Essen",
                 "room": 12
             }
         ],
@@ -2336,7 +2537,7 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2372,7 +2573,7 @@
                         {
                             "peer": 25,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ],
                     [
@@ -2461,7 +2662,7 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2490,7 +2691,7 @@
                         {
                             "peer": 26,
                             "channel": 1,
-                            "name": "CURRENT_POSITION"
+                            "name": "LEVEL"
                         }
                     ]
                 ],
@@ -2653,6 +2854,11 @@
                             }
                         }
                     ]
+                },
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
                 }
             }
         ],
@@ -3132,8 +3338,13 @@
                         }
                     ]
                 ],
-                "label": "Fenster Essen",
-                "room": 12
+                "label": "Fensterkontakt Essen",
+                "room": 12,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3317,31 +3528,6 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 67,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 67,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ]
-                ],
-                "label": "Fenster Küche rechts",
-                "room": 12
-            }
-        ],
-        [
-            "Base.windowHandle",
-            {
-                "inputPeers": [
-                    [
-                        {
                             "peer": 70,
                             "channel": 1,
                             "name": "STATE"
@@ -3382,17 +3568,23 @@
                         }
                     ]
                 ],
-                "label": "Tür",
-                "room": 3
+                "label": "Türkontakt",
+                "room": 3,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
+
         [
             "Base.doorHandle",
             {
                 "inputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 67,
                             "channel": 1,
                             "name": "STATE"
                         }
@@ -3401,14 +3593,19 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 67,
                             "channel": 1,
                             "name": "STATE"
                         }
                     ]
                 ],
-                "label": "Tür",
-                "room": 3
+                "label": "Türgriff",
+                "room": 12,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3417,7 +3614,7 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 88,
                             "channel": 1,
                             "name": "STATE"
                         }
@@ -3426,14 +3623,19 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 69,
+                            "peer": 88,
                             "channel": 1,
                             "name": "STATE"
                         }
                     ]
                 ],
                 "label": "Tür Verriegelung",
-                "room": 3
+                "room": 3,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3458,7 +3660,43 @@
                     ]
                 ],
                 "label": "Ventilation",
-                "room": 8
+                "room": 8,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
+            }
+        ],
+        [
+            "Base.lightingBrightness",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 96,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 96,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ]
+                ],
+                "label": "Dimmlicht Ohne Switch",
+                "room": 12,
+                "role": 101001,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3496,9 +3734,14 @@
                         }
                     ]
                 ],
-                "label": "LightComplex",
+                "label": "Dimmlicht",
                 "room": 12,
-                "role": 101000
+                "role": 101001,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3550,9 +3793,9 @@
                         }
                     ]
                 ],
-                "label": "LightComplexButton",
+                "label": "Dimmlicht Push",
                 "room": 9,
-                "role": 101000
+                "role": 101001
             }
         ],
         [
@@ -3618,9 +3861,253 @@
                         }
                     ]
                 ],
-                "label": "LightComplexColor",
+                "label": "Farblicht",
                 "room": 9,
-                "role": 101000
+                "role": 101001
+            }
+        ],
+        [
+            "Base.lightingSwitchBrightnessColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101001
+            }
+        ],
+        [
+            "Base.lightingSwitchColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101001
+            }
+        ],
+        [
+            "Base.lightingSwitchFunctionBrightnessColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101001
+            }
+        ],
+        [
+            "Base.lightingSwitchFunctionBrightnessSpeedColor",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SPEED"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "STATE"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "FUNCTION"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 94,
+                            "channel": 1,
+                            "name": "LEVEL_FAST"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SPEED"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "COLOR"
+                        }
+                    ]
+                ],
+                "label": "Farblicht",
+                "room": 9,
+                "role": 101001
             }
         ],
         [
@@ -3687,14 +4174,14 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNRISE"
+                            "name": "SUNRISE_STRING"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNSET"
+                            "name": "SUNSET_STRING"
                         }
                     ],
                     [
@@ -3794,14 +4281,14 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNRISE"
+                            "name": "SUNRISE_STRING"
                         }
                     ],
                     [
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "SUNSET"
+                            "name": "SUNSET_STRING"
                         }
                     ],
                     [
@@ -3840,9 +4327,13 @@
                         }
                     ]
                 ],
-                "label": "OpenWeatherMap",
+                "label": "Wetter",
                 "room": 6,
-                "role": 201000
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3867,7 +4358,12 @@
                     ]
                 ],
                 "label": "Temperatur",
-                "room": 3
+                "room": 3,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3892,7 +4388,12 @@
                     ]
                 ],
                 "label": "Feuchte",
-                "room": 3
+                "room": 3,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
             }
         ],
         [
@@ -3917,7 +4418,7 @@
                     ]
                 ],
                 "label": "Temperatur1",
-                "room": 3
+                "room": 15
             }
         ],
         [
@@ -3942,7 +4443,7 @@
                     ]
                 ],
                 "label": "Feuchte1",
-                "room": 3
+                "room": 15
             }
         ],
         [
@@ -3967,7 +4468,7 @@
                     ]
                 ],
                 "label": "Temperatur2",
-                "room": 3
+                "room": 16
             }
         ],
         [
@@ -3992,7 +4493,7 @@
                     ]
                 ],
                 "label": "Feuchte2",
-                "room": 3
+                "room": 16
             }
         ],
         [
@@ -4017,7 +4518,7 @@
                     ]
                 ],
                 "label": "Temperatur3",
-                "room": 3
+                "room": 17
             }
         ],
         [
@@ -4042,7 +4543,7 @@
                     ]
                 ],
                 "label": "Feuchte3",
-                "room": 3
+                "room": 17
             }
         ],
         [
@@ -4067,7 +4568,7 @@
                     ]
                 ],
                 "label": "Temperatur4",
-                "room": 3
+                "room": 14
             }
         ],
         [
@@ -4092,7 +4593,7 @@
                     ]
                 ],
                 "label": "Feuchte4",
-                "room": 3
+                "room": 14
             }
         ]
     ],
@@ -4100,6 +4601,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 1,
             "NAME": "SA Licht Diele",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4110,6 +4612,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 2,
             "NAME": "SA Licht Kind",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4120,6 +4623,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 3,
             "NAME": "SA Licht Decke Bad",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4130,6 +4634,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 4,
             "NAME": "SA Licht Spiegel Bad",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4140,6 +4645,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 5,
             "NAME": "SA Licht Schlafen",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4150,6 +4656,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 6,
             "NAME": "SA Licht c Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4160,6 +4667,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 7,
             "NAME": "SA Licht b Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4170,6 +4678,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 8,
             "NAME": "SA Licht d Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4180,6 +4689,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 9,
             "NAME": "SA Steckdose e Wohn",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4190,6 +4700,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 10,
             "NAME": "SA Licht Abstellraum",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4200,6 +4711,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 11,
             "NAME": "SA Licht Loggia",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4210,6 +4722,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 12,
             "NAME": "SA Steckdose Loggia",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4220,6 +4733,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 13,
             "NAME": "SA Licht Technikraum",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4230,7 +4744,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "SA Licht Decke GÃ¤ste WC",
+            "ID": 14,
+            "NAME": "SA Licht Decke G\u00e4ste WC",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtSw0014",
@@ -4240,7 +4755,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "SA Licht Spiegel GÃ¤ste WC",
+            "ID": 15,
+            "NAME": "SA Licht Spiegel G\u00e4ste WC",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtSw0015",
@@ -4250,6 +4766,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 16,
             "NAME": "SA Steckdose Waschraum",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4260,6 +4777,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 17,
             "NAME": "JA Rollladen Diele",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4270,6 +4788,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 18,
             "NAME": "JA Rollladen links Kind",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4280,6 +4799,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 19,
             "NAME": "JA Rollladen rechts Kind",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4290,6 +4810,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 20,
             "NAME": "JA Rollladen Bad",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4300,6 +4821,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 21,
             "NAME": "JA Rollladen links Schlafen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4310,6 +4832,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 22,
             "NAME": "JA Rollladen rechts Schlafen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4320,6 +4843,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 23,
             "NAME": "JA Rollladen Wohnen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4330,6 +4854,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 24,
             "NAME": "JA Rollladen Essen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4340,6 +4865,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 25,
             "NAME": "JA Markise Wohnen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4350,6 +4876,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 26,
             "NAME": "JA Markise Essen",
             "TYPE": "VirtualBlind",
             "TYPE_ID": "0xe011",
@@ -4360,6 +4887,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 60,
             "NAME": "FG Fenster Diele",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4370,6 +4898,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 61,
             "NAME": "FG Fenster links Kind",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4380,6 +4909,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 62,
             "NAME": "FG Fenster recht Kind",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4390,6 +4920,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 63,
             "NAME": "FG Fenster Bad",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4400,6 +4931,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 64,
             "NAME": "FG Fenster links Schlafen",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4410,6 +4942,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 65,
             "NAME": "FG Fenster rechts Schlafen",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
@@ -4420,7 +4953,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "FG Fenster links KÃ¼che",
+            "ID": 66,
+            "NAME": "FG Fenster links K\u00fcche",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
             "SERIALNUMBER": "VirtWin066",
@@ -4430,39 +4964,32 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "FG Fenster rechts KÃ¼che",
+            "ID": 67,
+            "NAME": "TK Fenster rechts K\u00fcche",
             "TYPE": "VirtualWindowHandle",
             "TYPE_ID": "0xf101",
-            "SERIALNUMBER": "VirtWin067",
+            "SERIALNUMBER": "VirtDoor02",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Virtual Logic Module",
-            "TYPE": "VirtualHeating",
-            "TYPE_ID": "0x1002",
-            "SERIALNUMBER": "VirtLog001",
+            "ID": 69,
+            "NAME": "Riegelkontakt T\u00fcr Diele",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtDoor03",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Riegelkontakt TÃ¼r Diele",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xa001",
-            "SERIALNUMBER": "VirtWin069",
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "ADDRESS": -1,
-            "FAMILY": 254,
+            "ID": 70,
             "NAME": "Fenster Wohnen",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xa001",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
             "SERIALNUMBER": "VirtWind70",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
@@ -4470,6 +4997,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 71,
             "NAME": "Sensor Diele",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4480,6 +5008,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 72,
             "NAME": "Sensor Kind",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4490,6 +5019,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 73,
             "NAME": "Sensor Bad",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4500,6 +5030,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 74,
             "NAME": "Sensor Schlafen",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4510,6 +5041,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 75,
             "NAME": "Sensor Wohnen",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
@@ -4520,7 +5052,8 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Sensor GÃ¤ste WC",
+            "ID": 76,
+            "NAME": "Sensor G\u00e4ste WC",
             "TYPE": "VirtualSensor",
             "TYPE_ID": "0xa011",
             "SERIALNUMBER": "VirtSens76",
@@ -4530,67 +5063,74 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Diele",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat78",
+            "ID": 78,
+            "NAME": "Heating 1",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat01",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Kind",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat79",
+            "ID": 79,
+            "NAME": "Heating 2",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat02",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Bad",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat80",
+            "ID": 80,
+            "NAME": "Heating 3",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat03",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Schlafen",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat81",
+            "ID": 81,
+            "NAME": "Heating 4",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat04",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler Wohnen",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat82",
+            "ID": 82,
+            "NAME": "Heating 5",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat05",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Heizungsregler WC Gast",
-            "TYPE": "Heizungsregler",
-            "TYPE_ID": "0x1001",
-            "SERIALNUMBER": "VirtHeat83",
+            "ID": 83,
+            "NAME": "Heating 6",
+            "TYPE": "VirtualHeating",
+            "TYPE_ID": "0x1002",
+            "SERIALNUMBER": "VirtHeat06",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "SA Licht Unterschrank KÃ¼che",
+            "ID": 84,
+            "NAME": "SA Licht Unterschrank K\u00fcche",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
             "SERIALNUMBER": "VirtSw0084",
@@ -4600,6 +5140,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 86,
             "NAME": "Lueftung",
             "TYPE": "Lueftung",
             "TYPE_ID": "0x1502",
@@ -4610,9 +5151,10 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
-            "NAME": "Fenster Essen",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xa001",
+            "ID": 87,
+            "NAME": "Fensterkontakt Essen",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
             "SERIALNUMBER": "Virtwind85",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
@@ -4620,6 +5162,18 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 88,
+            "NAME": "Türschloss",
+            "TYPE": "VirtualWindowHandle",
+            "TYPE_ID": "0xf101",
+            "SERIALNUMBER": "VirtDoor01",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "ID": 91,
             "NAME": "Steckdose Garage",
             "TYPE": "VirtualSwitch",
             "TYPE_ID": "0xa001",
@@ -4630,6 +5184,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 92,
             "NAME": "Dimmer Wohnen",
             "TYPE": "VirtualDimmer",
             "TYPE_ID": "0xf001",
@@ -4640,6 +5195,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 93,
             "NAME": "Dimmer Kinder",
             "TYPE": "VirtualDimmer",
             "TYPE_ID": "0xf001",
@@ -4650,6 +5206,7 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 94,
             "NAME": "Dimmer Schlafen",
             "TYPE": "VirtualDimmer",
             "TYPE_ID": "0xf001",
@@ -4660,10 +5217,22 @@
         {
             "ADDRESS": -1,
             "FAMILY": 254,
+            "ID": 95,
             "NAME": "OpenWeatherMap",
             "TYPE": "OpenWeatherMap",
             "TYPE_ID": "0x100",
             "SERIALNUMBER": "ESY5110366",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        },
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "ID": 96,
+            "NAME": "Dimmer Ohne Switsh",
+            "TYPE": "VirtualDimmer",
+            "TYPE_ID": "0xf001",
+            "SERIALNUMBER": "VirtDi0096",
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         }

@@ -14,7 +14,7 @@ function readCookie(key) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function homegearRandomUserName() {
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let id = 'ui';
+    let id = 'shif-';
 
     for (let i = 0; i < 8; i++)
         id += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -25,21 +25,48 @@ function homegearRandomUserName() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function homegear_websocket_security() {
+    const opts = interfaceData.options;
+
+    if (location.protocol === 'https:')
+        return true;
+
+    if (opts.websocket_user || opts.websocket_password)
+        return true;
+
+    if (opts.websocket_security_ssl === undefined ||
+        opts.websocket_security_ssl === 'location.protocol')
+        return location.protocol === 'https:'
+
+    return !! opts.websocket_security_ssl;
+
+}
+
 function homegear_new() {
+    const host = (interfaceData.options.websocket_url == 'location.hostname')
+                    ? location.hostname
+                    : interfaceData.options.websocket_url;
+    const port = (interfaceData.options.websocket_port == 'location.port')
+                    ? location.port
+                    : Number(interfaceData.options.websocket_port);
+
+    const secure = homegear_websocket_security();
+
     return new HomegearWS(
-        (interfaceData.options.websocket_url == 'location.hostname') ? location.hostname : interfaceData.options.websocket_url,
-        (interfaceData.options.websocket_port == 'location.port') ? location.port : Number(interfaceData.options.websocket_port),
+        host,
+        port,
         homegearRandomUserName(),
-        location.protocol == 'https:',
+        secure,
         ...arguments
     );
 }
 
-if (interfaceData.options.websocket_security_ssl === false && location.protocol == 'http:')
-    interfaceData.options.websocket_security_ssl = false;
-
-var homegear = homegear_new(readCookie('PHPSESSIDUI'));
-
+if (interfaceData.options.websocket_user && interfaceData.options.websocket_password) {
+    var homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
+}
+else {
+    var homegear = homegear_new(readCookie('PHPSESSIDUI'));
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,14 +105,21 @@ homegear.error(function (message) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-if(location.protocol == 'http:' && interfaceData.options.websocket_security_ssl === true)
-    console.log('Homegear security issue!');
+if(location.protocol == 'https:' && interfaceData.options.websocket_security_ssl == false)
+    alert('Error: If you connect to the interface via https you have to use a secure websocket connection!');
 else homegear.connect();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function handle_homegear_update(resp) {
+function roles_relevant(roles) {
+    return roles.filter(x => x.hasOwnProperty('id') && x.direction !== 1);
+}
+
+
+
+
+function handle_update_event(resp) {
     // DEBUG: works as expected
     const peer    = resp.params[1],
           channel = resp.params[2],
@@ -107,33 +141,59 @@ function handle_homegear_update(resp) {
                                                .variableInputs))
             continue;
 
-        //Does it improve reaction time to run the loop twice (does the "emit" hang shortly)? If not, only run it once.
-        let invert = false;
-        for (const roleIndex in input.roles) {
-            let role = input.roles[roleIndex];
-            if(!role.hasOwnProperty('id')) continue;
-            else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
-            
-            if(role.hasOwnProperty('invert'))
-            {
-                value = !value;
-                break; //Only invert once
-            }
-        }
+        if (input.roles === undefined)
+            continue;
 
         interfaceData.devices[input.databaseId]
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        for (const roleIndex in input.roles) {
-            let role = input.roles[roleIndex];
-            if(!role.hasOwnProperty('id')) continue;
-            else if(role.hasOwnProperty('direction') && role.direction == 1) continue;
+        for (const role of roles_relevant(input.roles))
             app.$root.$emit('role-update', role.id);
-        }
     }
-
 }
+
+
+
+function handle_update_request_ui_refresh(resp) {
+    error.set(`
+        <div class="toast_text">
+            ${i18n('refresh.message')}
+        </div>
+        <button class="toast_action" onclick="window.location.reload(true)">
+            ${i18n('refresh.message.button.text')}
+        </button>
+    `);
+}
+
+
+
+function handle_update_variable_profile_state_changed(resp) {
+    const id    = resp.params[0],
+          state = resp.params[1];
+
+    if (interfaceData.profiles[id] === undefined)
+        return;
+
+    interfaceData.profiles[id].isActive = state;
+}
+
+
+
+function homegear_handle_update(resp) {
+    console.log(JSON.stringify(resp, null, 4));
+
+    const funcs = {
+        'event': handle_update_event,
+        'requestUiRefresh': handle_update_request_ui_refresh,
+        'variableProfileStateChanged': handle_update_variable_profile_state_changed,
+    };
+
+    if (resp.method in funcs)
+        funcs[resp.method](resp)
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Extensions to the homegear object
@@ -154,10 +214,23 @@ function params_create(input, value) {
 
 
 function homegear_prepare(homegear) {
-    homegear.event(x => console.log(JSON.stringify(x, null, 4)));
-    homegear.event(handle_homegear_update);
+    homegear.event(homegear_handle_update);
+    homegear.ready(() => {
+        app.$mount('#inhalt');
+        breadcrumbs.$mount('#breadcrumbs');
+    });
 
-    homegear.invoke_multi = function (ops) {
+    homegear.invoke_raw = homegear.invoke;
+    homegear.invoke = function (op, cb) {
+        homegear.invoke_raw(op, function (ret) {
+            if (ret.error === undefined)
+                return cb ? cb(ret) : undefined;
+
+            console.log('Invoke Error: ' + JSON.stringify(ret.error, null, 4));
+        })
+    };
+
+    homegear.invoke_multi = function (ops, cb) {
         const object = {
             jsonrpc: '2.0',
             method: 'system.multicall',
@@ -166,16 +239,16 @@ function homegear_prepare(homegear) {
 
         console.log(JSON.stringify(object, null, 4));
 
-        return this.invoke(object);
+        return this.invoke(object, cb);
     };
 
-    homegear.value_set_multi = function (ops) {
+    homegear.value_set_multi = function (ops, cb) {
         return this.invoke_multi([
             ops.map(op => ({
                 methodName: 'setValue',
                 params: params_create(op.input, op.value),
             }))
-        ]);
+        ], cb);
     };
 
     homegear.value_set_clickcounter = function(control, params, value) {
