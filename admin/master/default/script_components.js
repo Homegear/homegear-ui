@@ -105,8 +105,8 @@ const mixin_profiles = {
         },
 
         local_profiles: function () {
-            const floor = parseInt(this.$route.params.floor);
-            const room  = parseInt(this.$route.params.room);
+            const floor = parseInt(this.floor_id);
+            const room  = parseInt(this.room_id);
 
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
@@ -347,6 +347,36 @@ Vue.component('shif-trans-right-in-out', {
 
 
 
+const vNodeCache = {};
+Vue.component('shif-keep-alive-global', {
+    abstract: true,
+
+    render() {
+        const slot = this.$slots.default;
+        if (!slot) {
+            console.log('slot is undefined');
+            return slot;
+        }
+
+        const vnode = slot[0];
+        const key = vnode.key;
+        if (! key)
+            return vnode || (slot && slot[0]);
+
+        if (vNodeCache[key])
+            vnode.componentInstance = vNodeCache[key].componentInstance;
+        else
+            vNodeCache[key] = vnode;
+
+        if (vnode.data)
+            vnode.data.keepAlive = true;
+
+        return vnode || (slot && slot[0]);
+    }
+})
+
+
+
 Vue.component('shif-house-collected-entries', {
     mixins: [
         mixin_components,
@@ -368,13 +398,18 @@ Vue.component('shif-house-collected-entries', {
         include_place: {
             type: Boolean,
             default: false,
-        }
+        },
     },
 
     provide: function () {
         return {
             layer: this.layer,
         };
+    },
+
+    inject: {
+        device_id: { default: undefined, },
+        room_id:   { default: undefined, },
     },
 
     computed: {
@@ -385,7 +420,7 @@ Vue.component('shif-house-collected-entries', {
                                             .map(dev => interfaceData.devices[dev])
                                             .filter(dev => dev.dynamicMetadata.favorites &&
                                                            dev.dynamicMetadata.favorites.state)
-                                    : interfaceData.rooms[this.$route.params.room]
+                                    : interfaceData.rooms[this.room_id]
                                                    .devices
                                                    .map(dev => interfaceData.devices[dev]);
 
@@ -393,7 +428,7 @@ Vue.component('shif-house-collected-entries', {
             }
 
             if (this.layer === 3) {
-                const device = interfaceData.devices[this.$route.params.device];
+                const device = interfaceData.devices[this.device_id];
                 return this.find_component(device, 'l3');
             }
 
@@ -485,27 +520,50 @@ Vue.component('shif-paging', {
             return route !== undefined &&
                    route.components !== undefined &&
                    route.components.default !== undefined;
-        }
+        },
     },
 
-    template: `
-        <div>
-            <router-view v-if="is_single_view"
-                         name="default"
-                         class="content content_single"
-                         v-bind:key="$route.fullPath + '_left'" />
+    methods: {
+        key: function (mode) {
+            const foo = ((mode) => {
+                const breadcrumbs = this.$route.meta.breadcrumbs;
 
-            <router-view v-else
-                         name="small"
-                         class="content content_small"
-                         v-on:click.native="$router.back()"
-                         v-bind:key="$route.fullPath + '_left'" />
+                if (breadcrumbs === undefined)
+                    return this.$route.fullPath;
+
+                switch (mode) {
+                    case 'single': // fall through
+                    case 'big':    return breadcrumbs[breadcrumbs.length - 1];
+                    case 'small':  return breadcrumbs[breadcrumbs.length - 2];
+                }
+            })(mode);
+
+
+            console.log(foo);
+            return foo;
+        },
+    },
+
+            // <shif-keep-alive-global>
+            // </shif-keep-alive-global>
+    template: `
+        <div ref="foo">
+                <router-view v-if="is_single_view"
+                             name="default"
+                             class="content content_single"
+                             v-bind:key="key('single')" />
+
+                <router-view v-else
+                             name="small"
+                             class="content content_small"
+                             v-on:click.native="$router.back()"
+                             v-bind:key="key('small')" />
 
             <shif-trans-right-in-out>
-                <router-view name="big"
-                             v-if="!is_single_view"
+                <router-view v-if="!is_single_view"
+                             name="big"
                              class="content content_big"
-                             v-bind:key="$route.fullPath" />
+                             v-bind:key="key('big')" />
             </shif-trans-right-in-out>
         </div>
     `,
