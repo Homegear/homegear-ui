@@ -36,6 +36,128 @@ const mixin_menus = {
 
 
 
+const mixin_unique_view_key = {
+    methods: {
+        _specific_bc_idx_wanted: function (mode) {
+            const ident = this.$route.meta.cache_ident;
+
+            return ident !== undefined &&
+                   ident[mode] !== undefined &&
+                   ident[mode].bc_idx !== undefined;
+        },
+
+        _uniqueify_needed: function (mode) {
+            const ident = this.$route.meta.cache_ident;
+
+            return ident !== undefined &&
+                   ident[mode] !== undefined &&
+                   ident[mode].params !== undefined &&
+                   ident[mode].params.length > 0;
+        },
+
+        _base: function (mode) {
+            const meta = this.$route.meta;
+            const breadcrumbs = meta.breadcrumbs;
+
+            if (breadcrumbs === undefined)
+                return this.$route.fullPath;
+
+            if (this._specific_bc_idx_wanted(mode)) {
+                const idx = meta.cache_ident[mode].bc_idx;
+
+                if (breadcrumbs[idx] !== undefined)
+                    return breadcrumbs[idx];
+            }
+
+            switch (mode) {
+                case 'default': // fall through
+                case 'single': // fall through
+                case 'big':    return breadcrumbs[breadcrumbs.length - 1];
+                case 'small':  return breadcrumbs[breadcrumbs.length - 2];
+            }
+
+            throw `BUG: mixin_unique_view_key: mode is unknown: ${mode}`;
+        },
+
+            // Make base unique over the rooms/devices/etc.
+        _uniqueify: function (old, mode) {
+            const cache_ident = this.$route.meta.cache_ident;
+
+            if (! this._uniqueify_needed(mode))
+                return old;
+
+            const unique = cache_ident[mode].params
+                                            .map(x => this.$route.params[x])
+                                            .join('-');
+
+            return `${old}-${unique}`;
+        },
+
+        /**
+         * It's hard to defined a unique key for each view part.
+         * Requirements:
+         *   * lvl(1).default/single == lvl(2).small
+         *   * lvl(n).big == lvl(n + 1).small
+         **/
+        unique_view_key: function (mode) {
+            const base = this._base(mode);
+
+            return this._uniqueify(base, mode);
+        },
+    },
+}
+
+
+
+const mixin_scroll_position = {
+    methods: {
+        _find_scroll_position_marker: function (start) {
+            for (let cur = start; cur !== undefined; cur = cur.$parent) {
+                if (cur.$options.name === 'shif-scroll-position-marker')
+                    return cur;
+            }
+
+            return cur;
+        },
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        const marker = this._find_scroll_position_marker(this);
+        if (marker === undefined)
+            return;
+
+        scroll_positions[this.$vnode.key] = {
+            x: marker.$el.scrollLeft,
+            y: marker.$el.scrollTop,
+        };
+
+        if (this.$vnode.key === 'house.tab.devices')
+            scroll_positions[this.$vnode.key].role_id = this.$refs.devices.role_id_opened;
+
+        next();
+    },
+
+    beforeRouteEnter: function (to, from, next) {
+        next(vm => {
+            if (scroll_positions[vm.$vnode.key] === undefined)
+                return;
+
+            const marker = vm._find_scroll_position_marker(vm);
+            if (marker === undefined)
+                return;
+
+            const pos = scroll_positions[vm.$vnode.key];
+
+            if (false)
+                console.oldLog('scroll', vm.$vnode.key, 'to', pos);
+
+            marker.$el.scroll(pos.x, pos.y);
+        });
+    },
+};
+
+
+
 const mixin_components = {
     methods: {
         find_component: function (device, layer) {
@@ -347,36 +469,6 @@ Vue.component('shif-trans-right-in-out', {
 
 
 
-const vNodeCache = {};
-Vue.component('shif-keep-alive-global', {
-    abstract: true,
-
-    render() {
-        const slot = this.$slots.default;
-        if (!slot) {
-            console.log('slot is undefined');
-            return slot;
-        }
-
-        const vnode = slot[0];
-        const key = vnode.key;
-        if (! key)
-            return vnode || (slot && slot[0]);
-
-        if (vNodeCache[key])
-            vnode.componentInstance = vNodeCache[key].componentInstance;
-        else
-            vNodeCache[key] = vnode;
-
-        if (vnode.data)
-            vnode.data.keepAlive = true;
-
-        return vnode || (slot && slot[0]);
-    }
-})
-
-
-
 Vue.component('shif-house-collected-entries', {
     mixins: [
         mixin_components,
@@ -460,7 +552,7 @@ Vue.component('shif-house-collected-entries', {
                 <component v-bind="dev"
                            v-bind:include_place="include_place" />
 
-                <template v-if="debug">
+                <template v-if="$root.debug">
                     {{ dev | pretty | log }}
                 </template>
             </template>
@@ -509,8 +601,29 @@ Vue.component('shif-mainmenu-tabs', {
 
 
 
+// This is a helper component, so we have defined parent where we can read the
+// scroll positions from.
+// Although not defining own DOM elements, it must not be abstract!
+// We won't be able to access the scroll positions!
+const ShifScrollPositionMarker = {
+    // Explicitly set, so it does not get (accidently?) set to true in the
+    // future.
+    abstract: false,
+    name: 'shif-scroll-position-marker',
+
+    render: function () {
+        return this.$slots.default;
+    },
+};
+
+
+
 Vue.component('shif-paging', {
-    mixins: [mixin_print_mounted()],
+    mixins: [mixin_unique_view_key, mixin_print_mounted()],
+
+    components: {
+        ShifScrollPositionMarker,
+    },
 
     computed: {
         is_single_view: function () {
@@ -521,54 +634,56 @@ Vue.component('shif-paging', {
                    route.components !== undefined &&
                    route.components.default !== undefined;
         },
-    },
 
-    methods: {
-        key: function (mode) {
-            const foo = ((mode) => {
-                const breadcrumbs = this.$route.meta.breadcrumbs;
+        views: function () {
+            if (this.is_single_view)
+                return [{
+                    name:       'default',
+                    class:      'content content_single',
+                    click:      false,
+                    transition: false,
+                }];
 
-                if (breadcrumbs === undefined)
-                    return this.$route.fullPath;
-
-                switch (mode) {
-                    case 'single': // fall through
-                    case 'big':    return breadcrumbs[breadcrumbs.length - 1];
-                    case 'small':  return breadcrumbs[breadcrumbs.length - 2];
+            return [
+                {
+                    name:       'small',
+                    class:      'content content_small',
+                    click:      true,
+                    transition: false,
+                },
+                {
+                    name:       'big',
+                    class:      'content content_big',
+                    click:      false,
+                    transition: true,
+                    cache:      false,
                 }
-            })(mode);
-
-
-            console.log(foo);
-            return foo;
+            ];
         },
     },
 
-            // <shif-keep-alive-global>
-            // </shif-keep-alive-global>
-    template: `
-        <div ref="foo">
-                <router-view v-if="is_single_view"
-                             name="default"
-                             class="content content_single"
-                             v-bind:key="key('single')" />
-
-                <router-view v-else
-                             name="small"
-                             class="content content_small"
-                             v-on:click.native="$router.back()"
-                             v-bind:key="key('small')" />
-
-            <shif-trans-right-in-out>
-                <router-view v-if="!is_single_view"
-                             name="big"
-                             class="content content_big"
-                             v-bind:key="key('big')" />
-            </shif-trans-right-in-out>
-        </div>
-    `,
+    render: function (h) {
+        return h('div', {}, this.views.map(i =>
+            h('shif-scroll-position-marker', {}, [
+                // h('shif-trans-right-in-out', {}, [
+                    h('router-view', {
+                        class:    i.class,
+                        key:      this.unique_view_key(i.name),
+                        props:    {name: i.name},
+                        nativeOn: i.click ? {click: () => this.$router.back()} : {}
+                    })
+                // ])
+            ])
+        ))
+    }
 });
 
+            // <shif-trans-right-in-out>
+                // <router-view v-if="!is_single_view"
+                             // name="big"
+                             // class="content content_big"
+                             // v-bind:key="key('big')" />
+            // </shif-trans-right-in-out>
 
 
 Vue.component('shif-checkbox-favorites', {
