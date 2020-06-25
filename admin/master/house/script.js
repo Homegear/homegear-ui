@@ -100,9 +100,9 @@ Vue.mixin({
                 return this.$router.push({
                     name: `${last}.device`,
                     params: {
-                        floor: this.$route.params.floor,
-                        room:  this.$route.params.room,
-                        device: device,
+                        floor_id: this.floor_id,
+                        room_id:  this.room_id,
+                        device_id: device,
                     },
                 });
             }
@@ -112,9 +112,9 @@ Vue.mixin({
                 return this.$router.push({
                     name: `${last}.device`,
                     params: {
-                        floor: interfaceData.devices[device].floors[0],
-                        room:  interfaceData.devices[device].rooms[0],
-                        device: device,
+                        floor_id: interfaceData.devices[device].floors[0],
+                        room_id:  interfaceData.devices[device].rooms[0],
+                        device_id: device,
                     },
                 });
             }
@@ -124,9 +124,9 @@ Vue.mixin({
                 return this.$router.push({
                     name: 'favorites.device',
                     params: {
-                        floor: interfaceData.devices[device].floors[0],
-                        room:  interfaceData.devices[device].rooms[0],
-                        device: device,
+                        floor_id: interfaceData.devices[device].floors[0],
+                        room_id:  interfaceData.devices[device].rooms[0],
+                        device_id: device,
                     },
                 });
             }
@@ -178,14 +178,16 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['house', 'house.tab.rooms'], base: true,},
                 }, {
                     name: 'house.tab.rooms.room',
-                    path: 'rooms/floor/:floor/room/:room',
+                    path: 'rooms/floor/:floor_id/room/:room_id',
                     components: {small: ShifHouseRooms, big: ShifHouseLvl2},
                     meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room']},
+                    props: {small: false, big: true},
                 }, {
                     name: 'house.tab.rooms.room.device',
-                    path: 'rooms/floor/:floor/room/:room/device/:device',
+                    path: 'rooms/floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifHouseLvl2, big: ShifHouseLvl3},
                     meta: {breadcrumbs: ['house', 'house.tab.rooms', 'house.tab.rooms.room', 'house.tab.rooms.room.device']},
+                    props: {small: true, big: true},
                 },
 
                 {
@@ -195,16 +197,17 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['house', 'house.tab.devices'], base: true,},
                 }, {
                     name: 'house.tab.devices.device',
-                    path: 'devices/floor/:floor/room/:room/device/:device',
+                    path: 'devices/floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifHouseDevices, big: ShifAllDevicesLvl3},
                     meta: {breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device']},
+                    props: {small: false, big: true},
                 },
 
                 {
                     path: 'profiles',
                     name: 'house.tab.profiles',
                     component: ShifProfiles,
-                    meta: {breadcrumbs: ['house', 'house.tab.profiles'], base: true}
+                    meta: {breadcrumbs: ['house', 'house.tab.profiles'], base: true},
                 }
             ],
         },
@@ -252,10 +255,11 @@ let router = new VueRouter({
                     components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
                     meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.new']}
                 }, {
-                    path: 'profiles/edit/:profile',
+                    path: 'profiles/edit/:profile_id',
                     name: 'settings.profiles.profile',
                     components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
-                    meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']}
+                    meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']},
+                    props: {small: false, big: true},
                 },
             ],
         },
@@ -270,9 +274,10 @@ let router = new VueRouter({
                 },
                 {
                     name: 'favorites.device',
-                    path: 'floor/:floor/room/:room/device/:device',
+                    path: 'floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifFavoritesLvl1, big: ShifFavoritesLvl3},
                     meta: {breadcrumbs: ['favorites', 'house.tab.rooms.room', 'favorites.device']},
+                    props: {small: false, big: true},
                 }
             ],
         },
@@ -358,27 +363,27 @@ let breadcrumbs = new Vue({
                 if (! interfaceData.options.showFloor)
                     return ''
 
-                return Number(params.floor) === -1
+                return Number(params.floor_id) === -1
                     ? i18n('house.storyless') + ' - '
-                    : interfaceData.floors[params.floor].name + ' - ';
+                    : interfaceData.floors[params.floor_id].name + ' - ';
             }
 
             const params  = this.$route.params;
 
             switch (route_name) {
                 case 'house.tab.rooms.room':
-                    return floor() + interfaceData.rooms[params.room].name;
+                    return floor() + interfaceData.rooms[params.room_id].name;
 
                 case 'house.tab.rooms.room.device':
                 case 'house.tab.devices.device':
                 case 'favorites.device':
-                    return interfaceData.devices[params.device].label;
+                    return interfaceData.devices[params.device_id].label;
 
                 case 'log':
                     return 'Log';
 
                 case 'settings.profiles.profile':
-                    return interfaceData.profiles[params.profile].name;
+                    return interfaceData.profiles[params.profile_id].name;
             }
 
             return i18n(route_name);
