@@ -310,7 +310,7 @@ let ShifSettingsProfiles = {
             return {
                 name: 'settings.profiles.profile',
                 params: {
-                    profile: profile_id,
+                    profile_id: profile_id,
                 },
             };
         },
@@ -401,13 +401,17 @@ let ShifSettingsProfileRoleValue = {
 let ShifSettingsProfile = {
     mixins: [mixin_profiles, mixin_print_mounted('shif-settings-profile')],
 
+    props: [
+        'profile_id',
+    ],
+
     components: {
         ShifSettingsProfileRoleValue,
     },
 
     data: function () {
-        if (this.$route.params.profile === undefined ||
-            ! (this.$route.params.profile in interfaceData.profiles))
+        if (this.profile_id === undefined ||
+            ! (this.profile_id in interfaceData.profiles))
             return {
                 mode: 'add',
                 profile: null,
@@ -427,7 +431,7 @@ let ShifSettingsProfile = {
                 }
             };
 
-        const profile = interfaceData.profiles[this.$route.params.profile];
+        const profile = interfaceData.profiles[this.profile_id];
 
         if (this.$root.profiles.enabled) {
             return {
