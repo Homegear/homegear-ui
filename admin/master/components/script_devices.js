@@ -12,7 +12,7 @@ Vue.component('shif-ctrl-summary', {
 
     data: function () {
         return {
-            submenu_show: false,
+            submenu_show: this.role_id === this.last_role_id,
         };
     },
 
@@ -29,7 +29,12 @@ Vue.component('shif-ctrl-summary', {
     provide: function () {
         return {
             layer: 2,
+            role_id: this.role_id,
         };
+    },
+
+    inject: {
+        last_role_id: {from: 'role_id'},
     },
 
     methods: {
@@ -81,6 +86,12 @@ Vue.component('shif-ctrl-summary', {
         },
     },
 
+    watch: {
+        submenu_show: function () {
+            this.$emit('accordion-open', this.role_id);
+        },
+    },
+
     template: `
         <div>
             <shif-generic-l2 v-bind:icon="icon"
@@ -121,7 +132,7 @@ Vue.component('shif-ctrl-summary', {
                     <template v-for="dev in dev_objs">
                         <component v-bind="dev" v-bind:include_place="true" />
 
-                        <template v-if="debug">
+                        <template v-if="$root.debug">
                             {{ dev | pretty | log }}
                         </template>
                     </template>
@@ -150,6 +161,7 @@ let ShifAllDevices = {
         return {
             status_initialized: false,
             states: states,
+            role_id_opened: null,
         };
     },
 
@@ -266,10 +278,6 @@ let ShifAllDevices = {
 
         states_clean: function (role_id) {
             return this.states[role_id];
-
-            // return this.states[role_id].some(x => x.value !== 0)
-                    // ? this.states[role_id]
-                    // : [];
         },
 
         role_update_handle: function (role_id) {
@@ -304,6 +312,7 @@ let ShifAllDevices = {
                         value: 0,
                     }
                 );
+
             this.status(key);
         }
 
@@ -316,20 +325,25 @@ let ShifAllDevices = {
 
     template: `
         <div>
-            <template v-for="(devs, role) in map_roles_devs">
-                <template v-if="role in interfaceData.roles">
+            <template v-for="(devs, role_id) in map_roles_devs">
+
+                <template v-if="role_id in interfaceData.roles">
                     <shif-ctrl-summary
-                        v-bind:actions="interfaceData.roles[role].invokeOutputs"
-                        v-bind:icon="interfaceData.roles[role].icon"
-                        v-bind:title="interfaceData.roles[role].name"
+                        v-bind:actions="interfaceData.roles[role_id].invokeOutputs"
+                        v-bind:icon="interfaceData.roles[role_id].icon"
+                        v-bind:title="interfaceData.roles[role_id].name"
                         v-bind:devs="devs"
-                        v-bind:role_id="role"
-                        v-bind:status="states_clean(role)">
+                        v-bind:role_id="role_id"
+                        v-bind:status="states_clean(role_id)"
+                        v-on:accordion-open="x => role_id_opened = x"
+                        >
                     </shif-ctrl-summary>
                 </template>
+
                 <template v-else>
-                    {{ "This role is not defined: " + role | log }}
+                    {{ "This role is not defined: " + role_id | log }}
                 </template>
+
             </template>
         </div>
     `,
@@ -338,7 +352,7 @@ let ShifAllDevices = {
 
 
 let ShifHouseDevices = {
-    mixins: [mixin_print_mounted('shif-house-devices')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-devices')],
 
     components: {
         ShifAllDevices,
@@ -348,10 +362,44 @@ let ShifHouseDevices = {
         room_id:   { },
         device_id: { },
         floor_id:  { },
+        role_id:   { },
     },
 
     provide: function () {
         return {
+            room_id:   this.room_id,
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+            role_id:   this.role_id,
+        };
+    },
+
+    template: `
+        <shif-mainmenu-tabs>
+            <shif-all-devices ref="devices" />
+        </shif-mainmenu-tabs>
+    `
+};
+
+
+
+let ShifHouseDevicesRole = {
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-devices')],
+
+    components: {
+        ShifAllDevices,
+    },
+
+    props: {
+        role_id:   { },
+        room_id:   { },
+        device_id: { },
+        floor_id:  { },
+    },
+
+    provide: function () {
+        return {
+            role_id:   this.role_id,
             room_id:   this.room_id,
             floor_id:  this.floor_id,
             device_id: this.device_id,
@@ -368,12 +416,13 @@ let ShifHouseDevices = {
 
 
 let ShifAllDevicesLvl3 = {
-    mixins: [mixin_print_mounted('shif-all-devices-level-3')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-all-devices-level-3')],
 
     props: {
         room_id:   { required: true, },
         device_id: { required: true, },
         floor_id:  { required: true, },
+        role_id:   { required: true, },
     },
 
     provide: function () {
@@ -381,6 +430,7 @@ let ShifAllDevicesLvl3 = {
             room_id:   this.room_id,
             floor_id:  this.floor_id,
             device_id: this.device_id,
+            role_id:   this.role_id,
         };
     },
 
