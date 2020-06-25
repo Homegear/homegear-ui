@@ -91,6 +91,20 @@ Vue.component('shif-house-floors-rooms', {
 let ShifHouseLvl3 = {
     mixins: [mixin_print_mounted('shif-house-lvl3')],
 
+    props: {
+        room_id:   { required: true, },
+        device_id: { required: true, },
+        floor_id:  { required: true, },
+    },
+
+    provide: function () {
+        return {
+            room_id:   this.room_id,
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+        };
+    },
+
     template: `
         <shif-house-collected-entries v-bind:layer="3" />
     `
@@ -100,6 +114,20 @@ let ShifHouseLvl3 = {
 
 let ShifHouseLvl2 = {
     mixins: [mixin_print_mounted('shif-house-lvl2')],
+
+    props: {
+        room_id:   { required: true, },
+        device_id: { },
+        floor_id:  { required: true, },
+    },
+
+    provide: function () {
+        return {
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+            room_id:   this.room_id,
+        };
+    },
 
     template: `
         <shif-house-collected-entries v-bind:layer="2" />
