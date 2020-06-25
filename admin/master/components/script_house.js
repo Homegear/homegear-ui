@@ -113,7 +113,7 @@ let ShifHouseLvl3 = {
 
 
 let ShifHouseLvl2 = {
-    mixins: [mixin_print_mounted('shif-house-lvl2')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-lvl2')],
 
     props: {
         room_id:   { required: true, },
@@ -137,7 +137,7 @@ let ShifHouseLvl2 = {
 
 
 let ShifHouseRooms = {
-    mixins: [mixin_print_mounted('shif-house-rooms')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-rooms')],
 
     template: `
         <shif-mainmenu-tabs>
