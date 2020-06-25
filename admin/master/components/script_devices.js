@@ -344,6 +344,20 @@ let ShifHouseDevices = {
         ShifAllDevices,
     },
 
+    props: {
+        room_id:   { },
+        device_id: { },
+        floor_id:  { },
+    },
+
+    provide: function () {
+        return {
+            room_id:   this.room_id,
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+        };
+    },
+
     template: `
         <shif-mainmenu-tabs>
             <shif-all-devices />
@@ -355,6 +369,20 @@ let ShifHouseDevices = {
 
 let ShifAllDevicesLvl3 = {
     mixins: [mixin_print_mounted('shif-all-devices-level-3')],
+
+    props: {
+        room_id:   { required: true, },
+        device_id: { required: true, },
+        floor_id:  { required: true, },
+    },
+
+    provide: function () {
+        return {
+            room_id:   this.room_id,
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+        };
+    },
 
     template: `
         <shif-house-collected-entries v-bind:layer="3" />
