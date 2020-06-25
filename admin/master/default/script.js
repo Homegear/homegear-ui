@@ -658,11 +658,22 @@ Vue.component('shif-generic-l2', {
         },
     },
 
+    data: function () {
+        return {
+            click_icon_patched: this.$listeners &&
+                                this.$listeners.click !== undefined &&
+                                this.$listeners.click_icon === undefined,
+        };
+    },
+
     mounted: function () {
-        if (this.$listeners &&
-            this.$listeners.click !== undefined &&
-            this.$listeners.click_icon === undefined)
+        if (this.click_icon_patched)
             this.$on('click_icon', this.$listeners.click);
+    },
+
+    beforeDestroy: function () {
+        if (this.click_icon_patched)
+            this.$off('click_icon', this.$listeners.click);
     },
 
     methods: {
@@ -803,7 +814,12 @@ const shif_device = {
         };
     },
 
-    inject: ['layer', 'room_id', 'floor_id'],
+    inject: {
+        layer: 'layer',
+        role_id: {default: undefined,},
+        room_id: 'room_id',
+        floor_id: 'floor_id',
+    },
 
     methods: {
         status_minimal: function (descs=true) {
