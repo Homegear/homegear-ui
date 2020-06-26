@@ -1,17 +1,11 @@
 let ShifProfilesGlobal = {
     mixins: [mixin_profiles, mixin_print_mounted('shif-profiles-global')],
 
-    methods: {
-        get_icon_or_default: function (profile) {
-            return get_or_default(profile, 'icon', 'slider_1');
-        },
-    },
-
     template: `
         <div id="profiles" class="content content_single">
             <div class="profiles_wrapper">
                 <template v-for="i in global_profiles">
-                    <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
                                      v-bind:title="i.name"
                                      v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                      v-on:click="profile_start(i)">
