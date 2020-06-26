@@ -220,6 +220,12 @@ function root_profiles_idx(peer, channel, name) {
 
 const mixin_profiles = {
     computed: {
+        favorite_profiles: function () {
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(x => x.favorite === true);
+        },
+
         global_profiles: function () {
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
@@ -234,8 +240,10 @@ const mixin_profiles = {
                          .map(x => interfaceData.profiles[x])
                          .filter(
                 x => x.locations.findIndex(
-                    loc => loc.floorId === floor &&
+                    loc => {
+                        return loc.floorId === floor &&
                           (loc.roomId === undefined || loc.roomId === room)
+                    }
                 ) !== -1
             );
         },
@@ -276,6 +284,10 @@ const mixin_profiles = {
                     value:   i.value,
                 };
             }
+        },
+
+        profile_icon: function (profile) {
+            return get_or_default(profile, 'icon', 'slider_1');
         },
 
         profile_load: function (profile, cb) {
@@ -322,6 +334,7 @@ const mixin_profiles = {
                     },
                     {
                         global:    form.location.global,
+                        favorite:  form.location.favorite,
                         icon:      form.icon,
                         locations: locations,
                         roles:     [],
@@ -334,6 +347,7 @@ const mixin_profiles = {
                     icon:      form.icon,
                     locations: locations,
                     global:    form.location.global,
+                    favorite:  form.location.favorite,
                     name:      form.profile_name,
                     roles:     [],
                     values:    [],
@@ -389,6 +403,7 @@ const mixin_profiles = {
                     },
                     {
                         global:    form.location.global,
+                        favorite:  form.location.favorite,
                         icon:      form.icon,
                         locations: locations,
                         roles:     roles,
@@ -400,6 +415,7 @@ const mixin_profiles = {
                     id:        profile.id,
                     name:      form.profile_name,
                     global:    form.location.global,
+                    favorite:  form.location.favorite,
                     icon:      form.icon,
                     locations: locations,
                     roles:     roles,
@@ -426,7 +442,7 @@ const mixin_favorites = {
                 params: [dev],
             }, (data) => {
                 let new_metadata = {};
-                if (Array.isArray(data.result)) 
+                if (Array.isArray(data.result))
                     new_metadata = data.result;
 
                 if (new_metadata.favorites === undefined)
@@ -502,6 +518,7 @@ Vue.component('shif-house-collected-entries', {
     inject: {
         device_id: { default: undefined, },
         room_id:   { default: undefined, },
+        floor_id:  { default: undefined, },
     },
 
     computed: {
@@ -526,20 +543,22 @@ Vue.component('shif-house-collected-entries', {
 
             throw 'Not implemented';
         },
-    },
 
-    methods: {
-        get_icon_or_default: function (profile) {
-            return get_or_default(profile, 'icon', 'slider_1');
+        profiles: function () {
+            if (this.layer !== 2)
+                return [];
+
+            return this.favorites === true
+                        ? this.favorite_profiles
+                        : this.local_profiles;
         },
     },
 
     template: `
         <div>
-            <div class="profiles_wrapper">
-                <template v-if="layer === 2 && ! favorites"
-                          v-for="i in local_profiles">
-                    <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+            <div v-if="profiles.length > 0" class="profiles_wrapper">
+                <template v-for="i in profiles">
+                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
                                      v-bind:title="i.name"
                                      v-bind:status="i18n('modemenu.profiles.name.label')"
                                      v-bind:active="{icon: i.isActive ? 'active' : ''}"
