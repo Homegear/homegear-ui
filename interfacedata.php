@@ -26,7 +26,7 @@
             },
             "disabledMenus": {
             },
-            "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
+            "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
         }
     },

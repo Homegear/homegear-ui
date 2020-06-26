@@ -59,6 +59,25 @@ class User
         return isset($this->twofaSettings['registrations']) && count($this->twofaSettings['registrations']) > 0;
     }
 
+    private function constantTimeStringCompare($known_str, $given_str)
+    {
+        if (strlen($known_str) == 0)
+        {
+            return false;
+        }
+
+        $res = strlen($given_str) ^ strlen($known_str);
+        $given_len = strlen($given);
+        $known_len = strlen($known);
+
+        for ($i = 0; $i < $given_len; ++$i)
+        {
+            $res |= ord($known_str[$i % $known_len]) ^ ord($given_str[$i]);
+        }
+
+        return $res === 0;
+    }
+
     public function __construct($globalSettings = array())
     {
         $this->hg = new \Homegear\Homegear();
@@ -114,6 +133,22 @@ class User
                 $authorized = $this->certificateLogin();
                 //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in certificateLogin().
                 if(!in_array('certificate', $this->firstFactorAuthMethods, true))
+                {
+                    $this->resetSession();
+                    $authorized = -1;
+                }
+            }
+        }
+
+        if($authorized === -1)
+        {
+            //Try cloud login
+            if(isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
+                isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME'])
+            {
+                $authorized = $this->cloudLogin();
+                //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in cloudLogin().
+                if(!in_array('cloud', $this->firstFactorAuthMethods, true))
                 {
                     $this->resetSession();
                     $authorized = -1;
@@ -332,6 +367,32 @@ class User
         return -1;
     }
 
+    private function cloudLogin()
+    {
+        if(isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
+            isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME'])
+        {
+            // Certificate auth
+            $user = $_SERVER['CLIENT_VERIFIED_USERNAME'];
+            hg_set_user_privileges($user);
+            if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
+            $_SESSION['user'] = $user;
+            $this->initialize();
+            if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
+            {
+                $_SESSION['firstFactorAuthorized'] = true;
+                return 1;
+            }
+            else
+            {
+                $_SESSION['authorized'] = true;
+                return 0;
+            }
+        }
+
+        return -1;
+    }
+
     private function oauthLogin()
     {
         try
@@ -381,7 +442,7 @@ class User
                 strlen($this->globalSettings['directLoginApiKey']) > 16 &&
                 isset($_REQUEST['key']))
             {
-                if($_REQUEST['key'] !== $this->globalSettings['directLoginApiKey']) return false;
+                if(!$this->constantTimeStringCompare($this->globalSettings['directLoginApiKey'], $_REQUEST['key'])) return false;
                 $user = $this->globalSettings['directLoginUser'];
                 if(!$this->hg->userExists($user)) return false;
                 hg_set_user_privileges($user);
