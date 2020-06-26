@@ -428,9 +428,10 @@ let ShifSettingsProfile = {
                         value: null,
                     },
                     location: {
-                        floor:  null,
-                        room:   null,
-                        global: false,
+                        floor:    null,
+                        room:     null,
+                        global:   false,
+                        favorite: false,
                     },
                 }
             };
@@ -445,10 +446,12 @@ let ShifSettingsProfile = {
             };
         }
 
-        const [floor, room, global] = profile.locations.length === 0
-                ? [null, null, false, null]
-                : [ profile.locations[0].floorId, profile.locations[0].roomId,
-                    profile.global === true];
+        const [floor, room] = profile.locations.length === 0
+                ? [null, null]
+                : [profile.locations[0].floorId, profile.locations[0].roomId];
+
+        const global   = profile.global === true;
+        const favorite = profile.favorite === true;
 
         const role = profile.roles !== undefined && profile.roles.length > 0
                         ? profile.roles[0]
@@ -462,9 +465,10 @@ let ShifSettingsProfile = {
                 icon: profile.icon,
                 profile_name: profile.name,
                 location: {
-                    floor:  floor === undefined ? null : floor,
-                    room:   room  === undefined ? null : room,
-                    global: global,
+                    floor:    floor === undefined ? null : floor,
+                    room:     room  === undefined ? null : room,
+                    global:   global,
+                    favorite: favorite,
                 },
                 role: role,
             },
@@ -577,6 +581,11 @@ let ShifSettingsProfile = {
                          v-on:click.prevent="form.location.global = !form.location.global">
                         <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
                         <shif-checkbox v-model="form.location.global" />
+                    </div>
+                    <div class="global"
+                         v-on:click.prevent="form.location.favorite = !form.location.favorite">
+                        <div class="label">{{ i18n('settings.profiles.profile.locations.favorite') }}:</div>
+                        <shif-checkbox v-model="form.location.favorite" />
                     </div>
                     <div class="label">{{ i18n('settings.profiles.profile.locations.floor') }}:</div>
                     <select id="locationsFloors"
