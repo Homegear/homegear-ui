@@ -25,6 +25,7 @@ let ShifFavoritesLvl3 = {
 let ShifFavoritesLvl1 = {
     mixins: [
         mixin_scroll_position,
+        mixin_profiles,
         mixin_print_mounted('shif-favorites-level-1')
     ],
 
@@ -44,8 +45,8 @@ let ShifFavoritesLvl1 = {
 
     template: `
         <shif-house-collected-entries v-bind:layer="2"
-                                      v-bind:favorites="true"
-                                      v-bind:include_place="true" />
+                                    v-bind:favorites="true"
+                                    v-bind:include_place="true" />
     `,
 };
 
