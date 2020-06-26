@@ -39,16 +39,19 @@ Vue.component('shif-mainmenu', {
 Vue.component('shif-modemenu', {
     mixins: [mixin_profiles],
 
-    methods: {
+    computed: {
         link_profile: function () {
+            console.log(this.$root.profiles.id);
             return {
                 name: 'settings.profiles.profile',
                 params: {
-                    profile: this.$root.profiles.id,
+                    profile_id: this.$root.profiles.id,
                 },
             };
         },
+    },
 
+    methods: {
         submit_profile: function () {
             this.profile_update(interfaceData.profiles[this.$root.profiles.id],
                                 this.$root.profiles.form);
@@ -78,7 +81,7 @@ Vue.component('shif-modemenu', {
                     </span>
                 </div>
                 <div class="mode_buttons">
-                    <router-link v-bind:to="link_profile()">
+                    <router-link v-bind:to="link_profile">
                         <div class="mode_settings">
                             {{ i18n('modemenu.profiles.button.settings') }}
                         </div>
