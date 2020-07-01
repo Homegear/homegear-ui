@@ -802,7 +802,7 @@
                     ]
                 },
                 {
-                    "element": "shadingButtonsSingleStepPositionPositionSlatsWindalarm",
+                    "element": "Base.shadingButtonsSingleStepPositionPositionSlatsWindalarm",
                     "roleIdsIn": [
                         [],
                         [
