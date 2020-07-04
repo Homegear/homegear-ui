@@ -610,50 +610,43 @@
             "deviceId": 61,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 62,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 63,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 64,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 65,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 66,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 67,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301001,
-            "invert": true
+            "roleId": 301001
         },
         {
             "deviceId": 69,
@@ -665,8 +658,7 @@
             "deviceId": 70,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "roleId": 301002
         },
         {
             "deviceId": 78,
@@ -792,8 +784,7 @@
             "deviceId": 88,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301003,
-            "invert": true
+            "roleId": 301003
         },
         {
             "deviceId": 91,

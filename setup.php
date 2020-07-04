@@ -452,7 +452,7 @@
                         if($directionString == 'in') $direction = 0;
                         else if($directionString == 'out') $direction = 1;
                         else $direction = 2; //both=2
-                        $invert = $value['invert'] ?? false;
+                        $invert = isset($value['invert']) && $value['invert'] =! false ? true : false;
                         foreach ($value["roleId"] as $roleId) {
                             $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $roleId, $direction, $invert);
                         }
