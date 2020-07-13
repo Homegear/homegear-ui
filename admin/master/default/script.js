@@ -776,7 +776,9 @@ function status_impl(control, layer) {
 
         if (input.rendering) {
             const sel = condition_get_matching(input.rendering, input.properties);
-            if (Object.keys(sel).length > 0) {
+            if (sel.texts !== undefined &&
+                sel.texts.state !== undefined &&
+                sel.texts.state.content !== undefined) {
                 val.push(sel.texts.state.content);
                 continue;
             }
