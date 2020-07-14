@@ -853,8 +853,12 @@ const shif_device = {
             if (interfaceData.options.showFloor !== true)
                 return room.name;
 
+            if (room.floors.length === 0)
+                return `${i18n('house.storyless')} - ${room.name}`;
+
             return room.floors.map(x => interfaceData.floors[x])
-                .map(x => x.name + ' - ' + room.name).join(' | ');
+                              .map(x => x.name + ' - ' + room.name)
+                              .join(' | ');
         },
 
         title: function () {
