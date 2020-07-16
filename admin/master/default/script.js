@@ -899,12 +899,12 @@ function shif_comps_create(name, l2, l3) {
 
 
 
-
 Vue.component('shif-room', {
     props: {
         floor: Object,
         room:  [String, Number],
     },
+
     methods: {
         link: function (floor_key, room_val) {
             return {
