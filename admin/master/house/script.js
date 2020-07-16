@@ -222,11 +222,11 @@ let router = new VueRouter({
                 },
 
                 {
-                    path: 'profiles',
                     name: 'house.tab.profiles',
+                    path: 'profiles',
                     component: ShifProfiles,
                     meta: {breadcrumbs: ['house', 'house.tab.profiles'], base: true},
-                }
+                },
             ],
         },
 
@@ -303,12 +303,46 @@ let router = new VueRouter({
             ],
         },
 
+        { path: '/functions', name: 'functions', component: ShifFunctions, redirect: {name: 'functions.list'},
+            children: [
+                {
+                    name: 'functions.list',
+                    path: 'list',
+                    component: ShifFunctionsLvl1,
+                    meta: {breadcrumbs: ['functions'], base: true},
+                },
+                {
+                    name: 'functions.automations',
+                    path: 'automations',
+                    components: {small: ShifFunctionsLvl1, big: ShifFunctionsAutomations},
+                    meta: {breadcrumbs: ['functions', 'functions.automations'],},
+                },
+                {
+                    name: 'functions.automations.new',
+                    path: 'automations/add',
+                    components: {small: ShifFunctionsAutomations, big: ShifFunctionsAutomationsForm},
+                    meta: {breadcrumbs: ['functions', 'functions.automations', 'functions.automations.new'],},
+                },
+                {
+                    name: 'functions.automations.automation',
+                    path: 'automations/edit/:automation_id',
+                    components: {small: ShifFunctionsAutomations, big: ShifFunctionsAutomationsForm},
+                    meta: {
+                        breadcrumbs: ['functions', 'functions.automations', 'functions.automations.automation'],
+                        cache_ident: {big: {params: ['automation_id']}},
+                    },
+                    props: {small: false, big: true},
+                },
+            ],
+        },
+
         {
             path: '/log',
             name: 'log',
             component: ShifLog,
             meta: {breadcrumbs: ['log']},
         },
+
         { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
     ],
 });
@@ -407,6 +441,9 @@ let breadcrumbs = new Vue({
 
                 case 'settings.profiles.profile':
                     return interfaceData.profiles[params.profile_id].name;
+
+                case 'functions.automations.automation':
+                    return interfaceData.functions.automations[params.automation_id].name;
             }
 
             return i18n(route_name);
