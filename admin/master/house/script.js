@@ -333,6 +333,22 @@ let router = new VueRouter({
                     },
                     props: {small: false, big: true},
                 },
+                {
+                    name: 'functions.notifications',
+                    path: 'notifications',
+                    components: {small: ShifFunctionsLvl1, big: ShifFunctionsNotifications},
+                    meta: {breadcrumbs: ['functions', 'functions.notifications'],},
+                },
+                {
+                    name: 'functions.notifications.notification',
+                    path: 'notifications/:notification_id',
+                    components: {small: ShifFunctionsNotifications, big: ShifFunctionsNotificationsNotification},
+                    meta: {
+                        breadcrumbs: ['functions', 'functions.notifications', 'functions.notifications.notification'],
+                        cache_ident: {big: {params: ['notification_id']}},
+                    },
+                    props: {small: false, big: true},
+                },
             ],
         },
 
@@ -444,6 +460,9 @@ let breadcrumbs = new Vue({
 
                 case 'functions.automations.automation':
                     return interfaceData.functions.automations[params.automation_id].name;
+
+                case 'functions.notifications.notification':
+                    return interfaceData.functions.notifications[params.notification_id].title;
             }
 
             return i18n(route_name);
@@ -502,3 +521,11 @@ let error = new Vue({
         </div>
     `
 });
+
+
+
+function mount_interface() {
+    // gdpr.$mount("#gdpr");
+    app.$mount('#inhalt');
+    breadcrumbs.$mount('#breadcrumbs');
+}
