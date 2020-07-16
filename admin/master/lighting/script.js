@@ -13,7 +13,7 @@ lighting_switch_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-on:click_icon="change($event, true)"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
 
         <template v-slot:favorites>
             <shif-checkbox-favorites v-bind:dev="dev" />
@@ -85,7 +85,7 @@ lighting_button_l2.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
                      v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
     </shif-generic-l2>
 `;
 
@@ -116,7 +116,7 @@ lighting_color_l2.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
                      v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
     </shif-generic-l2>
 `;
 
@@ -154,7 +154,7 @@ lighting_function_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-bind:status="status"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
     </shif-generic-l2>
 `;
 
