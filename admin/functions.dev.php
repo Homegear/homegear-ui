@@ -42,9 +42,9 @@ function print_array($result){
     print_r($result);
     echo "</pre>";
   }
-  
+
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // in_array_r rcursive lookup 
+  // in_array_r rcursive lookup
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   function in_array_r($needle, $haystack, $strict = false) {
       foreach ($haystack as $item) {
@@ -65,6 +65,7 @@ function clean_json_to_js() {
     $interfaceDataOut["devices"] = $interfaceData["devices"];
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
     $interfaceDataOut["floors"] = $interfaceData["floors"];
+    $interfaceDataOut["functions"] = $interfaceData["functions"];
     $interfaceDataOut["menu"] = $interfaceData["menu"];
     $interfaceDataOut["mainmenu"] = $interfaceData["mainmenu"];
     $interfaceDataOut["themes"] = $interfaceData["themes"];
