@@ -58,7 +58,7 @@ async function execC() {
 }
 
 async function execBabel() {
-      exec('babel script.js --out-file script.min.js', function (err, stdout, stderr) {
+      exec('npx babel script.js --out-file script.min.js', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         console.log(err);
