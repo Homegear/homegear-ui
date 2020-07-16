@@ -716,12 +716,29 @@ const ShifFunctionsLvl1 = {
         mixin_print_mounted('shif-functions-level-1')
     ],
 
+    methods: {
+        name: function (key) {
+            return i18n('functions.' + key);
+        },
+
+        description: function (i, key) {
+            if (key !== 'notifications')
+                return undefined;
+
+            const amount = Object.keys(i).length;
+
+            return `${i18n('functions.notifications.amount')}: ${amount}`;
+        },
+    },
+
     template: `
         <div>
             <template v-for="i, key in interfaceData.functions">
                 <router-link v-bind:to="{name: 'functions.' + key}">
                     <shif-functions-element v-bind:key="key"
-                                            v-bind:name="'functions.' + key"
+                                            v-bind:name="name(key)"
+                                            v-bind="{description: description(i, key)}"
+                                            v-bind:translate="false"
                                             icon="calendar-time_1" />
                 </router-link>
             </template>
