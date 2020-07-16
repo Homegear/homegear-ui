@@ -94,6 +94,36 @@
     fill: #e3a104;
   }
 
+  #mainmenu .badge {
+      position: relative;
+      white-space: nowrap;
+  }
+
+  #mainmenu .badge::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(120%, -60%);
+
+      content: attr(data-badge);
+      color: white;
+
+      border-radius: 8px;
+      background-color: #e3a104;
+      display: inline-block;
+      text-align: center;
+
+      white-space: nowrap;
+
+      font-size: 18px;
+
+      padding: 4px;
+      line-height: 1;
+      min-width: 16px;
+      height: 14px;
+  }
+
+
 /* ///////////////////////////////////////////////////////////////////////// */
 /*  */
 /* ///////////////////////////////////////////////////////////////////////// */
