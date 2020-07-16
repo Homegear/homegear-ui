@@ -20663,6 +20663,25 @@
             ]
         }
     },
+    "functions": {
+        "automations": [
+            {
+                "name": "Automation 1",
+                "description": "Das ist die Automation 1",
+                "icon": "calendar-time_1"
+            },
+            {
+                "name": "Automation 2",
+                "description": "Das ist die Automation 2",
+                "icon": "calendar-time_1"
+            },
+            {
+                "name": "Automation 3",
+                "description": "Das ist die Automation 3",
+                "icon": "calendar-time_1"
+            }
+        ]
+    },
     "rooms": {
         "1": {
             "devices": [
@@ -23411,63 +23430,44 @@
         {
             "id": "Favorites",
             "name": "favorites",
-            "icon": "star_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "favorites",
-                "content": "favorites",
-                "menu": "favorites"
-            }
+            "icon": "star_1"
         },
         {
             "id": "house",
             "name": "house",
             "icon": "house_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "house",
-                "content": "house"
-            },
             "tabs": [
                 {
                     "id": "rooms",
                     "name": "house.tab.rooms",
-                    "icon": "house_1",
-                    "active": true
+                    "icon": "house_1"
                 },
                 {
                     "id": "devices",
                     "name": "house.tab.devices",
-                    "icon": "switches_1",
-                    "content": "<shif-all-devices><\/shif-all-devices>"
+                    "icon": "switches_1"
                 },
                 {
                     "id": "profiles",
                     "name": "house.tab.profiles",
-                    "icon": "slider_1",
-                    "content": "<shif-profiles><\/shif-profiles>"
+                    "icon": "slider_1"
                 }
             ]
         },
         {
+            "id": "functions",
+            "name": "functions",
+            "icon": "widgets_1"
+        },
+        {
             "id": "settings",
             "name": "settings",
-            "icon": "settings_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "settings",
-                "content": "settings",
-                "menu": "settings"
-            }
+            "icon": "settings_1"
         },
         {
             "id": "logoff",
             "name": "logoff",
-            "icon": "power_1",
-            "onclick": "user_logoff",
-            "onclickOptions": {
-                "name": "logoff"
-            }
+            "icon": "power_1"
         }
     ],
     "menu": [
@@ -23477,14 +23477,6 @@
             "category": "user",
             "level": "1",
             "icon": "profile_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu": "settings",
-                "level": "2",
-                "category": "user",
-                "name": "settings.user",
-                "content": "true"
-            },
             "description": "settings.user.description"
         },
         {
@@ -23493,11 +23485,6 @@
             "category": "user",
             "level": "2",
             "icon": "profile_1",
-            "onclick": "user",
-            "onclickOptions": {
-                "name": "settings.user.manage",
-                "content": "edit"
-            },
             "description": "settings.user.manage.description"
         },
         {
@@ -23506,14 +23493,6 @@
             "category": "favorites",
             "level": "1",
             "icon": "star_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu": "settings",
-                "level": "2",
-                "category": "favorites",
-                "name": "settings.favorites",
-                "content": "true"
-            },
             "description": "settings.favorites.description"
         },
         {
@@ -23522,14 +23501,6 @@
             "category": "profiles",
             "level": "1",
             "icon": "slider_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu": "settings",
-                "level": "2",
-                "category": "profiles",
-                "name": "settings.profiles",
-                "content": "true"
-            },
             "description": "settings.profiles.description"
         },
         {
@@ -23538,11 +23509,6 @@
             "category": "license",
             "level": "1",
             "icon": "information_1",
-            "onclick": "license",
-            "onclickOptions": {
-                "name": "settings.about",
-                "content": "license"
-            },
             "description": "settings.about.description"
         }
     ],
@@ -23948,7 +23914,7 @@
         "display": "fullscreen",
         "orientation": "any",
         "manifest_version": 2,
-        "revision": 338,
+        "revision": 337,
         "developer": {
             "name": "Marwin Hubach",
             "url": "https:\/\/marwinh.de\/"
@@ -24149,7 +24115,17 @@
         "house.tab.devices": "Ger\u00e4te",
         "house.tab.profiles": "Profile",
         "favorites": "Favoriten",
-        "widgets": "Widgets",
+        "functions": "Funktionen",
+        "functions.automations": "Automationen",
+        "functions.automations.new": "Neu",
+        "functions.automations.automation.condition": "Bedingung",
+        "functions.automations.automation.condition.astro": "Astro",
+        "functions.automations.automation.condition.day": "Wochentag",
+        "functions.automations.automation.condition.time": "Uhrzeit",
+        "functions.automations.automation.condition.device": "Ger\u00e4t",
+        "functions.automations.automation.condition.profile": "Profil",
+        "functions.automations.automation.action": "Wirkung",
+        "functions.automations.automation.delete": "L\u00f6schen",
         "settings": "Einstellungen",
         "settings.favorites": "Favoriten",
         "settings.favorites.mode": "Favoriten bearbeiten",
@@ -24235,7 +24211,17 @@
             "house.tab.devices": "Devices",
             "house.tab.profiles": "Profiles",
             "favorites": "Favorites",
-            "widgets": "Widgets",
+            "functions": "Functions",
+            "functions.automations": "Automations",
+            "functions.automations.new": "New",
+            "functions.automations.automation.condition": "Condition",
+            "functions.automations.automation.condition.astro": "Astro",
+            "functions.automations.automation.condition.day": "Date",
+            "functions.automations.automation.condition.time": "Time",
+            "functions.automations.automation.condition.device": "Device",
+            "functions.automations.automation.condition.profile": "Profile",
+            "functions.automations.automation.action": "Action",
+            "functions.automations.automation.delete": "Delete",
             "settings": "Settings",
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
