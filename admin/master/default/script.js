@@ -879,10 +879,6 @@ const shif_device = {
             return out;
         },
 
-        breadcrumb: function () {
-            return (this.place ? this.place + ' | ' : '') + this.dev.label;
-        },
-
         disabled: function () {
             return check_disabled(this.uiElement, this.indexes);
         },
