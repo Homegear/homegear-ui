@@ -13,7 +13,7 @@ socket_switch_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-on:click_icon="change"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
         <template v-slot:profiles>
             <shif-checkbox-profiles v-bind:dev="dev"
                                     v-bind:output="output"
@@ -58,7 +58,7 @@ socket_button_l2.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
                      v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
     </shif-generic-l2>
 `;
 
