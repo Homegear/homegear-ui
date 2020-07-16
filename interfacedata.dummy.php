@@ -20664,23 +20664,10 @@
         }
     },
     "functions": {
-        "automations": [
-            {
-                "name": "Automation 1",
-                "description": "Das ist die Automation 1",
-                "icon": "calendar-time_1"
-            },
-            {
-                "name": "Automation 2",
-                "description": "Das ist die Automation 2",
-                "icon": "calendar-time_1"
-            },
-            {
-                "name": "Automation 3",
-                "description": "Das ist die Automation 3",
-                "icon": "calendar-time_1"
-            }
-        ]
+        "automations": {
+        },
+        "notifications": {
+        }
     },
     "rooms": {
         "1": {
@@ -21073,14 +21060,14 @@
         "100001": {
             "name": "Beleuchtung",
             "texts": {
-                
+
                 "0": "aus",
                 "1": "an"
             },
             "icon": "light_on_1",
             "roleProfileValues": {
                 "options": {
-                    
+
                     "false": "aus",
                     "true": "an"
                 },
@@ -21239,7 +21226,7 @@
         "101001": {
             "name": "Beleuchtung - Helligkeit",
             "texts": {
-                
+
                 "0": "aus",
                 "100": "an"
             },
@@ -21248,7 +21235,7 @@
             "l2_status": false,
             "roleProfileValues": {
                 "options": {
-                    
+
                     "false": "aus",
                     "true": "an"
                 },
@@ -21476,7 +21463,7 @@
         "201000": {
             "name": "Heizung",
             "texts": {
-                
+
                 "0": "Frostschutz",
                 "1": "Komfort",
                 "2": "Spar"
@@ -21484,7 +21471,7 @@
             "icon": "heater_1",
             "roleProfileValues": {
                 "options": {
-                    
+
                     "0": "Frostschutz",
                     "1": "Komfort",
                     "2": "Spar"
@@ -21704,7 +21691,7 @@
         "201001": {
             "name": "Heizung - Ist-Temperatur",
             "texts": {
-                
+
                 "0": "Ist"
             },
             "aggregated": {
@@ -21765,7 +21752,7 @@
         "201002": {
             "name": "Heizung - Soll-Temperatur",
             "texts": {
-                
+
                 "0": "Soll"
             },
             "aggregated": {
@@ -21826,7 +21813,7 @@
         "201003": {
             "name": "Heizung - Temperaturmodus",
             "texts": {
-                
+
                 "0": "Frostschutz",
                 "1": "Komfort",
                 "2": "Spar"
@@ -21914,7 +21901,7 @@
         "201004": {
             "name": "Heizung - Komforttemperatur",
             "texts": {
-                
+
                 "0": "Komfort"
             },
             "aggregated": {
@@ -21975,7 +21962,7 @@
         "201005": {
             "name": "Heizung - Absenktemperatur",
             "texts": {
-                
+
                 "0": "Spar"
             },
             "aggregated": {
@@ -22036,7 +22023,7 @@
         "201006": {
             "name": "Heizung - Frostschutztemperatur",
             "texts": {
-                
+
                 "0": "Frostschutz"
             },
             "aggregated": {
@@ -22097,7 +22084,7 @@
         "202001": {
             "name": "L\u00fcftung",
             "texts": {
-                
+
                 "0": "Stufe 1",
                 "1": "Stufe 2",
                 "2": "Stufe 3",
@@ -22322,7 +22309,7 @@
         "301001": {
             "name": "Sicherheit - T\u00fcrzustand",
             "texts": {
-                
+
                 "0": "ge\u00f6ffnet",
                 "1": "geschlossen"
             },
@@ -22353,7 +22340,7 @@
         "301002": {
             "name": "Fenster",
             "texts": {
-                
+
                 "0": "ge\u00f6ffnet",
                 "1": "geschlossen"
             },
@@ -22441,7 +22428,7 @@
         "301003": {
             "name": "T\u00fcren",
             "texts": {
-                
+
                 "0": "unverriegelt",
                 "1": "verriegelt"
             },
@@ -22506,14 +22493,14 @@
         "400001": {
             "name": "Steckdosen",
             "texts": {
-                
+
                 "0": "aus",
                 "1": "an"
             },
             "icon": "socket_1",
             "roleProfileValues": {
                 "options": {
-                    
+
                     "false": "aus",
                     "true": "an"
                 },
@@ -22691,14 +22678,14 @@
         "501000": {
             "name": "Beschattung",
             "texts": {
-                
+
                 "falseCount": "eingefahren",
                 "trueCount": "ausgefahren"
             },
             "icon": "blind_1",
             "roleProfileValues": {
                 "options": {
-                    
+
                     "false": "ausfahren",
                     "true": "einfahren"
                 },
@@ -22817,7 +22804,7 @@
         "501001": {
             "name": "Beschattung - hoch",
             "texts": {
-                
+
                 "0": "Hoch"
             },
             "aggregated": {
@@ -22870,7 +22857,7 @@
         "501002": {
             "name": "Beschattung - runter",
             "texts": {
-                
+
                 "0": "Runter"
             },
             "aggregated": {
@@ -22923,7 +22910,7 @@
         "501003": {
             "name": "Beschattung - Stopp",
             "texts": {
-                
+
                 "0": "Stopp"
             },
             "aggregated": {
@@ -22991,7 +22978,7 @@
         "501005": {
             "name": "Beschattung - hoch und runter",
             "texts": {
-                
+
                 "0": "Hoch",
                 "1": "Runter"
             },
@@ -23003,7 +22990,7 @@
         "501006": {
             "name": "Beschattung - Stufe",
             "texts": {
-                
+
                 "0": "Hoch",
                 "1": "Runter"
             },
@@ -23015,14 +23002,14 @@
         "502000": {
             "name": "Beschattung - Markise",
             "texts": {
-                
+
                 "falseCount": "eingefahren",
                 "trueCount": "ausgefahren"
             },
             "icon": "awning_1",
             "roleProfileValues": {
                 "options": {
-                    
+
                     "false": "einfahren",
                     "true": "ausfahren"
                 },
@@ -23078,7 +23065,7 @@
         "502001": {
             "name": "Beschattung - Markise - einfahren",
             "texts": {
-                
+
                 "0": "einfahren"
             },
             "aggregated": {
@@ -23107,7 +23094,7 @@
         "502002": {
             "name": "Beschattung - Markise - ausfahren",
             "texts": {
-                
+
                 "0": "ausfahren"
             },
             "aggregated": {
@@ -23136,7 +23123,7 @@
         "502003": {
             "name": "Beschattung - Markise - Stopp",
             "texts": {
-                
+
                 "0": "Stopp"
             },
             "aggregated": {
@@ -23172,7 +23159,7 @@
         "600000": {
             "name": "Fenster",
             "texts": {
-                
+
                 "falseCount": "ge\u00f6ffnet",
                 "trueCount": "geschlossen"
             },
@@ -23180,7 +23167,7 @@
             "l2_status": false,
             "roleProfileValues": {
                 "options": {
-                    
+
                     "false": "\u00f6ffnen",
                     "true": "schlie\u00dfen"
                 },
@@ -23236,7 +23223,7 @@
         "600001": {
             "name": "Fenster - hoch",
             "texts": {
-                
+
                 "0": "Hoch"
             },
             "aggregated": {
@@ -23265,7 +23252,7 @@
         "600002": {
             "name": "Fenster - runter",
             "texts": {
-                
+
                 "0": "Runter"
             },
             "aggregated": {
@@ -23294,7 +23281,7 @@
         "600003": {
             "name": "Fenster - Stopp",
             "texts": {
-                
+
                 "0": "Stopp"
             },
             "aggregated": {
