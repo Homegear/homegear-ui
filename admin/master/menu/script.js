@@ -13,6 +13,16 @@ Vue.component('shif-mainmenu', {
         width: function () {
             return (100 / this.enabled_menus.length) + '%';
         },
+
+        notifications_available: function () {
+            return Object.keys(interfaceData.functions.notifications).length;
+        },
+    },
+
+    methods: {
+        badge_wanted: function (cur) {
+            return this.notifications_available > 0 && cur === 'functions';
+        }
     },
 
     template: `
@@ -23,7 +33,9 @@ Vue.component('shif-mainmenu', {
 
                     <router-link v-bind:to="{name: i.name}">
                         <div v-bind:id="'mainmenu_' + i.name"
-                             class="mainmenu_button">
+                             class="mainmenu_button"
+                             v-bind:class="{badge: badge_wanted(i.name)}"
+                             v-bind:data-badge="notifications_available">
                              <shif-icon v-bind:src="i.icon" />
                         </div>
                     </router-link>
