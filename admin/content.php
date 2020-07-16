@@ -122,9 +122,13 @@ echo '</script>';
   <div id="error">
   </div>
 
+  <div id="gdpr">
+  </div>
+
   <div id="breadcrumbs_wrapper">
     <div id="breadcrumbs"></div>
   </div>
+
   <div id="inhalt"></div>
 
 <?php
