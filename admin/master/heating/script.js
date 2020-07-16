@@ -13,7 +13,7 @@ heating_slider_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-on:click_icon="change"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
     </shif-generic-l2>
 `;
 let heating_slider_l3 = clone(shif_device);
@@ -51,7 +51,7 @@ heating_is_state_l2.template = `
                      v-bind:status="status"
                      v-bind:actions="true"
                      v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
 
         <template v-slot:favorites>
             <shif-checkbox-favorites v-bind:dev="dev" />
