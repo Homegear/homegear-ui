@@ -18,6 +18,32 @@ function comp_obj(control, device, input, output, is, indexes) {
 }
 
 
+const mixin_rooms = {
+    computed: {
+        unassigned_rooms: function () {
+            const tmp = Object.keys(interfaceData.floors)
+                              .map(x => interfaceData.floors[x].rooms)
+                              .flat();
+
+            let assigned = {};
+            for (const i of tmp)
+                assigned[i] = true;
+
+            return Object.keys(interfaceData.rooms)
+                         .filter(x => ! assigned[x])
+                         .filter(x => this.room_has_devices(x));
+        },
+    },
+
+    methods: {
+        room_has_devices: function (room_key) {
+            const room = interfaceData.rooms[room_key];
+
+            return room.devices !== undefined && room.devices.length > 0;
+        },
+    }
+};
+
 
 const mixin_menus = {
     methods: {
@@ -820,3 +846,32 @@ Vue.component('shif-checkbox-profiles', {
         </div>
     `
 });
+
+
+
+Vue.component('shif-icon-selection', {
+    props: {
+        value: {type: String, required: true,},
+    },
+
+    methods: {
+        on_click: function (new_) {
+            this.$emit('input', new_)
+        },
+    },
+
+    template: `
+        <div id="profile_icons">
+            <label v-for="_, key in interfaceIcons"
+                    v-bind:class="{selected: value === key}"
+                    class="profile_icon_wrapper">
+                <shif-icon classname="profile_icon" v-bind:src="key" />
+                <input type="radio"
+                        name="profile_icon"
+                        v-bind:value="value"
+                        v-on:click="on_click(key)"
+                        hidden />
+            </label>
+        </div>
+    `
+})
