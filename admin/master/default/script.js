@@ -217,6 +217,14 @@ function clone(obj) {
 
 
 // Utils {{{
+Vue.component('TODO', {
+    abstract: true,
+
+    template: `<span style="color: red">TODO: <slot /></span>`
+});
+
+
+
 Vue.component('shif-title', {
     props: {
         classname: String,
