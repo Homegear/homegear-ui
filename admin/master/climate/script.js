@@ -51,7 +51,7 @@ openweathermap_l2.template = `
                      v-bind:status="status_formatted"
                      v-bind:place="place"
                      v-bind:actions="true"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
 
         <template v-slot:favorites>
             <shif-checkbox-favorites v-bind:dev="dev" />
