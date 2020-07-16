@@ -337,11 +337,8 @@ let ShifSettingsProfiles = {
                 </template>
 
                 <router-link v-bind:to="{name: 'settings.profiles.new'}">
-                    <shif-settings-element v-bind:name="i18n('settings.profiles.new')"
-                                           v-bind:translate="false"
-                                           description=""
-                                           icon="plus_1"
-                                           />
+                    <shif-settings-element name="settings.profiles.new"
+                                           icon="plus_1" />
                 </router-link>
             </div>
         </div>
@@ -561,18 +558,7 @@ let ShifSettingsProfile = {
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.icon') }}:</div>
-                        <div id="profile_icons">
-                            <label v-for="icon, key in interfaceIcons"
-                                   v-bind:class="{selected: form.icon == key}"
-                                   class="profile_icon_wrapper">
-                                <shif-icon classname="profile_icon" v-bind:src="key" />
-                                <input type="radio"
-                                       name="profile_icon"
-                                       v-bind:value="key"
-                                       v-model="form.icon"
-                                       hidden />
-                            </label>
-                        </div>
+                    <shif-icon-selection v-model="form.icon" />
                 </div>
 
                 <div class="form-group">
