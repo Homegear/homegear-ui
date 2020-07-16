@@ -76,5 +76,12 @@
       ],
       "no-console": "off"
     }
+  },
+  "scripts": {
+    "build": "php admin/admin.php generateExtensions && npm run babel",
+    "buildWebpack": "webpack",
+    "babel": "npx babel script.js --out-file script.min.js",
+    "watcher": "npx gulp watcher",
+    "watchWebpack": "webpack --watch"
   }
 }
