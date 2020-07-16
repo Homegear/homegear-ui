@@ -35,6 +35,42 @@
         "automations": {
         },
         "notifications": {
+            "0": {
+                "title": "Es ist ein Homegear Update verfügbar",
+                "content": "Bitte umgehend installieren!",
+                "buttons": [
+                    {
+                        "id": 1,
+                        "type": "warning",
+                        "content": "jetzt installieren",
+                        "icon": "notification_2"
+                    },
+                    {
+                        "id": 1,
+                        "type": "warning",
+                        "content": "um 2°° Uhr installieren",
+                        "icon": "notification_2"
+                    },
+                    {
+                        "id": 1,
+                        "type": "warning",
+                        "content": "erneut erinnern",
+                        "icon": "notification_2"
+                    }
+                ]
+            },
+            "1": {
+                "title": "UI Reload notwendig",
+                "content": "Bitte umgehend ausführen!",
+                "buttons": [
+                    {
+                        "id": 1,
+                        "type": "warning",
+                        "content": "neu laden",
+                        "icon": "notification_2"
+                    }
+                ]
+            }
         }
     },
     "mainmenu": {
