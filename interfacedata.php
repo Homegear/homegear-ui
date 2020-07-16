@@ -1,4 +1,4 @@
-<?php 
+<?php
     $defaultInterfaceDataJson = '
 {
     "settings": {
@@ -30,67 +30,52 @@
             "secondFactorAuthMethods": ["webauthn"]
         }
     },
+    "functions": {
+        "automations": {
+        }
+    },
     "mainmenu": {
         "0": {
             "id": "Favorites",
             "name": "favorites",
-            "icon": "star_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "favorites",
-                "content": "favorites",
-                "menu": "favorites"
-            }
+            "icon": "star_1"
         },
         "1": {
             "id": "house",
             "name": "house",
             "icon": "house_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "house",
-                "content": "house"
-            },
             "tabs": [
                 {
                     "id": "rooms",
                     "name": "house.tab.rooms",
-                    "icon": "house_1",
-                    "active": true
+                    "icon": "house_1"
                 },
                 {
                     "id": "devices",
                     "name": "house.tab.devices",
-                    "icon": "switches_1",
-                    "content": "<shif-all-devices></shif-all-devices>"
+                    "icon": "switches_1"
                 },
                 {
                     "id": "profiles",
                     "name": "house.tab.profiles",
-                    "icon": "slider_1",
-                    "content": "<shif-profiles></shif-profiles>"
+                    "icon": "slider_1"
                 }
             ]
         },
         "2": {
-            "id": "settings",
-            "name": "settings",
-            "icon": "settings_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "settings",
-                "content": "settings",
-                "menu": "settings"
-            }
+            "id": "functions",
+            "name": "functions",
+            "icon": "widgets_1"
         },
         "3": {
+            "id": "settings",
+            "name": "settings",
+            "icon": "settings_1"
+        },
+        "4": {
             "id": "logoff",
             "name": "logoff",
-            "icon": "power_1",
-            "onclick": "user_logoff",
-            "onclickOptions": {
-                "name": "logoff"
-            }
+            "icon": "power_1"
         }
     },
     "menu": [
@@ -100,14 +85,6 @@
             "category": "user",
             "level": "1",
             "icon": "profile_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu":"settings",
-                "level":"2",
-                "category":"user",
-                "name":"settings.user",
-                "content":"true"
-            },
             "description": "settings.user.description"
         },
         {
@@ -116,11 +93,6 @@
             "category": "user",
             "level": "2",
             "icon": "profile_1",
-            "onclick": "user",
-            "onclickOptions": {
-                "name":"settings.user.manage",
-                "content":"edit"
-            },
             "description": "settings.user.manage.description"
         },
         {
@@ -129,14 +101,6 @@
             "category": "favorites",
             "level": "1",
             "icon": "star_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu":"settings",
-                "level":"2",
-                "category":"favorites",
-                "name":"settings.favorites",
-                "content":"true"
-            },
             "description": "settings.favorites.description"
         },
         {
@@ -145,14 +109,6 @@
             "category": "profiles",
             "level": "1",
             "icon": "slider_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu":"settings",
-                "level":"2",
-                "category":"profiles",
-                "name":"settings.profiles",
-                "content":"true"
-            },
             "description": "settings.profiles.description"
         },
         {
@@ -161,11 +117,6 @@
             "category": "license",
             "level": "1",
             "icon": "information_1",
-            "onclick": "license",
-            "onclickOptions": {
-                "name":"settings.about",
-                "content":"license"
-            },
             "description": "settings.about.description"
         }
     ],
@@ -260,7 +211,43 @@
             "house.tab.devices": "Devices",
             "house.tab.profiles": "Profiles",
             "favorites": "Favorites",
-            "widgets": "Widgets",
+            "functions": "Functions",
+            "functions.automations": "Automations",
+            "functions.automations.new": "New",
+            "functions.automations.automation.name": "Name",
+            "functions.automations.automation.description": "Description",
+            "functions.automations.automation.state": "Enabled",
+            "functions.automations.automation.icon": "Icon",
+            "functions.automations.automation.condition": "Condition",
+            "functions.automations.automation.condition.astrofunction": "Astro Function",
+            "functions.automations.automation.condition.astrofunction.sunrise": "Sunrise",
+            "functions.automations.automation.condition.astrofunction.sunset": "Sunset",
+            "functions.automations.automation.condition.astrofunction.offset": "Offset (+/- Min.)",
+            "functions.automations.automation.condition.days": "Date",
+            "functions.automations.automation.condition.days.mo": "Mo.",
+            "functions.automations.automation.condition.days.tu": "Tu.",
+            "functions.automations.automation.condition.days.we": "We.",
+            "functions.automations.automation.condition.days.th": "Th.",
+            "functions.automations.automation.condition.days.fr": "Fr.",
+            "functions.automations.automation.condition.days.sa": "Sa.",
+            "functions.automations.automation.condition.days.su": "Su.",
+            "functions.automations.automation.condition.time": "Time",
+            "functions.automations.automation.condition.time.hour": "Hour",
+            "functions.automations.automation.condition.time.minute": "Minute",
+            "functions.automations.automation.condition.devices": "Devices",
+            "functions.automations.automation.condition.devices.table.place": "Place",
+            "functions.automations.automation.condition.devices.table.device": "Device",
+            "functions.automations.automation.condition.devices.table.control": "Control",
+            "functions.automations.automation.condition.devices.table.input": "Input",
+            "functions.automations.automation.condition.devices.table.operator": "Op.",
+            "functions.automations.automation.condition.devices.table.value": "Value",
+            "functions.automations.automation.condition.devices.table.delete": "Delete",
+            "functions.automations.automation.condition.devices.add": "Add",
+            "functions.automations.automation.action": "Action",
+            "functions.automations.automation.action.device": "Device",
+            "functions.automations.automation.action.profile": "Profile",
+            "functions.automations.automation.save": "Save",
+            "functions.automations.automation.delete": "Delete",
             "settings": "Settings",
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
@@ -347,7 +334,41 @@
             "house.tab.devices": "Geräte",
             "house.tab.profiles": "Profile",
             "favorites": "Favoriten",
-            "widgets": "Widgets",
+            "functions": "Funktionen",
+            "functions.automations": "Automationen",
+            "functions.automations.new": "Neu",
+            "functions.automations.automation.name": "Name",
+            "functions.automations.automation.description": "Beschreibung",
+            "functions.automations.automation.state": "Aktiviert",
+            "functions.automations.automation.icon": "Icon",
+            "functions.automations.automation.condition": "Bedingung",
+            "functions.automations.automation.condition.astrofunction": "Astrofunktion",
+            "functions.automations.automation.condition.astrofunction.sunrise": "Sonnenaufgang",
+            "functions.automations.automation.condition.astrofunction.sunset": "Sonnenuntergang",
+            "functions.automations.automation.condition.astrofunction.offset": "Abweichung (+/- Min.)",
+            "functions.automations.automation.condition.days": "Wochentag",
+            "functions.automations.automation.condition.days.mo": "Mo.",
+            "functions.automations.automation.condition.days.tu": "Di.",
+            "functions.automations.automation.condition.days.we": "Mi.",
+            "functions.automations.automation.condition.days.th": "Do.",
+            "functions.automations.automation.condition.days.fr": "Fr.",
+            "functions.automations.automation.condition.days.sa": "Sa.",
+            "functions.automations.automation.condition.days.su": "So.",
+            "functions.automations.automation.condition.time": "Uhrzeit",
+            "functions.automations.automation.condition.time.hour": "Stunde",
+            "functions.automations.automation.condition.time.minute": "Minute",
+            "functions.automations.automation.condition.devices": "Geräte",
+            "functions.automations.automation.condition.devices.table.place": "Ort",
+            "functions.automations.automation.condition.devices.table.device": "Gerät",
+            "functions.automations.automation.condition.devices.table.operator": "Op.",
+            "functions.automations.automation.condition.devices.table.value": "Wert",
+            "functions.automations.automation.condition.devices.table.delete": "Löschen",
+            "functions.automations.automation.condition.devices.add": "Hinzufügen",
+            "functions.automations.automation.action": "Wirkung",
+            "functions.automations.automation.action.device": "Gerät",
+            "functions.automations.automation.action.profile": "Profil",
+            "functions.automations.automation.save": "Speichern",
+            "functions.automations.automation.delete": "Löschen",
             "settings": "Einstellungen",
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
@@ -432,7 +453,8 @@
         "computer1": "computer_1",
         "controller1": "controller_1",
         "door1": "door_open_1",
-        "door2": "door_open_2",
+        "door2": "door_open_1",
+        "door_open_2": "door_open_1",
         "einstellungen1": "settings_1",
         "fenster1": "window_1",
         "feuerwehr1": "fire_1",
