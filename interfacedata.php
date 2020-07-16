@@ -6,6 +6,7 @@
         "directLoginUser": "",
         "directLoginApiKey": "",
         "setupKey": "",
+        "gdpr": true,
         "homegear": {
             "url": "location.hostname",
             "port": "location.port"
@@ -32,6 +33,8 @@
     },
     "functions": {
         "automations": {
+        },
+        "notifications": {
         }
     },
     "mainmenu": {
@@ -248,6 +251,13 @@
             "functions.automations.automation.action.profile": "Profile",
             "functions.automations.automation.save": "Save",
             "functions.automations.automation.delete": "Delete",
+            "functions.notifications": "Notifications",
+            "functions.notifications.amount": "Amount",
+            "functions.notifications.gdpr.title": "Terms and Conditions",
+            "functions.notifications.gdpr.content": "I agree to the storage and processing of my entered data.",
+            "functions.notifications.gdpr.decline": "Decline",
+            "functions.notifications.gdpr.more": "More information",
+            "functions.notifications.gdpr.accept": "Accept",
             "settings": "Settings",
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
@@ -369,6 +379,13 @@
             "functions.automations.automation.action.profile": "Profil",
             "functions.automations.automation.save": "Speichern",
             "functions.automations.automation.delete": "Löschen",
+            "functions.notifications": "Benachrichtigungen",
+            "functions.notifications.amount": "Anzahl",
+            "functions.notifications.gdpr.title": "AGB",
+            "functions.notifications.gdpr.content": "Ich stimme einer elektronischen Speicherung und Verarbeitung meiner eingegebenen Daten zu.",
+            "functions.notifications.gdpr.decline": "Ablehnen",
+            "functions.notifications.gdpr.more": "Mehr erfahren",
+            "functions.notifications.gdpr.accept": "Zustimmen",
             "settings": "Einstellungen",
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
@@ -637,6 +654,7 @@ function userSettings() {
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
     $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
+    $interfaceData["options"]["gdpr"] = $interfaceData["settings"]["gdpr"];
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");
