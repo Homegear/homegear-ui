@@ -200,6 +200,7 @@ function homegear_init() {
     $house = [
         'devices'      => [],
         'floors'       => [],
+        'functions'    => $interfaceData["functions"],
         'rooms'        => [],
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
@@ -264,7 +265,7 @@ function homegear_init() {
 
             if(isset($value["METADATA"]["ui"]) && isset($value["METADATA"]["ui"]["roleProfileValues"]["options"])){
                 $house['roles'][$value["ID"]]["roleProfileValues"]["options"] = array("dummy" => "toBeRemoved") + $value["METADATA"]["ui"]["roleProfileValues"]["options"];
-                
+
             }
 
             $house['roles'][$value["ID"]]["aggregated"] = $aggregated;
