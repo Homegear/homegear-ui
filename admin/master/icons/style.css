@@ -1,39 +1,24 @@
-.device_icon .active,
-.decive_icon .inactive {
-	float: left;
-	width: 90px;
-    margin-right: 10px;
+.svg_icon {
+    height: inherit;
+	width: inherit;
+}
+
+.svg_icon svg{
+    color: #fff;
+	fill: #fff;
+	width: inherit;
+	height: inherit;
+}
+
+.svg_icon.active svg{
+    color: #e3a104;
+	fill: #e3a104;
 }
 
 .iconArrow {
 	margin-top:15px;
 	float: right;
 	padding-top: 2px;
-
-}
-
-.iconArrowAll{
-	margin-top:25px;
-}
-
-.icon_default{
-    height: 60px;
-	width: 60px;
-}
-
-.device_icon .active svg, .device_icon .inactive svg{
-	height: 60px;
-	width: 60px;
-	fill: #898989;
-}
-
-.device_icon .active .svg_state {
-	display: block;
-    fill: #e3a104;
-}
-
-.device_icon .inactive .svg_state {
-	display: none;
 }
 
 .iconArrow svg {
@@ -42,77 +27,87 @@
 	fill: #898989;
 }
 
+
+
+.device_icon .active,
+.decive_icon .inactive {
+	float: left;
+	width: 90px;
+    margin-right: 10px;
+}
+
+.device_icon .active svg, 
+.device_icon .inactive svg{
+	height: 60px;
+	width: 60px;
+	fill: #898989;
+}
+
 .device_icon .active .svg_icon svg{
     color: #e3a104;
 	fill: #e3a104;
 }
 
-.device_icon svg .window{
-	height: 60px;
-	width: 60px;
+
+
+.svg_icon.light_on_1 .svg_state {
+	display: none;
+}
+
+.svg_icon.light_on_1.active .svg_state {
+	display: block;
+}
+
+
+
+.svg_icon.window_1 svg .window{
+	fill: none;
+	stroke: #fff;
+}
+
+.device_icon .svg_icon.window_1 svg .window{
 	fill: none;
 	stroke: #898989;
 }
 
-.device_icon .window_open {
-	display: block;
-}
-
-.device_icon .window_close {
+.svg_icon.window_1 .window_open {
 	display: none;
 }
 
-.device_icon .active svg .window{
-	height: 60px;
-	width: 60px;
-	fill: none;
+.svg_icon.window_1 .window_close {
+	display: block;
+}
+
+.svg_icon.window_1.active svg .window{
 	stroke: #e3a104;
 }
 
-.device_icon .active .window_open {
+.svg_icon.window_1.active svg .window_open {
 	display: block;
 }
 
-.device_icon .active .window_close {
+.svg_icon.window_1.active svg .window_close {
 	display: none;
 }
 
-.device_icon .inactive .window_open {
+
+
+.svg_icon.door_open_1 .door_open,
+.svg_icon.door_open_2 .door_open {
 	display: none;
 }
 
-.device_icon .inactive .window_close {
+.svg_icon.door_open_1 .door_close,
+.svg_icon.door_open_2 .door_close {
 	display: block;
 }
 
-.device_icon .active .door_open {
+.svg_icon.door_open_1.active .door_open,
+.svg_icon.door_open_2.active .door_open {
 	display: block;
 }
 
-.device_icon .active .door_close {
+.svg_icon.door_open_1.active .door_close,
+.svg_icon.door_open_2.active .door_close {
 	display: none;
-}
-
-.device_icon .inactive .door_open {
-	display: none;
-}
-
-.device_icon .inactive .door_close {
-	display: block;
-}
-
-#mainmenu_alarmanlage svg,
-#mainmenu_alarmanlage .inactive svg{
-	color: #4bff38 !important;
-	fill: #4bff38 !important;
-}
-
-#mainmenu_alarmanlage .active svg{
-	color: #ff3838 !important;
-	fill: #ff3838 !important;
-}
-
-#mainmenu_alarmanlage .warning svg{
-	color: #e3a104 !important;
-	fill: #e3a104 !important;
 }
