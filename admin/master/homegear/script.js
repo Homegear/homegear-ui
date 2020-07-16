@@ -196,6 +196,23 @@ function handle_update_variable_profile_state_changed(resp) {
 
 
 
+function handle_update_notification(resp) {
+    const id   = resp.params[0],
+          type = resp.params[1];
+
+    if (type === 'requestUiRefresh')
+        return handle_update_request_ui_refresh(resp);
+
+    Vue.set(interfaceData.functions.notifications, id, {
+        id: id,
+        title: resp.params[2],
+        content: resp.params[3],
+        buttons: resp.params[4],
+    });
+}
+
+
+
 function homegear_handle_update(resp) {
     console.log(JSON.stringify(resp, null, 4));
 
@@ -203,6 +220,7 @@ function homegear_handle_update(resp) {
         'event': handle_update_event,
         'requestUiRefresh': handle_update_request_ui_refresh,
         'variableProfileStateChanged': handle_update_variable_profile_state_changed,
+        'notification': handle_update_notification,
     };
 
     if (resp.method in funcs)
@@ -231,10 +249,7 @@ function params_create(input, value) {
 
 function homegear_prepare(homegear) {
     homegear.event(homegear_handle_update);
-    homegear.ready(() => {
-        app.$mount('#inhalt');
-        breadcrumbs.$mount('#breadcrumbs');
-    });
+    homegear.ready(mount_interface_with_gdpr);
 
     homegear.invoke_raw = homegear.invoke;
     homegear.invoke = function (op, cb) {
