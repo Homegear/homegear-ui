@@ -381,7 +381,7 @@
             "house.tab.profiles": "Profile",
             "favorites": "Favoriten",
             "functions": "Funktionen",
-            "functions.automations": "Automationen",
+            "functions.automations": "Automatisierungen",
             "functions.automations.new": "Neu",
             "functions.automations.automation.name": "Name",
             "functions.automations.automation.description": "Beschreibung",
