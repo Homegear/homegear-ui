@@ -325,26 +325,20 @@ let router = new VueRouter({
             ],
         },
 
-        { path: '/functions', name: 'functions', component: ShifFunctions, redirect: {name: 'functions.list'},
+        { path: '/notifications', name: 'notifications', component: ShifNotifications, redirect: {name: 'notifications.list'},
             children: [
                 {
-                    name: 'functions.list',
+                    name: 'notifications.list',
                     path: 'list',
-                    component: ShifFunctionsLvl1,
-                    meta: {breadcrumbs: ['functions'], base: true},
+                    component: ShifNotificationsLvl1,
+                    meta: {breadcrumbs: ['notifications'], base: true},
                 },
                 {
-                    name: 'functions.notifications',
-                    path: 'notifications',
-                    components: {small: ShifFunctionsLvl1, big: ShifFunctionsNotifications},
-                    meta: {breadcrumbs: ['functions', 'functions.notifications'],},
-                },
-                {
-                    name: 'functions.notifications.notification',
-                    path: 'notifications/:notification_id',
-                    components: {small: ShifFunctionsNotifications, big: ShifFunctionsNotificationsNotification},
+                    name: 'notifications.notification',
+                    path: ':notification_id',
+                    components: {small: ShifNotificationsLvl1, big: ShifNotificationsNotification},
                     meta: {
-                        breadcrumbs: ['functions', 'functions.notifications', 'functions.notifications.notification'],
+                        breadcrumbs: ['notifications', 'notifications.notification'],
                         cache_ident: {big: {params: ['notification_id']}},
                     },
                     props: {small: false, big: true},
@@ -461,8 +455,8 @@ let breadcrumbs = new Vue({
                 case 'settings.automations.automation':
                     return interfaceData.automations[params.automation_id].name;
 
-                case 'functions.notifications.notification':
-                    return interfaceData.functions.notifications[params.notification_id].title;
+                case 'notifications.notification':
+                    return interfaceData.notifications[params.notification_id].title;
             }
 
             return i18n(route_name);
