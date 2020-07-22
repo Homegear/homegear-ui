@@ -15,13 +15,13 @@ Vue.component('shif-mainmenu', {
         },
 
         notifications_available: function () {
-            return Object.keys(interfaceData.functions.notifications).length;
+            return Object.keys(interfaceData.notifications).length;
         },
     },
 
     methods: {
         badge_wanted: function (cur) {
-            return this.notifications_available > 0 && cur === 'functions';
+            return this.notifications_available > 0 && cur === 'notifications';
         }
     },
 
