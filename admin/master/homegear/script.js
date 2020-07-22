@@ -203,7 +203,7 @@ function handle_update_notification(resp) {
     if (type === 'requestUiRefresh')
         return handle_update_request_ui_refresh(resp);
 
-    Vue.set(interfaceData.functions.notifications, id, {
+    Vue.set(interfaceData.notifications, id, {
         id: id,
         title: resp.params[2],
         content: resp.params[3],
