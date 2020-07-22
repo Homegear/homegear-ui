@@ -200,7 +200,7 @@ function homegear_init() {
     $house = [
         'devices'      => [],
         'floors'       => [],
-        'functions'    => $interfaceData["functions"],
+        'notifications'=> $interfaceData["notifications"],
         'automations'  => $interfaceData["automations"],
         'rooms'        => [],
         'roles'        => [],
