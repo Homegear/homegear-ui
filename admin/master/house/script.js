@@ -509,8 +509,12 @@ let error = new Vue({
         <div id="error">
             <div v-for="msg, i in msgs"
                  class="toast">
-                <button class="toast_close" v-on:click="remove_msg(i)">X</button>
-                <div class="toast_content" v-html="msg"></div>
+                <button v-if="msg.close === true"
+                        class="toast_close"
+                        v-on:click="remove_msg(i)">
+                    X
+                </button>
+                <div class="toast_content" v-html="msg.content"></div>
             </div>
         </div>
     `
