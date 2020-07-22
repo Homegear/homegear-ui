@@ -279,6 +279,28 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']},
                     props: {small: false, big: true},
                 },
+                {
+                    path: 'automations',
+                    name: 'settings.automations',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsAutomations},
+                    meta: {breadcrumbs: ['functions', 'settings.automations'],},
+                },
+                {
+                    path: 'automations/add',
+                    name: 'settings.automations.new',
+                    components: {small: ShifSettingsAutomations, big: ShifSettingsAutomationsForm},
+                    meta: {breadcrumbs: ['settings', 'settings.automations', 'settings.automations.new'],},
+                },
+                {
+                    path: 'automations/edit/:automation_id',
+                    name: 'settings.automations.automation',
+                    components: {small: ShifSettingsAutomations, big: ShifSettingsAutomationsForm},
+                    meta: {
+                        breadcrumbs: ['settings', 'settings.automations', 'settings.automations.automation'],
+                        cache_ident: {big: {params: ['automation_id']}},
+                    },
+                    props: {small: false, big: true},
+                },
             ],
         },
 
@@ -310,28 +332,6 @@ let router = new VueRouter({
                     path: 'list',
                     component: ShifFunctionsLvl1,
                     meta: {breadcrumbs: ['functions'], base: true},
-                },
-                {
-                    name: 'functions.automations',
-                    path: 'automations',
-                    components: {small: ShifFunctionsLvl1, big: ShifFunctionsAutomations},
-                    meta: {breadcrumbs: ['functions', 'functions.automations'],},
-                },
-                {
-                    name: 'functions.automations.new',
-                    path: 'automations/add',
-                    components: {small: ShifFunctionsAutomations, big: ShifFunctionsAutomationsForm},
-                    meta: {breadcrumbs: ['functions', 'functions.automations', 'functions.automations.new'],},
-                },
-                {
-                    name: 'functions.automations.automation',
-                    path: 'automations/edit/:automation_id',
-                    components: {small: ShifFunctionsAutomations, big: ShifFunctionsAutomationsForm},
-                    meta: {
-                        breadcrumbs: ['functions', 'functions.automations', 'functions.automations.automation'],
-                        cache_ident: {big: {params: ['automation_id']}},
-                    },
-                    props: {small: false, big: true},
                 },
                 {
                     name: 'functions.notifications',
@@ -458,8 +458,8 @@ let breadcrumbs = new Vue({
                 case 'settings.profiles.profile':
                     return interfaceData.profiles[params.profile_id].name;
 
-                case 'functions.automations.automation':
-                    return interfaceData.functions.automations[params.automation_id].name;
+                case 'settings.automations.automation':
+                    return interfaceData.automations[params.automation_id].name;
 
                 case 'functions.notifications.notification':
                     return interfaceData.functions.notifications[params.notification_id].title;
