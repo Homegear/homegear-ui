@@ -115,11 +115,6 @@ let gdpr = new Vue({
                 id: 'decline',
             },
             {
-                type: 'warning',
-                content: i18n('notifications.gdpr.more'),
-                id: 'more',
-            },
-            {
                 type: 'success',
                 content: i18n('notifications.gdpr.accept'),
                 id: 'accept',
