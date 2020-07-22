@@ -66,6 +66,7 @@ function clean_json_to_js() {
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
     $interfaceDataOut["floors"] = $interfaceData["floors"];
     $interfaceDataOut["functions"] = $interfaceData["functions"];
+    $interfaceDataOut["automations"] = $interfaceData["automations"];
     $interfaceDataOut["menu"] = $interfaceData["menu"];
     $interfaceDataOut["mainmenu"] = $interfaceData["mainmenu"];
     $interfaceDataOut["themes"] = $interfaceData["themes"];
