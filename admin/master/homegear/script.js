@@ -172,14 +172,17 @@ function date_format() {
 
 
 function handle_update_request_ui_refresh(resp) {
-    error.set(`
-        <div class="toast_text">
-            ${i18n('refresh.message')}
-        </div>
-        <button class="toast_action" onclick="window.location.reload(true)">
-            ${i18n('refresh.message.button.text')}
-        </button>
-    `);
+    error.set({
+        close: false,
+        content: `
+            <div class="toast_text">
+                ${i18n('refresh.message')}
+            </div>
+            <button class="toast_action" onclick="window.location.reload(true)">
+                ${i18n('refresh.message.button.text')}
+            </button>
+        `
+    });
 }
 
 
