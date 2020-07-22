@@ -1939,6 +1939,8 @@ margin-bottom: 30px;
 /* ///////////////////////////////////////////////////////////////////////// */
 
 .notification_message {
+  max-width: 800px;
+  margin: auto;
   background: #191b1f;
 }
 

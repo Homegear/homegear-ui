@@ -33,6 +33,7 @@ if(isset($dummyInterfaceDataJson)) {
     unset($dummyInterfaceData["themes"]);
     unset($dummyInterfaceData["menu"]);
     unset($dummyInterfaceData["mainmenu"]);
+    unset($dummyInterfaceData["manifest"]);
     unset($dummyInterfaceData["options"]);
     $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
 }
