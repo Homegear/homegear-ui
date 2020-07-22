@@ -12,7 +12,7 @@
     "vue-router": "^3.3.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
+    "@babel/core": "^7.10.5",
     "acorn": "^6.4.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
