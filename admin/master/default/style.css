@@ -706,34 +706,6 @@ a.disabled {
   fill: #fff;
 }
 
-.buttonGlobal {
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-  margin: 0px;
-  float: left;
-  margin: 0.5px 0px;
-  padding: 24px 0px;
-  background: #191b1f;
-  border-right: 1px solid #25282e;
-}
-
-.buttonGlobal:last-child {
-  margin-bottom: 15px;
-}
-
-.buttonGlobal:last-child {
-  border-right: 0px;
-}
-
-.buttonGlobal:active, .buttonGlobal.active:active {
-  background: #898989;
-}
-
-.buttonGlobal.active {
-  background: #e3a104;
-}
-
 /* ///////////////////////////////////////////////////////////////////////// */
 
 /* slider */
@@ -816,7 +788,6 @@ a.disabled {
 }
 
 .rad>i {
-  display: inline-block;
   vertical-align: middle;
   width: 60px;
   height: 60px;
@@ -1178,42 +1149,6 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 2px 0;
 }
 
-/* /////////////////////////////////////////////// */
-
-/** SVG Buttons */
-
-/* ////////////////////////////////////////////// */
-
-.svg_slider {
-  z-index: 10000000;
-}
-
-.slide_base {
-  fill: #fff;
-}
-
-.slide_upper {
-  fill: #e3a104;
-}
-
-.slide_btn {
-  fill: #e3a104;
-}
-
-.svg_btn svg {}
-
-.svg_slider svg {
-  /*width: 100%;*/
-}
-
-.svg_slider_color svg {
-  /*width: 100%;*/
-}
-
-.slide_btn_color {
-  fill: rgb(0, 255, 255);
-}
-
 /* ///////////////////////////////////////////////////////////////////////// */
 
 /* */
@@ -1562,10 +1497,6 @@ td {
 
 #profile_icons .profile_icon_wrapper.selected {
   border: 2px solid #e3a104;
-}
-
-#profile_icons .profil_icon_name {
-
 }
 
 #profile_icons .profile_icon {
