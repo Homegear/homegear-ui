@@ -201,6 +201,7 @@ function homegear_init() {
         'devices'      => [],
         'floors'       => [],
         'functions'    => $interfaceData["functions"],
+        'automations'  => $interfaceData["automations"],
         'rooms'        => [],
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
