@@ -42,6 +42,49 @@ const ShifNotificationMessage = {
 
 
 
+Vue.component('shif-notifications-element', {
+    mixins: [mixin_print_mounted()],
+
+    props: {
+        name:        { type: String, required: true, },
+        description: { type: String, },
+        icon:        { type: String, default: 'notification_1'},
+        translate:   { type: Boolean, default: true, },
+    },
+
+    computed: {
+        icon_active_class: function () {
+            return this.icon_active ? 'active' : '';
+        },
+    },
+
+    template: `
+        <div class="button">
+            <shif-icon v-if="icon" classname="button_icon" v-bind:src="icon" />
+            <div class="button_text">
+                <template v-if="description && description.length > 0">
+                    <div class="button_title">{{ translate ? i18n(name) : name }}</div>
+                </template>
+                <template v-else="description && description.length > 0">
+                    <div class="button_title button_no_description">{{ translate ? i18n(name) : name }}</div>
+                </template>
+                <template v-if="description && description.length > 0">
+                    <div class="button_status" style="display:block;">{{ translate ? i18n(description) : description }}</div>
+                </template>
+            </div>
+            <div class="button_action">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
+                    <g id="Ebene_1">
+                        <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    `
+});
+
+
+
 let gdpr = new Vue({
     components: {
         ShifNotificationMessage,
@@ -63,22 +106,22 @@ let gdpr = new Vue({
         // simulates fetching them via an invoke from homegear.
         //
         // TODO: refactor into an invoke once the backed is implemented.
-        this.msg.title   = i18n('functions.notifications.gdpr.title');
-        this.msg.content = i18n('functions.notifications.gdpr.content');
+        this.msg.title   = i18n('notifications.gdpr.title');
+        this.msg.content = i18n('notifications.gdpr.content');
         this.msg.buttons = [
             {
                 type: 'error',
-                content: i18n('functions.notifications.gdpr.decline'),
+                content: i18n('notifications.gdpr.decline'),
                 id: 'decline',
             },
             {
                 type: 'warning',
-                content: i18n('functions.notifications.gdpr.more'),
+                content: i18n('notifications.gdpr.more'),
                 id: 'more',
             },
             {
                 type: 'success',
-                content: i18n('functions.notifications.gdpr.accept'),
+                content: i18n('notifications.gdpr.accept'),
                 id: 'accept',
             },
         ];
@@ -110,8 +153,8 @@ let gdpr = new Vue({
 
 
 
-const ShifFunctionsNotificationsNotification = {
-    mixins: [mixin_print_mounted('shif-functions-notifications')],
+const ShifNotificationsNotification = {
+    mixins: [mixin_print_mounted('shif-notifications-notification')],
 
     components: {
         ShifNotificationMessage,
@@ -123,7 +166,7 @@ const ShifFunctionsNotificationsNotification = {
 
     computed: {
         msg: function () {
-            return interfaceData.functions.notifications[this.notification_id];
+            return interfaceData.notifications[this.notification_id];
         },
     },
 
@@ -136,16 +179,16 @@ const ShifFunctionsNotificationsNotification = {
 
 
 
-const ShifFunctionsNotifications = {
+const ShifNotificationsLvl1 = {
     mixins: [
         mixin_scroll_position,
-        mixin_print_mounted('shif-functions-notifications')
+        mixin_print_mounted('shif-notifications-lvl1')
     ],
 
     methods: {
         link: function (id) {
             return {
-                name: 'functions.notifications.notification',
+                name: 'notifications.notification',
                 params: {
                     notification_id: id,
                 },
@@ -155,15 +198,25 @@ const ShifFunctionsNotifications = {
 
     template: `
         <div>
-            <template v-for="i, key in interfaceData.functions.notifications">
+            <template v-for="i, key in interfaceData.notifications">
                 <router-link v-bind:to="link(key)">
-                    <shif-functions-element v-bind:key="key"
-                                            v-bind:name="i.title"
-                                            v-bind:translate="false"
-                                            icon="notification_1" />
+                    <shif-notifications-element v-bind:key="key"
+                                                v-bind:name="i.title"
+                                                v-bind:translate="false"
+                                                icon="notification_1" />
                 </router-link>
             </template>
         </div>
+    `
+};
+
+
+
+const ShifNotifications = {
+    mixins: [mixin_print_mounted('shif-notifications')],
+
+    template: `
+        <shif-paging id="notifications" />
     `
 };
 
