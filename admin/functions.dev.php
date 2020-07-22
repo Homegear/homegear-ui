@@ -28,6 +28,12 @@ if (file_exists("interfacedata.dummy.php")) {
 }
 if(isset($dummyInterfaceDataJson)) {
     $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
+    unset($dummyInterfaceData["iconFallback"]);
+    unset($dummyInterfaceData["i18n"]);
+    unset($dummyInterfaceData["themes"]);
+    unset($dummyInterfaceData["menu"]);
+    unset($dummyInterfaceData["mainmenu"]);
+    unset($dummyInterfaceData["options"]);
     $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
 }
 
