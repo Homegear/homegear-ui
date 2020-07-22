@@ -31,9 +31,9 @@
             "secondFactorAuthMethods": ["webauthn"]
         }
     },
+    "automations": {
+    },
     "functions": {
-        "automations": {
-        },
         "notifications": {
             "0": {
                 "title": "Es ist ein Homegear Update verfügbar",
