@@ -33,44 +33,42 @@
     },
     "automations": {
     },
-    "functions": {
-        "notifications": {
-            "0": {
-                "title": "Es ist ein Homegear Update verfügbar",
-                "content": "Bitte umgehend installieren!",
-                "buttons": [
-                    {
-                        "id": 1,
-                        "type": "warning",
-                        "content": "jetzt installieren",
-                        "icon": "notification_2"
-                    },
-                    {
-                        "id": 1,
-                        "type": "warning",
-                        "content": "um 2°° Uhr installieren",
-                        "icon": "notification_2"
-                    },
-                    {
-                        "id": 1,
-                        "type": "warning",
-                        "content": "erneut erinnern",
-                        "icon": "notification_2"
-                    }
-                ]
-            },
-            "1": {
-                "title": "UI Reload notwendig",
-                "content": "Bitte umgehend ausführen!",
-                "buttons": [
-                    {
-                        "id": 1,
-                        "type": "warning",
-                        "content": "neu laden",
-                        "icon": "notification_2"
-                    }
-                ]
-            }
+    "notifications": {
+        "0": {
+            "title": "Es ist ein Homegear Update verfügbar",
+            "content": "Bitte umgehend installieren!",
+            "buttons": [
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "jetzt installieren",
+                    "icon": "notification_2"
+                },
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "um 2°° Uhr installieren",
+                    "icon": "notification_2"
+                },
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "erneut erinnern",
+                    "icon": "notification_2"
+                }
+            ]
+        },
+        "1": {
+            "title": "UI Reload notwendig",
+            "content": "Bitte umgehend ausführen!",
+            "buttons": [
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "neu laden",
+                    "icon": "notification_2"
+                }
+            ]
         }
     },
     "mainmenu": {
@@ -102,8 +100,8 @@
             ]
         },
         "2": {
-            "id": "functions",
-            "name": "functions",
+            "id": "notifications",
+            "name": "notifications",
             "icon": "widgets_1"
         },
         "3": {
@@ -258,14 +256,13 @@
             "house.tab.devices": "Devices",
             "house.tab.profiles": "Profiles",
             "favorites": "Favorites",
-            "functions": "Functions",
-            "functions.notifications": "Notifications",
-            "functions.notifications.amount": "Amount",
-            "functions.notifications.gdpr.title": "Terms and Conditions",
-            "functions.notifications.gdpr.content": "I agree to the storage and processing of my entered data.",
-            "functions.notifications.gdpr.decline": "Decline",
-            "functions.notifications.gdpr.more": "More information",
-            "functions.notifications.gdpr.accept": "Accept",
+            "notifications": "Notifications",
+            "notifications.amount": "Amount",
+            "notifications.gdpr.title": "Terms and Conditions",
+            "notifications.gdpr.content": "I agree to the storage and processing of my entered data.",
+            "notifications.gdpr.decline": "Decline",
+            "notifications.gdpr.more": "More information",
+            "notifications.gdpr.accept": "Accept",
             "settings": "Settings",
             "settings.automations": "Automations",
             "settings.automations.description": "Add and delete automations",
