@@ -80,7 +80,7 @@ function status_role(role_id) {
             const invoke_op = {
                 jsonrpc: '2.0',
                 method: 'aggregateRoles',
-                params: [invoke_desc.type, invoke_desc.ids, []],
+                params: [invoke_desc.type, invoke_desc.ids, [], 0, true],
             }
             homegear.invoke(invoke_op, function (res) {
                 /**
