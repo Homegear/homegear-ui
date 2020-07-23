@@ -7,6 +7,12 @@ timer_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -17,6 +23,11 @@ timer_l3.methods.change = function(event) {
 
 timer_l3.template = `
     <form>
+        <router-link v-if="used_by_automations !== false"
+                        v-bind:to="automation_link">
+            <shif-icon src="calendar-time_1" />
+        </router-link>
+
         <div class="timer_wrapper">
             <div>
                 <input type="time" name="time">
