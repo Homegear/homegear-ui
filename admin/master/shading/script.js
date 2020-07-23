@@ -5,6 +5,12 @@ shading_windalarm.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -27,6 +33,12 @@ shading_ventilation_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change"
                      v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -47,6 +59,13 @@ shading_ventilation_l3.template = `
             <shif-checkbox-profiles v-bind:dev="dev"
                                     v-bind:output="output"
                                     v-bind:props="props" />
+        </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
         </template>
     </shif-generic-l2>
 `;
@@ -75,6 +94,13 @@ shading_slider.template = `
                                     v-bind:output="output"
                                     v-bind:props="props" />
         </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-slider>
 `;
 
@@ -97,6 +123,12 @@ shading_buttons_l2.template = `
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -136,6 +168,13 @@ shading_buttons_l3.template = `
             <shif-icon v-bind:src="cond.icon.name"
                         v-bind:active="cond.icon.color">
             </shif-icon>
+
+            <template v-slot:automations>
+                <router-link v-if="used_by_automations !== false"
+                                v-bind:to="automation_link">
+                    <shif-icon src="calendar-time_1" />
+                </router-link>
+            </template>
         </shif-button>
     </div>
 `;
