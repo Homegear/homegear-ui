@@ -380,6 +380,11 @@ Vue.component('shif-slider', {
                      class="checkbox_wrapper">
                     <slot name="profiles" />
                 </div>
+
+                <div v-if="$slots.automations">
+                    <slot name="automations" />
+                </div>
+
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
 
                 <div class="slider_action">
@@ -438,6 +443,11 @@ Vue.component('shif-radio', {
                      class="checkbox_wrapper">
                     <slot name="profiles" />
                 </div>
+
+                <div v-if="$slots.automations">
+                    <slot name="automations" />
+                </div>
+
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_radio">
                     <template v-for="i in values">
@@ -485,6 +495,11 @@ Vue.component('shif-dropdown', {
                      class="checkbox_wrapper">
                     <slot name="profiles" />
                 </div>
+
+                <div v-if="$slots.automations">
+                    <slot name="automations" />
+                </div>
+
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_dropdown">
                     <select v-bind:class="{disabled: disabled.flag}"
@@ -520,7 +535,11 @@ Vue.component('shif-button', {
              v-bind:class="{[classname]: true, disabled: disabled.flag}"
              v-bind:style="{width}"
              v-on:click="(!disabled.flag) && $emit('click', 1)">
-            <slot></slot>
+            <slot />
+
+            <div v-if="$slots.automations">
+                <slot name="automations" />
+            </div>
         </div>
     `,
 });
@@ -642,6 +661,11 @@ Vue.component('shif-colorpicker', {
                      class="checkbox_wrapper">
                     <slot name="profiles" />
                 </div>
+
+                <div v-if="$slots.automations">
+                    <slot name="automations" />
+                </div>
+
                 <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
                 </div>
@@ -744,6 +768,11 @@ Vue.component('shif-generic-l2', {
 
                 <div v-if="$slots.profiles">
                     <slot name="profiles" />
+                </div>
+
+                <div v-if="$slots.automations"
+                     class="device_automation_icon">
+                    <slot name="automations" />
                 </div>
 
                 <div v-on:click.stop="emit('click_icon')">
@@ -930,6 +959,52 @@ const shif_device = {
             return check_disabled_frontend(this.uiElement, this.sibling_idx,
                                            this.$parent.dev_obj_props);
         },
+
+        used_by_automations: function () {
+            // TODO: remove once icon is properly positioned
+            return [0, 3];
+
+            if (interfaceData.map_automation === null ||
+                interfaceData.map_automation === undefined)
+                return false;
+
+            const map = interfaceData.map_automation;
+            if (map[this.device] === undefined)
+                return false;
+
+            const dev = map[this.device];
+            if (dev[this.indexes.control] === undefined)
+                return false;
+
+            const control = dev[this.indexes.control];
+            if (control[this.indexes.input] === undefined)
+                return false;
+
+            const input = control[this.indexes.input];
+            if(input.lenght === 0)
+                return false;
+
+            return input;
+        },
+
+        automation_link: function () {
+            if (this.used_by_automations === false)
+                return {};
+
+            return this.used_by_automations.length === 1
+                    ? {
+                        name: 'settings.automations.automation',
+                        params: {
+                            automation_id: this.used_by_automations,
+                        },
+                      }
+                    : {
+                        name: 'settings.automations.selection',
+                        params: {
+                            automation_ids: this.used_by_automations.join('-'),
+                        },
+                      };
+        }
     },
 };
 
