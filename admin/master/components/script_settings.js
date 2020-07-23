@@ -1282,6 +1282,10 @@ const ShifSettingsAutomations = {
         mixin_print_mounted('shif-settings-automations')
     ],
 
+    props: {
+        automation_ids: {type: String, default: '',},
+    },
+
     methods: {
         link: function (id) {
             return {
@@ -1293,15 +1297,30 @@ const ShifSettingsAutomations = {
         },
     },
 
+    computed: {
+        ids: function () {
+            return this.automation_ids === ''
+                    ? Object.keys(interfaceData.automations)
+                    : this.automation_ids.split('-');
+        },
+
+        elements: function () {
+            return this.ids.map(x => ({
+                key: x,
+                val: interfaceData.automations[x],
+            }));
+        }
+    },
+
     template: `
         <div>
-            <template v-for="i, key in interfaceData.automations">
-                <router-link v-bind:to="link(key)">
-                    <shif-settings-element v-bind:key="key"
-                                            v-bind:description="i.description"
-                                            v-bind:name="i.name"
-                                            v-bind:icon="i.icon"
-                                            v-bind:icon_active="i.enabled"
+            <template v-for="i in elements">
+                <router-link v-bind:to="link(i.key)">
+                    <shif-settings-element v-bind:key="i.key"
+                                            v-bind:description="i.val.description"
+                                            v-bind:name="i.val.name"
+                                            v-bind:icon="i.val.icon"
+                                            v-bind:icon_active="i.val.enabled"
                                             v-bind:translate="false" />
                 </router-link>
             </template>
