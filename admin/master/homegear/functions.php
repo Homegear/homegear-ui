@@ -17,6 +17,8 @@ function homegear_init() {
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
         $hg_profiles = $hg->getAllVariableProfiles($hg_lang);
+        # TODO: insert homegear call
+        $hg_automations = $interfaceData["automations"];
     }
     catch (\Homegear\HomegearException $e) {
         die( $hg->log(2, 'Homegear Exception catched. ' .
@@ -197,11 +199,40 @@ function homegear_init() {
         return $interfaceData["menu"];
     }
 
+    function automations_parse($automations) {
+        $out = [];
+
+        foreach ($automations as $id => $automation) {
+            $out[] = $automation;
+            if (array_key_exists('condition', $automations) ||
+                array_key_exists('devices', $automations['condition']) ||
+                array_key_exists('values', $automations['condition']['devices'])) {
+                foreach ($automations['condition']['devices']['values'] as $dev)
+                    $out[$dev['device_id']][$dev['control']][$dev['input']][] = $id;
+
+                $out[$dev['device_id']][$dev['control']][$dev['input']] =
+                    array_unique($out[$dev['device_id']][$dev['control']][$dev['input']]);
+            }
+
+            if (array_key_exists('action', $automations) &&
+                array_key_exists('device', $automations['action'])) {
+                $dev = $automations['action']['device'];
+
+                $out[$dev['device_id']][$dev['control']][$dev['input']][] = $id;
+                $out[$dev['device_id']][$dev['control']][$dev['input']] =
+                    array_unique($out[$dev['device_id']][$dev['control']][$dev['input']]);
+
+            }
+        }
+
+        return $out;
+    }
+
     $house = [
         'devices'      => [],
         'floors'       => [],
         'notifications'=> $interfaceData["notifications"],
-        'automations'  => $interfaceData["automations"],
+        'automations'  => $hg_automations,
         'rooms'        => [],
         'roles'        => [],
         'mainmenu'     => mainmenu_parse(),
@@ -290,6 +321,7 @@ function homegear_init() {
     house_build_back_refs($house);
 
     $house["map_invoke"] = $map_invoke;
+    $house["map_automation"] = automations_parse($hg_automations);
 
     return $house;
 }
