@@ -1284,6 +1284,34 @@ td {
   fill: #898989;
 }
 
+.device_wrapper .device_automation_icon {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50px;
+  vertical-align: middle;
+  margin: auto;
+  padding: 0 0 0 0;
+  z-index: 9;
+}
+
+.device_wrapper .device_automation_icon svg {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  fill: #898989;
+}
+
 .device_wrapper .device_text {
   width: calc( 100% - 220px);
   vertical-align: middle;
