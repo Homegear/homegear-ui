@@ -149,8 +149,6 @@ function handle_update_event(resp) {
             .variableInputs[input.input].properties.value = value;
 
         states_flag_dirty(roles_relevant(input.roles).map(x => x.id))
-        // for (const role of roles_relevant(input.roles))
-            // app.$root.$emit('role-update', role.id);
     }
 }
 
