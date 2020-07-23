@@ -964,11 +964,11 @@ const shif_device = {
             // TODO: remove once icon is properly positioned
             return [0, 3];
 
-            if (interfaceData.map_automation === null ||
-                interfaceData.map_automation === undefined)
+            if (interfaceData.map_automation === undefined ||
+                interfaceData.map_automation.devices === undefined)
                 return false;
 
-            const map = interfaceData.map_automation;
+            const map = interfaceData.map_automation.devices;
             if (map[this.device] === undefined)
                 return false;
 
