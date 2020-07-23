@@ -45,6 +45,12 @@
                         {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":5}
                     ]
                 }
+            },
+            "action": {
+                "profile": {
+                    "enabled": true,
+                    "profile_id": "10"
+                }
             }
         },
         "1": {
@@ -69,6 +75,12 @@
                         {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":4},
                         {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":5}
                     ]
+                }
+            },
+            "action": {
+                "profile": {
+                    "enabled": true,
+                    "profile_id": "10"
                 }
             }
         }
