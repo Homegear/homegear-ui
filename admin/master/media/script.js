@@ -11,6 +11,13 @@ media_buttons_l2.template = `
         <template v-slot:favorites>
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -51,6 +58,13 @@ media_buttons_l3.template = `
                         v-bind:active="cond.icon.color">
             </shif-icon>
         </shif-button>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </div>
 `;
 
