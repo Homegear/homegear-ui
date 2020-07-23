@@ -200,28 +200,39 @@ function homegear_init() {
     }
 
     function automations_parse($automations) {
-        $out = [];
+        function add_to_map(&$map, $dev, $id) {
+            $map[$dev['device_id']]
+                [$dev['control']]
+                [$dev['input']]
+                [] = $id;
+
+            $map[$dev['device_id']]
+                [$dev['control']]
+                [$dev['input']] = array_unique($map[$dev['device_id']]
+                                                   [$dev['control']]
+                                                   [$dev['input']]);
+        }
+
+        $out = [
+            'devices'  => [],
+            'profiles' => [],
+        ];
 
         foreach ($automations as $id => $automation) {
-            $out[] = $automation;
-            if (array_key_exists('condition', $automations) ||
-                array_key_exists('devices', $automations['condition']) ||
-                array_key_exists('values', $automations['condition']['devices'])) {
+            if (array_key_exists('condition', $automations) &&
+                array_key_exists('devices', $automations['condition']) &&
+                array_key_exists('values', $automations['condition']['devices']))
                 foreach ($automations['condition']['devices']['values'] as $dev)
-                    $out[$dev['device_id']][$dev['control']][$dev['input']][] = $id;
-
-                $out[$dev['device_id']][$dev['control']][$dev['input']] =
-                    array_unique($out[$dev['device_id']][$dev['control']][$dev['input']]);
-            }
+                    add_to_map($out['devices'], $dev);
 
             if (array_key_exists('action', $automations) &&
-                array_key_exists('device', $automations['action'])) {
-                $dev = $automations['action']['device'];
+                array_key_exists('device', $automations['action']))
+                add_to_map($out['devices'], $automations['action']['device']);
 
-                $out[$dev['device_id']][$dev['control']][$dev['input']][] = $id;
-                $out[$dev['device_id']][$dev['control']][$dev['input']] =
-                    array_unique($out[$dev['device_id']][$dev['control']][$dev['input']]);
-
+            if (array_key_exists('action', $automations) &&
+                array_key_exists('profile', $automations['action'])) {
+                $out['profile']['profile_id'][] = $id;
+                $out['profile']['profile_id'] = array_unique($out['profile']['profile_id']);
             }
         }
 
