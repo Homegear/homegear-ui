@@ -32,6 +32,46 @@
         }
     },
     "automations": {
+        "0": {
+            "name": "Automatisierung 1",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1",
+            "condition": {
+                "devices": {
+                    "enabled": true,
+                    "values": [
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":3},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":4},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":5}
+                    ]
+                }
+            }
+        },
+        "1": {
+            "name": "Automatisierung 2",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1"
+        },
+        "2": {
+            "name": "Automatisierung 3",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1"
+        },
+        "3": {
+            "name": "Automatisierung 4",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1",
+            "condition": {
+                "devices": {
+                    "enabled": true,
+                    "values": [
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":3},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":4},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":5}
+                    ]
+                }
+            }
+        }
     },
     "notifications": {
         "0": {
@@ -267,6 +307,7 @@
             "settings.automations": "Automations",
             "settings.automations.description": "Add and delete automations",
             "settings.automations.new": "New",
+            "settings.automations.selection": "Selection",
             "settings.automations.automation.name": "Name",
             "settings.automations.automation.description": "Description",
             "settings.automations.automation.state": "Enabled",
@@ -397,6 +438,7 @@
             "settings.automations": "Automatisierungen",
             "settings.automations.new": "Neu",
             "settings.automations.description": "Automatisierungen erstellen oder löschen",
+            "settings.automations.selection": "Auswahl",
             "settings.automations.automation.name": "Name",
             "settings.automations.automation.description": "Beschreibung",
             "settings.automations.automation.state": "Aktiviert",
