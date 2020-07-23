@@ -454,6 +454,33 @@ const mixin_profiles = {
                     return cb(result);
             });
         },
+
+        profile_used_by_automations: function (id) {
+            return interfaceData.map_automation.profiles[id] === undefined
+                    ? false
+                    : interfaceData.map_automation.profiles[id];
+        },
+
+        profile_automation_link: function (id) {
+            const used_by_automations = this.profile_used_by_automations(id);
+
+            if (used_by_automations === false)
+                return {};
+
+            return used_by_automations.length === 1
+                    ? {
+                        name: 'settings.automations.automation',
+                        params: {
+                            automation_id: used_by_automations,
+                        },
+                      }
+                    : {
+                        name: 'settings.automations.selection',
+                        params: {
+                            automation_ids: used_by_automations.join('-'),
+                        },
+                      };
+        }
     },
 };
 
@@ -594,6 +621,12 @@ Vue.component('shif-house-collected-entries', {
                                      v-bind:status="i18n('modemenu.profiles.name.label')"
                                      v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                      v-on:click="profile_start(i)">
+                        <template v-slot:automations>
+                            <router-link v-if="profile_used_by_automations(i.id) !== false"
+                                         v-bind:to="profile_automation_link(i.id)">
+                                <shif-icon src="calendar-time_1" />
+                            </router-link>
+                        </template>
                     </shif-generic-l2>
                 </template>
             </div>
