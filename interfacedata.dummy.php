@@ -20836,11 +20836,9 @@
             ]
         }
     },
-    "functions": {
-        "automations": {
-        },
-        "notifications": {
-        }
+    "automations": {
+    },
+    "notifications": {
     },
     "rooms": {
         "1": {
@@ -24467,6 +24465,13 @@
             },
             "de-DE": {
                 "name": "Deutsch"
+            }
+        }
+    },
+    "map_automation": {
+        "52": {
+            "0": {
+                "0": [0, 3]
             }
         }
     },
