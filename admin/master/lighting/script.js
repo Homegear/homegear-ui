@@ -19,6 +19,12 @@ lighting_switch_l2.template = `
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -44,6 +50,12 @@ lighting_switch_l3.template = `
                                     v-bind:props="props" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -71,6 +83,13 @@ lighting_brightness.template = `
                                     v-bind:output="output"
                                     v-bind:props="props" />
         </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-slider>
 `;
 
@@ -87,6 +106,12 @@ lighting_button_l2.template = `
                      v-bind:status="status"
                      v-bind:place="place"
                      v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -102,6 +127,12 @@ lighting_button_l3.template = `
                      v-bind:place="place"
                      v-on:mousedown="change($event, true)"
                      v-on:mouseup="change($event, false)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -118,6 +149,12 @@ lighting_color_l2.template = `
                      v-bind:status="status"
                      v-bind:place="place"
                      v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -139,6 +176,12 @@ lighting_color_l3.template = `
                                     v-bind:props="props" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-colorpicker>
 `;
 
@@ -156,6 +199,12 @@ lighting_function_l2.template = `
                      v-bind:actions="true"
                      v-bind:status="status"
                      v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -179,6 +228,13 @@ lighting_function_l3.template = `
             <shif-checkbox-profiles v-bind:dev="dev"
                                     v-bind:output="output"
                                     v-bind:props="props" />
+        </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
         </template>
     </shif-dropdown>
 `;
