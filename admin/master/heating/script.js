@@ -14,6 +14,12 @@ heating_slider_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change"
                      v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 let heating_slider_l3 = clone(shif_device);
@@ -36,6 +42,13 @@ heating_slider_l3.template = `
                                     v-bind:output="output"
                                     v-bind:props="props" />
         </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-slider>
 `;
 
@@ -57,6 +70,12 @@ heating_is_state_l2.template = `
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 let heating_is_state_l3 = clone(shif_device);
@@ -66,6 +85,12 @@ heating_is_state_l3.template = `
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
                      v-bind:status="status"
                      v-bind:place="place">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -95,6 +120,13 @@ heating_mode_l3.template = `
                                     v-bind:output="output"
                                     v-bind:props="props" />
         </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-radio>
 `;
 
@@ -109,6 +141,12 @@ heating_window.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
