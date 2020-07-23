@@ -316,6 +316,16 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['functions', 'settings.automations'],},
                 },
                 {
+                    path: 'automations/selection/:automation_ids',
+                    name: 'settings.automations.selection',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsAutomations},
+                    meta: {
+                        breadcrumbs: ['functions', 'settings.automations', 'settings.automations.selection'],
+                        cache_ident: {big: {params: ['automation_ids']}},
+                    },
+                    props: {small: false, big: true},
+                },
+                {
                     path: 'automations/add',
                     name: 'settings.automations.new',
                     components: {small: ShifSettingsAutomations, big: ShifSettingsAutomationsForm},
