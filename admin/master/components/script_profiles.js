@@ -9,6 +9,12 @@ let ShifProfilesGlobal = {
                                      v-bind:title="i.name"
                                      v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                      v-on:click="profile_start(i)">
+                        <template v-slot:automations>
+                            <router-link v-if="profile_used_by_automations(i.id) !== false"
+                                         v-bind:to="profile_automation_link(i.id)">
+                                <shif-icon src="calendar-time_1" />
+                            </router-link>
+                        </template>
                     </shif-generic-l2>
                 </template>
             </div>
