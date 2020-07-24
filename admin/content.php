@@ -125,11 +125,11 @@ echo '</script>';
   <div id="gdpr">
   </div>
 
-  <div id="breadcrumbs_wrapper">
-    <div id="breadcrumbs"></div>
+  <div id="breadcrumbs">
   </div>
 
-  <div id="inhalt"></div>
+  <div id="inhalt">
+  </div>
 
 <?php
   if (file_exists("icons.js")) {
