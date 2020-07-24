@@ -128,8 +128,10 @@ let gdpr = new Vue({
     methods: {
         on_click: function (btn_id) {
             this.initialized = false;
+
+            interface_show();
+
             this.$nextTick(() => {
-                mount_interface();
                 this.$destroy();
             });
         },
@@ -219,9 +221,7 @@ const ShifNotifications = {
 
 
 
-function mount_interface_with_gdpr() {
-    if (interfaceData.options.gdpr)
-        gdpr.$mount('#gdpr');
-    else
-        mount_interface();
+function interface_mount_with_gdpr() {
+    gdpr.$mount('#gdpr');
+    interface_mount(false);
 }
