@@ -743,6 +743,16 @@ Vue.component('shif-generic-l2', {
             this.$off('click_icon', this.$listeners.click);
     },
 
+    inject: {
+        layer: 'layer',
+    },
+
+    computed: {
+        device_control_wrapper: function () {
+            return this.layer > 2 ? 'control_wrapper' : 'device_wrapper';
+        },
+    },
+
     methods: {
         emit: function (key, val) {
             if (this.disabled.flag)
@@ -756,8 +766,7 @@ Vue.component('shif-generic-l2', {
     },
 
     template: `
-        <div class="device_wrapper"
-             v-bind:class="{disabled: disabled.flag}"
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]"
              v-on:mousedown="emit('mousedown')"
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
