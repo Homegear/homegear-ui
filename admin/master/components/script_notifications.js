@@ -86,6 +86,8 @@ Vue.component('shif-notifications-element', {
 
 
 let gdpr = new Vue({
+    name: 'GDPR',
+
     components: {
         ShifNotificationMessage,
     },
