@@ -360,6 +360,8 @@ let router = new VueRouter({
 
 
 let app = new Vue({
+    name: 'App',
+
     data: {
         debug: false,
 
@@ -396,6 +398,8 @@ let app = new Vue({
 
 
 let breadcrumbs = new Vue({
+    name: 'Breadcrumbs',
+
     router: router,
 
     computed:  {
@@ -485,6 +489,7 @@ let breadcrumbs = new Vue({
 
 
 let error = new Vue({
+    name: 'Error',
     el: '#error',
 
     data: {
