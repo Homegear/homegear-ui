@@ -373,6 +373,8 @@ let app = new Vue({
             enabled: false,
             active:  null,
         },
+
+        show: false,
     },
 
     // Hack: decrease .content height when modemenu is enabled.
@@ -386,7 +388,9 @@ let app = new Vue({
     router: router,
 
     template: `
-        <div id="inhalt" v-bind:class="{'modemenu-visible': modemenu_show}">
+        <div v-show="show"
+             id="inhalt"
+             v-bind:class="{'modemenu-visible': modemenu_show}">
             <router-view />
 
             <shif-modemenu />
@@ -401,6 +405,10 @@ let breadcrumbs = new Vue({
     name: 'Breadcrumbs',
 
     router: router,
+
+    data: {
+        show: false,
+    },
 
     computed:  {
         routes_with_proper_names: function () {
@@ -468,19 +476,22 @@ let breadcrumbs = new Vue({
     },
 
     template: `
-        <div id="breadcrumbs">
-            <template>
-                <shif-icon id="back" src="arrow_left_1"
-                           v-bind:style="{visibility: back_wanted ? 'visible' : 'hidden'}"
-                           v-on:click="$router.back()"/>
-            </template>
-            <div id="breadcrumb_wrapper">
-                <template v-for="i in routes_with_proper_names">
-                    <router-link v-bind:to="{name: i.link}"
-                                 v-bind:disabled="i.disabled"
-                                 v-bind:class="{disabled: i.disabled}"
-                                 >{{ i.name }}</router-link>
+        <div v-show="show"
+             id="breadcrumbs_wrapper">
+            <div id="breadcrumbs">
+                <template>
+                    <shif-icon id="back" src="arrow_left_1"
+                               v-bind:style="{visibility: back_wanted ? 'visible' : 'hidden'}"
+                               v-on:click="$router.back()"/>
                 </template>
+                <div id="breadcrumb_wrapper">
+                    <template v-for="i in routes_with_proper_names">
+                        <router-link v-bind:to="{name: i.link}"
+                                     v-bind:disabled="i.disabled"
+                                     v-bind:class="{disabled: i.disabled}"
+                                     >{{ i.name }}</router-link>
+                    </template>
+                </div>
             </div>
         </div>
     `
@@ -527,8 +538,17 @@ let error = new Vue({
 
 
 
-function mount_interface() {
-    // gdpr.$mount("#gdpr");
+function interface_mount(show=true) {
     app.$mount('#inhalt');
     breadcrumbs.$mount('#breadcrumbs');
+
+    if (show)
+        interface_show();
+}
+
+
+
+function interface_show() {
+    app.show = true;
+    breadcrumbs.show = true;
 }
