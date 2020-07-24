@@ -252,7 +252,7 @@ function params_create(input, value) {
 
 function homegear_prepare(homegear) {
     homegear.event(homegear_handle_update);
-    homegear.ready(mount_interface_with_gdpr);
+    homegear.ready(interfaceData.options.gdpr ? interface_mount_with_gdpr : interface_mount);
 
     homegear.invoke_raw = homegear.invoke;
     homegear.invoke = function (op, cb) {
