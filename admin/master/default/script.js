@@ -376,17 +376,16 @@ Vue.component('shif-slider', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device slider">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
-
-                <div v-if="$slots.automations">
-                    <slot name="automations" />
-                </div>
-
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
-
                 <div class="slider_action">
                     <div class="amount">
                         <p>{{ value_formatted }} {{ unit }}</p>
@@ -439,13 +438,15 @@ Vue.component('shif-radio', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
-                </div>
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
 
-                <div v-if="$slots.automations">
-                    <slot name="automations" />
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
 
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
@@ -491,15 +492,15 @@ Vue.component('shif-dropdown', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
-
-                <div v-if="$slots.automations">
-                    <slot name="automations" />
-                </div>
-
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_dropdown">
                     <select v-bind:class="{disabled: disabled.flag}"
@@ -536,9 +537,10 @@ Vue.component('shif-button', {
              v-bind:style="{width}"
              v-on:click="(!disabled.flag) && $emit('click', 1)">
             <slot />
-
-            <div v-if="$slots.automations">
-                <slot name="automations" />
+            <div class="checkbox_wrapper">
+                <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                    <slot name="automations" />
+                </div>
             </div>
         </div>
     `,
@@ -657,15 +659,15 @@ Vue.component('shif-colorpicker', {
     template: `
         <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device color">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
-
-                <div v-if="$slots.automations">
-                    <slot name="automations" />
-                </div>
-
                 <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
                 </div>
@@ -760,19 +762,19 @@ Vue.component('shif-generic-l2', {
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.favorites"
+                        class="checkbox_favorites_wrapper">
+                        <slot name="favorites" />
+                    </div>
 
-                <div v-if="$slots.favorites"
-                     class="checkbox_right_50">
-                    <slot name="favorites" />
-                </div>
+                    <div v-if="$slots.profiles" class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
 
-                <div v-if="$slots.profiles">
-                    <slot name="profiles" />
-                </div>
-
-                <div v-if="$slots.automations"
-                     class="device_automation_icon">
-                    <slot name="automations" />
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
 
                 <div v-on:click.stop="emit('click_icon')">

@@ -780,7 +780,7 @@ Vue.component('shif-checkbox-favorites', {
         },
         classname: {
             type: String,
-            default: 'checkbox_right_50',
+            default: 'checkbox_favorites',
         },
     },
 

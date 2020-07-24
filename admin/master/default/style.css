@@ -811,15 +811,6 @@ a.disabled {
   box-shadow: inset 0 0 0 2px #fff;
 }
 
-.checkbox_wrapper {
-  position: relative;
-}
-
-.checkbox_wrapper .check {
-  top: 16px;
-  right: 0;
-}
-
 /* The check */
 .check {
   display: block;
@@ -838,7 +829,7 @@ a.disabled {
   bottom: 0;
   right: 0px;
 }
-.checkbox_right_50 .check,
+
 .accordion .check {
   right: 50px;
 }
@@ -1284,31 +1275,53 @@ td {
   fill: #898989;
 }
 
-.device_wrapper .device_automation_icon {
-  width: 70px;
-  height: 70px;
-  text-align: center;
+.device_wrapper .checkbox_wrapper {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  height: 70px;
+  width: inherit;
   right: 50px;
-  vertical-align: middle;
+  top: 0;
   margin: auto;
-  padding: 0 0 0 0;
+  bottom: 0;
+}
+
+.device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper {
+  float: right;
+  position: relative;
   z-index: 9;
 }
 
-.device_wrapper .device_automation_icon svg {
+.device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper > div > div {
+  width: 70px;
+  height: 70px;
+}
+
+.device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper {
+  float: right;
+  position: relative;
+  z-index: 9;
+}
+
+.device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper > div > div {
+  width: 70px;
+  height: 70px;
+}
+
+.device_wrapper .checkbox_wrapper .checkbox_automation_wrapper {
+  float: right;
+  position: relative;
+  z-index: 9;
+  top: 5px;
+}
+
+.device_wrapper .checkbox_wrapper .checkbox_automation_wrapper > div {
+  width: 70px;
+  height: 70px;
+}
+
+.device_wrapper .checkbox_wrapper .checkbox_automation_wrapper svg {
   width: 60px;
   height: 60px;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
   fill: #898989;
 }
 
