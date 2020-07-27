@@ -550,7 +550,6 @@ a.disabled {
 .accordion_arrow_rotated {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
-  margin-top: 16px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -1114,7 +1113,8 @@ input[type=range]:focus::-ms-fill-upper {
   margin-top: -25px;
 }
 
-.categoryContainer .deviceContainer, .categoryContainer .device_wrapper {
+.categoryContainer .deviceContainer, 
+.categoryContainer .device_wrapper {
   padding-left: 35px;
 }
 
@@ -1225,6 +1225,7 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
+.control_wrapper .device,
 .device_wrapper .device {
   width: 100%;
   background: transparent;
@@ -1240,6 +1241,7 @@ td {
   margin: 0px;
 }
 
+.control_wrapper .device_icon,
 .device_wrapper .device_icon {
   width: 70px;
   height: 70px;
@@ -1253,6 +1255,7 @@ td {
   padding: 0 0 0 0;
 }
 
+.control_wrapper .device_icon svg,
 .device_wrapper .device_icon svg {
   width: 60px;
   height: 60px;
@@ -1267,11 +1270,15 @@ td {
   fill: #898989;
 }
 
+.control_wrapper .device_icon .active svg,
 .device_wrapper .device_icon .active svg {
   fill: #e3a104;
 }
 
-.device_wrapper .device_icon svg:active, .device_wrapper .device_icon svg:focus {
+.device_wrapper .device_icon svg:active, 
+.control_wrapper .device_icon svg:active, 
+.control_wrapper .device_icon svg:focus,
+.device_wrapper .device_icon svg:focus {
   fill: #898989;
 }
 
@@ -1285,28 +1292,43 @@ td {
   bottom: 0;
 }
 
+.control_wrapper .checkbox_wrapper {
+  position: absolute;
+  height: 70px;
+  width: inherit;
+  right: 0px;
+  top: 10px;
+  margin: auto;
+
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper {
   float: right;
   position: relative;
   z-index: 9;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper > div > div,
 .device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper > div > div {
   width: 70px;
   height: 70px;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper {
   float: right;
   position: relative;
   z-index: 9;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper > div > div,
 .device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper > div > div {
   width: 70px;
   height: 70px;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_automation_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_automation_wrapper {
   float: right;
   position: relative;
@@ -1314,17 +1336,20 @@ td {
   top: 5px;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_automation_wrapper > div,
 .device_wrapper .checkbox_wrapper .checkbox_automation_wrapper > div {
   width: 70px;
   height: 70px;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_automation_wrapper svg,
 .device_wrapper .checkbox_wrapper .checkbox_automation_wrapper svg {
   width: 60px;
   height: 60px;
   fill: #898989;
 }
 
+.control_wrapper .device_text,
 .device_wrapper .device_text {
   width: calc( 100% - 220px);
   vertical-align: middle;
@@ -1334,6 +1359,7 @@ td {
   padding: 0px;
 }
 
+.control_wrapper .device_title,
 .device_wrapper .device_title {
   font-size: 28px;
   line-height: 28px;
@@ -1341,12 +1367,14 @@ td {
   text-align: left;
 }
 
+.control_wrapper .device_location,
 .device_wrapper .device_location {
   font-size: 22px;
   line-height: 22px;
   margin-bottom: 8px;
 }
 
+.control_wrapper .device_status,
 .device_wrapper .device_status {
   color: #898989;
   font-size: 24px;
@@ -1354,14 +1382,17 @@ td {
   text-align: left;
 }
 
+.control_wrapper .device_status.active,
 .device_wrapper .device_status.active {
   color: #e3a104;
 }
 
+.control_wrapper .device_status .device_status_entry,
 .device_wrapper .device_status .device_status_entry {
   white-space: nowrap;
 }
 
+.control_wrapper .device_status .device_status_entry .name,
 .device_wrapper .device_status .device_status_entry .name {
   color: #898989;
   display: inline-block;
@@ -1370,21 +1401,25 @@ td {
 }
 
 
+.control_wrapper .device_status .device_status_entry .value,
 .device_wrapper .device_status .device_status_entry .value {
   display: inline-block;
   white-space: normal;
 }
 
+.control_wrapper .device_status .device_status_entry::after,
 .device_wrapper .device_status .device_status_entry::after {
   content: " | ";
   color: #191b1f;
   white-space: normal;
 }
 
+.control_wrapper .device_status .device_status_entry:last-child::after,
 .device_wrapper .device_status .device_status_entry:last-child::after {
   content: unset;
 }
 
+.control_wrapper .device_slider,
 .device_wrapper .device_slider {
   display: block;
   clear: both;
@@ -1392,6 +1427,7 @@ td {
   margin: 10px 0;
 }
 
+.control_wrapper .device_radio,
 .device_wrapper .device_radio {
   display: block;
   clear: both;
@@ -1399,10 +1435,12 @@ td {
   margin-top: 25px;
 }
 
-.svg_slider svg, .svg_slider_color svg {
+.svg_slider svg, 
+.svg_slider_color svg {
   overflow: visible;
 }
 
+.control_wrapper .device_action,
 .device_wrapper .device_action {
   position: absolute;
   top: 0;
@@ -1413,6 +1451,7 @@ td {
   margin: auto;
 }
 
+.control_wrapper .device_action>div,
 .device_wrapper .device_action>div {
   width: 39px;
   height: 39px;
@@ -1430,6 +1469,7 @@ td {
   transition: .4s ease-in-out;
 }
 
+.control_wrapper .device_action svg,
 .device_wrapper .device_action svg {
   width: 39px;
   height: 39px;
@@ -1624,11 +1664,6 @@ margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid #898989;
   position: relative;
-}
-
-.form-group .device_wrapper .device{
-  border-bottom: 0px solid #898989;
-  padding: 0px;
 }
 
 .form-group .label {
