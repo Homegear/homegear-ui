@@ -1302,6 +1302,7 @@ td {
 
 }
 
+
 .control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper {
   float: right;
@@ -1492,6 +1493,15 @@ td {
   clear: both;
   width: 100%;
   margin: 10px 0;
+}
+
+.control_button_wrapper .checkbox_wrapper {
+  position: absolute;
+  height: 70px;
+  right: 60px;
+  top: 0;
+  margin: auto;
+  bottom: 0;
 }
 
 .control_button {
