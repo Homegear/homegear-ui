@@ -245,6 +245,22 @@ function clone(obj) {
 
 
 
+// Mixins {{{
+const mixin_device_control_wrapper = {
+    inject: {
+        layer: 'layer',
+    },
+
+    computed: {
+        device_control_wrapper: function () {
+            return this.layer > 2 ? 'control_wrapper' : 'device_wrapper';
+        },
+    },
+}
+// }}}
+
+
+
 // Utils {{{
 Vue.component('TODO', {
     abstract: true,
@@ -350,6 +366,8 @@ Vue.component('shif-icon', {
 
 
 Vue.component('shif-slider', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         min:   Number,
         max:   Number,
@@ -374,7 +392,7 @@ Vue.component('shif-slider', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device slider">
                 <div class="checkbox_wrapper">
                     <div v-if="$slots.profiles"
@@ -419,6 +437,8 @@ Vue.component('shif-slider', {
 
 
 Vue.component('shif-radio', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         title:     String,
         classname: String,
@@ -436,7 +456,7 @@ Vue.component('shif-radio', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device">
                 <div class="checkbox_wrapper">
                     <div v-if="$slots.profiles"
@@ -472,6 +492,8 @@ Vue.component('shif-radio', {
 
 
 Vue.component('shif-dropdown', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         title:     String,
         classname: String,
@@ -490,7 +512,7 @@ Vue.component('shif-dropdown', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device">
                 <div class="checkbox_wrapper">
                     <div v-if="$slots.profiles"
@@ -549,6 +571,8 @@ Vue.component('shif-button', {
 
 
 Vue.component('shif-colorpicker', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         width:  { type: [Number, Object], required: true, },
         height: { type: [Number, Object], required: true, },
@@ -657,7 +681,7 @@ Vue.component('shif-colorpicker', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device color">
                 <div class="checkbox_wrapper">
                     <div v-if="$slots.profiles"
@@ -701,6 +725,8 @@ Vue.component('shif-checkbox', {
 
 // Generic l2 {{{
 Vue.component('shif-generic-l2', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         icon:        String,
         place:       String,
@@ -741,16 +767,6 @@ Vue.component('shif-generic-l2', {
     beforeDestroy: function () {
         if (this.click_icon_patched)
             this.$off('click_icon', this.$listeners.click);
-    },
-
-    inject: {
-        layer: 'layer',
-    },
-
-    computed: {
-        device_control_wrapper: function () {
-            return this.layer > 2 ? 'control_wrapper' : 'device_wrapper';
-        },
     },
 
     methods: {
