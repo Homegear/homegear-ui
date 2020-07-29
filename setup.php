@@ -211,6 +211,21 @@
             }
         }
 
+        if(isset($_GET["deleteUIEhard"]) && $_GET["deleteUIEhard"] != ""){
+            for($i = 0; $i <= $_GET["deleteUIEhard"]; $i++){
+                try {
+                    $allInterfaceData["removeUiElementHard"][$i] = $hg->removeUiElement($i);
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["removeUiElementHard"][$i]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                            "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
+            }
+        }
+
         if(isset($_GET["createUIE"])){
             foreach($oldInterfaceData["uiElements"] as $value){
                 try {
@@ -688,6 +703,7 @@
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUIE', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getUIE', outputResult)" class="adminButton">list</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIE', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIEhard=200', outputResult)" class="adminButton">delete hard</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getAvailableUIE', outputResult)" class="adminButton">list available</div>
 
         <h4>User</h4>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<homegearUiElements lang="en-US">
+<homegearUiElements lang="de-DE">
 	<homegearUiElement>
-		<id>Base.shadingAwningButtonsPositionWindalarm</id>
-		<control>shadingAwningButtonsPositionWindalarm</control>
+		<id>Base.shadingAwningButtonsPositionWindalarmRainalarm</id>
+		<control>shadingAwningButtonsPositionWindalarmRainalarm</control>
 		<type>complex</type>
 		<role>502000</role>
 		<texts>
@@ -53,6 +53,22 @@
 				<y>1</y>
 				<columns>1</columns>
 				<rows>1</rows>
+				<metadata>
+					<texts>
+						<title>Wind alarm</title>
+					</texts>
+				</metadata>
+			</control>
+			<control id="Base.shadingRainalarm">
+				<x>0</x>
+				<y>1</y>
+				<columns>1</columns>
+				<rows>1</rows>
+				<metadata>
+					<texts>
+						<title>Rain alarm</title>
+					</texts>
+				</metadata>
 			</control>
 		</controls>
 		<metadata>

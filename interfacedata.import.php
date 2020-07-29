@@ -314,8 +314,7 @@
             "value": 0
         }
     ],
-    "roles": [
-    ],
+    "roles": [],
     "roles2var": [
         {
             "deviceId": 0,
@@ -435,7 +434,10 @@
             "deviceId": 17,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [600000,600004]
+            "roleId": [
+                600000,
+                600004
+            ]
         },
         {
             "deviceId": 18,
@@ -453,7 +455,10 @@
             "deviceId": 18,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [501000,501004]
+            "roleId": [
+                501000,
+                501004
+            ]
         },
         {
             "deviceId": 19,
@@ -471,7 +476,10 @@
             "deviceId": 19,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [501000,501004]
+            "roleId": [
+                501000,
+                501004
+            ]
         },
         {
             "deviceId": 20,
@@ -489,7 +497,10 @@
             "deviceId": 20,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [600000,600004]
+            "roleId": [
+                600000,
+                600004
+            ]
         },
         {
             "deviceId": 21,
@@ -507,7 +518,10 @@
             "deviceId": 21,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [501000,501004]
+            "roleId": [
+                501000,
+                501004
+            ]
         },
         {
             "deviceId": 22,
@@ -525,7 +539,10 @@
             "deviceId": 22,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [501000,501004]
+            "roleId": [
+                501000,
+                501004
+            ]
         },
         {
             "deviceId": 23,
@@ -543,7 +560,10 @@
             "deviceId": 23,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [501000,501004]
+            "roleId": [
+                501000,
+                501004
+            ]
         },
         {
             "deviceId": 24,
@@ -561,7 +581,10 @@
             "deviceId": 24,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [501000,501004]
+            "roleId": [
+                501000,
+                501004
+            ]
         },
         {
             "deviceId": 25,
@@ -579,7 +602,10 @@
             "deviceId": 25,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [502000,502004]
+            "roleId": [
+                502000,
+                502004
+            ]
         },
         {
             "deviceId": 26,
@@ -597,7 +623,10 @@
             "deviceId": 26,
             "channel": 1,
             "varName": "LEVEL",
-            "roleId": [502000,502004]
+            "roleId": [
+                502000,
+                502004
+            ]
         },
         {
             "deviceId": 60,
@@ -676,7 +705,10 @@
             "deviceId": 78,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": [201000, 201003]
+            "roleId": [
+                201000,
+                201003
+            ]
         },
         {
             "deviceId": 79,
@@ -694,7 +726,10 @@
             "deviceId": 79,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": [201000, 201003]
+            "roleId": [
+                201000,
+                201003
+            ]
         },
         {
             "deviceId": 80,
@@ -712,7 +747,10 @@
             "deviceId": 80,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": [201000, 201003]
+            "roleId": [
+                201000,
+                201003
+            ]
         },
         {
             "deviceId": 81,
@@ -730,7 +768,10 @@
             "deviceId": 81,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": [201000, 201003]
+            "roleId": [
+                201000,
+                201003
+            ]
         },
         {
             "deviceId": 82,
@@ -748,7 +789,10 @@
             "deviceId": 82,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": [201000, 201003]
+            "roleId": [
+                201000,
+                201003
+            ]
         },
         {
             "deviceId": 83,
@@ -766,7 +810,10 @@
             "deviceId": 83,
             "channel": 1,
             "varName": "CONTROL_MODE",
-            "roleId": [201000, 201003]
+            "roleId": [
+                201000,
+                201003
+            ]
         },
         {
             "deviceId": 84,
@@ -827,8 +874,7 @@
                 "id": 1,
                 "icon": "power_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -836,8 +882,7 @@
                         "value": false
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -849,8 +894,7 @@
                 "id": 2,
                 "icon": "thermometer_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -858,8 +902,7 @@
                         "value": 0
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -871,8 +914,7 @@
                 "id": 3,
                 "icon": "thermometer_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -880,8 +922,7 @@
                         "value": 1
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -893,8 +934,7 @@
                 "id": 4,
                 "icon": "thermometer_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -902,8 +942,7 @@
                         "value": 2
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -915,8 +954,7 @@
                 "id": 5,
                 "icon": "power_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -924,8 +962,7 @@
                         "value": false
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -937,8 +974,7 @@
                 "id": 7,
                 "icon": "arrow_up_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -946,8 +982,7 @@
                         "value": true
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -959,8 +994,7 @@
                 "id": 6,
                 "icon": "arrow_down_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -968,8 +1002,7 @@
                         "value": false
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -981,8 +1014,7 @@
                 "id": 9,
                 "icon": "arrow_up_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -990,8 +1022,7 @@
                         "value": true
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -1003,8 +1034,7 @@
                 "id": 8,
                 "icon": "arrow_down_1",
                 "editable": false,
-                "locations": [
-                ],
+                "locations": [],
                 "global": false,
                 "roles": [
                     {
@@ -1012,8 +1042,7 @@
                         "value": false
                     }
                 ],
-                "values": [
-                ]
+                "values": []
             }
         ],
         [
@@ -1101,8 +1130,7 @@
                 "id": 12,
                 "icon": "statistic_1",
                 "global": true,
-                "locations": [
-                ],
+                "locations": [],
                 "values": [
                     {
                         "peerId": 6,
@@ -1134,8 +1162,7 @@
                 "id": 13,
                 "icon": "statistic_1",
                 "global": true,
-                "locations": [
-                ],
+                "locations": [],
                 "values": [
                     {
                         "peerId": 9,
@@ -1765,7 +1792,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "WINDALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "1": true,
@@ -1914,7 +1945,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "RAINALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "__dummy__": false
@@ -1991,7 +2026,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "RAINALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "__dummy__": false
@@ -2159,7 +2198,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "RAINALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "1": true,
@@ -2277,7 +2320,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "WINDALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "1": true,
@@ -2382,7 +2429,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "WINDALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "1": true,
@@ -2472,6 +2523,99 @@
             }
         ],
         [
+            "Base.shadingAwningButtonsPositionWindalarmRainalarm",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "LEVEL"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "LEVEL"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "label": "Markise Wohnen Alarmtest",
+                "room": 7
+            }
+        ],
+        [
             "Base.shadingAwningButtonsPositionWindalarm",
             {
                 "inputPeers": [
@@ -2547,53 +2691,7 @@
                     ]
                 ],
                 "label": "Markise Wohnen",
-                "room": 7,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [ "0", "-1", "WINDALARM" ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Windalarm"
-                                },
-                                "en-US": {
-                                    "title": "Windalarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        },
-                        {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 7
             }
         ],
         [
@@ -2662,7 +2760,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "0", "-1", "WINDALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "WINDALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "1": true,
@@ -2683,7 +2785,11 @@
                             }
                         },
                         {
-                            "trigger": [ "0", "-1", "RAINALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "RAINALARM"
+                            ],
                             "disable": {
                                 "0": true,
                                 "1": true,
@@ -2775,7 +2881,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "60", "1", "STATE" ],
+                            "trigger": [
+                                "60",
+                                "1",
+                                "STATE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "2": true,
@@ -2796,7 +2906,11 @@
                             }
                         },
                         {
-                            "trigger": [ "78", "1", "CONTROL_MODE" ],
+                            "trigger": [
+                                "78",
+                                "1",
+                                "CONTROL_MODE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
@@ -2892,7 +3006,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "79", "1", "CONTROL_MODE" ],
+                            "trigger": [
+                                "79",
+                                "1",
+                                "CONTROL_MODE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
@@ -2912,7 +3030,11 @@
                             }
                         },
                         {
-                            "trigger": [ "0", "-1", "WINDOWALARM" ],
+                            "trigger": [
+                                "0",
+                                "-1",
+                                "WINDOWALARM"
+                            ],
                             "disable": {
                                 "1": true,
                                 "2": true,
@@ -2990,7 +3112,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "80", "1", "CONTROL_MODE" ],
+                            "trigger": [
+                                "80",
+                                "1",
+                                "CONTROL_MODE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
@@ -3067,7 +3193,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "81", "1", "CONTROL_MODE" ],
+                            "trigger": [
+                                "81",
+                                "1",
+                                "CONTROL_MODE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
@@ -3158,7 +3288,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "82", "1", "CONTROL_MODE" ],
+                            "trigger": [
+                                "82",
+                                "1",
+                                "CONTROL_MODE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
@@ -3178,7 +3312,11 @@
                             }
                         },
                         {
-                            "trigger": [ "87", "1", "STATE" ],
+                            "trigger": [
+                                "87",
+                                "1",
+                                "STATE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "2": true,
@@ -3256,7 +3394,11 @@
                 "metadata": {
                     "event_hooks": [
                         {
-                            "trigger": [ "83", "1", "CONTROL_MODE" ],
+                            "trigger": [
+                                "83",
+                                "1",
+                                "CONTROL_MODE"
+                            ],
                             "disable": {
                                 "1": true,
                                 "__dummy__": false
@@ -3539,7 +3681,6 @@
                 }
             }
         ],
-
         [
             "Base.doorHandle",
             {

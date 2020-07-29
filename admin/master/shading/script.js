@@ -9,6 +9,7 @@ shading_windalarm.template = `
 `;
 
 shif_comps_create('shadingWindalarm', shading_windalarm, shading_windalarm);
+shif_comps_create('shadingRainalarm', shading_windalarm, shading_windalarm);
 
 
 

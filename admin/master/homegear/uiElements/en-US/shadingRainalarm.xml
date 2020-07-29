@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<homegearUiElements lang="de-DE">
+<homegearUiElements lang="en-US">
 	<homegearUiElement>
-		<uniqueUiElementId>Base.shadingWindalarm</uniqueUiElementId>
-		<control>shadingWindalarm</control>
+		<uniqueUiElementId>Base.shadingRainalarm</uniqueUiElementId>
+		<control>shadingRainalarm</control>
 		<type>simple</type>
 		<role>500000</role>
 		<texts>
@@ -11,13 +11,13 @@
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Windalarm</content>
+				<content>Rainalarm</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>windhose_1</name>
+				<name>weather_1</name>
 				<color>inactive</color>
 			</icon>
 			<icon id="l3">
@@ -36,28 +36,28 @@
 					<condition operator="not" value="0">
 						<icons>
 							<icon id="state">
-								<name>windhose_1</name>
+								<name>weather_1</name>
 								<color>active</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>an</content>
-								<color>aktiv</color>
+								<content>on</content>
+								<color>active</color>
 							</text>
 						</texts>
 					</condition>
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
-								<name>windhose_1</name>
+								<name>weather_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
 						<texts>
 							<text id="state">
-								<content>aus</content>
-								<color>inaktiv</color>
+								<content>off</content>
+								<color>inactive</color>
 							</text>
 						</texts>
 					</condition>
