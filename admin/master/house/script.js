@@ -388,7 +388,7 @@ let app = new Vue({
     router: router,
 
     template: `
-        <div v-show="show"
+        <div v-if="show"
              id="inhalt"
              v-bind:class="{'modemenu-visible': modemenu_show}">
             <router-view />
@@ -476,7 +476,7 @@ let breadcrumbs = new Vue({
     },
 
     template: `
-        <div v-show="show"
+        <div v-if="show"
              id="breadcrumbs_wrapper">
             <div id="breadcrumbs">
                 <template>
