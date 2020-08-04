@@ -139,6 +139,6 @@ shading_buttons_l3.template = `
     </div>
 `;
 
-shif_comps_create('shadingButtons', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
-shif_comps_create('shadingButtonsSingleStep', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
-shif_comps_create('shadingButtonsUpDown', shading_buttons_l2, shading_buttons_l3, shading_buttons_l3);
+shif_comps_create('shadingButtons', shading_buttons_l2, shading_buttons_l3);
+shif_comps_create('shadingButtonsSingleStep', shading_buttons_l2, shading_buttons_l3);
+shif_comps_create('shadingButtonsUpDown', shading_buttons_l2, shading_buttons_l3);
