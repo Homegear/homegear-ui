@@ -2,8 +2,8 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.shadingButtons</uniqueUiElementId>
-		<type>simple</type>
 		<control>shadingButtons</control>
+		<type>simple</type>
 		<role>501000</role>
 		<texts>
 			<text id="title">
@@ -18,12 +18,12 @@
 		<icons>
 			<icon id="l2">
 				<name>blind_1</name>
-                <color>inactive</color>
+				<color>inactive</color>
 			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
+			<icon id="l3">
+				<name>arrow_right_1</name>
+				<color>iconArrow</color>
+			</icon>
 		</icons>
 		<variableInputs>
 			<variable>
@@ -158,5 +158,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+			<l3_force>true</l3_force>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>
