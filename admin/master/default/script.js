@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // globale Variablen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-var controlComponents = {};
 var logFrontend = '';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // write console logs to setting/about/nameClick/log page
@@ -899,10 +898,8 @@ const shif_device = {
 function shif_comps_create(name, l2, l3) {
     const shif_name = 'shif-' + name + '-';
 
-    controlComponents[name] = {
-        l2: Vue.component(shif_name + 'l2', l2),
-        l3: Vue.component(shif_name + 'l3', l3),
-    };
+    Vue.component(shif_name + 'l2', l2);
+    Vue.component(shif_name + 'l3', l3);
 }
 // }}}
 
