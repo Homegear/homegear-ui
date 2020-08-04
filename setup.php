@@ -104,7 +104,7 @@
             $oldInterfaceData = json_decode($importInterfaceDataJson, true);
         }
         else {
-            die('{"error": "No importInterfaceDataJson set!"}');
+            $allInterfaceData["importInterfaceData"]["error"] = "No interfacedata.import.php file found or customImportInterfaceDataJson var set!";
         }
 
         $allInterfaceData = array();
