@@ -129,8 +129,8 @@
     "systemVariables": [
         {
             "name": "LAST_DATA",
-            "type": "unix_date",
-            "value": 1574254478
+            "type": "date",
+            "value": "01.08.2020"
         },
         {
             "name": "CITY",
@@ -150,12 +150,12 @@
         {
             "name": "SUNRISE_STRING",
             "type": "string",
-            "value": "05.01:34"
+            "value": "05:01:34"
         },
         {
             "name": "SUNSET_STRING",
             "type": "string",
-            "value": "20.01:34"
+            "value": "20:01:34"
         },
         {
             "name": "WEATHER",
@@ -1787,38 +1787,8 @@
                         }
                     ]
                 ],
-                "label": "Rollladen Test",
-                "room": 6,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "WINDALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "2": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Windalarm"
-                                },
-                                "en-US": {
-                                    "title": "Windalarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "label": "Rollladen",
+                "room": 6
             }
         ],
         [
@@ -1941,35 +1911,7 @@
                     ]
                 ],
                 "label": "Dachflächenfenster",
-                "room": 3,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "RAINALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 3
             }
         ],
         [
@@ -2022,35 +1964,7 @@
                     ]
                 ],
                 "label": "Dachflächenfenster Rainalarm",
-                "room": 3,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "RAINALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 3
             }
         ],
         [
@@ -2194,36 +2108,7 @@
                     ]
                 ],
                 "label": "Fenstermotor Rainalarm",
-                "room": 2,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "RAINALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 2
             }
         ],
         [
@@ -2316,37 +2201,7 @@
                     ]
                 ],
                 "label": "Rollladen links",
-                "room": 9,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "WINDALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "2": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Windalarm"
-                                },
-                                "en-US": {
-                                    "title": "Windalarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 9
             }
         ],
         [
@@ -2425,36 +2280,7 @@
                     ]
                 ],
                 "label": "Rollladen rechts",
-                "room": 9,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "WINDALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Windalarm"
-                                },
-                                "en-US": {
-                                    "title": "Windalarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 9
             }
         ],
         [
@@ -2695,6 +2521,136 @@
             }
         ],
         [
+            "Base.shadingAwningButtonsPositionRainalarm",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "LEVEL"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "LEVEL"
+                        }
+                    ],
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAINALARM"
+                        }
+                    ]
+                ],
+                "label": "Markise Wohnen",
+                "room": 7
+            }
+        ],
+        [
+            "Base.shadingButtons",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "UP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "STOP",
+                            "value": true
+                        },
+                        {
+                            "peer": 25,
+                            "channel": 1,
+                            "name": "DOWN",
+                            "value": true
+                        }
+                    ]
+                ],
+                "label": "shadingButtons",
+                "room": 13
+            }
+        ],
+        [
             "Base.shadingAwningButtonsPosition",
             {
                 "inputPeers": [
@@ -2756,61 +2712,7 @@
                     ]
                 ],
                 "label": "Markise Essen",
-                "room": 7,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "WINDALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Windalarm"
-                                },
-                                "en-US": {
-                                    "title": "Windalarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        },
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "RAINALARM"
-                            ],
-                            "disable": {
-                                "0": true,
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Regenalarm"
-                                },
-                                "en-US": {
-                                    "title": "Rain alarm"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "room": 7
             }
         ],
         [
@@ -2876,61 +2778,8 @@
                         }
                     ]
                 ],
-                "label": "Heizung",
+                "label": "Heizung WindowHandle",
                 "room": 3,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "60",
-                                "1",
-                                "STATE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "2": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Fenster offen"
-                                },
-                                "en-US": {
-                                    "title": "Window opened"
-                                }
-                            },
-                            "condition": {
-                                "operator": "g",
-                                "value": 0
-                            }
-                        },
-                        {
-                            "trigger": [
-                                "78",
-                                "1",
-                                "CONTROL_MODE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Frostschutz"
-                                },
-                                "en-US": {
-                                    "title": "Frost"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        }
-                    ]
-                },
                 "dynamicMetadata": {
                     "favorites": {
                         "state": true
@@ -3001,61 +2850,8 @@
                         }
                     ]
                 ],
-                "label": "Heizung",
-                "room": 6,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "79",
-                                "1",
-                                "CONTROL_MODE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Frostschutz"
-                                },
-                                "en-US": {
-                                    "title": "Frost"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        },
-                        {
-                            "trigger": [
-                                "0",
-                                "-1",
-                                "WINDOWALARM"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "2": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Fenster offen"
-                                },
-                                "en-US": {
-                                    "title": "Window opened"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": true
-                            }
-                        }
-                    ]
-                }
+                "label": "Heizung Windowalarm",
+                "room": 6
             }
         ],
         [
@@ -3108,35 +2904,7 @@
                     ]
                 ],
                 "label": "Heizung",
-                "room": 2,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "80",
-                                "1",
-                                "CONTROL_MODE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Frostschutz"
-                                },
-                                "en-US": {
-                                    "title": "Frost"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        }
-                    ]
-                }
+                "room": 2
             }
         ],
         [
@@ -3189,35 +2957,7 @@
                     ]
                 ],
                 "label": "Heizung",
-                "room": 9,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "81",
-                                "1",
-                                "CONTROL_MODE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Frostschutz"
-                                },
-                                "en-US": {
-                                    "title": "Frost"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        }
-                    ]
-                }
+                "room": 9
             }
         ],
         [
@@ -3283,61 +3023,8 @@
                         }
                     ]
                 ],
-                "label": "Heizung",
-                "room": 12,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "82",
-                                "1",
-                                "CONTROL_MODE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Frostschutz"
-                                },
-                                "en-US": {
-                                    "title": "Frost"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        },
-                        {
-                            "trigger": [
-                                "87",
-                                "1",
-                                "STATE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "2": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Fenster offen"
-                                },
-                                "en-US": {
-                                    "title": "Window opened"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        }
-                    ]
-                }
+                "label": "Heizung WindowContact",
+                "room": 12
             }
         ],
         [
@@ -3390,35 +3077,7 @@
                     ]
                 ],
                 "label": "Heizung",
-                "room": 5,
-                "metadata": {
-                    "event_hooks": [
-                        {
-                            "trigger": [
-                                "83",
-                                "1",
-                                "CONTROL_MODE"
-                            ],
-                            "disable": {
-                                "1": true,
-                                "__dummy__": false
-                            },
-                            "icon": "warning_1",
-                            "translations": {
-                                "de-DE": {
-                                    "title": "Frostschutz"
-                                },
-                                "en-US": {
-                                    "title": "Frost"
-                                }
-                            },
-                            "condition": {
-                                "operator": "e",
-                                "value": 0
-                            }
-                        }
-                    ]
-                }
+                "room": 5
             }
         ],
         [
