@@ -3517,28 +3517,6 @@
             },
             "label": "Rollladen Test",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true,
-                            true,
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDALARM"
-                        ],
-                        "texts": {
-                            "title": "Windalarm"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -4043,26 +4021,6 @@
             },
             "label": "Dachfl\u00e4chenfenster",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "RAINALARM"
-                        ],
-                        "texts": {
-                            "title": "Regenalarm"
-                        }
-                    }
-                ],
                 "l3_force": true
             },
             "role": 600000,
@@ -4612,26 +4570,6 @@
             },
             "label": "Dachfl\u00e4chenfenster Rainalarm",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "RAINALARM"
-                        ],
-                        "texts": {
-                            "title": "Regenalarm"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -5566,27 +5504,6 @@
             },
             "label": "Fenstermotor Rainalarm",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true,
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "RAINALARM"
-                        ],
-                        "texts": {
-                            "title": "Regenalarm"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -6228,28 +6145,6 @@
             },
             "label": "Rollladen links",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true,
-                            true,
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDALARM"
-                        ],
-                        "texts": {
-                            "title": "Windalarm"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -6795,27 +6690,6 @@
             },
             "label": "Rollladen rechts",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true,
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDALARM"
-                        ],
-                        "texts": {
-                            "title": "Windalarm"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -8908,46 +8782,6 @@
             },
             "label": "Markise Essen",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true,
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDALARM"
-                        ],
-                        "texts": {
-                            "title": "Windalarm"
-                        }
-                    },
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": [
-                            true,
-                            true
-                        ],
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "RAINALARM"
-                        ],
-                        "texts": {
-                            "title": "Regenalarm"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -9509,47 +9343,6 @@
             },
             "label": "Heizung",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "g",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "2": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "60",
-                            "1",
-                            "STATE"
-                        ],
-                        "texts": {
-                            "title": "Fenster offen"
-                        }
-                    },
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "78",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -10025,47 +9818,6 @@
             },
             "label": "Heizung",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "79",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    },
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": true
-                        },
-                        "disable": {
-                            "1": true,
-                            "2": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "0",
-                            "-1",
-                            "WINDOWALARM"
-                        ],
-                        "texts": {
-                            "title": "Fenster offen"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -10445,27 +10197,6 @@
             },
             "label": "Heizung",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "80",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -10845,27 +10576,6 @@
             },
             "label": "Heizung",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "81",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -11381,47 +11091,6 @@
             },
             "label": "Heizung",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "82",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    },
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "2": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "87",
-                            "1",
-                            "STATE"
-                        ],
-                        "texts": {
-                            "title": "Fenster offen"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
@@ -11801,27 +11470,6 @@
             },
             "label": "Heizung",
             "metadata": {
-                "event_hooks": [
-                    {
-                        "condition": {
-                            "operator": "e",
-                            "value": 0
-                        },
-                        "disable": {
-                            "1": true,
-                            "__dummy__": false
-                        },
-                        "icon": "warning_1",
-                        "trigger": [
-                            "83",
-                            "1",
-                            "CONTROL_MODE"
-                        ],
-                        "texts": {
-                            "title": "Frostschutz"
-                        }
-                    }
-                ],
                 "l2_action": {
                     "control": 0,
                     "input": 0
