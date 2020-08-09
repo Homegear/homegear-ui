@@ -1,4 +1,10 @@
 {
+    "_args": [
+        [
+            "@homegear\/homegearws@1.0.11",
+            "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface"
+        ]
+    ],
     "_from": "@homegear\/homegearws@1.0.11",
     "_id": "@homegear\/homegearws@1.0.11",
     "_inBundle": false,
@@ -17,12 +23,10 @@
         "fetchSpec": "1.0.11"
     },
     "_requiredBy": [
-        "#USER",
         "\/"
     ],
     "_resolved": "https:\/\/registry.npmjs.org\/@homegear\/homegearws\/-\/homegearws-1.0.11.tgz",
-    "_shasum": "e2c8e2ebd656b750a6f2822634fda2ae8f4b70e2",
-    "_spec": "@homegear\/homegearws@1.0.11",
+    "_spec": "1.0.11",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "Homegear GmbH"
@@ -30,8 +34,6 @@
     "bugs": {
         "url": "https:\/\/github.com\/Homegear\/HomegearWS\/issues"
     },
-    "bundleDependencies": false,
-    "deprecated": false,
     "description": "HomegearWS is a JavaScript class to communicate with Homegear bidirectionally using WebSockets.",
     "homepage": "https:\/\/github.com\/Homegear\/HomegearWS",
     "keywords": [
