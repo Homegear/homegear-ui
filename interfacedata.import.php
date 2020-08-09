@@ -1195,7 +1195,7 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "LIGHT"
+                            "name": "RAINALARM"
                         }
                     ]
                 ],
@@ -1204,12 +1204,72 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "LIGHT"
+                            "name": "RAINALARM"
                         }
                     ]
                 ],
-                "label": "Licht SystemVar",
-                "room": 3,
+                "label": "Regenalarm Helper",
+                "room": 13,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
+            }
+        ],
+        [
+            "Base.lightingSwitch",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDALARM"
+                        }
+                    ]
+                ],
+                "label": "Windalarm Helper",
+                "room": 13,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
+            }
+        ],
+        [
+            "Base.lightingSwitch",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWALARM"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWALARM"
+                        }
+                    ]
+                ],
+                "label": "Fensteralarm Helper",
+                "room": 13,
                 "dynamicMetadata": {
                     "favorites": {
                         "state": true
