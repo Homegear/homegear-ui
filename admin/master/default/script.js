@@ -988,9 +988,6 @@ const shif_device = {
         },
 
         used_by_automations: function () {
-            // TODO: remove once icon is properly positioned
-            return [0, 3];
-
             if (interfaceData.map_automation === undefined ||
                 interfaceData.map_automation.devices === undefined)
                 return false;
