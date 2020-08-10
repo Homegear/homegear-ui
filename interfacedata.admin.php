@@ -3,6 +3,9 @@
 {
     "admin": {
         "settings": {
+            "srcPath":"/admin",
+            "masterPath":"/admin/master",
+            "distPath": "/dist",
             "extensions": {
                 "homegear": {
                     "activated": true,
