@@ -6,7 +6,7 @@
         "directLoginUser": "",
         "directLoginApiKey": "",
         "setupKey": "",
-        "gdpr": true,
+        "gdpr": false,
         "homegear": {
             "url": "location.hostname",
             "port": "location.port"
