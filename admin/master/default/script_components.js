@@ -538,6 +538,7 @@ Vue.component('shif-house-collected-entries', {
     provide: function () {
         return {
             layer: this.layer,
+            siblings: this.dev_objs,
         };
     },
 
@@ -570,6 +571,10 @@ Vue.component('shif-house-collected-entries', {
             throw 'Not implemented';
         },
 
+        dev_obj_props: function () {
+            return this.dev_objs.map(x => x.props);
+        },
+
         profiles: function () {
             if (this.layer !== 2)
                 return [];
@@ -593,8 +598,9 @@ Vue.component('shif-house-collected-entries', {
                 </template>
             </div>
 
-            <template v-for="dev in dev_objs">
+            <template v-for="(dev, idx) in dev_objs">
                 <component v-bind="dev"
+                           v-bind:sibling_idx="idx"
                            v-bind:include_place="include_place" />
 
                 <template v-if="$root.debug">
