@@ -1,6 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 let window_rainalarm = clone(shif_device);
 window_rainalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
@@ -19,9 +16,8 @@ window_rainalarm.template = `
 
 shif_comps_create('windowRainalarm', window_rainalarm, window_rainalarm);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 let window_status = clone(shif_device);
 window_status.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
@@ -154,6 +150,11 @@ window_slider.template = `
                  v-bind:disabled="disabled"
                  v-on:change="change"
                  v-model:value="props.value">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
         <template v-slot:automations>
             <router-link v-if="used_by_automations !== false"
                          v-bind:to="automation_link">
