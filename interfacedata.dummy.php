@@ -20837,8 +20837,96 @@
         }
     },
     "automations": {
+        "0": {
+            "name": "Automatisierung 1",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1",
+            "condition": {
+                "devices": {
+                    "enabled": true,
+                    "values": [
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":3},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":4},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":5}
+                    ]
+                }
+            },
+            "action": {
+                "profile": {
+                    "enabled": true,
+                    "profile_id": "10"
+                }
+            }
+        },
+        "1": {
+            "name": "Automatisierung 2",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1"
+        },
+        "2": {
+            "name": "Automatisierung 3",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1"
+        },
+        "3": {
+            "name": "Automatisierung 4",
+            "description": "Das ist eine Automatisierung",
+            "icon": "calendar-time_1",
+            "condition": {
+                "devices": {
+                    "enabled": true,
+                    "values": [
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":3},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":4},
+                        {"floor_id":"1","room_id":"9","device_id":"52","control":0,"input":0,"operator":"eq","value":5}
+                    ]
+                }
+            },
+            "action": {
+                "profile": {
+                    "enabled": true,
+                    "profile_id": "10"
+                }
+            }
+        }
     },
     "notifications": {
+        "0": {
+            "title": "Es ist ein Homegear Update verfügbar",
+            "content": "Bitte umgehend installieren!",
+            "buttons": [
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "jetzt installieren",
+                    "icon": "notification_2"
+                },
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "um 2°° Uhr installieren",
+                    "icon": "notification_2"
+                },
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "erneut erinnern",
+                    "icon": "notification_2"
+                }
+            ]
+        },
+        "1": {
+            "title": "UI Reload notwendig",
+            "content": "Bitte umgehend ausführen!",
+            "buttons": [
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "content": "neu laden",
+                    "icon": "notification_2"
+                }
+            ]
+        }
     },
     "rooms": {
         "1": {
