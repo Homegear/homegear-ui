@@ -122,6 +122,14 @@ Vue.mixin({
 
     methods: {
         level3: function (device, name) {
+            function first_in_or(obj, or) {
+                if (obj === undefined ||
+                    Array.isArray(obj) === false ||
+                    obj.length === 0)
+                    return or;
+                return obj[0];
+            }
+
             const matched = this.$route.matched.map(x => x.name);
             const last    = matched[matched.length - 1]
 
@@ -137,25 +145,27 @@ Vue.mixin({
             }
 
             if (matched.indexOf('house.tab.devices') !== -1) {
+                const dev = interfaceData.devices[device];
                 // TODO: verify that there is always at least a room and a floor
                 return this.$router.push({
                     name: `${last}.device`,
                     params: {
                         role_id:   this.role_id,
-                        floor_id:  interfaceData.devices[device].floors[0],
-                        room_id:   interfaceData.devices[device].rooms[0],
+                        floor_id:  first_in_or(dev.floors, -1),
+                        room_id:   first_in_or(dev.rooms, -1),
                         device_id: device,
                     },
                 });
             }
 
             if (matched.indexOf('favorites.list') !== -1) {
+                const dev = interfaceData.devices[device];
                 // TODO: verify that there is always at least a room and a floor
                 return this.$router.push({
                     name: 'favorites.device',
                     params: {
-                        floor_id: interfaceData.devices[device].floors[0],
-                        room_id:  interfaceData.devices[device].rooms[0],
+                        floor_id: first_in_or(dev.floors, -1),
+                        room_id:  first_in_or(dev.rooms, -1),
                         device_id: device,
                     },
                 });
@@ -487,11 +497,17 @@ let breadcrumbs = new Vue({
                     : interfaceData.floors[params.floor_id].name + ' - ';
             }
 
+            function room() {
+                return Number(params.room_id) === -1
+                    ? i18n('house.storyless')
+                    : interfaceData.rooms[params.room_id].name;
+            }
+
             const params  = this.$route.params;
 
             switch (route_name) {
                 case 'house.tab.rooms.room':
-                    return floor() + interfaceData.rooms[params.room_id].name;
+                    return floor() + room();
 
                 case 'house.tab.rooms.room.device':
                 case 'house.tab.devices.device':
