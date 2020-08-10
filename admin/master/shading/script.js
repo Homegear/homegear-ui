@@ -143,3 +143,122 @@ shading_buttons_l3.template = `
 shif_comps_create('shadingButtons', shading_buttons_l2, shading_buttons_l3);
 shif_comps_create('shadingButtonsSingleStep', shading_buttons_l2, shading_buttons_l3);
 shif_comps_create('shadingButtonsUpDown', shading_buttons_l2, shading_buttons_l3);
+
+
+
+shif_register_disable_hooks({
+    'Base.shadingButtonsSingleStepPositionPositionSlatsWindalarm': [
+        {
+            condition: {
+                index: 6,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3, 4, 5],
+            reason: 'Windalarm',
+        },
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.shadingButtonsPositionPositionSlatsRainalarm': [
+        {
+            condition: {
+                index: 0,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3, 4],
+            reason: 'Rainalarm',
+        },
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.shadingButtonsPositionVentilationWindalarm': [
+        {
+            condition: {
+                index: 5,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3, 4],
+            reason: 'Windalarm',
+        },
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.shadingButtonsPositionWindalarm': [
+        {
+            condition: {
+                index: 4,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Windalarm',
+        },
+    ],
+});
+
+
+shif_register_disable_hooks({
+    'Base.shadingAwningButtonsPositionRainalarm': [
+        {
+            condition: {
+                index: 5,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Disabled',
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'eq',
+                value: 1
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Rainalarm'
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.shadingAwningButtonsPositionWindalarm': [
+        {
+            condition: {
+                index: 4,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Windalarm'
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.shadingAwningButtonsPositionWindalarmRainalarm': [
+        {
+            condition: {
+                index: 4,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Windalarm',
+        },
+        {
+            condition: {
+                index: 5,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Rainalarm',
+        }
+    ],
+});
