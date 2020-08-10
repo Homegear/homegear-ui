@@ -24,8 +24,10 @@
             "viewportScale": 0.65,
             "scrollbarScale": 4,
             "disabledMainmenus": {
+                "notifications": true
             },
             "disabledMenus": {
+                "settings.automations": true
             },
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
