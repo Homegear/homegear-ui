@@ -113,3 +113,88 @@ heating_window.template = `
 `;
 
 shif_comps_create('heatingWindow', heating_window, heating_window);
+
+
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderMode': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost',
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderModeWindow': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost'
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'gt',
+                value: 0
+            },
+            disable: [1, 2],
+            reason: 'Window',
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderModeWindowHandle': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost'
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'gt',
+                value: 0
+            },
+            disable: [1, 2],
+            reason: 'Window',
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderModeWindowContact': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost'
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'gt',
+                value: 0
+            },
+            disable: [1, 2],
+            reason: 'Window',
+        }
+    ],
+});
