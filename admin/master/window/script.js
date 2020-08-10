@@ -127,3 +127,33 @@ window_slider.template = `
 `;
 
 shif_comps_create('windowPosition',      window_buttons_l2, window_slider);
+
+
+
+shif_register_disable_hooks({
+    'Base.windowButtonsUpDownRainalarm': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1],
+            reason: 'Rainalarm',
+        },
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.windowButtonsPositionRainalarm': [
+        {
+            condition: {
+                index: 4,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Rainalarm',
+        },
+    ],
+});
