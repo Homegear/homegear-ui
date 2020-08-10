@@ -1,4 +1,4 @@
-function check_disabled(device, indexes) {
+function check_disabled_backend(device, indexes) {
     function check_event_trigger(event) {
         if (event.trigger == undefined || event.trigger.length != 3)
             return false;
@@ -54,6 +54,36 @@ function check_disabled(device, indexes) {
                 };
         }
 
+    }
+
+    return ret_enabled;
+}
+
+
+
+function check_disabled_frontend(uiElement, sibling_idx, sibling_props) {
+    const elem_id = uiElement.uniqueUiElementId;
+    const ret_enabled = {flag: false};
+
+    if (interfaceData.disable_hooks === undefined ||
+        interfaceData.disable_hooks[elem_id] === undefined)
+        return ret_enabled;
+
+    const conditions_raw = interfaceData.disable_hooks[elem_id];
+    const conditions = Array.isArray(conditions_raw)
+                        ? conditions_raw
+                        : [conditions_raw];
+
+    for (const condition of conditions) {
+        if (condition.condition !== undefined &&
+            condition_check(condition.condition, sibling_props) &&
+            condition.disable.indexOf(sibling_idx) !== -1)
+            return {
+                flag: true,
+                texts: {
+                    title: condition.reason ? condition.reason : '',
+                },
+            };
     }
 
     return ret_enabled;
