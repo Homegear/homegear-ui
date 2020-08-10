@@ -251,6 +251,19 @@ function homegear_init() {
                 }
             }
         }
+
+        $rooms_without_floor = [];
+        foreach ($house['rooms'] as $id_room => &$room) {
+            if (! array_key_exists('floors', $room) ||
+                count($room['floors']) === 0)
+                $rooms_without_floor[] = $id_room;
+        }
+
+        foreach ($rooms_without_floor as $id_room) {
+            foreach ($house['rooms'][$id_room]['devices'] as $id_dev) {
+                $house['devices'][$id_dev]['rooms'][] = $id_room;
+            }
+        }
     }
 
     function mainmenu_parse() {
