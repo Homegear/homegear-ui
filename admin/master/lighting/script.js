@@ -184,3 +184,28 @@ lighting_function_l3.template = `
 `;
 
 shif_comps_create('lightingFunction', lighting_function_l2, lighting_function_l3);
+
+
+
+shif_register_disable_hooks({
+    'Base.lightingSwitchButtonBrightnessColorDEMO': [
+        {
+            condition: {
+                or: [
+                    {
+                        index: 0,
+                        operator: 'eq',
+                        value: false,
+                    },
+                    {
+                        index: 1,
+                        operator: 'eq',
+                        value: false,
+                    },
+                ],
+            },
+            disable: [3, 4],
+            reason: 'Disabled because device is turned off',
+        },
+    ],
+});
