@@ -121,21 +121,50 @@ function i18n(key) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function condition_check(condition, value) {
-    if (condition === null || condition === undefined)
+function condition_check(cond, values) {
+    if (cond === undefined || cond === null)
         return true;
 
-    switch (condition.operator) {
-    case 'not':     return value != condition.value;
-    case 'e':       return value == condition.value;
-    case 'g':       return value  > condition.value;
-    case 'l':       return value  < condition.value;
-    case 'ge':      return value >= condition.value;
-    case 'le':      return value <= condition.value;
-    case 't':       return true;
-    case 'f':       // fall through
-    default:        return false;
+    if (cond.not !== undefined)
+        return ! condition_check(cond.not, values);
+
+    if (cond.and !== undefined)
+        return cond.and.map(x => condition_check(x, values))
+                       .every(x => x === true);
+
+    if (cond.or !== undefined) {
+        for (const i of cond.or)
+            if (condition_check(i, values) === true)
+                return true;
+        return false;
     }
+
+    if (cond.operator === undefined)
+        return false;
+
+    const value = typeof values === 'object' && cond.index !== undefined
+                    ? values[cond.index].value
+                    : values;
+
+    switch (cond.operator) {
+        case 'not':
+        case 'ne':      return value != cond.value;
+        case 'e':
+        case 'eq':      return value == cond.value;
+        case 'g':
+        case 'gt':      return value  > cond.value;
+        case 'l':
+        case 'lt':      return value  < cond.value;
+        case 'ge':      return value >= cond.value;
+        case 'le':      return value <= cond.value;
+        case 't':
+        case 'true':    return true;
+        case 'f':
+        case 'false':
+        default:        return false;
+    }
+
+    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -511,6 +540,10 @@ Vue.component('shif-colorpicker', {
         borderColor:  { type: String, default: '#fff' },
         anticlockwise:  { type: Boolean, default: true },
         title:  { type: String},
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
     },
 
     data: function () {
@@ -603,7 +636,7 @@ Vue.component('shif-colorpicker', {
     },
 
     template: `
-        <div class="device_wrapper">
+        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
             <div class="device color">
                 <div v-if="$slots.profiles"
                      class="checkbox_wrapper">
@@ -815,6 +848,7 @@ const shif_device = {
         'indexes',
         'rendering',
         'include_place',
+        'sibling_idx',
     ],
 
     data: function() {
@@ -829,6 +863,7 @@ const shif_device = {
         role_id: {default: undefined,},
         room_id: 'room_id',
         floor_id: 'floor_id',
+        // siblings: 'siblings',
     },
 
     methods: {
@@ -888,7 +923,12 @@ const shif_device = {
         },
 
         disabled: function () {
-            return check_disabled(this.uiElement, this.indexes);
+            const backend = check_disabled_backend(this.uiElement, this.indexes);
+            if (backend.flag === true)
+                return backend;
+
+            return check_disabled_frontend(this.uiElement, this.sibling_idx,
+                                           this.$parent.dev_obj_props);
         },
     },
 };
@@ -900,6 +940,16 @@ function shif_comps_create(name, l2, l3) {
 
     Vue.component(shif_name + 'l2', l2);
     Vue.component(shif_name + 'l3', l3);
+}
+
+
+
+function shif_register_disable_hooks(objs) {
+    if (interfaceData.disable_hooks === undefined)
+        Vue.set(interfaceData, 'disable_hooks', {});
+
+    for (const i in objs)
+        Vue.set(interfaceData.disable_hooks, i, objs[i]);
 }
 // }}}
 
