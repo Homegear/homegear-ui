@@ -1,6 +1,10 @@
 let ShifProfilesGlobal = {
     mixins: [mixin_profiles, mixin_print_mounted('shif-profiles-global')],
 
+    provide: {
+        layer: 2,
+    },
+
     template: `
         <div id="profiles" class="content content_single">
             <div class="profiles_wrapper">
