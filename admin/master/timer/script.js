@@ -1,3 +1,13 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+*/
+
+
+
 let timer_l2 = clone(shif_device);
 timer_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
@@ -17,9 +27,9 @@ timer_l2.template = `
 `;
 
 let timer_l3 = clone(shif_device);
-timer_l3.methods.change = function(event) {
+timer_l3.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 
 timer_l3.template = `
     <div class="control_wrapper">
