@@ -1,10 +1,20 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let socket_switch_l2 = clone(shif_device);
-socket_switch_l2.methods.change = function(event) {
+socket_switch_l2.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 socket_switch_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -30,9 +40,9 @@ socket_switch_l2.template = `
 `;
 
 let socket_switch_l3 = clone(shif_device);
-socket_switch_l3.methods.change = function(event) {
+socket_switch_l3.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 socket_switch_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
@@ -90,9 +100,9 @@ socket_button_l2.template = `
 `;
 
 let socket_button_l3 = clone(shif_device);
-socket_button_l3.methods.change = function(event, down) {
+socket_button_l3.methods.change = function(_event, down) {
     homegear.value_set_clickcounter(this, this.output, down);
-}
+};
 socket_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
