@@ -1,3 +1,13 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+*/
+
+
+
 let media_buttons_l2 = clone(shif_device);
 media_buttons_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
@@ -22,7 +32,7 @@ media_buttons_l2.template = `
 `;
 
 let media_buttons_l3 = clone(shif_device);
-media_buttons_l3.methods.change = function(event) {
+media_buttons_l3.methods.change = function(_event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
     if((this.indexes.input == 0 || this.indexes.input == 2) &&
@@ -48,7 +58,7 @@ media_buttons_l3.methods.change = function(event) {
         }
     }
     else homegear.value_set_clickcounter(this, this.output, true);
-}
+};
 
 media_buttons_l3.template = `
     <div class="control_button_wrapper">
