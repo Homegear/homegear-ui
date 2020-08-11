@@ -1,3 +1,29 @@
+/*
+    global
+        i18n
+        licenses
+        mixin_menus
+        mixin_print_mounted
+        mixin_profiles
+        mixin_rooms
+        mixin_scroll_position
+        user_register_webauthn_device
+*/
+/*
+    exported
+        ShifSettings
+        ShifSettingsAutomations
+        ShifSettingsAutomationsForm
+        ShifSettingsFavorites
+        ShifSettingsItems
+        ShifSettingsLicenses
+        ShifSettingsProfile
+        ShifSettingsProfiles
+        ShifSettingsUser
+*/
+
+
+
 Vue.component('shif-settings-element', {
     mixins: [mixin_print_mounted()],
 
@@ -114,7 +140,7 @@ let ShifSettingsUser = {
                 theme:     interfaceData.options.theme,
                 color:     interfaceData.options.highlight,
             }
-        }
+        };
     },
 
     computed: {
@@ -126,7 +152,7 @@ let ShifSettingsUser = {
         two_fa_value: function () {
             return this.options.userHasTwofaRegistrations
                 ? i18n(this.name + '.twofaRegistered')
-                : i18n(this.name + '.registerTwofa')
+                : i18n(this.name + '.registerTwofa');
         },
     },
 
@@ -157,12 +183,12 @@ let ShifSettingsUser = {
                     params: [new_settings]
                 }, function () {
                     window.location.reload(true);
-                })
-            })
+                });
+            });
         },
 
         two_fa_register_dev: function () {
-            return user_register_webauthn_device()
+            return user_register_webauthn_device();
         },
     },
 
@@ -540,7 +566,7 @@ let ShifSettingsProfile = {
                     return this.profile_delete(this.profile,
                         () => this.$router.replace({name: 'settings.profiles'})
                     );
-            };
+            }
         },
     },
 
@@ -692,7 +718,7 @@ const mixin_names = {
 
 
 
-const mixin_settings_automations = {
+const _mixin_settings_automations = {
     methods: {
         _automations_add_update: function (data, automation_id, cb) {
             const method = automation_id === undefined
@@ -739,17 +765,17 @@ const mixin_settings_automations = {
             return this._automations_add_update(data, automation_id, cb);
         },
 
-        automations_delete: function (automation_id) {
+        automations_delete: function (automation_id, cb) {
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
                 method: 'deleteVariableAutomation',
                 params: [automation_id],
             }, (result) => {
-                delete interfaceData.automations[automation_id]
+                delete interfaceData.automations[automation_id];
 
                 if (cb)
                     return cb(result);
-            })
+            });
         },
     },
 };
@@ -931,8 +957,6 @@ const ShifSettingsAutomationsForm = {
                 const room = interfaceData.rooms[room_id];
 
                 for (const device_id of room.devices) {
-                    const device = interfaceData.devices[device_id];
-
                     if (out[floor_id] === undefined)
                         out[floor_id] = {
                             [room_id]: [device_id],
@@ -944,7 +968,7 @@ const ShifSettingsAutomationsForm = {
                 }
             }
 
-            let out = {}
+            let out = {};
 
             for (const floor_id in interfaceData.floors) {
                 const floor = interfaceData.floors[floor_id];
