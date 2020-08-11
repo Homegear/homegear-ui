@@ -1,10 +1,21 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let heating_slider_l2 = clone(shif_device);
-heating_slider_l2.methods.change = function(event) {
+heating_slider_l2.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 heating_slider_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -23,9 +34,9 @@ heating_slider_l2.template = `
     </shif-generic-l2>
 `;
 let heating_slider_l3 = clone(shif_device);
-heating_slider_l3.methods.change = function(event) {
+heating_slider_l3.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
-}
+};
 heating_slider_l3.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="parseFloat(props.maximumScaled)"
@@ -109,7 +120,7 @@ heating_mode_l3.computed.values = function () {
 };
 heating_mode_l3.methods.change = function(x) {
     homegear.value_set_clickcounter(this, this.output, x);
-}
+};
 heating_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
