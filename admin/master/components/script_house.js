@@ -1,3 +1,19 @@
+/*
+    global
+        mixin_rooms
+        mixin_print_mounted
+        mixin_scroll_position
+*/
+/*
+    exported
+        ShifHouse
+        ShifHouseLvl2
+        ShifHouseLvl3
+        ShifHouseRooms
+*/
+
+
+
 Vue.component('shif-house-floors-rooms', {
     mixins: [mixin_rooms, mixin_print_mounted()],
 
