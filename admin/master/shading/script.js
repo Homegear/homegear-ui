@@ -1,3 +1,14 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+*/
+
+
+
 let shading_windalarm = clone(shif_device);
 shading_windalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
@@ -20,7 +31,7 @@ shif_comps_create('shadingRainalarm', shading_windalarm, shading_windalarm);
 
 
 let shading_ventilation_l2 = clone(shif_device);
-shading_ventilation_l2.methods.change = function(event) {
+shading_ventilation_l2.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
 };
 
@@ -43,7 +54,7 @@ shading_ventilation_l2.template = `
 `;
 
 let shading_ventilation_l3 = clone(shif_device);
-shading_ventilation_l3.methods.change = function(event) {
+shading_ventilation_l3.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
 };
 
@@ -75,7 +86,7 @@ shif_comps_create('shadingVentilation', shading_ventilation_l2, shading_ventilat
 
 
 let shading_slider = clone(shif_device);
-shading_slider.methods.change = function(event) {
+shading_slider.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
 };
 
@@ -133,7 +144,7 @@ shading_buttons_l2.template = `
 `;
 
 let shading_buttons_l3 = clone(shif_device);
-shading_buttons_l3.methods.change = function(event) {
+shading_buttons_l3.methods.change = function(_event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
     if((this.indexes.input == 0 || this.indexes.input == 2) &&
