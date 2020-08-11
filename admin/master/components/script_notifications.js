@@ -1,3 +1,21 @@
+/*
+    global
+        i18n
+        interface_mount
+        interface_show
+        mixin_print_mounted
+        mixin_scroll_position
+*/
+/*
+    exported
+        ShifNotifications
+        ShifNotificationsLvl1
+        ShifNotificationsNotification
+        interface_mount_with_gdpr
+*/
+
+
+
 const ShifNotificationMessage = {
     props: {
         title: {
@@ -18,7 +36,7 @@ const ShifNotificationMessage = {
         on_click: function (btn_id) {
             this.$emit('click', {
                 button: btn_id
-            })
+            });
         },
     },
 
@@ -126,7 +144,7 @@ let gdpr = new Vue({
     },
 
     methods: {
-        on_click: function (btn_id) {
+        on_click: function () {
             this.initialized = false;
 
             interface_show();
