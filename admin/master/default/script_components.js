@@ -1,3 +1,17 @@
+/*
+    global
+        get_or_default
+        scroll_positions
+*/
+/*
+    exported
+        mixin_menus
+        mixin_rooms
+        mixin_scroll_position
+*/
+
+
+
 function comp_obj(control, device, input, output, is, indexes) {
     let ret = {
         uiElement: device,
@@ -131,14 +145,16 @@ const mixin_unique_view_key = {
             return this._uniqueify(base, mode);
         },
     },
-}
+};
 
 
 
 const mixin_scroll_position = {
     methods: {
         _find_scroll_position_marker: function (start) {
-            for (let cur = start; cur !== undefined; cur = cur.$parent) {
+            let cur = start;
+
+            for (; cur !== undefined; cur = cur.$parent) {
                 if (cur.$options.name === 'shif-scroll-position-marker')
                     return cur;
             }
@@ -173,9 +189,6 @@ const mixin_scroll_position = {
                 return;
 
             const pos = scroll_positions[vm.$vnode.key];
-
-            if (false)
-                console.oldLog('scroll', vm.$vnode.key, 'to', pos);
 
             marker.$el.scroll(pos.x, pos.y);
         });
@@ -228,11 +241,11 @@ const mixin_components = {
 
 
 
-const mixin_print_mounted = function (name) {
+const mixin_print_mounted = function () {
     return {
         // This is for debug reasons only
         // mounted: function () {
-            // console.log(this.$options.name || name);
+            // console.log(this.$options.name || arguments[0]);
         // },
     };
 };
@@ -268,7 +281,7 @@ const mixin_profiles = {
                 x => x.locations.findIndex(
                     loc => {
                         return loc.floorId === floor &&
-                          (loc.roomId === undefined || loc.roomId === room)
+                          (loc.roomId === undefined || loc.roomId === room);
                     }
                 ) !== -1
             );
@@ -377,7 +390,7 @@ const mixin_profiles = {
                     name:      form.profile_name,
                     roles:     [],
                     values:    [],
-                }
+                };
 
                 this.$root.profiles.enabled = false;
 
@@ -446,7 +459,7 @@ const mixin_profiles = {
                     locations: locations,
                     roles:     roles,
                     values:    values,
-                }
+                };
 
                 this.$root.profiles.enabled = false;
 
@@ -758,7 +771,7 @@ Vue.component('shif-paging', {
                     })
                 // ])
             ])
-        ))
+        ));
     }
 });
 
@@ -895,7 +908,7 @@ Vue.component('shif-icon-selection', {
 
     methods: {
         on_click: function (new_) {
-            this.$emit('input', new_)
+            this.$emit('input', new_);
         },
     },
 
@@ -913,4 +926,4 @@ Vue.component('shif-icon-selection', {
             </label>
         </div>
     `
-})
+});
