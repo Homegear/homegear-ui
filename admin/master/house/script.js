@@ -1,3 +1,47 @@
+/*
+    global
+        ShifHouse,
+        ShifHouseRooms
+        ShifHouseLvl2
+        ShifHouseLvl3
+        ShifHouseDevices
+        ShifAllDevicesLvl3
+        ShifProfiles
+        ShifSettings
+        ShifSettingsAutomations
+        ShifSettingsAutomationsForm
+        ShifSettingsFavorites
+        ShifSettingsItems
+        ShifSettingsLicenses
+        ShifSettingsProfile
+        ShifSettingsProfiles
+        ShifSettingsUser
+        ShifFavorites
+        ShifFavoritesLvl1
+        ShifFavoritesLvl3
+        ShifNotifications
+        ShifNotificationsLvl1
+        ShifNotificationsNotification
+        ShifLog
+
+        condition_check
+        date_format
+        homegear
+        i18n
+        icons
+        user_logoff
+*/
+/*
+    exported
+        check_disabled_backend
+        check_disabled_frontend
+        error
+        interface_mount
+        scroll_positions
+*/
+
+
+
 function check_disabled_backend(device, indexes) {
     function check_event_trigger(event) {
         if (event.trigger == undefined || event.trigger.length != 3)
@@ -92,7 +136,7 @@ function check_disabled_frontend(uiElement, sibling_idx, sibling_props) {
 
 
 Vue.use({
-    install: function (Vue, opts) {
+    install: function (Vue, _opts) {
         Vue.prototype.$homegear = homegear;
     },
 });
@@ -121,7 +165,7 @@ Vue.mixin({
     },
 
     methods: {
-        level3: function (device, name) {
+        level3: function (device, _name) {
             function first_in_or(obj, or) {
                 if (obj === undefined ||
                     Array.isArray(obj) === false ||
@@ -131,7 +175,7 @@ Vue.mixin({
             }
 
             const matched = this.$route.matched.map(x => x.name);
-            const last    = matched[matched.length - 1]
+            const last    = matched[matched.length - 1];
 
             if (matched.indexOf('house.tab.rooms.room') !== -1) {
                 return this.$router.push({
@@ -490,7 +534,7 @@ let breadcrumbs = new Vue({
         get_name: function (route_name) {
             function floor() {
                 if (! interfaceData.options.showFloor)
-                    return ''
+                    return '';
 
                 return Number(params.floor_id) === -1
                     ? i18n('house.storyless') + ' - '
