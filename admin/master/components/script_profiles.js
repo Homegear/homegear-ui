@@ -1,3 +1,15 @@
+/*
+    global
+        mixin_print_mounted
+        mixin_profiles
+*/
+/*
+    exported
+        ShifProfiles
+*/
+
+
+
 let ShifProfilesGlobal = {
     mixins: [mixin_profiles, mixin_print_mounted('shif-profiles-global')],
 
