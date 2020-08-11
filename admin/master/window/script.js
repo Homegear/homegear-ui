@@ -1,3 +1,17 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+*/
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 let window_rainalarm = clone(shif_device);
 window_rainalarm.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
@@ -81,7 +95,7 @@ window_buttons_l2.template = `
     </shif-generic-l2>
 `;
 let window_buttons_l3 = clone(shif_device);
-window_buttons_l3.methods.change = function(event) {
+window_buttons_l3.methods.change = function(_event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
     if((this.indexes.input == 0 || this.indexes.input == 2) &&
@@ -107,7 +121,7 @@ window_buttons_l3.methods.change = function(event) {
         }
     }
     else homegear.value_set_clickcounter(this, this.output, true);
-}
+};
 window_buttons_l3.template = `
     <div>
         <div class="control_button_wrapper">
@@ -132,9 +146,9 @@ shif_comps_create('windowButtonsUpDown', window_buttons_l2, window_buttons_l3);
 shif_comps_create('windowButtons', window_buttons_l2, window_buttons_l3);
 
 let window_slider = clone(shif_device);
-window_slider.methods.change = function(event) {
+window_slider.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
-}
+};
 window_slider.provides = function () {
     return {
         checkbox_wanted: true,
