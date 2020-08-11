@@ -1,3 +1,12 @@
+/*
+    global
+        mixin_menus
+        mixin_print_mounted
+        mixin_profiles
+*/
+
+
+
 Vue.component('shif-mainmenu', {
     mixins: [mixin_menus, mixin_print_mounted()],
 
