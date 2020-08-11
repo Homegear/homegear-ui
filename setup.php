@@ -28,7 +28,7 @@
         die("No interfaceData file!");
     }
 
-    if ( isset($interfaceData["settings"]["setupKey"]) && isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["setupKey"] ){
+    if ( isset($interfaceData["settings"]["setupKey"]) && $interfaceData["settings"]["setupKey"] != "" && isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["setupKey"] ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/admin.php");
             die();

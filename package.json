@@ -46,7 +46,7 @@
     "build": "npm run buildProd",
     "buildDev": "php admin/admin.php generateExtensions dev && npm run babel",
     "buildProd": "php admin/admin.php generateExtensions && npm run babel",
-    "babel": "npx babel script.js --out-file script.min.js",
+    "babel": "npx babel dist/script.js --out-file dist/script.min.js",
     "watch": "npx gulp watcher",
     "watcher": "npx gulp watcher"
   },

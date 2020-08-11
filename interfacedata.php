@@ -6,6 +6,7 @@
         "directLoginUser": "",
         "directLoginApiKey": "",
         "setupKey": "",
+        "env": "",
         "gdpr": false,
         "homegear": {
             "url": "location.hostname",

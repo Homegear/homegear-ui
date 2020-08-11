@@ -126,7 +126,7 @@ class User {
 
     public function getSettings() {
         global $interfaceData;
-        return $interfaceData["users"]["1"]["settings"];
+        return $interfaceData["settings"]["userDefaults"];
     }
 
     public function checkAuth($redirectToLogin) {
