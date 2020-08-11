@@ -1,3 +1,18 @@
+/*
+    global
+        mixin_print_mounted
+        mixin_profiles
+        mixin_scroll_position
+*/
+/*
+    exported
+        ShifFavorites
+        ShifFavoritesLvl1
+        ShifFavoritesLvl3
+*/
+
+
+
 let ShifFavoritesLvl3 = {
     mixins: [mixin_print_mounted('shif-favorites-level-3')],
 
