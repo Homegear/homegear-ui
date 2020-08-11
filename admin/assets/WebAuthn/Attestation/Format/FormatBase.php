@@ -2,8 +2,7 @@
 
 
 namespace WebAuthn\Attestation\Format;
-use \WebAuthn\WebAuthnException;
-use WebAuthn\Binary\ByteBuffer;
+use WebAuthn\WebAuthnException;
 
 
 abstract class FormatBase {
@@ -23,7 +22,7 @@ abstract class FormatBase {
     }
 
     /**
-     *
+     * 
      */
     public function __destruct() {
         // delete X.509 chain certificate file after use
@@ -32,7 +31,18 @@ abstract class FormatBase {
         }
     }
 
-        /**
+    /**
+     * returns the certificate chain in PEM format
+     * @return string|null
+     */
+    public function getCertificateChain() {
+        if (\is_file($this->_x5c_tempFile)) {
+            return \file_get_contents($this->_x5c_tempFile);
+        }
+        return null;
+    }
+
+    /**
      * returns the key X.509 certificate in PEM format
      * @return string
      */
@@ -96,7 +106,7 @@ abstract class FormatBase {
                     }
 
                     if (!$selfSigned) {
-                        $content = "\n" . $this->_createCertificatePem($x5c) . "\n";
+                        $content .= "\n" . $this->_createCertificatePem($x5c) . "\n";
                     }
                 }
             }
@@ -104,8 +114,9 @@ abstract class FormatBase {
 
         if ($content) {
             $this->_x5c_tempFile = \sys_get_temp_dir() . '/x5c_chain_' . \base_convert(\rand(), 10, 36) . '.pem';
-            \file_put_contents($this->_x5c_tempFile, $content);
-            return $this->_x5c_tempFile;
+            if (\file_put_contents($this->_x5c_tempFile, $content) !== false) {
+                return $this->_x5c_tempFile;
+            }
         }
 
         return null;

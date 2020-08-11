@@ -97,11 +97,26 @@ class WebAuthn {
      * @param string $userDisplayName
      * @param int $timeout timeout in seconds
      * @param bool $requireResidentKey true, if the key should be stored by the authentication device
-     * @param bool $requireUserVerification indicates that you require user verificationand will fail the operation if the response does not have the UV flag set.
+     * @param bool|string $requireUserVerification indicates that you require user verification and will fail the operation
+     *                                             if the response does not have the UV flag set.
+     *                                             Valid values:
+     *                                             true = required
+     *                                             false = preferred
+     *                                             string 'required' 'preferred' 'discouraged'
      * @param array $excludeCredentialIds a array of ids, which are already registered, to prevent re-registration
      * @return \stdClass
      */
     public function getCreateArgs($userId, $userName, $userDisplayName, $timeout=20, $requireResidentKey=false, $requireUserVerification=false, $excludeCredentialIds=array()) {
+
+        // validate User Verification Requirement
+        if (\is_bool($requireUserVerification)) {
+            $requireUserVerification = $requireUserVerification ? 'required' : 'preferred';
+        } else if (\is_string($requireUserVerification) && \in_array(\strtolower($requireUserVerification), ['required', 'preferred', 'discouraged'])) {
+            $requireUserVerification = \strtolower($requireUserVerification);
+        } else {
+            $requireUserVerification = 'preferred';
+        }
+
         $args = new \stdClass();
         $args->publicKey = new \stdClass();
 
@@ -111,7 +126,7 @@ class WebAuthn {
         $args->publicKey->rp->id = $this->_rpId;
 
         $args->publicKey->authenticatorSelection = new \stdClass();
-        $args->publicKey->authenticatorSelection->userVerification = $requireUserVerification ? 'required' : 'preferred';
+        $args->publicKey->authenticatorSelection->userVerification = $requireUserVerification;
         if ($requireResidentKey) {
             $args->publicKey->authenticatorSelection->requireResidentKey = true;
         }
@@ -128,7 +143,7 @@ class WebAuthn {
         $tmp->alg = -7; // ES256
         $args->publicKey->pubKeyCredParams[] = $tmp;
 
-        $args->publicKey->attestation = count($this->_formats) === 1 && in_array('none', $this->_formats) ? 'none' : 'direct';
+        $args->publicKey->attestation = \count($this->_formats) === 1 && \in_array('none', $this->_formats) ? 'none' : 'direct';
         $args->publicKey->extensions = new \stdClass();
         $args->publicKey->extensions->exts = true;
         $args->publicKey->timeout = $timeout * 1000; // microseconds
@@ -160,15 +175,33 @@ class WebAuthn {
      * @param bool $allowNfc allow Near Field Communication (NFC)
      * @param bool $allowBle allow Bluetooth
      * @param bool $allowInternal allow client device-specific transport. These authenticators are not removable from the client device.
+     * @param bool|string $requireUserVerification indicates that you require user verification and will fail the operation
+     *                                             if the response does not have the UV flag set.
+     *                                             Valid values:
+     *                                             true = required
+     *                                             false = preferred
+     *                                             string 'required' 'preferred' 'discouraged'
      * @return \stdClass
      */
-    public function getGetArgs($credentialIds=array(), $timeout=20, $allowUsb=true, $allowNfc=true, $allowBle=true, $allowInternal=true) {
+    public function getGetArgs($credentialIds=array(), $timeout=20, $allowUsb=true, $allowNfc=true, $allowBle=true, $allowInternal=true, $requireUserVerification=false) {
+
+        // validate User Verification Requirement
+        if (\is_bool($requireUserVerification)) {
+            $requireUserVerification = $requireUserVerification ? 'required' : 'preferred';
+        } else if (\is_string($requireUserVerification) && \in_array(\strtolower($requireUserVerification), ['required', 'preferred', 'discouraged'])) {
+            $requireUserVerification = \strtolower($requireUserVerification);
+        } else {
+            $requireUserVerification = 'preferred';
+        }
+
         $args = new \stdClass();
         $args->publicKey = new \stdClass();
         $args->publicKey->timeout = $timeout * 1000; // microseconds
         $args->publicKey->challenge = $this->_createChallenge();  // binary
+        $args->publicKey->userVerification = $requireUserVerification;
+        $args->publicKey->rpId = $this->_rpId;
 
-        if (is_array($credentialIds) && count($credentialIds) > 0) {
+        if (\is_array($credentialIds) && \count($credentialIds) > 0) {
             $args->publicKey->allowCredentials = array();
 
             foreach ($credentialIds as $id) {
@@ -204,7 +237,7 @@ class WebAuthn {
      * @return ?int
      */
     public function getSignatureCounter() {
-        return is_int($this->_signatureCounter) ? $this->_signatureCounter : null;
+        return \is_int($this->_signatureCounter) ? $this->_signatureCounter : null;
     }
 
     /**
@@ -280,9 +313,13 @@ class WebAuthn {
 
         // prepare data to store for future logins
         $data = new \stdClass();
+        $data->rpId = $this->_rpId;
         $data->credentialId = $attestationObject->getAuthenticatorData()->getCredentialId();
         $data->credentialPublicKey = $attestationObject->getAuthenticatorData()->getPublicKeyPem();
+        $data->certificateChain = $attestationObject->getCertificateChain();
         $data->certificate = $attestationObject->getCertificatePem();
+        $data->certificateIssuer = $attestationObject->getCertificateIssuer();
+        $data->certificateSubject = $attestationObject->getCertificateSubject();
         $data->signatureCounter = $this->_signatureCounter;
         $data->AAGUID = $attestationObject->getAuthenticatorData()->getAAGUID();
         return $data;
