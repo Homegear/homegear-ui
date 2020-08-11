@@ -1,3 +1,20 @@
+/*
+    global
+        check_disabled_backend
+        check_disabled_frontend
+*/
+/*
+    exported
+        clone
+        set_or_extend
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+        user_logoff
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // globale Variablen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,12 +97,10 @@ $('body').on('touchmove', function (e) {
 // passt die Header Tab Anzeige beim scrollen an
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 headerVisibility('true');
-function headerVisibility(state) {
-    const stateDownScroll = state === 'true' ? 'block' : 'none';
-    const stateUpScroll = 'block';
+function headerVisibility(_state) {
     let lastScrollTop = 0;
 
-    $('.content').scroll(function(event){
+    $('.content').scroll(function(_event){
         var st = $(this).scrollTop();
 
         if (st > lastScrollTop) { // downscroll code
@@ -163,8 +178,6 @@ function condition_check(cond, values) {
         case 'false':
         default:        return false;
     }
-
-    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -256,7 +269,7 @@ const mixin_device_control_wrapper = {
             return this.layer > 2 ? 'control_wrapper' : 'device_wrapper';
         },
     },
-}
+};
 // }}}
 
 
@@ -718,7 +731,7 @@ Vue.component('shif-checkbox', {
             <span class="checkmark"></span>
         </label>
     `,
-})
+});
 // }}}
 
 
