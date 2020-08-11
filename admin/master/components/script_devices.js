@@ -1,3 +1,22 @@
+/*
+    global
+        check_disabled
+        get_or_default
+        mixin_components
+        mixin_profiles
+        mixin_print_mounted
+        mixin_scroll_position
+        mixin_states
+*/
+/*
+    exported
+        ShifAllDevicesLvl3
+        ShifHouseDevices
+        ShifHouseDevicesRole
+*/
+
+
+
 Vue.component('shif-ctrl-summary', {
     mixins: [mixin_components, mixin_profiles, mixin_print_mounted()],
 
@@ -35,6 +54,12 @@ Vue.component('shif-ctrl-summary', {
 
     inject: {
         last_role_id: {from: 'role_id'},
+    },
+
+    watch: {
+        submenu_show: function () {
+            this.$emit('accordion-open', this.role_id);
+        },
     },
 
     methods: {
@@ -83,12 +108,6 @@ Vue.component('shif-ctrl-summary', {
 
         get_icon_or_default: function (profile) {
             return get_or_default(profile, 'icon', 'slider_1');
-        },
-    },
-
-    watch: {
-        submenu_show: function () {
-            this.$emit('accordion-open', this.role_id);
         },
     },
 
@@ -144,7 +163,6 @@ Vue.component('shif-ctrl-summary', {
 
 
 
-
 let ShifAllDevices = {
     mixins: [mixin_states, mixin_print_mounted()],
 
@@ -180,7 +198,7 @@ let ShifAllDevices = {
     },
 
     watch: {
-        states_is_dirty: function (new_, old) {
+        states_is_dirty: function () {
             this.states_refetch_dirty();
         },
     },
