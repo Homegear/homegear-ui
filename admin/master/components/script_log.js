@@ -1,6 +1,17 @@
+/*
+    global
+        viewLog
+*/
+/*
+    exported
+        ShifLog
+*/
+
+
+
 let ShifLog = Vue.component('shif-log', {
     mounted: function () {
-        viewLog('-----------------------------')
+        viewLog('-----------------------------');
     },
 
     template: `
