@@ -1,3 +1,17 @@
+/*
+    global
+        get_or_default
+        homegear
+        set_or_extend
+*/
+/*
+    exported
+        mixin_states
+        states_flag_dirty
+*/
+
+
+
 let _states = Vue.observable({
     initialized: false,
     content: {},
@@ -81,7 +95,7 @@ function status_role(role_id) {
                 jsonrpc: '2.0',
                 method: 'aggregateRoles',
                 params: [invoke_desc.type, invoke_desc.ids, [], 0, true],
-            }
+            };
             homegear.invoke(invoke_op, function (res) {
                 /**
                 * Updating this is a two step process:
@@ -164,7 +178,7 @@ homegear.ready(states_init);
 
 function states_flag_dirty(roles) {
     _states.dirty = _states.dirty.concat(roles)
-                                 .filter((v, i, a) => a.indexOf(v) === i)
+                                 .filter((v, i, a) => a.indexOf(v) === i);
 }
 
 
