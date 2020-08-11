@@ -1,3 +1,18 @@
+/*
+    global
+        HomegearWS
+        error
+        i18n
+        interface_mount
+        interface_mount_with_gdpr
+        states_flag_dirty
+*/
+/*
+    exported
+        date_format
+*/
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -36,7 +51,7 @@ function homegear_websocket_security() {
 
     if (opts.websocket_security_ssl === undefined ||
         opts.websocket_security_ssl === 'location.protocol')
-        return location.protocol === 'https:'
+        return location.protocol === 'https:';
 
     return !! opts.websocket_security_ssl;
 
@@ -61,12 +76,11 @@ function homegear_new() {
     );
 }
 
-if (interfaceData.options.websocket_user && interfaceData.options.websocket_password) {
-    var homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
-}
-else {
-    var homegear = homegear_new(readCookie('PHPSESSIDUI'));
-}
+let homegear = interfaceData.options.websocket_user &&
+               interfaceData.options.websocket_password
+                ? homegear_new(interfaceData.options.websocket_user,
+                               interfaceData.options.websocket_password)
+                : homegear_new(readCookie('PHPSESSIDUI'));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,7 +162,7 @@ function handle_update_event(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        states_flag_dirty(roles_relevant(input.roles).map(x => x.id))
+        states_flag_dirty(roles_relevant(input.roles).map(x => x.id));
     }
 }
 
@@ -161,7 +175,7 @@ function date_format() {
     const day    = dt.getDate().toString().padStart(2, '0');
     const year   = dt.getFullYear().toString().padStart(4, '0');
     const hour   = dt.getHours().toString().padStart(2, '0');
-    const minute = dt.getMinutes().toString().padStart(2, '0')
+    const minute = dt.getMinutes().toString().padStart(2, '0');
     const second = dt.getSeconds().toString().padStart(2, '0');
 
     return `${month}.${day}.${year} ${hour}:${minute}:${second}`;
@@ -169,7 +183,7 @@ function date_format() {
 
 
 
-function handle_update_request_ui_refresh(resp) {
+function handle_update_request_ui_refresh(_resp) {
     error.set({
         close: false,
         content: `
@@ -225,7 +239,7 @@ function homegear_handle_update(resp) {
     };
 
     if (resp.method in funcs)
-        funcs[resp.method](resp)
+        funcs[resp.method](resp);
 }
 
 
@@ -259,7 +273,7 @@ function homegear_prepare(homegear) {
                 return cb ? cb(ret) : undefined;
 
             console.log('Invoke Error: ' + JSON.stringify(ret.error, null, 4));
-        })
+        });
     };
 
     homegear.invoke_multi = function (ops, cb) {
