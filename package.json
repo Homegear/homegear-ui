@@ -50,7 +50,8 @@
     "buildProd": "php admin/admin.php generateExtensions && npm run babel",
     "babel": "npx babel dist/script.js --out-file dist/script.min.js",
     "watch": "npx gulp watcher",
-    "watcher": "npx gulp watcher"
+    "watcher": "npx gulp watcher",
+    "lint": "npx eslint admin/master/**/*.js"
   },
   "browserslist": [
     "last 4 version",
