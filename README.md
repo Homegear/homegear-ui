@@ -11,12 +11,11 @@
 
 ## Build environment setup:
     apt install php-cli npm
-    npm -g install babel-cli
+    npm -g install npx
 
 ## Build
     npm install
-    php admin/admin.php genenerateExtensions
-    babel script.js --out-file script.min.js
+    npm run build
 
 ## Configure
 ### Settings
