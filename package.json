@@ -19,10 +19,12 @@
     "acorn": "^6.4.1",
     "csslint": "^1.0.5",
     "eslint": "^7.3.1",
+    "eslint-plugin-vue": "^6.2.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^6.0.0",
     "gulp-minify": "^3.1.0",
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.2",
@@ -68,9 +70,15 @@
       "es6": true,
       "jquery": true
     },
-    "extends": "eslint:recommended",
+    "plugins": [
+        "vue"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/essential"
+    ],
     "parserOptions": {
-      "sourceType": "module",
+      "sourceType": "script",
       "ecmaVersion": 2015
     },
     "rules": {
@@ -81,16 +89,28 @@
       "linebreak-style": 0,
       "quotes": [
         "error",
-        "single"
+        "single",
+        {"allowTemplateLiterals": true}
       ],
       "semi": [
         "error",
         "always"
       ],
-      "no-console": "off"
+      "indent": "off",
+      "no-console": "off",
+      "no-unused-vars": [
+        "error",
+        {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_"
+        }
+      ],
+      "no-prototype-builtins": "off"
     },
     "globals": {
-      "interfaceData": false
+      "Vue": true,
+      "iro": true,
+      "interfaceData": true
     }
   }
 }
