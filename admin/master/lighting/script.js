@@ -1,10 +1,21 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let lighting_switch_l2 = clone(shif_device);
-lighting_switch_l2.methods.change = function(event) {
+lighting_switch_l2.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 lighting_switch_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -29,7 +40,7 @@ lighting_switch_l2.template = `
 `;
 
 let lighting_switch_l3 = clone(shif_device);
-lighting_switch_l3.methods.change = function(event) {
+lighting_switch_l3.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
 };
 lighting_switch_l3.template = `
@@ -64,9 +75,9 @@ shif_comps_create('lightingSwitch', lighting_switch_l2, lighting_switch_l3);
 
 
 let lighting_brightness = clone(shif_device);
-lighting_brightness.methods.change = function(event) {
+lighting_brightness.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
-}
+};
 lighting_brightness.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"
@@ -116,9 +127,9 @@ lighting_button_l2.template = `
 `;
 
 let lighting_button_l3 = clone(shif_device);
-lighting_button_l3.methods.change = function(event, down) {
+lighting_button_l3.methods.change = function(_event, down) {
     homegear.value_set_clickcounter(this, this.output, down);
-}
+};
 lighting_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
