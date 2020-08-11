@@ -110,8 +110,9 @@
     },
     "globals": {
       "Vue": true,
-      "iro": true,
-      "interfaceData": true
+      "VueRouter": true,
+      "interfaceData": true,
+      "iro": true
     }
   }
 }
