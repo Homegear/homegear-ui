@@ -32,7 +32,12 @@ if (file_exists("interfacedata.admin.php")) {
 
 if (isset($adminInterfaceDataJson)) {
     $adminInterfaceData = json_decode($adminInterfaceDataJson, true);
-    $interfaceData = array_replace_recursive($interfaceData, $adminInterfaceData);
+    try {
+        $interfaceData = array_replace_recursive($interfaceData, $adminInterfaceData);
+    }
+    catch (Exception $e) {
+        echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
+    }
 }
 
 $rootPath    = getcwd();
@@ -94,6 +99,36 @@ if($action == "generateExtensions"){
         }
 
         return $newStr;
+    }
+
+    function deleteDirRec($str) {
+        if (is_file($str)) {
+            return unlink($str);
+        }
+        elseif (is_dir($str)) {
+            $scan = glob(rtrim($str,'/').'/*');
+            foreach($scan as $index=>$path) {
+                deleteDirRec($path);
+            }
+            return @rmdir($str);
+        }
+    }
+
+    function recursive_copy($src,$dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while(( $file = readdir($dir)) ) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if ( is_dir($src . '/' . $file) ) {
+                    recursive_copy($src .'/'. $file, $dst .'/'. $file);
+                }
+                else {
+                    copy($src .'/'. $file,$dst .'/'. $file);
+                }
+            }
+        }
+        closedir($dir);
+        return true;
     }
 
     $activeExtensions = array();
@@ -337,6 +372,9 @@ if($action == "generateExtensions"){
     //////////////////////////////////////////////////////////
     //
     //////////////////////////////////////////////////////////
+
+    $out .= "\n";
+
     $distfiles = array(
         array(
             "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."style.vendor.css",
@@ -364,8 +402,34 @@ if($action == "generateExtensions"){
         )
     );
 
-    if (!is_dir($rootPath.$interfaceData["admin"]["settings"]["distPath"])) {
-        mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]);
+    if (is_dir($rootPath.$interfaceData["admin"]["settings"]["distPath"])) {
+        deleteDirRec($rootPath.$interfaceData["admin"]["settings"]["distPath"]);
+    }
+
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]);
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/assets");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/assets/fonts");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/media");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/media/logo");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/media/logo/icon");
+
+    foreach($interfaceData["admin"]["settings"]["srcDistCopy"] as $file){
+        if (isset($file["env"]) && isset($interfaceData["settings"]["env"]) && $file["env"] != $interfaceData["settings"]["env"] ) {
+            continue;
+        }
+
+        $out .= $file["src"]."\n";
+
+        if ($file["type"] == "folder" ) {
+            if (!recursive_copy($rootPath.$file["src"], $rootPath.$file["dist"])) {
+                echo "copy $file schlug fehl...\n";
+            }
+        }
+        if ($file["type"] == "file") {
+            if (!copy($rootPath.$file["src"], $rootPath.$file["dist"])) {
+                echo "copy $file schlug fehl...\n";
+            }
+        }
     }
 
     foreach($distfiles as $file){
@@ -375,9 +439,6 @@ if($action == "generateExtensions"){
         file_put_contents($rootPath."/".$file["path"], $file["content"], LOCK_EX);
     }
 
-    //////////////////////////////////////////////////////////
-    //
-    //////////////////////////////////////////////////////////
     echo $out;
 }
 
@@ -569,15 +630,6 @@ else if($action == "renameIcons"){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 else if($action == "phpinfo"){
     echo phpinfo();
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-else if($action == "password"){
-    $password = $_GET["password"];
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    die('{"password":"'.$password_hash.'"}');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
