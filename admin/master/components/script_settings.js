@@ -508,7 +508,7 @@ let ShifSettingsProfile = {
         },
 
         show_roles: function () {
-            return interfaceData.options.roleProfileDefinable === true;
+            return interfaceData.options.roleProfileDefineable === true;
         },
     },
 
