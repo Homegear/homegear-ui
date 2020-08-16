@@ -45,12 +45,11 @@
     "patternlock": "1.0.1"
   },
   "scripts": {
-    "build": "npm run buildProd",
+    "build": "php admin/admin.php generateExtensions && npm run babel",
     "buildDev": "php admin/admin.php generateExtensions dev && npm run babel",
-    "buildProd": "php admin/admin.php generateExtensions && npm run babel",
+    "buildProd": "php admin/admin.php generateExtensions prod && npm run babel",
     "babel": "npx babel dist/script.js --out-file dist/script.min.js",
     "watch": "npx gulp watcher",
-    "watcher": "npx gulp watcher",
     "lint": "npx eslint admin/master/**/*.js"
   },
   "browserslist": [
@@ -83,10 +82,6 @@
       "ecmaVersion": 2015
     },
     "rules": {
-      "indent": [
-        "error",
-        4
-      ],
       "linebreak-style": 0,
       "quotes": [
         "error",
