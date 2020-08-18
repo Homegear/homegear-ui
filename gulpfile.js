@@ -1,35 +1,36 @@
 const { gulp, src, dest, watch, series } = require('gulp');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
-//const babel = require('gulp-babel');
+const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
 const cleanCss = require('gulp-clean-css');
+const del = require('del');
 const exec = require('child_process').exec;
  
 function deployjs() {
     return src('admin/master/**/*.js')
         //.pipe(babel())
         //.pipe(uglify())
-        .pipe(minify())
-        .pipe(concat('script.min.js'))
-        .pipe(dest('dist/'));
+        //.pipe(minify())
+        .pipe(concat('script.js'))
+        .pipe(dest('dist/gulp/'));
 }
 
 function babeljs() {
-    return src('script.js')
-        .pipe(babel({ 'presets': ['es2015'] }))
+    return src('dist/gulp/script.js')
+        .pipe(babel({ 'presets': ['@babel/preset-env'] }))
         .pipe(rename({ extname: '.min.js' }))
-        .pipe(dest('./'));
+        .pipe(dest('dist/gulp/'));
 }
 
 function vendorjs() {
     return src('admin/assets/masters/**/*.js')
         //.pipe(babel())
-        .pipe(uglify())
-        .pipe(minify())
+        //.pipe(uglify())
+        //.pipe(minify())
         .pipe(concat('vendor.min.js'))
-        .pipe(dest('dist/'));
+        .pipe(dest('dist/gulp/'));
 }
 
 function vendorcss() {
@@ -37,7 +38,7 @@ function vendorcss() {
         .pipe(cleanCss())
         .pipe(minify())
         .pipe(concat('vendor.min.css'))
-        .pipe(dest('dist/'));
+        .pipe(dest('dist/gulp/'));
 }
   
 function deploycss() {
@@ -45,7 +46,12 @@ function deploycss() {
         .pipe(cleanCss())
         .pipe(minify())
         .pipe(concat('style.min.css'))
-        .pipe(dest('dist/'));
+        .pipe(dest('dist/gulp/'));
+}
+
+async function delDist() {
+    const deletedPaths = await del(['dist/gulp/']);
+    console.log('Deleted files and directories:\n', deletedPaths.join('\n'));
 }
   
 async function execC() {
@@ -79,4 +85,4 @@ exports.watcher = startWatchers;
 exports.builddev = series(execC, execBabel);
 exports.buildprod = series(execC, execBabel);
 exports.vendor = series(vendorjs, vendorcss);
-exports.default = series(deployjs, babeljs, deploycss)
+exports.default = series(delDist, deployjs, deploycss, vendorjs, vendorcss, babeljs)

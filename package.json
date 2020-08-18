@@ -18,6 +18,7 @@
     "@babel/preset-env": "^7.10.4",
     "acorn": "^6.4.1",
     "csslint": "^1.0.5",
+    "del": "^5.1.0",
     "eslint": "^7.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "gulp": "^4.0.2",
@@ -71,11 +72,11 @@
       "jquery": true
     },
     "plugins": [
-        "vue"
+      "vue"
     ],
     "extends": [
-        "eslint:recommended",
-        "plugin:vue/essential"
+      "eslint:recommended",
+      "plugin:vue/essential"
     ],
     "parserOptions": {
       "sourceType": "script",
@@ -86,7 +87,9 @@
       "quotes": [
         "error",
         "single",
-        {"allowTemplateLiterals": true}
+        {
+          "allowTemplateLiterals": true
+        }
       ],
       "semi": [
         "error",
@@ -97,8 +100,8 @@
       "no-unused-vars": [
         "error",
         {
-            "argsIgnorePattern": "^_",
-            "varsIgnorePattern": "^_"
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_"
         }
       ],
       "no-prototype-builtins": "off"
