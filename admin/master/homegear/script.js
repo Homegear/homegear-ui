@@ -1,11 +1,11 @@
 /*
     global
         HomegearWS
-        error
         i18n
         interface_mount
         interface_mount_with_gdpr
         states_flag_dirty
+        toast
 */
 /*
     exported
@@ -184,7 +184,7 @@ function date_format() {
 
 
 function handle_update_request_ui_refresh(_resp) {
-    error.set({
+    toast.set({
         close: false,
         content: `
             <div class="toast_text">
