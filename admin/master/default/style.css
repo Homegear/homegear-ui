@@ -137,6 +137,11 @@ input[type=submit] {
   background: #e3a104;
   color: #fff;
   cursor: pointer;
+  position: relative;
+}
+
+button div{
+  display: inline-block;
 }
 
 button.warning,

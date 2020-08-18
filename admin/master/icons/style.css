@@ -50,6 +50,18 @@
 
 
 
+button .svg_icon {
+	height: 38px;
+	width: 38px;
+	position: absolute;
+	left: 20px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+
+
 .svg_icon.light_on_1 .svg_state {
 	display: none;
 }
