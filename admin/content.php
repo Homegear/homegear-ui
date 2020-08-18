@@ -119,7 +119,7 @@ echo '</script>';
     </div>
   </div>
 
-  <div id="error">
+  <div id="toast">
   </div>
 
   <div id="gdpr">
