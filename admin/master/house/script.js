@@ -35,7 +35,7 @@
     exported
         check_disabled_backend
         check_disabled_frontend
-        error
+        toast
         interface_mount
         scroll_positions
 */
@@ -608,10 +608,10 @@ let breadcrumbs = new Vue({
 
 
 
-let error = new Vue({
-    el: '#error',
+let toast = new Vue({
+    el: '#toast',
 
-    name: 'Error',
+    name: 'Toast',
 
     data: {
         msgs: [],
@@ -632,7 +632,7 @@ let error = new Vue({
     },
 
     template: `
-        <div id="error">
+        <div id="toast">
             <div v-for="msg, i in msgs"
                  class="toast">
                 <button v-if="msg.close === true"
