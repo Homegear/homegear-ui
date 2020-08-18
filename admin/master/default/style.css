@@ -139,7 +139,28 @@ input[type=submit] {
   cursor: pointer;
 }
 
-button,
+button.warning,
+input[type=button].warning,
+input[type=submit].warning {
+  background: #b8360e;
+  color: #fff;
+}
+
+button.error,
+input[type=button].error,
+input[type=submit].error {
+  background: #b10808;
+  color: #fff;
+}
+
+button.info,
+input[type=button].info,
+input[type=submit].info {
+  background: #2ab108;
+  color: #fff;
+}
+
+button:active,
 input[type=button]:active,
 input[type=submit]:active {
   background: #191b1f !important;
@@ -2040,11 +2061,6 @@ margin-bottom: 30px;
   padding: 20px;
 }
 
-
 .notification_message .notification_buttons {
   padding: 20px;
-}
-
-.notification_message .notification_buttons button {
-  background: #e3a104 !important;
 }
