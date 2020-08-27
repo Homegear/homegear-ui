@@ -39,6 +39,12 @@
 				<unit>°C</unit>
 				<minimumValue>-273.15</minimumValue>
 				<maximumValue>100.0</maximumValue>
+				<automationInfo>
+					<type>float</type>
+					<step>0.5</step>
+					<minimumValue>0.0</minimumValue>
+					<maximumValue>50.0</maximumValue>
+				</automationInfo>
 			</variable>
 		</variableInputs>
 	</homegearUiElement>
