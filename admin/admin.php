@@ -23,7 +23,7 @@ if (file_exists(getcwd()."/interfacedata.php")) {
     include_once(getcwd()."/interfacedata.php");
 }
 else {
-    die("No interfaceData file!");
+    die("No interfacedata.php file found!");
 }
 
 if (file_exists("interfacedata.admin.php")) {
@@ -32,12 +32,16 @@ if (file_exists("interfacedata.admin.php")) {
 
 if (isset($adminInterfaceDataJson)) {
     $adminInterfaceData = json_decode($adminInterfaceDataJson, true);
-    $interfaceData = array_replace_recursive($interfaceData, $adminInterfaceData);
+    try {
+        $interfaceData = array_replace_recursive($interfaceData, $adminInterfaceData);
+    }
+    catch (Exception $e) {
+        echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
+    }
 }
 
-$configAdmin = $interfaceData["admin"];
 $rootPath    = getcwd();
-$adminPath   = $rootPath."/admin";
+$adminPath   = $rootPath.$interfaceData["admin"]["settings"]["srcPath"];
 
 if (isset($argc) && $argc > 1) {
     $action = $argv[1];
@@ -60,13 +64,8 @@ if($action == "generateExtensions"){
     $tempInterfaceData = array(
         "style" => null,
         "script" => null,
-        "functions" => null,
-        "control" => null,
-        "database" => null,
-        "controller" => null,
         "scriptVendor" => null,
         "styleVendor" => null,
-        "phpVendor" => null,
         "vendorLicense" => array(),
     );
 
@@ -102,9 +101,39 @@ if($action == "generateExtensions"){
         return $newStr;
     }
 
+    function deleteDirRec($str) {
+        if (is_file($str)) {
+            return unlink($str);
+        }
+        elseif (is_dir($str)) {
+            $scan = glob(rtrim($str,'/').'/*');
+            foreach($scan as $index=>$path) {
+                deleteDirRec($path);
+            }
+            return @rmdir($str);
+        }
+    }
+
+    function recursive_copy($src,$dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while(( $file = readdir($dir)) ) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if ( is_dir($src . '/' . $file) ) {
+                    recursive_copy($src .'/'. $file, $dst .'/'. $file);
+                }
+                else {
+                    copy($src .'/'. $file,$dst .'/'. $file);
+                }
+            }
+        }
+        closedir($dir);
+        return true;
+    }
+
     $activeExtensions = array();
     $requiredAssets = array();
-    foreach($configAdmin["settings"]["extensions"] as $key => $extension){
+    foreach($interfaceData["admin"]["settings"]["extensions"] as $key => $extension){
         if($extension["activated"] == true){
             $activeExtensions[] = $key;
             foreach($extension["requiredAssets"] as $asset){
@@ -117,7 +146,7 @@ if($action == "generateExtensions"){
 
     foreach($activeExtensions as $line){
         $out .= $line."\n";
-        $path = $rootPath."/admin/master/".$line;
+        $path = $rootPath.$interfaceData["admin"]["settings"]["masterPath"]."/".$line;
         if(!is_dir($path)){
             continue;
         }
@@ -125,7 +154,7 @@ if($action == "generateExtensions"){
         while ($file = readdir($handle)){
         if($file != "." && $file != ".." && !is_dir($path."/".$file)){
             $typePart = explode("_", $file);
-            $search  = array(".php", ".css", ".js", ".csv");
+            $search  = array(".css", ".js");
             $typePart = str_replace($search, "", $typePart);
 
             if($typePart[0] == "style"){
@@ -133,9 +162,6 @@ if($action == "generateExtensions"){
             }
             else if($typePart[0] == "script"){
             $tempInterfaceData["script"] .= file_get_contents($path."/".$file)."\n";
-            }
-            else if($typePart[0] == "functions"){
-            $tempInterfaceData["functions"] .= cleanPhp(cleanPhpComments(file_get_contents($path."/".$file)))."\n";
             }
             else{
                 $out .= "Keine Verarbeitungsregel vorhanden für: ".$path."/".$file."\n";
@@ -150,19 +176,19 @@ if($action == "generateExtensions"){
         $out .= $line.": ";
         $path = $adminPath."/assets/masters/".$line;
         if(!is_dir($path)){
-        $tempInterfaceData["vendorLicense"][] = $configAdmin["settings"]["assets"][$line]["license"];
+        $tempInterfaceData["vendorLicense"][] = $interfaceData["admin"]["settings"]["assets"][$line]["license"];
         $out .= "Warning: Nicht vorhanden -> ".$path."\n";
         continue;
         }
         if(file_exists($path."/package.json")){
         $packageJson = json_decode(file_get_contents($path."/package.json"), true);
         $license = array();
-        $license["name"] = $configAdmin["settings"]["assets"][$line]["license"]["name"];
+        $license["name"] = $interfaceData["admin"]["settings"]["assets"][$line]["license"]["name"];
         $license["version"] = $packageJson["version"];
 
-        $license["rights"] = $configAdmin["settings"]["assets"][$line]["license"]["rights"];
+        $license["rights"] = $interfaceData["admin"]["settings"]["assets"][$line]["license"]["rights"];
         $license["homepage"] = $packageJson["homepage"];
-        $license["licenseurl"] = $configAdmin["settings"]["assets"][$line]["license"]["licenseurl"];
+        $license["licenseurl"] = $interfaceData["admin"]["settings"]["assets"][$line]["license"]["licenseurl"];
         if(isset($packageJson["license"])){
             $license["licensename"] = $packageJson["license"];
         }
@@ -170,12 +196,12 @@ if($action == "generateExtensions"){
             $license["licensename"] = $packageJson["licenses"];
         }
         else{
-            $license["licensename"] = $configAdmin["settings"]["assets"][$line]["license"]["licensename"];
+            $license["licensename"] = $interfaceData["admin"]["settings"]["assets"][$line]["license"]["licensename"];
         }
         $tempInterfaceData["vendorLicense"][] = $license;
         }
         else{
-        $tempInterfaceData["vendorLicense"][] = $configAdmin["settings"]["assets"][$line]["license"];
+        $tempInterfaceData["vendorLicense"][] = $interfaceData["admin"]["settings"]["assets"][$line]["license"];
         }
         $handle=opendir($path);
         while ($file = readdir($handle)){
@@ -188,9 +214,6 @@ if($action == "generateExtensions"){
             }
             else if(in_array("css", $type)){
             $tempInterfaceData["styleVendor"] .= file_get_contents($path."/".$file)."\n";
-            }
-            else if(in_array("php", $type)){
-            $tempInterfaceData["phpVendor"] .= cleanPhp(cleanPhpComments(file_get_contents($path."/".$file)."\n"));
             }
             else{
                 $out .= "Keine Verarbeitungsregel vorhanden für: ".$file." | ";
@@ -342,55 +365,80 @@ if($action == "generateExtensions"){
         $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/auth.php")));
     }
 
-    //$tempInterfaceData["index"] .= '$interfaceStyleVendor = "'.addslashes($tempInterfaceData["styleVendor"]).'";';
-    //$tempInterfaceData["index"] .= '$interfaceStyle = "'.addslashes($tempInterfaceData["style"]).'";';
-    //$tempInterfaceData["index"] .= '$interfaceScriptVendor = "'.base64_encode($tempInterfaceData["scriptVendor"]).'";';
-    //$tempInterfaceData["index"] .= '$interfaceIcons = "'.addslashes($tempInterfaceData["icons"]).'";';
-    $tempInterfaceData["index"] .= $tempInterfaceData["phpVendor"];
-    $tempInterfaceData["index"] .= $tempInterfaceData["functions"];
+    $tempInterfaceData["index"] .= cleanPhp(cleanPhpComments(file_get_contents($adminPath."/functions.php")));
     $tempInterfaceData["index"] .= "\n".'?>'."\n";
     $tempInterfaceData["index"] .= cleanPhpComments(file_get_contents($adminPath."/content.php"));
 
     //////////////////////////////////////////////////////////
     //
     //////////////////////////////////////////////////////////
+
+    $out .= "\n";
+
     $distfiles = array(
         array(
-            "path" => "style.vendor.css",
+            "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."style.vendor.css",
             "content" => $tempInterfaceData["styleVendor"]
         ),
         array(
-            "path" => "style.css",
+            "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."style.css",
             "content" => $tempInterfaceData["style"]
         ),
         array(
-            "path" => "script.js",
+            "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."script.js",
             "content" => $tempInterfaceData["script"]
         ),
         array(
-            "path" => "icons.js",
+            "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."icons.js",
             "content" => $tempInterfaceData["icons"]
         ),
         array(
-            "path" => "script.vendor.js",
+            "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."script.vendor.js",
             "content" => $tempInterfaceData["scriptVendor"]."\n"." var licenses = ".json_encode($tempInterfaceData["vendorLicense"]).";"
         ),
         array(
-            "path" => "index.php",
+            "path" => $interfaceData["admin"]["settings"]["distPath"]."/"."index.php",
             "content" => $tempInterfaceData["index"]
         )
     );
 
+    if (is_dir($rootPath.$interfaceData["admin"]["settings"]["distPath"])) {
+        deleteDirRec($rootPath.$interfaceData["admin"]["settings"]["distPath"]);
+    }
+
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]);
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/assets");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/assets/fonts");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/media");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/media/logo");
+    mkdir($rootPath.$interfaceData["admin"]["settings"]["distPath"]."/media/logo/icon");
+
+    foreach($interfaceData["admin"]["settings"]["srcDistCopy"] as $file){
+        if (isset($file["env"]) && isset($interfaceData["settings"]["env"]) && $file["env"] != $interfaceData["settings"]["env"] ) {
+            continue;
+        }
+
+        $out .= $file["src"]."\n";
+
+        if ($file["type"] == "folder" ) {
+            if (!recursive_copy($rootPath.$file["src"], $rootPath.$file["dist"])) {
+                echo "copy $file schlug fehl...\n";
+            }
+        }
+        if ($file["type"] == "file") {
+            if (!copy($rootPath.$file["src"], $rootPath.$file["dist"])) {
+                echo "copy $file schlug fehl...\n";
+            }
+        }
+    }
+
     foreach($distfiles as $file){
-        if(file_exists($rootPath."/".$file["path"])){
-            unlink($rootPath."/".$file["path"]);
+        if(file_exists($rootPath.$file["path"])){
+            unlink($rootPath.$file["path"]);
         }
         file_put_contents($rootPath."/".$file["path"], $file["content"], LOCK_EX);
     }
 
-    //////////////////////////////////////////////////////////
-    //
-    //////////////////////////////////////////////////////////
     echo $out;
 }
 
@@ -399,14 +447,14 @@ if($action == "generateExtensions"){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 else if($action == "getAssetMaster"){
     $activAssets = array();
-    foreach($configAdmin["settings"]["extensions"] as $value){
+    foreach($interfaceData["admin"]["settings"]["extensions"] as $value){
         if($value["activated"] == true && isset($value["requiredAssets"][0]) && $value["requiredAssets"][0] != ""){
             $activAssets = array_merge($activAssets, $value["requiredAssets"]);
         }
     }
     $activAssets = array_unique($activAssets);
 
-    $masters = $configAdmin["settings"]["assets"];
+    $masters = $interfaceData["admin"]["settings"]["assets"];
     if (!is_dir($adminPath.'/assets')) {
         mkdir($adminPath.'/assets');
     }
@@ -531,21 +579,21 @@ else if($action == "renameIcons"){
 
     unset($gSaR[0]);
     foreach($gSaR as $value){
-        $configAdmin["icons"]["SaR"][]  = array("search" => $value[0], "replace" => $value[1]);
+        $interfaceData["admin"]["icons"]["SaR"][]  = array("search" => $value[0], "replace" => $value[1]);
     }
     echo "<pre>";
-    //print_r($configAdmin["icons"]["SaR"]);
-    if (is_array($configAdmin["icons"]["SaR"])) {
+    //print_r($interfaceData["admin"]["icons"]["SaR"]);
+    if (is_array($interfaceData["admin"]["icons"]["SaR"])) {
         $iconFallback = array();
-        foreach($configAdmin["icons"]["SaR"] as $value){
+        foreach($interfaceData["admin"]["icons"]["SaR"] as $value){
             $iconFallback[$value["search"]] = $value["replace"];
         }
     }
     //print_r($iconFallback);
     echo json_encode(array("iconFallback" => $iconFallback), JSON_PRETTY_PRINT);
     
-    if (is_array($configAdmin["icons"]["SaR"])) {
-        foreach($configAdmin["icons"]["SaR"] as $value){
+    if (is_array($interfaceData["admin"]["icons"]["SaR"])) {
+        foreach($interfaceData["admin"]["icons"]["SaR"] as $value){
             $SaR["search"][]  = '"'.$value["search"].'"';
             $SaR["replace"][] = '"'.$value["replace"].'"';
 
@@ -554,18 +602,18 @@ else if($action == "renameIcons"){
         }
     }
 
-    if (is_array($configAdmin["icons"]["folders"])) {
-        foreach($configAdmin["icons"]["folders"] as $folder){
+    if (is_array($interfaceData["admin"]["icons"]["folders"])) {
+        foreach($interfaceData["admin"]["icons"]["folders"] as $folder){
             $files = array_diff(scandir($folder), array('.', '..'));
             foreach($files as $file){
-                $configAdmin["icons"]["files"][] = $folder."/".$file;
+                $interfaceData["admin"]["icons"]["files"][] = $folder."/".$file;
             }
-            //print_r($configAdmin["icons"]["files"]);
+            //print_r($interfaceData["admin"]["icons"]["files"]);
         }
     }
 
-    if (is_array($configAdmin["icons"]["files"])) {
-        foreach($configAdmin["icons"]["files"] as $file){
+    if (is_array($interfaceData["admin"]["icons"]["files"])) {
+        foreach($interfaceData["admin"]["icons"]["files"] as $file){
             $path = $rootPath."/".$file;
             echo $path;
             if (!is_file($path)){echo "nofile!"; continue;}
@@ -582,15 +630,6 @@ else if($action == "renameIcons"){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 else if($action == "phpinfo"){
     echo phpinfo();
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-else if($action == "password"){
-    $password = $_GET["password"];
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    die('{"password":"'.$password_hash.'"}');
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

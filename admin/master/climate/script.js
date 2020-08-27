@@ -1,9 +1,18 @@
+/*
+    global
+        clone
+        shif_comps_create
+        shif_device
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function status_format(status, precision) {
     if (typeof(status) === 'string') {
-        const regex = /^(\d+(?:[\.,]\d+)?)/;
+        const regex = /^(\d+(?:[.,]\d+)?)/;
         return status.replace(regex, (match) => this.float_formatted(match, precision));
     }
 
@@ -35,6 +44,12 @@ climate_main.template = `
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -51,12 +66,18 @@ openweathermap_l2.template = `
                      v-bind:status="status_formatted"
                      v-bind:place="place"
                      v-bind:actions="true"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
 
         <template v-slot:favorites>
             <shif-checkbox-favorites v-bind:dev="dev" />
         </template>
 
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 

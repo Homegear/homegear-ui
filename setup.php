@@ -28,7 +28,7 @@
         die("No interfaceData file!");
     }
 
-    if ( isset($interfaceData["settings"]["setupKey"]) && isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["setupKey"] ){
+    if ( isset($interfaceData["settings"]["setupKey"]) && $interfaceData["settings"]["setupKey"] != "" && isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["setupKey"] ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/admin.php");
             die();
@@ -104,7 +104,7 @@
             $oldInterfaceData = json_decode($importInterfaceDataJson, true);
         }
         else {
-            die('{"error": "No importInterfaceDataJson set!"}');
+            $allInterfaceData["importInterfaceData"]["error"] = "No interfacedata.import.php file found or customImportInterfaceDataJson var set!";
         }
 
         $allInterfaceData = array();
@@ -207,6 +207,21 @@
                                             "Message: {$e->getMessage()}");
                         continue;
                     }
+                }
+            }
+        }
+
+        if(isset($_GET["deleteUIEhard"]) && $_GET["deleteUIEhard"] != ""){
+            for($i = 0; $i <= $_GET["deleteUIEhard"]; $i++){
+                try {
+                    $allInterfaceData["removeUiElementHard"][$i] = $hg->removeUiElement($i);
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["removeUiElementHard"][$i]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                            "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
                 }
             }
         }
@@ -452,7 +467,7 @@
                         if($directionString == 'in') $direction = 0;
                         else if($directionString == 'out') $direction = 1;
                         else $direction = 2; //both=2
-                        $invert = $value['invert'] ?? false;
+                        $invert = isset($value['invert']) && $value['invert'] =! false ? true : false;
                         foreach ($value["roleId"] as $roleId) {
                             $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $roleId, $direction, $invert);
                         }
@@ -688,6 +703,7 @@
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUIE', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getUIE', outputResult)" class="adminButton">list</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIE', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIEhard=200', outputResult)" class="adminButton">delete hard</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getAvailableUIE', outputResult)" class="adminButton">list available</div>
 
         <h4>User</h4>

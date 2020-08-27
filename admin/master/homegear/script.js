@@ -1,3 +1,18 @@
+/*
+    global
+        HomegearWS
+        error
+        i18n
+        interface_mount
+        interface_mount_with_gdpr
+        states_flag_dirty
+*/
+/*
+    exported
+        date_format
+*/
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -36,7 +51,7 @@ function homegear_websocket_security() {
 
     if (opts.websocket_security_ssl === undefined ||
         opts.websocket_security_ssl === 'location.protocol')
-        return location.protocol === 'https:'
+        return location.protocol === 'https:';
 
     return !! opts.websocket_security_ssl;
 
@@ -61,12 +76,11 @@ function homegear_new() {
     );
 }
 
-if (interfaceData.options.websocket_user && interfaceData.options.websocket_password) {
-    var homegear = homegear_new(interfaceData.options.websocket_user, interfaceData.options.websocket_password);
-}
-else {
-    var homegear = homegear_new(readCookie('PHPSESSIDUI'));
-}
+let homegear = interfaceData.options.websocket_user &&
+               interfaceData.options.websocket_password
+                ? homegear_new(interfaceData.options.websocket_user,
+                               interfaceData.options.websocket_password)
+                : homegear_new(readCookie('PHPSESSIDUI'));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,22 +162,39 @@ function handle_update_event(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        for (const role of roles_relevant(input.roles))
-            app.$root.$emit('role-update', role.id);
+        states_flag_dirty(roles_relevant(input.roles).map(x => x.id));
     }
 }
 
 
 
-function handle_update_request_ui_refresh(resp) {
-    error.set(`
-        <div class="toast_text">
-            ${i18n('refresh.message')}
-        </div>
-        <button class="toast_action" onclick="window.location.reload(true)">
-            ${i18n('refresh.message.button.text')}
-        </button>
-    `);
+function date_format() {
+    const dt = new Date ();
+
+    const month  = (dt.getMonth()+1).toString().padStart(2, '0');
+    const day    = dt.getDate().toString().padStart(2, '0');
+    const year   = dt.getFullYear().toString().padStart(4, '0');
+    const hour   = dt.getHours().toString().padStart(2, '0');
+    const minute = dt.getMinutes().toString().padStart(2, '0');
+    const second = dt.getSeconds().toString().padStart(2, '0');
+
+    return `${month}.${day}.${year} ${hour}:${minute}:${second}`;
+}
+
+
+
+function handle_update_request_ui_refresh(_resp) {
+    error.set({
+        close: false,
+        content: `
+            <div class="toast_text">
+                ${i18n('refresh.message')}
+            </div>
+            <button class="toast_action" onclick="window.location.reload(true)">
+                ${i18n('refresh.message.button.text')}
+            </button>
+        `
+    });
 }
 
 
@@ -180,6 +211,23 @@ function handle_update_variable_profile_state_changed(resp) {
 
 
 
+function handle_update_notification(resp) {
+    const id   = resp.params[0],
+          type = resp.params[1];
+
+    if (type === 'requestUiRefresh')
+        return handle_update_request_ui_refresh(resp);
+
+    Vue.set(interfaceData.notifications, id, {
+        id: id,
+        title: resp.params[2],
+        content: resp.params[3],
+        buttons: resp.params[4],
+    });
+}
+
+
+
 function homegear_handle_update(resp) {
     console.log(JSON.stringify(resp, null, 4));
 
@@ -187,10 +235,11 @@ function homegear_handle_update(resp) {
         'event': handle_update_event,
         'requestUiRefresh': handle_update_request_ui_refresh,
         'variableProfileStateChanged': handle_update_variable_profile_state_changed,
+        'notification': handle_update_notification,
     };
 
     if (resp.method in funcs)
-        funcs[resp.method](resp)
+        funcs[resp.method](resp);
 }
 
 
@@ -215,10 +264,7 @@ function params_create(input, value) {
 
 function homegear_prepare(homegear) {
     homegear.event(homegear_handle_update);
-    homegear.ready(() => {
-        app.$mount('#inhalt');
-        breadcrumbs.$mount('#breadcrumbs');
-    });
+    homegear.ready(interfaceData.options.gdpr ? interface_mount_with_gdpr : interface_mount);
 
     homegear.invoke_raw = homegear.invoke;
     homegear.invoke = function (op, cb) {
@@ -227,7 +273,7 @@ function homegear_prepare(homegear) {
                 return cb ? cb(ret) : undefined;
 
             console.log('Invoke Error: ' + JSON.stringify(ret.error, null, 4));
-        })
+        });
     };
 
     homegear.invoke_multi = function (ops, cb) {

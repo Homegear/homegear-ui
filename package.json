@@ -9,21 +9,26 @@
     "@jaames/iro": "^4.5.3",
     "jquery": "^3.5.1",
     "vue": "^2.6.11",
-    "vue-router": "^3.3.4"
+    "vue-router": "^3.4.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
     "acorn": "^6.4.1",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "csslint": "^1.0.5",
+    "eslint": "^7.3.1",
+    "eslint-plugin-vue": "^6.2.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^6.0.0",
     "gulp-minify": "^3.1.0",
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.2",
-    "popper.js": "^1.16.1"
+    "node-sass": "^4.14.1"
   },
   "unusedDependencies": {
     "plotly.js": "^1.46.0",
@@ -39,15 +44,25 @@
     "paho-mqtt": "^1.1.0",
     "patternlock": "1.0.1"
   },
+  "scripts": {
+    "build": "npm run buildProd",
+    "buildDev": "php admin/admin.php generateExtensions dev && npm run babel",
+    "buildProd": "php admin/admin.php generateExtensions && npm run babel",
+    "babel": "npx babel dist/script.js --out-file dist/script.min.js",
+    "watch": "npx gulp watcher",
+    "watcher": "npx gulp watcher",
+    "lint": "npx eslint admin/master/**/*.js"
+  },
   "browserslist": [
     "last 4 version",
     "> 1%",
     "maintained node versions",
-    "not dead"
+    "not dead",
+    "not ie < 11"
   ],
   "babel": {
     "presets": [
-      "babel-preset-env"
+      "@babel/preset-env"
     ]
   },
   "eslintConfig": {
@@ -56,8 +71,15 @@
       "es6": true,
       "jquery": true
     },
-    "extends": "eslint:recommended",
+    "plugins": [
+        "vue"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/essential"
+    ],
     "parserOptions": {
+      "sourceType": "script",
       "ecmaVersion": 2015
     },
     "rules": {
@@ -68,13 +90,29 @@
       "linebreak-style": 0,
       "quotes": [
         "error",
-        "single"
+        "single",
+        {"allowTemplateLiterals": true}
       ],
       "semi": [
         "error",
         "always"
       ],
-      "no-console": "off"
+      "indent": "off",
+      "no-console": "off",
+      "no-unused-vars": [
+        "error",
+        {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_"
+        }
+      ],
+      "no-prototype-builtins": "off"
+    },
+    "globals": {
+      "Vue": true,
+      "VueRouter": true,
+      "interfaceData": true,
+      "iro": true
     }
   }
 }

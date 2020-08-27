@@ -1,7 +1,23 @@
+/*
+    global
+        check_disabled_backend
+        check_disabled_frontend
+*/
+/*
+    exported
+        clone
+        set_or_extend
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+        user_logoff
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // globale Variablen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-var controlComponents = {};
 var logFrontend = '';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // write console logs to setting/about/nameClick/log page
@@ -81,12 +97,10 @@ $('body').on('touchmove', function (e) {
 // passt die Header Tab Anzeige beim scrollen an
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 headerVisibility('true');
-function headerVisibility(state) {
-    const stateDownScroll = state === 'true' ? 'block' : 'none';
-    const stateUpScroll = 'block';
+function headerVisibility(_state) {
     let lastScrollTop = 0;
 
-    $('.content').scroll(function(event){
+    $('.content').scroll(function(_event){
         var st = $(this).scrollTop();
 
         if (st > lastScrollTop) { // downscroll code
@@ -122,20 +136,47 @@ function i18n(key) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function condition_check(condition, value) {
-    if (condition === null || condition === undefined)
+function condition_check(cond, values) {
+    if (cond === undefined || cond === null)
         return true;
 
-    switch (condition.operator) {
-    case 'not':     return value != condition.value;
-    case 'e':       return value == condition.value;
-    case 'g':       return value  > condition.value;
-    case 'l':       return value  < condition.value;
-    case 'ge':      return value >= condition.value;
-    case 'le':      return value <= condition.value;
-    case 't':       return true;
-    case 'f':       // fall through
-    default:        return false;
+    if (cond.not !== undefined)
+        return ! condition_check(cond.not, values);
+
+    if (cond.and !== undefined)
+        return cond.and.map(x => condition_check(x, values))
+                       .every(x => x === true);
+
+    if (cond.or !== undefined) {
+        for (const i of cond.or)
+            if (condition_check(i, values) === true)
+                return true;
+        return false;
+    }
+
+    if (cond.operator === undefined)
+        return false;
+
+    const value = typeof values === 'object' && cond.index !== undefined
+                    ? values[cond.index].value
+                    : values;
+
+    switch (cond.operator) {
+        case 'not':
+        case 'ne':      return value != cond.value;
+        case 'e':
+        case 'eq':      return value == cond.value;
+        case 'g':
+        case 'gt':      return value  > cond.value;
+        case 'l':
+        case 'lt':      return value  < cond.value;
+        case 'ge':      return value >= cond.value;
+        case 'le':      return value <= cond.value;
+        case 't':
+        case 'true':    return true;
+        case 'f':
+        case 'false':
+        default:        return false;
     }
 }
 
@@ -180,10 +221,11 @@ function set_or_extend(arr, idx, vals) {
 // Clone {{{
 // src: https://stackoverflow.com/a/728694
 function clone(obj) {
-    var copy;
+    let copy;
 
     // Handle the 3 simple types, and null or undefined
-    if (null == obj || 'object' != typeof obj) return obj;
+    if (null == obj || 'object' != typeof obj)
+        return obj;
 
     // Handle Date
     if (obj instanceof Date) {
@@ -195,16 +237,16 @@ function clone(obj) {
     // Handle Array
     if (obj instanceof Array) {
         copy = [];
-        for (var i = 0, len = obj.length; i < len; i++) {
+        for (let i = 0, len = obj.length; i < len; i++)
             copy[i] = clone(obj[i]);
-        }
+
         return copy;
     }
 
     // Handle Object
     if (obj instanceof Object) {
         copy = {};
-        for (var attr in obj) {
+        for (let attr in obj) {
             if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
         }
         return copy;
@@ -216,7 +258,31 @@ function clone(obj) {
 
 
 
+// Mixins {{{
+const mixin_device_control_wrapper = {
+    inject: {
+        layer: 'layer',
+    },
+
+    computed: {
+        device_control_wrapper: function () {
+            return this.layer > 2 ? 'control_wrapper' : 'device_wrapper';
+        },
+    },
+};
+// }}}
+
+
+
 // Utils {{{
+Vue.component('TODO', {
+    abstract: true,
+
+    template: `<span style="color: red">TODO: <slot /></span>`
+});
+
+
+
 Vue.component('shif-title', {
     props: {
         classname: String,
@@ -313,6 +379,8 @@ Vue.component('shif-icon', {
 
 
 Vue.component('shif-slider', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         min:   Number,
         max:   Number,
@@ -337,14 +405,18 @@ Vue.component('shif-slider', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device slider">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
-
                 <div class="slider_action">
                     <div class="amount">
                         <p>{{ value_formatted }} {{ unit }}</p>
@@ -378,6 +450,8 @@ Vue.component('shif-slider', {
 
 
 Vue.component('shif-radio', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         title:     String,
         classname: String,
@@ -395,12 +469,19 @@ Vue.component('shif-radio', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
+
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_radio">
                     <template v-for="i in values">
@@ -424,6 +505,8 @@ Vue.component('shif-radio', {
 
 
 Vue.component('shif-dropdown', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         title:     String,
         classname: String,
@@ -442,11 +525,16 @@ Vue.component('shif-dropdown', {
     },
 
     template: `
-        <div class="device_wrapper" v-bind:class="{disabled: disabled.flag}">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_dropdown">
@@ -483,7 +571,12 @@ Vue.component('shif-button', {
              v-bind:class="{[classname]: true, disabled: disabled.flag}"
              v-bind:style="{width}"
              v-on:click="(!disabled.flag) && $emit('click', 1)">
-            <slot></slot>
+            <slot />
+            <div class="checkbox_wrapper">
+                <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                    <slot name="automations" />
+                </div>
+            </div>
         </div>
     `,
 });
@@ -491,6 +584,8 @@ Vue.component('shif-button', {
 
 
 Vue.component('shif-colorpicker', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         width:  { type: [Number, Object], required: true, },
         height: { type: [Number, Object], required: true, },
@@ -503,6 +598,10 @@ Vue.component('shif-colorpicker', {
         borderColor:  { type: String, default: '#fff' },
         anticlockwise:  { type: Boolean, default: true },
         title:  { type: String},
+        disabled: {
+            type: Object,
+            default: () => ({flag: false})
+        },
     },
 
     data: function () {
@@ -595,11 +694,16 @@ Vue.component('shif-colorpicker', {
     },
 
     template: `
-        <div class="device_wrapper">
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]">
             <div class="device color">
-                <div v-if="$slots.profiles"
-                     class="checkbox_wrapper">
-                    <slot name="profiles" />
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.profiles"
+                        class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
                 <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
@@ -627,13 +731,15 @@ Vue.component('shif-checkbox', {
             <span class="checkmark"></span>
         </label>
     `,
-})
+});
 // }}}
 
 
 
 // Generic l2 {{{
 Vue.component('shif-generic-l2', {
+    mixins: [mixin_device_control_wrapper],
+
     props: {
         icon:        String,
         place:       String,
@@ -658,11 +764,22 @@ Vue.component('shif-generic-l2', {
         },
     },
 
+    data: function () {
+        return {
+            click_icon_patched: this.$listeners &&
+                                this.$listeners.click !== undefined &&
+                                this.$listeners.click_icon === undefined,
+        };
+    },
+
     mounted: function () {
-        if (this.$listeners &&
-            this.$listeners.click !== undefined &&
-            this.$listeners.click_icon === undefined)
+        if (this.click_icon_patched)
             this.$on('click_icon', this.$listeners.click);
+    },
+
+    beforeDestroy: function () {
+        if (this.click_icon_patched)
+            this.$off('click_icon', this.$listeners.click);
     },
 
     methods: {
@@ -678,20 +795,24 @@ Vue.component('shif-generic-l2', {
     },
 
     template: `
-        <div class="device_wrapper"
-             v-bind:class="{disabled: disabled.flag}"
+        <div v-bind:class="[device_control_wrapper, {disabled: disabled.flag}]"
              v-on:mousedown="emit('mousedown')"
              v-on:mouseup="emit('mouseup')"
              v-on:click="emit('click')">
             <div class="device">
+                <div class="checkbox_wrapper">
+                    <div v-if="$slots.favorites"
+                        class="checkbox_favorites_wrapper">
+                        <slot name="favorites" />
+                    </div>
 
-                <div v-if="$slots.favorites"
-                     class="checkbox_right_50">
-                    <slot name="favorites" />
-                </div>
+                    <div v-if="$slots.profiles" class="checkbox_profiles_wrapper">
+                        <slot name="profiles" />
+                    </div>
 
-                <div v-if="$slots.profiles">
-                    <slot name="profiles" />
+                    <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                        <slot name="automations" />
+                    </div>
                 </div>
 
                 <div v-on:click.stop="emit('click_icon')">
@@ -765,7 +886,9 @@ function status_impl(control, layer) {
 
         if (input.rendering) {
             const sel = condition_get_matching(input.rendering, input.properties);
-            if (Object.keys(sel).length > 0) {
+            if (sel.texts !== undefined &&
+                sel.texts.state !== undefined &&
+                sel.texts.state.content !== undefined) {
                 val.push(sel.texts.state.content);
                 continue;
             }
@@ -794,6 +917,7 @@ const shif_device = {
         'indexes',
         'rendering',
         'include_place',
+        'sibling_idx',
     ],
 
     data: function() {
@@ -803,7 +927,13 @@ const shif_device = {
         };
     },
 
-    inject: ['layer'],
+    inject: {
+        layer: 'layer',
+        role_id: {default: undefined,},
+        room_id: 'room_id',
+        floor_id: 'floor_id',
+        // siblings: 'siblings',
+    },
 
     methods: {
         status_minimal: function (descs=true) {
@@ -835,8 +965,12 @@ const shif_device = {
             if (interfaceData.options.showFloor !== true)
                 return room.name;
 
+            if (room.floors.length === 0)
+                return `${i18n('house.storyless')} - ${room.name}`;
+
             return room.floors.map(x => interfaceData.floors[x])
-                .map(x => x.name + ' - ' + room.name).join(' | ');
+                              .map(x => x.name + ' - ' + room.name)
+                              .join(' | ');
         },
 
         title: function () {
@@ -857,13 +991,57 @@ const shif_device = {
             return out;
         },
 
-        breadcrumb: function () {
-            return (this.place ? this.place + ' | ' : '') + this.dev.label;
+        disabled: function () {
+            const backend = check_disabled_backend(this.uiElement, this.indexes);
+            if (backend.flag === true)
+                return backend;
+
+            return check_disabled_frontend(this.uiElement, this.sibling_idx,
+                                           this.$parent.dev_obj_props);
         },
 
-        disabled: function () {
-            return check_disabled(this.uiElement, this.indexes);
+        used_by_automations: function () {
+            if (interfaceData.map_automation === undefined ||
+                interfaceData.map_automation.devices === undefined)
+                return false;
+
+            const map = interfaceData.map_automation.devices;
+            if (map[this.device] === undefined)
+                return false;
+
+            const dev = map[this.device];
+            if (dev[this.indexes.control] === undefined)
+                return false;
+
+            const control = dev[this.indexes.control];
+            if (control[this.indexes.input] === undefined)
+                return false;
+
+            const input = control[this.indexes.input];
+            if(input.lenght === 0)
+                return false;
+
+            return input;
         },
+
+        automation_link: function () {
+            if (this.used_by_automations === false)
+                return {};
+
+            return this.used_by_automations.length === 1
+                    ? {
+                        name: 'settings.automations.automation',
+                        params: {
+                            automation_id: this.used_by_automations,
+                        },
+                      }
+                    : {
+                        name: 'settings.automations.selection',
+                        params: {
+                            automation_ids: this.used_by_automations.join('-'),
+                        },
+                      };
+        }
     },
 };
 
@@ -872,13 +1050,20 @@ const shif_device = {
 function shif_comps_create(name, l2, l3) {
     const shif_name = 'shif-' + name + '-';
 
-    controlComponents[name] = {
-        l2: Vue.component(shif_name + 'l2', l2),
-        l3: Vue.component(shif_name + 'l3', l3),
-    };
+    Vue.component(shif_name + 'l2', l2);
+    Vue.component(shif_name + 'l3', l3);
+}
+
+
+
+function shif_register_disable_hooks(objs) {
+    if (interfaceData.disable_hooks === undefined)
+        Vue.set(interfaceData, 'disable_hooks', {});
+
+    for (const i in objs)
+        Vue.set(interfaceData.disable_hooks, i, objs[i]);
 }
 // }}}
-
 
 
 
@@ -887,13 +1072,14 @@ Vue.component('shif-room', {
         floor: Object,
         room:  [String, Number],
     },
+
     methods: {
         link: function (floor_key, room_val) {
             return {
                 name: 'house.tab.rooms.room',
                 params: {
-                    floor: floor_key,
-                    room:  room_val,
+                    floor_id: floor_key,
+                    room_id:  room_val,
                 },
             };
         },

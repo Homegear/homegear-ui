@@ -88,7 +88,7 @@ if (class_exists('\Homegear\Homegear')) {
     // TODO: https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
     //echo json_encode($hg_interfaceData, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
     $json_str = json_encode($hg_interfaceData, JSON_PRETTY_PRINT);
-    $json_str = str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"'), array("", ""), $json_str);
+    $json_str = str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"', '"dynamicMetadata": null,'), array("", "", '"dynamicMetadata":[],'), $json_str);
     echo "var interfaceData = ".$json_str.";"."\n";
 
     // json_encode translates empty objects into arrays... dumb!
@@ -122,10 +122,14 @@ echo '</script>';
   <div id="error">
   </div>
 
-  <div id="breadcrumbs_wrapper">
-    <div id="breadcrumbs"></div>
+  <div id="gdpr">
   </div>
-  <div id="inhalt"></div>
+
+  <div id="breadcrumbs">
+  </div>
+
+  <div id="inhalt">
+  </div>
 
 <?php
   if (file_exists("icons.js")) {

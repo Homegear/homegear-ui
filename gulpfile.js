@@ -58,7 +58,7 @@ async function execC() {
 }
 
 async function execBabel() {
-      exec('babel script.js --out-file script.min.js', function (err, stdout, stderr) {
+      exec('npx babel dist/script.js --out-file dist/script.min.js', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         console.log(err);
@@ -69,11 +69,8 @@ async function execBabel() {
 function startWatchers() {
   //watch('admin/master/**/*.css', deploycss);
   //watch('admin/master/**/*.js', series(deployjs, babeljs));
-  watch('admin/admin.php', series(execC));
-  watch('admin/functions.dev.php', series(execC));
-  watch('admin/content.php', series(execC));
+  watch('admin/*.php', series(execC));
   watch('admin/master/**/*.css', series(execC));
-  watch('admin/master/**/*.php', series(execC));
   watch('admin/master/**/*.js', series(execC, execBabel));
 }
 

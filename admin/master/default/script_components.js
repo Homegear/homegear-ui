@@ -1,3 +1,17 @@
+/*
+    global
+        get_or_default
+        scroll_positions
+*/
+/*
+    exported
+        mixin_menus
+        mixin_rooms
+        mixin_scroll_position
+*/
+
+
+
 function comp_obj(control, device, input, output, is, indexes) {
     let ret = {
         uiElement: device,
@@ -18,6 +32,32 @@ function comp_obj(control, device, input, output, is, indexes) {
 }
 
 
+const mixin_rooms = {
+    computed: {
+        unassigned_rooms: function () {
+            const tmp = Object.keys(interfaceData.floors)
+                              .map(x => interfaceData.floors[x].rooms)
+                              .flat();
+
+            let assigned = {};
+            for (const i of tmp)
+                assigned[i] = true;
+
+            return Object.keys(interfaceData.rooms)
+                         .filter(x => ! assigned[x])
+                         .filter(x => this.room_has_devices(x));
+        },
+    },
+
+    methods: {
+        room_has_devices: function (room_key) {
+            const room = interfaceData.rooms[room_key];
+
+            return room.devices !== undefined && room.devices.length > 0;
+        },
+    }
+};
+
 
 const mixin_menus = {
     methods: {
@@ -31,6 +71,127 @@ const mixin_menus = {
                    interfaceData.options[key_type] &&
                    interfaceData.options[key_type][key] === true;
         },
+    },
+};
+
+
+
+const mixin_unique_view_key = {
+    methods: {
+        _specific_bc_idx_wanted: function (mode) {
+            const ident = this.$route.meta.cache_ident;
+
+            return ident !== undefined &&
+                   ident[mode] !== undefined &&
+                   ident[mode].bc_idx !== undefined;
+        },
+
+        _uniqueify_needed: function (mode) {
+            const ident = this.$route.meta.cache_ident;
+
+            return ident !== undefined &&
+                   ident[mode] !== undefined &&
+                   ident[mode].params !== undefined &&
+                   ident[mode].params.length > 0;
+        },
+
+        _base: function (mode) {
+            const meta = this.$route.meta;
+            const breadcrumbs = meta.breadcrumbs;
+
+            if (breadcrumbs === undefined)
+                return this.$route.fullPath;
+
+            if (this._specific_bc_idx_wanted(mode)) {
+                const idx = meta.cache_ident[mode].bc_idx;
+
+                if (breadcrumbs[idx] !== undefined)
+                    return breadcrumbs[idx];
+            }
+
+            switch (mode) {
+                case 'default': // fall through
+                case 'single': // fall through
+                case 'big':    return breadcrumbs[breadcrumbs.length - 1];
+                case 'small':  return breadcrumbs[breadcrumbs.length - 2];
+            }
+
+            throw `BUG: mixin_unique_view_key: mode is unknown: ${mode}`;
+        },
+
+            // Make base unique over the rooms/devices/etc.
+        _uniqueify: function (old, mode) {
+            const cache_ident = this.$route.meta.cache_ident;
+
+            if (! this._uniqueify_needed(mode))
+                return old;
+
+            const unique = cache_ident[mode].params
+                                            .map(x => this.$route.params[x])
+                                            .join('-');
+
+            return `${old}-${unique}`;
+        },
+
+        /**
+         * It's hard to defined a unique key for each view part.
+         * Requirements:
+         *   * lvl(1).default/single == lvl(2).small
+         *   * lvl(n).big == lvl(n + 1).small
+         **/
+        unique_view_key: function (mode) {
+            const base = this._base(mode);
+
+            return this._uniqueify(base, mode);
+        },
+    },
+};
+
+
+
+const mixin_scroll_position = {
+    methods: {
+        _find_scroll_position_marker: function (start) {
+            let cur = start;
+
+            for (; cur !== undefined; cur = cur.$parent) {
+                if (cur.$options.name === 'shif-scroll-position-marker')
+                    return cur;
+            }
+
+            return cur;
+        },
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        const marker = this._find_scroll_position_marker(this);
+        if (marker === undefined)
+            return;
+
+        scroll_positions[this.$vnode.key] = {
+            x: marker.$el.scrollLeft,
+            y: marker.$el.scrollTop,
+        };
+
+        if (this.$vnode.key === 'house.tab.devices')
+            scroll_positions[this.$vnode.key].role_id = this.$refs.devices.role_id_opened;
+
+        next();
+    },
+
+    beforeRouteEnter: function (to, from, next) {
+        next(vm => {
+            if (scroll_positions[vm.$vnode.key] === undefined)
+                return;
+
+            const marker = vm._find_scroll_position_marker(vm);
+            if (marker === undefined)
+                return;
+
+            const pos = scroll_positions[vm.$vnode.key];
+
+            marker.$el.scroll(pos.x, pos.y);
+        });
     },
 };
 
@@ -80,11 +241,11 @@ const mixin_components = {
 
 
 
-const mixin_print_mounted = function (name) {
+const mixin_print_mounted = function () {
     return {
         // This is for debug reasons only
         // mounted: function () {
-            // console.log(this.$options.name || name);
+            // console.log(this.$options.name || arguments[0]);
         // },
     };
 };
@@ -98,6 +259,12 @@ function root_profiles_idx(peer, channel, name) {
 
 const mixin_profiles = {
     computed: {
+        favorite_profiles: function () {
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(x => x.favorite === true);
+        },
+
         global_profiles: function () {
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
@@ -105,15 +272,17 @@ const mixin_profiles = {
         },
 
         local_profiles: function () {
-            const floor = parseInt(this.$route.params.floor);
-            const room  = parseInt(this.$route.params.room);
+            const floor = parseInt(this.floor_id);
+            const room  = parseInt(this.room_id);
 
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
                          .filter(
                 x => x.locations.findIndex(
-                    loc => loc.floorId === floor &&
-                          (loc.roomId === undefined || loc.roomId === room)
+                    loc => {
+                        return loc.floorId === floor &&
+                          (loc.roomId === undefined || loc.roomId === room);
+                    }
                 ) !== -1
             );
         },
@@ -154,6 +323,10 @@ const mixin_profiles = {
                     value:   i.value,
                 };
             }
+        },
+
+        profile_icon: function (profile) {
+            return get_or_default(profile, 'icon', 'slider_1');
         },
 
         profile_load: function (profile, cb) {
@@ -200,6 +373,7 @@ const mixin_profiles = {
                     },
                     {
                         global:    form.location.global,
+                        favorite:  form.location.favorite,
                         icon:      form.icon,
                         locations: locations,
                         roles:     [],
@@ -212,10 +386,11 @@ const mixin_profiles = {
                     icon:      form.icon,
                     locations: locations,
                     global:    form.location.global,
+                    favorite:  form.location.favorite,
                     name:      form.profile_name,
                     roles:     [],
                     values:    [],
-                }
+                };
 
                 this.$root.profiles.enabled = false;
 
@@ -267,6 +442,7 @@ const mixin_profiles = {
                     },
                     {
                         global:    form.location.global,
+                        favorite:  form.location.favorite,
                         icon:      form.icon,
                         locations: locations,
                         roles:     roles,
@@ -278,11 +454,12 @@ const mixin_profiles = {
                     id:        profile.id,
                     name:      form.profile_name,
                     global:    form.location.global,
+                    favorite:  form.location.favorite,
                     icon:      form.icon,
                     locations: locations,
                     roles:     roles,
                     values:    values,
-                }
+                };
 
                 this.$root.profiles.enabled = false;
 
@@ -290,6 +467,33 @@ const mixin_profiles = {
                     return cb(result);
             });
         },
+
+        profile_used_by_automations: function (id) {
+            return interfaceData.map_automation.profiles[id] === undefined
+                    ? false
+                    : interfaceData.map_automation.profiles[id];
+        },
+
+        profile_automation_link: function (id) {
+            const used_by_automations = this.profile_used_by_automations(id);
+
+            if (used_by_automations === false)
+                return {};
+
+            return used_by_automations.length === 1
+                    ? {
+                        name: 'settings.automations.automation',
+                        params: {
+                            automation_id: used_by_automations,
+                        },
+                      }
+                    : {
+                        name: 'settings.automations.selection',
+                        params: {
+                            automation_ids: used_by_automations.join('-'),
+                        },
+                      };
+        }
     },
 };
 
@@ -303,7 +507,9 @@ const mixin_favorites = {
                 method: 'getUiElementMetadata',
                 params: [dev],
             }, (data) => {
-                let new_metadata = data.result;
+                let new_metadata = {};
+                if (Array.isArray(data.result))
+                    new_metadata = data.result;
 
                 if (new_metadata.favorites === undefined)
                     new_metadata.favorites = {};
@@ -366,13 +572,20 @@ Vue.component('shif-house-collected-entries', {
         include_place: {
             type: Boolean,
             default: false,
-        }
+        },
     },
 
     provide: function () {
         return {
             layer: this.layer,
+            siblings: this.dev_objs,
         };
+    },
+
+    inject: {
+        device_id: { default: undefined, },
+        room_id:   { default: undefined, },
+        floor_id:  { default: undefined, },
     },
 
     computed: {
@@ -383,7 +596,7 @@ Vue.component('shif-house-collected-entries', {
                                             .map(dev => interfaceData.devices[dev])
                                             .filter(dev => dev.dynamicMetadata.favorites &&
                                                            dev.dynamicMetadata.favorites.state)
-                                    : interfaceData.rooms[this.$route.params.room]
+                                    : interfaceData.rooms[this.room_id]
                                                    .devices
                                                    .map(dev => interfaceData.devices[dev]);
 
@@ -391,39 +604,52 @@ Vue.component('shif-house-collected-entries', {
             }
 
             if (this.layer === 3) {
-                const device = interfaceData.devices[this.$route.params.device];
+                const device = interfaceData.devices[this.device_id];
                 return this.find_component(device, 'l3');
             }
 
             throw 'Not implemented';
         },
-    },
 
-    methods: {
-        get_icon_or_default: function (profile) {
-            return get_or_default(profile, 'icon', 'slider_1');
+        dev_obj_props: function () {
+            return this.dev_objs.map(x => x.props);
+        },
+
+        profiles: function () {
+            if (this.layer !== 2)
+                return [];
+
+            return this.favorites === true
+                        ? this.favorite_profiles
+                        : this.local_profiles;
         },
     },
 
     template: `
         <div>
-            <div class="profiles_wrapper">
-                <template v-if="layer === 2 && ! favorites"
-                          v-for="i in local_profiles">
-                    <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+            <div v-if="profiles.length > 0" class="profiles_wrapper">
+                <template v-for="i in profiles">
+                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
                                      v-bind:title="i.name"
                                      v-bind:status="i18n('modemenu.profiles.name.label')"
                                      v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                      v-on:click="profile_start(i)">
+                        <template v-slot:automations>
+                            <router-link v-if="profile_used_by_automations(i.id) !== false"
+                                         v-bind:to="profile_automation_link(i.id)">
+                                <shif-icon src="calendar-time_1" />
+                            </router-link>
+                        </template>
                     </shif-generic-l2>
                 </template>
             </div>
 
-            <template v-for="dev in dev_objs">
+            <template v-for="(dev, idx) in dev_objs">
                 <component v-bind="dev"
+                           v-bind:sibling_idx="idx"
                            v-bind:include_place="include_place" />
 
-                <template v-if="debug">
+                <template v-if="$root.debug">
                     {{ dev | pretty | log }}
                 </template>
             </template>
@@ -472,8 +698,29 @@ Vue.component('shif-mainmenu-tabs', {
 
 
 
+// This is a helper component, so we have defined parent where we can read the
+// scroll positions from.
+// Although not defining own DOM elements, it must not be abstract!
+// We won't be able to access the scroll positions!
+const ShifScrollPositionMarker = {
+    // Explicitly set, so it does not get (accidently?) set to true in the
+    // future.
+    abstract: false,
+    name: 'shif-scroll-position-marker',
+
+    render: function () {
+        return this.$slots.default;
+    },
+};
+
+
+
 Vue.component('shif-paging', {
-    mixins: [mixin_print_mounted()],
+    mixins: [mixin_unique_view_key, mixin_print_mounted()],
+
+    components: {
+        ShifScrollPositionMarker,
+    },
 
     computed: {
         is_single_view: function () {
@@ -483,32 +730,57 @@ Vue.component('shif-paging', {
             return route !== undefined &&
                    route.components !== undefined &&
                    route.components.default !== undefined;
-        }
+        },
+
+        views: function () {
+            if (this.is_single_view)
+                return [{
+                    name:       'default',
+                    class:      'content content_single',
+                    click:      false,
+                    transition: false,
+                }];
+
+            return [
+                {
+                    name:       'small',
+                    class:      'content content_small',
+                    click:      true,
+                    transition: false,
+                },
+                {
+                    name:       'big',
+                    class:      'content content_big',
+                    click:      false,
+                    transition: true,
+                    cache:      false,
+                }
+            ];
+        },
     },
 
-    template: `
-        <div>
-            <router-view v-if="is_single_view"
-                         name="default"
-                         class="content content_single"
-                         v-bind:key="$route.fullPath + '_left'" />
-
-            <router-view v-else
-                         name="small"
-                         class="content content_small"
-                         v-on:click.native="$router.back()"
-                         v-bind:key="$route.fullPath + '_left'" />
-
-            <shif-trans-right-in-out>
-                <router-view name="big"
-                             v-if="!is_single_view"
-                             class="content content_big"
-                             v-bind:key="$route.fullPath" />
-            </shif-trans-right-in-out>
-        </div>
-    `,
+    render: function (h) {
+        return h('div', {}, this.views.map(i =>
+            h('shif-scroll-position-marker', {}, [
+                // h('shif-trans-right-in-out', {}, [
+                    h('router-view', {
+                        class:    i.class,
+                        key:      this.unique_view_key(i.name),
+                        props:    {name: i.name},
+                        nativeOn: i.click ? {click: () => this.$router.back()} : {}
+                    })
+                // ])
+            ])
+        ));
+    }
 });
 
+            // <shif-trans-right-in-out>
+                // <router-view v-if="!is_single_view"
+                             // name="big"
+                             // class="content content_big"
+                             // v-bind:key="key('big')" />
+            // </shif-trans-right-in-out>
 
 
 Vue.component('shif-checkbox-favorites', {
@@ -521,7 +793,7 @@ Vue.component('shif-checkbox-favorites', {
         },
         classname: {
             type: String,
-            default: 'checkbox_right_50',
+            default: 'checkbox_favorites',
         },
     },
 
@@ -623,6 +895,35 @@ Vue.component('shif-checkbox-profiles', {
                     </div>
                 </div>
             </template>
+        </div>
+    `
+});
+
+
+
+Vue.component('shif-icon-selection', {
+    props: {
+        value: {type: String, required: true,},
+    },
+
+    methods: {
+        on_click: function (new_) {
+            this.$emit('input', new_);
+        },
+    },
+
+    template: `
+        <div id="profile_icons">
+            <label v-for="_, key in interfaceIcons"
+                    v-bind:class="{selected: value === key}"
+                    class="profile_icon_wrapper">
+                <shif-icon classname="profile_icon" v-bind:src="key" />
+                <input type="radio"
+                        name="profile_icon"
+                        v-bind:value="value"
+                        v-on:click="on_click(key)"
+                        hidden />
+            </label>
         </div>
     `
 });

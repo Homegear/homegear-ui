@@ -1,23 +1,25 @@
+/*
+    global
+        mixin_rooms
+        mixin_print_mounted
+        mixin_scroll_position
+*/
+/*
+    exported
+        ShifHouse
+        ShifHouseLvl2
+        ShifHouseLvl3
+        ShifHouseRooms
+*/
+
+
+
 Vue.component('shif-house-floors-rooms', {
-    mixins: [mixin_print_mounted()],
+    mixins: [mixin_rooms, mixin_print_mounted()],
 
     computed: {
         has_multiple_floors: function () {
             return Object.keys(interfaceData.floors).length > 1;
-        },
-
-        unassigned_rooms: function () {
-            const tmp = Object.keys(interfaceData.floors)
-                              .map(x => interfaceData.floors[x].rooms)
-                              .flat();
-
-            let assigned = {};
-            for (const i of tmp)
-                assigned[i] = true;
-
-            return Object.keys(interfaceData.rooms)
-                         .filter(x => ! assigned[x])
-                         .filter(x => this.room_has_devices(x));
         },
     },
 
@@ -43,14 +45,6 @@ Vue.component('shif-house-floors-rooms', {
         return {
             maxWidth: maxWidth + 'px',
         };
-    },
-
-    methods: {
-        room_has_devices: function (room_key) {
-            const room = interfaceData.rooms[room_key];
-
-            return room.devices !== undefined && room.devices.length > 0;
-        },
     },
 
     template: `
@@ -91,6 +85,20 @@ Vue.component('shif-house-floors-rooms', {
 let ShifHouseLvl3 = {
     mixins: [mixin_print_mounted('shif-house-lvl3')],
 
+    props: {
+        room_id:   { required: true, },
+        device_id: { required: true, },
+        floor_id:  { required: true, },
+    },
+
+    provide: function () {
+        return {
+            room_id:   this.room_id,
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+        };
+    },
+
     template: `
         <shif-house-collected-entries v-bind:layer="3" />
     `
@@ -99,7 +107,21 @@ let ShifHouseLvl3 = {
 
 
 let ShifHouseLvl2 = {
-    mixins: [mixin_print_mounted('shif-house-lvl2')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-lvl2')],
+
+    props: {
+        room_id:   { required: true, },
+        device_id: { },
+        floor_id:  { required: true, },
+    },
+
+    provide: function () {
+        return {
+            floor_id:  this.floor_id,
+            device_id: this.device_id,
+            room_id:   this.room_id,
+        };
+    },
 
     template: `
         <shif-house-collected-entries v-bind:layer="2" />
@@ -109,7 +131,7 @@ let ShifHouseLvl2 = {
 
 
 let ShifHouseRooms = {
-    mixins: [mixin_print_mounted('shif-house-rooms')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-rooms')],
 
     template: `
         <shif-mainmenu-tabs>

@@ -1,3 +1,13 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+*/
+
+
+
 let media_buttons_l2 = clone(shif_device);
 media_buttons_l2.template = `
     <shif-generic-l2 v-bind:icon="icons.l2.name"
@@ -6,16 +16,23 @@ media_buttons_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-bind:status="status"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
 
         <template v-slot:favorites>
             <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
         </template>
     </shif-generic-l2>
 `;
 
 let media_buttons_l3 = clone(shif_device);
-media_buttons_l3.methods.change = function(event) {
+media_buttons_l3.methods.change = function(_event) {
     let upVar = this.control.variableOutputs[0];
     let downVar = this.control.variableOutputs[2];
     if((this.indexes.input == 0 || this.indexes.input == 2) &&
@@ -41,7 +58,7 @@ media_buttons_l3.methods.change = function(event) {
         }
     }
     else homegear.value_set_clickcounter(this, this.output, true);
-}
+};
 
 media_buttons_l3.template = `
     <div class="control_button_wrapper">
@@ -51,6 +68,13 @@ media_buttons_l3.template = `
                         v-bind:active="cond.icon.color">
             </shif-icon>
         </shif-button>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </div>
 `;
 

@@ -1,20 +1,36 @@
+/*
+    global
+        mixin_print_mounted
+        mixin_profiles
+*/
+/*
+    exported
+        ShifProfiles
+*/
+
+
+
 let ShifProfilesGlobal = {
     mixins: [mixin_profiles, mixin_print_mounted('shif-profiles-global')],
 
-    methods: {
-        get_icon_or_default: function (profile) {
-            return get_or_default(profile, 'icon', 'slider_1');
-        },
+    provide: {
+        layer: 2,
     },
 
     template: `
         <div id="profiles" class="content content_single">
             <div class="profiles_wrapper">
                 <template v-for="i in global_profiles">
-                    <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
+                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
                                      v-bind:title="i.name"
                                      v-bind:active="{icon: i.isActive ? 'active' : ''}"
                                      v-on:click="profile_start(i)">
+                        <template v-slot:automations>
+                            <router-link v-if="profile_used_by_automations(i.id) !== false"
+                                         v-bind:to="profile_automation_link(i.id)">
+                                <shif-icon src="calendar-time_1" />
+                            </router-link>
+                        </template>
                     </shif-generic-l2>
                 </template>
             </div>

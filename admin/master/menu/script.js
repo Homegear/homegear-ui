@@ -1,3 +1,12 @@
+/*
+    global
+        mixin_menus
+        mixin_print_mounted
+        mixin_profiles
+*/
+
+
+
 Vue.component('shif-mainmenu', {
     mixins: [mixin_menus, mixin_print_mounted()],
 
@@ -13,6 +22,16 @@ Vue.component('shif-mainmenu', {
         width: function () {
             return (100 / this.enabled_menus.length) + '%';
         },
+
+        notifications_available: function () {
+            return Object.keys(interfaceData.notifications).length;
+        },
+    },
+
+    methods: {
+        badge_wanted: function (cur) {
+            return this.notifications_available > 0 && cur === 'notifications';
+        }
     },
 
     template: `
@@ -23,7 +42,9 @@ Vue.component('shif-mainmenu', {
 
                     <router-link v-bind:to="{name: i.name}">
                         <div v-bind:id="'mainmenu_' + i.name"
-                             class="mainmenu_button">
+                             class="mainmenu_button"
+                             v-bind:class="{badge: badge_wanted(i.name)}"
+                             v-bind:data-badge="notifications_available">
                              <shif-icon v-bind:src="i.icon" />
                         </div>
                     </router-link>
@@ -39,16 +60,19 @@ Vue.component('shif-mainmenu', {
 Vue.component('shif-modemenu', {
     mixins: [mixin_profiles],
 
-    methods: {
+    computed: {
         link_profile: function () {
+            console.log(this.$root.profiles.id);
             return {
                 name: 'settings.profiles.profile',
                 params: {
-                    profile: this.$root.profiles.id,
+                    profile_id: this.$root.profiles.id,
                 },
             };
         },
+    },
 
+    methods: {
         submit_profile: function () {
             this.profile_update(interfaceData.profiles[this.$root.profiles.id],
                                 this.$root.profiles.form);
@@ -78,7 +102,7 @@ Vue.component('shif-modemenu', {
                     </span>
                 </div>
                 <div class="mode_buttons">
-                    <router-link v-bind:to="link_profile()">
+                    <router-link v-bind:to="link_profile">
                         <div class="mode_settings">
                             {{ i18n('modemenu.profiles.button.settings') }}
                         </div>

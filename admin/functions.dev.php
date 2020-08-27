@@ -28,6 +28,13 @@ if (file_exists("interfacedata.dummy.php")) {
 }
 if(isset($dummyInterfaceDataJson)) {
     $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
+    unset($dummyInterfaceData["iconFallback"]);
+    unset($dummyInterfaceData["i18n"]);
+    unset($dummyInterfaceData["themes"]);
+    unset($dummyInterfaceData["menu"]);
+    unset($dummyInterfaceData["mainmenu"]);
+    unset($dummyInterfaceData["manifest"]);
+    unset($dummyInterfaceData["options"]);
     $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
 }
 
@@ -42,9 +49,9 @@ function print_array($result){
     print_r($result);
     echo "</pre>";
   }
-  
+
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // in_array_r rcursive lookup 
+  // in_array_r rcursive lookup
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   function in_array_r($needle, $haystack, $strict = false) {
       foreach ($haystack as $item) {
@@ -65,6 +72,9 @@ function clean_json_to_js() {
     $interfaceDataOut["devices"] = $interfaceData["devices"];
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
     $interfaceDataOut["floors"] = $interfaceData["floors"];
+    $interfaceDataOut["notifications"] = $interfaceData["notifications"];
+    $interfaceDataOut["automations"] = $interfaceData["automations"];
+    $interfaceDataOut["map_automation"] = $interfaceData["map_automation"];
     $interfaceDataOut["menu"] = $interfaceData["menu"];
     $interfaceDataOut["mainmenu"] = $interfaceData["mainmenu"];
     $interfaceDataOut["themes"] = $interfaceData["themes"];
@@ -95,8 +105,10 @@ function clean_json_to_js() {
     foreach($defaultInterfaceData["i18n"] as $key => $value){
         $interfaceDataOut["i18n"]["languages"][$key]["name"] = $value["settings.user.manage.language.name"];
     }
+    $interfaceDataOutJson = json_encode($interfaceDataOut, JSON_PRETTY_PRINT);
+    $interfaceDataOutJson = str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"', '"dynamicMetadata": null,'), array("", "", '"dynamicMetadata":[],'), $interfaceDataOutJson);
 
-    $out = "var interfaceData = ".json_encode($interfaceDataOut, JSON_PRETTY_PRINT).';'."\n";
+    $out = "var interfaceData = ".$interfaceDataOutJson.';'."\n";
 
     return $out;
 }
@@ -114,7 +126,7 @@ class User {
 
     public function getSettings() {
         global $interfaceData;
-        return $interfaceData["users"]["1"]["settings"];
+        return $interfaceData["settings"]["userDefaults"];
     }
 
     public function checkAuth($redirectToLogin) {

@@ -120,7 +120,7 @@ button, input, radio, checkbox, textarea {
   box-shadow: 0px 0px 0px 0px #aaa;
   border: 0px solid #000;
   padding: 20px;
-  margin: 4px;
+  margin-bottom: 4px;
 }
 
 input {
@@ -306,7 +306,7 @@ a.disabled {
 @media (max-width: 1024px) {
   .content_small {
     width: 100%;
-    display: none;
+    visibility: hidden;
   }
 }
 
@@ -550,7 +550,6 @@ a.disabled {
 .accordion_arrow_rotated {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
-  margin-top: 16px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -706,34 +705,6 @@ a.disabled {
   fill: #fff;
 }
 
-.buttonGlobal {
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-  margin: 0px;
-  float: left;
-  margin: 0.5px 0px;
-  padding: 24px 0px;
-  background: #191b1f;
-  border-right: 1px solid #25282e;
-}
-
-.buttonGlobal:last-child {
-  margin-bottom: 15px;
-}
-
-.buttonGlobal:last-child {
-  border-right: 0px;
-}
-
-.buttonGlobal:active, .buttonGlobal.active:active {
-  background: #898989;
-}
-
-.buttonGlobal.active {
-  background: #e3a104;
-}
-
 /* ///////////////////////////////////////////////////////////////////////// */
 
 /* slider */
@@ -816,7 +787,6 @@ a.disabled {
 }
 
 .rad>i {
-  display: inline-block;
   vertical-align: middle;
   width: 60px;
   height: 60px;
@@ -840,15 +810,6 @@ a.disabled {
   box-shadow: inset 0 0 0 2px #fff;
 }
 
-.checkbox_wrapper {
-  position: relative;
-}
-
-.checkbox_wrapper .check {
-  top: 16px;
-  right: 0;
-}
-
 /* The check */
 .check {
   display: block;
@@ -867,7 +828,7 @@ a.disabled {
   bottom: 0;
   right: 0px;
 }
-.checkbox_right_50 .check,
+
 .accordion .check {
   right: 50px;
 }
@@ -1152,7 +1113,8 @@ input[type=range]:focus::-ms-fill-upper {
   margin-top: -25px;
 }
 
-.categoryContainer .deviceContainer, .categoryContainer .device_wrapper {
+.categoryContainer .deviceContainer, 
+.categoryContainer .device_wrapper {
   padding-left: 35px;
 }
 
@@ -1176,42 +1138,6 @@ input[type=range]:focus::-ms-fill-upper {
   white-space: nowrap;
   overflow: visible;
   padding: 2px 0;
-}
-
-/* /////////////////////////////////////////////// */
-
-/** SVG Buttons */
-
-/* ////////////////////////////////////////////// */
-
-.svg_slider {
-  z-index: 10000000;
-}
-
-.slide_base {
-  fill: #fff;
-}
-
-.slide_upper {
-  fill: #e3a104;
-}
-
-.slide_btn {
-  fill: #e3a104;
-}
-
-.svg_btn svg {}
-
-.svg_slider svg {
-  /*width: 100%;*/
-}
-
-.svg_slider_color svg {
-  /*width: 100%;*/
-}
-
-.slide_btn_color {
-  fill: rgb(0, 255, 255);
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -1274,6 +1200,7 @@ td {
 .table1 td {
   font-size: 18px;
   padding: 2px 6px;
+  vertical-align: middle;
 }
 
 .table1 td:nth-child(odd) {
@@ -1298,6 +1225,7 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
+.control_wrapper .device,
 .device_wrapper .device {
   width: 100%;
   background: transparent;
@@ -1313,6 +1241,7 @@ td {
   margin: 0px;
 }
 
+.control_wrapper .device_icon,
 .device_wrapper .device_icon {
   width: 70px;
   height: 70px;
@@ -1326,6 +1255,7 @@ td {
   padding: 0 0 0 0;
 }
 
+.control_wrapper .device_icon svg,
 .device_wrapper .device_icon svg {
   width: 60px;
   height: 60px;
@@ -1340,14 +1270,87 @@ td {
   fill: #898989;
 }
 
+.control_wrapper .device_icon .active svg,
 .device_wrapper .device_icon .active svg {
   fill: #e3a104;
 }
 
-.device_wrapper .device_icon svg:active, .device_wrapper .device_icon svg:focus {
+.device_wrapper .device_icon svg:active, 
+.control_wrapper .device_icon svg:active, 
+.control_wrapper .device_icon svg:focus,
+.device_wrapper .device_icon svg:focus {
   fill: #898989;
 }
 
+.device_wrapper .checkbox_wrapper {
+  position: absolute;
+  height: 70px;
+  width: inherit;
+  right: 50px;
+  top: 0;
+  margin: auto;
+  bottom: 0;
+}
+
+.control_wrapper .checkbox_wrapper {
+  position: absolute;
+  height: 70px;
+  width: inherit;
+  right: 0px;
+  top: 10px;
+  margin: auto;
+
+}
+
+
+.control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper,
+.device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper {
+  float: right;
+  position: relative;
+  z-index: 9;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper > div > div,
+.device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper > div > div {
+  width: 70px;
+  height: 70px;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper,
+.device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper {
+  float: right;
+  position: relative;
+  z-index: 9;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper > div > div,
+.device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper > div > div {
+  width: 70px;
+  height: 70px;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_automation_wrapper,
+.device_wrapper .checkbox_wrapper .checkbox_automation_wrapper {
+  float: right;
+  position: relative;
+  z-index: 9;
+  top: 5px;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_automation_wrapper > div,
+.device_wrapper .checkbox_wrapper .checkbox_automation_wrapper > div {
+  width: 70px;
+  height: 70px;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_automation_wrapper svg,
+.device_wrapper .checkbox_wrapper .checkbox_automation_wrapper svg {
+  width: 60px;
+  height: 60px;
+  fill: #898989;
+}
+
+.control_wrapper .device_text,
 .device_wrapper .device_text {
   width: calc( 100% - 220px);
   vertical-align: middle;
@@ -1357,6 +1360,7 @@ td {
   padding: 0px;
 }
 
+.control_wrapper .device_title,
 .device_wrapper .device_title {
   font-size: 28px;
   line-height: 28px;
@@ -1364,12 +1368,14 @@ td {
   text-align: left;
 }
 
+.control_wrapper .device_location,
 .device_wrapper .device_location {
   font-size: 22px;
   line-height: 22px;
   margin-bottom: 8px;
 }
 
+.control_wrapper .device_status,
 .device_wrapper .device_status {
   color: #898989;
   font-size: 24px;
@@ -1377,14 +1383,17 @@ td {
   text-align: left;
 }
 
+.control_wrapper .device_status.active,
 .device_wrapper .device_status.active {
   color: #e3a104;
 }
 
+.control_wrapper .device_status .device_status_entry,
 .device_wrapper .device_status .device_status_entry {
   white-space: nowrap;
 }
 
+.control_wrapper .device_status .device_status_entry .name,
 .device_wrapper .device_status .device_status_entry .name {
   color: #898989;
   display: inline-block;
@@ -1393,21 +1402,25 @@ td {
 }
 
 
+.control_wrapper .device_status .device_status_entry .value,
 .device_wrapper .device_status .device_status_entry .value {
   display: inline-block;
   white-space: normal;
 }
 
+.control_wrapper .device_status .device_status_entry::after,
 .device_wrapper .device_status .device_status_entry::after {
   content: " | ";
   color: #191b1f;
   white-space: normal;
 }
 
+.control_wrapper .device_status .device_status_entry:last-child::after,
 .device_wrapper .device_status .device_status_entry:last-child::after {
   content: unset;
 }
 
+.control_wrapper .device_slider,
 .device_wrapper .device_slider {
   display: block;
   clear: both;
@@ -1415,6 +1428,7 @@ td {
   margin: 10px 0;
 }
 
+.control_wrapper .device_radio,
 .device_wrapper .device_radio {
   display: block;
   clear: both;
@@ -1422,10 +1436,12 @@ td {
   margin-top: 25px;
 }
 
-.svg_slider svg, .svg_slider_color svg {
+.svg_slider svg, 
+.svg_slider_color svg {
   overflow: visible;
 }
 
+.control_wrapper .device_action,
 .device_wrapper .device_action {
   position: absolute;
   top: 0;
@@ -1436,6 +1452,7 @@ td {
   margin: auto;
 }
 
+.control_wrapper .device_action>div,
 .device_wrapper .device_action>div {
   width: 39px;
   height: 39px;
@@ -1453,6 +1470,7 @@ td {
   transition: .4s ease-in-out;
 }
 
+.control_wrapper .device_action svg,
 .device_wrapper .device_action svg {
   width: 39px;
   height: 39px;
@@ -1477,6 +1495,15 @@ td {
   margin: 10px 0;
 }
 
+.control_button_wrapper .checkbox_wrapper {
+  position: absolute;
+  height: 70px;
+  right: 60px;
+  top: 0;
+  margin: auto;
+  bottom: 0;
+}
+
 .control_button {
   background: #191b1f;
   display: table-cell;
@@ -1486,6 +1513,7 @@ td {
   text-align: center;
   position: relative;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .control_button:last-child {
@@ -1496,7 +1524,7 @@ td {
   background: #898989;
 }
 
-.control_button svg {
+.control_button .svg_icon svg {
   width: 50px;
   height: 50px;
   margin: auto;
@@ -1509,9 +1537,13 @@ td {
   fill: #fff;
 }
 
+.control_button .svg_icon.active svg {
+  fill: #fff;
+}
+
 .control_button .close_x_1 svg {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -1525,7 +1557,7 @@ td {
 
 #profiles .profiles_wrapper .device:active,
 #house .profiles_wrapper .device:active {
-  background: #e3a104;
+  background: #191b1f;
 }
 
 .profiles_wrapper .button_action svg {
@@ -1556,10 +1588,6 @@ td {
 
 #profile_icons .profile_icon_wrapper.selected {
   border: 2px solid #e3a104;
-}
-
-#profile_icons .profil_icon_name {
-
 }
 
 #profile_icons .profile_icon {
@@ -1645,11 +1673,7 @@ margin-bottom: 30px;
   margin-top: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid #898989;
-}
-
-.form-group .device_wrapper .device{
-  border-bottom: 0px solid #898989;
-  padding: 0px;
+  position: relative;
 }
 
 .form-group .label {
@@ -1790,4 +1814,237 @@ margin-bottom: 30px;
   -moz-transform: translate(100%, 0);
   -webkit-transform: translate(100%, 0);
   transform: translate(100%, 0);
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+
+#functions .svg_icon.active svg{
+  fill: #e3a104;
+}
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+.collapse-content {
+  margin: 30px auto;
+}
+
+.collapse-content .collapse {
+  margin: 30px auto;
+  background: #191b1f;
+  position: relative;
+}
+
+.collapse-content .collapse-title {
+  cursor: pointer;
+  position: relative;
+}
+
+.collapse-content .collapse-icon {
+  display: inline-block;
+  width: 64px;
+  position: absolute;
+  top: 12px;
+  left: 16px;
+}
+
+.collapse-content .collapse-icon .svg_icon {
+  width: 58px;
+  height: 58px;
+}
+
+.collapse-content .collapse-icon svg {
+  width: 58px;
+  height: 58px;
+  fill: #fff;
+}
+
+.collapse-content .collapse span{
+  display: block;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 18px;
+  margin-left: 80px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+}
+
+.collapse-content .collapse-title .collapse-arrow {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 70px;
+  height: 70px;
+  margin: auto;
+}
+
+.collapse-content .collapse-title .collapse-arrow .svg_icon {
+  width: auto;
+  height: auto;
+}
+
+.collapse-content .collapse-title .collapse-arrow > div {
+  width: 39px;
+  height: 39px;
+  float: right;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transition: .4s ease-in-out;
+  -moz-transition: .4s ease-in-out;
+  -ms-transition: .4s ease-in-out;
+  -o-transition: .4s ease-in-out;
+  transition: .4s ease-in-out;
+}
+
+.collapse-content .collapse-title .collapse-arrow  svg {
+  width: 39px;
+  height: 39px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  fill: #fff;
+}
+
+.collapse-content-inner {
+  transition: 0.3s linear 0s;
+  overflow: hidden;
+  padding: 0 30px;
+  border-top: 1px solid #898989;
+}
+
+.collapse-content .form-group {
+  padding-bottom: 0;
+  border-bottom: 0px solid #898989;
+  min-height: 60px;
+}
+
+.collapse-content .collapse-wrapper{
+  position: relative;
+  padding: 12px 0;
+  margin-top: 0px;
+}
+
+.collapse-content .collapse-wrapper .label {
+  margin-bottom: 0px;
+}
+
+.collapse-content .collapse-wrapper .check {
+  top: -4px;
+}
+
+#automation .automation-state .check {
+  top: -40px;
+}
+
+.collapse-content .collapse-wrapper .check .checkmark{
+  margin-left: 0px;
+}
+
+.collapse-content .time {
+  display: flex;
+  justify-content: space-between;
+}
+
+.collapse-content .time > div {
+  flex: auto;
+}
+
+.collapse-content .time > div:first-child {
+  margin-right: 5px;
+}
+
+.collapse-content .inner-content button,
+.collapse-content .inner-content select,
+.collapse-content .inner-content input,
+.collapse-content .inner-content radio,
+.collapse-content .inner-content checkbox,
+.collapse-content .inner-content textarea {
+  background: #25282e !important;
+}
+
+.collapse-content .inner-content select optgroup{
+  background:#191b1f;
+  color:#fff;
+}
+
+.collapse-content .inner-content .automation-device .label {
+  margin-top: 20px;
+}
+
+.collapse-content .inner-content .automation-device button,
+.collapse-content .inner-content .automation-device select,
+.collapse-content .inner-content .automation-device input,
+.collapse-content .inner-content .automation-device radio,
+.collapse-content .inner-content .automation-device checkbox,
+.collapse-content .inner-content .automation-device textarea {
+  margin-top: 5px;
+}
+
+.collapse-content .inner-content .table1 button {
+  background: rgb(167, 22, 22) !important;
+}
+
+.collapse-content .inner-content .table1 button > div {
+  width: 20px;
+  margin: auto;
+}
+
+.collapse-content .inner-content .table1 button .svg_icon{
+  height: 20px;
+  width: 20px;
+}
+
+@media (max-width: 320px) {
+  .collapse-content .collapse-content {
+    width: 80vw;
+  }
+  .inner-content {
+    padding: 0.8rem;
+  }
+  .collapse-content .inner-content h3 {
+    margin-bottom: 0.3rem;
+  }
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+
+.notification_message {
+  max-width: 800px;
+  margin: auto;
+  background: #191b1f;
+}
+
+.notification_message .notification_title {
+  padding: 20px;
+  font-size: 30px;
+  border-bottom: 1px solid #898989;
+}
+
+.notification_message .notification_content {
+  padding: 20px;
+}
+
+
+.notification_message .notification_buttons {
+  padding: 20px;
+}
+
+.notification_message .notification_buttons button {
+  background: #e3a104 !important;
 }
