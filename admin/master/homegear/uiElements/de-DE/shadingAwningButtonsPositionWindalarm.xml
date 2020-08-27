@@ -2,9 +2,9 @@
 <homegearUiElements lang="de-DE">
 	<homegearUiElement>
 		<id>Base.shadingAwningButtonsPositionWindalarm</id>
-        <control>shadingAwningButtonsPositionWindalarm</control>
+		<control>shadingAwningButtonsPositionWindalarm</control>
 		<type>complex</type>
-        <role>502000</role>
+		<role>502000</role>
 		<texts>
 			<text id="title">
 				<content>Beschattung</content>
@@ -18,16 +18,16 @@
 		<icons>
 			<icon id="awning_1">
 				<name>awning_1</name>
-                <color>icon</color>
+				<color>icon</color>
 			</icon>
 			<icon id="l2">
 				<name>awning_1</name>
-                <color>icon</color>
+				<color>icon</color>
 			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
+			<icon id="l3">
+				<name>arrow_right_1</name>
+				<color>iconArrow</color>
+			</icon>
 		</icons>
 		<grid>
 			<width>3</width>

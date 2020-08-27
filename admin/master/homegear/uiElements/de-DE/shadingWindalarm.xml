@@ -4,7 +4,7 @@
 		<uniqueUiElementId>Base.shadingWindalarm</uniqueUiElementId>
 		<control>shadingWindalarm</control>
 		<type>simple</type>
-        <role>400000</role>
+		<role>500000</role>
 		<texts>
 			<text id="title">
 				<content>Alarm</content>
@@ -18,12 +18,12 @@
 		<icons>
 			<icon id="l2">
 				<name>windhose_1</name>
-                <color>inactive</color>
+				<color>inactive</color>
 			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
+			<icon id="l3">
+				<name>arrow_right_1</name>
+				<color>iconArrow</color>
+			</icon>
 		</icons>
 		<variableInputs>
 			<variable>

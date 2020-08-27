@@ -37,20 +37,6 @@
 						<icons>
 							<icon id="state">
 								<name>door_open_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>offen</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="not" value="0">
-						<icons>
-							<icon id="state">
-								<name>door_open_1</name>
 								<color>inactive</color>
 							</icon>
 						</icons>
@@ -58,6 +44,20 @@
 							<text id="state">
 								<content>geschlossen</content>
 								<color>inactive</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="not" value="0">
+						<icons>
+							<icon id="state">
+								<name>door_open_1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>offen</content>
+								<color>active</color>
 							</text>
 						</texts>
 					</condition>

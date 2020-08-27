@@ -27,7 +27,7 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
 <head>
-    <title>Shif - <?php echo $interfaceData["options"]["firstBreadcrumb"]; ?></title>
+    <title>Shif</title>
     <meta charset="UTF-8">
     <meta name="author" content="Homegear GmbH" />
     <meta name="keywords" content="Shif" />
@@ -67,6 +67,13 @@ else {
 
 echo '<style>'."\n";
 echo userStyle()."\n";
+
+echo '
+/* scrollbar */
+::-webkit-scrollbar {
+  width: '.$interfaceData["options"]["scrollbarScale"].'px;
+}
+';
 echo'</style>'."\n";
 
 echo '
@@ -81,7 +88,11 @@ if (class_exists('\Homegear\Homegear')) {
     // TODO: https://www.sitepoint.com/community/t/json-encode-sometimes-does-or-does-not-add-keys-for-array-elements/116226
     //echo json_encode($hg_interfaceData, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
     $json_str = json_encode($hg_interfaceData, JSON_PRETTY_PRINT);
+    $json_str = str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"', '"dynamicMetadata": null,'), array("", "", '"dynamicMetadata":[],'), $json_str);
     echo "var interfaceData = ".$json_str.";"."\n";
+
+    // json_encode translates empty objects into arrays... dumb!
+    echo "if (Array.isArray(interfaceData.profiles)) interfaceData.profiles = {}";
 
 }
 else {
@@ -108,19 +119,19 @@ echo '</script>';
     </div>
   </div>
 
-  <div id="breadcrumbs_wrapper">
-    <div id="breadcrumbs">
-      <div id="back" class="inactive" onclick="content(this, {'back':'1'});">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81" xml:space="preserve" enable-background="new 0 0 370.814 370.814">
-          <polygon points="292.92 24.85 268.78 0 77.9 185.4 268.78 370.81 292.92 345.96 127.64 185.4 "/>
-        </svg>
-      </div><div id="breadcrumbsSub"><div class="breadcrumbsJump" onclick='content(this, {"back":"0"});'></div></div>
-    </div>
+  <div id="error">
   </div>
 
-<?php 
-  echo content();
-  
+  <div id="gdpr">
+  </div>
+
+  <div id="breadcrumbs">
+  </div>
+
+  <div id="inhalt">
+  </div>
+
+<?php
   if (file_exists("icons.js")) {
       echo '<script src="icons.js?revision='.$interfaceData["manifest"]["revision"].'"></script>'."\n";
   }

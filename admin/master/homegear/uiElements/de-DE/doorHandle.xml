@@ -61,7 +61,21 @@
 							</text>
 						</texts>
 					</condition>
-					<condition operator="g" value="1">
+					<condition operator="e" value="2">
+						<icons>
+							<icon id="state">
+								<name>door_open_1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>gekippt</content>
+								<color>active</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="g" value="2">
 						<icons>
 							<icon id="state">
 								<name>door_open_1</name>

@@ -33,20 +33,6 @@
 				<name>*</name>
 				<visualizeInOverview>true</visualizeInOverview>
 				<rendering>
-					<condition operator="not" value="0">
-						<icons>
-							<icon id="state">
-								<name>door-handle_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>locked</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
 					<condition operator="e" value="0">
 						<icons>
 							<icon id="state">
@@ -56,8 +42,22 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>unlocked</content>
+								<content>closed</content>
 								<color>inactive</color>
+							</text>
+						</texts>
+					</condition>
+					<condition operator="not" value="0">
+						<icons>
+							<icon id="state">
+								<name>door-handle_1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+						<texts>
+							<text id="state">
+								<content>opened</content>
+								<color>active</color>
 							</text>
 						</texts>
 					</condition>

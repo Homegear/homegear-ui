@@ -1,8 +1,95 @@
-<?php 
+<?php
     $adminInterfaceDataJson = '
 {
     "admin": {
         "settings": {
+            "srcPath":"/admin",
+            "masterPath":"/admin/master",
+            "distPath": "/dist",
+            "srcDistCopy": [
+                {
+                    "src": "/admin/favicon.ico",
+                    "dist": "/dist/favicon.ico",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/favicon.png",
+                    "dist": "/dist/favicon.png",
+                    "type": "file"
+                },
+                {
+                    "src": "/interfacedata.custom.php.tmpl",
+                    "dist": "/dist/interfacedata.custom.php.tmpl",
+                    "type": "file"
+                },
+                {
+                    "src": "/interfacedata.php",
+                    "dist": "/dist/interfacedata.php",
+                    "type": "file"
+                },
+                {
+                    "src": "/interfacedata.custom.php",
+                    "dist": "/dist/interfacedata.custom.php",
+                    "type": "file",
+                    "env": "dev"
+                },
+                {
+                    "src": "/interfacedata.dummy.php",
+                    "dist": "/dist/interfacedata.dummy.php",
+                    "type": "file",
+                    "env": "dev"
+                },
+                {
+                    "src": "/admin/manifest.json",
+                    "dist": "/dist/manifest.json",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/manifest.webapp",
+                    "dist": "/dist/manifest.webapp",
+                    "type": "file"
+                },
+                {
+                    "src": "/setup.php",
+                    "dist": "/dist/setup.php",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/signin.php",
+                    "dist": "/dist/signin.php",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/user.php",
+                    "dist": "/dist/user.php",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/webauthnServer.php",
+                    "dist": "/dist/webauthnServer.php",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/assets/fonts",
+                    "dist": "/dist/assets/fonts",
+                    "type": "folder"
+                },
+                {
+                    "src": "/admin/media/images",
+                    "dist": "/dist/assets/images",
+                    "type": "folder"
+                },
+                {
+                    "src": "/admin/media/logo",
+                    "dist": "/dist/media/logo",
+                    "type": "folder"
+                },
+                {
+                    "src": "/admin/assets/WebAuthn",
+                    "dist": "/dist/WebAuthn",
+                    "type": "folder"
+                }
+            ],
             "extensions": {
                 "homegear": {
                     "activated": true,
@@ -16,7 +103,14 @@
                     "requiredAssets": [
                         "jquery",
                         "vue",
+                        "vue-router",
                         "flaticons"
+                    ]
+                },
+                "menu": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
                     ]
                 },
                 "user": {
@@ -44,12 +138,6 @@
                         ""
                     ]
                 },
-                "house": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
                 "icons": {
                     "activated": true,
                     "requiredAssets": [
@@ -63,12 +151,6 @@
                     ]
                 },
                 "lighting": {
-                    "activated": true,
-                    "requiredAssets": [
-                        ""
-                    ]
-                },
-                "menu": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -99,6 +181,30 @@
                     ]
                 },
                 "ventilation": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "timer": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "media": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "components": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "house": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -212,7 +318,7 @@
                     "files": [
                         {
                             "rawMinUrl": "/",
-                            "rawMinUrlFile": "homegear-ws-1.0.10.min.js",
+                            "rawMinUrlFile": "homegear-ws-1.0.11.min.js",
                             "outputName": "homegearws.min.js"
                         }
                     ],
@@ -366,6 +472,24 @@
                     ],
                     "license": {
                         "name": "Vuejs",
+                        "version": "",
+                        "rights": "Evan You",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
+                "vue-router": {
+                    "user": "vuejs",
+                    "repository": "/node_modules/vue-router",
+                    "files": [
+                        {
+                            "rawMinUrl": "/dist/",
+                            "rawMinUrlFile": "vue-router.js",
+                            "outputName": "vue-router.js"
+                        }
+                    ],
+                    "license": {
+                        "name": "Vuejs Router",
                         "version": "",
                         "rights": "Evan You",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",

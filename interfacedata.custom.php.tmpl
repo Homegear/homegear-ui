@@ -1,0 +1,127 @@
+<?php
+//All settings in interfacedata.php can be overwritten here.
+//Rename this file to "interfacedata.custom.php".
+
+$customInterfaceDataJson = '
+{
+    "settings": {
+        "directLoginUser": "",
+        "directLoginApiKey": "",
+        "setupKey": "",
+        "userDefaults": {
+            "roleProfileDefineable": true,
+            "disabledMainmenus": {
+                "logoff": true
+            },
+            "disabledMenus": {
+                "settings.about": true
+            }
+        }
+    }
+}
+';
+
+$customImportInterfaceDataJson = '
+{
+    "floors": [
+        {
+            "id": "1",
+            "name": "Demo Stockwerk"
+        }
+    ],
+    "rooms": {
+        "1": {
+            "id": "1",
+            "name": "Demo Raum",
+            "floor": "1",
+            "icon": "broom_1"
+        }
+    },
+    "systemVariables": [
+        {
+            "name": "LIGHT",
+            "type": "int",
+            "value": 1
+        }
+    ],
+    "roles": [
+    ],
+    "roles2var": [
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "LIGHT",
+            "roleId": [100001, 101001]
+        }
+    ],
+    "profiles": [
+        [
+            {
+                "en-US": "Demo Profile",
+                "de-DE": "Demoprofil"
+            },
+            {
+                "id": 1,
+                "icon": "power_1",
+                "editable": false,
+                "locations": [
+                ],
+                "global": false,
+                "roles": [
+                    {
+                        "role": 100001,
+                        "value": false
+                    }
+                ],
+                "values": [
+                ]
+            }
+        ]
+    ],
+    "uiElements": [
+        [
+            "Base.lightingSwitch",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT"
+                        }
+                    ]
+                ],
+                "label": "Demo Licht SystemVar",
+                "room": 3,
+                "dynamicMetadata": {
+                    "favorites": {
+                        "state": true
+                    }
+                }
+            }
+        ]
+    ],
+    "devices": [
+        {
+            "ADDRESS": -1,
+            "FAMILY": 254,
+            "ID": 1,
+            "NAME": "Demo Lichtschalter",
+            "TYPE": "VirtualSwitch",
+            "TYPE_ID": "0xa001",
+            "SERIALNUMBER": "VirtSw0001",
+            "FIRMWAREVERSION": -1,
+            "INTERFACEID": ""
+        }
+    ]
+}
+';

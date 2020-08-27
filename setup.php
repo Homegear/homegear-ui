@@ -16,25 +16,25 @@
  * <http://www.gnu.org/licenses/>.
 */
 
-    // http://localhost/setup.php?key=[interfaceData.settings.directLoginApiKey]
+    // http://localhost/setup.php?key=[interfaceData.settings.setupKey]
     // &action=generateExtensions
-    if(file_exists(getcwd()."/interfacedata.php")){
+    if (file_exists(getcwd()."/interfacedata.php")){
         include(getcwd()."/interfacedata.php");
         $interfaceData["options"] = array(
             "language" => "en-US"
         );
     }
-    else{
+    else {
         die("No interfaceData file!");
     }
 
-    if( (isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["directLoginApiKey"]) ){
+    if ( isset($interfaceData["settings"]["setupKey"]) && $interfaceData["settings"]["setupKey"] != "" && isset($_GET["key"]) && $_GET["key"] == $interfaceData["settings"]["setupKey"] ){
         if(isset($_GET["action"]) && is_dir(getcwd()."/admin")){
             include(getcwd()."/admin/admin.php");
             die();
         }
     }
-    else{
+    else {
         die("Access denied!");
     }
 
@@ -104,7 +104,7 @@
             $oldInterfaceData = json_decode($importInterfaceDataJson, true);
         }
         else {
-            die('{"error": "No importInterfaceDataJson set!"}');
+            $allInterfaceData["importInterfaceData"]["error"] = "No interfacedata.import.php file found or customImportInterfaceDataJson var set!";
         }
 
         $allInterfaceData = array();
@@ -113,22 +113,29 @@
             $CurrentDevices = $hg->getAllValues();
             if(count($CurrentDevices) > 0){
                 foreach($CurrentDevices as $value){
-                    $allInterfaceData["deleteDevice"][$value["ID"]] = $hg->deleteDevice($value["ID"]);
+                    $allInterfaceData["deleteDevice"][$value["ID"]] = $hg->deleteDevice($value["ID"], 2);
                 }
             }
         }
 
         if(isset($_GET["createDevice"])){
             foreach($oldInterfaceData["devices"] as $value){
-                $device = $hg->createDevice($value["FAMILY"], $value["TYPE_ID"], $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]);
-                $deviceName = $hg->setName($device, $value["NAME"]);
-                if ($device != ""){
-                    $allInterfaceData["createDevice"][$device]["SERIALNUMBER"] = $value["SERIALNUMBER"];
-                    $allInterfaceData["createDevice"][$device]["name"] = $value["NAME"];
-                    $allInterfaceData["createDevice"][$device]["nameChange"] = $deviceName;
+                $device = Null;
+                try {
+                    $device = intval($hg->createDevice($value["FAMILY"], intval($value["TYPE_ID"], 16), $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]));
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["name"]["status"] = $hg->setName($device, $value["NAME"]);
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["name"]["name"] = $value["NAME"];
+                    if ($device != $value["ID"] && $hg->getName($device) == $value["NAME"]) {
+                        $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["status"] = $hg->setId($device, $value["ID"]);
+                    }
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["oldId"] = $device;
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["newId"] = $value["ID"];
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["SERIALNUMBER"] = $value["SERIALNUMBER"];
                 }
-                else {
-                    $allInterfaceData["createDevice"]["error"][$value["SERIALNUMBER"]] = true;
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["error"] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage();
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["value"] = $value;
+                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["device"] = $device;
                 }
             }
         }
@@ -137,7 +144,6 @@
             $CurrentDevices = $hg->getAllValues();
             foreach($CurrentDevices as $key => $value){
                 unset($CurrentDevices[$key]["CHANNELS"]);
-                unset($CurrentDevices[$key]["ID"]);
                 $CurrentDevices[$key]["TYPE_ID"] = "0x".dechex($value["TYPE_ID"]);
                 $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["ADDRESS"];
                 $CurrentDevices[$key]["ADDRESS"] = -1;
@@ -147,15 +153,45 @@
             $allInterfaceData["getAllValues"] = $CurrentDevices;
         }
 
-        /*
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodHelp", "addUiElement"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "addUiElement"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getAllUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getAvailableUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getCategoryUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "getRoomUiElements"));'
-            homegear -e rc 'print_v(call_user_func("Homegear\\Homegear::system.methodSignature", "removeUiElement"));'
-        */
+        if(isset($_GET["deleteProfiles"])){
+            $CurrentProfiles = $hg->getAllVariableProfiles("en-US");
+            if(is_array($CurrentProfiles)){
+                foreach($CurrentProfiles as $value){
+                    try {
+                        $allInterfaceData["deleteProfiles"][$value["id"]] = $hg->deleteVariableProfile($value["id"]);
+                    }
+                    catch (\Homegear\HomegearException $e) {
+                        $allInterfaceData["deleteProfiles"][$value["id"]]["error"] =  $e->getMessage();
+                        $hg->log(2, 'Homegear Exception catched. ' .
+                                               "Code: {$e->getCode()} " .
+                                            "Message: {$e->getMessage()}");
+                        continue;
+                    }
+                }
+            }
+        }
+
+        if(isset($_GET["createProfiles"])){
+            foreach($oldInterfaceData["profiles"] as $value){
+                print_r($value);
+                try {
+                    $profile = $hg->addVariableProfile($value[0], $value[1]);
+                    //$profile = $hg->addVariableProfile(["en-US" => "Testprofile", "de-DE" => "Testprofil"], ["...", "values" => [[112, 1, "STATE", true], [11, 1, "STATE", true]]]);
+                    $allInterfaceData["createProfiles"][$profile]["id"] = $profile;
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createProfiles"][$profile]["error"] = $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
+            }
+        }
+
+        if(isset($_GET["getProfiles"])){
+            $allInterfaceData["getAllVariableProfiles"] = $hg->getAllVariableProfiles("en-US");
+        }
 
         if(isset($_GET["deleteUIE"])){
             $CurrentUiElements = $hg->getAllUiElements("en-US");
@@ -175,10 +211,39 @@
             }
         }
 
+        if(isset($_GET["deleteUIEhard"]) && $_GET["deleteUIEhard"] != ""){
+            for($i = 0; $i <= $_GET["deleteUIEhard"]; $i++){
+                try {
+                    $allInterfaceData["removeUiElementHard"][$i] = $hg->removeUiElement($i);
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["removeUiElementHard"][$i]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                            "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
+            }
+        }
+
         if(isset($_GET["createUIE"])){
             foreach($oldInterfaceData["uiElements"] as $value){
-                $uielement = $hg->addUiElement($value[0], $value[1]);
-                $allInterfaceData["addUiElement"][$value[0]][$uielement]["label"] = $value[1]["label"];
+                try {
+                    if(isset($value[2])){
+                        $uielement = $hg->addUiElement($value[0], $value[1], $value[2]);
+                    }
+                    else {
+                        $uielement = $hg->addUiElement($value[0], $value[1]);
+                    }
+                    $allInterfaceData["addUiElement"][$value[0]][$uielement]["label"] = $value[1]["label"];
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["addUiElement"][$value[0]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 
@@ -227,7 +292,16 @@
 
         if(isset($_GET["createStories"])){
             foreach($oldInterfaceData["floors"] as $key => $value){
-                $allInterfaceData["createStory"][$value["name"]] = $hg->createStory(array("en-US" => $value["name"], "de-DE" => $value["name"]));
+                try {
+                    $allInterfaceData["createStory"][$value["name"]] = $hg->createStory(array("en-US" => $value["name"], "de-DE" => $value["name"]));
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createStory"][$value["name"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 
@@ -244,8 +318,19 @@
 
         if(isset($_GET["createRooms"])){
             foreach($oldInterfaceData["rooms"] as $key => $value){
-                $roomId = $hg->createRoom(array("en-US" => $value["name"], "de-DE" => $value["name"]), array("icon" => $value["icon"]));
-                $allInterfaceData["createRooms"][$roomId]["addRoomToStory"] = $hg->addRoomToStory(intval($value["floor"]), $roomId);
+                try {
+                    $roomId = $hg->createRoom(array("en-US" => $value["name"], "de-DE" => $value["name"]), array("icon" => $value["icon"]));
+                    if (isset($value["floor"]) && $value["floor"] != ""){
+                        $allInterfaceData["createRooms"][$roomId]["addRoomToStory"] = $hg->addRoomToStory(intval($value["floor"]), $roomId);
+                    }
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["createRooms"][$roomId]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 
@@ -262,30 +347,64 @@
 
         if(isset($_GET["createRoles"])){
             foreach($oldInterfaceData["roles"] as $key => $value){
-                $roleMetadata = $hg->getRoleMetadata($value["id"]);
-                $roleMetadata["ui"] = $value["ui"];
-                $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $roleMetadata);
+                try {
+                    $roleMetadata = $hg->getRoleMetadata($value["id"]);
+                    $roleMetadata["ui"] = $value["ui"];
+                    $allInterfaceData["setRoleMetadata"][$value["id"]] = $hg->setRoleMetadata($value["id"], $roleMetadata);
+                }
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["setRoleMetadata"][$value["id"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
+                }
             }
         }
 
         if(isset($_GET["getRoles"])){
-            $aggregationType = 2;
             foreach($hg->getRoles() as $role){
-                if(isset($role["METADATA"]["interface"]["aggregationType"])){
-                    $aggregationType = $role["METADATA"]["interface"]["aggregationType"];
-                }
-                if(isset($role["METADATA"]["interface"]["rolesInclude"])){
-                    foreach($role["METADATA"]["interface"]["rolesInclude"] as $include){
-                        $rolesInclude["test"] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                $aggregationType = 2;
+                try {
+                    if(isset($role["METADATA"]["ui"]["aggregationType"])){
+                        $aggregationType = $role["METADATA"]["ui"]["aggregationType"];
                     }
+                    $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
+                    $varInRole = $hg->getVariablesInRole($role["ID"]);
+
+                    $role["aggregated"] = $aggregated;
+                    $role["varInRole"] = $varInRole;
+                    if(isset($role["METADATA"]["ui"]["roleProfileValues"]["options"])){
+                        $role["METADATA"]["ui"]["roleProfileValues"]["options"] = array("dummy" => "toBeRemoved")+$role["METADATA"]["ui"]["roleProfileValues"]["options"];
+                    }
+                    if(isset($role["METADATA"]["ui"]["translations"])){
+                        foreach ($role["METADATA"]["ui"]["translations"] as $key => $translation) {
+                            $translation = array("dummy" => "toBeRemoved")+$translation;
+                            $role["METADATA"]["ui"]["translations"][$key] = $translation;
+                        }                        
+                    }
+                    if(isset($role["METADATA"]["ui"]["rolesInclude"])){
+                        foreach($role["METADATA"]["ui"]["rolesInclude"] as $include){
+                            try {
+                                $rolesInclude[] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                            }
+                            catch (\Homegear\HomegearException $e) {
+                                $role["rolesInclude"]["error"][] = $e->getMessage();
+                                continue;
+                            }
+                        }
+                    }
+                    if(isset($rolesInclude)){
+                        $allInterfaceData[$role["ID"]]["rolesInclude"] = $rolesInclude;
+                    }
+                    $allInterfaceData[$role["ID"]] = $role;
                 }
-                $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
-                $varInRole = $hg->getVariablesInRole($role["ID"]);
-                $allInterfaceData[$role["ID"]] = $role;
-                $allInterfaceData[$role["ID"]]["aggregated"] = $aggregated;
-                $allInterfaceData[$role["ID"]]["varInRole"] = $varInRole;
-                if(isset($rolesInclude)){
-                    $allInterfaceData[$role["ID"]]["rolesInclude"] = $rolesInclude;
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData[$role["ID"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
                 }
             }
         }
@@ -303,21 +422,36 @@
         }
 
         if(isset($_GET["aggregateRoles"])){
-            $aggregationType = 2;
             foreach($hg->getRoles() as $role){
-                unset($rolesInclude);
-                if(isset($role["METADATA"]["interface"]["aggregationType"])){
-                    $aggregationType = $role["METADATA"]["rolesInclude"]["aggregationType"];
-                }
-                if(isset($role["METADATA"]["interface"]["rolesInclude"])){
-                    foreach($role["METADATA"]["interface"]["rolesInclude"] as $include){
-                        $rolesInclude[] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                $aggregationType = 2;
+                try {
+                    unset($rolesInclude);
+                    if(isset($role["METADATA"]["ui"]["aggregationType"])){
+                        $aggregationType = $role["METADATA"]["ui"]["aggregationType"];
+                    }
+                    if(isset($role["METADATA"]["ui"]["rolesInclude"])){
+                        foreach($role["METADATA"]["ui"]["rolesInclude"] as $include){
+                            try {
+                                $rolesInclude[] = $hg->aggregateRoles($include["aggregationType"], $include["roles"], array());
+                            }
+                            catch (\Homegear\HomegearException $e) {
+                                $allInterfaceData["aggregateRoles"][$role["ID"]]["error"]["rolesInclude"][] = $e->getMessage();
+                                continue;
+                            }
+                        }
+                    }
+                    $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
+                    $allInterfaceData["aggregateRoles"][$role["ID"]] = $aggregated;
+                    if(isset($rolesInclude)){
+                        $allInterfaceData["aggregateRoles"][$role["ID"]]["rolesInclude"] = $rolesInclude;
                     }
                 }
-                $aggregated = $hg->aggregateRoles($aggregationType, $role["ID"], array());
-                $allInterfaceData["aggregateRoles"][$role["ID"]] = $aggregated;
-                if(isset($rolesInclude)){
-                    $allInterfaceData["aggregateRoles"][$role["ID"]]["rolesInclude"] = $rolesInclude;
+                catch (\Homegear\HomegearException $e) {
+                    $allInterfaceData["aggregateRoles"][$role["ID"]]["error"] =  $e->getMessage();
+                    $hg->log(2, 'Homegear Exception catched. ' .
+                                           "Code: {$e->getCode()} " .
+                                        "Message: {$e->getMessage()}");
+                    continue;
                 }
             }
         }
@@ -325,13 +459,18 @@
         if(isset($_GET["roles2var"])){
             foreach($oldInterfaceData["roles2var"] as $value){
                 if($value["roleId"]){
+                    if (!is_array($value["roleId"])) {
+                        $value["roleId"] = array($value["roleId"]);
+                    }
                     try {
                         $directionString = $value['direction'] ?? 'both';
                         if($directionString == 'in') $direction = 0;
                         else if($directionString == 'out') $direction = 1;
-                        else $direction = 2; //both
-                        $invert = $value['invert'] ?? false;
-                        $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $value["roleId"], $direction, $invert);
+                        else $direction = 2; //both=2
+                        $invert = isset($value['invert']) && $value['invert'] =! false ? true : false;
+                        foreach ($value["roleId"] as $roleId) {
+                            $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = $hg->addRoleToVariable($value["deviceId"], $value["channel"], $value["varName"], $roleId, $direction, $invert);
+                        }
                     }
                     catch(\Homegear\HomegearException $e) {
                         $allInterfaceData["roles2var"][$value["deviceId"]][$value["channel"]][$value["varName"]] = "Exception catched. Code: ".$e->getCode().". Message: ".$e->getMessage();
@@ -357,27 +496,50 @@
 
         if(isset($_GET["deleteSV"])){
             foreach($oldInterfaceData["systemVariables"] as $value){
-                $allInterfaceData["deleteSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($value["name"]);
+                try {
+                    $allInterfaceData["deleteSystemVariable"][$value["name"]] = $hg->deleteSystemVariable($value["name"]);
+                }
+                catch(\Homegear\HomegearException $e) {
+                    $allInterfaceData["deleteSystemVariable"][$value["name"]] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage() . " | Value: ".$value;
+                }
+            }
+        }
+
+        if(isset($_GET["deleteAllSV"])){
+            $allSV = $hg->getAllSystemVariables();
+            foreach($allSV as $key => $value){
+                try {
+                    $allInterfaceData["deleteAllSystemVariable"][$key] = $hg->deleteSystemVariable($key);
+                }
+                catch(\Homegear\HomegearException $e) {
+                    $allInterfaceData["deleteAllSystemVariable"][$key] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage() . " | Value: ".$value;
+                }
             }
         }
 
         if(isset($_GET["createSV"])){
             foreach($oldInterfaceData["systemVariables"] as $value){
-                $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
+                try {
+                    $allInterfaceData["setSystemVariable"][$value["name"]] = $hg->setSystemVariable($value["name"], $value["value"]);
+                }
+                catch(\Homegear\HomegearException $e) {
+                    $allInterfaceData["setSystemVariable"][$value["name"]] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage() . " | Value: ".$value;
+                }
             }
         }
 
         if(isset($_GET["getSV"])){
             $allInterfaceData["getAllSystemVariables"] = $hg->getAllSystemVariables();
         }
-
-        die(json_encode($allInterfaceData, JSON_PRETTY_PRINT));
+        $allInterfaceData_json = json_encode($allInterfaceData, JSON_PRETTY_PRINT);
+        $allInterfaceData_json= str_replace(array('"dummy": "toBeRemoved",', '"dummy": "toBeRemoved"'), array("", ""), $allInterfaceData_json);
+        die($allInterfaceData_json);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Admin Button
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    $admin_url = 'setup.php?key='.$interfaceData["settings"]["directLoginApiKey"];
+    $admin_url = 'setup.php?key='.$interfaceData["settings"]["setupKey"];
 
 ?>
 
@@ -514,6 +676,11 @@
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getDevice', outputResult)" class="adminButton">list</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteDevice', outputResult)" class="adminButton">delete</div>
 
+        <h4>Profiles</h4>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createProfiles', outputResult)" class="adminButton">create</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getProfiles', outputResult)" class="adminButton">list</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteProfiles', outputResult)" class="adminButton">delete</div>
+
         <h4>Stories</h4>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createStories', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getStories', outputResult)" class="adminButton">list</div>
@@ -536,6 +703,7 @@
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createUIE', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getUIE', outputResult)" class="adminButton">list</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIE', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteUIEhard=200', outputResult)" class="adminButton">delete hard</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getAvailableUIE', outputResult)" class="adminButton">list available</div>
 
         <h4>User</h4>
@@ -546,7 +714,8 @@
         <h4>System Variables</h4>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&createSV', outputResult)" class="adminButton">create</div>
         <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&getSV', outputResult)" class="adminButton">list</div>
-        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteSV', outputResult)" class="adminButton">delete</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteSV', outputResult)" class="adminButton">delete import vars</div>
+        <div onclick="loadDoc('<?php echo $admin_url; ?>&homegear&deleteAllSV', outputResult)" class="adminButton">delete all</div>
     </div>
     <div id="output"></div>
     <script>

@@ -1,28 +1,32 @@
 {
-    "_from": "@homegear\/homegearws@1.0.10",
-    "_id": "@homegear\/homegearws@1.0.10",
+    "_args": [
+        [
+            "@homegear\/homegearws@1.0.11",
+            "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface"
+        ]
+    ],
+    "_from": "@homegear\/homegearws@1.0.11",
+    "_id": "@homegear\/homegearws@1.0.11",
     "_inBundle": false,
-    "_integrity": "sha512-DZ6RuPQeMTTp54MVN1PTq3ehx4aDbxLBV4W+4AlhfLIaKFakCwsQJz009G8zocTfruAlQ21TpdE6MVsLYsjNsA==",
+    "_integrity": "sha512-aNoIe4kyTHverVD5S7BrG4IsuDqyafIz80FvDXNjnRfSo9aswbMRxHqP6nbcNwZ6Uw9midQRaJ0VPnVgVXsUHw==",
     "_location": "\/@homegear\/homegearws",
     "_phantomChildren": [],
     "_requested": {
         "type": "version",
         "registry": true,
-        "raw": "@homegear\/homegearws@1.0.10",
+        "raw": "@homegear\/homegearws@1.0.11",
         "name": "@homegear\/homegearws",
         "escapedName": "@homegear%2fhomegearws",
         "scope": "@homegear",
-        "rawSpec": "1.0.10",
+        "rawSpec": "1.0.11",
         "saveSpec": null,
-        "fetchSpec": "1.0.10"
+        "fetchSpec": "1.0.11"
     },
     "_requiredBy": [
-        "#USER",
         "\/"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/@homegear\/homegearws\/-\/homegearws-1.0.10.tgz",
-    "_shasum": "7968af02bb3cb3684de49bddca650a0dbad3d5bc",
-    "_spec": "@homegear\/homegearws@1.0.10",
+    "_resolved": "https:\/\/registry.npmjs.org\/@homegear\/homegearws\/-\/homegearws-1.0.11.tgz",
+    "_spec": "1.0.11",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "Homegear GmbH"
@@ -30,8 +34,6 @@
     "bugs": {
         "url": "https:\/\/github.com\/Homegear\/HomegearWS\/issues"
     },
-    "bundleDependencies": false,
-    "deprecated": false,
     "description": "HomegearWS is a JavaScript class to communicate with Homegear bidirectionally using WebSockets.",
     "homepage": "https:\/\/github.com\/Homegear\/HomegearWS",
     "keywords": [
@@ -40,7 +42,7 @@
         "homegearws"
     ],
     "license": "LGPLv3",
-    "main": "homegear-ws-1.0.10.min.js",
+    "main": "homegear-ws-1.0.11.min.js",
     "name": "@homegear\/homegearws",
     "repository": {
         "type": "git",
@@ -49,5 +51,5 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "version": "1.0.10"
+    "version": "1.0.11"
 }

@@ -2,9 +2,9 @@
 <homegearUiElements lang="en-US">
 	<homegearUiElement>
 		<uniqueUiElementId>Base.lightingBrightness</uniqueUiElementId>
-		<type>simple</type>
 		<control>lightingBrightness</control>
-        <role>101000</role>
+		<type>simple</type>
+        <role>101001</role>
 		<texts>
 			<text id="title">
 				<content>Brightness</content>
@@ -16,6 +16,10 @@
 			</text>
 		</texts>
 		<icons>
+			<icon id="main">
+				<name>light_dim_1</name>
+                <color>inactive</color>
+			</icon>
 			<icon id="l2">
 				<name>light_dim_1</name>
                 <color>inactive</color>
@@ -37,6 +41,24 @@
 				<maximumValue>100</maximumValue>
 				<minimumValueScaled>0</minimumValueScaled>
 				<maximumValueScaled>100</maximumValueScaled>
+				<rendering>
+					<condition operator="not" value="0">
+						<icons>
+							<icon id="state">
+								<name>light_dim_1</name>
+								<color>active</color>
+							</icon>
+						</icons>
+					</condition>
+					<condition operator="e" value="0">
+						<icons>
+							<icon id="state">
+								<name>light_dim_1</name>
+								<color>inactive</color>
+							</icon>
+						</icons>
+					</condition>
+				</rendering>
 			</variable>
 		</variableInputs>
 		<variableOutputs>
@@ -47,5 +69,8 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<metadata>
+			<l3_force>true</l3_force>
+		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

@@ -1,0 +1,62 @@
+.timer_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    align-content: flex-start;
+    box-sizing: content-box;
+    margin: 30px 0;
+    padding: 0;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #898989;
+}
+
+.timer_wrapper > div{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    flex-basis: fit-content;
+    flex: auto;
+}
+
+.timer_wrapper > div:last-child{
+    margin-right: 0px;
+}
+
+.timer_wrapper input {
+    margin: 0;
+}
+
+.timer_wrapper input[type=time] {
+    display: inline-block;
+    background: #191b1f;
+    color: #fff;
+}
+
+.timer_wrapper select{
+    display: inline-block;
+    background: #191b1f;
+    color: #fff;
+    margin: 0;
+}
+
+.timer_wrapper .select_day {
+    border:none;
+    white-space: normal;
+    height: 66px;
+    padding: 0px;
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    scrollbar-width: none;
+}
+
+.timer_wrapper .select_day option {
+	height:66px;
+    width:65px;
+    background: #25282e;
+	border:1px solid #fff;
+    display:inline-block;
+    white-space: normal;
+    padding: 20px;
+}

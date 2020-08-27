@@ -1,10 +1,21 @@
+/*
+    global
+        clone
+        homegear
+        shif_device
+        shif_comps_create
+        shif_register_disable_hooks
+*/
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let heating_slider_l2 = clone(shif_device);
-heating_slider_l2.methods.change = function(event) {
+heating_slider_l2.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, !this.props.value);
-}
+};
 heating_slider_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -13,13 +24,19 @@ heating_slider_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-on:click_icon="change"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 let heating_slider_l3 = clone(shif_device);
-heating_slider_l3.methods.change = function(event) {
+heating_slider_l3.methods.change = function(_event) {
     homegear.value_set_clickcounter(this, this.output, this.props.value);
-}
+};
 heating_slider_l3.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="parseFloat(props.maximumScaled)"
@@ -31,6 +48,18 @@ heating_slider_l3.template = `
                  v-on:change="change"
                  v-bind:disabled="disabled"
                  v-model:value="props.value">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-slider>
 `;
 
@@ -46,7 +75,18 @@ heating_is_state_l2.template = `
                      v-bind:status="status"
                      v-bind:actions="true"
                      v-bind:place="place"
-                     v-on:click="level3(device, breadcrumb)">
+                     v-on:click="level3(device)">
+
+        <template v-slot:favorites>
+            <shif-checkbox-favorites v-bind:dev="dev" />
+        </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 let heating_is_state_l3 = clone(shif_device);
@@ -56,6 +96,12 @@ heating_is_state_l3.template = `
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
                      v-bind:status="status"
                      v-bind:place="place">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
@@ -74,12 +120,24 @@ heating_mode_l3.computed.values = function () {
 };
 heating_mode_l3.methods.change = function(x) {
     homegear.value_set_clickcounter(this, this.output, x);
-}
+};
 heating_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
                 v-bind:disabled="disabled"
                 v-on:input="x => change(parseInt(x))">
+        <template v-slot:profiles>
+            <shif-checkbox-profiles v-bind:dev="dev"
+                                    v-bind:output="output"
+                                    v-bind:props="props" />
+        </template>
+
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-radio>
 `;
 
@@ -94,7 +152,98 @@ heating_window.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place">
+        <template v-slot:automations>
+            <router-link v-if="used_by_automations !== false"
+                         v-bind:to="automation_link">
+                <shif-icon src="calendar-time_1" />
+            </router-link>
+        </template>
     </shif-generic-l2>
 `;
 
 shif_comps_create('heatingWindow', heating_window, heating_window);
+
+
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderMode': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost',
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderModeWindow': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost'
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'gt',
+                value: 0
+            },
+            disable: [1, 2],
+            reason: 'Window',
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderModeWindowHandle': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost'
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'gt',
+                value: 0
+            },
+            disable: [1, 2],
+            reason: 'Window',
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.heatingIsStateSliderModeWindowContact': [
+        {
+            condition: {
+                index: 2,
+                operator: 'eq',
+                value: 0
+            },
+            disable: [1],
+            reason: 'Frost'
+        },
+        {
+            condition: {
+                index: 3,
+                operator: 'gt',
+                value: 0
+            },
+            disable: [1, 2],
+            reason: 'Window',
+        }
+    ],
+});

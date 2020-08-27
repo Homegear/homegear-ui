@@ -3,16 +3,8 @@
 ################################################
 /admin/assets/updated
 /admin/assets/versions
-/admin/master/homegear/dev
-/dist*
+/dist
 /interfacedata.custom.php
-/icons.js
-/index.php
-/script.js
-/script.min.js
-/script.vendor.js
-/style.css
-/style.vendor.css
 
 ################################################
 # NodeJs

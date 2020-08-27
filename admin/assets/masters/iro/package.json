@@ -1,4 +1,10 @@
 {
+    "_args": [
+        [
+            "@jaames\/iro@4.5.3",
+            "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface"
+        ]
+    ],
     "_from": "@jaames\/iro@4.5.3",
     "_id": "@jaames\/iro@4.5.3",
     "_inBundle": false,
@@ -17,12 +23,10 @@
         "fetchSpec": "4.5.3"
     },
     "_requiredBy": [
-        "#USER",
         "\/"
     ],
     "_resolved": "https:\/\/registry.npmjs.org\/@jaames\/iro\/-\/iro-4.5.3.tgz",
-    "_shasum": "4fbeabaf119b9f53ef5b88e262dbfc3477fa9e9a",
-    "_spec": "@jaames\/iro@4.5.3",
+    "_spec": "4.5.3",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "James Daniel",
@@ -66,8 +70,6 @@
     "bugs": {
         "url": "https:\/\/github.com\/jaames\/iro.js\/issues"
     },
-    "bundleDependencies": false,
-    "deprecated": false,
     "description": "An HSV color picker widget for JavaScript, with a modern SVG-based user interface",
     "devDependencies": {
         "@babel\/core": "^7.2.2",

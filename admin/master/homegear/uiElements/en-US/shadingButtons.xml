@@ -17,13 +17,13 @@
 		</texts>
 		<icons>
 			<icon id="l2">
-				<name>switches_1</name>
-                <color>inactive</color>
+				<name>blind_1</name>
+				<color>inactive</color>
 			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
+			<icon id="l3">
+				<name>arrow_right_1</name>
+				<color>iconArrow</color>
+			</icon>
 		</icons>
 		<variableInputs>
 			<variable>
@@ -163,6 +163,7 @@
 				<control>0</control>
 				<input>0</input>
 			</l2_action>
+			<l3_force>true</l3_force>
 		</metadata>
 	</homegearUiElement>
 </homegearUiElements>

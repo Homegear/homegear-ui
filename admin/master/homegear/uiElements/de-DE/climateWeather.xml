@@ -6,11 +6,11 @@
 		<type>simple</type>
 		<texts>
 			<text id="title">
-				<content>Weather</content>
+				<content>Wetter</content>
 				<color>title</color>
 			</text>
 			<text id="l2_state_title">
-				<content>Weather</content>
+				<content>Wetter</content>
 				<color>l2_state_title</color>
 			</text>
 		</texts>

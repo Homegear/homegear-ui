@@ -1,11 +1,13 @@
-<?php 
+<?php
     $defaultInterfaceDataJson = '
 {
     "settings": {
-        "errorReporting": "-1",
-        "interfacePath": "/",
+        "errorReporting": "0",
         "directLoginUser": "",
         "directLoginApiKey": "",
+        "setupKey": "",
+        "env": "",
+        "gdpr": false,
         "homegear": {
             "url": "location.hostname",
             "port": "location.port"
@@ -13,106 +15,120 @@
         "userDefaults": {
             "theme": "dark",
             "highlight": "#e3a104",
-            "language": "en-US",
-            "firstBreadcrumb": "Haus",
-            "firstBreadcrumbId": "house",
+            "language": "de-DE",
+            "startPath": "house.tab.rooms",
             "showFloor": true,
+            "roleProfileDefineable": false,
             "languageChangeable": true,
             "twofaChangeable": true,
             "consoleLog": true,
             "viewportScale": 0.65,
-            "firstFactorAuthMethods": ["login", "certificate", "oauth", "apiKey"],
+            "scrollbarScale": 4,
+            "disabledMainmenus": {
+                "notifications": true
+            },
+            "disabledMenus": {
+                "settings.automations": true
+            },
+            "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"]
         }
     },
-    "mainmenu": [
-        {
+    "automations": {
+    },
+    "notifications": {
+    },
+    "mainmenu": {
+        "0": {
+            "id": "Favorites",
+            "name": "favorites",
+            "icon": "star_1"
+        },
+        "1": {
             "id": "house",
             "name": "house",
             "icon": "house_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "house",
-                "content": "house"
-            },
             "tabs": [
                 {
                     "id": "rooms",
                     "name": "house.tab.rooms",
-                    "active": true
+                    "icon": "house_1"
                 },
                 {
                     "id": "devices",
                     "name": "house.tab.devices",
-                    "content": "<shif-all-devices></shif-all-devices>"
+                    "icon": "switches_1"
+                },
+                {
+                    "id": "profiles",
+                    "name": "house.tab.profiles",
+                    "icon": "slider_1"
                 }
             ]
         },
-        {
+        "2": {
+            "id": "notifications",
+            "name": "notifications",
+            "icon": "notification_2"
+        },
+        "3": {
             "id": "settings",
             "name": "settings",
-            "icon": "settings_1",
-            "onclick": "main",
-            "onclickOptions": {
-                "name": "settings",
-                "content": "settings",
-                "menu": "settings"
-            }
+            "icon": "settings_1"
         },
-        {
+        "4": {
             "id": "logoff",
             "name": "logoff",
-            "icon": "power_1",
-            "onclick": "user_logoff",
-            "onclickOptions": {
-                "name": "logoff"
-            }
+            "icon": "power_1"
         }
-    ],
+    },
     "menu": [
         {
-            "id": "1",
             "name": "settings.user",
             "mainmenu": "settings",
             "category": "user",
             "level": "1",
             "icon": "profile_1",
-            "onclick": "menu",
-            "onclickOptions": {
-                "mainmenu":"settings",
-                "level":"2",
-                "category":"user",
-                "name":"settings.user",
-                "content":"true"
-            },
             "description": "settings.user.description"
         },
         {
-            "id": "2",
             "name": "settings.user.manage",
             "mainmenu": "settings",
             "category": "user",
             "level": "2",
             "icon": "profile_1",
-            "onclick": "user",
-            "onclickOptions": {
-                "name":"settings.user.manage",
-                "content":"edit"
-            },
             "description": "settings.user.manage.description"
         },
         {
-            "id": "3",
+            "name": "settings.favorites",
+            "mainmenu": "settings",
+            "category": "favorites",
+            "level": "1",
+            "icon": "star_1",
+            "description": "settings.favorites.description"
+        },
+        {
+            "name": "settings.profiles",
+            "mainmenu": "settings",
+            "category": "profiles",
+            "level": "1",
+            "icon": "slider_1",
+            "description": "settings.profiles.description"
+        },
+        {
+            "name": "settings.automations",
+            "mainmenu": "settings",
+            "category": "automations",
+            "level": "1",
+            "icon": "calendar-time_1",
+            "description": "settings.automations.description"
+        },
+        {
             "name": "settings.about",
             "mainmenu": "settings",
             "category": "license",
             "level": "1",
             "icon": "information_1",
-            "onclick": "license",
-            "onclickOptions": {
-                "name":"settings.about",
-                "content":"license"
-            },
             "description": "settings.about.description"
         }
     ],
@@ -171,7 +187,7 @@
                 "background": "#367cc1",
                 "foreground": "#205388",
                 "text": "#ffffff",
-                "highlight_active": "#c0cb03",
+                "highlight_active": "",
                 "highlight_inactive": "#cccccc"
             }
         },
@@ -182,7 +198,7 @@
                 "background": "#9644fa",
                 "foreground": "#6735a4",
                 "text": "#ffffff",
-                "highlight_active": "#e2d000",
+                "highlight_active": "",
                 "highlight_inactive": "#cccccc"
             }
         }
@@ -202,10 +218,84 @@
                 }
             },
             "house": "House",
+            "house.storyless": "Other",
             "house.tab.rooms": "Rooms",
             "house.tab.devices": "Devices",
-            "widgets": "Widgets",
+            "house.tab.profiles": "Profiles",
+            "favorites": "Favorites",
+            "notifications": "Notifications",
+            "notifications.amount": "Amount",
+            "notifications.gdpr.title": "Terms and Conditions",
+            "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
+            "notifications.gdpr.decline": "Decline",
+            "notifications.gdpr.more": "More information",
+            "notifications.gdpr.accept": "Accept",
             "settings": "Settings",
+            "settings.automations": "Automations",
+            "settings.automations.description": "Add and delete automations",
+            "settings.automations.new": "New",
+            "settings.automations.selection": "Selection",
+            "settings.automations.automation.name": "Name",
+            "settings.automations.automation.description": "Description",
+            "settings.automations.automation.state": "Enabled",
+            "settings.automations.automation.icon": "Icon",
+            "settings.automations.automation.condition": "Condition",
+            "settings.automations.automation.condition.astrofunction": "Astro Function",
+            "settings.automations.automation.condition.astrofunction.sunrise": "Sunrise",
+            "settings.automations.automation.condition.astrofunction.sunset": "Sunset",
+            "settings.automations.automation.condition.astrofunction.offset": "Offset (+/- Min.)",
+            "settings.automations.automation.condition.days": "Date",
+            "settings.automations.automation.condition.days.mo": "Mo.",
+            "settings.automations.automation.condition.days.tu": "Tu.",
+            "settings.automations.automation.condition.days.we": "We.",
+            "settings.automations.automation.condition.days.th": "Th.",
+            "settings.automations.automation.condition.days.fr": "Fr.",
+            "settings.automations.automation.condition.days.sa": "Sa.",
+            "settings.automations.automation.condition.days.su": "Su.",
+            "settings.automations.automation.condition.time": "Time",
+            "settings.automations.automation.condition.time.hour": "Hour",
+            "settings.automations.automation.condition.time.minute": "Minute",
+            "settings.automations.automation.condition.devices": "Devices",
+            "settings.automations.automation.condition.devices.table.place": "Place",
+            "settings.automations.automation.condition.devices.table.device": "Device",
+            "settings.automations.automation.condition.devices.table.control": "Control",
+            "settings.automations.automation.condition.devices.table.input": "Input",
+            "settings.automations.automation.condition.devices.table.operator": "Operator",
+            "settings.automations.automation.condition.devices.table.value": "Value",
+            "settings.automations.automation.condition.devices.table.delete": "Delete",
+            "settings.automations.automation.condition.devices.add": "Add",
+            "settings.automations.automation.action": "Action",
+            "settings.automations.automation.action.device": "Device",
+            "settings.automations.automation.action.profile": "Profile",
+            "settings.automations.automation.save": "Save",
+            "settings.automations.automation.delete": "Delete",
+            "settings.favorites": "Favorites",
+            "settings.favorites.mode": "Modify favorites",
+            "settings.favorites.description": "Set and unset favorites",
+            "settings.profiles": "Profiles",
+            "settings.profiles.new": "New",
+            "settings.profiles.profile.name": "Name",
+            "settings.profiles.profile.icon": "Icon",
+            "settings.profiles.profile.locations": "Locations",
+            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.favorite": "Favorite",
+            "settings.profiles.profile.locations.floor": "Story",
+            "settings.profiles.profile.locations.floor.placeholder": "select story",
+            "settings.profiles.profile.locations.room": "Room",
+            "settings.profiles.profile.locations.room.placeholder": "select room",
+            "settings.profiles.profile.locations.add": "Add",
+            "settings.profiles.profile.locations.remove": "Remove",
+            "settings.profiles.profile.roles": "Role",
+            "settings.profiles.profile.roles.name": "Role",
+            "settings.profiles.profile.roles.value": "State",
+            "settings.profiles.profile.roles.add": "Add",
+            "settings.profiles.profile.roles.remove": "Remove",
+            "settings.profiles.profile.delete": "Delete",
+            "settings.profiles.profile.load": "Modify Devices",
+            "settings.profiles.profile.load.description": "Modify Device Mode activ",
+            "settings.profiles.profile.save": "Save",
+            "settings.profiles.profile.edit": "Edit",
+            "settings.profiles.description": "Add and delete profiles",
             "settings.user": "User",
             "settings.user.description": "Manage",
             "settings.user.manage": "User Settings",
@@ -214,7 +304,7 @@
             "settings.user.manage.registerTwofa": "Register WebAuthn device",
             "settings.user.manage.unregisterTwofa": "Unregister WebAuthn device",
             "settings.user.manage.twofaRegistered": "WebAuthn activated",
-            "settings.user.manage.browserNotSupported": "Browser not supported.",
+            "settings.user.manage.browserNotSupported": "Browser not supported",
             "settings.user.manage.theme": "Theme",
             "settings.user.manage.theme.dark": "Dark",
             "settings.user.manage.theme.light": "Light",
@@ -223,6 +313,7 @@
             "settings.user.manage.language": "Language",
             "settings.user.manage.language.name": "English",
             "settings.user.manage.highlight": "Highlighting",
+            "settings.user.manage.startpath": "Start path",
             "settings.user.manage.save": "Save",
             "settings.about": "License",
             "settings.about.description": "Credits",
@@ -231,8 +322,18 @@
             "settings.about.table.rights": "Rights",
             "settings.about.table.license": "License",
             "settings.about.table.license.url": "License URL",
+            "modemenu.favorites.name": "Favorites mode",
+            "modemenu.favorites.button.end": "Exit Favorites mode",
+            "modemenu.profiles.name.label": "Profil",
+            "modemenu.profiles.button.settings": "Profil settings",
+            "modemenu.profiles.button.end": "Save & close",
+            "modemenu.profiles.button.abort": "abort",
+            "refresh.message": "Please reload the interface",
+            "refresh.message.button.text": "reload",
             "logoff": "Logoff",
-            "disabled_text": "disabled"
+            "disabled_text": "disabled",
+            "hide": "hide",
+            "close": "close"
         },
         "de-DE": {
             "login": {
@@ -248,10 +349,84 @@
                 }
             },
             "house": "Haus",
+            "house.storyless": "Sonstige",
             "house.tab.rooms": "Räume",
             "house.tab.devices": "Geräte",
-            "widgets": "Widgets",
+            "house.tab.profiles": "Profile",
+            "favorites": "Favoriten",
+            "notifications": "Benachrichtigungen",
+            "notifications.amount": "Anzahl",
+            "notifications.gdpr.title": "AGB",
+            "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
+            "notifications.gdpr.decline": "Ablehnen",
+            "notifications.gdpr.more": "Mehr erfahren",
+            "notifications.gdpr.accept": "Zustimmen",
             "settings": "Einstellungen",
+            "settings.automations": "Automatisierungen",
+            "settings.automations.new": "Neu",
+            "settings.automations.description": "Automatisierungen erstellen oder löschen",
+            "settings.automations.selection": "Auswahl",
+            "settings.automations.automation.name": "Name",
+            "settings.automations.automation.description": "Beschreibung",
+            "settings.automations.automation.state": "Aktiviert",
+            "settings.automations.automation.icon": "Icon",
+            "settings.automations.automation.condition": "Bedingung",
+            "settings.automations.automation.condition.astrofunction": "Astrofunktion",
+            "settings.automations.automation.condition.astrofunction.sunrise": "Sonnenaufgang",
+            "settings.automations.automation.condition.astrofunction.sunset": "Sonnenuntergang",
+            "settings.automations.automation.condition.astrofunction.offset": "Abweichung (+/- Min.)",
+            "settings.automations.automation.condition.days": "Wochentag",
+            "settings.automations.automation.condition.days.mo": "Mo.",
+            "settings.automations.automation.condition.days.tu": "Di.",
+            "settings.automations.automation.condition.days.we": "Mi.",
+            "settings.automations.automation.condition.days.th": "Do.",
+            "settings.automations.automation.condition.days.fr": "Fr.",
+            "settings.automations.automation.condition.days.sa": "Sa.",
+            "settings.automations.automation.condition.days.su": "So.",
+            "settings.automations.automation.condition.time": "Uhrzeit",
+            "settings.automations.automation.condition.time.hour": "Stunde",
+            "settings.automations.automation.condition.time.minute": "Minute",
+            "settings.automations.automation.condition.devices": "Geräte",
+            "settings.automations.automation.condition.devices.table.place": "Ort",
+            "settings.automations.automation.condition.devices.table.device": "Gerät",
+            "settings.automations.automation.condition.devices.table.control": "Regler",
+            "settings.automations.automation.condition.devices.table.input": "Input",
+            "settings.automations.automation.condition.devices.table.operator": "Operator",
+            "settings.automations.automation.condition.devices.table.value": "Wert",
+            "settings.automations.automation.condition.devices.table.delete": "Löschen",
+            "settings.automations.automation.condition.devices.add": "Hinzufügen",
+            "settings.automations.automation.action": "Aktion",
+            "settings.automations.automation.action.device": "Gerät",
+            "settings.automations.automation.action.profile": "Profil",
+            "settings.automations.automation.save": "Speichern",
+            "settings.automations.automation.delete": "Löschen",
+            "settings.favorites": "Favoriten",
+            "settings.favorites.mode": "Favoriten bearbeiten",
+            "settings.favorites.description": "Favoriten hinzufügen und entfernen",
+            "settings.profiles": "Profile",
+            "settings.profiles.new": "Neu",
+            "settings.profiles.profile.name": "Name",
+            "settings.profiles.profile.icon": "Icon",
+            "settings.profiles.profile.locations": "Visualisierungsort",
+            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.favorite": "Favorit",
+            "settings.profiles.profile.locations.floor": "Stockwerk",
+            "settings.profiles.profile.locations.floor.placeholder": "Stockwerk wählen",
+            "settings.profiles.profile.locations.room": "Raum",
+            "settings.profiles.profile.locations.room.placeholder": "Raum wählen",
+            "settings.profiles.profile.locations.add": "Hinzufügen",
+            "settings.profiles.profile.locations.remove": "Entfernen",
+            "settings.profiles.profile.roles": "Rolle",
+            "settings.profiles.profile.roles.name": "Rolle",
+            "settings.profiles.profile.roles.value": "Status",
+            "settings.profiles.profile.roles.add": "Hinzufügen",
+            "settings.profiles.profile.roles.remove": "Entfernen",
+            "settings.profiles.profile.delete": "Löschen",
+            "settings.profiles.profile.load": "Zugehörige Geräte bearbeiten",
+            "settings.profiles.profile.load.description": "Geräte bearbeiten aktiv",
+            "settings.profiles.profile.save": "Speichern",
+            "settings.profiles.profile.edit": "Bearbeiten",
+            "settings.profiles.description": "Profile erstellen und löschen",
             "settings.user": "Benutzer",
             "settings.user.description": "Verwalten",
             "settings.user.manage": "Benutzereinstellungen",
@@ -260,7 +435,7 @@
             "settings.user.manage.registerTwofa": "WebAuthn-Gerät registrieren",
             "settings.user.manage.unregisterTwofa": "WebAuthn-Gerät entfernen",
             "settings.user.manage.twofaRegistered": "WebAuthn ist aktiviert",
-            "settings.user.manage.browserNotSupported": "Browser wird nicht unterstützt.",
+            "settings.user.manage.browserNotSupported": "Browser wird nicht unterstützt",
             "settings.user.manage.language": "Sprache",
             "settings.user.manage.language.name": "Deutsch",
             "settings.user.manage.theme": "Theme",
@@ -269,6 +444,7 @@
             "settings.user.manage.theme.blue": "Blau",
             "settings.user.manage.theme.purple": "Lila",
             "settings.user.manage.highlight": "Vordergrundfarbe",
+            "settings.user.manage.startpath": "Startpunkt",
             "settings.user.manage.save": "Speichern",
             "settings.about": "Lizenz",
             "settings.about.description": "Credits",
@@ -277,8 +453,18 @@
             "settings.about.table.rights": "Rechte",
             "settings.about.table.license": "Lizenz",
             "settings.about.table.license.url": "Lizenz URL",
+            "modemenu.favorites.name": "Favoriten Modus",
+            "modemenu.favorites.button.end": "Bearbeiten beenden",
+            "modemenu.profiles.name.label": "Profil",
+            "modemenu.profiles.button.settings": "Profil Einstellungen",
+            "modemenu.profiles.button.end": "speichern & beenden",
+            "modemenu.profiles.button.abort": "abbrechen",
+            "refresh.message": "Bitte das Interface neu laden",
+            "refresh.message.button.text": "neu laden",
             "logoff": "Abmelden",
-            "disabled_text": "gesperrt"
+            "disabled_text": "gesperrt",
+            "hide": "ausblenden",
+            "close": "schließen"
         }
     },
     "iconFallback": {
@@ -297,7 +483,8 @@
         "computer1": "computer_1",
         "controller1": "controller_1",
         "door1": "door_open_1",
-        "door2": "door_open_2",
+        "door2": "door_open_1",
+        "door_open_2": "door_open_1",
         "einstellungen1": "settings_1",
         "fenster1": "window_1",
         "feuerwehr1": "fire_1",
@@ -313,6 +500,7 @@
         "heater": "heater_1",
         "hood": "hood_1",
         "humidity1": "waterdrops_1",
+        "humidity_1": "waterdrops_1",
         "information1": "information_1",
         "kind1": "rockinghorse_1",
         "kind2": "child_1",
@@ -421,16 +609,23 @@ if (file_exists("interfacedata.custom.php")) {
 
 if(isset($customInterfaceDataJson)) {
     $customInterfaceData = json_decode($customInterfaceDataJson, true);
+
+    if(isset($customInterfaceData['mainmenu']) && is_array($customInterfaceData['mainmenu'])){
+        foreach ($customInterfaceData['mainmenu'] as $key => $mainmenu) {
+            if (isset($mainmenu["name"]) && $mainmenu["name"] == "") {
+                unset($customInterfaceData['mainmenu'][$key]);
+            }
+        }
+    }
+
     $interfaceData = array_replace_recursive($interfaceData, $customInterfaceData);
 
     //Overwrite auth methods if they exist in custom interface data
-    if(isset($customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods']))
-    {
+    if(isset($customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods'])){
         $interfaceData['settings']['userDefaults']['firstFactorAuthMethods'] = $customInterfaceData['settings']['userDefaults']['firstFactorAuthMethods'];
     }
 
-    if(isset($customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods']))
-    {
+    if(isset($customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods'])){
         $interfaceData['settings']['userDefaults']['secondFactorAuthMethods'] = $customInterfaceData['settings']['userDefaults']['secondFactorAuthMethods'];
     }
 }
@@ -446,27 +641,33 @@ function userSettings() {
     global $user;
     $interfaceData["options"]["twofaEnabled"] = (in_array('webauthn', $user->getSecondFactorAuthMethods(), true) ? true : false);
     $interfaceData["options"]["userHasTwofaRegistrations"] = ($user->hasWebAuthn() ? true : false);
-    $interfaceData["options"]["firstBreadcrumb"] = $user->getSettings()["firstBreadcrumb"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumb"];
-    $interfaceData["options"]["firstBreadcrumbId"] = $user->getSettings()["firstBreadcrumbId"] ?? $interfaceData["settings"]["userDefaults"]["firstBreadcrumbId"];
-    $interfaceData["options"]["breadcrumbs_array"] = ["<div class=\"breadcrumbsJump\" onclick=\"main({name:interfaceData.options.firstBreadcrumb,content:interfaceData.options.firstBreadcrumbId});\">".$interfaceData["options"]["firstBreadcrumb"]."</div>"];
-    $interfaceData["options"]["breadcrumbs_id_array"] = [$interfaceData["options"]["firstBreadcrumbId"]];
     $interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
     $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+    $interfaceData["options"]["startPath"] = ($user->getSettings()["startPath"] ?? $interfaceData["settings"]["userDefaults"]["startPath"]);
     if (isset($_GET['viewportScale']) && is_float(floatval($_GET['viewportScale']))) {
         $interfaceData["options"]["viewportScale"] = floatval($_GET['viewportScale']);
     }
     else {
         $interfaceData["options"]["viewportScale"] = ($user->getSettings()["viewportScale"] ?? $interfaceData["settings"]["userDefaults"]["viewportScale"]);
     }
+    if (isset($_GET['scrollbarScale']) && is_float(floatval($_GET['scrollbarScale']))) {
+        $interfaceData["options"]["scrollbarScale"] = floatval($_GET['scrollbarScale']);
+    }
+    else {
+        $interfaceData["options"]["scrollbarScale"] = ($user->getSettings()["scrollbarScale"] ?? $interfaceData["settings"]["userDefaults"]["scrollbarScale"]);
+    }
+    $interfaceData["options"]["roleProfileDefineable"] = ($user->getSettings()["roleProfileDefineable"] ?? $interfaceData["settings"]["userDefaults"]["roleProfileDefineable"]);
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
     $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
+    $interfaceData["options"]["disabledMainmenus"] = ($user->getSettings()["disabledMainmenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMainmenus"]);
+    $interfaceData["options"]["disabledMenus"] = ($user->getSettings()["disabledMenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMenus"]);
     $interfaceData["options"]["showFloor"] = ($user->getSettings()["showFloor"] ?? $interfaceData["settings"]["userDefaults"]["showFloor"]);
     $interfaceData["options"]["consoleLog"] = ( ((isset($_GET['console_log']) && ($user->getSettings()["consoleLog"] ?? '') == "url") || ($user->getSettings()["consoleLog"] ?? $interfaceData["settings"]["userDefaults"]["consoleLog"]) == true )  ? true : false);
-    $interfaceData["options"]["interfacePath"] = $interfaceData["settings"]["interfacePath"];
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
-    $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"];
+    $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
+    $interfaceData["options"]["gdpr"] = $interfaceData["settings"]["gdpr"];
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");

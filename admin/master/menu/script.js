@@ -1,144 +1,118 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-$(document).ready(function(){
-    const mainmenuItemWidth = 100 / Object.keys(interfaceData.mainmenu).length;
-    let mainmenuItem = '';
+/*
+    global
+        mixin_menus
+        mixin_print_mounted
+        mixin_profiles
+*/
 
-    $.each(interfaceData.mainmenu, function(key, value){
-        const active = value.name === interfaceData.options.firstBreadcrumbId ? 'active' : '';
 
-        if (value.name == 'house') {
-            value.onclickOptions.name = interfaceData.options.firstBreadcrumb;
+
+Vue.component('shif-mainmenu', {
+    mixins: [mixin_menus, mixin_print_mounted()],
+
+    data: function () {
+        return {
+            enabled_menus: interfaceData.mainmenu
+                            .filter(x => ! this.disabled('mainmenu', x.name)),
+            active: true,
+        };
+    },
+
+    computed: {
+        width: function () {
+            return (100 / this.enabled_menus.length) + '%';
+        },
+
+        notifications_available: function () {
+            return Object.keys(interfaceData.notifications).length;
+        },
+    },
+
+    methods: {
+        badge_wanted: function (cur) {
+            return this.notifications_available > 0 && cur === 'notifications';
         }
-        else{
-            value.onclickOptions.name = i18n(value.name);
-        }
+    },
 
-        mainmenuItem += `
-            <li style="width: ${mainmenuItemWidth}%;" onclick='${value.onclick}(${JSON.stringify(value.onclickOptions)});'>
-                <div id="mainmenu_${value.name}" class="mainmenu_button ${active}">${showIcon(value.icon)}</div>
-            </li>
-        `;
-    });
-
-    $('#inhalt').after(`
+    template: `
         <div id="mainmenu">
             <ul class="menu">
-                ${mainmenuItem}
+                <li v-for="i in enabled_menus"
+                    v-bind:style="{width: width}">
+
+                    <router-link v-bind:to="{name: i.name}">
+                        <div v-bind:id="'mainmenu_' + i.name"
+                             class="mainmenu_button"
+                             v-bind:class="{badge: badge_wanted(i.name)}"
+                             v-bind:data-badge="notifications_available">
+                             <shif-icon v-bind:src="i.icon" />
+                        </div>
+                    </router-link>
+
+                </li>
             </ul>
         </div>
-    `);
-
-    if (interfaceData.options.firstBreadcrumbId == 'house') {
-        $('#house_rooms').html(house_level1_content);
-        house_level1_fix();
-    }
-
-    else if (interfaceData.options.firstBreadcrumbId == 'widgets') {
-        main({
-            name:    'Widgets',
-            content: 'widgets',
-            menu:    'widgets'
-        });
-    }
+    `,
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function main(options){
 
-    for (let i = 1; i < interfaceData.options.breadcrumbs_id_array.length; i++)
-        $('#' + interfaceData.options.breadcrumbs_id_array[i]).remove();
 
-        interfaceData.options.breadcrumbs_id_array = [
-        options.content,
-    ];
+Vue.component('shif-modemenu', {
+    mixins: [mixin_profiles],
 
-    $('.content_single').removeClass('content_single');
-    $('.content_small').removeClass('content_small');
-    $('.content_big').removeClass('content_big');
-    $('.content_back').remove();
+    computed: {
+        link_profile: function () {
+            console.log(this.$root.profiles.id);
+            return {
+                name: 'settings.profiles.profile',
+                params: {
+                    profile_id: this.$root.profiles.id,
+                },
+            };
+        },
+    },
 
-    $('.mainmenu_button').removeClass('active');
-    $('#mainmenu_' + options.content).addClass('active');
+    methods: {
+        submit_profile: function () {
+            this.profile_update(interfaceData.profiles[this.$root.profiles.id],
+                                this.$root.profiles.form);
+        },
+    },
 
-    $('#back').addClass('inactive');
-
-    if ('menu' in options){
-        $('#' + options.content).html(menu({
-            mainmenu: options.menu,
-            level: '1'
-        }));
-    }
-
-    $('#' + options.content).addClass('content_single');
-    $('.content').scrollTop(0);
-
-    interfaceData.options.breadcrumbs_array = [`
-        <div class="breadcrumbsJump" onclick='main({"name":"${options.name}","content":"${options.content}"});'>
-            ${options.name}
-        </div>
-    `];
-
-    let text = '';
-    for (let i = 0; i < interfaceData.options.breadcrumbs_array.length; i++) {
-        text += interfaceData.options.breadcrumbs_array[i];
-
-        if (i + 1 != interfaceData.options.breadcrumbs_array.length)
-            text += '<div class="breadcrumbs_separator">|</div>';
-    }
-
-    document.getElementById('breadcrumbsSub').innerHTML = text;
-
-    $('#breadcrumbsSub').scrollLeft(9999999999);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function menu(options){
-    let menu = '';
-
-    $.each(interfaceData.menu, function(key, value) {
-        if (options.mainmenu !== value.mainmenu || options.level !== value.level)
-            return;
-
-        if ('category' in options && options.category !== value.category)
-            return;
-
-        value.onclickOptions.name = i18n(value.name);
-        var name = i18n(value.name);
-        var description = i18n(value.description);
-
-        menu += `
-            <div class="button" onclick='${value.onclick}(${JSON.stringify(value.onclickOptions)})'>
-                <div class="button_icon">
-                    ${showIcon(value.icon)}
+    template: `
+        <div id="modemenu">
+            <div v-if="$root.favorites.enabled">
+                <div class="mode_text">
+                    <span class="mode_name">{{ i18n('modemenu.favorites.name') }}</span>
                 </div>
-                <div class="button_text">
-                    <div class="button_title">${name}</div>
-                    <br/>
-                    <div class="button_status">${description}</div>
-                </div>
-                <div class="button_action">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
-                        <g id="Ebene_1">
-                            <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
-                        </g>
-                    </svg>
+                <div class="mode_buttons">
+                    <div v-on:click="$root.favorites.enabled = false" class="mode_end">
+                        {{ i18n('modemenu.favorites.button.end') }}
+                    </div>
                 </div>
             </div>
-        `;
-    });
 
-    if ('content' in options && options.content === 'true') {
-        content('this', {
-            content: menu,
-            name:    options.name
-        });
-    }
-    else
-        return menu;
-}
+            <div v-if="$root.profiles.enabled" id="mode_wrapper_profiles">
+                <div class="mode_text">
+                    <span class="mode_label">
+                        {{ i18n('modemenu.profiles.name.label') }}:
+                    </span>
+                    <span class="mode_name">
+                        {{ $root.profiles.form.profile_name }}
+                    </span>
+                </div>
+                <div class="mode_buttons">
+                    <router-link v-bind:to="link_profile">
+                        <div class="mode_settings">
+                            {{ i18n('modemenu.profiles.button.settings') }}
+                        </div>
+                    </router-link>
+                    <div v-on:click="submit_profile"
+                         class="mode_end">
+                        {{ i18n('modemenu.profiles.button.end') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+});
