@@ -142,14 +142,8 @@ Vue.use({
 });
 
 
-Vue.mixin({
-    data: function () {
-        return  {
-            interfaceIcons: icons,
-            interfaceData:  interfaceData,
-        };
-    },
 
+Vue.mixin({
     filters: {
         pretty: function (val) {
             return JSON.stringify(val, null, 4);
@@ -162,6 +156,13 @@ Vue.mixin({
         log: function (val) {
             console.log(val);
         },
+    },
+
+    data: function () {
+        return  {
+            interfaceIcons: icons,
+            interfaceData:  interfaceData,
+        };
     },
 
     methods: {
@@ -556,19 +557,27 @@ let breadcrumbs = new Vue({
                 case 'house.tab.rooms.room.device':
                 case 'house.tab.devices.device':
                 case 'favorites.device':
-                    return interfaceData.devices[params.device_id].label;
+                    if (interfaceData.devices[params.device_id] !== undefined)
+                        return interfaceData.devices[params.device_id].label;
+                    break;
 
                 case 'log':
                     return 'Log';
 
                 case 'settings.profiles.profile':
-                    return interfaceData.profiles[params.profile_id].name;
+                    if (interfaceData.profiles[params.profiles_id] !== undefined)
+                        return interfaceData.profiles[params.profile_id].name;
+                    break;
 
                 case 'settings.automations.automation':
-                    return interfaceData.automations[params.automation_id].name;
+                    if (interfaceData.automations[params.automation_id] !== undefined)
+                        return interfaceData.automations[params.automation_id].name;
+                    break;
 
                 case 'notifications.notification':
-                    return interfaceData.notifications[params.notification_id].title;
+                    if (interfaceData.notifications[params.notification_id] !== undefined)
+                        return interfaceData.notifications[params.notification_id].title;
+                    break;
             }
 
             return i18n(route_name);
@@ -600,8 +609,9 @@ let breadcrumbs = new Vue({
 
 
 let error = new Vue({
-    name: 'Error',
     el: '#error',
+
+    name: 'Error',
 
     data: {
         msgs: [],
@@ -651,4 +661,66 @@ function interface_mount(show=true) {
 function interface_show() {
     app.show = true;
     breadcrumbs.show = true;
+}
+
+
+
+/**
+ * type: 'requestUiRefresh' || any
+ * buttons: bool
+ **/
+function _create_notification(inc_buttons = false) {
+    const buttons = ! inc_buttons ? [] : [
+        {
+            id: 0,
+            type: 'success',
+            reloadUi: false,
+            closeModal: false,
+            label: 'Yes I`ve read that',
+            icon: 'abort_1',
+        },
+        {
+            id: 1,
+            type: 'error',
+            reloadUi: true,
+            closeModal: false,
+            label: 'reload',
+            icon: 'abort_1',
+        },
+    ];
+
+    const msg = {
+        type: 'asdf',
+        flags: {
+            closeable: true,
+            hasModal: false,
+            overlayNotfication: false,
+            overlayModal: false,
+        },
+        title: {
+            'de-DE': 'Test Nachricht: ' + date_format(),
+            'en-US': 'Test Message: ' + date_format(),
+        },
+        modalTitle: {
+            'de-DE': 'Test Nachricht: Modal',
+            'en-US': 'Test Message: Modal',
+        },
+        modalContent: {
+            'de-DE': 'Jo hey',
+            'en-US': 'Jo hey',
+        },
+        buttons,
+    };
+
+    setTimeout(function () {
+        homegear.invoke({
+            jsonrpc: '2.0',
+            method: 'createUiNotification',
+            params: [msg],
+        }, function () {
+            console.log(arguments);
+            homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['de-DE']}, console.log);
+            homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['en-US']}, console.log);
+        });
+    }, 3000);
 }
