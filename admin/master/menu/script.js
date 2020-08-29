@@ -1,6 +1,7 @@
 /*
     global
         mixin_menus
+        mixin_notification
         mixin_print_mounted
         mixin_profiles
 */
@@ -8,7 +9,11 @@
 
 
 Vue.component('shif-mainmenu', {
-    mixins: [mixin_menus, mixin_print_mounted()],
+    mixins: [
+        mixin_menus,
+        mixin_notification,
+        mixin_print_mounted()
+    ],
 
     data: function () {
         return {
@@ -24,7 +29,7 @@ Vue.component('shif-mainmenu', {
         },
 
         notifications_available: function () {
-            return Object.keys(interfaceData.notifications).length;
+            return this.integrated_notifications.length;
         },
     },
 
