@@ -3,7 +3,7 @@
         HomegearWS
         i18n
         interface_mount
-        interface_mount_with_gdpr
+        modal_mount
         states_flag_dirty
         toast
 */
@@ -186,14 +186,17 @@ function date_format() {
 function handle_update_request_ui_refresh(_resp) {
     toast.set({
         close: false,
-        content: `
-            <div class="toast_text">
-                ${i18n('refresh.message')}
-            </div>
-            <button class="toast_action" onclick="window.location.reload(true)">
-                ${i18n('refresh.message.button.text')}
-            </button>
-        `
+        content: i18n('refresh.message'),
+        buttons: [
+            {
+                id: 0,
+                type: 'success',
+                reloadUi: true,
+                closeModal: false,
+                label: i18n('refresh.message.button.text'),
+                icon: 'abort_1',
+            },
+        ],
     });
 }
 
@@ -222,6 +225,7 @@ function handle_update_notification_created(resp) {
         const new_ = resp.result;
 
         new_.id = id;
+
         Vue.set(interfaceData.notifications, id, new_);
     });
 }
@@ -260,9 +264,9 @@ function homegear_handle_update(resp) {
 // Extensions to the homegear object
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function params_create(input, value) {
-    if ('value' in input) {
+    if ('value' in input)
         value = input.value;
-    }
+
     return [
         Number(input.peer),
         Number(input.channel),
@@ -276,7 +280,9 @@ function params_create(input, value) {
 
 function homegear_prepare(homegear) {
     homegear.event(homegear_handle_update);
-    homegear.ready(interfaceData.options.gdpr ? interface_mount_with_gdpr : interface_mount);
+    homegear.ready(interface_mount);
+    homegear.ready(modal_mount);
+    // homegear.ready(interfaceData.options.gdpr ? interface_mount_with_modal : interface_mount);
 
     homegear.invoke_raw = homegear.invoke;
     homegear.invoke = function (op, cb) {
