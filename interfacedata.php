@@ -25,7 +25,6 @@
             "viewportScale": 0.65,
             "scrollbarScale": 4,
             "disabledMainmenus": {
-                "notifications": true
             },
             "disabledMenus": {
                 "settings.automations": true
@@ -225,6 +224,7 @@
             "favorites": "Favorites",
             "notifications": "Notifications",
             "notifications.amount": "Amount",
+            "notifications.close_delete": "Close and Delete",
             "notifications.gdpr.title": "Terms and Conditions",
             "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
             "notifications.gdpr.decline": "Decline",
@@ -356,6 +356,7 @@
             "favorites": "Favoriten",
             "notifications": "Benachrichtigungen",
             "notifications.amount": "Anzahl",
+            "notifications.close_delete": "Löschen und Schließen",
             "notifications.gdpr.title": "AGB",
             "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
             "notifications.gdpr.decline": "Ablehnen",
