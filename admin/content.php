@@ -122,7 +122,7 @@ echo '</script>';
   <div id="toast">
   </div>
 
-  <div id="gdpr">
+  <div id="modal">
   </div>
 
   <div id="breadcrumbs">
