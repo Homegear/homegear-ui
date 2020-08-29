@@ -171,14 +171,14 @@ function handle_update_event(resp) {
 function date_format() {
     const dt = new Date ();
 
-    const month  = (dt.getMonth()+1).toString().padStart(2, '0');
     const day    = dt.getDate().toString().padStart(2, '0');
+    const month  = (dt.getMonth()+1).toString().padStart(2, '0');
     const year   = dt.getFullYear().toString().padStart(4, '0');
     const hour   = dt.getHours().toString().padStart(2, '0');
     const minute = dt.getMinutes().toString().padStart(2, '0');
     const second = dt.getSeconds().toString().padStart(2, '0');
 
-    return `${month}.${day}.${year} ${hour}:${minute}:${second}`;
+    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
 }
 
 
@@ -211,19 +211,30 @@ function handle_update_variable_profile_state_changed(resp) {
 
 
 
-function handle_update_notification(resp) {
-    const id   = resp.params[0],
-          type = resp.params[1];
+function handle_update_notification_created(resp) {
+    const id = resp.params[0];
 
-    if (type === 'requestUiRefresh')
-        return handle_update_request_ui_refresh(resp);
+    homegear.invoke({
+        jsonrpc: '2.0',
+        method: 'getUiNotification',
+        params: [id, interfaceData.options.language],
+    }, function (resp) {
+        const new_ = resp.result;
 
-    Vue.set(interfaceData.notifications, id, {
-        id: id,
-        title: resp.params[2],
-        content: resp.params[3],
-        buttons: resp.params[4],
+        new_.id = id;
+        Vue.set(interfaceData.notifications, id, new_);
     });
+}
+
+
+
+function handle_update_notification_removed(resp) {
+    const id = resp.params[0];
+
+    if (interfaceData.notifications[id] === undefined)
+        return;
+
+    Vue.delete(interfaceData.notifications, id);
 }
 
 
@@ -232,10 +243,11 @@ function homegear_handle_update(resp) {
     console.log(JSON.stringify(resp, null, 4));
 
     const funcs = {
-        'event': handle_update_event,
-        'requestUiRefresh': handle_update_request_ui_refresh,
+        'event':                       handle_update_event,
+        'requestUiRefresh':            handle_update_request_ui_refresh,
         'variableProfileStateChanged': handle_update_variable_profile_state_changed,
-        'notification': handle_update_notification,
+        'uiNotificationCreated':       handle_update_notification_created,
+        'uiNotificationRemoved':       handle_update_notification_removed,
     };
 
     if (resp.method in funcs)
