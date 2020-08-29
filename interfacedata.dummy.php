@@ -20891,38 +20891,34 @@
         }
     },
     "notifications": {
-        "0": {
-            "title": "Es ist ein Homegear Update verfügbar",
-            "content": "Bitte umgehend installieren!",
-            "buttons": [
-                {
-                    "id": 1,
-                    "type": "warning",
-                    "content": "jetzt installieren",
-                    "icon": "notification_2"
-                },
-                {
-                    "id": 1,
-                    "type": "warning",
-                    "content": "um 2°° Uhr installieren",
-                    "icon": "notification_2"
-                },
-                {
-                    "id": 1,
-                    "type": "warning",
-                    "content": "erneut erinnern",
-                    "icon": "notification_2"
-                }
-            ]
-        },
         "1": {
-            "title": "UI Reload notwendig",
-            "content": "Bitte umgehend ausführen!",
+            "id": "1",
+            "title": "Homegear Update verfügbar",
+            "flags": {
+                "overlayNotfication": false,
+                "closeable": false,
+                "hasModal": true,
+                "overlayModal": false
+            },
+            "modalTitle": "Es ist ein Homegear Update verfügbar",
+            "modalContent": "Bitte umgehend installieren!",
             "buttons": [
                 {
                     "id": 1,
                     "type": "warning",
-                    "content": "neu laden",
+                    "label": "jetzt installieren",
+                    "icon": "notification_2"
+                },
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "label": "um 2°° Uhr installieren",
+                    "icon": "notification_2"
+                },
+                {
+                    "id": 1,
+                    "type": "warning",
+                    "label": "erneut erinnern",
                     "icon": "notification_2"
                 }
             ]
