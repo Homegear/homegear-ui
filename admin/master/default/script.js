@@ -261,7 +261,7 @@ function clone(obj) {
 // Mixins {{{
 const mixin_device_control_wrapper = {
     inject: {
-        layer: 'layer',
+        layer: {default: 3},
     },
 
     computed: {
@@ -285,7 +285,7 @@ Vue.component('TODO', {
 
 Vue.component('shif-title', {
     props: {
-        classname: String,
+        classname: {type: String, default: undefined},
         disabled: {
             type: Object,
             default: () => ({flag: false})
@@ -597,7 +597,7 @@ Vue.component('shif-colorpicker', {
         sliderHeight: { type: Number, default: 32 },
         borderColor:  { type: String, default: '#fff' },
         anticlockwise:  { type: Boolean, default: true },
-        title:  { type: String},
+        title:  { type: String, default: ''},
         disabled: {
             type: Object,
             default: () => ({flag: false})
