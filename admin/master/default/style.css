@@ -300,11 +300,12 @@ a.disabled {
 
 /* ///////////////////////////////////////////////////////////////////////// */
 
-#gdpr {
+#modal {
   background: #25282e;
   position: absolute;
   width: 100%;
   height: inherit;
+  z-index: 1000000;
 }
 
 #inhalt {
