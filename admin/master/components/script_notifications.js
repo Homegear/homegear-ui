@@ -1,8 +1,7 @@
 /*
     global
-        i18n
-        interface_mount
-        interface_show
+        NotificationDisplayType
+        mixin_notification
         mixin_print_mounted
         mixin_scroll_position
 */
@@ -11,47 +10,8 @@
         ShifNotifications
         ShifNotificationsLvl1
         ShifNotificationsNotification
-        interface_mount_with_gdpr
+        modal_mount
 */
-
-
-
-const mixin_notification = {
-    methods: {
-        notification_action: function (id, btn, cb) {
-            if (id === undefined)
-                id = this.notification_id;
-
-            this.$homegear.invoke({
-                jsonrpc: '2.0',
-                method: 'uiNotificationAction',
-                params: [Number(id), Number(btn)],
-            }, cb);
-        },
-
-        notification_get: function (id, cb) {
-            if (id === undefined)
-                id = this.notification_id;
-
-            this.$homegear.invoke({
-                jsonrpc: '2.0',
-                method: 'getUiNotification',
-                params: [Number(id), interfaceData.options.language],
-            }, cb);
-        },
-
-        notification_remove: function (id, cb) {
-            if (id === undefined)
-                id = this.notification_id;
-
-            this.$homegear.invoke({
-                jsonrpc: '2.0',
-                method: 'removeUiNotification',
-                params: [Number(id)],
-            }, cb);
-        },
-    }
-};
 
 
 
@@ -81,9 +41,9 @@ const ShifNotificationMessage = {
     },
 
     methods: {
-        on_click: function (btn_id) {
+        on_click: function (btn) {
             this.$emit('click', {
-                button: btn_id
+                button: btn
             });
         },
     },
@@ -99,7 +59,7 @@ const ShifNotificationMessage = {
                 <template v-if="has_buttons">
                     <button v-for="i in buttons"
                             v-bind:class="i.type"
-                            v-on:click="on_click(i.id)">
+                            v-on:click="on_click(i)">
                         <shif-icon v-if="i.icon !== undefined"
                                    v-bind:src="i.icon" />
                         <span v-html="i.label"></span>
@@ -160,66 +120,51 @@ Vue.component('shif-notifications-element', {
 
 
 
-let gdpr = new Vue({
-    name: 'GDPR',
+let modal = new Vue({
+    name: 'Modal',
 
     components: {
         ShifNotificationMessage,
     },
 
-    data: function () {
-        return {
-            msg: {
-                title: '',
-                content: '',
-                buttons: [],
-            },
-            initialized: false,
-        };
-    },
+    mixins: [mixin_notification],
 
-    created: function () {
-        // Setting those values here instead of defining them directly in data
-        // simulates fetching them via an invoke from homegear.
-        //
-        // TODO: refactor into an invoke once the backed is implemented.
-        this.msg.title   = i18n('notifications.gdpr.title');
-        this.msg.content = i18n('notifications.gdpr.content');
-        this.msg.buttons = [
-            {
-                type: 'error',
-                content: i18n('notifications.gdpr.decline'),
-                id: 'decline',
-            },
-            {
-                type: 'success',
-                content: i18n('notifications.gdpr.accept'),
-                id: 'accept',
-            },
-        ];
-        this.initialized = true;
+    computed: {
+        show: function () {
+            return this.modal_notifications.length > 0;
+        },
     },
 
     methods: {
-        on_click: function () {
-            this.initialized = false;
+        click: function (id, _btn) {
+            const btn = _btn.button;
 
-            interface_show();
+            this.notification_action(id, btn.id, () => {
+                const msg = interfaceData.notifications[id];
 
-            this.$nextTick(() => {
-                this.$destroy();
+                if (msg.displayType === NotificationDisplayType.Modal &&
+                    btn.closeModal === true)
+                    Vue.set(msg, 'hidden', true);
+
+                if (btn.reloadUi === true)
+                    window.location.reload();
             });
+        },
+
+        close_delete: function (id) {
+            this.notification_remove(id);
         },
     },
 
     template: `
-        <div id="gdpr">
-            <div v-if="initialized"
-                 class="content content_single">
-                <shif-notification-message v-bind:title="msg.title"
-                                           v-bind:content="msg.content"
-                                           v-bind:buttons="msg.buttons"
-                                           v-on:click="on_click($event.button)" />
+        <div v-if="show" id="modal">
+            <div class="content content_single">
+                <template v-for="i in modal_notifications">
+                    <shif-notification-message v-bind:key="i.id"
+                                               v-bind="i"
+                                               v-on:click="click(i.id, $event)"
+                                               v-on:close_delete="close_delete(i.id)" />
+                </template>
             </div>
         </div>
     `
@@ -258,8 +203,19 @@ const ShifNotificationsNotification = {
     },
 
     methods: {
-        click: function (btn) {
-            this.notification_action(this.notification_id, btn.button);
+        click: function (_btn) {
+            const btn = _btn.button;
+
+            this.notification_action(this.notification_id, btn.id, () => {
+                const msg = interfaceData.notifications[this.notification_id];
+
+                if (msg.displayType === NotificationDisplayType.Modal &&
+                    btn.closeModal === true)
+                    Vue.set(msg, 'hidden', true);
+
+                if (btn.reloadUi === true)
+                    window.location.reload();
+            });
         },
 
         close_delete: function () {
@@ -281,6 +237,7 @@ const ShifNotificationsNotification = {
 // @vue/component
 const ShifNotificationsLvl1 = {
     mixins: [
+        mixin_notification,
         mixin_scroll_position,
         mixin_print_mounted('shif-notifications-lvl1')
     ],
@@ -298,9 +255,9 @@ const ShifNotificationsLvl1 = {
 
     template: `
         <div>
-            <template v-for="i, key in interfaceData.notifications">
-                <router-link v-bind:to="link(key)">
-                    <shif-notifications-element v-bind:key="key"
+            <template v-for="i in integrated_notifications">
+                <router-link v-bind:to="link(i.id)">
+                    <shif-notifications-element v-bind:key="i.id"
                                                 v-bind:name="i.title"
                                                 v-bind:translate="false"
                                                 icon="notification_1" />
@@ -323,7 +280,6 @@ const ShifNotifications = {
 
 
 
-function interface_mount_with_gdpr() {
-    gdpr.$mount('#gdpr');
-    interface_mount(false);
+function modal_mount() {
+    modal.$mount('#modal');
 }
