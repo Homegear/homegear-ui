@@ -1808,7 +1808,6 @@ td {
 }
 
 .toast .toast_content .toast_action {
-  background: #e3a104 !important;
   width: max-content;
   padding: 4px 6px;
   white-space: nowrap;
