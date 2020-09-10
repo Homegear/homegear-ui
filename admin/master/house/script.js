@@ -664,8 +664,19 @@ let toast = new Vue({
             else if (btn.reloadUi === true)
                 window.location.reload();
         },
+
+        notification_hide_or_remove: function (msg) {
+            if (msg.buttons.length === 0)
+                this.notification_remove(msg.id);
+            else
+                this.notification_hide(msg.id);
+        },
     },
 
+    /**
+     * msg.close is only available in notifications not handled by homegear
+     * msg.flags.closeable is only available in notifications handled by homegear
+     **/
     template: `
         <div id="toast">
             <div class="toast" v-for="msg, i in msgs_combined"
@@ -678,7 +689,7 @@ let toast = new Vue({
                     </template>
                     <template v-if="msg.flags && msg.flags.closeable === true">
                         <button class="toast_close"
-                                v-on:click="notification_remove(msg.id)">
+                                v-on:click="notification_hide_or_remove(msg)">
                             X
                         </button>
                     </template>
