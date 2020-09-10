@@ -103,6 +103,20 @@ const mixin_notification = {
                 params: [Number(id)],
             }, cb);
         },
+
+        notification_hide: function (id, cb) {
+            if (id === undefined)
+                id = this.notification_id;
+
+            Vue.set(interfaceData.notifications[id], 'seen', true);
+
+            if (cb !== undefined)
+                cb();
+        },
+
+        notification_is_hidden: function (msg) {
+            return msg.seen === true;
+        },
     },
 
     computed: {
@@ -115,8 +129,8 @@ const mixin_notification = {
         modal_notifications: function () {
             return this._notifications
                        .filter(x => x.displayType === NotificationDisplayType.Modal)
-                        // filter out messages hidden by closeModal
-                       .filter(x => x.hidden !== true);
+                        // filter out messages hidden by buttons[].closeModal
+                       .filter(x => ! this.notification_is_hidden(x));
         },
 
         toast_notifications: function () {
@@ -124,7 +138,9 @@ const mixin_notification = {
                        .filter(
                            x => x.displayType === NotificationDisplayType.Toast ||
                                 x.displayType === NotificationDisplayType.ToastIntegrated
-                       );
+                        )
+                        // filter out messages hidden by msg.flags.closeable
+                       .filter(x => ! this.notification_is_hidden(x));
         },
 
         integrated_notifications: function () {
