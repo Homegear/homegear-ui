@@ -144,7 +144,7 @@ let modal = new Vue({
 
                 if (msg.displayType === NotificationDisplayType.Modal &&
                     btn.closeModal === true)
-                    Vue.set(msg, 'hidden', true);
+                    this.notification_hide(id);
 
                 if (btn.reloadUi === true)
                     window.location.reload();
@@ -211,7 +211,7 @@ const ShifNotificationsNotification = {
 
                 if (msg.displayType === NotificationDisplayType.Modal &&
                     btn.closeModal === true)
-                    Vue.set(msg, 'hidden', true);
+                    this.notification_hide(msg.id);
 
                 if (btn.reloadUi === true)
                     window.location.reload();
