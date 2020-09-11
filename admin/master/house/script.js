@@ -770,7 +770,7 @@ function _create_notification(inc_buttons = false, args) {
     ];
 
     const msg = {
-        type: 'asdf',
+        type: 'test',
         flags: {
             closeable: args.closeable || false,
             hasModal: args.hasModal || false,
@@ -782,15 +782,15 @@ function _create_notification(inc_buttons = false, args) {
             'en-US': 'Test Message: ' + date_format(),
         },
         content: `
-            <p class="toast_text">joooo</p>
+            <p class="toast_text">Test</p>
         `,
         modalTitle: {
             'de-DE': 'Test Nachricht: Modal',
             'en-US': 'Test Message: Modal',
         },
         modalContent: {
-            'de-DE': 'Jo hey: ' + date_format(),
-            'en-US': 'Jo hey' + date_format(),
+            'de-DE': 'Test Content: ' + date_format(),
+            'en-US': 'Test Content: ' + date_format(),
         },
         buttons,
     };
