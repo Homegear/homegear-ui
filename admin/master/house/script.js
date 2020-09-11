@@ -1,6 +1,7 @@
 /*
     global
-        ShifHouse,
+        NotificationDisplayType
+        ShifHouse
         ShifHouseRooms
         ShifHouseLvl2
         ShifHouseLvl3
@@ -29,6 +30,7 @@
         homegear
         i18n
         icons
+        mixin_notification
         user_logoff
 */
 /*
@@ -613,8 +615,18 @@ let toast = new Vue({
 
     name: 'Toast',
 
+    router: router,
+
+    mixins: [mixin_notification],
+
     data: {
         msgs: [],
+    },
+
+    computed: {
+        msgs_combined: function () {
+            return this.msgs.concat(this.toast_notifications);
+        },
     },
 
     methods: {
@@ -629,22 +641,71 @@ let toast = new Vue({
         set: function (msg) {
             this.msgs = [msg];
         },
+
+        link: function (id) {
+            return {
+                name: 'notifications.notification',
+                params: {
+                    notification_id: id,
+                },
+            };
+        },
+
+        is_toast_integrated: function (msg) {
+            return msg.displayType === NotificationDisplayType.ToastIntegrated;
+        },
+
+        click: function (msg, btn) {
+            if (msg.id !== undefined)
+                this.notification_action(msg.id, btn.id, () => {
+                    if (btn.reloadUi === true)
+                        window.location.reload();
+                });
+            else if (btn.reloadUi === true)
+                window.location.reload();
+        },
     },
 
     template: `
         <div id="toast">
-            <div v-for="msg, i in msgs"
-                 class="toast">
-                <button v-if="msg.close === true"
-                        class="toast_close"
-                        v-on:click="remove_msg(i)">
-                    X
-                </button>
-                <div class="toast_content" v-html="msg.content"></div>
+            <div class="toast" v-for="msg, i in msgs_combined"
+                               v-bind:key="msg.id">
+                    <template v-if="msg.close">
+                        <button class="toast_close"
+                                v-on:click="remove_msg(i)">
+                            X
+                        </button>
+                    </template>
+                    <template v-if="msg.flags && msg.flags.closeable === true">
+                        <button class="toast_close"
+                                v-on:click="notification_remove(msg.id)">
+                            X
+                        </button>
+                    </template>
+
+                    <template v-if="is_toast_integrated(msg)">
+                        <router-link v-bind:to="link(msg.id)"
+                                     class="toast_content" v-html="msg.content">
+                        </router-link>
+                    </template>
+                    <template v-else>
+                        <div class="toast_content">
+                            <div class="toast_text" v-html="msg.content">
+                            </div>
+                            <template v-for="btn in msg.buttons">
+                                <button class="toast_action"
+                                        v-bind:class="btn.type"
+                                        v-on:click="click(msg, btn)">
+                                    {{ btn.label }}
+                                </button>
+                            </template>
+                        </div>
+                    </template>
             </div>
         </div>
     `
 });
+                    // <div class="toast_content" v-html="msg.content"></div>
 
 
 
@@ -669,7 +730,7 @@ function interface_show() {
  * type: 'requestUiRefresh' || any
  * buttons: bool
  **/
-function _create_notification(inc_buttons = false) {
+function _create_notification(inc_buttons = false, args) {
     const buttons = ! inc_buttons ? [] : [
         {
             id: 0,
@@ -681,6 +742,14 @@ function _create_notification(inc_buttons = false) {
         },
         {
             id: 1,
+            type: 'warning',
+            reloadUi: false,
+            closeModal: true,
+            label: 'ignore',
+            icon: 'abort_1',
+        },
+        {
+            id: 2,
             type: 'error',
             reloadUi: true,
             closeModal: false,
@@ -692,35 +761,82 @@ function _create_notification(inc_buttons = false) {
     const msg = {
         type: 'asdf',
         flags: {
-            closeable: true,
-            hasModal: false,
-            overlayNotfication: false,
-            overlayModal: false,
+            closeable: args.closeable || false,
+            hasModal: args.hasModal || false,
+            overlayNotification: args.overlayNotification || false,
+            overlayModal: args.overlayModal || false,
         },
         title: {
             'de-DE': 'Test Nachricht: ' + date_format(),
             'en-US': 'Test Message: ' + date_format(),
         },
+        content: `
+            <p class="toast_text">joooo</p>
+        `,
         modalTitle: {
             'de-DE': 'Test Nachricht: Modal',
             'en-US': 'Test Message: Modal',
         },
         modalContent: {
-            'de-DE': 'Jo hey',
-            'en-US': 'Jo hey',
+            'de-DE': 'Jo hey: ' + date_format(),
+            'en-US': 'Jo hey' + date_format(),
         },
         buttons,
     };
 
-    setTimeout(function () {
-        homegear.invoke({
-            jsonrpc: '2.0',
-            method: 'createUiNotification',
-            params: [msg],
-        }, function () {
-            console.log(arguments);
-            homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['de-DE']}, console.log);
-            homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['en-US']}, console.log);
-        });
-    }, 3000);
+    homegear.invoke({
+        jsonrpc: '2.0',
+        method: 'createUiNotification',
+        params: [msg],
+    }, function () {
+        homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['de-DE']}, console.log);
+        homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['en-US']}, console.log);
+    });
 }
+
+
+
+function _cleanup_notifications() {
+    homegear.invoke({
+        jsonrpc: '2.0',
+        method: 'getUiNotifications',
+        params: [interfaceData.options.language],
+    }, function (resp) {
+        for (const i of resp.result)
+            homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'removeUiNotification',
+                params: [i.id],
+            });
+    });
+}
+
+
+
+const _modal = {
+    closeable: true,
+    hasModal: true,
+    overlayModal: true,
+    overlayNotification: false,
+};
+
+const _toast_only = {
+    closeable: true,
+    hasModal: false,
+    overlayModal: false,
+    overlayNotification: true,
+};
+
+const _toast_integrated = {
+    closeable: true,
+    hasModal: true,
+    overlayModal: false,
+    overlayNotification: true,
+};
+
+const _integrated = {
+    closeable: false,
+    hasModal: true,
+    overlayModal: false,
+    overlayNotification: false,
+};
