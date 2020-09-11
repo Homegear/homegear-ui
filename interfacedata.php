@@ -7,7 +7,6 @@
         "directLoginApiKey": "",
         "setupKey": "",
         "env": "",
-        "gdpr": false,
         "homegear": {
             "url": "location.hostname",
             "port": "location.port"
@@ -225,11 +224,6 @@
             "notifications": "Notifications",
             "notifications.amount": "Amount",
             "notifications.close_delete": "Close and Delete",
-            "notifications.gdpr.title": "Terms and Conditions",
-            "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
-            "notifications.gdpr.decline": "Decline",
-            "notifications.gdpr.more": "More information",
-            "notifications.gdpr.accept": "Accept",
             "settings": "Settings",
             "settings.automations": "Automations",
             "settings.automations.description": "Add and delete automations",
@@ -357,11 +351,6 @@
             "notifications": "Benachrichtigungen",
             "notifications.amount": "Anzahl",
             "notifications.close_delete": "Löschen und Schließen",
-            "notifications.gdpr.title": "AGB",
-            "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
-            "notifications.gdpr.decline": "Ablehnen",
-            "notifications.gdpr.more": "Mehr erfahren",
-            "notifications.gdpr.accept": "Zustimmen",
             "settings": "Einstellungen",
             "settings.automations": "Automatisierungen",
             "settings.automations.new": "Neu",
@@ -668,7 +657,6 @@ function userSettings() {
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
     $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
-    $interfaceData["options"]["gdpr"] = $interfaceData["settings"]["gdpr"];
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");
