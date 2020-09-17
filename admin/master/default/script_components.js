@@ -151,46 +151,46 @@ const mixin_unique_view_key = {
 
 const mixin_scroll_position = {
     methods: {
-        _find_scroll_position_marker: function (start) {
-            let cur = start;
+        // _find_scroll_position_marker: function (start) {
+        //     let cur = start;
+        //
+        //     for (; cur !== undefined; cur = cur.$parent) {
+        //         if (cur.$options.name === 'shif-scroll-position-marker')
+        //             return cur;
+        //     }
+        //
+        //     return cur;
+        // },
 
-            for (; cur !== undefined; cur = cur.$parent) {
-                if (cur.$options.name === 'shif-scroll-position-marker')
-                    return cur;
-            }
-
-            return cur;
+        _key: function (vm) {
+            return vm.$vnode.key.replace(/^__transition-\d+-/, '');
         },
     },
 
     beforeRouteLeave: function (to, from, next) {
-        const marker = this._find_scroll_position_marker(this);
-        if (marker === undefined)
-            return;
+        const key = this._key(this);
 
-        scroll_positions[this.$vnode.key] = {
-            x: marker.$el.scrollLeft,
-            y: marker.$el.scrollTop,
+        scroll_positions[key] = {
+            x: this.$el.scrollLeft,
+            y: this.$el.scrollTop,
         };
 
-        if (this.$vnode.key === 'house.tab.devices')
-            scroll_positions[this.$vnode.key].role_id = this.$refs.devices.role_id_opened;
+        if (key === 'house.tab.devices')
+            scroll_positions[key].role_id = this.$refs.devices.role_id_opened;
 
         next();
     },
 
     beforeRouteEnter: function (to, from, next) {
         next(vm => {
-            if (scroll_positions[vm.$vnode.key] === undefined)
+            const key = vm._key(vm);
+
+            if (scroll_positions[key] === undefined)
                 return;
 
-            const marker = vm._find_scroll_position_marker(vm);
-            if (marker === undefined)
-                return;
+            const pos = scroll_positions[key];
 
-            const pos = scroll_positions[vm.$vnode.key];
-
-            marker.$el.scroll(pos.x, pos.y);
+            vm.$el.scroll(pos.x, pos.y);
         });
     },
 };
@@ -702,6 +702,8 @@ Vue.component('shif-mainmenu-tabs', {
 // scroll positions from.
 // Although not defining own DOM elements, it must not be abstract!
 // We won't be able to access the scroll positions!
+//
+// Backup: currently unused.
 const ShifScrollPositionMarker = {
     // Explicitly set, so it does not get (accidently?) set to true in the
     // future.
@@ -753,25 +755,25 @@ Vue.component('shif-paging', {
                     class:      'content content_big',
                     click:      false,
                     transition: true,
-                    cache:      false,
                 }
             ];
         },
     },
 
     render: function (h) {
-        return h('div', {}, this.views.map(i =>
-            h('shif-scroll-position-marker', {}, [
-                // h('shif-trans-right-in-out', {}, [
-                    h('router-view', {
-                        class:    i.class,
-                        key:      this.unique_view_key(i.name),
-                        props:    {name: i.name},
-                        nativeOn: i.click ? {click: () => this.$router.back()} : {}
-                    })
-                // ])
-            ])
-        ));
+        return h('div', {}, this.views.map(i => {
+            const router_view = h('router-view', {
+                class:    i.class,
+                key:      this.unique_view_key(i.name),
+                props:    {name: i.name},
+                nativeOn: i.click ? {click: () => this.$router.back()} : {}
+            });
+
+            if (! i.transition)
+                return router_view;
+
+            return h('shif-trans-right-in-out', {}, [router_view]);
+        }));
     }
 });
 
@@ -781,6 +783,7 @@ Vue.component('shif-paging', {
                              // class="content content_big"
                              // v-bind:key="key('big')" />
             // </shif-trans-right-in-out>
+
 
 
 Vue.component('shif-checkbox-favorites', {
