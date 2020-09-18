@@ -358,7 +358,7 @@ const mixin_profiles = {
                 method: 'deleteVariableProfile',
                 params: [profile.id],
             }, (result) => {
-                delete interfaceData.profiles[this.profile.id];
+                Vue.delete(interfaceData.profiles, this.profile.id);
 
                 if (this.$root.profiles.enabled)
                     this.$root.profiles.enabled = false;
@@ -389,7 +389,7 @@ const mixin_profiles = {
                     }
                 ],
             }, (result) => {
-                interfaceData.profiles[result.result] = {
+                Vue.set(interfaceData.profiles, result.result, {
                     id:        result.result,
                     icon:      form.icon,
                     locations: locations,
@@ -398,7 +398,7 @@ const mixin_profiles = {
                     name:      form.profile_name,
                     roles:     [],
                     values:    [],
-                };
+                });
 
                 this.$root.profiles.enabled = false;
 
@@ -458,7 +458,7 @@ const mixin_profiles = {
                     }
                 ],
             }, (result) => {
-                interfaceData.profiles[profile.id] = {
+                Vue.set(interfaceData.profiles, profile.id, {
                     id:        profile.id,
                     name:      form.profile_name,
                     global:    form.location.global,
@@ -467,7 +467,7 @@ const mixin_profiles = {
                     locations: locations,
                     roles:     roles,
                     values:    values,
-                };
+                });
 
                 this.$root.profiles.enabled = false;
 
