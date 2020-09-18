@@ -557,7 +557,7 @@ let ShifSettingsProfile = {
                         (result) => this.$router.replace({
                             name: 'settings.profiles.profile',
                             params: {
-                                profile: result.result
+                                profile_id: result.result
                             },
                         })
                     );
