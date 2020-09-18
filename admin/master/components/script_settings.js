@@ -575,6 +575,9 @@ let ShifSettingsProfile = {
     mounted: function () {
         if (this.mode === 'edit' && ! this.$root.profiles.enabled)
             return this.profile_build_root_devs(this.profile);
+
+        if (this.$root.profiles.enabled)
+            this.$root.profiles.enabled = false;
     },
 
     template: `
