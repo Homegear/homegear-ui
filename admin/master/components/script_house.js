@@ -45,8 +45,6 @@ Vue.component('shif-house-floors-rooms', {
             return Object.keys(interfaceData.floors).length > 1;
         },
 
-        floors_draggable: draggable_create(interfaceData.floors),
-
         rooms_per_floor: function () {
             let out = {};
 
@@ -61,24 +59,27 @@ Vue.component('shif-house-floors-rooms', {
 
     template: `
         <div id="house_rooms" v-bind:style="{'max-width': maxWidth}">
-            <shif-draggable v-model="floors_draggable"
+            <shif-draggable v-bind:value="interfaceData.floors"
+                            v-slot="draggable_floor"
                             handle=".drag_drop_icon">
-                <div v-for="floor_val in floors_draggable">
+                <div v-for="floor in draggable_floor.values">
                     <div v-if="has_multiple_floors || unassigned_rooms.length > 0"
                          class="roomSelectTitle"
                          >
                         <shif-icon src="move_1" classname="drag_drop_icon" />
-                        {{ floor_val.name }}
+                        {{ floor.val.name }}
                     </div>
 
                     <div class="rooms_wrapper">
-                        <shif-draggable v-model="floor_val.rooms"
+                        <shif-draggable v-bind:value="floor.val.rooms"
+                                        v-bind:name="floor.key"
+                                        v-slot="draggable_room"
                                         handle=".drag_drop_icon_right">
-                            <shif-room v-for="room_key in floor_val.rooms"
-                                       v-if="room_has_devices(room_key)"
-                                       v-bind:key="room_key"
-                                       v-bind:floor="{key: floor_val._draggable_id, value: floor_val}"
-                                       v-bind:room="room_key" />
+                            <shif-room v-for="room in draggable_room.values"
+                                       v-if="room_has_devices(room.val)"
+                                       v-bind:key="room.val"
+                                       v-bind:floor="{key: floor.key, value: floor.val}"
+                                       v-bind:room="room.val" />
                         </shif-draggable>
                     </div>
                 </div>

@@ -2101,18 +2101,35 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
-.drag_drop_icon .svg_icon {
+.drag_drop_icon {
     height: 21px;
     width: 21px;
     float: left;
-    opacity: 0.2;
     margin-right: 10px;
+    /* opacity: 0.0; */
 }
 
-.drag_drop_icon_right .svg_icon {
-    height: 18px;
-    width: 18x;
-    float: right;
-    opacity: 0.2;
-    margin-left: 10px;
+/* .drag_drop_icon:hover { */
+  /* opacity: 1.0; */
+/* } */
+
+.drag_drop_icon .svg_icon svg {
+  fill: #898989;
+}
+
+.drag_drop_icon_right {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    /* opacity: 0.0; */
+}
+
+/* .drag_drop_icon_right:hover { */
+  /* opacity: 1.0; */
+/* } */
+
+.drag_drop_icon_right .svg_icon svg {
+  fill: #898989;
 }

@@ -141,10 +141,27 @@ const mixin_unique_view_key = {
          *   * lvl(n).big == lvl(n + 1).small
          **/
         unique_view_key: function (mode) {
+            /**
+             * To prevent me from debugging this function another time...
+             * The `__transition-\d+-` part in `$vnode.key` is added somewhere
+             * else!
+             **/
             const base = this._base(mode);
-
             return this._uniqueify(base, mode);
         },
+
+        find_unique_view_key: function () {
+            let cur = this;
+
+            while(cur.$vnode.key === undefined && cur.$parent !== undefined)
+                cur = cur.$parent;
+
+            const key = cur.$vnode.key;
+            if (key === undefined)
+                return key;
+
+            return key.replace(/^__transition-\d+-/, '');
+        }
     },
 };
 
@@ -597,6 +614,27 @@ Vue.component('shif-house-collected-entries', {
         floor_id:  { default: undefined, },
     },
 
+    data: function () {
+        return {
+            dev_obj_keys: [],
+        };
+    },
+
+    watch: {
+        dev_obj_keys: function () {
+            console.oldLog(JSON.stringify(this.dev_obj_keys, null, 4));
+        },
+
+        dev_objs: function () {
+            if (this.$root.debug)
+                console.log(this.dev_objs);
+        },
+    },
+
+    mounted: function () {
+        this.dev_obj_keys = Array.from(this.dev_objs.keys());
+    },
+
     computed: {
         dev_objs: function () {
             if (this.layer === 2) {
@@ -653,15 +691,14 @@ Vue.component('shif-house-collected-entries', {
                 </template>
             </div>
 
-            <template v-for="(dev, idx) in dev_objs">
-                <component v-bind="dev"
-                           v-bind:sibling_idx="idx"
-                           v-bind:include_place="include_place" />
-
-                <template v-if="$root.debug">
-                    {{ dev | pretty | log }}
+            <shif-draggable v-bind:value="dev_objs"
+                            v-slot="draggable">
+                <template v-for="idx in draggable.keys">
+                    <component v-bind="dev_objs[idx]"
+                               v-bind:sibling_idx="idx"
+                               v-bind:include_place="include_place" />
                 </template>
-            </template>
+            </shif-draggable>
         </div>
     `,
 });

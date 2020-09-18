@@ -29,7 +29,12 @@
                 "settings.automations": true
             },
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
-            "secondFactorAuthMethods": ["webauthn"]
+            "secondFactorAuthMethods": ["webauthn"],
+            "elementOrder": {
+                "house.tab.rooms.room-9": {
+                    "default": [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                }
+            }
         }
     },
     "automations": {
@@ -657,6 +662,7 @@ function userSettings() {
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
     $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
+    $interfaceData["options"]["elementOrder"] = ($user->getSettings()["elementOrder"] ?? $interfaceData["settings"]["userDefaults"]["elementOrder"]);
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");
