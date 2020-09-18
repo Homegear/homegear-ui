@@ -1,7 +1,6 @@
 #mainmenu {
     width: 100%;
     list-style: none;
-    box-shadow: 0px 0px 0px 0px #000000;
     margin: auto;
     padding: 0px 0px;
     position: fixed;
@@ -131,15 +130,13 @@
 #modemenu {
   width: 100%;
   list-style: none;
-  box-shadow: 0px 0px 0px 0px #000000;
   margin: auto;
   padding: 0px 0px;
   position: fixed;
-  bottom: 93px;
+  bottom: 92px;
   right: 0;
   left: 0;
   background: #191b1f;
-  border-top: 1px solid #25282e;
   z-index: 999999;
   display: flex;
   justify-content: center;
