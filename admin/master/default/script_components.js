@@ -287,6 +287,11 @@ const mixin_profiles = {
             );
         },
 
+        editable_profiles: function () {
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(x => x.editable !== false);
+        },
     },
 
     methods: {
