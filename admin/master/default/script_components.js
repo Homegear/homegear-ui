@@ -360,6 +360,9 @@ const mixin_profiles = {
             }, (result) => {
                 delete interfaceData.profiles[this.profile.id];
 
+                if (this.$root.profiles.enabled)
+                    this.$root.profiles.enabled = false;
+
                 if (cb)
                     return cb(result);
             });
