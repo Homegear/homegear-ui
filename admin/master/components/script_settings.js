@@ -341,7 +341,11 @@ let ShifSettingsFavorites = {
 
 
 let ShifSettingsProfiles = {
-    mixins: [mixin_scroll_position, mixin_print_mounted('shif-settings-profile')],
+    mixins: [
+        mixin_scroll_position,
+        mixin_profiles,
+        mixin_print_mounted('shif-settings-profile')
+    ],
 
     methods: {
         link: function (profile_id) {
@@ -357,17 +361,15 @@ let ShifSettingsProfiles = {
     template: `
         <div>
             <div class="profiles_wrapper">
-                <template v-for="i in interfaceData.profiles">
-                    <template v-if="i.editable != '' || !('editable' in i)">
-                        <router-link v-bind:to="link(i.id)">
-                            <shif-settings-element v-bind:key="i.name"
-                                                v-bind:name="i.name"
-                                                v-bind:translate="false"
-                                                v-bind:icon="i.icon"
-                                                description=""
-                                                />
-                        </router-link>
-                    </template>
+                <template v-for="i in editable_profiles">
+                    <router-link v-bind:to="link(i.id)">
+                        <shif-settings-element v-bind:key="i.name"
+                                               v-bind:name="i.name"
+                                               v-bind:translate="false"
+                                               v-bind:icon="i.icon"
+                                               description=""
+                                               />
+                    </router-link>
                 </template>
 
                 <router-link v-bind:to="{name: 'settings.profiles.new'}">
