@@ -24142,7 +24142,7 @@
         "startPath": "house.tab.profiles",
         "viewportScale": 0.65000000000000002,
         "scrollbarScale": 4,
-        "roleProfileDefineable": false,
+        "roleProfileDefinable": false,
         "languageChangeable": true,
         "twofaChangeable": true,
         "disabledMainmenus": [],
