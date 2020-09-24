@@ -34,12 +34,6 @@
                     "env": "dev"
                 },
                 {
-                    "src": "/interfacedata.dummy.php",
-                    "dist": "/dist/interfacedata.dummy.php",
-                    "type": "file",
-                    "env": "dev"
-                },
-                {
                     "src": "/admin/manifest.json",
                     "dist": "/dist/manifest.json",
                     "type": "file"
