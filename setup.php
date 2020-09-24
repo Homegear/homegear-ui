@@ -122,20 +122,20 @@
             foreach($oldInterfaceData["devices"] as $value){
                 $device = Null;
                 try {
-                    $device = intval($hg->createDevice($value["FAMILY"], intval($value["TYPE_ID"], 16), $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]));
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["name"]["status"] = $hg->setName($device, $value["NAME"]);
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["name"]["name"] = $value["NAME"];
+                    $device = intval($hg->createDevice($value["FAMILY"], intval($value["TYPE_ID"], 16), $value["SERIALNUMBER"], (int)hexdec($value["ADDRESS"]), $value["FIRMWAREVERSION"], $value["INTERFACEID"]));
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["name"]["status"] = $hg->setName($device, $value["NAME"]);
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["name"]["name"] = $value["NAME"];
                     if ($device != $value["ID"] && $hg->getName($device) == $value["NAME"]) {
-                        $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["status"] = $hg->setId($device, $value["ID"]);
+                        $allInterfaceData["createDevice"][$value["ADDRESS"]]["idChange"]["status"] = $hg->setId($device, $value["ID"]);
                     }
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["oldId"] = $device;
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["newId"] = $value["ID"];
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["SERIALNUMBER"] = $value["SERIALNUMBER"];
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["idChange"]["oldId"] = $device;
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["idChange"]["newId"] = $value["ID"];
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["SERIALNUMBER"] = $value["SERIALNUMBER"];
                 }
                 catch (\Homegear\HomegearException $e) {
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["error"] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage();
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["value"] = $value;
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["device"] = $device;
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["catch"][]["error"] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage();
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["catch"][]["value"] = $value;
+                    $allInterfaceData["createDevice"][$value["ADDRESS"]]["catch"][]["device"] = $device;
                 }
             }
         }
@@ -145,8 +145,8 @@
             foreach($CurrentDevices as $key => $value){
                 unset($CurrentDevices[$key]["CHANNELS"]);
                 $CurrentDevices[$key]["TYPE_ID"] = "0x".dechex($value["TYPE_ID"]);
-                $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["ADDRESS"];
-                $CurrentDevices[$key]["ADDRESS"] = -1;
+                $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["SERIALNUMBER"];
+                $CurrentDevices[$key]["ADDRESS"] = str_replace("EOD0", "0x", $CurrentDevices[$key]["ADDRESS"]);
                 $CurrentDevices[$key]["FIRMWAREVERSION"] = -1;
                 $CurrentDevices[$key]["INTERFACEID"] = "";
             }
