@@ -26,6 +26,9 @@ else {
 if (file_exists("interfacedata.dummy.php")) {
     include_once("interfacedata.dummy.php");
 }
+else if (file_exists("../interfacedata.dummy.php")) {
+    include_once("../interfacedata.dummy.php");
+}
 if(isset($dummyInterfaceDataJson)) {
     $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
     unset($dummyInterfaceData["iconFallback"]);
