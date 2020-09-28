@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
         shif_register_disable_hooks
@@ -30,6 +31,7 @@ heating_slider_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -51,6 +53,7 @@ heating_slider_l3.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-slider>
 `;
@@ -71,6 +74,7 @@ heating_is_state_l2.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -83,6 +87,7 @@ heating_is_state_l3.template = `
                      v-bind:place="place">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -111,6 +116,7 @@ heating_mode_l3.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-radio>
 `;
@@ -128,6 +134,7 @@ heating_window.template = `
                      v-bind:place="place">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
