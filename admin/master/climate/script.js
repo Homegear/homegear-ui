@@ -3,6 +3,8 @@
         clone
         shif_comps_create
         shif_device
+        shif_device_slot_automations
+        shif_device_slot_favorites
 */
 
 
@@ -40,16 +42,9 @@ climate_main.template = `
                      v-bind:status="status_formatted"
                      v-bind:place="place">
 
-        <template v-slot:favorites>
-            <shif-checkbox-favorites v-bind:dev="dev" />
-        </template>
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
     </shif-generic-l2>
 `;
 
@@ -68,16 +63,9 @@ openweathermap_l2.template = `
                      v-bind:actions="true"
                      v-on:click="level3(device)">
 
-        <template v-slot:favorites>
-            <shif-checkbox-favorites v-bind:dev="dev" />
-        </template>
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
     </shif-generic-l2>
 `;
 
