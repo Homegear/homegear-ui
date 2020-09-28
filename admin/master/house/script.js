@@ -477,7 +477,7 @@ let app = new Vue({
             enabled: false,
             active:  null,
         },
-        sort: {
+        draggable: {
             enabled: false,
         },
 

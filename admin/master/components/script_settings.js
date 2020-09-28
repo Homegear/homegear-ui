@@ -315,7 +315,7 @@ let ShifSettingsItems = function (level) {
 let ShifSettingsSort = {
     data: function () {
         return {
-            state: this.$root.sort,
+            state: this.$root.draggable,
         };
     },
 
