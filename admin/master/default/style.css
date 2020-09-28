@@ -1399,6 +1399,28 @@ td {
   fill: #898989;
 }
 
+.control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper,
+.device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper {
+  float: right;
+  position: relative;
+  z-index: 9;
+  top: 5px;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper>div,
+.device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper>div {
+  width: 70px;
+  height: 70px;
+}
+
+.control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper svg,
+.device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper svg {
+  width: 42px;
+  height: 60px;
+  fill: #898989;
+  margin-left: 10px;
+}
+
 .control_wrapper .device_text,
 .device_wrapper .device_text {
   width: calc(100% - 220px);
@@ -1608,6 +1630,10 @@ td {
 #profiles .profiles_wrapper .device:active,
 #house .profiles_wrapper .device:active {
   background: #191b1f;
+}
+
+#profiles .profiles_wrapper .checkbox_wrapper {
+  right: auto;
 }
 
 .profiles_wrapper .button_action svg {
@@ -2106,12 +2132,13 @@ td {
     width: 21px;
     float: left;
     margin-right: 10px;
-    /* opacity: 0.0; */
+    opacity: .5;
+    cursor: move;
 }
 
-/* .drag_drop_icon:hover { */
-  /* opacity: 1.0; */
-/* } */
+.drag_drop_icon:hover {
+  opacity: 1.0;
+}
 
 .drag_drop_icon .svg_icon svg {
   fill: #898989;
@@ -2123,12 +2150,12 @@ td {
     position: absolute;
     top: 8px;
     right: 10px;
-    /* opacity: 0.0; */
+    opacity: 0.5;
 }
 
-/* .drag_drop_icon_right:hover { */
-  /* opacity: 1.0; */
-/* } */
+.drag_drop_icon_right:hover {
+  opacity: 1.0;
+}
 
 .drag_drop_icon_right .svg_icon svg {
   fill: #898989;

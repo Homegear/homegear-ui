@@ -583,11 +583,11 @@ Vue.component('shif-button', {
              v-on:click="(!disabled.flag) && $emit('click', 1)">
             <slot />
             <div class="checkbox_wrapper">
-                <div v-if="$slots.automations" class="checkbox_automation_wrapper">
-                    <slot name="automations" />
-                </div>
                 <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
                     <slot name="draggable" />
+                </div>
+                <div v-if="$slots.automations" class="checkbox_automation_wrapper">
+                    <slot name="automations" />
                 </div>
             </div>
         </div>
@@ -817,8 +817,12 @@ Vue.component('shif-generic-l2', {
              v-on:click="emit('click')">
             <div class="device">
                 <div class="checkbox_wrapper">
-                    <div v-if="$slots.favorites"
-                        class="checkbox_favorites_wrapper">
+
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
+
+                    <div v-if="$slots.favorites" class="checkbox_favorites_wrapper">
                         <slot name="favorites" />
                     </div>
 
@@ -830,9 +834,6 @@ Vue.component('shif-generic-l2', {
                         <slot name="automations" />
                     </div>
 
-                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
-                        <slot name="draggable" />
-                    </div>
                 </div>
 
                 <div v-on:click.stop="emit('click_icon')">
