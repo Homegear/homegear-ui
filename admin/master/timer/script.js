@@ -2,8 +2,9 @@
     global
         clone
         homegear
-        shif_device
         shif_comps_create
+        shif_device
+        shif_device_slot_automations
 */
 
 
@@ -17,12 +18,9 @@ timer_l2.template = `
                      v-bind:place="place"
                      v-bind:actions="true"
                      v-on:click="level3(device)">
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
+
+        ${shif_device_slot_automations}
+
     </shif-generic-l2>
 `;
 
