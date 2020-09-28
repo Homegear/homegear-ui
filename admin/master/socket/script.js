@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
 */
@@ -30,6 +31,7 @@ socket_switch_l2.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -49,6 +51,7 @@ socket_switch_l3.template = `
         ${shif_device_slot_favorites}
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -67,6 +70,7 @@ socket_button_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -86,6 +90,7 @@ socket_button_l3.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
