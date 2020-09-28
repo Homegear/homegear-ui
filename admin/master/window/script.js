@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
         shif_register_disable_hooks
@@ -24,6 +25,7 @@ window_rainalarm.template = `
                      v-bind:place="place">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -41,6 +43,7 @@ window_status.template = `
                      v-bind:place="place">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -55,6 +58,7 @@ window_status_l3.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -74,6 +78,7 @@ window_buttons_l2.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -115,6 +120,7 @@ window_buttons_l3.template = `
                 </shif-icon>
 
                 ${shif_device_slot_automations}
+                ${shif_device_slot_draggable}
 
             </shif-button>
         </div>
@@ -146,6 +152,7 @@ window_slider.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-slider>
 `;
