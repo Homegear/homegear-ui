@@ -19,10 +19,10 @@ const shif_device_slot_automations = `
 
 
 
-// TODO: Adapt icon class
 const shif_device_slot_draggable = `
     <template v-slot:draggable>
-        <shif-icon src="move_1" classname="drag_drop_icon" />
+        <shif-icon v-if="$root.draggable.enabled"
+                   src="move_1" classname="drag_drop_icon" />
     </template>
 `;
 
