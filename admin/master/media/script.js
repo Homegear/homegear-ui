@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
 */
 
@@ -22,6 +23,7 @@ media_buttons_l2.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -65,6 +67,7 @@ media_buttons_l3.template = `
         </shif-button>
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </div>
 `;
