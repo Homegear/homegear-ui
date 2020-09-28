@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
 */
 
 
@@ -20,6 +21,7 @@ timer_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
