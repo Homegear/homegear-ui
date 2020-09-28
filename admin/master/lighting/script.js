@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
         shif_register_disable_hooks
@@ -31,6 +32,7 @@ lighting_switch_l2.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -50,6 +52,8 @@ lighting_switch_l3.template = `
         ${shif_device_slot_favorites}
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-generic-l2>
 `;
@@ -75,6 +79,8 @@ lighting_brightness.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-slider>
 `;
@@ -94,6 +100,8 @@ lighting_button_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-generic-l2>
 `;
@@ -112,6 +120,8 @@ lighting_button_l3.template = `
                      v-on:mouseup="change($event, false)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-generic-l2>
 `;
@@ -131,6 +141,8 @@ lighting_color_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-generic-l2>
 `;
@@ -149,6 +161,8 @@ lighting_color_l3.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-colorpicker>
 `;
@@ -169,6 +183,8 @@ lighting_function_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-generic-l2>
 `;
@@ -192,6 +208,8 @@ lighting_function_l3.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
 
     </shif-dropdown>
 `;
