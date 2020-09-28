@@ -2,8 +2,11 @@
     global
         clone
         homegear
-        shif_device
         shif_comps_create
+        shif_device
+        shif_device_slot_automations
+        shif_device_slot_favorites
+        shif_device_slot_profiles
 */
 
 
@@ -21,16 +24,9 @@ ventilation_mode_l2.template = `
                      v-bind:status="status"
                      v-on:click="level3(device)">
 
-        <template v-slot:favorites>
-            <shif-checkbox-favorites v-bind:dev="dev" />
-        </template>
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
     </shif-generic-l2>
 `;
 
@@ -50,18 +46,10 @@ ventilation_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
                 v-on:input="x => change(parseInt(x))">
-        <template v-slot:profiles>
-            <shif-checkbox-profiles v-bind:dev="dev"
-                                    v-bind:output="output"
-                                    v-bind:props="props" />
-        </template>
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+
     </shif-radio>
 `;
 
