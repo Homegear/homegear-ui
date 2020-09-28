@@ -415,6 +415,9 @@ Vue.component('shif-slider', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="slider_action">
@@ -480,6 +483,10 @@ Vue.component('shif-radio', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
 
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
@@ -535,6 +542,9 @@ Vue.component('shif-dropdown', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_dropdown">
@@ -575,6 +585,9 @@ Vue.component('shif-button', {
             <div class="checkbox_wrapper">
                 <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                     <slot name="automations" />
+                </div>
+                <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                    <slot name="draggable" />
                 </div>
             </div>
         </div>
@@ -704,6 +717,9 @@ Vue.component('shif-colorpicker', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
                 <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
@@ -812,6 +828,10 @@ Vue.component('shif-generic-l2', {
 
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
+                    </div>
+
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
                     </div>
                 </div>
 
