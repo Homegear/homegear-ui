@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
         shif_register_disable_hooks
@@ -21,6 +22,7 @@ shading_windalarm.template = `
                      v-bind:place="place">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -46,6 +48,7 @@ shading_ventilation_l2.template = `
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -66,6 +69,7 @@ shading_ventilation_l3.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -92,6 +96,7 @@ shading_slider.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-slider>
 `;
@@ -113,6 +118,7 @@ shading_buttons_l2.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -155,6 +161,7 @@ shading_buttons_l3.template = `
             </shif-icon>
 
             ${shif_device_slot_automations}
+            ${shif_device_slot_draggable}
 
         </shif-button>
     </div>
