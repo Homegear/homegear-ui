@@ -5,6 +5,7 @@
         shif_comps_create
         shif_device
         shif_device_slot_automations
+        shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
 */
@@ -26,6 +27,7 @@ ventilation_mode_l2.template = `
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-generic-l2>
 `;
@@ -49,6 +51,7 @@ ventilation_mode_l3.template = `
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
     </shif-radio>
 `;
