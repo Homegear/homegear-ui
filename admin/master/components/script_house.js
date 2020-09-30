@@ -1,5 +1,6 @@
 /*
     global
+        draggable_create
         mixin_rooms
         mixin_print_mounted
         mixin_scroll_position
@@ -16,12 +17,6 @@
 
 Vue.component('shif-house-floors-rooms', {
     mixins: [mixin_rooms, mixin_print_mounted()],
-
-    computed: {
-        has_multiple_floors: function () {
-            return Object.keys(interfaceData.floors).length > 1;
-        },
-    },
 
     data: function () {
         const windowWidth = $( window ).width() - 100;
@@ -45,22 +40,49 @@ Vue.component('shif-house-floors-rooms', {
         };
     },
 
+    computed: {
+        has_multiple_floors: function () {
+            return Object.keys(interfaceData.floors).length > 1;
+        },
+
+        floors_draggable: draggable_create(interfaceData.floors),
+
+        rooms_per_floor: function () {
+            let out = {};
+
+            for (const i in interfaceData.floors) {
+                const cur = interfaceData.floors[i];
+                out[i] = draggable_create(cur.rooms);
+            }
+
+            return out;
+        }
+    },
+
     template: `
         <div id="house_rooms" v-bind:style="{'max-width': maxWidth}">
-            <template v-for="floor_val, floor_key in interfaceData.floors">
-                <div v-if="has_multiple_floors || unassigned_rooms.length > 0"
-                     class="roomSelectTitle">
-                    {{ floor_val.name }}
-                </div>
+            <shif-draggable v-model="floors_draggable"
+                            handle=".drag_drop_icon">
+                <div v-for="floor_val in floors_draggable">
+                    <div v-if="has_multiple_floors || unassigned_rooms.length > 0"
+                         class="roomSelectTitle"
+                         >
+                        <shif-icon src="move_1" classname="drag_drop_icon" />
+                        {{ floor_val.name }}
+                    </div>
 
-                <div class="rooms_wrapper">
-                    <shif-room v-for="room_key in floor_val.rooms"
-                               v-if="room_has_devices(room_key)"
-                               v-bind:key="room_key"
-                               v-bind:floor="{key: floor_key, value: floor_val}"
-                               v-bind:room="room_key" />
+                    <div class="rooms_wrapper">
+                        <shif-draggable v-model="floor_val.rooms"
+                                        handle=".drag_drop_icon_right">
+                            <shif-room v-for="room_key in floor_val.rooms"
+                                       v-if="room_has_devices(room_key)"
+                                       v-bind:key="room_key"
+                                       v-bind:floor="{key: floor_val._draggable_id, value: floor_val}"
+                                       v-bind:room="room_key" />
+                        </shif-draggable>
+                    </div>
                 </div>
-            </template>
+            </shif-draggable>
 
             <template v-if="unassigned_rooms.length > 0">
                 <div class="roomSelectTitle">
@@ -71,7 +93,8 @@ Vue.component('shif-house-floors-rooms', {
                     <shif-room v-for="room_val in unassigned_rooms"
                                v-bind:key="room_val"
                                v-bind:floor="{key: -1}"
-                               v-bind:room="room_val" />
+                               v-bind:room="room_val"
+                               />
                 </div>
             </template>
         </div>
