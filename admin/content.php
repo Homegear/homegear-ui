@@ -56,6 +56,10 @@
     <link rel="apple-touch-icon" sizes="128x128" href="media/logo/icon/smarthome128.png">
     <link rel="apple-touch-icon-precomposed" sizes="128x128" href="media/logo/icon/smarthome128.png">
     <link rel="apple-touch-startup-image" href="media/logo/icon/smarthome128.png">
+
+<!-- TODO: Move into proper asset -->
+<script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
 <?php
 if (file_exists("style.vendor.css")) {
     // TODO: https://gtmetrix.com/remove-query-strings-from-static-resources.html
