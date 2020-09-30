@@ -28,7 +28,8 @@ Vue.component('shif-draggable', {
     },
 
     computed: {
-        // TODO: copied from find_unique_view_key
+        // Copied from find_unique_view_key
+        // Maybe consolidate in future back...
         name_base: function () {
             let cur = this;
 
@@ -37,7 +38,7 @@ Vue.component('shif-draggable', {
 
             const key = cur.$vnode.key;
             if (key === undefined)
-                throw 'BUG: TODO:implement handling';
+                throw 'BUG: key should be set: ' + key;
 
             return key.replace(/^__transition-\d+-/, '');
         },
@@ -51,7 +52,6 @@ Vue.component('shif-draggable', {
                 if (cur === undefined || cur[this.name] === undefined)
                     return undefined;
 
-                console.log(cur[this.name]);
                 return cur[this.name];
             },
             set: function (new_) {
@@ -108,19 +108,31 @@ Vue.component('shif-draggable', {
     },
 
     mounted: function () {
-        if (typeof this.value !== 'object')
-            throw 'Bug: typeof(value) != object: ' + this.value;
+        this.init_interfaceData_field();
+    },
 
-        const saved = this._interfaceData_field;
+    watch: {
+        'value': function () {
+            this.init_interfaceData_field();
+        },
+    },
 
-        const new_ = Array.isArray(this.value)
-                        ? Array.from(this.value.keys())
-                        : Object.keys(this.value);
+    methods: {
+        init_interfaceData_field: function () {
+            if (typeof this.value !== 'object')
+                throw 'Bug: typeof(value) != object: ' + this.value;
 
-        this._interfaceData_field =
-            saved === undefined || new_.length !== saved.length
-                ? new_
-                : saved;
+            const saved = this._interfaceData_field;
+
+            const new_ = Array.isArray(this.value)
+                            ? Array.from(this.value.keys())
+                            : Object.keys(this.value);
+
+            this._interfaceData_field =
+                saved === undefined || new_.length !== saved.length
+                    ? new_
+                    : saved;
+        }
     },
 
     template: `
