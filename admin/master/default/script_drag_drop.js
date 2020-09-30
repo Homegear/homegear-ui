@@ -1,5 +1,6 @@
 /*
-    exported
+    global
+        homegear
 */
 
 
@@ -108,7 +109,7 @@ Vue.component('shif-draggable', {
 
     mounted: function () {
         if (typeof this.value !== 'object')
-            throw 'Bug: typeof(value) != object';
+            throw 'Bug: typeof(value) != object: ' + this.value;
 
         const saved = this._interfaceData_field;
 
