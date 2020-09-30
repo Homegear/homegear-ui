@@ -21,7 +21,7 @@ const shif_device_slot_automations = `
 
 const shif_device_slot_draggable = `
     <template v-slot:draggable>
-        <shif-icon v-if="$root.draggable.enabled"
+        <shif-icon v-if="modemenu_is_state('DRAGGABLE')"
                    src="move_1" classname="drag_drop_icon" />
     </template>
 `;
