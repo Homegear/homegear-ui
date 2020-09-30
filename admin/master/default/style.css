@@ -2096,3 +2096,23 @@ td {
 .notification_message .notification_buttons {
   padding: 20px;
 }
+
+
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
+.drag_drop_icon .svg_icon {
+    height: 21px;
+    width: 21px;
+    float: left;
+    opacity: 0.2;
+    margin-right: 10px;
+}
+
+.drag_drop_icon_right .svg_icon {
+    height: 18px;
+    width: 18x;
+    float: right;
+    opacity: 0.2;
+    margin-left: 10px;
+}
