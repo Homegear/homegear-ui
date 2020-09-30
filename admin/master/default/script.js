@@ -1,5 +1,6 @@
 /*
     global
+        mixin_modemenu
         check_disabled_backend
         check_disabled_frontend
 */
@@ -942,6 +943,8 @@ const shif_device = {
         'sibling_idx',
     ],
 
+    mixins: [mixin_modemenu],
+
     data: function() {
         return {
             lastClickCount: 0,
@@ -1095,6 +1098,8 @@ Vue.component('shif-room', {
         room:  [String, Number],
     },
 
+    mixins: [mixin_modemenu],
+
     methods: {
         link: function (floor_key, room_val) {
             return {
@@ -1112,7 +1117,7 @@ Vue.component('shif-room', {
             <router-link v-bind:to="link(floor.key, room)">
                 <shif-icon v-bind:src="interfaceData.rooms[room].icon"
                            class="roomSelect" />
-                <shif-icon v-if="$root.draggable.enabled"
+                <shif-icon v-if="modemenu_is_state('DRAGGABLE')"
                            src="move_2" classname="drag_drop_icon_right" />
                 <div class="description">
                     {{ interfaceData.rooms[room].name }}
