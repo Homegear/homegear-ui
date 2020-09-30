@@ -905,6 +905,7 @@ function status_impl(control, layer) {
 }
 
 
+
 const shif_device = {
     props: [
         'uiElement',
