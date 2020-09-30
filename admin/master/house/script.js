@@ -478,7 +478,8 @@ let app = new Vue({
             active:  null,
         },
         draggable: {
-            enabled: false,
+            // TODO: change to false
+            enabled: true,
         },
 
         show: false,
