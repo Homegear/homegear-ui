@@ -1,6 +1,7 @@
 /*
     global
         draggable_create
+        mixin_modemenu
         mixin_rooms
         mixin_print_mounted
         mixin_scroll_position
@@ -16,7 +17,7 @@
 
 
 Vue.component('shif-house-floors-rooms', {
-    mixins: [mixin_rooms, mixin_print_mounted()],
+    mixins: [mixin_modemenu, mixin_rooms, mixin_print_mounted()],
 
     data: function () {
         const windowWidth = $( window ).width() - 100;
@@ -66,7 +67,7 @@ Vue.component('shif-house-floors-rooms', {
                     <div v-if="has_multiple_floors || unassigned_rooms.length > 0"
                          class="roomSelectTitle"
                          >
-                        <shif-icon v-if="$root.draggable.enabled"
+                        <shif-icon v-if="modemenu_is_state('DRAGGABLE')"
                                    src="move_1" classname="drag_drop_icon" />
                         {{ floor.val.name }}
                     </div>
