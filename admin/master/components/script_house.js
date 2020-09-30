@@ -66,7 +66,8 @@ Vue.component('shif-house-floors-rooms', {
                     <div v-if="has_multiple_floors || unassigned_rooms.length > 0"
                          class="roomSelectTitle"
                          >
-                        <shif-icon src="move_1" classname="drag_drop_icon" />
+                        <shif-icon v-if="$root.draggable.enabled"
+                                   src="move_1" classname="drag_drop_icon" />
                         {{ floor.val.name }}
                     </div>
 
