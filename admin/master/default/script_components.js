@@ -32,6 +32,7 @@ function comp_obj(control, device, input, output, is, indexes) {
 }
 
 
+
 const mixin_rooms = {
     computed: {
         unassigned_rooms: function () {
