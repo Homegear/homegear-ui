@@ -128,7 +128,7 @@ function user_logoff() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function i18n(key) {
     for (let i of [interfaceData.i18n, interfaceData.i18n.default])
-        if (key in i)
+        if (i !== undefined && i[key] !== undefined)
             return i[key];
 
     return '?';
