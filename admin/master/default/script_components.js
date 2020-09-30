@@ -697,8 +697,8 @@ Vue.component('shif-house-collected-entries', {
                             v-slot="draggable"
                             handle=".drag_drop_icon">
                 <template v-for="idx in draggable.keys">
-                    <component v-bind="dev_objs[idx]"
-                               v-bind:key="idx"
+                    <component v-if="dev_objs[idx] !== undefined"
+                               v-bind="dev_objs[idx]"
                                v-bind:sibling_idx="idx"
                                v-bind:include_place="include_place" />
                 </template>
