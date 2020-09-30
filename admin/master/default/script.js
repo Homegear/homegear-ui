@@ -1092,6 +1092,7 @@ Vue.component('shif-room', {
                            class="roomSelect" />
 
                 <div class="description">
+                    <shif-icon src="move_1" classname="drag_drop_icon_right" />
                     {{ interfaceData.rooms[room].name }}
                 </div>
             </router-link>
