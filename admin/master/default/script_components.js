@@ -1,6 +1,8 @@
 /*
     global
+        ModeMenuState
         get_or_default
+        mixin_modemenu
         scroll_positions
 */
 /*
@@ -354,8 +356,7 @@ const mixin_profiles = {
 
         profile_load: function (profile, cb) {
             this.profile_start(profile, (result) => {
-                this.$root.favorites.enabled = false;
-                this.$root.profiles.enabled = true;
+                this.modemenu_show(ModeMenuState.PROFILES);
 
                 if (cb)
                     return cb(result);
@@ -378,8 +379,8 @@ const mixin_profiles = {
             }, (result) => {
                 Vue.delete(interfaceData.profiles, this.profile.id);
 
-                if (this.$root.profiles.enabled)
-                    this.$root.profiles.enabled = false;
+                if (this.modemenu_is_state(ModeMenuState.PROFILES))
+                    this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -418,7 +419,7 @@ const mixin_profiles = {
                     values:    [],
                 });
 
-                this.$root.profiles.enabled = false;
+                this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -487,7 +488,7 @@ const mixin_profiles = {
                     values:    values,
                 });
 
-                this.$root.profiles.enabled = false;
+                this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -622,7 +623,8 @@ Vue.component('shif-house-collected-entries', {
 
     watch: {
         dev_obj_keys: function () {
-            console.oldLog(JSON.stringify(this.dev_obj_keys, null, 4));
+            if (this.$root.debug)
+                console.log(JSON.stringify(this.dev_obj_keys, null, 4));
         },
 
         dev_objs: function () {
@@ -692,9 +694,11 @@ Vue.component('shif-house-collected-entries', {
             </div>
 
             <shif-draggable v-bind:value="dev_objs"
-                            v-slot="draggable">
+                            v-slot="draggable"
+                            handle=".drag_drop_icon">
                 <template v-for="idx in draggable.keys">
                     <component v-bind="dev_objs[idx]"
+                               v-bind:key="idx"
                                v-bind:sibling_idx="idx"
                                v-bind:include_place="include_place" />
                 </template>
@@ -823,17 +827,10 @@ Vue.component('shif-paging', {
     }
 });
 
-            // <shif-trans-right-in-out>
-                // <router-view v-if="!is_single_view"
-                             // name="big"
-                             // class="content content_big"
-                             // v-bind:key="key('big')" />
-            // </shif-trans-right-in-out>
-
 
 
 Vue.component('shif-checkbox-favorites', {
-    mixins: [mixin_favorites],
+    mixins: [mixin_favorites, mixin_modemenu],
 
     props: {
         dev: {
@@ -857,6 +854,13 @@ Vue.component('shif-checkbox-favorites', {
         };
     },
 
+    computed: {
+        show: function () {
+            return this.layer === 2 &&
+                   this.modemenu_is_state(ModeMenuState.FAVORITES);
+        },
+    },
+
     methods: {
         change: function () {
             return this.dev_toggle_favorite(this.dev.databaseId, this.state);
@@ -865,7 +869,7 @@ Vue.component('shif-checkbox-favorites', {
 
     template: `
         <div>
-            <template v-if="layer === 2 && $root.favorites.enabled">
+            <template v-if="show">
                 <div v-on:click.stop=""
                      v-on:change.stop="change">
                     <div v-bind:class="classname">
@@ -880,7 +884,7 @@ Vue.component('shif-checkbox-favorites', {
 
 
 Vue.component('shif-checkbox-profiles', {
-    mixinx: [mixin_profiles],
+    mixins: [mixin_modemenu, mixin_profiles],
 
     props: {
         dev: {
@@ -913,7 +917,7 @@ Vue.component('shif-checkbox-profiles', {
 
     watch: {
         'props.value': function () {
-            if (this.$root.profiles.enabled &&
+            if (this.modemenu_is_state(ModeMenuState.PROFILES) &&
                 (this.idx in this.$root.profiles.devs))
                 this.$root.profiles.devs[this.idx].value = this.props.value;
         },
@@ -936,7 +940,7 @@ Vue.component('shif-checkbox-profiles', {
 
     template: `
         <div>
-            <template v-if="$root.profiles.enabled">
+            <template v-if="modemenu_is_state('PROFILES')">
                 <div v-on:click.stop=""
                      v-on:change.stop="change">
                     <div v-bind:class="classname">
