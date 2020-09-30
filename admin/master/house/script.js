@@ -16,6 +16,7 @@
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
+        ShifSettingsSort
         ShifSettingsUser
         ShifFavorites
         ShifFavoritesLvl1
@@ -350,6 +351,12 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['settings', 'settings.favorites']}
                 },
                 {
+                    path: 'sort',
+                    name: 'settings.sort',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsSort},
+                    meta: {breadcrumbs: ['settings', 'settings.sort']}
+                },
+                {
                     path: 'profiles',
                     name: 'settings.profiles',
                     components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
@@ -469,6 +476,9 @@ let app = new Vue({
             devs:    {},
             enabled: false,
             active:  null,
+        },
+        sort: {
+            enabled: false,
         },
 
         show: false,
