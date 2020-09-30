@@ -25,12 +25,15 @@
         ShifNotificationsLvl1
         ShifNotificationsNotification
         ShifLog
+        ShifMainmenu
+        ShifModemenu
 
         condition_check
         date_format
         homegear
         i18n
         icons
+        mixin_modemenu
         mixin_notification
         user_logoff
 */
@@ -466,6 +469,13 @@ let router = new VueRouter({
 let app = new Vue({
     name: 'App',
 
+    mixins: [mixin_modemenu],
+
+    components: {
+        ShifMainmenu,
+        ShifModemenu,
+    },
+
     data: {
         debug: false,
 
@@ -478,27 +488,19 @@ let app = new Vue({
             active:  null,
         },
         draggable: {
-            // TODO: change to false
-            enabled: true,
+            enabled: false,
         },
 
         show: false,
     },
 
-    // Hack: decrease .content height when modemenu is enabled.
-    computed: {
-        modemenu_show: function () {
-            return this.favorites.enabled === true ||
-                   this.profiles.enabled === true;
-        },
-    },
-
     router: router,
 
+    // Hack: decrease .content height when modemenu is enabled.
     template: `
         <div v-if="show"
              id="inhalt"
-             v-bind:class="{'modemenu-visible': modemenu_show}">
+             v-bind:class="{'modemenu-visible': modemenu_is_shown}">
             <router-view />
 
             <shif-modemenu />
