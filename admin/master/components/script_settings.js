@@ -19,6 +19,7 @@
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
+        ShifSettingsSort
         ShifSettingsUser
 */
 
@@ -311,6 +312,36 @@ let ShifSettingsItems = function (level) {
 
 
 
+let ShifSettingsSort = {
+    data: function () {
+        return {
+            state: this.$root.sort,
+        };
+    },
+
+    watch: {
+        // TODO: adapt to new enabled flag
+        'state.enabled': function () {
+            if (this.state.enabled) {
+                this.$root.profiles.enabled = false;
+                this.$router.push({name: 'house.tab.rooms'});
+            }
+        },
+    },
+
+    template: `
+        <div class="device_wrapper">
+            <div class="device"
+                 v-on:click.prevent="state.enabled = ! state.enabled">
+                <shif-title>{{ i18n('settings.sort.mode') }}</shif-title>
+                <shif-checkbox v-model="state.enabled" />
+            </div>
+        </div>
+    `
+};
+
+
+
 let ShifSettingsFavorites = {
     data: function () {
         return {
@@ -337,6 +368,7 @@ let ShifSettingsFavorites = {
         </div>
     `
 };
+
 
 
 
