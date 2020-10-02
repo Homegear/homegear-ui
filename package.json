@@ -10,7 +10,7 @@
     "jquery": "^3.5.1",
     "sortablejs": "^1.11.2-alpha.3",
     "vue": "^2.6.12",
-    "vue-router": "^3.4.2",
+    "vue-router": "^3.4.5",
     "vuedraggable": "^2.24.1"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.11.5",
     "acorn": "^6.4.1",
     "csslint": "^1.0.5",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-plugin-vue": "^6.2.2",
     "gulp": "^4.0.2"
   },
