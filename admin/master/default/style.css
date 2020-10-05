@@ -563,8 +563,8 @@ a.disabled {
 }
 
 .tabWrapper {
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   display: none;
   padding-top: 60px;
   position: relative;
@@ -1626,7 +1626,7 @@ td {
 #profiles {
   margin: 0;
   padding: 0;
-  height: calc(100% - 85px);
+  overflow: visible;
 }
 
 #house .profiles_wrapper {
