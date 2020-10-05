@@ -137,7 +137,9 @@ Vue.component('shif-draggable', {
 
     template: `
         <draggable v-model="keys"
-                   v-bind:handle="handle">
+                   v-bind:handle="handle"
+                   v-on:start="$root.draggable.in_progress = true"
+                   v-on:end="$root.draggable.in_progress = false">
             <slot v-bind:keys="keys"
                   v-bind:values="values"/>
         </draggable>
