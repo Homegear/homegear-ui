@@ -1621,10 +1621,26 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
-#profiles,
+
+
+#profiles {
+  margin: 0;
+  padding: 0;
+  height: calc(100% - 85px);
+}
+
 #house .profiles_wrapper {
   margin: 0;
   padding: 0;
+}
+
+#house .profiles_wrapper .device_wrapper:last-child .device {
+  border-bottom: 2px solid #fff;
+}
+
+#profiles .profiles_wrapper .device_wrapper:last-child .device {
+  border-bottom: 1px solid #898989;
+  margin-bottom: 0px;
 }
 
 #profiles .profiles_wrapper .device:active,
