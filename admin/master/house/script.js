@@ -489,6 +489,7 @@ let app = new Vue({
         },
         draggable: {
             enabled: false,
+            in_progress: false,
         },
 
         show: false,
