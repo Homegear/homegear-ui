@@ -729,7 +729,7 @@ Vue.component('shif-mainmenu-tabs', {
 
     template: `
         <div>
-            <div id="tabs">
+            <div id="tabs" v-if="$root.draggable.in_progress === false">
                 <template v-for="tab in tabs">
                     <router-link v-bind:to="{name: tab.name}">
                         <shif-tab v-bind:width="tab_width">
