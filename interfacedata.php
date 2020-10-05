@@ -115,7 +115,7 @@
             "mainmenu": "settings",
             "category": "sort",
             "level": "1",
-            "icon": "star_1",
+            "icon": "move_1",
             "description": "settings.sort.description"
         },
         {
