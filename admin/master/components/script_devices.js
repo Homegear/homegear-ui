@@ -141,14 +141,20 @@ Vue.component('shif-ctrl-summary', {
                     </div>
 
                     <div class="profiles_wrapper">
-                        <template v-for="i in profiles_by_role">
-                            <shif-generic-l2 v-bind:icon="get_icon_or_default(i)"
-                                             v-bind:title="i.name"
-                                             v-bind:status="i18n('modemenu.profiles.name.label')"
-                                             v-bind:active="{icon: i.isActive ? 'active' : ''}"
-                                             v-on:click="profile_start(i)">
-                            </shif-generic-l2>
-                        </template>
+                        <shif-draggable v-bind:value="profiles_by_role"
+                                        v-bind:name="'role_' + role_id + '_profile'"
+                                        v-slot="draggable"
+                                        handle=".drag_drop_icon">
+                            <template v-for="i in draggable.values">
+                                <shif-generic-l2 v-bind:icon="get_icon_or_default(i.val)"
+                                                 v-bind:title="i.val.name"
+                                                 v-bind:status="i18n('modemenu.profiles.name.label')"
+                                                 v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
+                                                 v-on:click="profile_start(i.val)">
+                                    ${shif_device_slot_draggable}
+                                </shif-generic-l2>
+                            </template>
+                        </shif-draggable>
                     </div>
 
                     <shif-draggable v-bind:value="dev_objs"
