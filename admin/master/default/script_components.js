@@ -4,6 +4,8 @@
         get_or_default
         mixin_modemenu
         scroll_positions
+        shif_device_slot_automations_profile
+        shif_device_slot_draggable
 */
 /*
     exported
@@ -581,6 +583,7 @@ Vue.component('shif-trans-right-in-out', {
 Vue.component('shif-house-collected-entries', {
     mixins: [
         mixin_components,
+        mixin_modemenu,
         mixin_profiles,
         mixin_print_mounted(),
     ],
@@ -677,20 +680,22 @@ Vue.component('shif-house-collected-entries', {
     template: `
         <div>
             <div v-if="profiles.length > 0" class="profiles_wrapper">
-                <template v-for="i in profiles">
-                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
-                                     v-bind:title="i.name"
-                                     v-bind:status="i18n('modemenu.profiles.name.label')"
-                                     v-bind:active="{icon: i.isActive ? 'active' : ''}"
-                                     v-on:click="profile_start(i)">
-                        <template v-slot:automations>
-                            <router-link v-if="profile_used_by_automations(i.id) !== false"
-                                         v-bind:to="profile_automation_link(i.id)">
-                                <shif-icon src="calendar-time_1" />
-                            </router-link>
-                        </template>
-                    </shif-generic-l2>
-                </template>
+                <shif-draggable v-bind:value="profiles"
+                                v-slot="draggable"
+                                handle=".drag_drop_icon"
+                                name="profiles">
+                    <template v-for="i in draggable.values">
+                        <shif-generic-l2 v-bind:icon="profile_icon(i.val)"
+                                         v-bind:key="i.val.id"
+                                         v-bind:title="i.val.name"
+                                         v-bind:status="i18n('modemenu.profiles.name.label')"
+                                         v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
+                                         v-on:click="profile_start(i.val)">
+                            ${shif_device_slot_automations_profile}
+                            ${shif_device_slot_draggable}
+                        </shif-generic-l2>
+                    </template>
+                </shif-draggable>
             </div>
 
             <shif-draggable v-bind:value="dev_objs"
