@@ -1,6 +1,7 @@
 /*
     exported
         shif_device_slot_automations
+        shif_device_slot_automations_profile
         shif_device_slot_draggable
         shif_device_slot_favorites
         shif_device_slot_profiles
@@ -12,6 +13,17 @@ const shif_device_slot_automations = `
     <template v-slot:automations>
         <router-link v-if="used_by_automations !== false"
                      v-bind:to="automation_link">
+            <shif-icon src="calendar-time_1" />
+        </router-link>
+    </template>
+`;
+
+
+
+const shif_device_slot_automations_profile = `
+    <template v-slot:automations>
+        <router-link v-if="profile_used_by_automations(i.id) !== false"
+                     v-bind:to="profile_automation_link(i.id)">
             <shif-icon src="calendar-time_1" />
         </router-link>
     </template>
