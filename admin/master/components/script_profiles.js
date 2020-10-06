@@ -1,7 +1,10 @@
 /*
     global
+        mixin_modemenu
         mixin_print_mounted
         mixin_profiles
+        shif_device_slot_automations_profile
+        shif_device_slot_draggable
 */
 /*
     exported
@@ -11,7 +14,11 @@
 
 
 let ShifProfilesGlobal = {
-    mixins: [mixin_profiles, mixin_print_mounted('shif-profiles-global')],
+    mixins: [
+        mixin_modemenu,
+        mixin_profiles,
+        mixin_print_mounted('shif-profiles-global')
+    ],
 
     provide: {
         layer: 2,
@@ -20,19 +27,20 @@ let ShifProfilesGlobal = {
     template: `
         <div id="profiles" class="content content_single">
             <div class="profiles_wrapper">
-                <template v-for="i in global_profiles">
-                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
-                                     v-bind:title="i.name"
-                                     v-bind:active="{icon: i.isActive ? 'active' : ''}"
-                                     v-on:click="profile_start(i)">
-                        <template v-slot:automations>
-                            <router-link v-if="profile_used_by_automations(i.id) !== false"
-                                         v-bind:to="profile_automation_link(i.id)">
-                                <shif-icon src="calendar-time_1" />
-                            </router-link>
-                        </template>
-                    </shif-generic-l2>
-                </template>
+                <shif-draggable v-bind:value="global_profiles"
+                                v-slot="draggable"
+                                handle=".drag_drop_icon">
+                    <template v-for="i in draggable.values">
+                        <shif-generic-l2 v-bind:icon="profile_icon(i.val)"
+                                         v-bind:key="i.val.id"
+                                         v-bind:title="i.val.name"
+                                         v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
+                                         v-on:click="profile_start(i.val)">
+                            ${shif_device_slot_automations_profile}
+                            ${shif_device_slot_draggable}
+                        </shif-generic-l2>
+                    </template>
+                </shif-draggable>
             </div>
         </div>
     `
