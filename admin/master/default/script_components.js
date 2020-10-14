@@ -1,6 +1,8 @@
 /*
     global
+        ModeMenuState
         get_or_default
+        mixin_modemenu
         scroll_positions
 */
 /*
@@ -30,6 +32,7 @@ function comp_obj(control, device, input, output, is, indexes) {
 
     return ret;
 }
+
 
 
 const mixin_rooms = {
@@ -140,10 +143,27 @@ const mixin_unique_view_key = {
          *   * lvl(n).big == lvl(n + 1).small
          **/
         unique_view_key: function (mode) {
+            /**
+             * To prevent me from debugging this function another time...
+             * The `__transition-\d+-` part in `$vnode.key` is added somewhere
+             * else!
+             **/
             const base = this._base(mode);
-
             return this._uniqueify(base, mode);
         },
+
+        find_unique_view_key: function () {
+            let cur = this;
+
+            while(cur.$vnode.key === undefined && cur.$parent !== undefined)
+                cur = cur.$parent;
+
+            const key = cur.$vnode.key;
+            if (key === undefined)
+                return key;
+
+            return key.replace(/^__transition-\d+-/, '');
+        }
     },
 };
 
@@ -151,46 +171,46 @@ const mixin_unique_view_key = {
 
 const mixin_scroll_position = {
     methods: {
-        _find_scroll_position_marker: function (start) {
-            let cur = start;
+        // _find_scroll_position_marker: function (start) {
+        //     let cur = start;
+        //
+        //     for (; cur !== undefined; cur = cur.$parent) {
+        //         if (cur.$options.name === 'shif-scroll-position-marker')
+        //             return cur;
+        //     }
+        //
+        //     return cur;
+        // },
 
-            for (; cur !== undefined; cur = cur.$parent) {
-                if (cur.$options.name === 'shif-scroll-position-marker')
-                    return cur;
-            }
-
-            return cur;
+        _key: function (vm) {
+            return vm.$vnode.key.replace(/^__transition-\d+-/, '');
         },
     },
 
     beforeRouteLeave: function (to, from, next) {
-        const marker = this._find_scroll_position_marker(this);
-        if (marker === undefined)
-            return;
+        const key = this._key(this);
 
-        scroll_positions[this.$vnode.key] = {
-            x: marker.$el.scrollLeft,
-            y: marker.$el.scrollTop,
+        scroll_positions[key] = {
+            x: this.$el.scrollLeft,
+            y: this.$el.scrollTop,
         };
 
-        if (this.$vnode.key === 'house.tab.devices')
-            scroll_positions[this.$vnode.key].role_id = this.$refs.devices.role_id_opened;
+        if (key === 'house.tab.devices')
+            scroll_positions[key].role_id = this.$refs.devices.role_id_opened;
 
         next();
     },
 
     beforeRouteEnter: function (to, from, next) {
         next(vm => {
-            if (scroll_positions[vm.$vnode.key] === undefined)
+            const key = vm._key(vm);
+
+            if (scroll_positions[key] === undefined)
                 return;
 
-            const marker = vm._find_scroll_position_marker(vm);
-            if (marker === undefined)
-                return;
+            const pos = scroll_positions[key];
 
-            const pos = scroll_positions[vm.$vnode.key];
-
-            marker.$el.scroll(pos.x, pos.y);
+            vm.$el.scroll(pos.x, pos.y);
         });
     },
 };
@@ -287,6 +307,11 @@ const mixin_profiles = {
             );
         },
 
+        editable_profiles: function () {
+            return Object.keys(interfaceData.profiles)
+                         .map(x => interfaceData.profiles[x])
+                         .filter(x => x.editable !== false);
+        },
     },
 
     methods: {
@@ -331,8 +356,7 @@ const mixin_profiles = {
 
         profile_load: function (profile, cb) {
             this.profile_start(profile, (result) => {
-                this.$root.favorites.enabled = false;
-                this.$root.profiles.enabled = true;
+                this.modemenu_show(ModeMenuState.PROFILES);
 
                 if (cb)
                     return cb(result);
@@ -353,7 +377,10 @@ const mixin_profiles = {
                 method: 'deleteVariableProfile',
                 params: [profile.id],
             }, (result) => {
-                delete interfaceData.profiles[this.profile.id];
+                Vue.delete(interfaceData.profiles, this.profile.id);
+
+                if (this.modemenu_is_state(ModeMenuState.PROFILES))
+                    this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -381,7 +408,7 @@ const mixin_profiles = {
                     }
                 ],
             }, (result) => {
-                interfaceData.profiles[result.result] = {
+                Vue.set(interfaceData.profiles, result.result, {
                     id:        result.result,
                     icon:      form.icon,
                     locations: locations,
@@ -390,9 +417,9 @@ const mixin_profiles = {
                     name:      form.profile_name,
                     roles:     [],
                     values:    [],
-                };
+                });
 
-                this.$root.profiles.enabled = false;
+                this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -450,7 +477,7 @@ const mixin_profiles = {
                     }
                 ],
             }, (result) => {
-                interfaceData.profiles[profile.id] = {
+                Vue.set(interfaceData.profiles, profile.id, {
                     id:        profile.id,
                     name:      form.profile_name,
                     global:    form.location.global,
@@ -459,9 +486,9 @@ const mixin_profiles = {
                     locations: locations,
                     roles:     roles,
                     values:    values,
-                };
+                });
 
-                this.$root.profiles.enabled = false;
+                this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -588,6 +615,28 @@ Vue.component('shif-house-collected-entries', {
         floor_id:  { default: undefined, },
     },
 
+    data: function () {
+        return {
+            dev_obj_keys: [],
+        };
+    },
+
+    watch: {
+        dev_obj_keys: function () {
+            if (this.$root.debug)
+                console.log(JSON.stringify(this.dev_obj_keys, null, 4));
+        },
+
+        dev_objs: function () {
+            if (this.$root.debug)
+                console.log(this.dev_objs);
+        },
+    },
+
+    mounted: function () {
+        this.dev_obj_keys = Array.from(this.dev_objs.keys());
+    },
+
     computed: {
         dev_objs: function () {
             if (this.layer === 2) {
@@ -644,15 +693,16 @@ Vue.component('shif-house-collected-entries', {
                 </template>
             </div>
 
-            <template v-for="(dev, idx) in dev_objs">
-                <component v-bind="dev"
-                           v-bind:sibling_idx="idx"
-                           v-bind:include_place="include_place" />
-
-                <template v-if="$root.debug">
-                    {{ dev | pretty | log }}
+            <shif-draggable v-bind:value="dev_objs"
+                            v-slot="draggable"
+                            handle=".drag_drop_icon">
+                <template v-for="idx in draggable.keys">
+                    <component v-if="dev_objs[idx] !== undefined"
+                               v-bind="dev_objs[idx]"
+                               v-bind:sibling_idx="idx"
+                               v-bind:include_place="include_place" />
                 </template>
-            </template>
+            </shif-draggable>
         </div>
     `,
 });
@@ -679,7 +729,7 @@ Vue.component('shif-mainmenu-tabs', {
 
     template: `
         <div>
-            <div id="tabs">
+            <div id="tabs" v-if="$root.draggable.in_progress === false">
                 <template v-for="tab in tabs">
                     <router-link v-bind:to="{name: tab.name}">
                         <shif-tab v-bind:width="tab_width">
@@ -702,6 +752,8 @@ Vue.component('shif-mainmenu-tabs', {
 // scroll positions from.
 // Although not defining own DOM elements, it must not be abstract!
 // We won't be able to access the scroll positions!
+//
+// Backup: currently unused.
 const ShifScrollPositionMarker = {
     // Explicitly set, so it does not get (accidently?) set to true in the
     // future.
@@ -753,38 +805,32 @@ Vue.component('shif-paging', {
                     class:      'content content_big',
                     click:      false,
                     transition: true,
-                    cache:      false,
                 }
             ];
         },
     },
 
     render: function (h) {
-        return h('div', {}, this.views.map(i =>
-            h('shif-scroll-position-marker', {}, [
-                // h('shif-trans-right-in-out', {}, [
-                    h('router-view', {
-                        class:    i.class,
-                        key:      this.unique_view_key(i.name),
-                        props:    {name: i.name},
-                        nativeOn: i.click ? {click: () => this.$router.back()} : {}
-                    })
-                // ])
-            ])
-        ));
+        return h('div', {}, this.views.map(i => {
+            const router_view = h('router-view', {
+                class:    i.class,
+                key:      this.unique_view_key(i.name),
+                props:    {name: i.name},
+                nativeOn: i.click ? {click: () => this.$router.back()} : {}
+            });
+
+            if (! i.transition)
+                return router_view;
+
+            return h('shif-trans-right-in-out', {}, [router_view]);
+        }));
     }
 });
 
-            // <shif-trans-right-in-out>
-                // <router-view v-if="!is_single_view"
-                             // name="big"
-                             // class="content content_big"
-                             // v-bind:key="key('big')" />
-            // </shif-trans-right-in-out>
 
 
 Vue.component('shif-checkbox-favorites', {
-    mixins: [mixin_favorites],
+    mixins: [mixin_favorites, mixin_modemenu],
 
     props: {
         dev: {
@@ -808,6 +854,13 @@ Vue.component('shif-checkbox-favorites', {
         };
     },
 
+    computed: {
+        show: function () {
+            return this.layer === 2 &&
+                   this.modemenu_is_state(ModeMenuState.FAVORITES);
+        },
+    },
+
     methods: {
         change: function () {
             return this.dev_toggle_favorite(this.dev.databaseId, this.state);
@@ -816,7 +869,7 @@ Vue.component('shif-checkbox-favorites', {
 
     template: `
         <div>
-            <template v-if="layer === 2 && $root.favorites.enabled">
+            <template v-if="show">
                 <div v-on:click.stop=""
                      v-on:change.stop="change">
                     <div v-bind:class="classname">
@@ -831,7 +884,7 @@ Vue.component('shif-checkbox-favorites', {
 
 
 Vue.component('shif-checkbox-profiles', {
-    mixinx: [mixin_profiles],
+    mixins: [mixin_modemenu, mixin_profiles],
 
     props: {
         dev: {
@@ -864,7 +917,7 @@ Vue.component('shif-checkbox-profiles', {
 
     watch: {
         'props.value': function () {
-            if (this.$root.profiles.enabled &&
+            if (this.modemenu_is_state(ModeMenuState.PROFILES) &&
                 (this.idx in this.$root.profiles.devs))
                 this.$root.profiles.devs[this.idx].value = this.props.value;
         },
@@ -887,7 +940,7 @@ Vue.component('shif-checkbox-profiles', {
 
     template: `
         <div>
-            <template v-if="$root.profiles.enabled">
+            <template v-if="modemenu_is_state('PROFILES')">
                 <div v-on:click.stop=""
                      v-on:change.stop="change">
                     <div v-bind:class="classname">
@@ -916,6 +969,7 @@ Vue.component('shif-icon-selection', {
         <div id="profile_icons">
             <label v-for="_, key in interfaceIcons"
                     v-bind:class="{selected: value === key}"
+                    v-bind:title="key"
                     class="profile_icon_wrapper">
                 <shif-icon classname="profile_icon" v-bind:src="key" />
                 <input type="radio"

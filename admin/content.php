@@ -56,6 +56,7 @@
     <link rel="apple-touch-icon" sizes="128x128" href="media/logo/icon/smarthome128.png">
     <link rel="apple-touch-icon-precomposed" sizes="128x128" href="media/logo/icon/smarthome128.png">
     <link rel="apple-touch-startup-image" href="media/logo/icon/smarthome128.png">
+
 <?php
 if (file_exists("style.vendor.css")) {
     // TODO: https://gtmetrix.com/remove-query-strings-from-static-resources.html
@@ -119,10 +120,10 @@ echo '</script>';
     </div>
   </div>
 
-  <div id="error">
+  <div id="toast">
   </div>
 
-  <div id="gdpr">
+  <div id="modal">
   </div>
 
   <div id="breadcrumbs">

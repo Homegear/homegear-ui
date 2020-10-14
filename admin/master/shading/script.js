@@ -2,8 +2,12 @@
     global
         clone
         homegear
-        shif_device
         shif_comps_create
+        shif_device
+        shif_device_slot_automations
+        shif_device_slot_draggable
+        shif_device_slot_favorites
+        shif_device_slot_profiles
         shif_register_disable_hooks
 */
 
@@ -16,12 +20,10 @@ shading_windalarm.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place">
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
     </shif-generic-l2>
 `;
 
@@ -44,12 +46,10 @@ shading_ventilation_l2.template = `
                      v-bind:actions="true"
                      v-on:click_icon="change"
                      v-on:click="level3(device)">
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
     </shif-generic-l2>
 `;
 
@@ -66,18 +66,11 @@ shading_ventilation_l3.template = `
                      v-bind:status="status_minimal()"
                      v-bind:disabled="disabled"
                      v-on:click="change">
-        <template v-slot:profiles>
-            <shif-checkbox-profiles v-bind:dev="dev"
-                                    v-bind:output="output"
-                                    v-bind:props="props" />
-        </template>
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
     </shif-generic-l2>
 `;
 
@@ -100,18 +93,11 @@ shading_slider.template = `
                  v-bind:disabled="disabled"
                  v-on:change="change"
                  v-model:value="props.value">
-        <template v-slot:profiles>
-            <shif-checkbox-profiles v-bind:dev="dev"
-                                    v-bind:output="output"
-                                    v-bind:props="props" />
-        </template>
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
     </shif-slider>
 `;
 
@@ -130,16 +116,10 @@ shading_buttons_l2.template = `
                      v-bind:status="status"
                      v-on:click="level3(device)">
 
-        <template v-slot:favorites>
-            <shif-checkbox-favorites v-bind:dev="dev" />
-        </template>
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
     </shif-generic-l2>
 `;
 
@@ -180,12 +160,9 @@ shading_buttons_l3.template = `
                         v-bind:active="cond.icon.color">
             </shif-icon>
 
-            <template v-slot:automations>
-                <router-link v-if="used_by_automations !== false"
-                                v-bind:to="automation_link">
-                    <shif-icon src="calendar-time_1" />
-                </router-link>
-            </template>
+            ${shif_device_slot_automations}
+            ${shif_device_slot_draggable}
+
         </shif-button>
     </div>
 `;

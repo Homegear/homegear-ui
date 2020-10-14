@@ -40,10 +40,10 @@ function userStyle() {
 
     if (file_exists("style.min.css")) {
         $style = file_get_contents("style.min.css");
-    } 
+    }
     elseif (file_exists("style.css")) {
         $style = file_get_contents("style.css");
-    } 
+    }
     else {
         die("App style file is missing!");
     }
@@ -91,6 +91,7 @@ function homegear_init() {
         $hg_rooms    = $hg->getRooms($hg_lang);
         $hg_roles    = $hg->getRoles($hg_lang);
         $hg_profiles = $hg->getAllVariableProfiles($hg_lang);
+        $hg_notifications = $hg->getUiNotifications($hg_lang);
         # TODO: insert homegear call
         $hg_automations = $interfaceData["automations"];
     }
@@ -326,10 +327,19 @@ function homegear_init() {
         return $out;
     }
 
+    function notification_parse(&$hg_notifications) {
+        $out = [];
+
+        foreach ($hg_notifications as &$notification)
+            $out[$notification['id']] = $notification;
+
+        return $out;
+    }
+
     $house = [
         'devices'      => [],
         'floors'       => [],
-        'notifications'=> $interfaceData["notifications"],
+        'notifications'=> notification_parse($hg_notifications),
         'automations'  => $hg_automations,
         'rooms'        => [],
         'roles'        => [],
