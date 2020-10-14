@@ -3,10 +3,12 @@
         check_disabled
         get_or_default
         mixin_components
+        mixin_modemenu
         mixin_profiles
         mixin_print_mounted
         mixin_scroll_position
         mixin_states
+        shif_device_slot_draggable
 */
 /*
     exported
@@ -18,7 +20,7 @@
 
 
 Vue.component('shif-ctrl-summary', {
-    mixins: [mixin_components, mixin_profiles, mixin_print_mounted()],
+    mixins: [mixin_components, mixin_modemenu, mixin_profiles, mixin_print_mounted()],
 
     props: [
         'icon',
@@ -121,6 +123,7 @@ Vue.component('shif-ctrl-summary', {
                              v-bind:accordion="true"
                              v-on:click="submenu_show = !submenu_show"
                              class="accordion">
+                ${shif_device_slot_draggable}
             </shif-generic-l2>
 
             <shif-trans-drop-down>
@@ -148,23 +151,28 @@ Vue.component('shif-ctrl-summary', {
                         </template>
                     </div>
 
-                    <template v-for="dev in dev_objs">
-                        <component v-bind="dev" v-bind:include_place="true" />
-
-                        <template v-if="$root.debug">
-                            {{ dev | pretty | log }}
+                    <shif-draggable v-bind:value="dev_objs"
+                                    v-slot="draggable"
+                                    v-bind:name="role_id"
+                                    handle=".drag_drop_icon">
+                        <template v-for="dev in draggable.values">
+                            <component v-bind="dev.val" v-bind:include_place="true" />
                         </template>
-                    </template>
+                    </shif-draggable>
                 </div>
             </shif-trans-drop-down>
         </div>
     `,
 });
 
+                            // <template v-if="$root.debug">
+                                // {{ dev | pretty | log }}
+                            // </template>
+
 
 
 let ShifAllDevices = {
-    mixins: [mixin_states, mixin_print_mounted()],
+    mixins: [mixin_modemenu, mixin_states, mixin_print_mounted()],
 
     data: function () {
         return {
@@ -205,30 +213,33 @@ let ShifAllDevices = {
 
     template: `
         <div>
-            <template v-for="(devs, role_id) in map_roles_devs">
+            <shif-draggable v-bind:value="map_roles_devs"
+                            v-slot="draggable"
+                            handle=".drag_drop_icon">
+                <template v-for="i in draggable.values">
 
-                <template v-if="role_id in interfaceData.roles">
-                    <shif-ctrl-summary
-                        v-bind:actions="interfaceData.roles[role_id].invokeOutputs"
-                        v-bind:icon="interfaceData.roles[role_id].icon"
-                        v-bind:title="interfaceData.roles[role_id].name"
-                        v-bind:devs="devs"
-                        v-bind:role_id="role_id"
-                        v-bind:status="states[role_id]"
-                        v-on:accordion-open="x => role_id_opened = x"
-                        >
-                    </shif-ctrl-summary>
+                    <template v-if="i.key in interfaceData.roles">
+                        <shif-ctrl-summary
+                            v-bind:actions="interfaceData.roles[i.key].invokeOutputs"
+                            v-bind:icon="interfaceData.roles[i.key].icon"
+                            v-bind:title="interfaceData.roles[i.key].name"
+                            v-bind:devs="i.val"
+                            v-bind:role_id="i.key"
+                            v-bind:status="states[i.key]"
+                            v-on:accordion-open="x => role_id_opened = x"
+                            >
+                        </shif-ctrl-summary>
+                    </template>
+
+                    <template v-else>
+                        {{ "This role is not defined: " + i.key | log }}
+                    </template>
+
                 </template>
-
-                <template v-else>
-                    {{ "This role is not defined: " + role_id | log }}
-                </template>
-
-            </template>
+            </shif-draggable>
         </div>
     `,
 };
-
 
 
 let ShifHouseDevices = {

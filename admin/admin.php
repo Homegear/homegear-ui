@@ -56,6 +56,26 @@ else {
     die("No action set!");
 }
 
+if (isset($argc) && $argc > 2 && $argv[2] == "dev") {
+    $interfaceData["settings"]["env"] = "dev";
+}
+else if (isset($_GET['dev'])) {
+    $interfaceData["settings"]["env"] = "dev";
+}
+else if (isset($_POST['dev'])) {
+    $interfaceData["settings"]["env"] = "dev";
+}
+
+else if (isset($argc) && $argc > 2 && $argv[2] == "prod") {
+    $interfaceData["settings"]["env"] = "prod";
+}
+else if (isset($_GET['prod'])) {
+    $interfaceData["settings"]["env"] = "prod";
+}
+else if (isset($_POST['prod'])) {
+    $interfaceData["settings"]["env"] = "prod";
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Generieren der Erweiterungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

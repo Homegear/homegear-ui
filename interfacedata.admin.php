@@ -104,6 +104,8 @@
                         "jquery",
                         "vue",
                         "vue-router",
+                        "sortablejs",
+                        "vuedraggable",
                         "flaticons"
                     ]
                 },
@@ -492,6 +494,42 @@
                         "name": "Vuejs Router",
                         "version": "",
                         "rights": "Evan You",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
+                "sortablejs": {
+                    "user": "vuejs",
+                    "repository": "/node_modules/sortablejs",
+                    "files": [
+                        {
+                            "rawMinUrl": "/dist/",
+                            "rawMinUrlFile": "sortable.umd.js",
+                            "outputName": "sortable.umd.js"
+                        }
+                    ],
+                    "license": {
+                        "name": "sortablejs",
+                        "version": "",
+                        "rights": "sortablejs",
+                        "licenseurl": "https://opensource.org/licenses/alphabetical",
+                        "licensename": "MIT"
+                    }
+                },
+                "vuedraggable": {
+                    "user": "vuejs",
+                    "repository": "/node_modules/vuedraggable",
+                    "files": [
+                        {
+                            "rawMinUrl": "/dist/",
+                            "rawMinUrlFile": "vuedraggable.umd.min.js",
+                            "outputName": "vuedraggable.umd.min.js"
+                        }
+                    ],
+                    "license": {
+                        "name": "vuedraggable",
+                        "version": "",
+                        "rights": "David Desmaisons",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",
                         "licensename": "MIT"
                     }

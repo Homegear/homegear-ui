@@ -1,6 +1,7 @@
 /*
     global
-        ShifHouse,
+        NotificationDisplayType
+        ShifHouse
         ShifHouseRooms
         ShifHouseLvl2
         ShifHouseLvl3
@@ -15,6 +16,7 @@
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
+        ShifSettingsSort
         ShifSettingsUser
         ShifFavorites
         ShifFavoritesLvl1
@@ -23,19 +25,23 @@
         ShifNotificationsLvl1
         ShifNotificationsNotification
         ShifLog
+        ShifMainmenu
+        ShifModemenu
 
         condition_check
         date_format
         homegear
         i18n
         icons
+        mixin_modemenu
+        mixin_notification
         user_logoff
 */
 /*
     exported
         check_disabled_backend
         check_disabled_frontend
-        error
+        toast
         interface_mount
         scroll_positions
 */
@@ -142,14 +148,8 @@ Vue.use({
 });
 
 
-Vue.mixin({
-    data: function () {
-        return  {
-            interfaceIcons: icons,
-            interfaceData:  interfaceData,
-        };
-    },
 
+Vue.mixin({
     filters: {
         pretty: function (val) {
             return JSON.stringify(val, null, 4);
@@ -162,6 +162,13 @@ Vue.mixin({
         log: function (val) {
             console.log(val);
         },
+    },
+
+    data: function () {
+        return  {
+            interfaceIcons: icons,
+            interfaceData:  interfaceData,
+        };
     },
 
     methods: {
@@ -347,6 +354,12 @@ let router = new VueRouter({
                     meta: {breadcrumbs: ['settings', 'settings.favorites']}
                 },
                 {
+                    path: 'sort',
+                    name: 'settings.sort',
+                    components: {small: ShifSettingsItems(1), big: ShifSettingsSort},
+                    meta: {breadcrumbs: ['settings', 'settings.sort']}
+                },
+                {
                     path: 'profiles',
                     name: 'settings.profiles',
                     components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
@@ -456,6 +469,13 @@ let router = new VueRouter({
 let app = new Vue({
     name: 'App',
 
+    mixins: [mixin_modemenu],
+
+    components: {
+        ShifMainmenu,
+        ShifModemenu,
+    },
+
     data: {
         debug: false,
 
@@ -467,24 +487,21 @@ let app = new Vue({
             enabled: false,
             active:  null,
         },
+        draggable: {
+            enabled: false,
+            in_progress: false,
+        },
 
         show: false,
     },
 
-    // Hack: decrease .content height when modemenu is enabled.
-    computed: {
-        modemenu_show: function () {
-            return this.favorites.enabled === true ||
-                   this.profiles.enabled === true;
-        },
-    },
-
     router: router,
 
+    // Hack: decrease .content height when modemenu is enabled.
     template: `
         <div v-if="show"
              id="inhalt"
-             v-bind:class="{'modemenu-visible': modemenu_show}">
+             v-bind:class="{'modemenu-visible': modemenu_is_shown}">
             <router-view />
 
             <shif-modemenu />
@@ -556,19 +573,27 @@ let breadcrumbs = new Vue({
                 case 'house.tab.rooms.room.device':
                 case 'house.tab.devices.device':
                 case 'favorites.device':
-                    return interfaceData.devices[params.device_id].label;
+                    if (interfaceData.devices[params.device_id] !== undefined)
+                        return interfaceData.devices[params.device_id].label;
+                    break;
 
                 case 'log':
                     return 'Log';
 
                 case 'settings.profiles.profile':
-                    return interfaceData.profiles[params.profile_id].name;
+                    if (interfaceData.profiles[params.profiles_id] !== undefined)
+                        return interfaceData.profiles[params.profile_id].name;
+                    break;
 
                 case 'settings.automations.automation':
-                    return interfaceData.automations[params.automation_id].name;
+                    if (interfaceData.automations[params.automation_id] !== undefined)
+                        return interfaceData.automations[params.automation_id].name;
+                    break;
 
                 case 'notifications.notification':
-                    return interfaceData.notifications[params.notification_id].title;
+                    if (interfaceData.notifications[params.notification_id] !== undefined)
+                        return interfaceData.notifications[params.notification_id].title;
+                    break;
             }
 
             return i18n(route_name);
@@ -599,12 +624,23 @@ let breadcrumbs = new Vue({
 
 
 
-let error = new Vue({
-    name: 'Error',
-    el: '#error',
+let toast = new Vue({
+    el: '#toast',
+
+    name: 'Toast',
+
+    router: router,
+
+    mixins: [mixin_notification],
 
     data: {
         msgs: [],
+    },
+
+    computed: {
+        msgs_combined: function () {
+            return this.msgs.concat(this.toast_notifications);
+        },
     },
 
     methods: {
@@ -619,22 +655,82 @@ let error = new Vue({
         set: function (msg) {
             this.msgs = [msg];
         },
+
+        link: function (id) {
+            return {
+                name: 'notifications.notification',
+                params: {
+                    notification_id: id,
+                },
+            };
+        },
+
+        is_toast_integrated: function (msg) {
+            return msg.displayType === NotificationDisplayType.ToastIntegrated;
+        },
+
+        click: function (msg, btn) {
+            if (msg.id !== undefined)
+                this.notification_action(msg.id, btn.id, () => {
+                    if (btn.reloadUi === true)
+                        window.location.reload();
+                });
+            else if (btn.reloadUi === true)
+                window.location.reload();
+        },
+
+        notification_hide_or_remove: function (msg) {
+            if (msg.buttons.length === 0)
+                this.notification_remove(msg.id);
+            else
+                this.notification_hide(msg.id);
+        },
     },
 
+    /**
+     * msg.close is only available in notifications not handled by homegear
+     * msg.flags.closeable is only available in notifications handled by homegear
+     **/
     template: `
-        <div id="error">
-            <div v-for="msg, i in msgs"
-                 class="toast">
-                <button v-if="msg.close === true"
-                        class="toast_close"
-                        v-on:click="remove_msg(i)">
-                    X
-                </button>
-                <div class="toast_content" v-html="msg.content"></div>
+        <div id="toast">
+            <div class="toast" v-for="msg, i in msgs_combined"
+                               v-bind:key="msg.id">
+                    <template v-if="msg.close">
+                        <button class="toast_close"
+                                v-on:click="remove_msg(i)">
+                            X
+                        </button>
+                    </template>
+                    <template v-if="msg.flags && msg.flags.closeable === true">
+                        <button class="toast_close"
+                                v-on:click="notification_hide_or_remove(msg)">
+                            X
+                        </button>
+                    </template>
+
+                    <template v-if="is_toast_integrated(msg)">
+                        <router-link v-bind:to="link(msg.id)"
+                                     class="toast_content" v-html="msg.content">
+                        </router-link>
+                    </template>
+                    <template v-else>
+                        <div class="toast_content">
+                            <div class="toast_text" v-html="msg.content">
+                            </div>
+                            <template v-for="btn in msg.buttons">
+                                <button class="toast_action"
+                                        v-bind:class="btn.type"
+                                        v-on:click="click(msg, btn)">
+                                    {{ btn.label }}
+                                </button>
+                            </template>
+                        </div>
+                    </template>
             </div>
         </div>
     `
 });
+                    // <div class="toast_content" v-html="msg.content"></div>
 
 
 
@@ -652,3 +748,120 @@ function interface_show() {
     app.show = true;
     breadcrumbs.show = true;
 }
+
+
+
+/**
+ * type: 'requestUiRefresh' || any
+ * buttons: bool
+ **/
+function _create_notification(inc_buttons = false, args) {
+    const buttons = ! inc_buttons ? [] : [
+        {
+            id: 0,
+            type: 'success',
+            reloadUi: false,
+            closeModal: false,
+            label: 'Yes I`ve read that',
+            icon: 'abort_1',
+        },
+        {
+            id: 1,
+            type: 'warning',
+            reloadUi: false,
+            closeModal: true,
+            label: 'ignore',
+            icon: 'abort_1',
+        },
+        {
+            id: 2,
+            type: 'error',
+            reloadUi: true,
+            closeModal: false,
+            label: 'reload',
+            icon: 'abort_1',
+        },
+    ];
+
+    const msg = {
+        type: 'test',
+        flags: {
+            closeable: args.closeable || false,
+            hasModal: args.hasModal || false,
+            overlayNotification: args.overlayNotification || false,
+            overlayModal: args.overlayModal || false,
+        },
+        title: {
+            'de-DE': 'Test Nachricht: ' + date_format(),
+            'en-US': 'Test Message: ' + date_format(),
+        },
+        content: `
+            <p class="toast_text">Test</p>
+        `,
+        modalTitle: {
+            'de-DE': 'Test Nachricht: Modal',
+            'en-US': 'Test Message: Modal',
+        },
+        modalContent: {
+            'de-DE': 'Test Content: ' + date_format(),
+            'en-US': 'Test Content: ' + date_format(),
+        },
+        buttons,
+    };
+
+    homegear.invoke({
+        jsonrpc: '2.0',
+        method: 'createUiNotification',
+        params: [msg],
+    }, function () {
+        homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['de-DE']}, console.log);
+        homegear.invoke({jsonrpc: '2.0', method: 'getUiNotifications', params: ['en-US']}, console.log);
+    });
+}
+
+
+
+function _cleanup_notifications() {
+    homegear.invoke({
+        jsonrpc: '2.0',
+        method: 'getUiNotifications',
+        params: [interfaceData.options.language],
+    }, function (resp) {
+        for (const i of resp.result)
+            homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'removeUiNotification',
+                params: [i.id],
+            });
+    });
+}
+
+
+
+const _modal = {
+    closeable: true,
+    hasModal: true,
+    overlayModal: true,
+    overlayNotification: false,
+};
+
+const _toast_only = {
+    closeable: true,
+    hasModal: false,
+    overlayModal: false,
+    overlayNotification: true,
+};
+
+const _toast_integrated = {
+    closeable: true,
+    hasModal: true,
+    overlayModal: false,
+    overlayNotification: true,
+};
+
+const _integrated = {
+    closeable: false,
+    hasModal: true,
+    overlayModal: false,
+    overlayNotification: false,
+};

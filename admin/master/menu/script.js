@@ -1,14 +1,26 @@
 /*
     global
+        ModeMenuState
         mixin_menus
+        mixin_modemenu
+        mixin_notification
         mixin_print_mounted
         mixin_profiles
+*/
+/*
+    exported
+        ShifMainmenu
+        ShifModemenu
 */
 
 
 
-Vue.component('shif-mainmenu', {
-    mixins: [mixin_menus, mixin_print_mounted()],
+const ShifMainmenu = {
+    mixins: [
+        mixin_menus,
+        mixin_notification,
+        mixin_print_mounted()
+    ],
 
     data: function () {
         return {
@@ -24,7 +36,7 @@ Vue.component('shif-mainmenu', {
         },
 
         notifications_available: function () {
-            return Object.keys(interfaceData.notifications).length;
+            return this.integrated_notifications.length;
         },
     },
 
@@ -53,16 +65,61 @@ Vue.component('shif-mainmenu', {
             </ul>
         </div>
     `,
-});
+};
 
 
 
-Vue.component('shif-modemenu', {
-    mixins: [mixin_profiles],
+const ShifModemenuHidden = {
+    template: `
+        <div></div>
+    `,
+};
+
+
+
+const ShifModemenuDraggable = {
+    mixins: [mixin_modemenu],
+
+    template: `
+        <div>
+            <div class="mode_text">
+                <span class="mode_name">{{ i18n('modemenu.sort.name') }}</span>
+            </div>
+            <div class="mode_buttons">
+                <div v-on:click="modemenu_hide" class="mode_end">
+                    {{ i18n('modemenu.sort.button.end') }}
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+
+
+const ShifModemenuFavorites = {
+    mixins: [mixin_modemenu],
+
+    template: `
+        <div>
+            <div class="mode_text">
+                <span class="mode_name">{{ i18n('modemenu.favorites.name') }}</span>
+            </div>
+            <div class="mode_buttons">
+                <div v-on:click="modemenu_hide" class="mode_end">
+                    {{ i18n('modemenu.favorites.button.end') }}
+                </div>
+            </div>
+        </div>
+    `,
+};
+
+
+
+const ShifModemenuProfiles = {
+    mixins: [mixin_modemenu, mixin_profiles],
 
     computed: {
         link_profile: function () {
-            console.log(this.$root.profiles.id);
             return {
                 name: 'settings.profiles.profile',
                 params: {
@@ -80,39 +137,54 @@ Vue.component('shif-modemenu', {
     },
 
     template: `
-        <div id="modemenu">
-            <div v-if="$root.favorites.enabled">
-                <div class="mode_text">
-                    <span class="mode_name">{{ i18n('modemenu.favorites.name') }}</span>
-                </div>
-                <div class="mode_buttons">
-                    <div v-on:click="$root.favorites.enabled = false" class="mode_end">
-                        {{ i18n('modemenu.favorites.button.end') }}
-                    </div>
-                </div>
+        <div id="mode_wrapper_profiles">
+            <div class="mode_text">
+                <span class="mode_label">
+                    {{ i18n('modemenu.profiles.name.label') }}:
+                </span>
+                <span class="mode_name">
+                    {{ $root.profiles.form.profile_name }}
+                </span>
             </div>
-
-            <div v-if="$root.profiles.enabled" id="mode_wrapper_profiles">
-                <div class="mode_text">
-                    <span class="mode_label">
-                        {{ i18n('modemenu.profiles.name.label') }}:
-                    </span>
-                    <span class="mode_name">
-                        {{ $root.profiles.form.profile_name }}
-                    </span>
-                </div>
-                <div class="mode_buttons">
-                    <router-link v-bind:to="link_profile">
-                        <div class="mode_settings">
-                            {{ i18n('modemenu.profiles.button.settings') }}
-                        </div>
-                    </router-link>
-                    <div v-on:click="submit_profile"
-                         class="mode_end">
-                        {{ i18n('modemenu.profiles.button.end') }}
+            <div class="mode_buttons">
+                <router-link v-bind:to="link_profile">
+                    <div class="mode_settings">
+                        {{ i18n('modemenu.profiles.button.settings') }}
                     </div>
+                </router-link>
+                <div v-on:click="submit_profile"
+                     class="mode_end">
+                    {{ i18n('modemenu.profiles.button.end') }}
                 </div>
             </div>
         </div>
+    `
+};
+
+
+
+const _modemenu_components = {
+    [ModeMenuState.HIDDEN]:    ShifModemenuHidden,
+    [ModeMenuState.FAVORITES]: ShifModemenuFavorites,
+    [ModeMenuState.PROFILES]:  ShifModemenuProfiles,
+    [ModeMenuState.DRAGGABLE]: ShifModemenuDraggable,
+};
+
+
+
+const ShifModemenu = {
+    mixins: [mixin_modemenu],
+
+    computed: {
+        content: function () {
+            return _modemenu_components[this.modemenu_state];
+        },
+    },
+
+    template: `
+        <div id="modemenu">
+            <component v-if="content"
+                       v-bind:is="content" />
+        </div>
     `,
-});
+};

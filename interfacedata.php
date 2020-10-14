@@ -7,7 +7,6 @@
         "directLoginApiKey": "",
         "setupKey": "",
         "env": "",
-        "gdpr": false,
         "homegear": {
             "url": "location.hostname",
             "port": "location.port"
@@ -18,20 +17,24 @@
             "language": "de-DE",
             "startPath": "house.tab.rooms",
             "showFloor": true,
-            "roleProfileDefineable": false,
+            "roleProfileDefinable": false,
             "languageChangeable": true,
             "twofaChangeable": true,
             "consoleLog": true,
             "viewportScale": 0.65,
             "scrollbarScale": 4,
             "disabledMainmenus": {
-                "notifications": true
             },
             "disabledMenus": {
                 "settings.automations": true
             },
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
-            "secondFactorAuthMethods": ["webauthn"]
+            "secondFactorAuthMethods": ["webauthn"],
+            "elementOrder": {
+                "house.tab.rooms.room-9": {
+                    "default": [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                }
+            }
         }
     },
     "automations": {
@@ -106,6 +109,14 @@
             "level": "1",
             "icon": "star_1",
             "description": "settings.favorites.description"
+        },
+        {
+            "name": "settings.sort",
+            "mainmenu": "settings",
+            "category": "sort",
+            "level": "1",
+            "icon": "move_1",
+            "description": "settings.sort.description"
         },
         {
             "name": "settings.profiles",
@@ -225,11 +236,7 @@
             "favorites": "Favorites",
             "notifications": "Notifications",
             "notifications.amount": "Amount",
-            "notifications.gdpr.title": "Terms and Conditions",
-            "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
-            "notifications.gdpr.decline": "Decline",
-            "notifications.gdpr.more": "More information",
-            "notifications.gdpr.accept": "Accept",
+            "notifications.close_delete": "Close and Delete",
             "settings": "Settings",
             "settings.automations": "Automations",
             "settings.automations.description": "Add and delete automations",
@@ -272,6 +279,9 @@
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
             "settings.favorites.description": "Set and unset favorites",
+            "settings.sort": "Sort",
+            "settings.sort.mode": "Sort elements",
+            "settings.sort.description": "Restructure: stories, rooms, devices, favorites, profiles, ...",
             "settings.profiles": "Profiles",
             "settings.profiles.new": "New",
             "settings.profiles.profile.name": "Name",
@@ -323,7 +333,9 @@
             "settings.about.table.license": "License",
             "settings.about.table.license.url": "License URL",
             "modemenu.favorites.name": "Favorites mode",
-            "modemenu.favorites.button.end": "Exit Favorites mode",
+            "modemenu.favorites.button.end": "Exit editing",
+            "modemenu.sort.name": "Sort mode",
+            "modemenu.sort.button.end": "Exit editing",
             "modemenu.profiles.name.label": "Profil",
             "modemenu.profiles.button.settings": "Profil settings",
             "modemenu.profiles.button.end": "Save & close",
@@ -356,11 +368,7 @@
             "favorites": "Favoriten",
             "notifications": "Benachrichtigungen",
             "notifications.amount": "Anzahl",
-            "notifications.gdpr.title": "AGB",
-            "notifications.gdpr.content": "Das Nutzen der Demo ist kostenlos und ohne jegliche Verpflichtung.<br/><br/>Die Bereitstellung der Demo- und -Testwebsite ist ein unentgeltlicher Service, für den der Anbieter keinerlei Gewährleistung übernimmt.<br/><br/>Jeder Benutzer ist selbst für die von ihm eingegebenen Inhalte verantwortlich und versichert, dass er keine Daten eingibt, die andere Personen in ihrer Ehre verletzen, verunglimpfen oder beleidigen, pornografisch oder gewaltverherrlichend sind oder sonst gegen ein geltendes Gesetz verstoßen.<br/><br/>Jedem Nutzer ist bekannt, dass die von ihm eingegebenen Inhalte automatisch gelöscht werden. Die Löschung der Daten erfolgt derzeit täglich, evtl. aber auch in einem anderen Rhythmus.<br/><br/>Wenn ein Nutzer an einem anderen Tag die Demo weiter bearbeiten möchte, muss er davon ausgehen, dass seine bisherigen Daten verworfen wurden.",
-            "notifications.gdpr.decline": "Ablehnen",
-            "notifications.gdpr.more": "Mehr erfahren",
-            "notifications.gdpr.accept": "Zustimmen",
+            "notifications.close_delete": "Löschen und Schließen",
             "settings": "Einstellungen",
             "settings.automations": "Automatisierungen",
             "settings.automations.new": "Neu",
@@ -403,6 +411,9 @@
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
             "settings.favorites.description": "Favoriten hinzufügen und entfernen",
+            "settings.sort": "Sortieren",
+            "settings.sort.mode": "Elemente sortieren",
+            "settings.sort.description": "Neuanordnen: Stockwerke, Räume, Geräte, Favoriten, Profile, ...",
             "settings.profiles": "Profile",
             "settings.profiles.new": "Neu",
             "settings.profiles.profile.name": "Name",
@@ -455,6 +466,8 @@
             "settings.about.table.license.url": "Lizenz URL",
             "modemenu.favorites.name": "Favoriten Modus",
             "modemenu.favorites.button.end": "Bearbeiten beenden",
+            "modemenu.sort.name": "Sortiermodus",
+            "modemenu.sort.button.end": "Bearbeiten beenden",
             "modemenu.profiles.name.label": "Profil",
             "modemenu.profiles.button.settings": "Profil Einstellungen",
             "modemenu.profiles.button.end": "speichern & beenden",
@@ -657,7 +670,7 @@ function userSettings() {
     else {
         $interfaceData["options"]["scrollbarScale"] = ($user->getSettings()["scrollbarScale"] ?? $interfaceData["settings"]["userDefaults"]["scrollbarScale"]);
     }
-    $interfaceData["options"]["roleProfileDefineable"] = ($user->getSettings()["roleProfileDefineable"] ?? $interfaceData["settings"]["userDefaults"]["roleProfileDefineable"]);
+    $interfaceData["options"]["roleProfileDefinable"] = ($user->getSettings()["roleProfileDefinable"] ?? $interfaceData["settings"]["userDefaults"]["roleProfileDefinable"]);
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
     $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
     $interfaceData["options"]["disabledMainmenus"] = ($user->getSettings()["disabledMainmenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMainmenus"]);
@@ -667,7 +680,7 @@ function userSettings() {
     $interfaceData["options"]["websocket_url"] = $interfaceData["settings"]["homegear"]["url"];
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
     $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
-    $interfaceData["options"]["gdpr"] = $interfaceData["settings"]["gdpr"];
+    $interfaceData["options"]["elementOrder"] = ($user->getSettings()["elementOrder"] ?? $interfaceData["settings"]["userDefaults"]["elementOrder"]);
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");

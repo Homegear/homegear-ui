@@ -1,8 +1,10 @@
 /*
     global
+        ModeMenuState
         i18n
         licenses
         mixin_menus
+        mixin_modemenu
         mixin_print_mounted
         mixin_profiles
         mixin_rooms
@@ -19,6 +21,7 @@
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
+        ShifSettingsSort
         ShifSettingsUser
 */
 
@@ -311,28 +314,63 @@ let ShifSettingsItems = function (level) {
 
 
 
-let ShifSettingsFavorites = {
+let ShifSettingsSort = {
+    mixins: [mixin_modemenu],
+
     data: function () {
         return {
-            state: this.$root.favorites,
+            state: this.modemenu_is_state(ModeMenuState.DRAGGABLE),
         };
     },
 
     watch: {
-        'state.enabled': function () {
-            if (this.state.enabled) {
-                this.$root.profiles.enabled = false;
-                this.$router.push({name: 'house.tab.rooms'});
-            }
+        'state': function () {
+            if (!this.state)
+                return this.modemenu_hide();
+
+            this.modemenu_show(ModeMenuState.DRAGGABLE);
+            this.$router.push({name: 'house.tab.rooms'});
         },
     },
 
     template: `
         <div class="device_wrapper">
             <div class="device"
-                 v-on:click.prevent="state.enabled = ! state.enabled">
+                 v-on:click.prevent="state = ! state">
+                <shif-title>{{ i18n('settings.sort.mode') }}</shif-title>
+                <shif-checkbox v-model="state" />
+            </div>
+        </div>
+    `
+};
+
+
+
+let ShifSettingsFavorites = {
+    mixins: [mixin_modemenu],
+
+    data: function () {
+        return {
+            state: this.modemenu_is_state(ModeMenuState.FAVORITES),
+        };
+    },
+
+    watch: {
+        'state': function () {
+            if (!this.state)
+                return this.modemenu_hide();
+
+            this.modemenu_show(ModeMenuState.FAVORITES);
+            this.$router.push({name: 'house.tab.rooms'});
+        },
+    },
+
+    template: `
+        <div class="device_wrapper">
+            <div class="device"
+                 v-on:click.prevent="state = ! state">
                 <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <shif-checkbox v-model="state.enabled" />
+                <shif-checkbox v-model="state" />
             </div>
         </div>
     `
@@ -341,7 +379,11 @@ let ShifSettingsFavorites = {
 
 
 let ShifSettingsProfiles = {
-    mixins: [mixin_scroll_position, mixin_print_mounted('shif-settings-profile')],
+    mixins: [
+        mixin_scroll_position,
+        mixin_profiles,
+        mixin_print_mounted('shif-settings-profile')
+    ],
 
     methods: {
         link: function (profile_id) {
@@ -357,17 +399,15 @@ let ShifSettingsProfiles = {
     template: `
         <div>
             <div class="profiles_wrapper">
-                <template v-for="i in interfaceData.profiles">
-                    <template v-if="i.editable != '' || !('editable' in i)">
-                        <router-link v-bind:to="link(i.id)">
-                            <shif-settings-element v-bind:key="i.name"
-                                                v-bind:name="i.name"
-                                                v-bind:translate="false"
-                                                v-bind:icon="i.icon"
-                                                description=""
-                                                />
-                        </router-link>
-                    </template>
+                <template v-for="i in editable_profiles">
+                    <router-link v-bind:to="link(i.id)">
+                        <shif-settings-element v-bind:key="i.name"
+                                               v-bind:name="i.name"
+                                               v-bind:translate="false"
+                                               v-bind:icon="i.icon"
+                                               description=""
+                                               />
+                    </router-link>
                 </template>
 
                 <router-link v-bind:to="{name: 'settings.profiles.new'}">
@@ -434,7 +474,11 @@ let ShifSettingsProfileRoleValue = {
 
 
 let ShifSettingsProfile = {
-    mixins: [mixin_profiles, mixin_print_mounted('shif-settings-profile')],
+    mixins: [
+        mixin_modemenu,
+        mixin_profiles,
+        mixin_print_mounted('shif-settings-profile')
+    ],
 
     props: [
         'profile_id',
@@ -469,7 +513,7 @@ let ShifSettingsProfile = {
 
         const profile = interfaceData.profiles[this.profile_id];
 
-        if (this.$root.profiles.enabled) {
+        if (this.is_enabled) {
             return {
                 mode: 'edit',
                 profile: profile,
@@ -507,6 +551,10 @@ let ShifSettingsProfile = {
     },
 
     computed: {
+        is_enabled: function () {
+            return this.modemenu_is_state(ModeMenuState.PROFILES);
+        },
+
         floors: function () {
             return Object.keys(interfaceData.floors)
                          .map(x => ({id: x, name: interfaceData.floors[x].name}))
@@ -534,7 +582,7 @@ let ShifSettingsProfile = {
         },
 
         show_roles: function () {
-            return interfaceData.options.roleProfileDefineable === true;
+            return interfaceData.options.roleProfileDefinable === true;
         },
     },
 
@@ -557,7 +605,7 @@ let ShifSettingsProfile = {
                         (result) => this.$router.replace({
                             name: 'settings.profiles.profile',
                             params: {
-                                profile: result.result
+                                profile_id: result.result
                             },
                         })
                     );
@@ -571,8 +619,10 @@ let ShifSettingsProfile = {
     },
 
     mounted: function () {
-        if (this.mode === 'edit' && ! this.$root.profiles.enabled)
+        if (this.mode === 'edit' && ! this.is_enabled)
             return this.profile_build_root_devs(this.profile);
+
+        this.modemenu_hide();
     },
 
     template: `

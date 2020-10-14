@@ -1,5 +1,6 @@
 /*
     global
+        mixin_modemenu
         check_disabled_backend
         check_disabled_frontend
 */
@@ -127,7 +128,7 @@ function user_logoff() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function i18n(key) {
     for (let i of [interfaceData.i18n, interfaceData.i18n.default])
-        if (key in i)
+        if (i !== undefined && i[key] !== undefined)
             return i[key];
 
     return '?';
@@ -261,7 +262,7 @@ function clone(obj) {
 // Mixins {{{
 const mixin_device_control_wrapper = {
     inject: {
-        layer: 'layer',
+        layer: {default: 3},
     },
 
     computed: {
@@ -285,7 +286,7 @@ Vue.component('TODO', {
 
 Vue.component('shif-title', {
     props: {
-        classname: String,
+        classname: {type: String, default: undefined},
         disabled: {
             type: Object,
             default: () => ({flag: false})
@@ -415,6 +416,9 @@ Vue.component('shif-slider', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="slider_action">
@@ -480,6 +484,10 @@ Vue.component('shif-radio', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
 
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
@@ -535,6 +543,9 @@ Vue.component('shif-dropdown', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
                 <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                 <div class="device_dropdown">
@@ -573,6 +584,9 @@ Vue.component('shif-button', {
              v-on:click="(!disabled.flag) && $emit('click', 1)">
             <slot />
             <div class="checkbox_wrapper">
+                <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                    <slot name="draggable" />
+                </div>
                 <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                     <slot name="automations" />
                 </div>
@@ -597,7 +611,7 @@ Vue.component('shif-colorpicker', {
         sliderHeight: { type: Number, default: 32 },
         borderColor:  { type: String, default: '#fff' },
         anticlockwise:  { type: Boolean, default: true },
-        title:  { type: String},
+        title:  { type: String, default: ''},
         disabled: {
             type: Object,
             default: () => ({flag: false})
@@ -704,6 +718,9 @@ Vue.component('shif-colorpicker', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
                 </div>
                 <shif-title v-if="title">{{ title }}</shif-title>
                 <div ref="colorpicker">
@@ -801,8 +818,12 @@ Vue.component('shif-generic-l2', {
              v-on:click="emit('click')">
             <div class="device">
                 <div class="checkbox_wrapper">
-                    <div v-if="$slots.favorites"
-                        class="checkbox_favorites_wrapper">
+
+                    <div v-if="$slots.draggable" class="checkbox_draggable_wrapper">
+                        <slot name="draggable" />
+                    </div>
+
+                    <div v-if="$slots.favorites" class="checkbox_favorites_wrapper">
                         <slot name="favorites" />
                     </div>
 
@@ -813,6 +834,7 @@ Vue.component('shif-generic-l2', {
                     <div v-if="$slots.automations" class="checkbox_automation_wrapper">
                         <slot name="automations" />
                     </div>
+
                 </div>
 
                 <div v-on:click.stop="emit('click_icon')">
@@ -905,6 +927,7 @@ function status_impl(control, layer) {
 }
 
 
+
 const shif_device = {
     props: [
         'uiElement',
@@ -919,6 +942,8 @@ const shif_device = {
         'include_place',
         'sibling_idx',
     ],
+
+    mixins: [mixin_modemenu],
 
     data: function() {
         return {
@@ -1073,6 +1098,8 @@ Vue.component('shif-room', {
         room:  [String, Number],
     },
 
+    mixins: [mixin_modemenu],
+
     methods: {
         link: function (floor_key, room_val) {
             return {
@@ -1090,7 +1117,8 @@ Vue.component('shif-room', {
             <router-link v-bind:to="link(floor.key, room)">
                 <shif-icon v-bind:src="interfaceData.rooms[room].icon"
                            class="roomSelect" />
-
+                <shif-icon v-if="modemenu_is_state('DRAGGABLE')"
+                           src="move_2" classname="drag_drop_icon_right" />
                 <div class="description">
                     {{ interfaceData.rooms[room].name }}
                 </div>

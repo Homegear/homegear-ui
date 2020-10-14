@@ -1,8 +1,11 @@
 /*
     global
         clone
-        shif_device
         shif_comps_create
+        shif_device
+        shif_device_slot_automations
+        shif_device_slot_draggable
+        shif_device_slot_favorites
 */
 
 
@@ -18,16 +21,10 @@ door_status.template = `
                      v-bind:status="status_minimal()"
                      v-bind:place="place">
 
-        <template v-slot:favorites>
-            <shif-checkbox-favorites v-bind:dev="dev" />
-        </template>
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
 
-        <template v-slot:automations>
-            <router-link v-if="used_by_automations !== false"
-                         v-bind:to="automation_link">
-                <shif-icon src="calendar-time_1" />
-            </router-link>
-        </template>
     </shif-generic-l2>
 `;
 
