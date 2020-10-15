@@ -115,5 +115,6 @@
 				<name>*</name>
 			</variable>
 		</variableOutputs>
+		<l3_force>true</l3_force>
 	</homegearUiElement>
 </homegearUiElements>
