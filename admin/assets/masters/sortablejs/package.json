@@ -1,29 +1,28 @@
 {
-    "_from": "sortablejs",
-    "_id": "sortablejs@1.11.2-alpha.3",
+    "_from": "sortablejs@^1.12.0",
+    "_id": "sortablejs@1.12.0",
     "_inBundle": false,
-    "_integrity": "sha512-sX\/cttekU7IQDvUGNsRIKDB1MXhd0OfR2OOsluusrZHIPwAKS8OSeGlNXONjcd3vsc3o6t8VakT0KpwnKMm6PQ==",
+    "_integrity": "sha512-bPn57rCjBRlt2sC24RBsu40wZsmLkSo2XeqG8k6DC1zru5eObQUIPPZAQG7W2SJ8FZQYq+BEJmvuw1Zxb3chqg==",
     "_location": "\/sortablejs",
     "_phantomChildren": [],
     "_requested": {
-        "type": "tag",
+        "type": "range",
         "registry": true,
-        "raw": "sortablejs",
+        "raw": "sortablejs@^1.12.0",
         "name": "sortablejs",
         "escapedName": "sortablejs",
-        "rawSpec": "",
+        "rawSpec": "^1.12.0",
         "saveSpec": null,
-        "fetchSpec": "latest"
+        "fetchSpec": "^1.12.0"
     },
     "_requiredBy": [
-        "#USER",
-        "\/"
+        "\/",
+        "\/vuedraggable"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/sortablejs\/-\/sortablejs-1.11.2-alpha.3.tgz",
-    "_shasum": "b61c59c8793c8762532f03c5c84d88d71f8e042c",
-    "_spec": "sortablejs",
+    "_resolved": "https:\/\/registry.npmjs.org\/sortablejs\/-\/sortablejs-1.12.0.tgz",
+    "_shasum": "ee6d7ece3598c2af0feb1559d98595e5ea37cbd6",
+    "_spec": "sortablejs@^1.12.0",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
-    "browser": "dist\/sortable.umd.js",
     "bugs": {
         "url": "https:\/\/github.com\/SortableJS\/Sortable\/issues"
     },
@@ -40,7 +39,7 @@
         "dist",
         "modular"
     ],
-    "gitHead": "a798fcff3aeb6d6d8ae818168a073f75ce1e7ef4",
+    "gitHead": "e4dc8b0fb9fa5af4ea0864a7023e55c0b026f16f",
     "homepage": "https:\/\/github.com\/SortableJS\/Sortable#readme",
     "keywords": [
         "sortable",
@@ -54,7 +53,7 @@
         "mixin"
     ],
     "license": "MIT",
-    "main": "dist\/sortable.js",
+    "main": "dist\/sortable.umd.js",
     "maintainers": [
         {
             "name": "Konstantin Lebedev",
@@ -69,7 +68,7 @@
             "email": "waynevanson@gmail.com"
         }
     ],
-    "module": "dist\/sortable.module.js",
+    "module": "modular\/sortable.complete.esm.js",
     "name": "sortablejs",
     "repository": {
         "type": "git",
@@ -77,11 +76,11 @@
     },
     "scripts": {
         "build": "npm-run-all --parallel build:*",
-        "build:modular-complete": "microbundle -f esm -i src\/complete-named.ts -o modular\/sortable.complete.esm.js",
-        "build:modular-core": "microbundle -f esm -i src\/core-named.ts -o modular\/sortable.core.esm.js",
-        "build:modular-default": "microbundle -f esm -i src\/default-named.ts -o modular\/sortable.esm.js",
-        "build:umd": "microbundle -f umd -i src\/complete-umd.ts -o dist\/sortable.umd.js --name Sortable",
+        "build:modular-complete": "microbundle -f esm -i src\/modular-complete.ts -o modular\/sortable.complete.esm.js",
+        "build:modular-core": "microbundle -f esm -i src\/modular-core.ts -o modular\/sortable.core.esm.js",
+        "build:modular-default": "microbundle -f esm -i src\/modular-default.ts -o modular\/sortable.esm.js",
+        "build:umd": "microbundle -f umd -i src\/umd.ts -o dist\/sortable.umd.js --name Sortable",
         "prepublishOnly": "yarn build"
     },
-    "version": "1.11.2-alpha.3"
+    "version": "1.12.0"
 }
