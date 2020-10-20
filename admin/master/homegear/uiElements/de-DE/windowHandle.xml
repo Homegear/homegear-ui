@@ -56,7 +56,7 @@
 						</icons>
 						<texts>
 							<text id="state">
-								<content>offen</content>
+								<content>geöffnet</content>
 								<color>active</color>
 							</text>
 						</texts>
