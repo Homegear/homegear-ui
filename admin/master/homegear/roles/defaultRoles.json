@@ -1676,5 +1676,88 @@
                 ]
             }
         }
-    }
+    },
+    {
+        "id": "80.00.00",
+        "translations": {
+            "en-US": "climate",
+            "de-DE": "Klima"
+        }
+    },
+    {
+        "id": "80.00.04",
+        "types": [
+            "float"
+        ],
+        "translations": {
+            "en-US": "climate -humidity",
+            "de-DE": "Klima - Luftfeuchtigkeit"
+        },
+        "ui": {
+            "simpleCreationInfo": {
+                "element": "Base.humidity",
+                "roleIdsIn": [
+                    [
+                        800004
+                    ]
+                ],
+                "roleIdsOut": [
+                    [
+                        800004
+                    ]
+                ]
+            }
+        }
+    },
+    {
+        "id": "80.00.05",
+        "types": [
+            "int",
+            "float"
+        ],
+        "translations": {
+            "en-US": "climate -pressure",
+            "de-DE": "Klima - Luftdruck"
+        },
+        "ui": {
+            "simpleCreationInfo": {
+                "element": "Base.climatePressure",
+                "roleIdsIn": [
+                    [
+                        800005
+                    ]
+                ],
+                "roleIdsOut": [
+                    [
+                        800005
+                    ]
+                ]
+            }
+        }
+    },    
+    {
+        "id": "80.00.10",
+        "types": [
+            "float"
+        ],
+        "translations": {
+            "en-US": "climate -temperature",
+            "de-DE": "Klima - Temperatur"
+        },
+        "ui": {
+            "simpleCreationInfo": {
+                "element": "Base.temperature",
+                "roleIdsIn": [
+                    [
+                        800010
+                    ]
+                ],
+                "roleIdsOut": [
+                    [
+                        800010
+                    ]
+                ]
+            }
+        }
+    }    
 ]
