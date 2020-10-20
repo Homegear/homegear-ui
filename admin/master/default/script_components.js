@@ -974,7 +974,7 @@ Vue.component('shif-icon-selection', {
         <div id="profile_icons">
             <label v-for="_, key in interfaceIcons"
                     v-bind:class="{selected: value === key}"
-                    v-bind:title="key"
+                    v-bind:title="$root.debug ? key : undefined"
                     class="profile_icon_wrapper">
                 <shif-icon classname="profile_icon" v-bind:src="key" />
                 <input type="radio"
