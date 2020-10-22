@@ -10,6 +10,7 @@
         mixin_rooms
         mixin_scroll_position
         user_register_webauthn_device
+        user_interaction
         viewLog
 */
 /*
@@ -586,6 +587,7 @@ const ShifSettingsProfile = {
             return {
                 mode: 'add',
                 profile: null,
+                changed: false,
                 form: {
                     name: 'profile_add',
                     icon: 'slider_1',
@@ -608,6 +610,7 @@ const ShifSettingsProfile = {
             return {
                 mode: 'edit',
                 profile: profile,
+                changed: false,
                 form: this.$root.profiles.form,
             };
         }
@@ -629,6 +632,7 @@ const ShifSettingsProfile = {
         return {
             mode: 'edit',
             profile: profile,
+            changed: false,
             form: {
                 name: 'profile_edit',
                 icon: profile.icon,
@@ -641,6 +645,15 @@ const ShifSettingsProfile = {
                 role: role,
             },
         };
+    },
+
+    watch: {
+        form: {
+            handler: function () {
+                this.changed = true;
+            },
+            deep: true,
+        },
     },
 
     computed: {
@@ -681,6 +694,16 @@ const ShifSettingsProfile = {
 
             return out;
         },
+
+        global_or_room: function () {
+            return this.form.locations.global === true ||
+                   (this.form.locations !== undefined &&
+                    this.form.locations.rooms !== undefined &&
+                    this.form.locations.rooms.length > 0 &&
+                    ! (this.form.locations.rooms.length === 1 &&
+                       (this.form.locations.rooms[0].roomId === 'null' ||
+                        this.form.locations.rooms[0].roomId === null)));
+        }
     },
 
     methods: {
@@ -695,24 +718,40 @@ const ShifSettingsProfile = {
                     );
 
                 case 'save':
+                    if (! this.global_or_room)
+                        return user_interaction.alert({
+                            content: 'settings.profiles.profile.global_or_room'
+                        });
+
                     if (this.mode === 'edit')
                         return this.profile_update(this.profile, this.form,
-                            () => this.$router.back()
+                            () => {
+                                this.changed = false;
+                                this.$router.back();
+                            }
                         );
 
                     return this.profile_add(this.form,
-                        (result) => this.$router.replace({
-                            name: 'settings.profiles.profile',
-                            params: {
-                                profile_id: result.result
-                            },
-                        })
+                        (result) => {
+                            this.changed = false;
+                            this.$router.replace({
+                                name: 'settings.profiles.profile',
+                                params: {
+                                    profile_id: result.result
+                                },
+                            });
+                        }
                     );
 
                 case 'delete':
-                    return this.profile_delete(this.profile,
-                        () => this.$router.replace({name: 'settings.profiles'})
-                    );
+                    return user_interaction.confirm({
+                        content: 'settings.profiles.profile.delete_request'
+                    }).then(x => {
+                        if (x)
+                            this.profile_delete(this.profile,
+                                () => this.$router.replace({name: 'settings.profiles'})
+                            );
+                    });
             }
         },
     },
@@ -722,6 +761,14 @@ const ShifSettingsProfile = {
             return this.profile_build_root_devs(this.profile);
 
         this.modemenu_hide();
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        if (! this.changed)
+            next(true);
+        else
+            user_interaction.confirm({content: 'settings.profiles.profile.unsaved'})
+                            .then(next);
     },
 
     template: `
