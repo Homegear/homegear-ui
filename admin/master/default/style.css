@@ -330,6 +330,16 @@ a.disabled {
   height: calc(100% - 85px - 92px - 59px);
 }
 
+#inhalt.tabmenu-visible .content {
+  height: calc(100% - 85px - 92px - 74px);
+  top: 159px;
+}
+
+#inhalt.modemenu-visible.tabmenu-visible .content {
+  height: calc(100% - 85px - 92px - 59px - 74px);
+  top: 159px;
+}
+
 .content.clinched {
   width: calc(100% - 193px);
 }
@@ -504,86 +514,17 @@ a.disabled {
 
 /* ///////////////////////////////////////////////////////////////////////// */
 
-/* Tabs */
-
-/* ///////////////////////////////////////////////////////////////////////// */
-
-#tabs {
-  width: inherit;
-  background: #191b1f;
-  position: fixed;
-  z-index: 4;
-  color: #fff;
-  font-size: 0;
-  text-align: left;
-  text-decoration: none;
-  border-top: 1px solid #25282e;
-  margin: -21px 0px 20px -35px;
-  padding: 0px;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  z-index: 999;
-}
-
-#tabs .tab {
-  display: inline-block;
-  text-align: center;
-  color: #898989;
-  font-size: 26px;
-  line-height: 26px;
-  border: 0px solid #000;
-  position: relative;
-  margin: 0;
-  padding: 24px 0;
-}
-
-#tabs a {
-  position: relative;
-}
-
-#tabs .router-link-active .tab {
-  color: #e3a104 !important;
-}
-
-#tabs .router-link-active::after {
-  content: " ";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
-  border-style: solid;
-  border-width: 24px 24px 0 24px;
-  border-color: #191b1f transparent transparent transparent;
-  right: 0;
-  bottom: -45px;
-  left: 0;
-  margin: auto;
-}
-
-.tabWrapper {
-  width: inherit;
-  height: inherit;
-  display: none;
-  padding-top: 60px;
-  position: relative;
-  overscroll-behavior-y: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.activeTab {
-  display: inline-block !important;
-}
-
-/* ///////////////////////////////////////////////////////////////////////// */
-
 /* Accordion */
 
 /* ///////////////////////////////////////////////////////////////////////// */
 
 .accordion>.device {
-  padding: 35px 0 !important;
+  padding: 28px 0 !important;
+
+}
+
+.accordion>.device .title_only .device_title {
+  margin: 19px;
 }
 
 .accordion_content {
@@ -1621,14 +1562,6 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
-
-
-#profiles {
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-}
-
 #house .profiles_wrapper {
   margin: 0;
   padding: 0;

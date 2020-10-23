@@ -173,3 +173,63 @@
 #modemenu .mode_end {
     cursor: pointer;
 }
+
+/* ///////////////////////////////////////////////////////////////////////// */
+
+/* tabmenu */
+
+/* ///////////////////////////////////////////////////////////////////////// */
+
+#tabmenu {
+  width: 100%;
+  background: #191b1f;
+  position: fixed;
+  top: 84px;
+  color: #fff;
+  font-size: 0;
+  text-align: left;
+  text-decoration: none;
+  border-top: 1px solid #25282e;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  z-index: 999;
+}
+
+#tabmenu .tab {
+  display: inline-block;
+  text-align: center;
+  color: #898989;
+  font-size: 26px;
+  line-height: 26px;
+  border: 0px solid #000;
+  position: relative;
+  margin: 0;
+  padding: 24px 0;
+}
+
+#tabmenu a {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+}
+
+#tabmenu .router-link-active .tab {
+  color: #e3a104 !important;
+}
+
+#tabmenu .router-link-active::after {
+  content: " ";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+  border-style: solid;
+  border-width: 24px 24px 0 24px;
+  border-color: #191b1f transparent transparent transparent;
+  right: 0;
+  bottom: -24px;
+  left: 0;
+  margin: auto;
+}

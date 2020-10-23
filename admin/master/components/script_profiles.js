@@ -56,8 +56,6 @@ let ShifProfiles = {
     },
 
     template: `
-        <shif-mainmenu-tabs>
-            <shif-profiles-global />
-        </shif-mainmenu-tabs>
+        <shif-profiles-global />
     `
 };

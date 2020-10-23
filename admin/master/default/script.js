@@ -95,28 +95,6 @@ $('body').on('touchmove', function (e) {
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// passt die Header Tab Anzeige beim scrollen an
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-headerVisibility('true');
-function headerVisibility(_state) {
-    let lastScrollTop = 0;
-
-    $('.content').scroll(function(_event){
-        var st = $(this).scrollTop();
-
-        if (st > lastScrollTop) { // downscroll code
-            $('.content_single #tabs').hide();
-            $('.content_big #tabs').hide();
-        }
-        else { // upscroll code
-            $('.content_single #tabs').show();
-            $('.content_big #tabs').show();
-        }
-        lastScrollTop = st;
-    });
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 // triggert beim Logoff eines Users das Löschen des Cookies
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function user_logoff() {
@@ -799,6 +777,15 @@ Vue.component('shif-generic-l2', {
             this.$off('click_icon', this.$listeners.click);
     },
 
+    computed: {
+        computedClass() {
+            if (typeof this.status !== 'undefined' && this.status.length < 1) {
+            return 'title_only';
+            }
+            return '';
+        }
+    },
+
     methods: {
         emit: function (key, val) {
             if (this.disabled.flag)
@@ -843,7 +830,7 @@ Vue.component('shif-generic-l2', {
                                classname="device_icon">
                     </shif-icon>
                 </div>
-                <div class="device_text">
+                <div class="device_text" v-bind:class="computedClass">
                     <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                     <div v-if="place" class="device_location">
                         {{ place }}
@@ -1130,15 +1117,8 @@ Vue.component('shif-room', {
 
 
 Vue.component('shif-tab', {
-    props: {
-        width: {
-            type:    String,
-            default: '50%',
-        }
-    },
     template: `
         <div class="tab button"
-             v-bind:style="{width: width}"
              v-on:click="$emit('click', 1)">
              <slot></slot>
         </div>

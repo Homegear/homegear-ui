@@ -272,16 +272,14 @@ let ShifHouseDevices = {
     },
 
     template: `
-        <shif-mainmenu-tabs>
-            <shif-all-devices ref="devices" />
-        </shif-mainmenu-tabs>
+        <shif-all-devices ref="devices" />
     `
 };
 
 
 
 let ShifHouseDevicesRole = {
-    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-devices')],
+    mixins: [mixin_scroll_position, mixin_print_mounted('shif-house-devices-role')],
 
     components: {
         ShifAllDevices,
@@ -304,9 +302,7 @@ let ShifHouseDevicesRole = {
     },
 
     template: `
-        <shif-mainmenu-tabs>
-            <shif-all-devices />
-        </shif-mainmenu-tabs>
+        <shif-all-devices />
     `
 };
 

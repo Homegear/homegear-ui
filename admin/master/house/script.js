@@ -27,6 +27,7 @@
         ShifLog
         ShifMainmenu
         ShifModemenu
+        ShifTabmenu
 
         condition_check
         date_format
@@ -35,6 +36,7 @@
         icons
         mixin_modemenu
         mixin_notification
+        mixin_tabmenu
         user_logoff
 */
 /*
@@ -469,11 +471,12 @@ let router = new VueRouter({
 let app = new Vue({
     name: 'App',
 
-    mixins: [mixin_modemenu],
+    mixins: [mixin_modemenu, mixin_tabmenu],
 
     components: {
         ShifMainmenu,
         ShifModemenu,
+        ShifTabmenu,
     },
 
     data: {
@@ -495,13 +498,24 @@ let app = new Vue({
         show: false,
     },
 
+    computed: {
+        inhalt_classes: function () {
+            return {
+                'modemenu-visible': this.modemenu_is_shown,
+                'tabmenu-visible': this.tabmenu_is_shown,
+            };
+        },
+    },
+
     router: router,
 
-    // Hack: decrease .content height when modemenu is enabled.
+    // Hack: decrease .content height when modemenu and/or tabmenu are visible.
     template: `
         <div v-if="show"
              id="inhalt"
-             v-bind:class="{'modemenu-visible': modemenu_is_shown}">
+             v-bind:class="inhalt_classes">
+            <shif-tabmenu />
+
             <router-view />
 
             <shif-modemenu />

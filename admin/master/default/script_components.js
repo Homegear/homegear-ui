@@ -714,45 +714,6 @@ Vue.component('shif-house-collected-entries', {
 
 
 
-Vue.component('shif-mainmenu-tabs', {
-    mixins: [mixin_print_mounted()],
-
-    computed: {
-        idx_mainmenu: function () {
-            const menu_name = this.$route.matched[0].name;
-            return interfaceData.mainmenu.findIndex(x => x.name === menu_name);
-        },
-
-        tabs: function () {
-            return interfaceData.mainmenu[this.idx_mainmenu].tabs;
-        },
-
-        tab_width: function () {
-            return (100 / this.tabs.length) + '%';
-        },
-    },
-
-    template: `
-        <div>
-            <div id="tabs" v-if="$root.draggable.in_progress === false">
-                <template v-for="tab in tabs">
-                    <router-link v-bind:to="{name: tab.name}">
-                        <shif-tab v-bind:width="tab_width">
-                            {{ i18n(tab.name) }}
-                        </shif-tab>
-                    </router-link>
-                </template>
-            </div>
-
-            <div class="tabWrapper activeTab" style="text-align: center;">
-                <slot />
-            </div>
-        </div>
-    `
-});
-
-
-
 // This is a helper component, so we have defined parent where we can read the
 // scroll positions from.
 // Although not defining own DOM elements, it must not be abstract!

@@ -11,6 +11,7 @@
     exported
         ShifMainmenu
         ShifModemenu
+        ShifTabmenu
 */
 
 
@@ -185,6 +186,47 @@ const ShifModemenu = {
         <div id="modemenu">
             <component v-if="content"
                        v-bind:is="content" />
+        </div>
+    `,
+};
+
+
+
+const mixin_tabmenu = {
+    computed: {
+        idx_mainmenu: function () {
+            const menu_name = this.$route.matched[0].name;
+            return interfaceData.mainmenu.findIndex(x => x.name === menu_name);
+        },
+
+        tabs: function () {
+            return interfaceData.mainmenu[this.idx_mainmenu].tabs;
+        },
+
+        tabmenu_is_shown: function () {
+            return this.tabs !== undefined &&
+                   Object.keys(this.tabs).length > 0;
+        },
+    },
+};
+
+
+
+const ShifTabmenu = {
+    mixins: [
+        mixin_tabmenu,
+        mixin_print_mounted()
+    ],
+
+    template: `
+        <div id="tabmenu">
+            <template v-for="tab in tabs">
+                <router-link v-bind:to="{name: tab.name}">
+                    <shif-tab>
+                        {{ i18n(tab.name) }}
+                    </shif-tab>
+                </router-link>
+            </template>
         </div>
     `,
 };
