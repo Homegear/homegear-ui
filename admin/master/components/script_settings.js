@@ -505,7 +505,7 @@ let ShifSettingsProfile = {
                     location: {
                         floor:    null,
                         room:     null,
-                        global:   false,
+                        global:   true,
                         favorite: false,
                     },
                 }
