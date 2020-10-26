@@ -84,23 +84,18 @@
     },
     "menu": [
         {
-            "name": "settings.user",
+            "name": "settings.user.manage",
             "mainmenu": "settings",
             "category": "user",
             "level": "1",
             "icon": "profile_1",
-            "description": "settings.user.description"
-        },
-        {
-            "name": "settings.user.manage",
-            "mainmenu": "settings",
-            "category": "user",
-            "level": "2",
-            "icon": "profile_1",
+            "type": "submenu",
             "description": "settings.user.manage.description"
         },
         {
             "name": "settings.favorites",
+            "type": "finalmenu",
+            "component": "ShifSettingsFavorites",
             "mainmenu": "settings",
             "category": "favorites",
             "level": "1",
@@ -109,6 +104,8 @@
         },
         {
             "name": "settings.sort",
+            "type": "finalmenu",
+            "component": "ShifSettingsSort",
             "mainmenu": "settings",
             "category": "sort",
             "level": "1",
@@ -117,6 +114,7 @@
         },
         {
             "name": "settings.profiles",
+            "type": "submenu",
             "mainmenu": "settings",
             "category": "profiles",
             "level": "1",
@@ -125,6 +123,7 @@
         },
         {
             "name": "settings.automations",
+            "type": "submenu",
             "mainmenu": "settings",
             "category": "automations",
             "level": "1",
@@ -133,6 +132,7 @@
         },
         {
             "name": "settings.about",
+            "type": "submenu",
             "mainmenu": "settings",
             "category": "license",
             "level": "1",
