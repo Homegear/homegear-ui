@@ -131,6 +131,16 @@
             "description": "settings.automations.description"
         },
         {
+            "name": "settings.log",
+            "type": "submenu",
+            "component": "ShifSettingsLog",
+            "mainmenu": "settings",
+            "category": "log",
+            "level": "1",
+            "icon": "warning_1",
+            "description": "settings.log.description"
+        },
+        {
             "name": "settings.about",
             "type": "submenu",
             "mainmenu": "settings",
@@ -276,6 +286,8 @@
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
             "settings.favorites.description": "Set and unset favorites",
+            "settings.log": "Log",
+            "settings.log.description": "View browser log",
             "settings.sort": "Sort",
             "settings.sort.mode": "Sort elements",
             "settings.sort.description": "Restructure: stories, rooms, devices, favorites, profiles, ...",
@@ -408,6 +420,8 @@
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
             "settings.favorites.description": "Favoriten hinzufügen und entfernen",
+            "settings.log": "Log",
+            "settings.log.description": "Zeige Browser-Log",
             "settings.sort": "Sortieren",
             "settings.sort.mode": "Elemente sortieren",
             "settings.sort.description": "Neuanordnen: Stockwerke, Räume, Geräte, Favoriten, Profile, ...",
