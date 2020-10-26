@@ -24,7 +24,7 @@
         ShifNotifications
         ShifNotificationsLvl1
         ShifNotificationsNotification
-        ShifLog
+        ShifSettingsLog
         ShifMainmenu
         ShifModemenu
         ShifTabmenu
@@ -404,6 +404,13 @@ let router = new VueRouter({
                     },
                     props: {small: false, big: true},
                 },
+                {
+                    path: 'log',
+                    name: 'settings.log',
+                    component: ShifSettingsLog,
+                    meta: {breadcrumbs: ['settings', 'settings.log']},
+                },
+
             ],
         },
 
@@ -447,13 +454,6 @@ let router = new VueRouter({
                     props: {small: false, big: true},
                 },
             ],
-        },
-
-        {
-            path: '/log',
-            name: 'log',
-            component: ShifLog,
-            meta: {breadcrumbs: ['log']},
         },
 
         { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
