@@ -200,7 +200,9 @@ const mixin_tabmenu = {
         },
 
         tabs: function () {
-            return interfaceData.mainmenu[this.idx_mainmenu].tabs;
+            const cur = interfaceData.mainmenu[this.idx_mainmenu];
+
+            return cur === undefined ? cur : cur.tabs;
         },
 
         tabmenu_is_shown: function () {
