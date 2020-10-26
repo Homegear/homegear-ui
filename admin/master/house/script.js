@@ -12,7 +12,7 @@
         ShifSettingsAutomations
         ShifSettingsAutomationsForm
         ShifSettingsFavorites
-        ShifSettingsItems
+        ShifSettingsItemsLvl1
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
@@ -328,43 +328,37 @@ let router = new VueRouter({
                 {
                     name: 'settings.list',
                     path: 'list',
-                    component: ShifSettingsItems(1),
+                    component: ShifSettingsItemsLvl1,
                     meta: {breadcrumbs: ['settings'], base: true,},
                 },
                 {
                     name: 'settings.about',
                     path: 'about',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsLicenses},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsLicenses},
                     meta: {breadcrumbs: ['settings', 'settings.about']},
-                },
-                {
-                    path: 'user',
-                    name: 'settings.user',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsItems(2)},
-                    meta: {breadcrumbs: ['settings', 'settings.user']},
                 },
                 {
                     path: 'user/manage',
                     name: 'settings.user.manage',
-                    components: {small: ShifSettingsItems(2), big: ShifSettingsUser},
-                    meta: {breadcrumbs: ['settings', 'settings.user', 'settings.user.manage']},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsUser},
+                    meta: {breadcrumbs: ['settings', 'settings.user.manage']},
                 },
                 {
                     path: 'favorites',
                     name: 'settings.favorites',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsFavorites},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsFavorites},
                     meta: {breadcrumbs: ['settings', 'settings.favorites']}
                 },
                 {
                     path: 'sort',
                     name: 'settings.sort',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsSort},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsSort},
                     meta: {breadcrumbs: ['settings', 'settings.sort']}
                 },
                 {
                     path: 'profiles',
                     name: 'settings.profiles',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsProfiles},
                     meta: {breadcrumbs: ['settings', 'settings.profiles']}
                 }, {
                     path: 'profiles/add',
@@ -381,13 +375,13 @@ let router = new VueRouter({
                 {
                     path: 'automations',
                     name: 'settings.automations',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsAutomations},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsAutomations},
                     meta: {breadcrumbs: ['functions', 'settings.automations'],},
                 },
                 {
                     path: 'automations/selection/:automation_ids',
                     name: 'settings.automations.selection',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsAutomations},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsAutomations},
                     meta: {
                         breadcrumbs: ['functions', 'settings.automations', 'settings.automations.selection'],
                         cache_ident: {big: {params: ['automation_ids']}},
