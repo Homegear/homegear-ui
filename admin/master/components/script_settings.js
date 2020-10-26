@@ -17,7 +17,7 @@
         ShifSettingsAutomations
         ShifSettingsAutomationsForm
         ShifSettingsFavorites
-        ShifSettingsItems
+        ShifSettingsItemsLvl1
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
@@ -42,28 +42,33 @@ Vue.component('shif-settings-element', {
         icon_active_class: function () {
             return this.icon_active ? 'active' : '';
         },
+
+        description_available: function () {
+            return this.description && this.description.length > 0;
+        },
     },
 
     template: `
-        <div class="button">
+        <div class="button" v-on:click="$emit('click', this)">
             <shif-icon v-if="icon" classname="button_icon" v-bind:src="icon" v-bind:active="icon_active_class" />
             <div class="button_text">
-                <template v-if="description && description.length > 0">
+                <template v-if="description_available">
                     <div class="button_title">{{ translate ? i18n(name) : name }}</div>
-                </template>
-                <template v-else="description && description.length > 0">
-                    <div class="button_title button_no_description">{{ translate ? i18n(name) : name }}</div>
-                </template>
-                <template v-if="description && description.length > 0">
                     <div class="button_status" style="display:block;">{{ translate ? i18n(description) : description }}</div>
+                </template>
+
+                <template v-else>
+                    <div class="button_title button_no_description">{{ translate ? i18n(name) : name }}</div>
                 </template>
             </div>
             <div class="button_action">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
-                    <g id="Ebene_1">
-                        <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
-                    </g>
-                </svg>
+                <slot>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
+                        <g id="Ebene_1">
+                            <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
+                        </g>
+                    </svg>
+                </slot>
             </div>
         </div>
     `
@@ -71,7 +76,7 @@ Vue.component('shif-settings-element', {
 
 
 
-let ShifSettingsLicenses = {
+const ShifSettingsLicenses = {
     mixins: [mixin_print_mounted('shif-settings-licenses')],
 
     computed: {
@@ -121,7 +126,7 @@ let ShifSettingsLicenses = {
 
 
 
-let ShifSettingsUser = {
+const ShifSettingsUser = {
     mixins: [mixin_print_mounted('shif-settings-user')],
 
     data: function () {
@@ -281,41 +286,12 @@ let ShifSettingsUser = {
 
 
 
-let ShifSettingsItems = function (level) {
-    return {
-        mixins: [
-            mixin_scroll_position,
-            mixin_menus,
-            mixin_print_mounted('shif-settings-items')
-        ],
-
-        methods: {
-            elements: function (level) {
-                return interfaceData.menu.filter(x => x.mainmenu === 'settings' &&
-                                                      x.level    === String(level) &&
-                                                      ! this.disabled('menu', x.name));
-            },
-        },
-
-        template: `
-            <div>
-                <template v-for="i in elements(${level})">
-                    <router-link v-bind:to="{name: i.name}">
-                        <shif-settings-element v-bind:key="i.name"
-                                               v-bind:icon="i.icon"
-                                               v-bind:name="i.name"
-                                               v-bind:description="i.description" />
-                    </router-link>
-                </template>
-            </div>
-        `,
-    };
-};
-
-
-
-let ShifSettingsSort = {
+const ShifSettingsSort = {
     mixins: [mixin_modemenu],
+
+    props: {
+        menu: {type: Object, default: undefined},
+    },
 
     data: function () {
         return {
@@ -334,20 +310,22 @@ let ShifSettingsSort = {
     },
 
     template: `
-        <div class="device_wrapper">
-            <div class="device"
-                 v-on:click.prevent="state = ! state">
-                <shif-title>{{ i18n('settings.sort.mode') }}</shif-title>
-                <shif-checkbox v-model="state" />
-            </div>
-        </div>
+        <shif-settings-element v-bind="menu"
+                               v-on:click="state = ! state">
+            <shif-checkbox v-bind:value="state"
+                           v-on:click.native.prevent="" />
+        </shif-settings-element>
     `
 };
 
 
 
-let ShifSettingsFavorites = {
+const ShifSettingsFavorites = {
     mixins: [mixin_modemenu],
+
+    props: {
+        menu: {type: Object, default: undefined}
+    },
 
     data: function () {
         return {
@@ -366,19 +344,17 @@ let ShifSettingsFavorites = {
     },
 
     template: `
-        <div class="device_wrapper">
-            <div class="device"
-                 v-on:click.prevent="state = ! state">
-                <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <shif-checkbox v-model="state" />
-            </div>
-        </div>
+        <shif-settings-element v-bind="menu"
+                               v-on:click="state = ! state">
+            <shif-checkbox v-bind:value="state"
+                           v-on:click.native.prevent="" />
+        </shif-settings-element>
     `
 };
 
 
 
-let ShifSettingsProfiles = {
+const ShifSettingsProfiles = {
     mixins: [
         mixin_scroll_position,
         mixin_profiles,
@@ -421,7 +397,7 @@ let ShifSettingsProfiles = {
 
 
 
-let ShifSettingsProfileRoleValue = {
+const ShifSettingsProfileRoleValue = {
     mixins: [mixin_print_mounted('shif-settings-profile-role-value')],
 
     props: {
@@ -473,7 +449,7 @@ let ShifSettingsProfileRoleValue = {
 
 
 
-let ShifSettingsProfile = {
+const ShifSettingsProfile = {
     mixins: [
         mixin_modemenu,
         mixin_profiles,
@@ -1411,10 +1387,51 @@ const ShifSettingsAutomations = {
 
 
 
+const ShifSettingsItemsLvl1 = {
+    mixins: [
+        mixin_scroll_position,
+        mixin_menus,
+        mixin_print_mounted('shif-settings-items')
+    ],
+
+    components: {
+        ShifSettingsFavorites,
+        ShifSettingsSort,
+    },
+
+    computed: {
+        elements: function () {
+            return interfaceData.menu.filter(x => x.mainmenu === 'settings' &&
+                                                  x.level    === '1' &&
+                                                  ! this.disabled('menu', x.name));
+        },
+    },
+
+    template: `
+        <div>
+            <template v-for="i in elements">
+
+                <template v-if="i.type === 'submenu'">
+                    <router-link v-bind:to="{name: i.name}">
+                        <shif-settings-element v-bind:key="i.name"
+                                               v-bind:icon="i.icon"
+                                               v-bind:name="i.name"
+                                               v-bind:description="i.description" />
+                    </router-link>
+                </template>
+
+                <template v-else-if="i.type === 'finalmenu'">
+                    <component v-bind:is="i.component" v-bind:menu="i" />
+                </template>
+
+            </template>
+        </div>
+    `,
+};
 
 
 
-let ShifSettings = {
+const ShifSettings = {
     mixins: [mixin_print_mounted('shif-settings')],
 
     template: `
