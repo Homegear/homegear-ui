@@ -1,27 +1,27 @@
 {
-    "_from": "vuedraggable@2.24.2",
-    "_id": "vuedraggable@2.24.2",
+    "_from": "vuedraggable@2.24.3",
+    "_id": "vuedraggable@2.24.3",
     "_inBundle": false,
-    "_integrity": "sha512-y1NbVhLFOVHHdJl7qsYOtExiTq4zyxF+PxiF9NC8kHEtI6sAFhUHtHYp+ONa8v4S3bAspzGHOHuOq0pNO4fFtA==",
+    "_integrity": "sha512-6\/HDXi92GzB+Hcs9fC6PAAozK1RLt1ewPTLjK0anTYguXLAeySDmcnqE8IC0xa7shvSzRjQXq3\/+dsZ7ETGF3g==",
     "_location": "\/vuedraggable",
     "_phantomChildren": [],
     "_requested": {
         "type": "version",
         "registry": true,
-        "raw": "vuedraggable@2.24.2",
+        "raw": "vuedraggable@2.24.3",
         "name": "vuedraggable",
         "escapedName": "vuedraggable",
-        "rawSpec": "2.24.2",
+        "rawSpec": "2.24.3",
         "saveSpec": null,
-        "fetchSpec": "2.24.2"
+        "fetchSpec": "2.24.3"
     },
     "_requiredBy": [
         "#USER",
         "\/"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/vuedraggable\/-\/vuedraggable-2.24.2.tgz",
-    "_shasum": "cd98faec99905238469e9b4d235fba5a59fb7da2",
-    "_spec": "vuedraggable@2.24.2",
+    "_resolved": "https:\/\/registry.npmjs.org\/vuedraggable\/-\/vuedraggable-2.24.3.tgz",
+    "_shasum": "43c93849b746a24ce503e123d5b259c701ba0d19",
+    "_spec": "vuedraggable@2.24.3",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "browserslist": [
         "> 1%",
@@ -33,7 +33,7 @@
     },
     "bundleDependencies": false,
     "dependencies": {
-        "sortablejs": "^1.10.1"
+        "sortablejs": "1.10.2"
     },
     "deprecated": false,
     "description": "draggable component for vue",
@@ -119,5 +119,5 @@
         "test:unit": "vue-cli-service test:unit --coverage"
     },
     "types": "src\/vuedraggable.d.ts",
-    "version": "2.24.2"
+    "version": "2.24.3"
 }
