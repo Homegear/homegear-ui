@@ -31,9 +31,6 @@
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"],
             "elementOrder": {
-                "house.tab.rooms.room-9": {
-                    "default": [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                }
             }
         }
     },
