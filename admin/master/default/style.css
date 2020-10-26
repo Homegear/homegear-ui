@@ -447,6 +447,7 @@ a.disabled {
 
 #breadcrumbs_wrapper #breadcrumbs a::after {
   padding: 0px 10px;
+  color: #25282e;
 }
 
 #breadcrumbs_wrapper #breadcrumbs #breadcrumb_wrapper {
