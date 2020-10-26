@@ -10,6 +10,7 @@
         mixin_rooms
         mixin_scroll_position
         user_register_webauthn_device
+        viewLog
 */
 /*
     exported
@@ -19,6 +20,7 @@
         ShifSettingsFavorites
         ShifSettingsItemsLvl1
         ShifSettingsLicenses
+        ShifSettingsLog
         ShifSettingsProfile
         ShifSettingsProfiles
         ShifSettingsSort
@@ -76,6 +78,19 @@ Vue.component('shif-settings-element', {
 
 
 
+const ShifSettingsLog = {
+    mounted: function () {
+        viewLog('-----------------------------');
+    },
+
+    template: `
+        <pre id="log" class="content content_single">
+        </pre>
+    `
+};
+
+
+
 const ShifSettingsLicenses = {
     mixins: [mixin_print_mounted('shif-settings-licenses')],
 
@@ -87,7 +102,7 @@ const ShifSettingsLicenses = {
 
     methods: {
         log_hook: function () {
-            this.$router.push('/log');
+            this.$router.push({name: 'settings.log'});
         },
     },
 
@@ -1396,6 +1411,7 @@ const ShifSettingsItemsLvl1 = {
 
     components: {
         ShifSettingsFavorites,
+        ShifSettingsLog,
         ShifSettingsSort,
     },
 
