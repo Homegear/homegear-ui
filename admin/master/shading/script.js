@@ -33,10 +33,6 @@ shif_comps_create('shadingRainalarm', shading_windalarm, shading_windalarm);
 
 
 let shading_ventilation_l2 = clone(shif_device);
-shading_ventilation_l2.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-};
-
 shading_ventilation_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -44,7 +40,7 @@ shading_ventilation_l2.template = `
                      v-bind:status="status"
                      v-bind:place="place"
                      v-bind:actions="true"
-                     v-on:click_icon="change"
+                     v-on:click_icon="$homegear.value_set(output, ! props.value)"
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
@@ -54,10 +50,6 @@ shading_ventilation_l2.template = `
 `;
 
 let shading_ventilation_l3 = clone(shif_device);
-shading_ventilation_l3.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-};
-
 shading_ventilation_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
@@ -65,7 +57,7 @@ shading_ventilation_l3.template = `
                      v-bind:place="place"
                      v-bind:status="status_minimal()"
                      v-bind:disabled="disabled"
-                     v-on:click="change">
+                     v-on:click="$homegear.value_set(output, ! props.value)">
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
@@ -79,10 +71,6 @@ shif_comps_create('shadingVentilation', shading_ventilation_l2, shading_ventilat
 
 
 let shading_slider = clone(shif_device);
-shading_slider.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, this.props.value);
-};
-
 shading_slider.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"
@@ -91,7 +79,7 @@ shading_slider.template = `
                  v-bind:title="title"
                  v-bind:step=5
                  v-bind:disabled="disabled"
-                 v-on:change="change"
+                 v-on:change="$homegear.value_set(output, props.value)"
                  v-model:value="props.value">
 
         ${shif_device_slot_profiles}
@@ -141,15 +129,15 @@ shading_buttons_l3.methods.change = function(_event) {
             this.output.hasOwnProperty('maximumValue')) {
             let output = clone(this.output);
             output.value = (down ? this.output.maximumValue : this.output.minimumValue);
-            homegear.value_set_clickcounter(this, output, null);
+            homegear.value_set(output, null);
         }
         else if(this.output.type == 'bool') {
             let output = clone(this.output);
             output.value = down;
-            homegear.value_set_clickcounter(this, output, null);
+            homegear.value_set(output, null);
         }
     }
-    else homegear.value_set_clickcounter(this, this.output, true);
+    else homegear.value_set(this.output, true);
 };
 
 shading_buttons_l3.template = `
