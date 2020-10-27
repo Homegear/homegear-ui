@@ -46,15 +46,15 @@ media_buttons_l3.methods.change = function(_event) {
             this.output.hasOwnProperty('maximumValue')) {
             let output = clone(this.output);
             output.value = (down ? this.output.maximumValue : this.output.minimumValue);
-            homegear.value_set_clickcounter(this, output, null);
+            homegear.value_set(output, null);
         }
         else if(this.output.type == 'bool') {
             let output = clone(this.output);
             output.value = down;
-            homegear.value_set_clickcounter(this, output, null);
+            homegear.value_set(output, null);
         }
     }
-    else homegear.value_set_clickcounter(this, this.output, true);
+    else homegear.value_set(this.output, true);
 };
 
 media_buttons_l3.template = `
