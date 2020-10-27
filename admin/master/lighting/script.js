@@ -17,9 +17,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let lighting_switch_l2 = clone(shif_device);
-lighting_switch_l2.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-};
 lighting_switch_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -27,7 +24,7 @@ lighting_switch_l2.template = `
                      v-bind:status="status"
                      v-bind:place="place"
                      v-bind:actions="true"
-                     v-on:click_icon="change($event, true)"
+                     v-on:click_icon="$homegear.value_set(output, ! props.value)"
                      v-on:click="level3(device)">
 
         ${shif_device_slot_favorites}
@@ -38,16 +35,13 @@ lighting_switch_l2.template = `
 `;
 
 let lighting_switch_l3 = clone(shif_device);
-lighting_switch_l3.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-};
 lighting_switch_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:place="place"
                      v-bind:status="status_minimal()"
-                     v-on:click="change">
+                     v-on:click="$homegear.value_set(output, ! props.value)">
 
         ${shif_device_slot_favorites}
         ${shif_device_slot_profiles}
@@ -63,9 +57,6 @@ shif_comps_create('lightingSwitch', lighting_switch_l2, lighting_switch_l3);
 
 
 let lighting_brightness = clone(shif_device);
-lighting_brightness.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, this.props.value);
-};
 lighting_brightness.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"
@@ -74,7 +65,7 @@ lighting_brightness.template = `
                  v-bind:title="title"
                  v-bind:step=5
                  v-bind:disabled="disabled"
-                 v-on:change="change"
+                 v-on:change="$homegear.value_set(output, props.value)"
                  v-model:value="props.value">
 
         ${shif_device_slot_profiles}
@@ -107,17 +98,14 @@ lighting_button_l2.template = `
 `;
 
 let lighting_button_l3 = clone(shif_device);
-lighting_button_l3.methods.change = function(_event, down) {
-    homegear.value_set_clickcounter(this, this.output, down);
-};
 lighting_button_l3.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="title"
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status_minimal()"
                      v-bind:place="place"
-                     v-on:mousedown="change($event, true)"
-                     v-on:mouseup="change($event, false)">
+                     v-on:mousedown="$homegear.value_set(output, true)"
+                     v-on:mouseup="$homegear.value_set(output, false)">
 
         ${shif_device_slot_automations}
         ${shif_device_slot_draggable}
@@ -150,7 +138,7 @@ lighting_color_l2.template = `
 let lighting_color_l3 = clone(shif_device);
 lighting_color_l3.methods.change = function(event) {
     this.props.value = event;
-    homegear.value_set_clickcounter(this, this.output, this.props.value);
+    homegear.value_set(this.output, this.props.value);
 };
 lighting_color_l3.template = `
     <shif-colorpicker v-bind:width="{max_pixels: 600, percent: 100}"
@@ -190,9 +178,6 @@ lighting_function_l2.template = `
 `;
 
 let lighting_function_l3 = clone(shif_device);
-lighting_function_l3.methods.change = function(x) {
-    homegear.value_set_clickcounter(this, this.output, x);
-};
 lighting_function_l3.computed.values = function () {
     return this.rendering
         .map(x => ({
@@ -204,7 +189,7 @@ lighting_function_l3.template = `
     <shif-dropdown v-bind:title="title"
                    v-bind:values="values"
                    v-bind:selected="props.value"
-                   v-on:change="x => change(parseInt(x))">
+                   v-on:change="$homegear.value_set(output, parseInt($event))">
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
