@@ -1,7 +1,6 @@
 /*
     global
         clone
-        homegear
         shif_comps_create
         shif_device
         shif_device_slot_automations
@@ -27,10 +26,6 @@ timer_l2.template = `
 `;
 
 let timer_l3 = clone(shif_device);
-timer_l3.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-};
-
 timer_l3.template = `
     <div class="control_wrapper">
         <div class="device">
