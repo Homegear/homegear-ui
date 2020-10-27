@@ -1,7 +1,6 @@
 /*
     global
         clone
-        homegear
         shif_comps_create
         shif_device
         shif_device_slot_automations
@@ -17,9 +16,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let heating_slider_l2 = clone(shif_device);
-heating_slider_l2.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, !this.props.value);
-};
 heating_slider_l2.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
                      v-bind:title="dev.label"
@@ -27,7 +23,7 @@ heating_slider_l2.template = `
                      v-bind:status="status"
                      v-bind:place="place"
                      v-bind:actions="true"
-                     v-on:click_icon="change"
+                     v-on:click_icon="$homegear.value_set(output, ! props.value)"
                      v-on:click="level3(device)">
 
         ${shif_device_slot_automations}
@@ -36,9 +32,6 @@ heating_slider_l2.template = `
     </shif-generic-l2>
 `;
 let heating_slider_l3 = clone(shif_device);
-heating_slider_l3.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, this.props.value);
-};
 heating_slider_l3.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="parseFloat(props.maximumScaled)"
@@ -47,7 +40,7 @@ heating_slider_l3.template = `
                  v-bind:title="title"
                  v-bind:step="0.5"
                  v-bind:precision="1"
-                 v-on:change="change"
+                 v-on:change="$homegear.value_set(output, props.value)"
                  v-bind:disabled="disabled"
                  v-model:value="props.value">
 
@@ -105,14 +98,11 @@ heating_mode_l3.computed.values = function () {
             selected: x.condition.value == this.props.value,
         }));
 };
-heating_mode_l3.methods.change = function(x) {
-    homegear.value_set_clickcounter(this, this.output, x);
-};
 heating_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
                 v-bind:disabled="disabled"
-                v-on:input="x => change(parseInt(x))">
+                v-on:input="$homegear.value_set(output, parseInt($event)">
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
