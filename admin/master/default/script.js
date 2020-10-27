@@ -934,7 +934,6 @@ const shif_device = {
 
     data: function() {
         return {
-            lastClickCount: 0,
             profile_state: false,
         };
     },
