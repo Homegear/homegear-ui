@@ -26,7 +26,8 @@
             "disabledMainmenus": {
             },
             "disabledMenus": {
-                "settings.automations": true
+                "settings.automations": true,
+                "settings.log": true
             },
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"],
