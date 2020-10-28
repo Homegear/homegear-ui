@@ -591,7 +591,7 @@ const ShifSettingsProfile = {
                 case 'save':
                     if (this.mode === 'edit')
                         return this.profile_update(this.profile, this.form,
-                            () => this.$router.push({name: 'settings.profiles'})
+                            () => this.$router.back()
                         );
 
                     return this.profile_add(this.form,
