@@ -102,7 +102,7 @@ heating_mode_l3.template = `
     <shif-radio v-bind:title="title"
                 v-bind:values="values"
                 v-bind:disabled="disabled"
-                v-on:input="$homegear.value_set(output, parseInt($event)">
+                v-on:input="$homegear.value_set(output, parseInt($event))">
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
