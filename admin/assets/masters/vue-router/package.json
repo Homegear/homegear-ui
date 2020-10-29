@@ -1,27 +1,27 @@
 {
-    "_from": "vue-router@3.4.7",
-    "_id": "vue-router@3.4.7",
+    "_from": "vue-router@3.4.8",
+    "_id": "vue-router@3.4.8",
     "_inBundle": false,
-    "_integrity": "sha512-CbHXue5BLrDivOk5O4eZ0WT4Yj8XwdXa4kCnsEIOzYUPF\/07ZukayA2jGxDCJxLc9SgVQX9QX0OuGOwGlVB4Qg==",
+    "_integrity": "sha512-3BsR84AqarcmweXjItxw3jwQsiYNssYg090yi4rlzTnCJxmHtkyCvhNz9Z7qRSOkmiV485KkUCReTp5AjNY4wg==",
     "_location": "\/vue-router",
     "_phantomChildren": [],
     "_requested": {
         "type": "version",
         "registry": true,
-        "raw": "vue-router@3.4.7",
+        "raw": "vue-router@3.4.8",
         "name": "vue-router",
         "escapedName": "vue-router",
-        "rawSpec": "3.4.7",
+        "rawSpec": "3.4.8",
         "saveSpec": null,
-        "fetchSpec": "3.4.7"
+        "fetchSpec": "3.4.8"
     },
     "_requiredBy": [
         "#USER",
         "\/"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/vue-router\/-\/vue-router-3.4.7.tgz",
-    "_shasum": "bf189bafd16f4e4ef783c4a6250a3090f2c1fa1b",
-    "_spec": "vue-router@3.4.7",
+    "_resolved": "https:\/\/registry.npmjs.org\/vue-router\/-\/vue-router-3.4.8.tgz",
+    "_shasum": "2c06261d35d8075893470352d42d70b6287b8194",
+    "_spec": "vue-router@3.4.8",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "Evan You"
@@ -75,6 +75,7 @@
         "typescript": "^3.5.2",
         "vue": "^2.6.12",
         "vue-loader": "^15.9.3",
+        "vue-server-renderer": "^2.6.12",
         "vue-template-compiler": "^2.6.12",
         "vuepress": "^1.5.3",
         "vuepress-theme-vue": "^1.1.1",
@@ -135,7 +136,7 @@
     "sideEffects": false,
     "typings": "types\/index.d.ts",
     "unpkg": "dist\/vue-router.js",
-    "version": "3.4.7",
+    "version": "3.4.8",
     "vetur": {
         "tags": "vetur\/tags.json",
         "attributes": "vetur\/attributes.json"
