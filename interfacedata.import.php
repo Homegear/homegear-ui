@@ -221,52 +221,52 @@
         {
             "name": "HUMIDITY",
             "type": "float",
-            "value": 51
+            "value": 51.123456789
         },
         {
             "name": "TEMPERATURE",
             "type": "float",
-            "value": 21
+            "value": 21.123456789
         },
         {
             "name": "HUMIDITY1",
             "type": "float",
-            "value": 51.6
+            "value": 51.123456789
         },
         {
             "name": "TEMPERATURE1",
             "type": "float",
-            "value": 21.3
+            "value": 21.123456789
         },
         {
             "name": "HUMIDITY2",
             "type": "float",
-            "value": 51.6233
+            "value": 51.123456789
         },
         {
             "name": "TEMPERATURE2",
             "type": "float",
-            "value": 21.3233
+            "value": 21.123456789
         },
         {
             "name": "HUMIDITY3",
             "type": "float",
-            "value": 51.623
+            "value": 51.123456789
         },
         {
             "name": "TEMPERATURE3",
             "type": "float",
-            "value": 21.323
+            "value": 21.123456789
         },
         {
             "name": "HUMIDITY4",
             "type": "float",
-            "value": 51.6233
+            "value": 51.123456789
         },
         {
             "name": "TEMPERATURE4",
             "type": "float",
-            "value": 21.3233
+            "value": 21.123456789
         },
         {
             "name": "REQUEST",
@@ -2781,9 +2781,9 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 78,
-                            "channel": 1,
-                            "name": "TEMPERATURE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE1"
                         }
                     ],
                     [
@@ -2811,9 +2811,9 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 78,
-                            "channel": 1,
-                            "name": "TEMPERATURE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "TEMPERATURE1"
                         }
                     ],
                     [
