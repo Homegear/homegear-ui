@@ -210,6 +210,10 @@ select::-ms-expand {
   display: none;
 }
 
+optgroup {
+    color: #898989;
+}
+
 option {
   color: #fff;
   padding: 10px 20px;
