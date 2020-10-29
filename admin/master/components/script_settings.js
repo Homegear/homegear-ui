@@ -29,6 +29,50 @@
 
 
 
+const mixin_names = {
+    methods: {
+        floor_name: function (id) {
+            if (id === '-1')
+                return i18n('house.storyless');
+
+            return interfaceData.floors[id].name;
+        },
+
+        room_name: function (id) {
+            return interfaceData.rooms[id].name;
+        },
+
+        position: function (floor_id, room_id) {
+            return `${this.floor_name(floor_id)} - ${this.room_name(room_id)}`;
+        },
+
+        device_name: function (id) {
+            return interfaceData.devices[id].label;
+        },
+
+        control_name: function (device_id, control_idx) {
+            const cur = interfaceData.devices[device_id].controls[control_idx];
+
+            return cur.texts !== undefined &&
+                   cur.texts.title !== undefined &&
+                   cur.texts.title.content !== undefined
+                        ? cur.texts.title.content
+                        : cur.uniqueUiElementId;
+        },
+
+        input_name: function (device_id, control_idx, input_idx) {
+            return interfaceData.devices[device_id]
+                                .controls[control_idx]
+                                .variableInputs[input_idx]
+                                .name
+                                .toLowerCase();
+
+        },
+    },
+};
+
+
+
 Vue.component('shif-settings-element', {
     mixins: [mixin_print_mounted()],
 
@@ -464,11 +508,67 @@ const ShifSettingsProfileRoleValue = {
 
 
 
+const ShifRoomSelection = {
+    mixins: [
+        mixin_names,
+        mixin_print_mounted('shif-room-selection')
+    ],
+
+    props: {
+        map:   { type: Object, required: true, },
+        value: { type: Array, },
+    },
+
+    computed: {
+        value_usable: {
+            get: function () {
+                return this.value
+                           .map(x => this.option_value(x.floorId, x.roomId));
+            },
+            set: function (new_) {
+                function null_or_number(x) {
+                    return x === 'null' ? null : parseInt(x);
+                }
+
+                const locations = new_.map(x => x.split('-'))
+                                      .map(x => ({
+                                            floorId: null_or_number(x[0]),
+                                            roomId:  null_or_number(x[1]),
+                                       }));
+
+                this.$emit('input', locations);
+            },
+        },
+    },
+
+    methods: {
+        option_value: function (floorId, roomId) {
+            return `${floorId}-${roomId}`;
+        },
+    },
+
+    template: `
+        <select v-model="value_usable" multiple>
+            <option value="null-null">---</option>
+            <optgroup v-for="floor, floorId in map"
+                      v-bind:label="floor_name(floorId)">
+                <option v-for="roomId in floor"
+                        v-bind:value="option_value(floorId, roomId)">
+                    {{ room_name(roomId) }}
+                </option>
+            </optgroup>
+        </select>
+    `
+};
+
+
+
 const ShifSettingsProfile = {
     mixins: [
         mixin_modemenu,
         mixin_profiles,
-        mixin_print_mounted('shif-settings-profile')
+        mixin_print_mounted('shif-settings-profile'),
+        mixin_rooms,
     ],
 
     props: [
@@ -477,6 +577,7 @@ const ShifSettingsProfile = {
 
     components: {
         ShifSettingsProfileRoleValue,
+        ShifRoomSelection,
     },
 
     data: function () {
@@ -493,9 +594,8 @@ const ShifSettingsProfile = {
                         role: null,
                         value: null,
                     },
-                    location: {
-                        floor:    null,
-                        room:     null,
+                    locations: {
+                        rooms:    [{floorId: null, roomId: null}],
                         global:   true,
                         favorite: false,
                     },
@@ -512,9 +612,12 @@ const ShifSettingsProfile = {
             };
         }
 
-        const [floor, room] = profile.locations.length === 0
-                ? [null, null]
-                : [profile.locations[0].floorId, profile.locations[0].roomId];
+        const rooms = profile.locations.length === 0
+                ? [{floorId: null, roomId: null}]
+                : profile.locations.map(x => ({
+                    floorId: x.floorId === undefined ? null : x.floorId,
+                    roomId:  x.roomId  === undefined ? null : x.roomId,
+                  }));
 
         const global   = profile.global === true;
         const favorite = profile.favorite === true;
@@ -530,9 +633,8 @@ const ShifSettingsProfile = {
                 name: 'profile_edit',
                 icon: profile.icon,
                 profile_name: profile.name,
-                location: {
-                    floor:    floor === undefined ? null : floor,
-                    room:     room  === undefined ? null : room,
+                locations: {
+                    rooms:    rooms,
                     global:   global,
                     favorite: favorite,
                 },
@@ -546,25 +648,6 @@ const ShifSettingsProfile = {
             return this.modemenu_is_state(ModeMenuState.PROFILES);
         },
 
-        floors: function () {
-            return Object.keys(interfaceData.floors)
-                         .map(x => ({id: x, name: interfaceData.floors[x].name}))
-                         .concat({id: null, name: '---'});
-        },
-
-        filtered_rooms: function () {
-            let rooms = Object.keys(interfaceData.rooms);
-
-            if (this.form.location.floor !== undefined &&
-                this.form.location.floor !== null &&
-                this.form.location.floor in interfaceData.floors)
-                rooms = interfaceData.floors[this.form.location.floor]
-                                     .rooms;
-
-            return rooms.map(x => ({id: x, name: interfaceData.rooms[x].name}))
-                        .concat({id: null, name: '---'});
-        },
-
         filtered_roles: function () {
             return Object.keys(interfaceData.roles)
                          .filter(x => interfaceData.roles[x].roleProfileValues !== undefined)
@@ -574,6 +657,29 @@ const ShifSettingsProfile = {
 
         show_roles: function () {
             return interfaceData.options.roleProfileDefinable === true;
+        },
+
+        map_room_floor: function () {
+            function handle_room(floor_id, room_id) {
+                if (out[floor_id] === undefined)
+                    out[floor_id] = [room_id];
+                else if (out[floor_id].indexOf(room_id) == -1)
+                    out[floor_id].push(room_id);
+            }
+
+            let out = {};
+
+            for (const floor_id in interfaceData.floors) {
+                const floor = interfaceData.floors[floor_id];
+
+                for (const room_id of floor.rooms)
+                    handle_room(floor_id, room_id);
+            }
+
+            for (const room_id of this.unassigned_rooms)
+                handle_room(-1, room_id);
+
+            return out;
         },
     },
 
@@ -641,36 +747,22 @@ const ShifSettingsProfile = {
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.locations') }}:</div>
                     <div class="global"
-                         v-on:click.prevent="form.location.global = !form.location.global">
+                         v-on:click.prevent="form.locations.global = !form.locations.global">
                         <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
-                        <shif-checkbox v-model="form.location.global" />
+                        <shif-checkbox v-model="form.locations.global" />
                     </div>
                     <div class="global"
-                         v-on:click.prevent="form.location.favorite = !form.location.favorite">
+                         v-on:click.prevent="form.locations.favorite = !form.locations.favorite">
                         <div class="label">{{ i18n('settings.profiles.profile.locations.favorite') }}:</div>
-                        <shif-checkbox v-model="form.location.favorite" />
+                        <shif-checkbox v-model="form.locations.favorite" />
                     </div>
-                    <div class="label">{{ i18n('settings.profiles.profile.locations.floor') }}:</div>
-                    <select id="locationsFloors"
-                            name="locationsFloors"
-                            v-model="form.location.floor">
-                        <option v-for="i in floors"
-                                v-bind:value="i.id"
-                                autocomplete="off">
-                            {{ i.name }}
-                        </option>
-                    </select>
 
-                    <div class="label">{{ i18n('settings.profiles.profile.locations.room') }}:</div>
-                    <select id="locationsRooms"
-                            name="locationsRooms"
-                            v-model="form.location.room">
-                        <option v-for="i in filtered_rooms"
-                                v-bind:value="i.id"
-                                autocomplete="off">
-                            {{ i.name }}
-                        </option>
-                    </select>
+                    <div class="label">
+                        {{ i18n('settings.profiles.profile.locations.floor') }} /
+                        {{ i18n('settings.profiles.profile.locations.room') }}:
+                    </div>
+                    <shif-room-selection v-bind:map="map_room_floor"
+                                         v-model="form.locations.rooms" />
                 </div>
 
                 <div v-if="show_roles"
@@ -712,51 +804,6 @@ const ShifSettingsProfile = {
             </form>
         </div>
     `,
-};
-
-
-
-
-const mixin_names = {
-    methods: {
-        floor_name: function (id) {
-            if (id === '-1')
-                return i18n('house.storyless');
-
-            return interfaceData.floors[id].name;
-        },
-
-        room_name: function (id) {
-            return interfaceData.rooms[id].name;
-        },
-
-        position: function (floor_id, room_id) {
-            return `${this.floor_name(floor_id)} - ${this.room_name(room_id)}`;
-        },
-
-        device_name: function (id) {
-            return interfaceData.devices[id].label;
-        },
-
-        control_name: function (device_id, control_idx) {
-            const cur = interfaceData.devices[device_id].controls[control_idx];
-
-            return cur.texts !== undefined &&
-                   cur.texts.title !== undefined &&
-                   cur.texts.title.content !== undefined
-                        ? cur.texts.title.content
-                        : cur.uniqueUiElementId;
-        },
-
-        input_name: function (device_id, control_idx, input_idx) {
-            return interfaceData.devices[device_id]
-                                .controls[control_idx]
-                                .variableInputs[input_idx]
-                                .name
-                                .toLowerCase();
-
-        },
-    },
 };
 
 
