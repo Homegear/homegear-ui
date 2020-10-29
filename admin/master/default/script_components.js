@@ -300,11 +300,10 @@ const mixin_profiles = {
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
                          .filter(
-                x => x.locations.findIndex(
-                    loc => {
-                        return loc.floorId === floor &&
-                          (loc.roomId === undefined || loc.roomId === room);
-                    }
+                x => x.locations !== undefined &&
+                     x.locations.findIndex(
+                    loc => loc.floorId === floor &&
+                          (loc.roomId  === undefined || loc.roomId === room)
                 ) !== -1
             );
         },
@@ -317,16 +316,14 @@ const mixin_profiles = {
     },
 
     methods: {
-        locations: function (floor, room) {
-            if (floor === undefined && room === undefined)
+        locations: function (locations) {
+            if (locations === undefined || locations.length === 0)
                 return [];
 
-            return [
-                {
-                    floorId: floor === null ? undefined : Number(floor),
-                    roomId:  room  === null ? undefined : Number(room),
-                }
-            ];
+            return locations.map(x => ({
+                floorId: x.floorId === null ? undefined : Number(x.floorId),
+                roomId:  x.roomId  === null ? undefined : Number(x.roomId),
+            }));
         },
 
         role_profiles: function (role_id) {
@@ -390,8 +387,7 @@ const mixin_profiles = {
         },
 
         profile_add: function (form, cb) {
-            const locations = this.locations(form.location.floor,
-                                             form.location.room);
+            const locations = this.locations(form.locations.rooms);
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
@@ -401,8 +397,8 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global:    form.location.global,
-                        favorite:  form.location.favorite,
+                        global:    form.locations.global,
+                        favorite:  form.locations.favorite,
                         icon:      form.icon,
                         locations: locations,
                         roles:     [],
@@ -414,8 +410,8 @@ const mixin_profiles = {
                     id:        result.result,
                     icon:      form.icon,
                     locations: locations,
-                    global:    form.location.global,
-                    favorite:  form.location.favorite,
+                    global:    form.locations.global,
+                    favorite:  form.locations.favorite,
                     name:      form.profile_name,
                     roles:     [],
                     values:    [],
@@ -442,8 +438,7 @@ const mixin_profiles = {
                 return value;
             }
 
-            const locations = this.locations(form.location.floor,
-                                             form.location.room);
+            const locations = this.locations(form.locations.rooms);
 
             const [roles, values] = form.role.role !== null &&
                                     form.role.value !== undefined &&
@@ -470,8 +465,8 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global:    form.location.global,
-                        favorite:  form.location.favorite,
+                        global:    form.locations.global,
+                        favorite:  form.locations.favorite,
                         icon:      form.icon,
                         locations: locations,
                         roles:     roles,
@@ -482,8 +477,8 @@ const mixin_profiles = {
                 Vue.set(interfaceData.profiles, profile.id, {
                     id:        profile.id,
                     name:      form.profile_name,
-                    global:    form.location.global,
-                    favorite:  form.location.favorite,
+                    global:    form.locations.global,
+                    favorite:  form.locations.favorite,
                     icon:      form.icon,
                     locations: locations,
                     roles:     roles,
