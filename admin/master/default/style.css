@@ -306,6 +306,14 @@ a.disabled {
   z-index: 1000000;
 }
 
+#user_interaction {
+  background: #25282e;
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  z-index: 2000000;
+}
+
 #inhalt {
   width: 100%;
   max-width: 100%;
