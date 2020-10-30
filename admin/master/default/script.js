@@ -12,6 +12,7 @@
         shif_comps_create
         shif_register_disable_hooks
         user_logoff
+        status_format
 */
 
 
@@ -192,6 +193,21 @@ function set_or_extend(arr, idx, vals) {
         for (var i = 0; i < keys.length; ++i)
             arr[idx][keys[i]] = vals[keys[i]];
     }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+function status_format(status, precision) {
+    if (typeof(status) === 'string') {
+        const regex = /^(\d+(?:[.,]\d+)?)/;
+        return status.replace(regex, (match) => this.float_formatted(match, precision));
+    }
+
+    for (let cur of status)
+        cur.value = status_format.apply(this, [cur.value, precision]);
+
+    return status;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
