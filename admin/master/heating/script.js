@@ -8,6 +8,7 @@
         shif_device_slot_favorites
         shif_device_slot_profiles
         shif_register_disable_hooks
+        status_format
 */
 
 
@@ -56,11 +57,14 @@ shif_comps_create('heatingSlider', heating_slider_l2, heating_slider_l3);
 
 
 let heating_is_state_l2 = clone(shif_device);
+heating_is_state_l2.computed.status_formatted = function () {
+    return status_format.apply(this, [this.status, 1]);
+};
 heating_is_state_l2.template = `
     <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
-                     v-bind:status="status"
+                     v-bind:status="status_formatted"
                      v-bind:actions="true"
                      v-bind:place="place"
                      v-on:click="level3(device)">
@@ -72,11 +76,14 @@ heating_is_state_l2.template = `
     </shif-generic-l2>
 `;
 let heating_is_state_l3 = clone(shif_device);
+heating_is_state_l3.computed.status_formatted = function () {
+    return status_format.apply(this, [this.status_minimal(false), 1]);
+};
 heating_is_state_l3.template = `
     <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
                      v-bind:title="title"
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
-                     v-bind:status="status"
+                     v-bind:status="status_formatted"
                      v-bind:place="place">
 
         ${shif_device_slot_automations}
