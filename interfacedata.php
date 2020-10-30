@@ -355,7 +355,10 @@
             "logoff": "Logoff",
             "disabled_text": "disabled",
             "hide": "hide",
-            "close": "close"
+            "close": "close",
+            "user_interaction.alert.button.true": "Confirm",
+            "user_interaction.confirm.button.false": "Abort",
+            "user_interaction.confirm.button.true": "Confirm"
         },
         "de-DE": {
             "login": {
@@ -489,7 +492,10 @@
             "logoff": "Abmelden",
             "disabled_text": "gesperrt",
             "hide": "ausblenden",
-            "close": "schließen"
+            "close": "schließen",
+            "user_interaction.alert.button.true": "Bestätigen",
+            "user_interaction.confirm.button.false": "Abbruch",
+            "user_interaction.confirm.button.true": "Bestätigen"
         }
     },
     "iconFallback": {
