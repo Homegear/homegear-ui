@@ -125,6 +125,8 @@ echo '</script>';
 
   <div id="modal">
   </div>
+  <div id="user_interaction">
+  </div>
 
   <div id="breadcrumbs">
   </div>
