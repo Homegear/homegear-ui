@@ -1,6 +1,7 @@
 /*
     global
         NotificationDisplayType
+        i18n
         mixin_notification
         mixin_print_mounted
         mixin_scroll_position
@@ -11,6 +12,7 @@
         ShifNotificationsLvl1
         ShifNotificationsNotification
         modal_mount
+        user_interaction
 */
 
 
@@ -283,3 +285,105 @@ const ShifNotifications = {
 function modal_mount() {
     modal.$mount('#modal');
 }
+
+
+
+let user_interaction = new Vue({
+    name: 'UserInteraction',
+
+    components: {
+        ShifNotificationMessage,
+    },
+
+    data: function () {
+        return {
+            msg: {
+                modalTitle: '',
+                modalContent: '',
+                buttons: [],
+            },
+
+            show: false,
+        };
+    },
+
+    created: function () {
+        this._resolve = null;
+    },
+
+    methods: {
+        _trans_get: function (obj, elem, def) {
+            if (obj !== undefined &&
+                elem !== undefined &&
+                obj[elem] !== undefined)
+                return i18n(obj[elem]);
+            if (def!== undefined)
+                return i18n(def);
+
+            return undefined;
+        },
+
+        confirm: function (question) {
+            if (question === undefined || typeof(question) !== 'object')
+                return;
+
+            this.msg.modalContent = this._trans_get(question, 'content');
+            this.msg.modalTitle   = this._trans_get(question, 'title');
+
+            this.msg.buttons = [
+                {
+                    value: true,
+                    type: 'success',
+                    label: this._trans_get(question.buttons, 'true',
+                                           'user_interaction.confirm.button.true'),
+                },
+                {
+                    value: false,
+                    type: 'error',
+                    label: this._trans_get(question.buttons, 'false',
+                                           'user_interaction.confirm.button.false'),
+                },
+            ];
+            this.show = true;
+
+            return new Promise((res) => this._resolve = res);
+        },
+
+        alert: function (question) {
+            if (question === undefined || typeof(question) !== 'object')
+                return;
+
+            this.msg.modalContent = this._trans_get(question, 'content');
+            this.msg.modalTitle   = this._trans_get(question, 'title');
+
+            this.msg.buttons = [
+                {
+                    value: true,
+                    type: 'success',
+                    label: this._trans_get(question.buttons, 'true',
+                                           'user_interaction.alert.button.true'),
+                },
+            ];
+
+            this.show = true;
+
+            return new Promise((res) => this._resolve = res);
+        },
+
+        _on_click: function (btn) {
+            if (this._resolve !== undefined && this._resolve !== null)
+                this._resolve(btn.button.value);
+
+            this.show = false;
+        },
+    },
+
+    template: `
+        <div v-if="show" id="user_interaction">
+            <div class="content content_single">
+                <shif-notification-message v-bind="msg"
+                                           v-on:click="_on_click"/>
+            </div>
+        </div>
+    `
+}).$mount('#user_interaction');
