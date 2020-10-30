@@ -225,7 +225,7 @@ Vue.mixin({
             }
 
             /**
-             * Only act in those two cases!
+             * Only act in those cases!
              * There might have been a click on the disabled content
              * (content_small) which we do not care about.
              **/
