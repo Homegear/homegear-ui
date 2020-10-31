@@ -307,11 +307,11 @@ a.disabled {
 }
 
 #user_interaction {
-  background: #25282e;
   position: absolute;
   width: 100%;
   height: inherit;
   z-index: 2000000;
+  background: rgba(0, 0, 0, .6);
 }
 
 #inhalt {
@@ -2083,6 +2083,10 @@ td {
 
 .notification_message .notification_buttons {
   padding: 20px;
+}
+
+#user_interaction .notification_message {
+    border: 3px white ridge;
 }
 
 
