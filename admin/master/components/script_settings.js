@@ -200,6 +200,7 @@ const ShifSettingsUser = {
             ],
             languages: interfaceData.i18n.languages,
             name:      this.$route.name,
+            changed: false,
 
             form: {
                 name: 'user_edit',
@@ -209,6 +210,15 @@ const ShifSettingsUser = {
                 color:     interfaceData.options.highlight,
             }
         };
+    },
+
+    watch: {
+        form: {
+            handler: function () {
+                this.changed = true;
+            },
+            deep: true,
+        },
     },
 
     computed: {
@@ -249,7 +259,8 @@ const ShifSettingsUser = {
                     jsonrpc: '2.0',
                     method: 'setUserMetadata',
                     params: [new_settings]
-                }, function () {
+                }, () => {
+                    this.changed = false;
                     window.location.reload(true);
                 });
             });
@@ -258,6 +269,14 @@ const ShifSettingsUser = {
         two_fa_register_dev: function () {
             return user_register_webauthn_device();
         },
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        if (! this.changed)
+            next(true);
+        else
+            user_interaction.confirm({content: 'settings.user.manage.unsaved'})
+                            .then(next);
     },
 
     template: `
