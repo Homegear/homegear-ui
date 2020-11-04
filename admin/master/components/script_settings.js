@@ -273,10 +273,13 @@ const ShifSettingsUser = {
 
     beforeRouteLeave: function (to, from, next) {
         if (! this.changed)
-            next(true);
-        else
-            user_interaction.confirm({content: 'settings.user.manage.unsaved'})
-                            .then(next);
+            return next();
+
+        user_interaction.confirm({content: 'settings.user.manage.unsaved'})
+                        .then(x => {
+                            if (x)
+                                next();
+                        });
     },
 
     template: `
@@ -833,10 +836,13 @@ const ShifSettingsProfile = {
 
     beforeRouteLeave: function (to, from, next) {
         if (! this.changed)
-            next(true);
-        else
-            user_interaction.confirm({content: 'settings.profiles.profile.unsaved'})
-                            .then(next);
+            return next();
+
+        user_interaction.confirm({content: 'settings.profiles.profile.unsaved'})
+                        .then(x => {
+                            if (x)
+                                next();
+                        });
     },
 
     template: `
