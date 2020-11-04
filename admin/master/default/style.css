@@ -206,6 +206,10 @@ select {
   cursor: pointer;
 }
 
+select[multiple] {
+  padding: 0px;
+}
+
 select::-ms-expand {
   display: none;
 }
@@ -214,9 +218,18 @@ optgroup {
     color: #898989;
 }
 
+select[multiple] optgroup {
+  padding-top: 20px;
+  text-indent: 10px;
+}
+
 option {
   color: #fff;
   padding: 10px 20px;
+}
+
+option::before {
+  display: none;
 }
 
 fieldset {
