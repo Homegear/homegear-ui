@@ -774,14 +774,23 @@ const ShifSettingsProfile = {
                         this.$root.profiles.id = this.profile.id;
 
                         return this.profile_load(this.profile,
-                            () => this.$router.push({name: 'house.tab.rooms'})
+                            () => {
+                                this.$router.push({name: 'house.tab.rooms'});
+                                user_interaction.alert({
+                                    content: 'settings.profiles.profile.load.description'
+                                });
+
+                            }
                         );
                     }
 
                     this.$root.profiles.id = undefined;
 
                     this.modemenu_show(ModeMenuState.PROFILES);
-                    return this.$router.push({name: 'house.tab.rooms'});
+                    this.$router.push({name: 'house.tab.rooms'});
+                    return user_interaction.alert({
+                        content: 'settings.profiles.profile.load.description'
+                    });
 
                 case 'save':
                     if (!this.check_storable())
