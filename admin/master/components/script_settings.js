@@ -352,7 +352,7 @@ const ShifSettingsUser = {
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="border-bottom: none; padding-bottom: 0">
                     <input type="submit"
                            v-bind:name="form.name"
                            v-bind:value="i18n(name + '.save')" />

@@ -1,0 +1,8 @@
+#user_edit .form-group:first-child {
+    margin-top: 20px;
+}
+
+#user_edit #user_highlight_display .control_wrapper .color {
+border: none;
+padding: 10px 0 0 0;
+}
