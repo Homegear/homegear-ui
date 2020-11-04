@@ -550,7 +550,7 @@ a.disabled {
 }
 
 .accordion>.device .title_only .device_title {
-  margin: 19px;
+  margin: 19px 0;
 }
 
 .accordion_content {
