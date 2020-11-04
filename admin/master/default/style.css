@@ -1593,8 +1593,9 @@ td {
   padding: 0;
 }
 
-#house .profiles_wrapper .device_wrapper:last-child .device {
-  border-bottom: 2px solid #fff;
+#house .profiles_wrapper .device_wrapper:last-child .device,
+#favorites .profiles_wrapper .device_wrapper:last-child .device {
+  border-bottom: 1px solid #fff;
 }
 
 #profiles .profiles_wrapper .device_wrapper:last-child .device {
