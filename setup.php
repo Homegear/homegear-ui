@@ -73,12 +73,12 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
         header('Content-Type: application/json; charset=utf-8');
-        if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
-            include(getcwd()."/admin/master/homegear/functions.php");
+        if(file_exists(getcwd()."/admin/functions.php")){
+            include(getcwd()."/admin/functions.php");
             die(json_encode(homegear_init(), JSON_PRETTY_PRINT));
         }
         else{
-            die('{"error": "No homegear functions.php file!"}');
+            die('{"error": "No /admin/functions.php file!"}');
         }
     }
 
