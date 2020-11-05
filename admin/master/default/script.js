@@ -879,6 +879,87 @@ Vue.component('shif-generic-l2', {
         </div>
     `,
 });
+
+
+
+Vue.component('shif-multi-select', {
+    props: {
+        options: {type: Object, required: true,},
+        value: {
+            type: Array,
+            default: function () { return []; },
+        },
+        func_group_name: {
+            type: Function,
+            default: function(x) { return x; },
+        },
+        func_item_name: {
+            type: Function,
+            default: function (x, y) { return `${x}-${y}`; },
+        },
+        func_key: {
+            type: Function,
+            default: function (x, y) { return `${x}-${y}`; },
+        },
+    },
+
+    computed: {
+        model: function () {
+            let out = {};
+
+            for (const opt in this.options) {
+                const cur = this.options[opt];
+                for (const i of cur)
+                    out[this.func_key(opt, i)] = {
+                        selected: this.is_selected(opt, i),
+                    };
+            }
+
+            return out;
+        },
+    },
+
+    methods: {
+        is_selected: function (group, item) {
+            return this.value.indexOf(this.func_key(group, item)) !== -1;
+        },
+
+        has_selected_class: function (group, item) {
+            return this.model[this.func_key(group, item)].selected;
+        },
+
+        on_click: function (group, item) {
+            const key = this.func_key(group, item);
+            this.model[key].selected = ! this.model[key].selected;
+
+            let selected = [];
+            for (const i in this.model) {
+                const cur = this.model[i];
+
+                if (cur.selected === true)
+                    selected.push(i);
+            }
+
+            this.$emit('input', selected);
+        },
+    },
+
+    template: `
+        <div class="form-group">
+            <div class="select">
+                <div class="optgroup" v-for="group, group_key in options">
+                    <p>{{ func_group_name(group_key) }}</p>
+                    <div v-for="i in group"
+                         v-bind:class="{selected: has_selected_class(group_key, i)}"
+                         v-on:click="on_click(group_key, i)"
+                         class="option">
+                        <p>{{ func_item_name(group_key, i) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+});
 // }}}
 
 
