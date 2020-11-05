@@ -352,7 +352,7 @@ const ShifSettingsUser = {
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="form-group" style="border-bottom: none; padding-bottom: 0">
+                <div class="form-group">
                     <input type="submit"
                            v-bind:name="form.name"
                            v-bind:value="i18n(name + '.save')" />
@@ -535,8 +535,17 @@ const ShifRoomSelection = {
     ],
 
     props: {
-        map:   { type: Object, required: true, },
-        value: { type: Array, },
+        map:   {
+            type: Object,
+            required: true,
+        },
+        value: {
+            type: Array,
+        },
+        value_separator: {
+            type: String,
+            default: '<|>',
+        },
     },
 
     computed: {
@@ -550,7 +559,7 @@ const ShifRoomSelection = {
                     return x === 'null' ? null : parseInt(x);
                 }
 
-                const locations = new_.map(x => x.split('-'))
+                const locations = new_.map(x => x.split(this.value_separator))
                                       .map(x => ({
                                             floorId: null_or_number(x[0]),
                                             roomId:  null_or_number(x[1]),
@@ -563,21 +572,16 @@ const ShifRoomSelection = {
 
     methods: {
         option_value: function (floorId, roomId) {
-            return `${floorId}-${roomId}`;
+            return `${floorId}${this.value_separator}${roomId}`;
         },
     },
 
     template: `
-        <select v-model="value_usable" multiple>
-            <option value="null-null">---</option>
-            <optgroup v-for="floor, floorId in map"
-                      v-bind:label="floor_name(floorId)">
-                <option v-for="roomId in floor"
-                        v-bind:value="option_value(floorId, roomId)">
-                    {{ room_name(roomId) }}
-                </option>
-            </optgroup>
-        </select>
+        <shif-multi-select v-model="value_usable"
+                           v-bind:options="map"
+                           v-bind:func_group_name="floor_name"
+                           v-bind:func_item_name="(_,x) => room_name(x)"
+                           v-bind:func_key="option_value" />
     `
 };
 
@@ -601,69 +605,7 @@ const ShifSettingsProfile = {
     },
 
     data: function () {
-        if (this.profile_id === undefined ||
-            ! (this.profile_id in interfaceData.profiles))
-            return {
-                mode: 'add',
-                profile: null,
-                changed: false,
-                form: {
-                    name: 'profile_add',
-                    icon: 'slider_1',
-                    profile_name: '',
-                    role: {
-                        role: null,
-                        value: null,
-                    },
-                    locations: {
-                        rooms:    [{floorId: null, roomId: null}],
-                        global:   true,
-                        favorite: false,
-                    },
-                }
-            };
-
-        const profile = interfaceData.profiles[this.profile_id];
-
-        if (this.is_enabled) {
-            return {
-                mode: 'edit',
-                profile: profile,
-                changed: false,
-                form: this.$root.profiles.form,
-            };
-        }
-
-        const rooms = profile.locations.length === 0
-                ? [{floorId: null, roomId: null}]
-                : profile.locations.map(x => ({
-                    floorId: x.floorId === undefined ? null : x.floorId,
-                    roomId:  x.roomId  === undefined ? null : x.roomId,
-                  }));
-
-        const global   = profile.global === true;
-        const favorite = profile.favorite === true;
-
-        const role = profile.roles !== undefined && profile.roles.length > 0
-                        ? profile.roles[0]
-                        : {role: null, value: null};
-
-        return {
-            mode: 'edit',
-            profile: profile,
-            changed: false,
-            form: {
-                name: 'profile_edit',
-                icon: profile.icon,
-                profile_name: profile.name,
-                locations: {
-                    rooms:    rooms,
-                    global:   global,
-                    favorite: favorite,
-                },
-                role: role,
-            },
-        };
+        return this[`_data_${this.state()}`]();
     },
 
     watch: {
@@ -676,10 +618,6 @@ const ShifSettingsProfile = {
     },
 
     computed: {
-        is_enabled: function () {
-            return this.modemenu_is_state(ModeMenuState.PROFILES);
-        },
-
         filtered_roles: function () {
             return Object.keys(interfaceData.roles)
                          .filter(x => interfaceData.roles[x].roleProfileValues !== undefined)
@@ -715,52 +653,151 @@ const ShifSettingsProfile = {
         },
 
         global_or_room: function () {
-            return this.form.locations.global === true ||
-                   (this.form.locations !== undefined &&
-                    this.form.locations.rooms !== undefined &&
-                    this.form.locations.rooms.length > 0 &&
-                    ! (this.form.locations.rooms.length === 1 &&
-                       (this.form.locations.rooms[0].roomId === 'null' ||
-                        this.form.locations.rooms[0].roomId === null)));
-        }
+            return this.form.locations !== undefined &&
+                   (this.form.locations.global === true ||
+                    this.form.locations.rooms.length > 0);
+        },
     },
 
     methods: {
+        _data_new: function () {
+            return {
+                mode: 'add',
+                profile: null,
+                changed: false,
+                form: {
+                    name: 'profile_add',
+                    icon: 'slider_1',
+                    profile_name: '',
+                    role: {
+                        role: null,
+                        value: null,
+                    },
+                    locations: {
+                        rooms:    [],
+                        global:   true,
+                        favorite: false,
+                    },
+                }
+            };
+        },
+        _data_new_devices: function () {
+            return {
+                mode: 'add',
+                profile: null,
+                changed: this.$root.profiles.changed,
+                form: this.$root.profiles.form,
+            };
+        },
+        _data_edit: function () {
+            const profile = interfaceData.profiles[this.profile_id];
+
+            const role = profile.roles !== undefined && profile.roles.length > 0
+                            ? profile.roles[0]
+                            : {role: null, value: null};
+
+            return {
+                mode: 'edit',
+                profile: profile,
+                changed: false,
+                form: {
+                    name: 'profile_edit',
+                    icon: profile.icon,
+                    profile_name: profile.name,
+                    locations: {
+                        rooms:    profile.locations,
+                        global:   profile.global === true,
+                        favorite: profile.favorite === true,
+                    },
+                    role: role,
+                },
+            };
+        },
+        _data_edit_devices: function () {
+            const profile = interfaceData.profiles[this.profile_id];
+
+            return {
+                mode: 'edit',
+                profile: profile,
+                changed: this.$root.profiles.changed,
+                form: this.$root.profiles.form,
+            };
+        },
+
+        is_edit_devices: function () {
+            return this.modemenu_is_state(ModeMenuState.PROFILES);
+        },
+
+        state: function () {
+            if (this.profile_id === undefined ||
+                ! (this.profile_id in interfaceData.profiles)) {
+
+                return this.is_edit_devices()
+                    ? 'new_devices'
+                    : 'new';
+            }
+
+            return this.is_edit_devices()
+                ? 'edit_devices'
+                : 'edit';
+        },
+
+        check_storable: function () {
+            if (this.form.profile_name === '') {
+                user_interaction.alert({
+                    content: 'settings.profiles.profile.name_required'
+                });
+                return false;
+            }
+
+            if (! this.global_or_room) {
+                user_interaction.alert({
+                    content: 'settings.profiles.profile.global_or_room'
+                });
+                return false;
+            }
+
+            return true;
+        },
+
         form_submit: function (source) {
             switch (source) {
                 case 'load':
-                    this.$root.profiles.form = this.form;
-                    this.$root.profiles.id   = this.profile.id;
+                    if (!this.check_storable())
+                        return;
 
-                    return this.profile_load(this.profile,
-                        () => this.$router.push({name: 'house.tab.rooms'})
-                    );
+                    this.$root.profiles.form    = this.form;
+                    this.$root.profiles.changed = this.changed;
+                    this.changed = false;
+
+                    if (this.mode === 'edit') {
+                        this.$root.profiles.id = this.profile.id;
+
+                        return this.profile_load(this.profile,
+                            () => this.$router.push({name: 'house.tab.rooms'})
+                        );
+                    }
+
+                    this.$root.profiles.id = undefined;
+
+                    this.modemenu_show(ModeMenuState.PROFILES);
+                    return this.$router.push({name: 'house.tab.rooms'});
 
                 case 'save':
-                    if (! this.global_or_room)
-                        return user_interaction.alert({
-                            content: 'settings.profiles.profile.global_or_room'
-                        });
+                    if (!this.check_storable())
+                        return;
 
-                    if (this.mode === 'edit')
-                        return this.profile_update(this.profile, this.form,
-                            () => {
-                                this.changed = false;
-                                this.$router.back();
-                            }
-                        );
-
-                    return this.profile_add(this.form,
-                        (result) => {
+                    {
+                        const cb = () => {
                             this.changed = false;
-                            this.$router.replace({
-                                name: 'settings.profiles.profile',
-                                params: {
-                                    profile_id: result.result
-                                },
-                            });
-                        }
-                    );
+                            this.$router.back();
+                        };
+
+                        if (this.mode === 'edit')
+                            return this.profile_update(this.profile, this.form, cb);
+
+                        return this.profile_add(this.form, cb);
+                    }
 
                 case 'delete':
                     return user_interaction.confirm({
@@ -771,15 +808,18 @@ const ShifSettingsProfile = {
                                 () => this.$router.replace({name: 'settings.profiles'})
                             );
                     });
+
+                case 'abort':
+                    return this.$router.replace({name: 'settings.profiles'});
             }
         },
     },
 
     mounted: function () {
-        if (this.mode === 'edit' && ! this.is_enabled)
-            return this.profile_build_root_devs(this.profile);
+        if (this.is_edit_devices())
+            return this.modemenu_hide();
 
-        this.modemenu_hide();
+        this.profile_build_root_devs(this.profile);
     },
 
     beforeRouteLeave: function (to, from, next) {
@@ -850,12 +890,14 @@ const ShifSettingsProfile = {
                 </div>
 
                 <div class="form-group">
-                    <input v-if="mode === 'edit' && form.role.role === null"
+                    <input v-if="form.role.role === null"
                            type="submit"
                            name="load"
                            v-on:click="form_submit('load')"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
+                </div>
 
+                <div class="form-group">
                     <input type="submit"
                            name="save"
                            v-on:click="form_submit('save')"
@@ -866,6 +908,11 @@ const ShifSettingsProfile = {
                            name="delete"
                            v-on:click="form_submit('delete')"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
+                    <input v-else-if="mode === 'add'"
+                           type="submit"
+                           name="abort"
+                           v-on:click="form_submit('abort')"
+                           v-bind:value="i18n('settings.profiles.profile.abort')" />
                 </div>
             </form>
         </div>
