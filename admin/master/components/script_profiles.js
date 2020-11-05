@@ -5,6 +5,7 @@
         mixin_profiles
         shif_device_slot_automations_profile
         shif_device_slot_draggable
+        shif_device_slot_favorites
 */
 /*
     exported
@@ -36,6 +37,7 @@ let ShifProfilesGlobal = {
                                          v-bind:title="i.val.name"
                                          v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
                                          v-on:click="profile_start(i.val)">
+                            ${shif_device_slot_favorites_profile}
                             ${shif_device_slot_automations_profile}
                             ${shif_device_slot_draggable}
                         </shif-generic-l2>
