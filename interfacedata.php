@@ -317,7 +317,9 @@
             "settings.profiles.profile.edit": "Edit",
             "settings.profiles.profile.delete_request": "Are you sure you want to delete this profile?",
             "settings.profiles.profile.unsaved": "You have unsaved changes. Continue anyway?",
+            "settings.profiles.profile.abort": "Abort",
             "settings.profiles.profile.global_or_room": "A profile must either be marked as \"global\" or be assigned to a room. Please change your configuration.",
+            "settings.profiles.profile.name_required": "A profile must have a name. Please change your configuration.",
             "settings.profiles.description": "Add and delete profiles",
             "settings.user": "User",
             "settings.user.description": "Manage",
@@ -351,6 +353,7 @@
             "modemenu.sort.name": "Sort mode",
             "modemenu.sort.button.end": "Save",
             "modemenu.profiles.name.label": "Profile",
+            "modemenu.profiles.name.new": "New profile",
             "modemenu.profiles.button.settings": "Back to profile configuration",
             "modemenu.profiles.button.end": "Save",
             "modemenu.profiles.button.abort": "abort",
@@ -457,7 +460,9 @@
             "settings.profiles.profile.save": "Speichern",
             "settings.profiles.profile.edit": "Bearbeiten",
             "settings.profiles.profile.unsaved": "Sie haben noch nicht gespeicherte Änderungen. Trotzdem fortsetzen?",
+            "settings.profiles.profile.abort": "Abbruch",
             "settings.profiles.profile.global_or_room": "Ein Profil muss entweder als \"global\" markiert, oder mindestens einem Raum zugewiesen sein. Bitte ändern Sie ihre Konfiguration.",
+            "settings.profiles.profile.name_required": "Ein Profil muss einen Namen besitzen. Bitte ändern Sie ihre Konfiguration.",
             "settings.profiles.profile.delete_request": "Sind Sie sicher, dass Sie das Profil löschen möchten?",
             "settings.profiles.description": "Profile erstellen und löschen",
             "settings.user": "Benutzer",
@@ -492,6 +497,7 @@
             "modemenu.sort.name": "Sortiermodus",
             "modemenu.sort.button.end": "Speichern",
             "modemenu.profiles.name.label": "Profil",
+            "modemenu.profiles.name.new": "Neues Profil",
             "modemenu.profiles.button.settings": "Zurück zur Profilkonfiguration",
             "modemenu.profiles.button.end": "Speichern",
             "modemenu.profiles.button.abort": "abbrechen",
@@ -635,6 +641,10 @@
         "wind": "wind_1",
         "blinds_1": "blind_2",
         "blinds_2": "blind_3"
+    },
+    "map_automation": {
+        "devices": [],
+        "profiles": []
     }
 }
 ';
