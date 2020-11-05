@@ -679,7 +679,6 @@ const ShifSettingsProfile = {
                     locations: {
                         rooms:      [],
                         global:     true,
-                        favorite:   false,
                         categories: [],
                     },
                 }
@@ -711,7 +710,6 @@ const ShifSettingsProfile = {
                     locations: {
                         rooms:      profile.locations,
                         global:     profile.global === true,
-                        favorite:   profile.favorite === true,
                         categories: profile.categories,
                     },
                     role: role,
@@ -873,11 +871,6 @@ const ShifSettingsProfile = {
                          v-on:click.prevent="form.locations.global = !form.locations.global">
                         <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
                         <shif-checkbox v-model="form.locations.global" />
-                    </div>
-                    <div class="global"
-                         v-on:click.prevent="form.locations.favorite = !form.locations.favorite">
-                        <div class="label">{{ i18n('settings.profiles.profile.locations.favorite') }}:</div>
-                        <shif-checkbox v-model="form.locations.favorite" />
                     </div>
 
                     <div class="label">
