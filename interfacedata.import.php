@@ -435,7 +435,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                600000,
                 600004
             ]
         },
@@ -456,7 +455,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                501000,
                 501004
             ]
         },
@@ -477,7 +475,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                501000,
                 501004
             ]
         },
@@ -498,7 +495,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                600000,
                 600004
             ]
         },
@@ -519,7 +515,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                501000,
                 501004
             ]
         },
@@ -540,7 +535,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                501000,
                 501004
             ]
         },
@@ -561,7 +555,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                501000,
                 501004
             ]
         },
@@ -582,7 +575,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                501000,
                 501004
             ]
         },
@@ -603,7 +595,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                502000,
                 502004
             ]
         },
@@ -624,7 +615,6 @@
             "channel": 1,
             "varName": "LEVEL",
             "roleId": [
-                502000,
                 502004
             ]
         },
@@ -639,49 +629,73 @@
             "deviceId": 61,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 62,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 63,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 64,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 65,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
             "deviceId": 66,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301002
+            "roleId": 301002,
+            "invert": true
         },
         {
+            "name": "door contact",
             "deviceId": 67,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301001
+            "roleId": 301001,
+            "invert": true
         },
         {
+            "name": "door contact",
             "deviceId": 69,
             "channel": 1,
             "varName": "STATE",
-            "roleId": 301001
+            "roleId": 301001,
+            "invert": true
+        },
+        {
+            "name": "window essen",
+            "deviceId": 87,
+            "channel": 1,
+            "varName": "STATE",
+            "roleId": 301002
+        },
+        {
+            "name": "door lock",
+            "deviceId": 88,
+            "channel": 1,
+            "varName": "STATE",
+            "roleId": 301003
         },
         {
             "deviceId": 70,
@@ -706,7 +720,6 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": [
-                201000,
                 201003
             ]
         },
@@ -727,7 +740,6 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": [
-                201000,
                 201003
             ]
         },
@@ -748,7 +760,6 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": [
-                201000,
                 201003
             ]
         },
@@ -769,7 +780,6 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": [
-                201000,
                 201003
             ]
         },
@@ -790,7 +800,6 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": [
-                201000,
                 201003
             ]
         },
@@ -811,7 +820,6 @@
             "channel": 1,
             "varName": "CONTROL_MODE",
             "roleId": [
-                201000,
                 201003
             ]
         },
@@ -820,18 +828,6 @@
             "channel": 1,
             "varName": "STATE",
             "roleId": 100001
-        },
-        {
-            "deviceId": 87,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002
-        },
-        {
-            "deviceId": 88,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 301003
         },
         {
             "deviceId": 91,
