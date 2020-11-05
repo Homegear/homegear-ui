@@ -6,6 +6,7 @@
         scroll_positions
         shif_device_slot_automations_profile
         shif_device_slot_draggable
+        shif_device_slot_favorites_profile
 */
 /*
     exported
@@ -433,7 +434,7 @@ const mixin_profiles = {
                     },
                     {
                         global:     form.locations.global,
-                        favorite:   form.locations.favorite,
+                        favorite:   false,
                         categories: form.locations.categories,
                         icon:       form.icon,
                         locations:  locations,
@@ -448,6 +449,7 @@ const mixin_profiles = {
                     locations:  locations,
                     global:     form.locations.global,
                     favorite:   form.locations.favorite,
+                    favorite:   false,
                     categories: form.locations.categories,
                     name:       form.profile_name,
                     roles:      roles,
@@ -476,7 +478,7 @@ const mixin_profiles = {
                     },
                     {
                         global:     form.locations.global,
-                        favorite:   form.locations.favorite,
+                        favorite:   profile.favorite,
                         categories: form.locations.categories,
                         icon:       form.icon,
                         locations:  locations,
@@ -489,7 +491,7 @@ const mixin_profiles = {
                     id:         profile.id,
                     name:       form.profile_name,
                     global:     form.locations.global,
-                    favorite:   form.locations.favorite,
+                    favorite:   profile.favorite,
                     categories: form.locations.categories,
                     icon:       form.icon,
                     locations:  locations,
@@ -499,6 +501,32 @@ const mixin_profiles = {
 
                 if (this.modemenu_is_state(ModeMenuState.PROFILES))
                     this.modemenu_hide();
+
+                if (cb)
+                    return cb(result);
+            });
+        },
+
+        profile_update_favorite(profile, favorite, cb) {
+            return this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'updateVariableProfile',
+                params: [
+                    profile.id,
+                    {
+                        [interfaceData.options.language]: profile.name,
+                    },
+                    {
+                        global:    profile.global,
+                        favorite:  favorite,
+                        icon:      profile.icon,
+                        locations: profile.locations,
+                        roles:     profile.roles,
+                        values:    profile.values,
+                    }
+                ],
+            }, (result) => {
+                Vue.set(interfaceData.profiles[profile.id], 'favorite', favorite);
 
                 if (cb)
                     return cb(result);
@@ -699,6 +727,7 @@ Vue.component('shif-house-collected-entries', {
                                          v-bind:status="i18n('modemenu.profiles.name.label')"
                                          v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
                                          v-on:click="profile_start(i.val)">
+                            ${shif_device_slot_favorites_profile}
                             ${shif_device_slot_automations_profile}
                             ${shif_device_slot_draggable}
                         </shif-generic-l2>
@@ -849,6 +878,57 @@ Vue.component('shif-checkbox-favorites', {
                     <div v-bind:class="classname">
                         <shif-checkbox v-model="state" />
                     </div>
+                </div>
+            </template>
+        </div>
+    `
+});
+
+
+
+Vue.component('shif-checkbox-favorites-profile', {
+    mixins: [mixin_profiles, mixin_modemenu],
+
+    props: {
+        profile_id: {
+            type: [Number, String],
+            required: true,
+        },
+        classname: {
+            type: String,
+            default: 'checkbox_favorites',
+        },
+    },
+
+    inject: ['layer'],
+
+    computed: {
+        profile: function () {
+            return interfaceData.profiles[this.profile_id];
+        },
+
+        show: function () {
+            return this.layer === 2 &&
+                   this.modemenu_is_state(ModeMenuState.FAVORITES);
+        },
+
+        state: {
+            get: function () {
+                return this.profile.favorite === true;
+            },
+            set: function (new_) {
+                this.profile_update_favorite(this.profile, new_);
+                this.profile.favorite = new_;
+            },
+        }
+    },
+
+    template: `
+        <div>
+            <template v-if="show">
+                <div v-bind:class="classname"
+                     v-on:click.stop="">
+                    <shif-checkbox v-model="state" />
                 </div>
             </template>
         </div>
