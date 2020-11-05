@@ -883,7 +883,8 @@ const ShifSettingsProfile = {
                         {{ i18n('settings.profiles.profile.locations.room') }}:
                     </div>
                     <shif-room-selection v-bind:map="map_room_floor"
-                                         v-model="form.locations.rooms" />
+                                         v-model="form.locations.rooms" 
+                                         class="floor-room" />
                 </div>
 
                 <div v-if="show_roles"

@@ -1663,6 +1663,19 @@ td {
   fill: #fff;
 }
 
+#profile_edit .floor-room {
+  max-height: 200px;
+  overflow-y: scroll;
+  padding: 0;
+  overflow-x: hidden;
+  border: none;
+  margin-top: 10px;
+}
+
+#profile_edit .floor-room .select {
+  padding: 10px 20px;
+}
+
 #profiles .control_button,
 #house .profiles_wrapper .control_button {
   flex-basis: fit-content;
