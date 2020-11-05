@@ -4,6 +4,7 @@
         shif_device_slot_automations_profile
         shif_device_slot_draggable
         shif_device_slot_favorites
+        shif_device_slot_favorites_profile
         shif_device_slot_profiles
 */
 
@@ -43,6 +44,14 @@ const shif_device_slot_draggable = `
 const shif_device_slot_favorites = `
     <template v-slot:favorites>
         <shif-checkbox-favorites v-bind:dev="dev" />
+    </template>
+`;
+
+
+
+const shif_device_slot_favorites_profile = `
+    <template v-slot:favorites>
+        <shif-checkbox-favorites-profile v-bind:profile_id="i.val.id" />
     </template>
 `;
 
