@@ -1100,12 +1100,19 @@ const shif_device = {
         },
 
         disabled: function () {
+            function find_dev_obj_props(cur) {
+                while (cur.dev_obj_props === undefined && cur.$parent !== undefined)
+                    cur = cur.$parent;
+
+                return cur.dev_obj_props;
+            }
+
             const backend = check_disabled_backend(this.uiElement, this.indexes);
             if (backend.flag === true)
                 return backend;
 
             return check_disabled_frontend(this.uiElement, this.sibling_idx,
-                                           this.$parent.dev_obj_props);
+                                           find_dev_obj_props(this));
         },
 
         used_by_automations: function () {
