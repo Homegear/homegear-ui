@@ -1745,6 +1745,10 @@ td {
   color: #fff;
   -webkit-appearance: none;
 }
+.form-group input[type=button].disabled,
+.form-group input[type=submit].disabled {
+  opacity: .3;
+}
 
 .form-group .ui-select span {
   display: none;
@@ -1755,6 +1759,28 @@ td {
   height: 18px;
   border-radius: 3px;
   display: inline-block;
+}
+
+.form-group .select {
+    background: #191b1f;
+    padding: 20px;
+}
+
+.form-group .select .optgroup p {
+    color: gray;
+}
+
+.form-group .select .option p {
+    margin-left: 20px;
+    color: white;
+}
+
+.form-group .select .selected {
+    background: #e3a104;
+}
+
+.form-group div {
+    padding: 5px 0;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
