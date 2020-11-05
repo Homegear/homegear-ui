@@ -1,6 +1,7 @@
 /*
     global
         ModeMenuState
+        i18n
         mixin_menus
         mixin_modemenu
         mixin_notification
@@ -121,19 +122,41 @@ const ShifModemenuProfiles = {
 
     computed: {
         link_profile: function () {
+            if (this.$root.profiles.id !== undefined)
+                return {
+                    name: 'settings.profiles.profile',
+                    params: {
+                        profile_id: this.$root.profiles.id,
+                    },
+                };
+
             return {
-                name: 'settings.profiles.profile',
-                params: {
-                    profile_id: this.$root.profiles.id,
-                },
+                name: 'settings.profiles.new'
             };
+        },
+
+        label: function () {
+            const key = this.$root.profiles.id !== undefined
+                            ? 'modemenu.profiles.name.label'
+                            : 'modemenu.profiles.name.new';
+
+            return i18n(key);
+        },
+
+        has_profile_name: function () {
+            return this.$root.profiles.form !== undefined &&
+                   this.$root.profiles.form.profile_name !== undefined &&
+                   this.$root.profiles.form.profile_name !== '';
         },
     },
 
     methods: {
         submit_profile: function () {
-            this.profile_update(interfaceData.profiles[this.$root.profiles.id],
-                                this.$root.profiles.form);
+            if (this.$root.profiles.id !== undefined)
+                this.profile_update(interfaceData.profiles[this.$root.profiles.id],
+                                    this.$root.profiles.form);
+            else
+                this.profile_add(this.$root.profiles.form);
         },
     },
 
@@ -141,9 +164,9 @@ const ShifModemenuProfiles = {
         <div id="mode_wrapper_profiles">
             <div class="mode_text">
                 <span class="mode_label">
-                    {{ i18n('modemenu.profiles.name.label') }}:
+                    {{ label }}:
                 </span>
-                <span class="mode_name">
+                <span class="mode_name" v-if="has_profile_name">
                     {{ $root.profiles.form.profile_name }}
                 </span>
             </div>
