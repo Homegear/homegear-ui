@@ -316,14 +316,45 @@ const mixin_profiles = {
     },
 
     methods: {
+        val_into_proper_type: function (value) {
+            if (value === 'true')
+                return true;
+            if (value === 'false')
+                return false;
+
+            const as_nr = Number(value);
+            if (! Number.isNaN(as_nr))
+                return as_nr;
+
+            return value;
+        },
+
         locations: function (locations) {
             if (locations === undefined || locations.length === 0)
                 return [];
 
             return locations.map(x => ({
-                floorId: x.floorId === null ? undefined : Number(x.floorId),
-                roomId:  x.roomId  === null ? undefined : Number(x.roomId),
+                floorId: Number(x.floorId),
+                roomId:  Number(x.roomId),
             }));
+        },
+
+        roles_rooms: function (form) {
+            return form.role.role !== null &&
+                   form.role.value !== undefined &&
+                   form.role.value !== null
+                ? [[{
+                        role: Number(form.role.role),
+                        value: this.val_into_proper_type(form.role.value)
+                  }], []]
+                : [[], Object.keys(this.$root.profiles.devs)
+                             .map(x => this.$root.profiles.devs[x])
+                             .map(x => ({
+                                peerId: x.peer,
+                                channel: x.channel,
+                                variable: x.name,
+                                value: x.value,
+                             }))];
         },
 
         role_profiles: function (role_id) {
@@ -336,16 +367,19 @@ const mixin_profiles = {
 
         profile_build_root_devs: function (profile) {
             // Overwrite current profile on new load
-            this.$root.profiles.devs = {};
+            Vue.set(this.$root.profiles, 'devs', {});
+
+            if (! profile || ! profile.values)
+                return;
 
             for (const i of profile.values) {
                 const idx = root_profiles_idx(i.peerId, i.channel, i.variable);
-                this.$root.profiles.devs[idx] = {
+                Vue.set(this.$root.profiles.devs, idx, {
                     peer:    i.peerId,
                     channel: i.channel,
                     name:    i.variable,
                     value:   i.value,
-                };
+                });
             }
         },
 
@@ -388,6 +422,7 @@ const mixin_profiles = {
 
         profile_add: function (form, cb) {
             const locations = this.locations(form.locations.rooms);
+            const [roles, values] = this.roles_rooms(form);
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
@@ -401,8 +436,8 @@ const mixin_profiles = {
                         favorite:  form.locations.favorite,
                         icon:      form.icon,
                         locations: locations,
-                        roles:     [],
-                        values:    [],
+                        roles:     roles,
+                        values:    values,
                     }
                 ],
             }, (result) => {
@@ -413,11 +448,12 @@ const mixin_profiles = {
                     global:    form.locations.global,
                     favorite:  form.locations.favorite,
                     name:      form.profile_name,
-                    roles:     [],
-                    values:    [],
+                    roles:     roles,
+                    values:    values,
                 });
 
-                this.modemenu_hide();
+                if (this.modemenu_is_state(ModeMenuState.PROFILES))
+                    this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -425,36 +461,8 @@ const mixin_profiles = {
         },
 
         profile_update: function (profile, form, cb) {
-            function val_into_proper_type(value) {
-                if (value === 'true')
-                    return true;
-                if (value === 'false')
-                    return false;
-
-                const as_nr = Number(value);
-                if (! Number.isNaN(as_nr))
-                    return as_nr;
-
-                return value;
-            }
-
             const locations = this.locations(form.locations.rooms);
-
-            const [roles, values] = form.role.role !== null &&
-                                    form.role.value !== undefined &&
-                                    form.role.value !== null
-                ? [[{
-                        role: Number(form.role.role),
-                        value: val_into_proper_type(form.role.value)
-                  }], []]
-                : [[], Object.keys(this.$root.profiles.devs)
-                             .map(x => this.$root.profiles.devs[x])
-                             .map(x => ({
-                                peerId: x.peer,
-                                channel: x.channel,
-                                variable: x.name,
-                                value: x.value,
-                             }))];
+            const [roles, values] = this.roles_rooms(form);
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
@@ -485,7 +493,8 @@ const mixin_profiles = {
                     values:    values,
                 });
 
-                this.modemenu_hide();
+                if (this.modemenu_is_state(ModeMenuState.PROFILES))
+                    this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -887,15 +896,15 @@ Vue.component('shif-checkbox-profiles', {
     methods: {
         change: function () {
             if (this.state)
-                this.$root.profiles.devs[this.idx] = {
+                Vue.set(this.$root.profiles.devs, this.idx, {
                     peer:    this.output.peer,
                     channel: this.output.channel,
                     name:    this.output.name,
                     value:   this.props.value,
-                };
+                });
 
             else if (this.idx in this.$root.profiles.devs)
-                delete this.$root.profiles.devs[this.idx];
+                Vue.delete(this.$root.profiles.devs, this.idx);
         },
     },
 
