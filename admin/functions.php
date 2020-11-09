@@ -362,6 +362,7 @@ function homegear_init() {
         'options'      => $interfaceData["options"],
         'manifest'     => $interfaceData["manifest"],
         'iconFallback' => $interfaceData["iconFallback"],
+        'deviceCategories' => $interfaceData["deviceCategories"],
     ];
 
     if($hg_lang != "en-US"){
