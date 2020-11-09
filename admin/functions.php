@@ -253,6 +253,15 @@ function homegear_init() {
         $house['devices'][$id] = $dev;
     }
 
+    function device_category_patch_language(&$house, &$categories, $lang) {
+        foreach ($categories as &$category) {
+            $category['name'] = $category['name'][$lang];
+            $category['statusMap'] = $category['statusMap'][$lang];
+        }
+
+        $house['deviceCategories'] = $categories;
+    }
+
     function house_build_back_refs(&$house) {
         foreach ($house['floors'] as $id_floor => &$floor) {
             foreach ($floor['rooms'] as $id_room) {
@@ -437,6 +446,9 @@ function homegear_init() {
 
     foreach ($hg_ui_elems as &$dev)
         device_parse($house, $map_invoke, $dev, $hg_lang);
+
+    device_category_patch_language($house, $interfaceData['deviceCategories'],
+                                   $hg_lang);
 
     // Insert the cross references
     house_build_back_refs($house);
