@@ -1,6 +1,7 @@
 /*
     global
         ModeMenuState
+        clone
         get_or_default
         mixin_modemenu
         scroll_positions
@@ -572,22 +573,23 @@ const mixin_favorites = {
                 method: 'getUiElementMetadata',
                 params: [dev],
             }, (data) => {
-                let new_metadata = {};
-                if (Array.isArray(data.result))
-                    new_metadata = data.result;
+                // Theoretically this should never be an array...
+                let meta_new = Array.isArray(data.result)
+                                    ? {}
+                                    : clone(data.result);
 
-                if (new_metadata.favorites === undefined)
-                    new_metadata.favorites = {};
+                if (meta_new.favorites === undefined)
+                    meta_new.favorites = {};
 
-                new_metadata.favorites.state = state;
+                meta_new.favorites.state = state;
 
                 this.$homegear.invoke({
                     jsonrpc: '2.0',
                     method: 'setUiElementMetadata',
-                    params: [dev, new_metadata],
+                    params: [dev, meta_new],
                 }, () => {
-                    interfaceData.devices[dev].dynamicMetadata.favorites =
-                        new_metadata.favorites;
+                    Vue.set(interfaceData.devices[dev], 'dynamicMetadata',
+                            meta_new);
                 });
             });
         },
@@ -682,8 +684,9 @@ Vue.component('shif-house-collected-entries', {
                 const devices = this.favorites === true
                                     ? Object.keys(interfaceData.devices)
                                             .map(dev => interfaceData.devices[dev])
-                                            .filter(dev => dev.dynamicMetadata.favorites &&
-                                                           dev.dynamicMetadata.favorites.state)
+                                            .filter(dev => ! Array.isArray(dev.dynamicMetadata) &&
+                                                           dev.dynamicMetadata.favorites !== undefined &&
+                                                           dev.dynamicMetadata.favorites.state === true)
                                     : interfaceData.rooms[this.room_id]
                                                    .devices
                                                    .map(dev => interfaceData.devices[dev]);
@@ -848,37 +851,44 @@ Vue.component('shif-checkbox-favorites', {
 
     inject: ['layer'],
 
-    data: function () {
-        return {
-            state: this.dev !== undefined &&
-                   this.dev.dynamicMetadata !== undefined &&
-                   this.dev.dynamicMetadata.favorites !== undefined &&
-                   this.dev.dynamicMetadata.favorites.state === true,
-        };
-    },
-
     computed: {
         show: function () {
             return this.layer === 2 &&
                    this.modemenu_is_state(ModeMenuState.FAVORITES);
         },
+
+        dyn: function () {
+            return this.dev.dynamicMetadata;
+        },
+
+        state: {
+            get: function () {
+                return this.dyn !== undefined &&
+                       ! Array.isArray(this.dyn) &&
+                       this.dyn.favorites !== undefined &&
+                       this.dyn.favorites.state === true;
+            },
+
+            set: function (new_) {
+                this.dev_toggle_favorite(this.dev.databaseId, new_);
+            },
+        },
     },
 
     methods: {
-        change: function () {
-            return this.dev_toggle_favorite(this.dev.databaseId, this.state);
+        on_click: function () {
+            this.state = ! this.state;
         },
     },
 
     template: `
         <div>
             <template v-if="show">
-                <div v-on:click.stop=""
-                     v-on:change.stop="change">
-                    <div v-bind:class="classname">
-                        <shif-checkbox v-model="state" />
-                    </div>
-                </div>
+                <label class="check"
+                       v-bind:class="{checked: state}"
+                       v-on:click.stop="on_click">
+                    <span class="checkmark"></span>
+                </label>
             </template>
         </div>
     `
@@ -918,18 +928,24 @@ Vue.component('shif-checkbox-favorites-profile', {
             },
             set: function (new_) {
                 this.profile_update_favorite(this.profile, new_);
-                this.profile.favorite = new_;
             },
         }
+    },
+
+    methods: {
+        on_click: function () {
+            this.state = ! this.state;
+        },
     },
 
     template: `
         <div>
             <template v-if="show">
-                <div v-bind:class="classname"
-                     v-on:click.stop="">
-                    <shif-checkbox v-model="state" />
-                </div>
+                <label class="check"
+                       v-bind:class="{checked: state}"
+                       v-on:click.stop="on_click">
+                    <span class="checkmark"></span>
+                </label>
             </template>
         </div>
     `
@@ -959,48 +975,53 @@ Vue.component('shif-checkbox-profiles', {
         },
     },
 
-    data: function () {
-        const idx = root_profiles_idx(this.output.peer, this.output.channel,
-                                      this.output.name);
-
-        return {
-            idx:   idx,
-            state: (idx in this.$root.profiles.devs),
-        };
-    },
-
     watch: {
         'props.value': function () {
             if (this.modemenu_is_state(ModeMenuState.PROFILES) &&
-                (this.idx in this.$root.profiles.devs))
+                this.state === true)
                 this.$root.profiles.devs[this.idx].value = this.props.value;
         },
     },
 
-    methods: {
-        change: function () {
-            if (this.state)
-                Vue.set(this.$root.profiles.devs, this.idx, {
-                    peer:    this.output.peer,
-                    channel: this.output.channel,
-                    name:    this.output.name,
-                    value:   this.props.value,
-                });
+    computed: {
+        idx: function () {
+            return root_profiles_idx(this.output.peer, this.output.channel,
+                                     this.output.name);
+        },
 
-            else if (this.idx in this.$root.profiles.devs)
-                Vue.delete(this.$root.profiles.devs, this.idx);
+        state: {
+            get: function () {
+                return this.idx in this.$root.profiles.devs;
+            },
+
+            set: function (new_) {
+                if (new_)
+                    Vue.set(this.$root.profiles.devs, this.idx, {
+                        peer:    this.output.peer,
+                        channel: this.output.channel,
+                        name:    this.output.name,
+                        value:   this.props.value,
+                    });
+                else if (this.state)
+                    Vue.delete(this.$root.profiles.devs, this.idx);
+            },
+        },
+    },
+
+    methods: {
+        on_click: function () {
+            this.state = !this.state;
         },
     },
 
     template: `
         <div>
             <template v-if="modemenu_is_state('PROFILES')">
-                <div v-on:click.stop=""
-                     v-on:change.stop="change">
-                    <div v-bind:class="classname">
-                        <shif-checkbox v-model="state" />
-                    </div>
-                </div>
+                <label class="check"
+                       v-bind:class="{checked: state}"
+                       v-on:click.stop="on_click">
+                    <span class="checkmark"></span>
+                </label>
             </template>
         </div>
     `
