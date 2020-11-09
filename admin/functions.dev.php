@@ -36,6 +36,7 @@ if(isset($dummyInterfaceDataJson)) {
     unset($dummyInterfaceData["themes"]);
     unset($dummyInterfaceData["menu"]);
     unset($dummyInterfaceData["mainmenu"]);
+    unset($dummyInterfaceData["deviceCategories"]);
     unset($dummyInterfaceData["manifest"]);
     unset($dummyInterfaceData["options"]);
     $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
@@ -87,6 +88,7 @@ function clean_json_to_js() {
     $interfaceDataOut["manifest"] = $interfaceData["manifest"];
     $interfaceDataOut["profiles"] = $interfaceData["profiles"];
     $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
+    $interfaceDataOut["deviceCategories"] = $interfaceData["deviceCategories"];
 
     foreach ($interfaceDataOut as $key => $type ){
         foreach($type as $keyLine => $line){
