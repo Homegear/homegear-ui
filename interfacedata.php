@@ -221,6 +221,418 @@
             }
         }
     },
+    "deviceCategories": {
+        "0": {
+            "name": {
+                "en-US": "Lighting",
+                "de-DE": "Beleuchtung"
+            },
+            "icon": "light_on_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        100001
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        101001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "aus",
+                    "1": "an"
+                },
+                "en-US": {
+                    "0": "off",
+                    "1": "on"
+                }
+            },
+            "uiElements": {
+                "lightingBrightness": true,
+                "lightingButton": true,
+                "lightingColor": true,
+                "lightingFunction": true,
+                "lightingSpeed": true,
+                "lightingSwitch": true,
+                "lightingSwitchBrightness": true,
+                "lightingSwitchBrightnessColor": true,
+                "lightingSwitchBrightnessTemp": true,
+                "lightingSwitchButtonBrightness": true,
+                "lightingSwitchButtonBrightnessColor": true,
+                "lightingSwitchColor": true,
+                "lightingSwitchFunctionBrightnessColor": true,
+                "lightingSwitchFunctionBrightnessSpeedColor": true,
+                "lightingSwitchTimer": true,
+                "lightingTemp": true
+            }
+        },
+        "1": {
+            "name": {
+                "en-US": "Heating",
+                "de-DE": "Heizung"
+            },
+            "icon": "heater_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        201003
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "Frostschutz",
+                    "1": "Komfort",
+                    "2": "Spar"
+                },
+                "en-US": {
+                    "0": "Frost protection",
+                    "1": "Comfort",
+                    "2": "Eco"
+                }
+            },
+            "uiElements": {
+                "heatingIsState": true,
+                "heatingIsStateSliderMode": true,
+                "heatingIsStateSliderModeWindow": true,
+                "heatingIsStateSliderModeWindowContact": true,
+                "heatingIsStateSliderModeWindowHandle": true,
+                "heatingMode": true,
+                "heatingSlider": true,
+                "heatingWindow": true
+            }
+        },
+        "2": {
+            "name": {
+                "en-US": "Ventilation",
+                "de-DE": "Lüftung"
+            },
+            "icon": "ventilator_2",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        202001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "Stufe 1",
+                    "1": "Stufe 2",
+                    "2": "Stufe 3",
+                    "3": "Stufe 4"
+                },
+                "en-US": {
+                    "0": "Level 1",
+                    "1": "Level 2",
+                    "2": "Level 3",
+                    "3": "Level 4"
+                }
+            },
+            "uiElements": {
+                "ventilationMode": true
+            }
+        },
+        "3": {
+            "name": {
+                "en-US": "Dors",
+                "de-DE": "Türen"
+            },
+            "icon": "door_open_2",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        301001,
+                        301003
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "geöffnet",
+                    "1": "geschlossen",
+                    "2": "unverriegelt",
+                    "3": "verriegelt"
+                },
+                "en-US": {
+                    "0": "opened",
+                    "1": "closed",
+                    "2": "unlocked",
+                    "3": "locked"
+                }
+            },
+            "uiElements": {
+                "doorContact": true,
+                "doorHandle": true,
+                "doorLock": true
+            }
+        },
+        "4": {
+            "name": {
+                "en-US": "Windows",
+                "de-DE": "Fenster"
+            },
+            "icon": "window_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        301002
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "geöffnet",
+                    "1": "geschlossen",
+                    "2": "gekippt"
+                },
+                "en-US": {
+                    "0": "geöffnet",
+                    "1": "geschlossen",
+                    "2": "tilted"
+                }
+            },
+            "uiElements": {
+                "windowContact": true,
+                "windowHandle": true,
+                "windowPosition": true
+            }
+        },
+        "5": {
+            "name": {
+                "en-US": "Sockets",
+                "de-DE": "Steckdosen"
+            },
+            "icon": "socket_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        400001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "aus",
+                    "1": "an"
+                },
+                "en-US": {
+                    "0": "off",
+                    "1": "on"
+                }
+            },
+            "uiElements": {
+                "socketButton": true,
+                "socketSwitch": true
+            }
+        },
+        "6": {
+            "name": {
+                "en-US": "Shading",
+                "de-DE": "Beschattung"
+            },
+            "icon": "blind_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        501000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        501004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "falseCount": "eingefahren",
+                    "trueCount": "ausgefahren"
+                },
+                "en-US": {
+                    "falseCount": "retracted",
+                    "trueCount": "extended"
+                }
+            },
+            "uiElements": {
+                "shadingButtons": true,
+                "shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm": true,
+                "shadingButtonsPosition": true,
+                "shadingButtonsPositionPositionSlats": true,
+                "shadingButtonsPositionSlats": true,
+                "shadingButtonsPositionVentilationWindalarm": true,
+                "shadingButtonsPositionWindalarm": true,
+                "shadingButtonsSingleStep": true,
+                "shadingButtonsSingleStepPositionPositionSlatsWindalarm": true,
+                "shadingButtonsUpDown": true,
+                "shadingPosition": true,
+                "shadingPositionSlats": true,
+                "shadingRainalarm": true,
+                "shadingVentilation": true,
+                "shadingWindalarm": true
+            }
+        },
+        "7": {
+            "name": {
+                "en-US": "Awnings",
+                "de-DE": "Markisen"
+            },
+            "icon": "awning_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        502000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        502004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "falseCount": "eingefahren",
+                    "trueCount": "ausgefahren"
+                },
+                "en-US": {
+                    "falseCount": "retracted",
+                    "trueCount": "extended"
+                }
+            },
+            "uiElements": {
+                "shadingAwningButtonsPosition": true,
+                "shadingAwningButtonsPositionRainalarm": true,
+                "shadingAwningButtonsPositionWindalarm": true,
+                "shadingAwningButtonsPositionWindalarmRainalarm": true
+            }
+        },
+        "8": {
+            "name": {
+                "en-US": "Window motors",
+                "de-DE": "Fenstermotoren"
+            },
+            "icon": "window_2",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        600000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        600004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "falseCount": "geöffnet",
+                    "trueCount": "geschlossen"
+                },
+                "en-US": {
+                    "falseCount": "open",
+                    "trueCount": "closed"
+                }
+            },
+            "uiElements": {
+                "windowButtons": true,
+                "windowButtonsPosition": true,
+                "windowButtonsPositionRainalarm": true,
+                "windowButtonsUpDown": true,
+                "windowButtonsUpDownRainalarm": true,
+                "windowRainalarm": true
+            }
+        },
+        "9": {
+            "name": {
+                "en-US": "weather",
+                "de-DE": "Wetter"
+            },
+            "icon": "weather_1",
+            "l2_status": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "climateCity": true,
+                "climateCloudcoverage": true,
+                "climateDate": true,
+                "climatePressure": true,
+                "climateRain3h": true,
+                "climateSnow3h": true,
+                "climateSunrise": true,
+                "climateSunset": true,
+                "climateWeather": true,
+                "climateWinddirection": true,
+                "climateWindgust": true,
+                "climateWindspeed": true
+            }
+        },
+        "10": {
+            "name": {
+                "en-US": "Climate",
+                "de-DE": "Klima"
+            },
+            "icon": "weather_1",
+            "l2_status": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "humidity": true,
+                "temperature": true
+            }
+        },
+        "11": {
+            "name": {
+                "en-US": "Media",
+                "de-DE": "Media"
+            },
+            "icon": "player_1",
+            "l2_status": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "mediaButtons": true
+            }
+        }
+    },
     "i18n": {
         "en-US": {
             "login": {
