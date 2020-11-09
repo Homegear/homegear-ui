@@ -912,7 +912,7 @@ const ShifSettingsProfile = {
 
                 <div class="form-group">
                     <input v-if="form.role.role === null"
-                           type="submit"
+                           type="button"
                            name="load"
                            v-on:click="form_submit('load')"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
@@ -925,12 +925,12 @@ const ShifSettingsProfile = {
                            v-bind:value="i18n('settings.profiles.profile.save')" />
 
                     <input v-if="mode === 'edit'"
-                           type="submit"
+                           type="button"
                            name="delete"
                            v-on:click="form_submit('delete')"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
                     <input v-else-if="mode === 'add'"
-                           type="submit"
+                           type="button"
                            name="abort"
                            v-on:click="form_submit('abort')"
                            v-bind:value="i18n('settings.profiles.profile.abort')" />
