@@ -9,6 +9,7 @@
         mixin_scroll_position
         mixin_states
         shif_device_slot_draggable
+        shif_device_slot_favorites_profile
 */
 /*
     exported
@@ -98,6 +99,7 @@ Vue.component('shif-ctrl-summary', {
                                                  v-bind:status="i18n('modemenu.profiles.name.label')"
                                                  v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
                                                  v-on:click="profile_start(i.val)">
+                                    ${shif_device_slot_favorites_profile}
                                     ${shif_device_slot_draggable}
                                 </shif-generic-l2>
                             </template>
