@@ -1,144 +1,6 @@
 <?php $dummyInterfaceDataJson = '
 {
     "devices": {
-        "68": {
-            "categories": [],
-            "clickCount": 4,
-            "databaseId": 68,
-            "dynamicMetadata": [],
-            "icons": {
-                "l2": {
-                    "color": "inactive",
-                    "name": "thermomenter_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                },
-                "main": {
-                    "color": "inactive",
-                    "name": "thermometer_1"
-                },
-                "temperature": {
-                    "color": "inactive",
-                    "name": "thermometer_1"
-                }
-            },
-            "label": "Temperatur2",
-            "metadata": [],
-            "role": 0,
-            "room": 16,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Temp."
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Temperatur"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "temperature",
-                    "uniqueUiElementId": "Base.temperature",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "TEMPERATURE2",
-                            "peer": 0,
-                            "properties": {
-                                "maximum": 100,
-                                "minimum": -273.150000095,
-                                "unit": "\u00b0C",
-                                "visualizeInOverview": true,
-                                "value": 21.1234568
-                            },
-                            "rendering": [],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": []
-                }
-            ],
-            "floors": [
-                3
-            ],
-            "rooms": [
-                16
-            ]
-        },
-        "69": {
-            "categories": [],
-            "clickCount": 2,
-            "databaseId": 69,
-            "dynamicMetadata": [],
-            "icons": {
-                "humidity": {
-                    "color": "inactive",
-                    "name": "waterdrops_1"
-                },
-                "l2": {
-                    "color": "inactive",
-                    "name": "waterdrops_1"
-                },
-                "l3": {
-                    "color": "iconArrow",
-                    "name": "arrow_right_1"
-                },
-                "main": {
-                    "color": "inactive",
-                    "name": "waterdrops_1"
-                }
-            },
-            "label": "Feuchte2",
-            "metadata": [],
-            "role": 0,
-            "room": 16,
-            "texts": {
-                "l2_state_title": {
-                    "color": "l2_state_title",
-                    "content": "Feuchte"
-                },
-                "title": {
-                    "color": "title",
-                    "content": "Luftfeuchtigkeit"
-                }
-            },
-            "grid": null,
-            "controls": [
-                {
-                    "cell": null,
-                    "control": "humidity",
-                    "uniqueUiElementId": "Base.humidity",
-                    "variableInputs": [
-                        {
-                            "channel": -1,
-                            "name": "HUMIDITY2",
-                            "peer": 0,
-                            "properties": {
-                                "maximum": 100,
-                                "minimum": 0,
-                                "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 51.1234568
-                            },
-                            "rendering": [],
-                            "type": "float"
-                        }
-                    ],
-                    "variableOutputs": []
-                }
-            ],
-            "floors": [
-                3
-            ],
-            "rooms": [
-                16
-            ]
-        },
         "1": {
             "categories": [],
             "clickCount": 0,
@@ -174,12 +36,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -242,7 +104,8 @@
                             "properties": [],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "rooms": [
@@ -284,12 +147,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -352,7 +215,8 @@
                             "properties": [],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "rooms": [
@@ -394,12 +258,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -462,7 +326,8 @@
                             "properties": [],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "rooms": [
@@ -504,12 +369,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -566,13 +431,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -589,18 +454,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "rooms": [
@@ -638,12 +504,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -700,13 +566,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -723,18 +589,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -748,7 +615,11 @@
             "categories": [],
             "clickCount": 0,
             "databaseId": 6,
-            "dynamicMetadata": [],
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": false
+                }
+            },
             "icons": {
                 "l2": {
                     "color": "inactive",
@@ -775,12 +646,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -837,13 +708,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -860,18 +731,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -912,12 +784,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -974,13 +846,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -997,18 +869,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1049,12 +922,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1111,13 +984,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -1134,18 +1007,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1186,12 +1060,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1248,13 +1122,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -1271,18 +1145,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1323,12 +1198,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1382,6 +1257,18 @@
                                     }
                                 }
                             ],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100000,
+                                    "level": 0
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100001,
+                                    "level": 2
+                                }
+                            ],
                             "type": "bool"
                         }
                     ],
@@ -1393,9 +1280,22 @@
                             "name": "STATE",
                             "peer": 7,
                             "properties": [],
+                            "roles": [
+                                {
+                                    "direction": 2,
+                                    "id": 100000,
+                                    "level": 0
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 100001,
+                                    "level": 2
+                                }
+                            ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1436,12 +1336,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1498,13 +1398,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -1521,18 +1421,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1573,12 +1474,12 @@
                     "content": "Button"
                 }
             },
+            "uniqueUiElementId": "Base.socketButton",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "socketButton",
-                    "uniqueUiElementId": "Base.socketButton",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1588,7 +1489,7 @@
                             "peer": 9,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -1635,13 +1536,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
+                                    "id": 400000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
+                                    "id": 400001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -1658,18 +1559,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
+                                    "id": 400000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
+                                    "id": 400001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.socketButton"
                 }
             ],
             "floors": [
@@ -1683,7 +1585,11 @@
             "categories": [],
             "clickCount": 0,
             "databaseId": 13,
-            "dynamicMetadata": [],
+            "dynamicMetadata": {
+                "favorites": {
+                    "state": false
+                }
+            },
             "icons": {
                 "l2": {
                     "color": "inactive",
@@ -1710,12 +1616,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1725,7 +1631,7 @@
                             "peer": 10,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -1772,13 +1678,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -1795,18 +1701,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1847,12 +1754,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -1862,7 +1769,7 @@
                             "peer": 11,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -1909,13 +1816,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -1932,18 +1839,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -1984,12 +1892,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.socketSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -2046,13 +1954,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
+                                    "id": 400000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
+                                    "id": 400001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2069,18 +1977,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
+                                    "id": 400000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
+                                    "id": 400001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.socketSwitch"
                 }
             ],
             "floors": [
@@ -2121,12 +2030,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -2183,13 +2092,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2206,18 +2115,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -2258,12 +2168,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -2320,13 +2230,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2343,18 +2253,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -2395,12 +2306,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.lightingSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingSwitch",
-                    "uniqueUiElementId": "Base.lightingSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -2457,13 +2368,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2480,18 +2391,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingSwitch"
                 }
             ],
             "floors": [
@@ -2532,12 +2444,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.socketSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -2594,13 +2506,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
+                                    "id": 400000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
+                                    "id": 400001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2617,18 +2529,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
+                                    "id": 400000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
+                                    "id": 400001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.socketSwitch"
                 }
             ],
             "floors": [
@@ -2732,13 +2645,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2755,13 +2668,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2858,13 +2771,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2881,13 +2794,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 100001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -2975,22 +2888,19 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.socketSwitch",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "socketSwitch",
-                    "uniqueUiElementId": "Base.socketSwitch",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 91,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -3033,45 +2943,18 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 91,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 400001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 400000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.socketSwitch"
                 }
             ],
             "floors": [
@@ -3315,13 +3198,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -3386,13 +3269,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -3468,13 +3351,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -3495,13 +3378,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -3560,7 +3443,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 5
                             },
                             "rendering": [],
                             "roles": [
@@ -3571,13 +3454,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -3599,13 +3482,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -3658,7 +3541,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": 5
                             },
                             "rendering": [],
                             "roles": [
@@ -3669,13 +3552,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -3697,13 +3580,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -4127,13 +4010,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -4155,13 +4038,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -4225,13 +4108,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -4253,13 +4136,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -4351,12 +4234,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.windowButtonsUpDown",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowButtonsUpDown",
-                    "uniqueUiElementId": "Base.windowButtonsUpDown",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -4366,7 +4249,7 @@
                             "peer": 17,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -4413,13 +4296,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -4432,7 +4315,7 @@
                             "peer": 17,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -4479,13 +4362,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -4502,13 +4385,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -4524,19 +4407,20 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
                             "value": true
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowButtonsUpDown"
                 }
             ],
             "floors": [
@@ -4593,7 +4477,7 @@
                             "peer": 17,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -4640,13 +4524,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -4659,7 +4543,7 @@
                             "peer": 17,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -4706,13 +4590,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -4729,13 +4613,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -4751,13 +4635,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -4956,7 +4840,7 @@
                             "peer": 20,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -5003,13 +4887,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -5022,7 +4906,7 @@
                             "peer": 20,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -5076,7 +4960,7 @@
                             "peer": 20,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -5123,13 +5007,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -5146,13 +5030,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -5178,13 +5062,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -5238,7 +5122,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 30
+                                "value": 0
                             },
                             "rendering": [],
                             "roles": [
@@ -5375,7 +5259,7 @@
                             "peer": 20,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -5422,13 +5306,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -5441,7 +5325,7 @@
                             "peer": 20,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -5495,7 +5379,7 @@
                             "peer": 20,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -5542,13 +5426,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool"
@@ -5565,13 +5449,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600001,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600001,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -5597,13 +5481,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 600002,
-                                    "level": 2
+                                    "id": 600000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 600000,
-                                    "level": 0
+                                    "id": 600002,
+                                    "level": 2
                                 }
                             ],
                             "type": "bool",
@@ -5657,7 +5541,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 30
+                                "value": 0
                             },
                             "rendering": [],
                             "roles": [
@@ -5963,7 +5847,7 @@
                             "peer": 21,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -6064,13 +5948,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -6129,13 +6013,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -6205,13 +6089,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -6233,13 +6117,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -6707,13 +6591,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -6772,13 +6656,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -6848,13 +6732,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -6876,13 +6760,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -7254,13 +7138,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -7319,13 +7203,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -7395,13 +7279,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -7423,13 +7307,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501004,
-                                    "level": 2
+                                    "id": 501000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 501000,
-                                    "level": 1
+                                    "id": 501004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -7580,11 +7464,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -7592,6 +7471,11 @@
                                     "direction": 2,
                                     "id": 502001,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool"
@@ -7604,7 +7488,7 @@
                             "peer": 25,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -7705,11 +7589,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -7717,6 +7596,11 @@
                                     "direction": 2,
                                     "id": 502002,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool"
@@ -7733,11 +7617,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -7745,6 +7624,11 @@
                                     "direction": 2,
                                     "id": 502001,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool",
@@ -7770,11 +7654,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -7782,6 +7661,11 @@
                                     "direction": 2,
                                     "id": 502002,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool",
@@ -7835,7 +7719,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 35
+                                "value": 0
                             },
                             "rendering": [],
                             "roles": [
@@ -8231,11 +8115,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8243,6 +8122,11 @@
                                     "direction": 2,
                                     "id": 502001,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool"
@@ -8255,7 +8139,7 @@
                             "peer": 25,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8356,11 +8240,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8368,6 +8247,11 @@
                                     "direction": 2,
                                     "id": 502002,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool"
@@ -8384,11 +8268,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8396,6 +8275,11 @@
                                     "direction": 2,
                                     "id": 502001,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool",
@@ -8421,11 +8305,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8433,6 +8312,11 @@
                                     "direction": 2,
                                     "id": 502002,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool",
@@ -8486,7 +8370,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 35
+                                "value": 0
                             },
                             "rendering": [],
                             "roles": [
@@ -8715,12 +8599,12 @@
                     "content": "Schalter"
                 }
             },
+            "uniqueUiElementId": "Base.shadingButtons",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "shadingButtons",
-                    "uniqueUiElementId": "Base.shadingButtons",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -8777,11 +8661,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8789,6 +8668,11 @@
                                     "direction": 2,
                                     "id": 502001,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool"
@@ -8801,7 +8685,7 @@
                             "peer": 25,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -8902,11 +8786,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8914,6 +8793,11 @@
                                     "direction": 2,
                                     "id": 502002,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool"
@@ -8930,11 +8814,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8942,6 +8821,11 @@
                                     "direction": 2,
                                     "id": 502001,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool",
@@ -8967,11 +8851,6 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 500000,
                                     "level": 0
                                 },
@@ -8979,12 +8858,18 @@
                                     "direction": 2,
                                     "id": 502002,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 502000,
+                                    "level": 1
                                 }
                             ],
                             "type": "bool",
                             "value": true
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.shadingButtons"
                 }
             ],
             "rooms": [
@@ -9038,7 +8923,7 @@
                             "peer": 26,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -9085,13 +8970,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 502000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -9109,7 +8994,7 @@
                             "peer": 26,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -9163,7 +9048,7 @@
                             "peer": 26,
                             "properties": {
                                 "visualizeInOverview": false,
-                                "value": true
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -9238,13 +9123,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
+                                    "id": 500000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 500000,
-                                    "level": 0
+                                    "id": 502000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -9340,7 +9225,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 20
+                                "value": 0
                             },
                             "rendering": [],
                             "roles": [
@@ -9351,13 +9236,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502004,
-                                    "level": 2
+                                    "id": 502000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
+                                    "id": 502004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -9379,13 +9264,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502004,
-                                    "level": 2
+                                    "id": 502000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 502000,
-                                    "level": 1
+                                    "id": 502004,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -9546,19 +9431,19 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 17.5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -9580,13 +9465,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -9639,7 +9524,7 @@
                             "peer": 78,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 2
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -9711,13 +9596,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -9739,13 +9624,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -9789,13 +9674,13 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 60,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 2
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -9882,13 +9767,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -9897,27 +9782,27 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 60,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -9926,7 +9811,7 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ]
                 }
@@ -10036,7 +9921,7 @@
                                 "minimum": -273.150000095,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
@@ -10107,19 +9992,19 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -10141,13 +10026,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -10200,7 +10085,7 @@
                             "peer": 79,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -10272,13 +10157,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -10300,13 +10185,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -10511,7 +10396,7 @@
                                 "minimum": -273.150000095,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
@@ -10582,19 +10467,19 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 8
                             },
                             "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -10616,13 +10501,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -10675,7 +10560,7 @@
                             "peer": 80,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -10747,13 +10632,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -10775,13 +10660,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -10890,7 +10775,7 @@
                                 "minimum": -273.150000095,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
@@ -10961,19 +10846,19 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -10995,13 +10880,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11054,7 +10939,7 @@
                             "peer": 81,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -11126,13 +11011,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -11154,13 +11039,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -11269,7 +11154,7 @@
                                 "minimum": -273.150000095,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
@@ -11340,19 +11225,19 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11374,13 +11259,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11433,7 +11318,7 @@
                             "peer": 82,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -11505,13 +11390,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -11533,13 +11418,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -11583,13 +11468,13 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 87,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -11636,13 +11521,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11650,27 +11535,27 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 87,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11678,7 +11563,7 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ]
                 }
@@ -11784,7 +11669,7 @@
                                 "minimum": -273.150000095,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
@@ -11855,19 +11740,19 @@
                                 "minimumScaled": 5,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 21
                             },
                             "rendering": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11889,13 +11774,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 200000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 200000,
-                                    "level": 0
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -11948,7 +11833,7 @@
                             "peer": 83,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 1
                             },
                             "rendering": [
                                 {
@@ -12020,13 +11905,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -12048,13 +11933,13 @@
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201003,
-                                    "level": 2
+                                    "id": 201000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 201000,
-                                    "level": 1
+                                    "id": 201003,
+                                    "level": 2
                                 }
                             ],
                             "type": "enum"
@@ -12146,22 +12031,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowContact",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowContact",
-                    "uniqueUiElementId": "Base.windowContact",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 87,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -12208,13 +12093,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -12222,27 +12107,27 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 87,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -12250,9 +12135,10 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowContact"
                 }
             ],
             "floors": [
@@ -12293,22 +12179,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 60,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 2
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -12395,13 +12281,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -12410,27 +12296,27 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 60,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -12439,9 +12325,10 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -12482,22 +12369,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 61,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -12584,51 +12471,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 61,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -12669,22 +12559,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 62,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -12771,51 +12661,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 62,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -12856,22 +12749,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 63,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -12958,51 +12851,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 63,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -13043,22 +12939,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 64,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -13145,51 +13041,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 64,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -13230,22 +13129,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 65,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -13332,51 +13231,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 65,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -13417,22 +13319,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 66,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -13519,51 +13421,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 66,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
+                                },
+                                {
+                                    "direction": 2,
                                     "id": 301002,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -13604,22 +13509,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.windowHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "windowHandle",
-                    "uniqueUiElementId": "Base.windowHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 70,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -13706,13 +13611,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -13720,27 +13625,27 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 70,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -13748,9 +13653,10 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.windowHandle"
                 }
             ],
             "floors": [
@@ -13795,22 +13701,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.doorContact",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "doorContact",
-                    "uniqueUiElementId": "Base.doorContact",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 69,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -13868,17 +13774,18 @@
                                 {
                                     "direction": 2,
                                     "id": 301001,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 69,
                             "properties": [],
@@ -13896,12 +13803,14 @@
                                 {
                                     "direction": 2,
                                     "id": 301001,
+                                    "invert": true,
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.doorContact"
                 }
             ],
             "floors": [
@@ -13946,22 +13855,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.doorHandle",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "doorHandle",
-                    "uniqueUiElementId": "Base.doorHandle",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 67,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": false
                             },
                             "rendering": [
                                 {
@@ -14048,51 +13957,54 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301001,
+                                    "invert": true,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 67,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
-                                },
-                                {
-                                    "direction": 2,
                                     "id": 300000,
                                     "level": 0
                                 },
                                 {
                                     "direction": 2,
                                     "id": 301001,
+                                    "invert": true,
                                     "level": 2
+                                },
+                                {
+                                    "direction": 2,
+                                    "id": 301000,
+                                    "level": 1
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.doorHandle"
                 }
             ],
             "floors": [
@@ -14137,22 +14049,22 @@
                     "content": "Status"
                 }
             },
+            "uniqueUiElementId": "Base.doorLock",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "doorLock",
-                    "uniqueUiElementId": "Base.doorLock",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 88,
                             "properties": {
                                 "visualizeInOverview": true,
-                                "value": 0
+                                "value": true
                             },
                             "rendering": [
                                 {
@@ -14199,13 +14111,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -14213,27 +14125,27 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 2,
-                            "minimumValue": 0,
+                            "maximumValue": true,
+                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 88,
                             "properties": [],
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 301000,
-                                    "level": 1
+                                    "id": 300000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 300000,
-                                    "level": 0
+                                    "id": 301000,
+                                    "level": 1
                                 },
                                 {
                                     "direction": 2,
@@ -14241,9 +14153,10 @@
                                     "level": 2
                                 }
                             ],
-                            "type": "enum"
+                            "type": "bool"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.doorLock"
                 }
             ],
             "floors": [
@@ -14288,22 +14201,19 @@
                     "content": "Bel\u00fcftung"
                 }
             },
+            "uniqueUiElementId": "Base.ventilationMode",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "ventilationMode",
-                    "uniqueUiElementId": "Base.ventilationMode",
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 4,
-                            "minimumValue": 1,
                             "name": "LEVEL",
                             "peer": 86,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": 1
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -14386,21 +14296,18 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 4,
-                            "minimumValue": 1,
                             "name": "LEVEL",
                             "peer": 86,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.ventilationMode"
                 }
             ],
             "floors": [
@@ -14449,12 +14356,12 @@
                     "content": "Helligkeit"
                 }
             },
+            "uniqueUiElementId": "Base.lightingBrightness",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "lightingBrightness",
-                    "uniqueUiElementId": "Base.lightingBrightness",
                     "variableInputs": [
                         {
                             "channel": 1,
@@ -14469,7 +14376,7 @@
                                 "minimumScaled": 0,
                                 "unit": "%",
                                 "visualizeInOverview": true,
-                                "value": 5
+                                "value": 0
                             },
                             "rendering": [
                                 {
@@ -14504,13 +14411,13 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 101001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 101001,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
@@ -14527,18 +14434,19 @@
                             "roles": [
                                 {
                                     "direction": 2,
-                                    "id": 101001,
-                                    "level": 2
+                                    "id": 100000,
+                                    "level": 0
                                 },
                                 {
                                     "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
+                                    "id": 101001,
+                                    "level": 2
                                 }
                             ],
                             "type": "integer"
                         }
-                    ]
+                    ],
+                    "uniqueUiElementId": "Base.lightingBrightness"
                 }
             ],
             "floors": [
@@ -14589,13 +14497,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 92,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -14638,43 +14543,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 92,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -14719,8 +14596,6 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 92,
                             "properties": {
@@ -14729,8 +14604,7 @@
                                 "minimum": 0,
                                 "minimumScaled": 0,
                                 "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -14761,19 +14635,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 92,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
                     ]
                 }
@@ -14872,13 +14742,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 93,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -14921,43 +14788,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 93,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -14996,13 +14835,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 93,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15045,43 +14881,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 93,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -15126,8 +14934,6 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 93,
                             "properties": {
@@ -15136,8 +14942,7 @@
                                 "minimum": 0,
                                 "minimumScaled": 0,
                                 "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15168,19 +14973,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 93,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
                     ]
                 }
@@ -15275,13 +15076,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15324,43 +15122,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -15399,13 +15169,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15448,43 +15215,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -15529,8 +15268,6 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
                             "properties": {
@@ -15539,8 +15276,7 @@
                                 "minimum": 0,
                                 "minimumScaled": 0,
                                 "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15571,19 +15307,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
                     ]
                 },
@@ -15776,13 +15508,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15825,43 +15554,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -15906,8 +15607,6 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
                             "properties": {
@@ -15916,8 +15615,7 @@
                                 "minimum": 0,
                                 "minimumScaled": 0,
                                 "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -15948,19 +15646,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
                     ]
                 },
@@ -16153,13 +15847,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -16202,43 +15893,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -16431,13 +16094,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -16480,43 +16140,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -17859,8 +17491,6 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
                             "properties": {
@@ -17869,8 +17499,7 @@
                                 "minimum": 0,
                                 "minimumScaled": 0,
                                 "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -17901,19 +17530,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
                     ]
                 },
@@ -18106,13 +17731,10 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
                             "properties": {
-                                "visualizeInOverview": true,
-                                "value": false
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -18155,43 +17777,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": true,
-                            "minimumValue": false,
                             "name": "STATE",
                             "peer": 94,
-                            "properties": [],
-                            "roles": [
-                                {
-                                    "direction": 2,
-                                    "id": 100001,
-                                    "level": 2
-                                },
-                                {
-                                    "direction": 2,
-                                    "id": 100000,
-                                    "level": 0
-                                }
-                            ],
-                            "type": "bool"
+                            "properties": []
                         }
                     ]
                 },
@@ -19534,8 +19128,6 @@
                     "variableInputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
                             "properties": {
@@ -19544,8 +19136,7 @@
                                 "minimum": 0,
                                 "minimumScaled": 0,
                                 "unit": "%",
-                                "visualizeInOverview": true,
-                                "value": 0
+                                "visualizeInOverview": true
                             },
                             "rendering": [
                                 {
@@ -19576,19 +19167,15 @@
                                         }
                                     }
                                 }
-                            ],
-                            "type": "integer"
+                            ]
                         }
                     ],
                     "variableOutputs": [
                         {
                             "channel": 1,
-                            "maximumValue": 100,
-                            "minimumValue": 0,
                             "name": "LEVEL_FAST",
                             "peer": 94,
-                            "properties": [],
-                            "type": "integer"
+                            "properties": []
                         }
                     ]
                 },
@@ -20753,12 +20340,12 @@
                     "content": "Temperatur"
                 }
             },
+            "uniqueUiElementId": "Base.temperature",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "temperature",
-                    "uniqueUiElementId": "Base.temperature",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -20769,13 +20356,14 @@
                                 "minimum": -273.150000095,
                                 "unit": "\u00b0C",
                                 "visualizeInOverview": true,
-                                "value": 21
+                                "value": 21.1234568
                             },
                             "rendering": [],
-                            "type": "integer"
+                            "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.temperature"
                 }
             ],
             "floors": [
@@ -20826,12 +20414,12 @@
                     "content": "Luftfeuchtigkeit"
                 }
             },
+            "uniqueUiElementId": "Base.humidity",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "humidity",
-                    "uniqueUiElementId": "Base.humidity",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -20848,7 +20436,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.humidity"
                 }
             ],
             "floors": [
@@ -20895,12 +20484,12 @@
                     "content": "Temperatur"
                 }
             },
+            "uniqueUiElementId": "Base.temperature",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "temperature",
-                    "uniqueUiElementId": "Base.temperature",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -20917,7 +20506,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.temperature"
                 }
             ],
             "floors": [
@@ -20964,12 +20554,12 @@
                     "content": "Luftfeuchtigkeit"
                 }
             },
+            "uniqueUiElementId": "Base.humidity",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "humidity",
-                    "uniqueUiElementId": "Base.humidity",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -20986,7 +20576,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.humidity"
                 }
             ],
             "floors": [
@@ -20994,6 +20585,146 @@
             ],
             "rooms": [
                 15
+            ]
+        },
+        "68": {
+            "categories": [],
+            "clickCount": 0,
+            "databaseId": 68,
+            "dynamicMetadata": [],
+            "icons": {
+                "l2": {
+                    "color": "inactive",
+                    "name": "thermomenter_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "main": {
+                    "color": "inactive",
+                    "name": "thermometer_1"
+                },
+                "temperature": {
+                    "color": "inactive",
+                    "name": "thermometer_1"
+                }
+            },
+            "label": "Temperatur2",
+            "metadata": [],
+            "role": 0,
+            "room": 16,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Temp."
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Temperatur"
+                }
+            },
+            "uniqueUiElementId": "Base.temperature",
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "temperature",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "TEMPERATURE2",
+                            "peer": 0,
+                            "properties": {
+                                "maximum": 100,
+                                "minimum": -273.150000095,
+                                "unit": "\u00b0C",
+                                "visualizeInOverview": true,
+                                "value": 21.1234568
+                            },
+                            "rendering": [],
+                            "type": "float"
+                        }
+                    ],
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.temperature"
+                }
+            ],
+            "floors": [
+                3
+            ],
+            "rooms": [
+                16
+            ]
+        },
+        "69": {
+            "categories": [],
+            "clickCount": 0,
+            "databaseId": 69,
+            "dynamicMetadata": [],
+            "icons": {
+                "humidity": {
+                    "color": "inactive",
+                    "name": "waterdrops_1"
+                },
+                "l2": {
+                    "color": "inactive",
+                    "name": "waterdrops_1"
+                },
+                "l3": {
+                    "color": "iconArrow",
+                    "name": "arrow_right_1"
+                },
+                "main": {
+                    "color": "inactive",
+                    "name": "waterdrops_1"
+                }
+            },
+            "label": "Feuchte2",
+            "metadata": [],
+            "role": 0,
+            "room": 16,
+            "texts": {
+                "l2_state_title": {
+                    "color": "l2_state_title",
+                    "content": "Feuchte"
+                },
+                "title": {
+                    "color": "title",
+                    "content": "Luftfeuchtigkeit"
+                }
+            },
+            "uniqueUiElementId": "Base.humidity",
+            "grid": null,
+            "controls": [
+                {
+                    "cell": null,
+                    "control": "humidity",
+                    "variableInputs": [
+                        {
+                            "channel": -1,
+                            "name": "HUMIDITY2",
+                            "peer": 0,
+                            "properties": {
+                                "maximum": 100,
+                                "minimum": 0,
+                                "unit": "%",
+                                "visualizeInOverview": true,
+                                "value": 51.1234568
+                            },
+                            "rendering": [],
+                            "type": "float"
+                        }
+                    ],
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.humidity"
+                }
+            ],
+            "floors": [
+                3
+            ],
+            "rooms": [
+                16
             ]
         },
         "70": {
@@ -21033,12 +20764,12 @@
                     "content": "Temperatur"
                 }
             },
+            "uniqueUiElementId": "Base.temperature",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "temperature",
-                    "uniqueUiElementId": "Base.temperature",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -21055,7 +20786,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.temperature"
                 }
             ],
             "floors": [
@@ -21102,12 +20834,12 @@
                     "content": "Luftfeuchtigkeit"
                 }
             },
+            "uniqueUiElementId": "Base.humidity",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "humidity",
-                    "uniqueUiElementId": "Base.humidity",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -21124,7 +20856,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.humidity"
                 }
             ],
             "floors": [
@@ -21171,12 +20904,12 @@
                     "content": "Temperatur"
                 }
             },
+            "uniqueUiElementId": "Base.temperature",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "temperature",
-                    "uniqueUiElementId": "Base.temperature",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -21193,7 +20926,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.temperature"
                 }
             ],
             "floors": [
@@ -21240,12 +20974,12 @@
                     "content": "Luftfeuchtigkeit"
                 }
             },
+            "uniqueUiElementId": "Base.humidity",
             "grid": null,
             "controls": [
                 {
                     "cell": null,
                     "control": "humidity",
-                    "uniqueUiElementId": "Base.humidity",
                     "variableInputs": [
                         {
                             "channel": -1,
@@ -21262,7 +20996,8 @@
                             "type": "float"
                         }
                     ],
-                    "variableOutputs": []
+                    "variableOutputs": [],
+                    "uniqueUiElementId": "Base.humidity"
                 }
             ],
             "floors": [
@@ -21548,12 +21283,17 @@
         "100000": {
             "name": "Licht",
             "aggregated": {
-                "0": 14,
-                "1": 2,
-                "5": 1,
-                "variableCount": 17
+                "0": 16,
+                "variableCount": 16
             },
             "varInRole": {
+                "0": {
+                    "-1": {
+                        "LIGHT": {
+                            "direction": 2
+                        }
+                    }
+                },
                 "1": {
                     "1": {
                         "STATE": {
@@ -21642,6 +21382,14 @@
                         }
                     }
                 },
+                "7": {
+                    "1": {
+                        "STATE": {
+                            "direction": 2,
+                            "level": 0
+                        }
+                    }
+                },
                 "8": {
                     "1": {
                         "STATE": {
@@ -21651,30 +21399,6 @@
                     }
                 },
                 "84": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 0
-                        }
-                    }
-                },
-                "92": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 0
-                        }
-                    }
-                },
-                "93": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 0
-                        }
-                    }
-                },
-                "94": {
                     "1": {
                         "STATE": {
                             "direction": 2,
@@ -21695,25 +21419,31 @@
         "100001": {
             "name": "Beleuchtung",
             "texts": {
-
+                
                 "0": "aus",
                 "1": "an"
             },
             "icon": "light_on_1",
             "roleProfileValues": {
                 "options": {
-
+                    
                     "false": "aus",
                     "true": "an"
                 },
                 "type": "select"
             },
             "aggregated": {
-                "0": 14,
-                "1": 2,
-                "variableCount": 16
+                "0": 15,
+                "variableCount": 15
             },
             "varInRole": {
+                "0": {
+                    "-1": {
+                        "LIGHT": {
+                            "direction": 2
+                        }
+                    }
+                },
                 "1": {
                     "1": {
                         "STATE": {
@@ -21802,6 +21532,14 @@
                         }
                     }
                 },
+                "7": {
+                    "1": {
+                        "STATE": {
+                            "direction": 2,
+                            "level": 2
+                        }
+                    }
+                },
                 "8": {
                     "1": {
                         "STATE": {
@@ -21817,37 +21555,13 @@
                             "level": 2
                         }
                     }
-                },
-                "92": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "93": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "94": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
                 }
             }
         },
         "101001": {
             "name": "Beleuchtung - Helligkeit",
             "texts": {
-
+                
                 "0": "aus",
                 "100": "an"
             },
@@ -21856,14 +21570,14 @@
             "l2_status": false,
             "roleProfileValues": {
                 "options": {
-
+                    
                     "false": "aus",
                     "true": "an"
                 },
                 "type": "select"
             },
             "aggregated": {
-                "5": 1,
+                "0": 1,
                 "variableCount": 1
             },
             "varInRole": {
@@ -21880,10 +21594,11 @@
         "200000": {
             "name": "HLK",
             "aggregated": {
-                "18": 1,
-                "2": 1,
-                "5": 40,
-                "variableCount": 42
+                "0": 1,
+                "1": 5,
+                "21": 11,
+                "8": 1,
+                "variableCount": 18
             },
             "varInRole": {
                 "78": {
@@ -21893,22 +21608,6 @@
                             "level": 0
                         },
                         "SETPOINT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 0
                         },
@@ -21928,22 +21627,6 @@
                             "direction": 2,
                             "level": 0
                         },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 0
-                        },
                         "TEMPERATURE": {
                             "direction": 2,
                             "level": 0
@@ -21957,22 +21640,6 @@
                             "level": 0
                         },
                         "SETPOINT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 0
                         },
@@ -21992,22 +21659,6 @@
                             "direction": 2,
                             "level": 0
                         },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 0
-                        },
                         "TEMPERATURE": {
                             "direction": 2,
                             "level": 0
@@ -22021,22 +21672,6 @@
                             "level": 0
                         },
                         "SETPOINT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 0
                         },
@@ -22056,22 +21691,6 @@
                             "direction": 2,
                             "level": 0
                         },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 0
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 0
-                        },
                         "TEMPERATURE": {
                             "direction": 2,
                             "level": 0
@@ -22083,7 +21702,7 @@
         "201000": {
             "name": "Heizung",
             "texts": {
-
+                
                 "0": "Frostschutz",
                 "1": "Komfort",
                 "2": "Spar"
@@ -22091,7 +21710,7 @@
             "icon": "heater_1",
             "roleProfileValues": {
                 "options": {
-
+                    
                     "0": "Frostschutz",
                     "1": "Komfort",
                     "2": "Spar"
@@ -22107,10 +21726,11 @@
                 }
             ],
             "aggregated": {
-                "18": 1,
-                "2": 1,
-                "5": 40,
-                "variableCount": 42
+                "0": 1,
+                "1": 5,
+                "21": 11,
+                "8": 1,
+                "variableCount": 18
             },
             "varInRole": {
                 "78": {
@@ -22120,22 +21740,6 @@
                             "level": 1
                         },
                         "SETPOINT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 1
                         },
@@ -22155,22 +21759,6 @@
                             "direction": 2,
                             "level": 1
                         },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 1
-                        },
                         "TEMPERATURE": {
                             "direction": 2,
                             "level": 1
@@ -22184,22 +21772,6 @@
                             "level": 1
                         },
                         "SETPOINT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 1
                         },
@@ -22219,22 +21791,6 @@
                             "direction": 2,
                             "level": 1
                         },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 1
-                        },
                         "TEMPERATURE": {
                             "direction": 2,
                             "level": 1
@@ -22248,22 +21804,6 @@
                             "level": 1
                         },
                         "SETPOINT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 1
                         },
@@ -22283,22 +21823,6 @@
                             "direction": 2,
                             "level": 1
                         },
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 1
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 1
-                        },
                         "TEMPERATURE": {
                             "direction": 2,
                             "level": 1
@@ -22310,11 +21834,11 @@
         "201001": {
             "name": "Heizung - Ist-Temperatur",
             "texts": {
-
+                
                 "0": "Ist"
             },
             "aggregated": {
-                "5": 6,
+                "21": 6,
                 "variableCount": 6
             },
             "varInRole": {
@@ -22371,12 +21895,12 @@
         "201002": {
             "name": "Heizung - Soll-Temperatur",
             "texts": {
-
+                
                 "0": "Soll"
             },
             "aggregated": {
-                "18": 1,
-                "5": 5,
+                "21": 5,
+                "8": 1,
                 "variableCount": 6
             },
             "varInRole": {
@@ -22433,24 +21957,20 @@
         "201003": {
             "name": "Heizung - Temperaturmodus",
             "texts": {
-
+                
                 "0": "Frostschutz",
                 "1": "Komfort",
                 "2": "Spar"
             },
             "aggregated": {
-                "2": 1,
-                "5": 11,
-                "variableCount": 12
+                "0": 1,
+                "1": 5,
+                "variableCount": 6
             },
             "varInRole": {
                 "78": {
                     "1": {
                         "CONTROL_MODE": {
-                            "direction": 2,
-                            "level": 2
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 2
                         }
@@ -22461,20 +21981,12 @@
                         "CONTROL_MODE": {
                             "direction": 2,
                             "level": 2
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 2
                         }
                     }
                 },
                 "80": {
                     "1": {
                         "CONTROL_MODE": {
-                            "direction": 2,
-                            "level": 2
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 2
                         }
@@ -22485,10 +21997,6 @@
                         "CONTROL_MODE": {
                             "direction": 2,
                             "level": 2
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 2
                         }
                     }
                 },
@@ -22497,20 +22005,12 @@
                         "CONTROL_MODE": {
                             "direction": 2,
                             "level": 2
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
-                            "direction": 2,
-                            "level": 2
                         }
                     }
                 },
                 "83": {
                     "1": {
                         "CONTROL_MODE": {
-                            "direction": 2,
-                            "level": 2
-                        },
-                        "SETPOINT_TEMPERATURE.RV.TEMPERATURE_MODE": {
                             "direction": 2,
                             "level": 2
                         }
@@ -22521,190 +22021,40 @@
         "201004": {
             "name": "Heizung - Komforttemperatur",
             "texts": {
-
+                
                 "0": "Komfort"
             },
             "aggregated": {
-                "5": 6,
-                "variableCount": 6
+                "variableCount": 0
             },
-            "varInRole": {
-                "78": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "79": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "80": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "81": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "82": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "83": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.COMFORT_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                }
-            }
+            "varInRole": []
         },
         "201005": {
             "name": "Heizung - Absenktemperatur",
             "texts": {
-
+                
                 "0": "Spar"
             },
             "aggregated": {
-                "5": 6,
-                "variableCount": 6
+                "variableCount": 0
             },
-            "varInRole": {
-                "78": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "79": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "80": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "81": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "82": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "83": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.ECO_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                }
-            }
+            "varInRole": []
         },
         "201006": {
             "name": "Heizung - Frostschutztemperatur",
             "texts": {
-
+                
                 "0": "Frostschutz"
             },
             "aggregated": {
-                "5": 6,
-                "variableCount": 6
+                "variableCount": 0
             },
-            "varInRole": {
-                "78": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "79": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "80": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "81": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "82": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                },
-                "83": {
-                    "1": {
-                        "SETPOINT_TEMPERATURE.RV.FROST_PROTECTION_TEMPERATURE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
-                }
-            }
+            "varInRole": []
         },
         "202001": {
             "name": "L\u00fcftung",
             "texts": {
-
+                
                 "0": "Stufe 1",
                 "1": "Stufe 2",
                 "2": "Stufe 3",
@@ -22719,8 +22069,8 @@
         "300000": {
             "name": "Sicherheit",
             "aggregated": {
-                "0": 11,
-                "2": 1,
+                "0": 1,
+                "1": 11,
                 "variableCount": 12
             },
             "varInRole": {
@@ -22825,8 +22175,8 @@
         "301000": {
             "name": "Sicherheit - Kontaktsensor",
             "aggregated": {
-                "0": 11,
-                "2": 1,
+                "0": 1,
+                "1": 11,
                 "variableCount": 12
             },
             "varInRole": {
@@ -22931,13 +22281,14 @@
         "301001": {
             "name": "Sicherheit - T\u00fcrzustand",
             "texts": {
-
-                "0": "ge\u00f6ffnet",
-                "1": "geschlossen"
+                
+                "0": "geschlossen",
+                "1": "ge\u00f6ffnet"
             },
             "icon": "door_open_2",
             "aggregated": {
-                "0": 2,
+                "0": 1,
+                "1": 1,
                 "variableCount": 2
             },
             "varInRole": {
@@ -22945,6 +22296,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -22953,6 +22305,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -22962,14 +22315,13 @@
         "301002": {
             "name": "Fenster",
             "texts": {
-
-                "0": "ge\u00f6ffnet",
-                "1": "geschlossen"
+                
+                "0": "geschlossen",
+                "1": "ge\u00f6ffnet"
             },
             "icon": "window_1",
             "aggregated": {
-                "0": 8,
-                "2": 1,
+                "1": 9,
                 "variableCount": 9
             },
             "varInRole": {
@@ -22986,6 +22338,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -22994,6 +22347,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -23002,6 +22356,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -23010,6 +22365,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -23018,6 +22374,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -23026,6 +22383,7 @@
                     "1": {
                         "STATE": {
                             "direction": 2,
+                            "invert": true,
                             "level": 2
                         }
                     }
@@ -23051,13 +22409,13 @@
         "301003": {
             "name": "T\u00fcren",
             "texts": {
-
+                
                 "0": "unverriegelt",
                 "1": "verriegelt"
             },
             "icon": "door-handle_1",
             "aggregated": {
-                "0": 1,
+                "1": 1,
                 "variableCount": 1
             },
             "varInRole": {
@@ -23075,8 +22433,7 @@
             "name": "Steckdose",
             "aggregated": {
                 "0": 3,
-                "1": 1,
-                "variableCount": 4
+                "variableCount": 3
             },
             "varInRole": {
                 "12": {
@@ -23096,14 +22453,6 @@
                     }
                 },
                 "9": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 0
-                        }
-                    }
-                },
-                "91": {
                     "1": {
                         "STATE": {
                             "direction": 2,
@@ -23116,14 +22465,14 @@
         "400001": {
             "name": "Steckdosen",
             "texts": {
-
+                
                 "0": "aus",
                 "1": "an"
             },
             "icon": "socket_1",
             "roleProfileValues": {
                 "options": {
-
+                    
                     "false": "aus",
                     "true": "an"
                 },
@@ -23131,8 +22480,7 @@
             },
             "aggregated": {
                 "0": 3,
-                "1": 1,
-                "variableCount": 4
+                "variableCount": 3
             },
             "varInRole": {
                 "12": {
@@ -23158,24 +22506,14 @@
                             "level": 2
                         }
                     }
-                },
-                "91": {
-                    "1": {
-                        "STATE": {
-                            "direction": 2,
-                            "level": 2
-                        }
-                    }
                 }
             }
         },
         "500000": {
             "name": "Beschattung",
             "aggregated": {
-                "0": 18,
-                "1": 2,
-                "20": 1,
-                "35": 1,
+                "0": 21,
+                "5": 1,
                 "variableCount": 22
             },
             "varInRole": {
@@ -23304,14 +22642,14 @@
         "501000": {
             "name": "Beschattung",
             "texts": {
-
+                
                 "falseCount": "eingefahren",
                 "trueCount": "ausgefahren"
             },
             "icon": "blind_1",
             "roleProfileValues": {
                 "options": {
-
+                    
                     "false": "ausfahren",
                     "true": "einfahren"
                 },
@@ -23333,7 +22671,8 @@
                 }
             ],
             "aggregated": {
-                "0": 16,
+                "0": 15,
+                "5": 1,
                 "variableCount": 16
             },
             "varInRole": {
@@ -23430,7 +22769,7 @@
         "501001": {
             "name": "Beschattung - hoch",
             "texts": {
-
+                
                 "0": "Hoch"
             },
             "aggregated": {
@@ -23483,7 +22822,7 @@
         "501002": {
             "name": "Beschattung - runter",
             "texts": {
-
+                
                 "0": "Runter"
             },
             "aggregated": {
@@ -23536,7 +22875,7 @@
         "501003": {
             "name": "Beschattung - Stopp",
             "texts": {
-
+                
                 "0": "Stopp"
             },
             "aggregated": {
@@ -23547,7 +22886,8 @@
         "501004": {
             "name": "Beschattung - Position",
             "aggregated": {
-                "0": 6,
+                "0": 5,
+                "5": 1,
                 "variableCount": 6
             },
             "varInRole": {
@@ -23604,7 +22944,7 @@
         "501005": {
             "name": "Beschattung - hoch und runter",
             "texts": {
-
+                
                 "0": "Hoch",
                 "1": "Runter"
             },
@@ -23616,7 +22956,7 @@
         "501006": {
             "name": "Beschattung - Stufe",
             "texts": {
-
+                
                 "0": "Hoch",
                 "1": "Runter"
             },
@@ -23628,14 +22968,14 @@
         "502000": {
             "name": "Beschattung - Markise",
             "texts": {
-
+                
                 "falseCount": "eingefahren",
                 "trueCount": "ausgefahren"
             },
             "icon": "awning_1",
             "roleProfileValues": {
                 "options": {
-
+                    
                     "false": "einfahren",
                     "true": "ausfahren"
                 },
@@ -23650,10 +22990,7 @@
                 }
             ],
             "aggregated": {
-                "0": 2,
-                "1": 2,
-                "20": 1,
-                "35": 1,
+                "0": 6,
                 "variableCount": 6
             },
             "varInRole": {
@@ -23694,12 +23031,11 @@
         "502001": {
             "name": "Beschattung - Markise - einfahren",
             "texts": {
-
+                
                 "0": "einfahren"
             },
             "aggregated": {
-                "0": 1,
-                "1": 1,
+                "0": 2,
                 "variableCount": 2
             },
             "varInRole": {
@@ -23724,12 +23060,11 @@
         "502002": {
             "name": "Beschattung - Markise - ausfahren",
             "texts": {
-
+                
                 "0": "ausfahren"
             },
             "aggregated": {
-                "0": 1,
-                "1": 1,
+                "0": 2,
                 "variableCount": 2
             },
             "varInRole": {
@@ -23754,7 +23089,7 @@
         "502003": {
             "name": "Beschattung - Markise - Stopp",
             "texts": {
-
+                
                 "0": "Stopp"
             },
             "aggregated": {
@@ -23765,8 +23100,7 @@
         "502004": {
             "name": "Beschattung - Markise - Position",
             "aggregated": {
-                "20": 1,
-                "35": 1,
+                "0": 2,
                 "variableCount": 2
             },
             "varInRole": {
@@ -23791,7 +23125,7 @@
         "600000": {
             "name": "Fenster",
             "texts": {
-
+                
                 "falseCount": "ge\u00f6ffnet",
                 "trueCount": "geschlossen"
             },
@@ -23799,7 +23133,7 @@
             "l2_status": false,
             "roleProfileValues": {
                 "options": {
-
+                    
                     "false": "\u00f6ffnen",
                     "true": "schlie\u00dfen"
                 },
@@ -23814,9 +23148,7 @@
                 }
             ],
             "aggregated": {
-                "0": 1,
-                "1": 4,
-                "30": 1,
+                "0": 6,
                 "variableCount": 6
             },
             "varInRole": {
@@ -23857,11 +23189,11 @@
         "600001": {
             "name": "Fenster - hoch",
             "texts": {
-
+                
                 "0": "Hoch"
             },
             "aggregated": {
-                "1": 2,
+                "0": 2,
                 "variableCount": 2
             },
             "varInRole": {
@@ -23886,11 +23218,11 @@
         "600002": {
             "name": "Fenster - runter",
             "texts": {
-
+                
                 "0": "Runter"
             },
             "aggregated": {
-                "1": 2,
+                "0": 2,
                 "variableCount": 2
             },
             "varInRole": {
@@ -23915,7 +23247,7 @@
         "600003": {
             "name": "Fenster - Stopp",
             "texts": {
-
+                
                 "0": "Stopp"
             },
             "aggregated": {
@@ -23926,8 +23258,7 @@
         "600004": {
             "name": "Fenster - Position",
             "aggregated": {
-                "0": 1,
-                "30": 1,
+                "0": 2,
                 "variableCount": 2
             },
             "varInRole": {
@@ -24161,21 +23492,6 @@
         }
     ],
     "profiles": {
-        "14": {
-            "activeVariableCount": 0,
-            "favorite": false,
-            "global": true,
-            "icon": "slider_1",
-            "id": 14,
-            "isActive": false,
-            "locations": [
-                []
-            ],
-            "name": "asdf",
-            "roles": [],
-            "totalVariableCount": 0,
-            "values": []
-        },
         "13": {
             "activeVariableCount": 0,
             "global": true,
@@ -24309,7 +23625,7 @@
             ]
         },
         "9": {
-            "activeVariableCount": 2,
+            "activeVariableCount": 4,
             "editable": false,
             "global": false,
             "icon": "arrow_down_1",
@@ -24327,7 +23643,7 @@
             "values": []
         },
         "8": {
-            "activeVariableCount": 2,
+            "activeVariableCount": 0,
             "editable": false,
             "global": false,
             "icon": "arrow_up_1",
@@ -24345,7 +23661,7 @@
             "values": []
         },
         "7": {
-            "activeVariableCount": 10,
+            "activeVariableCount": 8,
             "editable": false,
             "global": false,
             "icon": "arrow_down_1",
@@ -24359,7 +23675,7 @@
                     "value": false
                 }
             ],
-            "totalVariableCount": 16,
+            "totalVariableCount": 13,
             "values": []
         },
         "6": {
@@ -24377,7 +23693,7 @@
                     "value": true
                 }
             ],
-            "totalVariableCount": 16,
+            "totalVariableCount": 13,
             "values": []
         },
         "5": {
@@ -24386,7 +23702,7 @@
             "global": false,
             "icon": "power_1",
             "id": 5,
-            "isActive": false,
+            "isActive": true,
             "locations": [],
             "name": "zentral aus",
             "roles": [
@@ -24395,11 +23711,11 @@
                     "value": false
                 }
             ],
-            "totalVariableCount": 4,
+            "totalVariableCount": 3,
             "values": []
         },
         "4": {
-            "activeVariableCount": 1,
+            "activeVariableCount": 0,
             "editable": false,
             "global": false,
             "icon": "thermometer_1",
@@ -24410,14 +23726,14 @@
             "roles": [
                 {
                     "role": 201000,
-                    "value": 5
+                    "value": 2
                 }
             ],
             "totalVariableCount": 42,
             "values": []
         },
         "3": {
-            "activeVariableCount": 0,
+            "activeVariableCount": 11,
             "editable": false,
             "global": false,
             "icon": "thermometer_1",
@@ -24435,7 +23751,7 @@
             "values": []
         },
         "2": {
-            "activeVariableCount": 0,
+            "activeVariableCount": 1,
             "editable": false,
             "global": false,
             "icon": "thermometer_1",
@@ -24453,12 +23769,12 @@
             "values": []
         },
         "1": {
-            "activeVariableCount": 15,
+            "activeVariableCount": 11,
             "editable": false,
             "global": false,
             "icon": "power_1",
             "id": 1,
-            "isActive": false,
+            "isActive": true,
             "locations": [],
             "name": "zentral aus",
             "roles": [
@@ -24467,7 +23783,7 @@
                     "value": false
                 }
             ],
-            "totalVariableCount": 17,
+            "totalVariableCount": 11,
             "values": []
         }
     },
@@ -24543,15 +23859,15 @@
         }
     ],
     "options": {
-        "twofaEnabled": false,
+        "twofaEnabled": true,
         "userHasTwofaRegistrations": false,
         "theme": "dark",
-        "highlight": "#e36200",
+        "highlight": "#0056b7",
         "language": "de-DE",
-        "startPath": "favorites",
+        "startPath": "house.tab.rooms",
         "viewportScale": 0.65000000000000002,
         "scrollbarScale": 4,
-        "roleProfileDefinable": false,
+        "roleProfileDefinable": true,
         "languageChangeable": true,
         "twofaChangeable": true,
         "disabledMainmenus": [],
@@ -24564,88 +23880,7 @@
         "websocket_url": "location.hostname",
         "websocket_port": "location.port",
         "websocket_security_ssl": "location.protocol",
-        "elementOrder": {
-            "favorites": {
-                "default": [
-                    2,
-                    0,
-                    1,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    13,
-                    14,
-                    15
-                ]
-            },
-            "house.tab.devices": {
-                "100001": [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    13,
-                    14,
-                    15,
-                    16,
-                    17,
-                    18,
-                    19,
-                    20,
-                    21
-                ],
-                "default": [
-                    "0",
-                    "100001",
-                    "101001",
-                    "301001",
-                    "201000",
-                    "301002",
-                    "301003",
-                    "400001",
-                    "501000",
-                    "502000",
-                    "600000"
-                ],
-                "role_201000_profile": [
-                    0,
-                    1,
-                    2
-                ]
-            },
-            "house.tab.profiles": {
-                "default": [
-                    0,
-                    1
-                ]
-            },
-            "house.tab.rooms.room.device-9-26": {
-                "default": [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5
-                ]
-            }
-        }
+        "elementOrder": []
     },
     "manifest": {
         "lang": "de",
@@ -24662,7 +23897,7 @@
         "display": "fullscreen",
         "orientation": "any",
         "manifest_version": 2,
-        "revision": 358,
+        "revision": 360,
         "developer": {
             "name": "Marwin Hubach",
             "url": "https:\/\/marwinh.de\/"
@@ -24845,6 +24080,312 @@
         "blinds_1": "blind_2",
         "blinds_2": "blind_3"
     },
+    "deviceCategories": [
+        {
+            "name": "Beleuchtung",
+            "icon": "light_on_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        100001
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        101001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "0": "aus",
+                "1": "an",
+                "falseCount": "aus",
+                "trueCount": "an"
+            },
+            "uiElements": {
+                "lightingBrightness": true,
+                "lightingButton": true,
+                "lightingColor": true,
+                "lightingFunction": true,
+                "lightingSpeed": true,
+                "lightingSwitch": true,
+                "lightingSwitchBrightness": true,
+                "lightingSwitchBrightnessColor": true,
+                "lightingSwitchBrightnessTemp": true,
+                "lightingSwitchButtonBrightness": true,
+                "lightingSwitchButtonBrightnessColor": true,
+                "lightingSwitchColor": true,
+                "lightingSwitchFunctionBrightnessColor": true,
+                "lightingSwitchFunctionBrightnessSpeedColor": true,
+                "lightingSwitchTimer": true,
+                "lightingTemp": true
+            }
+        },
+        {
+            "name": "Heizung",
+            "icon": "heater_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        201003
+                    ]
+                }
+            ],
+            "statusMap": [
+                "Frostschutz",
+                "Komfort",
+                "Spar"
+            ],
+            "uiElements": {
+                "heatingIsState": true,
+                "heatingIsStateSliderMode": true,
+                "heatingIsStateSliderModeWindow": true,
+                "heatingIsStateSliderModeWindowContact": true,
+                "heatingIsStateSliderModeWindowHandle": true,
+                "heatingMode": true,
+                "heatingSlider": true,
+                "heatingWindow": true
+            }
+        },
+        {
+            "name": "L\u00fcftung",
+            "icon": "ventilator_2",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        202001
+                    ]
+                }
+            ],
+            "statusMap": [
+                "Stufe 1",
+                "Stufe 2",
+                "Stufe 3",
+                "Stufe 4"
+            ],
+            "uiElements": {
+                "ventilationMode": true
+            }
+        },
+        {
+            "name": "T\u00fcren",
+            "icon": "door_open_2",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        301001,
+                        301003
+                    ]
+                }
+            ],
+            "statusMap": [
+                "ge\u00f6ffnet",
+                "geschlossen",
+                "unverriegelt",
+                "verriegelt"
+            ],
+            "uiElements": {
+                "doorContact": true,
+                "doorHandle": true,
+                "doorLock": true
+            }
+        },
+        {
+            "name": "Fenster",
+            "icon": "window_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        301002
+                    ]
+                }
+            ],
+            "statusMap": [
+                "ge\u00f6ffnet",
+                "geschlossen",
+                "gekippt"
+            ],
+            "uiElements": {
+                "windowContact": true,
+                "windowHandle": true,
+                "windowPosition": true
+            }
+        },
+        {
+            "name": "Steckdosen",
+            "icon": "socket_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        400001
+                    ]
+                }
+            ],
+            "statusMap": [
+                "aus",
+                "an"
+            ],
+            "uiElements": {
+                "socketButton": true,
+                "socketSwitch": true
+            }
+        },
+        {
+            "name": "Beschattung",
+            "icon": "blind_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        501000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        501004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "falseCount": "eingefahren",
+                "trueCount": "ausgefahren"
+            },
+            "uiElements": {
+                "shadingButtons": true,
+                "shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm": true,
+                "shadingButtonsPosition": true,
+                "shadingButtonsPositionPositionSlats": true,
+                "shadingButtonsPositionSlats": true,
+                "shadingButtonsPositionVentilationWindalarm": true,
+                "shadingButtonsPositionWindalarm": true,
+                "shadingButtonsSingleStep": true,
+                "shadingButtonsSingleStepPositionPositionSlatsWindalarm": true,
+                "shadingButtonsUpDown": true,
+                "shadingPosition": true,
+                "shadingPositionSlats": true,
+                "shadingRainalarm": true,
+                "shadingVentilation": true,
+                "shadingWindalarm": true
+            }
+        },
+        {
+            "name": "Markisen",
+            "icon": "awning_1",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        502000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        502004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "falseCount": "eingefahren",
+                "trueCount": "ausgefahren"
+            },
+            "uiElements": {
+                "shadingAwningButtonsPosition": true,
+                "shadingAwningButtonsPositionRainalarm": true,
+                "shadingAwningButtonsPositionWindalarm": true,
+                "shadingAwningButtonsPositionWindalarmRainalarm": true
+            }
+        },
+        {
+            "name": "Fenstermotoren",
+            "icon": "window_2",
+            "l2_status": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        600000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        600004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "falseCount": "ge\u00f6ffnet",
+                "trueCount": "geschlossen"
+            },
+            "uiElements": {
+                "windowButtons": true,
+                "windowButtonsPosition": true,
+                "windowButtonsPositionRainalarm": true,
+                "windowButtonsUpDown": true,
+                "windowButtonsUpDownRainalarm": true,
+                "windowRainalarm": true
+            }
+        },
+        {
+            "name": "Wetter",
+            "icon": "weather_1",
+            "l2_status": false,
+            "aggregation": [],
+            "statusMap": [],
+            "uiElements": {
+                "climateCity": true,
+                "climateCloudcoverage": true,
+                "climateDate": true,
+                "climatePressure": true,
+                "climateRain3h": true,
+                "climateSnow3h": true,
+                "climateSunrise": true,
+                "climateSunset": true,
+                "climateWeather": true,
+                "climateWinddirection": true,
+                "climateWindgust": true,
+                "climateWindspeed": true
+            }
+        },
+        {
+            "name": "Klima",
+            "icon": "weather_1",
+            "l2_status": false,
+            "aggregation": [],
+            "statusMap": [],
+            "uiElements": {
+                "humidity": true,
+                "temperature": true
+            }
+        },
+        {
+            "name": "Media",
+            "icon": "player_1",
+            "l2_status": false,
+            "aggregation": [],
+            "statusMap": [],
+            "uiElements": {
+                "mediaButtons": true
+            }
+        }
+    ],
     "i18n": {
         "login": {
             "username": "Benutzername",
@@ -24919,7 +24460,7 @@
         "settings.profiles.profile.name": "Name",
         "settings.profiles.profile.icon": "Icon",
         "settings.profiles.profile.locations": "Visualisierungsort",
-        "settings.profiles.profile.locations.global": "Global",
+        "settings.profiles.profile.locations.global": "Im Tab \"Profile\" anzeigen",
         "settings.profiles.profile.locations.favorite": "Favorit",
         "settings.profiles.profile.locations.floor": "Stockwerk",
         "settings.profiles.profile.locations.floor.placeholder": "Stockwerk w\u00e4hlen",
@@ -24927,6 +24468,7 @@
         "settings.profiles.profile.locations.room.placeholder": "Raum w\u00e4hlen",
         "settings.profiles.profile.locations.add": "Hinzuf\u00fcgen",
         "settings.profiles.profile.locations.remove": "Entfernen",
+        "settings.profiles.profile.categories": "Ger\u00e4tekategorien",
         "settings.profiles.profile.roles": "Rolle",
         "settings.profiles.profile.roles.name": "Rolle",
         "settings.profiles.profile.roles.value": "Status",
@@ -24934,9 +24476,14 @@
         "settings.profiles.profile.roles.remove": "Entfernen",
         "settings.profiles.profile.delete": "L\u00f6schen",
         "settings.profiles.profile.load": "Zugeh\u00f6rige Ger\u00e4te bearbeiten",
-        "settings.profiles.profile.load.description": "Ger\u00e4te bearbeiten aktiv",
+        "settings.profiles.profile.load.description": "Bitte w\u00e4hlen Sie jetzt die Ger\u00e4te aus, welche in das Profil aufgenommen werden sollen. Bitte stellen Sie den gew\u00fcnschten Ger\u00e4tezustand ein, bevor Sie den Haken setzen, da das Ger\u00e4t in genau diesem Zustand eingetragen wird. Wenn Sie fertig sind, vergessen Sie bitte nicht zu speichern",
         "settings.profiles.profile.save": "Speichern",
         "settings.profiles.profile.edit": "Bearbeiten",
+        "settings.profiles.profile.unsaved": "Sie haben noch nicht gespeicherte \u00c4nderungen. Trotzdem fortsetzen?",
+        "settings.profiles.profile.abort": "Abbruch",
+        "settings.profiles.profile.global_or_room": "Ein Profil muss entweder als \"global\" markiert, oder mindestens einem Raum zugewiesen sein. Bitte \u00e4ndern Sie ihre Konfiguration.",
+        "settings.profiles.profile.name_required": "Ein Profil muss einen Namen besitzen. Bitte \u00e4ndern Sie ihre Konfiguration.",
+        "settings.profiles.profile.delete_request": "Sind Sie sicher, dass Sie das Profil l\u00f6schen m\u00f6chten?",
         "settings.profiles.description": "Profile erstellen und l\u00f6schen",
         "settings.user": "Benutzer",
         "settings.user.description": "Verwalten",
@@ -24957,6 +24504,7 @@
         "settings.user.manage.highlight": "Vordergrundfarbe",
         "settings.user.manage.startpath": "Startpunkt",
         "settings.user.manage.save": "Speichern",
+        "settings.user.manage.unsaved": "Sie haben noch nicht gespeicherte \u00c4nderungen. Trotzdem fortsetzen?",
         "settings.about": "Lizenz",
         "settings.about.description": "Credits",
         "settings.about.table.name": "Name",
@@ -24969,6 +24517,7 @@
         "modemenu.sort.name": "Sortiermodus",
         "modemenu.sort.button.end": "Speichern",
         "modemenu.profiles.name.label": "Profil",
+        "modemenu.profiles.name.new": "Neues Profil",
         "modemenu.profiles.button.settings": "Zur\u00fcck zur Profilkonfiguration",
         "modemenu.profiles.button.end": "Speichern",
         "modemenu.profiles.button.abort": "abbrechen",
@@ -24978,6 +24527,9 @@
         "disabled_text": "gesperrt",
         "hide": "ausblenden",
         "close": "schlie\u00dfen",
+        "user_interaction.alert.button.true": "Best\u00e4tigen",
+        "user_interaction.confirm.button.false": "Abbruch",
+        "user_interaction.confirm.button.true": "Best\u00e4tigen",
         "default": {
             "login": {
                 "username": "Username",
@@ -25052,7 +24604,7 @@
             "settings.profiles.profile.name": "Name",
             "settings.profiles.profile.icon": "Icon",
             "settings.profiles.profile.locations": "Locations",
-            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.global": "Show in \"Profiles\" tab",
             "settings.profiles.profile.locations.favorite": "Favorite",
             "settings.profiles.profile.locations.floor": "Story",
             "settings.profiles.profile.locations.floor.placeholder": "select story",
@@ -25060,6 +24612,7 @@
             "settings.profiles.profile.locations.room.placeholder": "select room",
             "settings.profiles.profile.locations.add": "Add",
             "settings.profiles.profile.locations.remove": "Remove",
+            "settings.profiles.profile.categories": "Device Categories",
             "settings.profiles.profile.roles": "Role",
             "settings.profiles.profile.roles.name": "Role",
             "settings.profiles.profile.roles.value": "State",
@@ -25067,9 +24620,14 @@
             "settings.profiles.profile.roles.remove": "Remove",
             "settings.profiles.profile.delete": "Delete",
             "settings.profiles.profile.load": "Modify Devices",
-            "settings.profiles.profile.load.description": "Modify Device Mode activ",
+            "settings.profiles.profile.load.description": "Please choose the devices you want to have added to the profile. Please adjust the device states of the wanted devices before checking the mark as it gets saved in exactly this state. And finally please do not forget do save.",
             "settings.profiles.profile.save": "Save",
             "settings.profiles.profile.edit": "Edit",
+            "settings.profiles.profile.delete_request": "Are you sure you want to delete this profile?",
+            "settings.profiles.profile.unsaved": "You have unsaved changes. Continue anyway?",
+            "settings.profiles.profile.abort": "Abort",
+            "settings.profiles.profile.global_or_room": "A profile must either be marked as \"global\" or be assigned to a room. Please change your configuration.",
+            "settings.profiles.profile.name_required": "A profile must have a name. Please change your configuration.",
             "settings.profiles.description": "Add and delete profiles",
             "settings.user": "User",
             "settings.user.description": "Manage",
@@ -25090,6 +24648,7 @@
             "settings.user.manage.highlight": "Highlighting",
             "settings.user.manage.startpath": "Start path",
             "settings.user.manage.save": "Save",
+            "settings.user.manage.unsaved": "You have unsaved changes. Continue anyway?",
             "settings.about": "License",
             "settings.about.description": "Credits",
             "settings.about.table.name": "Name",
@@ -25102,6 +24661,7 @@
             "modemenu.sort.name": "Sort mode",
             "modemenu.sort.button.end": "Save",
             "modemenu.profiles.name.label": "Profile",
+            "modemenu.profiles.name.new": "New profile",
             "modemenu.profiles.button.settings": "Back to profile configuration",
             "modemenu.profiles.button.end": "Save",
             "modemenu.profiles.button.abort": "abort",
@@ -25110,7 +24670,10 @@
             "logoff": "Logoff",
             "disabled_text": "disabled",
             "hide": "hide",
-            "close": "close"
+            "close": "close",
+            "user_interaction.alert.button.true": "Confirm",
+            "user_interaction.confirm.button.false": "Abort",
+            "user_interaction.confirm.button.true": "Confirm"
         },
         "languages": {
             "en-US": {
@@ -25124,22 +24687,6 @@
     "map_invoke": {
         "0": {
             "-1": {
-                "TEMPERATURE2": [
-                    {
-                        "databaseId": 68,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
-                "HUMIDITY2": [
-                    {
-                        "databaseId": 69,
-                        "control": 0,
-                        "input": 0,
-                        "roles": []
-                    }
-                ],
                 "RAINALARM": [
                     {
                         "databaseId": 1,
@@ -25582,6 +25129,22 @@
                         "roles": []
                     }
                 ],
+                "TEMPERATURE2": [
+                    {
+                        "databaseId": 68,
+                        "control": 0,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
+                "HUMIDITY2": [
+                    {
+                        "databaseId": 69,
+                        "control": 0,
+                        "input": 0,
+                        "roles": []
+                    }
+                ],
                 "TEMPERATURE3": [
                     {
                         "databaseId": 70,
@@ -25610,13 +25173,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25627,13 +25190,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25650,13 +25213,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25667,13 +25230,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25690,13 +25253,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25707,13 +25270,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25730,13 +25293,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25747,13 +25310,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25770,13 +25333,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25787,13 +25350,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25810,13 +25373,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25827,13 +25390,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25847,13 +25410,35 @@
                         "databaseId": 10,
                         "control": 0,
                         "input": 0,
-                        "roles": []
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100000,
+                                "level": 0
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100001,
+                                "level": 2
+                            }
+                        ]
                     },
                     {
                         "databaseId": 10,
                         "control": 0,
                         "input": 0,
-                        "roles": []
+                        "roles": [
+                            {
+                                "direction": 2,
+                                "id": 100000,
+                                "level": 0
+                            },
+                            {
+                                "direction": 2,
+                                "id": 100001,
+                                "level": 2
+                            }
+                        ]
                     }
                 ]
             }
@@ -25868,13 +25453,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25885,13 +25470,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25908,13 +25493,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400001,
-                                "level": 2
+                                "id": 400000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 400000,
-                                "level": 0
+                                "id": 400001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25925,13 +25510,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400001,
-                                "level": 2
+                                "id": 400000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 400000,
-                                "level": 0
+                                "id": 400001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25948,13 +25533,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -25965,13 +25550,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -25988,13 +25573,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26005,13 +25590,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26028,13 +25613,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400001,
-                                "level": 2
+                                "id": 400000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 400000,
-                                "level": 0
+                                "id": 400001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26045,13 +25630,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400001,
-                                "level": 2
+                                "id": 400000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 400000,
-                                "level": 0
+                                "id": 400001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26068,13 +25653,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26085,13 +25670,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26108,13 +25693,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26125,13 +25710,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26148,13 +25733,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26165,13 +25750,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26188,13 +25773,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400001,
-                                "level": 2
+                                "id": 400000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 400000,
-                                "level": 0
+                                "id": 400001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26205,13 +25790,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 400001,
-                                "level": 2
+                                "id": 400000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 400000,
-                                "level": 0
+                                "id": 400001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26228,13 +25813,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26245,13 +25830,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26262,13 +25847,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26279,13 +25864,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 100001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 100001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26299,35 +25884,13 @@
                         "databaseId": 21,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 21,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 400001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 400000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     }
                 ]
             }
@@ -26432,13 +25995,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -26454,13 +26017,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -26476,13 +26039,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -26498,13 +26061,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -26527,13 +26090,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -26549,13 +26112,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -26571,13 +26134,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -26593,13 +26156,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     }
@@ -26661,13 +26224,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -26683,13 +26246,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -26705,13 +26268,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -26727,13 +26290,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     }
@@ -26750,13 +26313,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26767,13 +26330,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26784,13 +26347,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26801,13 +26364,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26820,13 +26383,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     },
@@ -26837,13 +26400,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     },
@@ -26854,13 +26417,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     },
@@ -26871,13 +26434,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     }
@@ -26894,13 +26457,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26911,13 +26474,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26928,13 +26491,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     },
@@ -26945,13 +26508,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600001,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600001,
+                                "level": 2
                             }
                         ]
                     }
@@ -26990,13 +26553,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     },
@@ -27007,13 +26570,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     },
@@ -27024,13 +26587,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     },
@@ -27041,13 +26604,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 600002,
-                                "level": 2
+                                "id": 600000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 600000,
-                                "level": 0
+                                "id": 600002,
+                                "level": 2
                             }
                         ]
                     }
@@ -27194,13 +26757,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -27216,13 +26779,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -27245,13 +26808,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -27267,13 +26830,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     }
@@ -27350,13 +26913,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -27372,13 +26935,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -27401,13 +26964,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -27423,13 +26986,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     }
@@ -27506,13 +27069,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -27528,13 +27091,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -27557,13 +27120,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     },
@@ -27579,13 +27142,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 501004,
-                                "level": 2
+                                "id": 501000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 501000,
-                                "level": 1
+                                "id": 501004,
+                                "level": 2
                             }
                         ]
                     }
@@ -27602,11 +27165,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27614,6 +27172,11 @@
                                 "direction": 2,
                                 "id": 502001,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27624,11 +27187,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27636,6 +27194,11 @@
                                 "direction": 2,
                                 "id": 502001,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27646,11 +27209,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27658,6 +27216,11 @@
                                 "direction": 2,
                                 "id": 502001,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27668,11 +27231,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27680,6 +27238,11 @@
                                 "direction": 2,
                                 "id": 502001,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27690,11 +27253,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27702,6 +27260,11 @@
                                 "direction": 2,
                                 "id": 502001,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27712,11 +27275,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27724,6 +27282,11 @@
                                 "direction": 2,
                                 "id": 502001,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     }
@@ -27774,11 +27337,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27786,6 +27344,11 @@
                                 "direction": 2,
                                 "id": 502002,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27796,11 +27359,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27808,6 +27366,11 @@
                                 "direction": 2,
                                 "id": 502002,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27818,11 +27381,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27830,6 +27388,11 @@
                                 "direction": 2,
                                 "id": 502002,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27840,11 +27403,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27852,6 +27410,11 @@
                                 "direction": 2,
                                 "id": 502002,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27862,11 +27425,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27874,6 +27432,11 @@
                                 "direction": 2,
                                 "id": 502002,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     },
@@ -27884,11 +27447,6 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 500000,
                                 "level": 0
                             },
@@ -27896,6 +27454,11 @@
                                 "direction": 2,
                                 "id": 502002,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 502000,
+                                "level": 1
                             }
                         ]
                     }
@@ -28002,13 +27565,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 502000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28024,13 +27587,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
+                                "id": 500000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 500000,
-                                "level": 0
+                                "id": 502000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28113,13 +27676,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 502004,
-                                "level": 2
+                                "id": 502000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
+                                "id": 502004,
+                                "level": 2
                             }
                         ]
                     },
@@ -28135,13 +27698,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 502004,
-                                "level": 2
+                                "id": 502000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 502000,
-                                "level": 1
+                                "id": 502004,
+                                "level": 2
                             }
                         ]
                     }
@@ -28158,13 +27721,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28180,13 +27743,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28209,13 +27772,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     },
@@ -28231,13 +27794,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     }
@@ -28254,13 +27817,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28277,13 +27840,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28300,13 +27863,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28323,13 +27886,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28376,13 +27939,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28398,13 +27961,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28427,13 +27990,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     },
@@ -28449,13 +28012,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     }
@@ -28496,13 +28059,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28518,13 +28081,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28547,13 +28110,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     },
@@ -28569,13 +28132,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     }
@@ -28616,13 +28179,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28638,13 +28201,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28667,13 +28230,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     },
@@ -28689,13 +28252,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     }
@@ -28736,13 +28299,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28758,13 +28321,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28787,13 +28350,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     },
@@ -28809,13 +28372,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     }
@@ -28832,13 +28395,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28854,13 +28417,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28876,13 +28439,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28898,13 +28461,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28950,13 +28513,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -28972,13 +28535,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 200000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 200000,
-                                "level": 0
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -29001,13 +28564,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     },
@@ -29023,13 +28586,13 @@
                             },
                             {
                                 "direction": 2,
-                                "id": 201003,
-                                "level": 2
+                                "id": 201000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
-                                "id": 201000,
-                                "level": 1
+                                "id": 201003,
+                                "level": 2
                             }
                         ]
                     }
@@ -29046,17 +28609,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29068,17 +28632,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29096,17 +28661,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29118,17 +28684,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29146,17 +28713,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29168,17 +28736,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29196,17 +28765,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29218,17 +28788,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29246,17 +28817,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29268,17 +28840,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29296,17 +28869,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29318,17 +28892,18 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
+                                "id": 301000,
+                                "level": 1
+                            },
+                            {
+                                "direction": 2,
                                 "id": 301002,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29346,13 +28921,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -29368,13 +28943,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -29407,6 +28982,7 @@
                             {
                                 "direction": 2,
                                 "id": 301001,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29429,6 +29005,7 @@
                             {
                                 "direction": 2,
                                 "id": 301001,
+                                "invert": true,
                                 "level": 2
                             }
                         ]
@@ -29446,18 +29023,19 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
                                 "id": 301001,
+                                "invert": true,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000,
+                                "level": 1
                             }
                         ]
                     },
@@ -29468,18 +29046,19 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
-                            },
-                            {
-                                "direction": 2,
                                 "id": 300000,
                                 "level": 0
                             },
                             {
                                 "direction": 2,
                                 "id": 301001,
+                                "invert": true,
                                 "level": 2
+                            },
+                            {
+                                "direction": 2,
+                                "id": 301000,
+                                "level": 1
                             }
                         ]
                     }
@@ -29496,13 +29075,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -29518,13 +29097,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 301000,
-                                "level": 1
+                                "id": 300000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 300000,
-                                "level": 0
+                                "id": 301000,
+                                "level": 1
                             },
                             {
                                 "direction": 2,
@@ -29564,13 +29143,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 101001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 101001,
+                                "level": 2
                             }
                         ]
                     },
@@ -29581,13 +29160,13 @@
                         "roles": [
                             {
                                 "direction": 2,
-                                "id": 101001,
-                                "level": 2
+                                "id": 100000,
+                                "level": 0
                             },
                             {
                                 "direction": 2,
-                                "id": 100000,
-                                "level": 0
+                                "id": 101001,
+                                "level": 2
                             }
                         ]
                     }
@@ -29601,35 +29180,13 @@
                         "databaseId": 56,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 56,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     }
                 ],
                 "LEVEL_FAST": [
@@ -29655,69 +29212,25 @@
                         "databaseId": 57,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 57,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 57,
                         "control": 1,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 57,
                         "control": 1,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     }
                 ],
                 "LEVEL_FAST": [
@@ -29743,205 +29256,73 @@
                         "databaseId": 58,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 58,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 58,
                         "control": 1,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 58,
                         "control": 1,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 59,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 59,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 60,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 60,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 61,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 61,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 62,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     },
                     {
                         "databaseId": 62,
                         "control": 0,
                         "input": 0,
-                        "roles": [
-                            {
-                                "direction": 2,
-                                "id": 100001,
-                                "level": 2
-                            },
-                            {
-                                "direction": 2,
-                                "id": 100000,
-                                "level": 0
-                            }
-                        ]
+                        "roles": []
                     }
                 ],
                 "LEVEL_FAST": [
