@@ -158,11 +158,11 @@ Vue.mixin({
         },
 
         warn: function (val) {
-            console.warn(val);
+            console.oldWarn(val);
         },
 
         log: function (val) {
-            console.log(val);
+            console.oldLog(val);
         },
     },
 
