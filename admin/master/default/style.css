@@ -899,6 +899,20 @@ a.disabled {
   transform: rotate(45deg);
 }
 
+.check.checked .checkmark:after {
+  display: block;
+  left: 11px;
+  top: 0px;
+  width: 15px;
+  height: 30px;
+  border: solid #fff;
+  border-radius: 4px;
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 /* ///////////////////////////////////////////////////////////////////////// */
 
 /* Range */
@@ -1300,7 +1314,7 @@ td {
 
 .device_wrapper .checkbox_wrapper {
   position: absolute;
-  height: 70px;
+  height: 50px;
   width: inherit;
   right: 50px;
   top: 0;
@@ -1310,12 +1324,24 @@ td {
 
 .control_wrapper .checkbox_wrapper {
   position: absolute;
-  height: 70px;
+  height: 50px;
   width: inherit;
   right: 0px;
   top: 10px;
   margin: auto;
 
+}
+
+
+
+.control_wrapper .checkbox_wrapper .check,
+.device_wrapper .checkbox_wrapper .check {
+  position: relative;
+}
+
+.control_wrapper .checkbox_wrapper .check.checked .checkmark,
+.device_wrapper .checkbox_wrapper .check.checked .checkmark {
+  border: 4px solid #e3a104;
 }
 
 
@@ -1326,11 +1352,6 @@ td {
   z-index: 9;
 }
 
-.control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper>div>div,
-.device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper>div>div {
-  width: 70px;
-  height: 70px;
-}
 
 .control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper {
@@ -1339,12 +1360,8 @@ td {
   z-index: 9;
 }
 
-.control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper>div>div,
-.device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper>div>div {
-  width: 70px;
-  height: 70px;
-}
 
+/*
 .control_wrapper .checkbox_wrapper .checkbox_automation_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_automation_wrapper {
   float: right;
@@ -1365,28 +1382,33 @@ td {
   height: 60px;
   fill: #898989;
 }
+*/
+
 
 .control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper {
   float: right;
   position: relative;
   z-index: 9;
-  top: 5px;
 }
 
 .control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper>div,
 .device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper>div {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 .control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper svg,
 .device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper svg {
-  width: 42px;
-  height: 60px;
+  width: 35px;
+  height: 35px;
   fill: #898989;
   margin-left: 10px;
+  top: 7px;
+  position: relative;
 }
+
+
 
 .control_wrapper .device_text,
 .device_wrapper .device_text {
