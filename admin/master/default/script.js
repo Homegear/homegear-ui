@@ -6,6 +6,7 @@
 */
 /*
     exported
+        PromiseAllSettled
         clone
         set_or_extend
         shif_device
@@ -180,6 +181,25 @@ function condition_get_matching(rendering, props) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function get_or_default(obj, key, def) {
     return (typeof(obj) == 'object' && key in obj) ? obj[key] : def;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * For some reason, babel does not polyfill Promise.allSettled.
+ * https://stackoverflow.com/a/39031032
+ **/
+function PromiseAllSettled(promises) {
+    let wrappedPromises = promises.map(
+        p => Promise.resolve(p)
+                    .then(
+                        val => ({ status: 'fulfilled', value: val }),
+                        err => ({ status: 'rejected', reason: err })
+                     )
+    );
+    return Promise.all(wrappedPromises);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
