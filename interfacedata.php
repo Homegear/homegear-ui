@@ -365,14 +365,14 @@
             ],
             "statusMap": {
                 "de-DE": {
-                    "0": "geöffnet",
-                    "1": "geschlossen",
+                    "0": "geschlossen",
+                    "1": "geöffnet",
                     "2": "unverriegelt",
                     "3": "verriegelt"
                 },
                 "en-US": {
-                    "0": "opened",
-                    "1": "closed",
+                    "0": "closed",
+                    "1": "opened",
                     "2": "unlocked",
                     "3": "locked"
                 }
@@ -400,13 +400,13 @@
             ],
             "statusMap": {
                 "de-DE": {
-                    "0": "geöffnet",
-                    "1": "geschlossen",
+                    "0": "geschlossen",
+                    "1": "geöffnet",
                     "2": "gekippt"
                 },
                 "en-US": {
-                    "0": "geöffnet",
-                    "1": "geschlossen",
+                    "0": "geschlossen",
+                    "1": "geöffnet",
                     "2": "tilted"
                 }
             },
@@ -635,6 +635,23 @@
             },
             "uiElements": {
                 "mediaButtons": true
+            }
+        },
+        "12": {
+            "name": {
+                "en-US": "Helper",
+                "de-DE": "Helper"
+            },
+            "icon": "police_1",
+            "l2_status": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "helperSwitch": true
             }
         }
     },

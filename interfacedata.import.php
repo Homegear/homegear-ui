@@ -1027,6 +1027,10 @@
                     {
                         "role": 100001,
                         "value": false
+                    },
+                    {
+                        "role": 101001,
+                        "value": 0
                     }
                 ],
                 "values": []
@@ -1359,7 +1363,7 @@
     ],
     "uiElements": [
         [
-            "Base.lightingSwitch",
+            "Base.helperSwitch",
             {
                 "inputPeers": [
                     [
@@ -1389,7 +1393,7 @@
             }
         ],
         [
-            "Base.lightingSwitch",
+            "Base.helperSwitch",
             {
                 "inputPeers": [
                     [
@@ -1419,7 +1423,7 @@
             }
         ],
         [
-            "Base.lightingSwitch",
+            "Base.helperSwitch",
             {
                 "inputPeers": [
                     [
