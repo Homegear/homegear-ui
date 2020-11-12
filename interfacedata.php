@@ -583,6 +583,7 @@
 
             },
             "uiElements": {
+                "OpenWeatherMap": true,
                 "climateCity": true,
                 "climateCloudcoverage": true,
                 "climateDate": true,
@@ -620,7 +621,7 @@
                 "en-US": "Media",
                 "de-DE": "Media"
             },
-            "icon": "player_1",
+            "icon": "speaker_1",
             "l2_status": false,
             "aggregation": [
 
