@@ -203,7 +203,7 @@ Vue.mixin({
                 return this.$router.push({
                     name: `${last}.device`,
                     params: {
-                        role_id:   this.role_id,
+                        cat_id:    this.cat_id,
                         floor_id:  first_in_or(dev.floors, -1),
                         room_id:   first_in_or(dev.rooms, -1),
                         device_id: device,
@@ -305,11 +305,11 @@ let router = new VueRouter({
                 },
                 {
                     name: 'house.tab.devices.device',
-                    path: 'devices/role/:role_id/floor/:floor_id/room/:room_id/device/:device_id',
+                    path: 'devices/category/:cat_id/floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifHouseDevices, big: ShifAllDevicesLvl3},
                     meta: {
                         breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device'],
-                        cache_ident: {small: {bc_idx: 1}, big: {params: ['role_id', 'room_id', 'device_id']}},
+                        cache_ident: {small: {bc_idx: 1}, big: {params: ['cat_id', 'room_id', 'device_id']}},
                     },
                     props: {small: true, big: true},
                 },
