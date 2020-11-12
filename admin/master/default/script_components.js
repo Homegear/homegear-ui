@@ -357,12 +357,12 @@ const mixin_profiles = {
                              }))];
         },
 
-        role_profiles: function (role_id) {
+        dev_cat_profiles: function (cat_id) {
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
-                         .filter(x => x.roles !== undefined &&
-                                      x.roles.length > 0 &&
-                                      x.roles.findIndex(x => x.role === Number(role_id)) !== -1);
+                         .filter(x => x.categories !== undefined &&
+                                      x.categories.length > 0 &&
+                                      x.categories.indexOf(Number(cat_id)) !== -1);
         },
 
         profile_build_root_devs: function (profile) {
@@ -432,24 +432,26 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global:    form.locations.global,
-                        favorite:  form.locations.favorite,
-                        icon:      form.icon,
-                        locations: locations,
-                        roles:     roles,
-                        values:    values,
+                        global:     form.locations.global,
+                        favorite:   form.locations.favorite,
+                        categories: form.locations.categories,
+                        icon:       form.icon,
+                        locations:  locations,
+                        roles:      roles,
+                        values:     values,
                     }
                 ],
             }, (result) => {
                 Vue.set(interfaceData.profiles, result.result, {
-                    id:        result.result,
-                    icon:      form.icon,
-                    locations: locations,
-                    global:    form.locations.global,
-                    favorite:  form.locations.favorite,
-                    name:      form.profile_name,
-                    roles:     roles,
-                    values:    values,
+                    id:         result.result,
+                    icon:       form.icon,
+                    locations:  locations,
+                    global:     form.locations.global,
+                    favorite:   form.locations.favorite,
+                    categories: form.locations.categories,
+                    name:       form.profile_name,
+                    roles:      roles,
+                    values:     values,
                 });
 
                 if (this.modemenu_is_state(ModeMenuState.PROFILES))
@@ -473,24 +475,26 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global:    form.locations.global,
-                        favorite:  form.locations.favorite,
-                        icon:      form.icon,
-                        locations: locations,
-                        roles:     roles,
-                        values:    values,
+                        global:     form.locations.global,
+                        favorite:   form.locations.favorite,
+                        categories: form.locations.categories,
+                        icon:       form.icon,
+                        locations:  locations,
+                        roles:      roles,
+                        values:     values,
                     }
                 ],
             }, (result) => {
                 Vue.set(interfaceData.profiles, profile.id, {
-                    id:        profile.id,
-                    name:      form.profile_name,
-                    global:    form.locations.global,
-                    favorite:  form.locations.favorite,
-                    icon:      form.icon,
-                    locations: locations,
-                    roles:     roles,
-                    values:    values,
+                    id:         profile.id,
+                    name:       form.profile_name,
+                    global:     form.locations.global,
+                    favorite:   form.locations.favorite,
+                    categories: form.locations.categories,
+                    icon:       form.icon,
+                    locations:  locations,
+                    roles:      roles,
+                    values:     values,
                 });
 
                 if (this.modemenu_is_state(ModeMenuState.PROFILES))
