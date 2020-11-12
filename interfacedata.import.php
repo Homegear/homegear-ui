@@ -324,6 +324,12 @@
         {
             "deviceId": 0,
             "channel": -1,
+            "varName": "VENTILATIONMODE",
+            "roleId": 202001
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
             "varName": "LIGHT",
             "roleId": 100001
         },
