@@ -677,9 +677,10 @@ const ShifSettingsProfile = {
                         value: null,
                     },
                     locations: {
-                        rooms:    [],
-                        global:   true,
-                        favorite: false,
+                        rooms:      [],
+                        global:     true,
+                        favorite:   false,
+                        categories: [],
                     },
                 }
             };
@@ -708,9 +709,10 @@ const ShifSettingsProfile = {
                     icon: profile.icon,
                     profile_name: profile.name,
                     locations: {
-                        rooms:    profile.locations,
-                        global:   profile.global === true,
-                        favorite: profile.favorite === true,
+                        rooms:      profile.locations,
+                        global:     profile.global === true,
+                        favorite:   profile.favorite === true,
+                        categories: profile.categories,
                     },
                     role: role,
                 },
@@ -883,7 +885,7 @@ const ShifSettingsProfile = {
                         {{ i18n('settings.profiles.profile.locations.room') }}:
                     </div>
                     <shif-room-selection v-bind:map="map_room_floor"
-                                         v-model="form.locations.rooms" 
+                                         v-model="form.locations.rooms"
                                          class="floor-room" />
                 </div>
 
@@ -903,6 +905,16 @@ const ShifSettingsProfile = {
                         v-if="form.role.role"
                         v-model="form.role.value"
                         v-bind:role_id="form.role.role" />
+                </div>
+
+                <div v-if="show_roles"
+                     class="form-group">
+                    <div class="label">{{ i18n('settings.profiles.profile.categories') }}:</div>
+
+                    <shif-multi-select v-bind:options="interfaceData.deviceCategories"
+                                       v-bind:func_item_name="x => interfaceData.deviceCategories[x].name"
+                                       v-model="form.locations.categories" />
+
                 </div>
 
                 <div class="form-group">
