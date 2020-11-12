@@ -185,19 +185,6 @@ function get_or_default(obj, key, def) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function set_or_extend(arr, idx, vals) {
-    if (idx >= arr.length)
-        arr.push(vals);
-    else {
-        var keys = Object.keys(vals);
-        for (var i = 0; i < keys.length; ++i)
-            arr[idx][keys[i]] = vals[keys[i]];
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////////
 function status_format(status, precision) {
     if (typeof(status) === 'string') {
         const regex = /^(\d+(?:[.,]\d+)?)/;
@@ -884,27 +871,52 @@ Vue.component('shif-generic-l2', {
 
 Vue.component('shif-multi-select', {
     props: {
-        options: {type: Object, required: true,},
+        options: {
+            type: [Array, Object],
+            required: true,
+        },
         value: {
             type: Array,
             default: function () { return []; },
         },
         func_group_name: {
             type: Function,
-            default: function(x) { return x; },
+            default: function(x) {
+                if (Array.isArray(x))
+                    return undefined;
+
+                return x;
+            },
         },
         func_item_name: {
             type: Function,
-            default: function (x, y) { return `${x}-${y}`; },
+            default: function (x, y) {
+                if (Array.isArray(this.options))
+                    return x;
+
+                return `${x}-${y}`;
+            },
         },
         func_key: {
             type: Function,
-            default: function (x, y) { return `${x}-${y}`; },
+            default: function (x, y) {
+                if (Array.isArray(this.options))
+                    return x;
+
+                return `${x}-${y}`;
+            },
         },
     },
 
     computed: {
-        model: function () {
+        options_is_array: function () {
+            return Array.isArray(this.options);
+        },
+
+        _model_object: function () {
+            if (this.options_is_array)
+                return undefined;
+
             let out = {};
 
             for (const opt in this.options) {
@@ -917,6 +929,37 @@ Vue.component('shif-multi-select', {
 
             return out;
         },
+
+        _model_array: function () {
+            if (! this.options_is_array)
+                return undefined;
+
+            return Array.from(this.options.keys()).map(x => ({
+                selected: this.is_selected(x)
+            }));
+        },
+
+        model: function () {
+            return this.options_is_array
+                    ? this._model_array
+                    : this._model_object;
+        },
+
+        selected: function () {
+            let selected = [];
+
+            if (this.options_is_array) {
+                for (let i = 0; i < this.model.length; ++i)
+                    if (this.model[i].selected === true)
+                        selected.push(i);
+            } else {
+                for (const i in this.model)
+                    if (this.model[i].selected === true)
+                        selected.push(i);
+            }
+
+            return selected;
+        }
     },
 
     methods: {
@@ -932,21 +975,23 @@ Vue.component('shif-multi-select', {
             const key = this.func_key(group, item);
             this.model[key].selected = ! this.model[key].selected;
 
-            let selected = [];
-            for (const i in this.model) {
-                const cur = this.model[i];
-
-                if (cur.selected === true)
-                    selected.push(i);
-            }
-
-            this.$emit('input', selected);
+            this.$emit('input', this.selected);
         },
     },
 
     template: `
-        <div class="form-group">
-            <div class="select">
+        <div class="select">
+
+            <template v-if="options_is_array">
+                <div v-for="_, i in options"
+                     v-bind:class="{selected: has_selected_class(i)}"
+                     v-on:click="on_click(i)"
+                     class="option">
+                    <p>{{ func_item_name(i) }}</p>
+                </div>
+            </template>
+
+            <template v-else>
                 <div class="optgroup" v-for="group, group_key in options">
                     <p>{{ func_group_name(group_key) }}</p>
                     <div v-for="i in group"
@@ -956,7 +1001,8 @@ Vue.component('shif-multi-select', {
                         <p>{{ func_item_name(group_key, i) }}</p>
                     </div>
                 </div>
-            </div>
+            </template>
+
         </div>
     `
 });
@@ -1037,7 +1083,7 @@ const shif_device = {
 
     inject: {
         layer: 'layer',
-        role_id: {default: undefined,},
+        cat_id: {default: undefined,},
         room_id: 'room_id',
         floor_id: 'floor_id',
         // siblings: 'siblings',
