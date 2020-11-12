@@ -872,6 +872,9 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    0
+                ],
                 "roles": [
                     {
                         "role": 100001,
@@ -892,9 +895,12 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    1
+                ],
                 "roles": [
                     {
-                        "role": 201000,
+                        "role": 201003,
                         "value": 0
                     }
                 ],
@@ -912,9 +918,12 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    1
+                ],
                 "roles": [
                     {
-                        "role": 201000,
+                        "role": 201003,
                         "value": 1
                     }
                 ],
@@ -932,9 +941,12 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    1
+                ],
                 "roles": [
                     {
-                        "role": 201000,
+                        "role": 201003,
                         "value": 2
                     }
                 ],
@@ -947,7 +959,30 @@
                 "de-DE": "zentral aus"
             },
             {
-                "id": 5,
+                "id": 8,
+                "icon": "power_1",
+                "editable": false,
+                "locations": [],
+                "global": false,
+                "categories": [
+                    5
+                ],
+                "roles": [
+                    {
+                        "role": 400001,
+                        "value": false
+                    }
+                ],
+                "values": []
+            }
+        ],
+        [
+            {
+                "en-US": "central off",
+                "de-DE": "zentral aus"
+            },
+            {
+                "id": 14,
                 "icon": "power_1",
                 "editable": false,
                 "locations": [],
@@ -972,6 +1007,9 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    6
+                ],
                 "roles": [
                     {
                         "role": 501000,
@@ -992,6 +1030,9 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    6
+                ],
                 "roles": [
                     {
                         "role": 501000,
@@ -1012,6 +1053,9 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    7
+                ],
                 "roles": [
                     {
                         "role": 502000,
@@ -1032,6 +1076,9 @@
                 "editable": false,
                 "locations": [],
                 "global": false,
+                "categories": [
+                    7
+                ],
                 "roles": [
                     {
                         "role": 502000,
