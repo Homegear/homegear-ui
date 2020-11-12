@@ -246,11 +246,15 @@
             "statusMap": {
                 "de-DE": {
                     "0": "aus",
-                    "1": "an"
+                    "1": "an",
+                    "falseCount": "aus",
+                    "trueCount": "an"
                 },
                 "en-US": {
                     "0": "off",
-                    "1": "on"
+                    "1": "on",
+                    "falseCount": "off",
+                    "trueCount": "on"
                 }
             },
             "uiElements": {
@@ -717,6 +721,7 @@
             "settings.profiles.profile.locations.room.placeholder": "select room",
             "settings.profiles.profile.locations.add": "Add",
             "settings.profiles.profile.locations.remove": "Remove",
+            "settings.profiles.profile.categories": "Device Categories",
             "settings.profiles.profile.roles": "Role",
             "settings.profiles.profile.roles.name": "Role",
             "settings.profiles.profile.roles.value": "State",
@@ -861,6 +866,7 @@
             "settings.profiles.profile.locations.room.placeholder": "Raum wählen",
             "settings.profiles.profile.locations.add": "Hinzufügen",
             "settings.profiles.profile.locations.remove": "Entfernen",
+            "settings.profiles.profile.categories": "Gerätekategorien",
             "settings.profiles.profile.roles": "Rolle",
             "settings.profiles.profile.roles.name": "Rolle",
             "settings.profiles.profile.roles.value": "Status",
