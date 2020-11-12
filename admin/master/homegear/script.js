@@ -126,8 +126,15 @@ else homegear.connect();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function roles_relevant(roles) {
-    return roles.filter(x => x.hasOwnProperty('id') && x.direction !== 1);
+function categories_relevant(input) {
+    const id = interfaceData.devices[input.databaseId]
+                            .uniqueUiElementId
+                            .split('.')
+                            .pop();
+
+    return Object.keys(interfaceData.deviceCategories).filter(
+        key => interfaceData.deviceCategories[key].uiElements[id] !== undefined
+    );
 }
 
 
@@ -162,7 +169,7 @@ function handle_update_event(resp) {
             .controls[input.control]
             .variableInputs[input.input].properties.value = value;
 
-        states_flag_dirty(roles_relevant(input.roles).map(x => x.id));
+        states_flag_dirty(categories_relevant(input));
     }
 }
 
