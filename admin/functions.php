@@ -191,11 +191,16 @@ function homegear_init() {
         $dev['grid'] = null;
         $dev['controls'][]['cell'] = null;
 
+        $fields_to_copy = [
+            'uniqueUiElementId',
+        ];
         $fields_to_move = [
-            'control', 'uniqueUiElementId', 'variableInputs', 'variableOutputs'
+            'control', 'variableInputs', 'variableOutputs'
         ];
         foreach ($fields_to_move as $field)
             array_move_element($field, $dev, $dev['controls'][0]);
+        foreach ($fields_to_copy as $field)
+            $dev['controls'][0][$field] = $dev[$field];
 
         return $dev;
     }
@@ -255,8 +260,10 @@ function homegear_init() {
 
     function device_category_patch_language(&$house, &$categories, $lang) {
         foreach ($categories as &$category) {
-            $category['name'] = $category['name'][$lang];
-            $category['statusMap'] = $category['statusMap'][$lang];
+            if (array_key_exists($lang, $category["name"]))
+                $category['name'] = $category['name'][$lang];
+            if (array_key_exists($lang, $category['statusMap']))
+                $category['statusMap'] = $category['statusMap'][$lang];
         }
 
         $house['deviceCategories'] = $categories;
