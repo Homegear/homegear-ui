@@ -1,5 +1,6 @@
 /*
     global
+        PromiseAllSettled
         app
         get_or_default
         homegear
@@ -80,7 +81,7 @@ function status_category(cat_id) {
         }
 
         let new_ = _status_from_map(category);
-        Promise.allSettled(
+        PromiseAllSettled(
             invokes_descs.map(x => ({
                 jsonrpc: '2.0',
                 method: 'aggregateRoles',
@@ -126,8 +127,8 @@ function states_init() {
         Vue.set(_states.content, key, _status_array_form_map(map));
     }
 
-    Promise.allSettled(cat_keys.map(status_category))
-           .then(() => _states.initialized = true);
+    PromiseAllSettled(cat_keys.map(status_category))
+        .then(() => _states.initialized = true);
 }
 homegear.ready(states_init);
 
@@ -163,7 +164,7 @@ const mixin_states = {
             const dirty = _states.dirty.slice();
             _states.dirty = [];
 
-            Promise.allSettled(dirty.map(x => status_category(x)));
+            PromiseAllSettled(dirty.map(x => status_category(x)));
         },
     },
 };
