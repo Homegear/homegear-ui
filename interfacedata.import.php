@@ -304,6 +304,51 @@
             "value": false
         },
         {
+            "name": "LIGHT1",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "LIGHT2",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "LIGHT3",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "LIGHT4",
+            "type": "bool",
+            "value": false
+        },
+        {
+            "name": "DIMMER1",
+            "type": "float",
+            "value": 12
+        },
+        {
+            "name": "DIMMER2",
+            "type": "float",
+            "value": 12
+        },
+        {
+            "name": "DIMMER3",
+            "type": "float",
+            "value": 12
+        },
+        {
+            "name": "DIMMER4",
+            "type": "float",
+            "value": 12
+        },
+        {
+            "name": "SOCKET1",
+            "type": "int",
+            "value": 0
+        },
+        {
             "name": "COLOR",
             "type": "string",
             "value": "#ffff00"
@@ -315,6 +360,66 @@
         },
         {
             "name": "SPEED",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "DOORCONTACT",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "DOORLOCK",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "DOORHANDLE",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWCONTACT1",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE1",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE2",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE3",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE4",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE5",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE6",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE7",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "WINDOWHANDLE8",
             "type": "int",
             "value": 0
         }
@@ -332,6 +437,36 @@
             "channel": -1,
             "varName": "LIGHT",
             "roleId": 100001
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "LIGHT1",
+            "roleId": 100001
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "LIGHT2",
+            "roleId": 100001
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "LIGHT3",
+            "roleId": 100001
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "LIGHT4",
+            "roleId": 100001
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "SOCKET1",
+            "roleId": 400001
         },
         {
             "deviceId": 1,
@@ -630,91 +765,123 @@
             ]
         },
         {
-            "deviceId": 60,
+            "deviceId": 27,
             "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "varName": "UP",
+            "roleId": 502001
         },
         {
-            "deviceId": 61,
+            "deviceId": 27,
             "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "varName": "DOWN",
+            "roleId": 502002
         },
         {
-            "deviceId": 62,
+            "deviceId": 27,
             "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "varName": "LEVEL",
+            "roleId": [
+                502004
+            ]
         },
         {
-            "deviceId": 63,
+            "deviceId": 28,
             "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "varName": "UP",
+            "roleId": 502001
         },
         {
-            "deviceId": 64,
+            "deviceId": 28,
             "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "varName": "DOWN",
+            "roleId": 502002
         },
         {
-            "deviceId": 65,
+            "deviceId": 28,
             "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
+            "varName": "LEVEL",
+            "roleId": [
+                502004
+            ]
         },
         {
-            "deviceId": 66,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002,
-            "invert": true
-        },
-        {
-            "name": "door contact",
-            "deviceId": 67,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 301001,
-            "invert": true
-        },
-        {
-            "name": "door contact",
-            "deviceId": 69,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 301001,
-            "invert": true
-        },
-        {
-            "name": "window essen",
-            "deviceId": 87,
-            "channel": 1,
-            "varName": "STATE",
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWCONTACT1",
             "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE1",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE2",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE3",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE4",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE5",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE6",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE7",
+            "roleId": 301002
+        },
+        {
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "WINDOWHANDLE8",
+            "roleId": 301002
+        },
+        {
+            "name": "door contact",
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "DOORCONTACT",
+            "roleId": 301001,
+            "invert": true
+        },
+        {
+            "name": "door handle",
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "DOORHANDLE",
+            "roleId": 301001,
+            "invert": true
         },
         {
             "name": "door lock",
-            "deviceId": 88,
-            "channel": 1,
-            "varName": "STATE",
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "DOORLOCK",
             "roleId": 301003
         },
         {
-            "deviceId": 70,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 301002
-        },
-        {
             "deviceId": 78,
             "channel": 1,
             "varName": "TEMPERATURE",
@@ -835,39 +1002,9 @@
             ]
         },
         {
-            "deviceId": 84,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 100001
-        },
-        {
-            "deviceId": 91,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 400001
-        },
-        {
-            "deviceId": 92,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 100001
-        },
-        {
-            "deviceId": 93,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 100001
-        },
-        {
-            "deviceId": 94,
-            "channel": 1,
-            "varName": "STATE",
-            "roleId": 100001
-        },
-        {
-            "deviceId": 96,
-            "channel": 1,
-            "varName": "LEVEL_FAST",
+            "deviceId": 0,
+            "channel": -1,
+            "varName": "DIMMER4",
             "roleId": 101001
         }
     ],
@@ -978,26 +1115,6 @@
                 "categories": [
                     5
                 ],
-                "roles": [
-                    {
-                        "role": 400001,
-                        "value": false
-                    }
-                ],
-                "values": []
-            }
-        ],
-        [
-            {
-                "en-US": "central off",
-                "de-DE": "zentral aus"
-            },
-            {
-                "id": 14,
-                "icon": "power_1",
-                "editable": false,
-                "locations": [],
-                "global": false,
                 "roles": [
                     {
                         "role": 400001,
@@ -1737,62 +1854,23 @@
             }
         ],
         [
-            "Base.lightingSwitchTimer",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 84,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 84,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 84,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 84,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ]
-                ],
-                "label": "Licht Zeitschaltuhr",
-                "room": 12
-            }
-        ],
-        [
             "Base.socketSwitch",
             {
                 "inputPeers": [
                     [
                         {
-                            "peer": 91,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SOCKET1"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 91,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "SOCKET1"
                         }
                     ]
                 ],
@@ -2561,19 +2639,19 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "UP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "STOP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
@@ -2581,7 +2659,7 @@
                     ],
                     [
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "LEVEL"
                         }
@@ -2597,19 +2675,19 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "UP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "STOP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
@@ -2617,7 +2695,7 @@
                     ],
                     [
                         {
-                            "peer": 25,
+                            "peer": 28,
                             "channel": 1,
                             "name": "LEVEL"
                         }
@@ -2640,19 +2718,19 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "UP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "STOP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
@@ -2660,7 +2738,7 @@
                     ],
                     [
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "LEVEL"
                         }
@@ -2676,19 +2754,19 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "UP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "STOP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
@@ -2696,7 +2774,7 @@
                     ],
                     [
                         {
-                            "peer": 25,
+                            "peer": 26,
                             "channel": 1,
                             "name": "LEVEL"
                         }
@@ -2719,19 +2797,19 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 25,
+                            "peer": 27,
                             "channel": 1,
                             "name": "UP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 27,
                             "channel": 1,
                             "name": "STOP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 27,
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
@@ -2741,19 +2819,19 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 25,
+                            "peer": 27,
                             "channel": 1,
                             "name": "UP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 27,
                             "channel": 1,
                             "name": "STOP",
                             "value": true
                         },
                         {
-                            "peer": 25,
+                            "peer": 27,
                             "channel": 1,
                             "name": "DOWN",
                             "value": true
@@ -2856,9 +2934,9 @@
                     ],
                     [
                         {
-                            "peer": 60,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWCONTACT1"
                         }
                     ]
                 ],
@@ -2886,13 +2964,13 @@
                     ],
                     [
                         {
-                            "peer": 60,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWCONTACT1"
                         }
                     ]
                 ],
-                "label": "Heizung WindowHandle",
+                "label": "Heizung Fensterkontakt",
                 "room": 3,
                 "dynamicMetadata": {
                     "favorites": {
@@ -3101,9 +3179,9 @@
                     ],
                     [
                         {
-                            "peer": 87,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE1"
                         }
                     ]
                 ],
@@ -3131,9 +3209,9 @@
                     ],
                     [
                         {
-                            "peer": 87,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE1"
                         }
                     ]
                 ],
@@ -3200,18 +3278,18 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 87,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWCONTACT1"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 87,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWCONTACT1"
                         }
                     ]
                 ],
@@ -3230,22 +3308,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 60,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE1"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 60,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE1"
                         }
                     ]
                 ],
-                "label": "Fenster Rund",
+                "label": "Fenstergriff Rund",
                 "room": 3
             }
         ],
@@ -3255,22 +3333,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 61,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE2"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 61,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE2"
                         }
                     ]
                 ],
-                "label": "Fenster links",
+                "label": "Fenstergriff links",
                 "room": 6
             }
         ],
@@ -3280,22 +3358,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 62,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE3"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 62,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE3"
                         }
                     ]
                 ],
-                "label": "Fenster rechts",
+                "label": "Fenstergriff rechts",
                 "room": 6
             }
         ],
@@ -3305,22 +3383,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 63,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE4"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 63,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE4"
                         }
                     ]
                 ],
-                "label": "Fenster Bad",
+                "label": "Fenstergriff Bad",
                 "room": 2
             }
         ],
@@ -3330,22 +3408,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 64,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE5"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 64,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE5"
                         }
                     ]
                 ],
-                "label": "Fenster links",
+                "label": "Fenstergriff links",
                 "room": 9
             }
         ],
@@ -3355,22 +3433,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 65,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE6"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 65,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE6"
                         }
                     ]
                 ],
-                "label": "Fenster rechts",
+                "label": "Fenstergriff rechts",
                 "room": 9
             }
         ],
@@ -3380,22 +3458,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 66,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE7"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 66,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE7"
                         }
                     ]
                 ],
-                "label": "Fenster Küche links",
+                "label": "Fenstergriff Küche links",
                 "room": 12
             }
         ],
@@ -3405,22 +3483,22 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 70,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE8"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 70,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "WINDOWHANDLE8"
                         }
                     ]
                 ],
-                "label": "Fenster Wohnen",
+                "label": "Fenstergriff Wohnen",
                 "room": 12
             }
         ],
@@ -3430,18 +3508,18 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 69,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DOORCONTACT"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 69,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DOORCONTACT"
                         }
                     ]
                 ],
@@ -3460,18 +3538,18 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 67,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DOORHANDLE"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 67,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DOORHANDLE"
                         }
                     ]
                 ],
@@ -3490,18 +3568,18 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 88,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DOORLOCK"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 88,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DOORLOCK"
                         }
                     ]
                 ],
@@ -3550,18 +3628,18 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 96,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER4"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 96,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER4"
                         }
                     ]
                 ],
@@ -3581,32 +3659,32 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 92,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT1"
                         }
                     ],
                     [
                         {
-                            "peer": 92,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER1"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 92,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT1"
                         }
                     ],
                     [
                         {
-                            "peer": 92,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER1"
                         }
                     ]
                 ],
@@ -3626,280 +3704,50 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 93,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT2"
                         }
                     ],
                     [
                         {
-                            "peer": 93,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT2"
                         }
                     ],
                     [
                         {
-                            "peer": 93,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER2"
                         }
                     ]
                 ],
                 "outputPeers": [
                     [
                         {
-                            "peer": 93,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT2"
                         }
                     ],
                     [
                         {
-                            "peer": 93,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT2"
                         }
                     ],
                     [
                         {
-                            "peer": 93,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER2"
                         }
                     ]
                 ],
                 "label": "Dimmlicht Push",
-                "room": 9,
-                "role": 101001
-            }
-        ],
-        [
-            "Base.lightingSwitchButtonBrightnessColor",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "label": "Farblicht",
-                "room": 9,
-                "role": 101001
-            }
-        ],
-        [
-            "Base.lightingSwitchBrightnessColor",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "label": "Farblicht",
-                "room": 9,
-                "role": 101001
-            }
-        ],
-        [
-            "Base.lightingSwitchColor",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "label": "Farblicht",
-                "room": 9,
-                "role": 101001
-            }
-        ],
-        [
-            "Base.lightingSwitchFunctionBrightnessColor",
-            {
-                "inputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "FUNCTION"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "outputPeers": [
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "FUNCTION"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "COLOR"
-                        }
-                    ]
-                ],
-                "label": "Farblicht",
                 "room": 9,
                 "role": 101001
             }
@@ -3910,9 +3758,9 @@
                 "inputPeers": [
                     [
                         {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT3"
                         }
                     ],
                     [
@@ -3924,9 +3772,9 @@
                     ],
                     [
                         {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER3"
                         }
                     ],
                     [
@@ -3947,9 +3795,9 @@
                 "outputPeers": [
                     [
                         {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "STATE"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "LIGHT3"
                         }
                     ],
                     [
@@ -3961,9 +3809,9 @@
                     ],
                     [
                         {
-                            "peer": 94,
-                            "channel": 1,
-                            "name": "LEVEL_FAST"
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DIMMER3"
                         }
                     ],
                     [
@@ -4761,111 +4609,23 @@
             "INTERFACEID": ""
         },
         {
-            "SERIALNUMBER": "VirtWin060",
+            "SERIALNUMBER": "VirtBl0027",
             "FAMILY": 254,
-            "ID": 60,
-            "NAME": "FG Fenster Diele",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
+            "ID": 27,
+            "NAME": "JA Markise",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xF002",
             "ADDRESS": -1,
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
         },
         {
-            "SERIALNUMBER": "VirtWin061",
+            "SERIALNUMBER": "VirtBl0028",
             "FAMILY": 254,
-            "ID": 61,
-            "NAME": "FG Fenster links Kind",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtWin062",
-            "FAMILY": 254,
-            "ID": 62,
-            "NAME": "FG Fenster recht Kind",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtWin063",
-            "FAMILY": 254,
-            "ID": 63,
-            "NAME": "FG Fenster Bad",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtWin064",
-            "FAMILY": 254,
-            "ID": 64,
-            "NAME": "FG Fenster links Schlafen",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtWin065",
-            "FAMILY": 254,
-            "ID": 65,
-            "NAME": "FG Fenster rechts Schlafen",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtWin066",
-            "FAMILY": 254,
-            "ID": 66,
-            "NAME": "FG Fenster links K\u00fcche",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDoor02",
-            "FAMILY": 254,
-            "ID": 67,
-            "NAME": "TK Fenster rechts K\u00fcche",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDoor03",
-            "FAMILY": 254,
-            "ID": 69,
-            "NAME": "Riegelkontakt T\u00fcr Diele",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtWind70",
-            "FAMILY": 254,
-            "ID": 70,
-            "NAME": "Fenster Wohnen",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
+            "ID": 28,
+            "NAME": "JA Markise",
+            "TYPE": "VirtualBlind",
+            "TYPE_ID": "0xF002",
             "ADDRESS": -1,
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
@@ -4937,100 +4697,12 @@
             "INTERFACEID": ""
         },
         {
-            "SERIALNUMBER": "VirtSw0084",
-            "FAMILY": 254,
-            "ID": 84,
-            "NAME": "SA Licht Unterschrank K\u00fcche",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xF004",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "Virtwind85",
-            "FAMILY": 254,
-            "ID": 87,
-            "NAME": "Fensterkontakt Essen",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDoor01",
-            "FAMILY": 254,
-            "ID": 88,
-            "NAME": "T\u00fcrschloss",
-            "TYPE": "VirtualWindowContact",
-            "TYPE_ID": "0xF000",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtSw0091",
-            "FAMILY": 254,
-            "ID": 91,
-            "NAME": "Steckdose Garage",
-            "TYPE": "VirtualSwitch",
-            "TYPE_ID": "0xF004",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDi0092",
-            "FAMILY": 254,
-            "ID": 92,
-            "NAME": "Dimmer Wohnen",
-            "TYPE": "VirtualDimmer",
-            "TYPE_ID": "0xf001",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDi0093",
-            "FAMILY": 254,
-            "ID": 93,
-            "NAME": "Dimmer Kinder",
-            "TYPE": "VirtualDimmer",
-            "TYPE_ID": "0xf001",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDi0094",
-            "FAMILY": 254,
-            "ID": 94,
-            "NAME": "Dimmer Schlafen",
-            "TYPE": "VirtualDimmer",
-            "TYPE_ID": "0xf001",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
             "SERIALNUMBER": "ESY5110366",
             "FAMILY": 254,
             "ID": 95,
             "NAME": "OpenWeatherMap",
             "TYPE": "OpenWeatherMap",
             "TYPE_ID": "0x100",
-            "ADDRESS": -1,
-            "FIRMWAREVERSION": -1,
-            "INTERFACEID": ""
-        },
-        {
-            "SERIALNUMBER": "VirtDi0096",
-            "FAMILY": 254,
-            "ID": 96,
-            "NAME": "Dimmer Ohne Switsh",
-            "TYPE": "VirtualDimmer",
-            "TYPE_ID": "0xf001",
             "ADDRESS": -1,
             "FIRMWAREVERSION": -1,
             "INTERFACEID": ""
