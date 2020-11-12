@@ -99,8 +99,17 @@ function clean_json_to_js() {
         }
     }
 
-    if ($interfaceData["options"]['language'] != "en-US") {
-        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$interfaceData["options"]['language']];
+    $lang = $interfaceData["options"]["language"];
+
+    foreach ($interfaceDataOut["deviceCategories"] as &$category) {
+        if (array_key_exists($lang, $category["name"]))
+            $category["name"] = $category["name"][$lang];
+        if (array_key_exists($lang, $category["statusMap"]))
+            $category["statusMap"] = $category["statusMap"][$lang];
+    }
+
+    if ($lang != "en-US") {
+        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$lang];
         $interfaceDataOut["i18n"]["default"] = $interfaceData["i18n"]["en-US"];
     }
     else {
