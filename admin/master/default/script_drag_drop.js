@@ -149,13 +149,20 @@ Vue.component('shif-draggable', {
 
 
 function _element_order_cleanup() {
+    const args = arguments;
+
     homegear.invoke({
         jsonrpc: '2.0',
         method: 'getUserMetadata',
         params: [],
     }, function (x) {
         let tmp = x.result;
-        delete tmp.interface.elementOrder;
+
+        if (args.length === 0)
+            delete tmp.interface.elementOrder;
+        else
+            for (const i of args)
+                delete tmp.interface.elementOrder[i];
 
         homegear.invoke({
             jsonrpc: '2.0',
