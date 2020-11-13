@@ -72,6 +72,21 @@ function print_array($result){
 function clean_json_to_js() {
     global $interfaceData;
     global $defaultInterfaceData;
+
+    $map_automation_json = '
+    {
+      "map_automation": {
+          "devices": {
+              "_dummy_": {}
+          },
+          "profiles": {
+              "_dummy_": {}
+          }
+      }
+    }
+    ';
+    $map_automation = json_decode($map_automation_json, true);
+    
     $interfaceDataOut = array();
     $interfaceDataOut["devices"] = $interfaceData["devices"];
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
@@ -89,6 +104,7 @@ function clean_json_to_js() {
     $interfaceDataOut["profiles"] = $interfaceData["profiles"];
     $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
     $interfaceDataOut["deviceCategories"] = $interfaceData["deviceCategories"];
+    $interfaceDataOut["map_automation"] = $map_automation["map_automation"];
 
     foreach ($interfaceDataOut as $key => $type ){
         foreach($type as $keyLine => $line){
