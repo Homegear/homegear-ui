@@ -1042,7 +1042,7 @@ Vue.component('shif-icon-selection', {
 
     template: `
         <div id="profile_icons">
-            <label v-for="_, key in interfaceIcons"
+            <label v-for="_, key in interfaceIcons.profiles"
                     v-bind:class="{selected: value === key}"
                     v-bind:title="$root.debug ? key : undefined"
                     class="profile_icon_wrapper">

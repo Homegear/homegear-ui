@@ -1802,12 +1802,13 @@ td {
 }
 
 .form-group .select .optgroup p {
-    color: gray;
+    color: #898989;
+    padding: 0 20px;
 }
 
 .form-group .select .option p {
     margin-left: 20px;
-    color: white;
+    color: #fff;
 }
 
 .form-group .select .selected {
