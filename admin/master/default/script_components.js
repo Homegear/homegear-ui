@@ -3,6 +3,7 @@
         ModeMenuState
         clone
         get_or_default
+        interfaceIcons
         mixin_modemenu
         scroll_positions
         shif_device_slot_automations_profile
@@ -1031,7 +1032,16 @@ Vue.component('shif-checkbox-profiles', {
 
 Vue.component('shif-icon-selection', {
     props: {
-        value: {type: String, required: true,},
+        value:    {type: String,  required: true,},
+        profiles: {type: Boolean, default: false,},
+    },
+
+    computed: {
+        icons: function () {
+            return this.profiles
+                    ? this.interfaceIcons.profiles
+                    : this.interfaceIcons;
+        },
     },
 
     methods: {
@@ -1042,17 +1052,19 @@ Vue.component('shif-icon-selection', {
 
     template: `
         <div id="profile_icons">
-            <label v-for="_, key in interfaceIcons.profiles"
-                    v-bind:class="{selected: value === key}"
-                    v-bind:title="$root.debug ? key : undefined"
-                    class="profile_icon_wrapper">
-                <shif-icon classname="profile_icon" v-bind:src="key" />
-                <input type="radio"
-                        name="profile_icon"
-                        v-bind:value="value"
-                        v-on:click="on_click(key)"
-                        hidden />
-            </label>
+            <template v-for="_, key in icons"
+                      v-if="key !== 'profiles'">
+                <label v-bind:class="{selected: value === key}"
+                       v-bind:title="$root.debug ? key : undefined"
+                       class="profile_icon_wrapper">
+                    <shif-icon classname="profile_icon" v-bind:src="key" />
+                    <input type="radio"
+                            name="profile_icon"
+                            v-bind:value="value"
+                            v-on:click="on_click(key)"
+                            hidden />
+                </label>
+            </template>
         </div>
     `
 });
