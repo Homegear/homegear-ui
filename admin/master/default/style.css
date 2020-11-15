@@ -1673,7 +1673,7 @@ td {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 0;
   left: 0;
   margin: auto;
@@ -1683,19 +1683,6 @@ td {
   width: 50px;
   height: 50px;
   fill: #fff;
-}
-
-#profile_edit .floor-room {
-  max-height: 200px;
-  overflow-y: scroll;
-  padding: 0;
-  overflow-x: hidden;
-  border: none;
-  margin-top: 10px;
-}
-
-#profile_edit .floor-room .select {
-  padding: 10px 20px;
 }
 
 #profiles .control_button,
@@ -1740,7 +1727,7 @@ td {
 }
 
 .profiles_wrapper .global .label {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-left: 20px;
   font-size: 20px;
 }
@@ -1798,7 +1785,12 @@ td {
 
 .form-group .select {
     background: #191b1f;
-    padding: 20px;
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 0;
+    overflow-x: hidden;
+    border: none;
+    margin-top: 10px;
 }
 
 .form-group .select .optgroup p {

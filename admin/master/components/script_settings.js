@@ -879,10 +879,9 @@ const ShifSettingsProfile = {
                         {{ i18n('settings.profiles.profile.locations.room') }}:
                     </div>
                     <shif-room-selection v-bind:map="map_room_floor"
-                                         v-model="form.locations.rooms"
-                                         class="floor-room" />
+                                         v-model="form.locations.rooms" />
 
-                    <div class="label">{{ i18n('settings.profiles.profile.categories') }}:</div>
+                    <div class="label" style="margin-top: 30px;">{{ i18n('settings.profiles.profile.categories') }}:</div>
                     <shif-multi-select v-bind:options="interfaceData.deviceCategories"
                                        v-bind:func_item_name="x => interfaceData.deviceCategories[x].name"
                                        v-model="form.locations.categories" />
@@ -906,9 +905,8 @@ const ShifSettingsProfile = {
                         v-bind:role_id="form.role.role" />
                 </div>
 
-                <div class="form-group">
-                    <input v-if="form.role.role === null"
-                           type="button"
+                <div class="form-group" v-if="form.role.role === null">
+                    <input type="button"
                            name="load"
                            v-on:click="form_submit('load')"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
