@@ -799,7 +799,10 @@
             "close": "close",
             "user_interaction.alert.button.true": "Confirm",
             "user_interaction.confirm.button.false": "Abort",
-            "user_interaction.confirm.button.true": "Confirm"
+            "user_interaction.confirm.button.true": "Confirm",
+            "draggable.confirm.invalid_keys": "Due to changes of data, it is impossible to visualize the user defined order of elments. To be able to display the page, this configuration needs to be resettet first.",
+            "draggable.confirm.invalid_keys.button.reset": "Reset",
+            "draggable.confirm.invalid_keys.button.abort": "Abort"
         },
         "de-DE": {
             "login": {
@@ -944,7 +947,10 @@
             "close": "schließen",
             "user_interaction.alert.button.true": "Bestätigen",
             "user_interaction.confirm.button.false": "Abbruch",
-            "user_interaction.confirm.button.true": "Bestätigen"
+            "user_interaction.confirm.button.true": "Bestätigen",
+            "draggable.confirm.invalid_keys": "Durch Änderung des Datenbestands ist keine plausible Darstellung der benutzerdefinierten Sortierung mehr möglich. Um die aufgerufene Seite wieder darstellen zu können, ist ein Zurücksetzen der Sortierung für diese Seite zwingend notwendig.",
+            "draggable.confirm.invalid_keys.button.reset": "Zurücksetzen",
+            "draggable.confirm.invalid_keys.button.abort": "Abbrechen"
         }
     },
     "iconFallback": {
