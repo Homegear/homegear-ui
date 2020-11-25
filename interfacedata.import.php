@@ -207,6 +207,11 @@
             "unit": "mm"
         },
         {
+            "name": "RAIN",
+            "type": "bool",
+            "value": 0
+        },
+        {
             "name": "SNOW_3H",
             "type": "float",
             "value": 0,
@@ -4062,6 +4067,31 @@
                         "state": true
                     }
                 }
+            }
+        ],
+        [
+            "base.climateRain",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAIN"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "RAIN"
+                        }
+                    ]
+                ],
+                "label": "Regen",
+                "room": 6
             }
         ],
         [

@@ -67,6 +67,7 @@ shif_comps_create('climateCity',          openweathermap_l2, climate_main);
 shif_comps_create('climateCloudcoverage', openweathermap_l2, climate_main);
 shif_comps_create('climateDate',          openweathermap_l2, climate_main);
 shif_comps_create('climatePressure',      openweathermap_l2, climate_main);
+shif_comps_create('climateRain',          openweathermap_l2, climate_main);
 shif_comps_create('climateRain3h',        openweathermap_l2, climate_main);
 shif_comps_create('climateSnow3h',        openweathermap_l2, climate_main);
 shif_comps_create('climateSunrise',       openweathermap_l2, climate_main);
