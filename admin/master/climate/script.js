@@ -72,6 +72,7 @@ shif_comps_create('climateRain3h',        openweathermap_l2, climate_main);
 shif_comps_create('climateSnow3h',        openweathermap_l2, climate_main);
 shif_comps_create('climateSunrise',       openweathermap_l2, climate_main);
 shif_comps_create('climateSunset',        openweathermap_l2, climate_main);
+shif_comps_create('climateDusk',          openweathermap_l2, climate_main);
 shif_comps_create('climateWeather',       openweathermap_l2, climate_main);
 shif_comps_create('climateWinddirection', openweathermap_l2, climate_main);
 shif_comps_create('climateWindgust',      openweathermap_l2, climate_main);

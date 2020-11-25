@@ -158,6 +158,11 @@
             "value": "20:01:34"
         },
         {
+            "name": "DUSK",
+            "type": "int",
+            "value": "400"
+        },
+        {
             "name": "WEATHER",
             "type": "string",
             "value": "Mist"
@@ -4091,6 +4096,31 @@
                     ]
                 ],
                 "label": "Regen",
+                "room": 6
+            }
+        ],
+        [
+            "base.climateDusk",
+            {
+                "inputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DUSK"
+                        }
+                    ]
+                ],
+                "outputPeers": [
+                    [
+                        {
+                            "peer": 0,
+                            "channel": -1,
+                            "name": "DUSK"
+                        }
+                    ]
+                ],
+                "label": "Dämmerung",
                 "room": 6
             }
         ],
