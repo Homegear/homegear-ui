@@ -2135,8 +2135,10 @@ td {
 
 .notification_message {
   max-width: 800px;
+  max-height: calc(100vh - 220px);
   margin: auto;
   background: #191b1f;
+  overflow-y: auto;
 }
 
 .notification_message .notification_title {
@@ -2147,6 +2149,10 @@ td {
 
 .notification_message .notification_content {
   padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  height: inherit;
+  max-height: calc(100vh - 550px);
 }
 
 .notification_message .notification_buttons {
