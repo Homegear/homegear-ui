@@ -367,13 +367,11 @@
                 "de-DE": {
                     "0": "geschlossen",
                     "1": "geöffnet",
-                    "2": "unverriegelt",
                     "3": "verriegelt"
                 },
                 "en-US": {
                     "0": "closed",
                     "1": "opened",
-                    "2": "unlocked",
                     "3": "locked"
                 }
             },
