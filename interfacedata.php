@@ -14,7 +14,6 @@
         "userDefaults": {
             "theme": "dark",
             "highlight": "#e3a104",
-            "language": "de-DE",
             "startPath": "house.tab.rooms",
             "showFloor": true,
             "roleProfileDefinable": false,
@@ -692,7 +691,7 @@ function userSettings() {
     $interfaceData["options"]["userHasTwofaRegistrations"] = ($user->hasWebAuthn() ? true : false);
     $interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
-    $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+    $interfaceData["options"]["language"] = $user->getSettings()["language"];
     $interfaceData["options"]["startPath"] = ($user->getSettings()["startPath"] ?? $interfaceData["settings"]["userDefaults"]["startPath"]);
     if (isset($_GET['viewportScale']) && is_float(floatval($_GET['viewportScale']))) {
         $interfaceData["options"]["viewportScale"] = floatval($_GET['viewportScale']);

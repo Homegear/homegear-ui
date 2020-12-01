@@ -104,7 +104,7 @@ class User
         $_SESSION['locale'] = str_replace('_', '-', $_SESSION['locale']);
         if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
         else if($_SESSION['locale'] == 'en') $_SESSION['locale'] = 'en-US';
-        hg_set_user_privileges($_SESSION['user']);
+        $this->hg->setUserPrivileges($_SESSION['user']);
 
         $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
         if(isset($metadata['interface'])) $this->userSettings = array_merge($this->userSettings, $metadata['interface']);
@@ -203,9 +203,9 @@ class User
 
     public function login($user, $password)
     {
-        if(hg_auth($user, $password) === true)
+        if(\Homegear\Homegear::auth($user, $password) === true)
         {
-            hg_set_user_privileges($user);
+            \Homegear\Homegear::setUserPrivileges($user);
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
             $_SESSION["user"] = $user;
             $this->initialize();
@@ -333,7 +333,7 @@ class User
         unset($_SESSION['challenge']);
         unset($_SESSION['firstFactorAuthorized']);
 
-        hg_set_user_privileges($_SESSION['user']);
+        \Homegear\Homegear::setUserPrivileges($_SESSION['user']);
         if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
 
         if(!$this->initialized) $this->initialize();
@@ -348,7 +348,7 @@ class User
         {
             // Certificate auth
             $user = $_SERVER['SSL_CLIENT_S_DN_CN'];
-            hg_set_user_privileges($user);
+            \Homegear\Homegear::setUserPrivileges($user);
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
             $_SESSION['user'] = $user;
             $this->initialize();
@@ -374,7 +374,7 @@ class User
         {
             // Certificate auth
             $user = $_SERVER['CLIENT_VERIFIED_USERNAME'];
-            hg_set_user_privileges($user);
+            \Homegear\Homegear::setUserPrivileges($user);
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
             $_SESSION['user'] = $user;
             $this->initialize();
@@ -409,7 +409,7 @@ class User
                 }
                 if($user)
                 {
-                    hg_set_user_privileges($user);
+                    \Homegear\Homegear::setUserPrivileges($user);
                     if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
                     $_SESSION['user'] = $user;
                     $this->initialize();
