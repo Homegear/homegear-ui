@@ -18,6 +18,7 @@
             "showFloor": true,
             "roleProfileDefinable": false,
             "enableAutomations": false,
+            "deviceAggregation": false,
             "languageChangeable": true,
             "twofaChangeable": true,
             "consoleLog": true,
@@ -1151,6 +1152,7 @@ function userSettings() {
     $interfaceData["options"]["roleProfileDefinable"] = ($user->getSettings()["roleProfileDefinable"] ?? $interfaceData["settings"]["userDefaults"]["roleProfileDefinable"]);
     $interfaceData["options"]["enableAutomations"] = ($user->getSettings()["enableAutomations"] ?? $interfaceData["settings"]["userDefaults"]["enableAutomations"]);
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
+    $interfaceData["options"]["deviceAggregation"] = ($user->getSettings()["deviceAggregation"] ?? $interfaceData["settings"]["userDefaults"]["deviceAggregation"]);
     $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
     $interfaceData["options"]["disabledMainmenus"] = ($user->getSettings()["disabledMainmenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMainmenus"]);
     $interfaceData["options"]["disabledMenus"] = ($user->getSettings()["disabledMenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMenus"]);
