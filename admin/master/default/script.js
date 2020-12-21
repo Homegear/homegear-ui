@@ -858,13 +858,15 @@ Vue.component('shif-generic-l2', {
                     <div v-if="place" class="device_location">
                         {{ place }}
                     </div>
-                    <template v-if="typeof(status) === 'object'">
-                        <shif-status v-bind:classname="active.text"
-                                     v-bind:key_vals="status">
-                        </shif-status>
-                    </template>
-                    <template v-else>
-                        <shif-status v-bind:classname="active.text">{{ status }}</shif-status>
+                    <template v-if="status !== undefined">
+                        <template v-if="typeof(status) === 'object'">
+                            <shif-status v-bind:classname="active.text"
+                                        v-bind:key_vals="status">
+                            </shif-status>
+                        </template>
+                        <template v-else>
+                            <shif-status v-bind:classname="active.text">{{ status }}</shif-status>
+                        </template>
                     </template>
                 </div>
                 <div v-if="actions"
