@@ -1,6 +1,7 @@
 /*
     global
         categories_relevant
+        condition_get_matching
         get_or_default
         mixin_components
         mixin_modemenu
@@ -45,6 +46,28 @@ Vue.component('shif-ctrl-summary', {
         profiles_by_dev_cat: function () {
             return this.dev_cat_profiles(this.cat_id);
         },
+
+        summary_active: function () {
+            if (interfaceData.deviceCategories[this.cat_id].highlightIcon !== true)
+                return {};
+
+            for (const devs of this.dev_objs) {
+                for (const key in devs) {
+                    const i = devs[key];
+                    const sel = condition_get_matching(i.rendering, i.props);
+                    if (Object.keys(sel).length > 0) {
+                        const state = get_or_default(sel.icons, 'state', {
+                            name: '',
+                            color: ''
+                        });
+                        if (state.color === 'active')
+                            return state;
+                    }
+                }
+            }
+
+            return {};
+        },
     },
 
     provide: function () {
@@ -76,6 +99,7 @@ Vue.component('shif-ctrl-summary', {
                              v-bind:icon_rotate="submenu_show"
                              v-bind:title="title"
                              v-bind:status="status"
+                             v-bind:active="{icon: summary_active.color}"
                              v-bind:actions="true"
                              v-bind:accordion="true"
                              v-on:click="submenu_show = !submenu_show"
