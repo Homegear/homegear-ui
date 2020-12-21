@@ -231,6 +231,7 @@
             },
             "icon": "light_on_1",
             "l2_status": true,
+            "highlightIcon": true,
             "aggregation": [
                 {
                     "type": 2,
@@ -285,6 +286,7 @@
             },
             "icon": "heater_1",
             "l2_status": true,
+            "highlightIcon": false,
             "aggregation": [
                 {
                     "type": 2,
@@ -323,6 +325,7 @@
             },
             "icon": "ventilator_2",
             "l2_status": true,
+            "highlightIcon": false,
             "aggregation": [
                 {
                     "type": 2,
@@ -356,6 +359,7 @@
             },
             "icon": "door_open_2",
             "l2_status": true,
+            "highlightIcon": true,
             "aggregation": [
                 {
                     "type": 2,
@@ -390,6 +394,7 @@
             },
             "icon": "window_1",
             "l2_status": true,
+            "highlightIcon": true,
             "aggregation": [
                 {
                     "type": 2,
@@ -423,6 +428,7 @@
             },
             "icon": "socket_1",
             "l2_status": true,
+            "highlightIcon": true,
             "aggregation": [
                 {
                     "type": 2,
@@ -453,6 +459,7 @@
             },
             "icon": "blind_1",
             "l2_status": true,
+            "highlightIcon": false,
             "aggregation": [
                 {
                     "type": 2,
@@ -502,6 +509,7 @@
             },
             "icon": "awning_1",
             "l2_status": true,
+            "highlightIcon": false,
             "aggregation": [
                 {
                     "type": 2,
@@ -540,6 +548,7 @@
             },
             "icon": "window_2",
             "l2_status": true,
+            "highlightIcon": false,
             "aggregation": [
                 {
                     "type": 2,
@@ -580,6 +589,7 @@
             },
             "icon": "weather_1",
             "l2_status": false,
+            "highlightIcon": false,
             "aggregation": [
 
             ],
@@ -611,6 +621,7 @@
             },
             "icon": "weather_1",
             "l2_status": false,
+            "highlightIcon": false,
             "aggregation": [
 
             ],
@@ -629,6 +640,7 @@
             },
             "icon": "speaker_1",
             "l2_status": false,
+            "highlightIcon": false,
             "aggregation": [
 
             ],
@@ -646,6 +658,7 @@
             },
             "icon": "police_1",
             "l2_status": false,
+            "highlightIcon": false,
             "aggregation": [
 
             ],
