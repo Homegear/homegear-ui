@@ -70,6 +70,7 @@ function _invoke(op) {
 }
 
 
+
 function status_category(cat_id) {
     return new Promise(function (resolve) {
         const category = interfaceData.deviceCategories[cat_id];
@@ -115,7 +116,16 @@ function status_category(cat_id) {
 
 
 
+function states_is_enabled() {
+    return interfaceData.options.deviceAggregation === true;
+}
+
+
+
 function states_init() {
+    if (! states_is_enabled())
+        return;
+
     const cat_keys = Object.keys(interfaceData.deviceCategories);
 
     for (const key of cat_keys) {
@@ -158,7 +168,7 @@ const mixin_states = {
 
     methods: {
         states_refetch_dirty: function () {
-            if (! this.states_is_dirty)
+            if (! this.states_is_ready || ! this.states_is_dirty)
                 return;
 
             const dirty = _states.dirty.slice();
