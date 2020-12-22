@@ -157,7 +157,7 @@ Vue.component('shif-draggable', {
                         false: 'draggable.confirm.invalid_keys.button.abort',
                     }
                 }).then(x => {
-                    this._interfaceData_field = x ? new_ : saved;
+                    this.keys = x ? new_ : saved;
                     this.show = x;
                 });
             else
