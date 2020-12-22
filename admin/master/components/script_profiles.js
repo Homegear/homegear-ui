@@ -5,7 +5,7 @@
         mixin_profiles
         shif_device_slot_automations_profile
         shif_device_slot_draggable
-        shif_device_slot_favorites
+        shif_device_slot_favorites_profile
 */
 /*
     exported
