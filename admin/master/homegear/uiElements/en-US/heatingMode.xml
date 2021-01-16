@@ -1,90 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
-	<homegearUiElement>
-		<uniqueUiElementId>Base.heatingMode</uniqueUiElementId>
-		<control>heatingMode</control>
-		<type>simple</type>
-        <role>201000</role>
-		<texts>
-			<text id="title">
-				<content>Mode</content>
-				<color>title</color>
-			</text>
-			<text id="l2_state_title">
-				<content>Mode</content>
-				<color>l2_state_title</color>
-			</text>
-		</texts>
-		<icons>
-			<icon id="l2">
-				<name>plus-minus_1</name>
-                <color>inactive</color>
-			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
-		</icons>
-		<variableInputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-				<visualizeInOverview>true</visualizeInOverview>
-				<rendering>
-					<condition operator="e" value="0">
-						<icons>
-							<icon id="state">
-								<name>plus-minus_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>Minimal</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="e" value="1">
-						<icons>
-							<icon id="state">
-								<name>plus-minus_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>Comfort</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="e" value="2">
-						<icons>
-							<icon id="state">
-								<name>plus-minus_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>Save</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-				</rendering>
-			</variable>
-		</variableInputs>
-		<variableOutputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-			</variable>
-		</variableOutputs>
-	</homegearUiElement>
+  <homegearUiElement>
+    <uniqueUiElementId>Base.heatingMode</uniqueUiElementId>
+    <control>heatingMode</control>
+    <type>simple</type>
+    <description>UI-Element to set the heating mode (frost protection, comfort or eco).</description>
+    <texts>
+      <text id="title">
+        <content>Mode</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Mode</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>plus-minus_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Heating mode</label>
+        <description>The heating mode that should be visualized by the UI element. Input "0" for frost protection, "1" for comfort mode and "2" for eco mode.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <rendering>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>plus-minus_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Minimal</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="1">
+            <icons>
+              <icon id="state">
+                <name>plus-minus_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Comfort</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="2">
+            <icons>
+              <icon id="state">
+                <name>plus-minus_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Save</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Heating mode</label>
+        <description>Outputs the heating mode selected with the UI element. The output is "0" for frost protection, "1" for comfort mode and "2" for eco mode.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
 </homegearUiElements>
