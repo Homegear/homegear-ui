@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg" version="1.1" x="0" y="0" width="500" height="500" viewBox="0 0 500 500">
-  <g class="window" fill="#fff" stroke-width="34">
+  <g class="window" stroke-width="34">
     <path d="M70.152 391.714L428.048 391.714 428.048 455.727 70.152 455.727 70.152 391.714z"/>
     <path d="M100.02 50.31L100.02 391.714 398.749 391.714 398.749 221.012 398.749 50.31 100.02 50.31z" />
     <g class="window_close">

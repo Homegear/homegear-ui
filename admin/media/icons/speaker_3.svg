@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="25px" height="18.625px" viewBox="0 0 25 18.625" enable-background="new 0 0 25 18.625" xml:space="preserve">
-	<g fill="#fff">
+	<g>
 		<path fill="none" stroke-miterlimit="10" d="M20.018,0.709c2.193,2.246,3.545,5.318,3.545,8.706
 			c0,3.378-1.346,6.444-3.528,8.688"/>
 		<path fill="none" stroke-miterlimit="10" d="M15.627,5.098c1.102,1.124,1.779,2.662,1.779,4.36
