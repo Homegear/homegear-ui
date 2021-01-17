@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.doorHandle</uniqueUiElementId>
     <control>doorHandle</control>
     <type>simple</type>
+    <description>Visualizes the state of a door contact or handle.</description>
     <texts>
       <text id="title">
         <content>State</content>
@@ -26,6 +27,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Door state</label>
+        <description>The door state to set for the UI element. "false" or "0" for closed, "true" or "1" for open, "2" for tilted, "3" for unknown.</description>
+        <types>int, bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -92,6 +96,8 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>-</label>
+        <description>Unused</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

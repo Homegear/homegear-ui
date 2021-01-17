@@ -54,7 +54,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>unpushed</content>
+                <content>idle</content>
                 <color>inactive</color>
               </text>
             </texts>

@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.windowButtons</uniqueUiElementId>
     <control>windowButtons</control>
     <type>simple</type>
+    <description>Provides window buttons for complex elements.</description>
     <texts>
       <text id="title">
         <content>Trigger</content>
@@ -26,6 +27,8 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>-</label>
+        <description>Unused</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -62,6 +65,8 @@
         </rendering>
       </variable>
       <variable>
+        <label>-</label>
+        <description>Unused</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -98,6 +103,8 @@
         </rendering>
       </variable>
       <variable>
+        <label>-</label>
+        <description>Unused</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -136,16 +143,25 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Up</label>
+        <description>The up button was clicked.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Stop</label>
+        <description>The stop button was clicked.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Down</label>
+        <description>The down button was clicked.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

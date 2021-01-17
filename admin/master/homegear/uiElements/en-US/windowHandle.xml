@@ -98,7 +98,6 @@
       <variable>
         <label>-</label>
         <description>Unused</description>
-        <types></types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

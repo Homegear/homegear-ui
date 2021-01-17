@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.doorLock</uniqueUiElementId>
     <control>doorLock</control>
     <type>simple</type>
+    <description>Visualisiert einen Türschlossstatus.</description>
     <texts>
       <text id="title">
         <content>Status</content>
@@ -26,6 +27,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Schlossstatus</label>
+        <description>Der zu visualisierende Schlossstatus.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

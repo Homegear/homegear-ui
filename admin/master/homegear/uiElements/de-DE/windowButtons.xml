@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.windowButtons</uniqueUiElementId>
     <control>windowButtons</control>
     <type>simple</type>
+    <description>Stellt Fensterknöpfe für komplexe UI-Elemente zur Verfügung.</description>
     <texts>
       <text id="title">
         <content>Trigger</content>
@@ -26,6 +27,8 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>-</label>
+        <description>Ungenutzt</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -62,6 +65,8 @@
         </rendering>
       </variable>
       <variable>
+        <label>-</label>
+        <description>Ungenutzt</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -98,6 +103,8 @@
         </rendering>
       </variable>
       <variable>
+        <label>-</label>
+        <description>Ungenutzt</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -136,16 +143,25 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Hoch</label>
+        <description>Der Hoch-Knopf wurde angeclickt.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Stopp</label>
+        <description>Der Stopp-Knopf wurde angeclickt.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Runter</label>
+        <description>Der Runter-Knopf wurde angeclickt.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

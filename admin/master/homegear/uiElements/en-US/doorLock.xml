@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.doorLock</uniqueUiElementId>
     <control>doorLock</control>
     <type>simple</type>
+    <description>Visualizes the state of a door lock.</description>
     <texts>
       <text id="title">
         <content>State</content>
@@ -26,6 +27,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Lock state</label>
+        <description>The lock state to visualize.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -40,7 +44,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>closed</content>
+                <content>unlocked</content>
                 <color>inactive</color>
               </text>
             </texts>
@@ -54,7 +58,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>opened</content>
+                <content>locked</content>
                 <color>active</color>
               </text>
             </texts>

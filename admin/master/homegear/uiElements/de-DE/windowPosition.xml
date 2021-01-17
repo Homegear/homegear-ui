@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.windowPosition</uniqueUiElementId>
     <control>windowPosition</control>
     <type>simple</type>
+    <description>Stellt komplexen Elementen einen Schieberegler zum Visualisieren und Setzen der Fensterposition zur Verfügung.</description>
     <texts>
       <text id="title">
         <content>Position</content>
@@ -26,6 +27,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Position</label>
+        <description>Setzt die visualisierte Position.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -39,6 +43,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Position</label>
+        <description>Gibt Positionsänderungen des UI-Elements aus.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

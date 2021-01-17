@@ -1,3 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="32" height="32" viewBox="0 0 32 32" xml:space="preserve">
+<g fill="#fff">
   <path d="M32 24V4H0v20h15v2h-4v2h10v-2h-4v-2H32zM2 22V6h28v16H2z"/>
+</g>
 </svg>

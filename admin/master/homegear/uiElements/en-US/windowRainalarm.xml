@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.windowRainalarm</uniqueUiElementId>
     <control>windowRainalarm</control>
     <type>simple</type>
+    <description>Provides an element for complex elements to visualize rain alarms.</description>
     <texts>
       <text id="title">
         <content>Alarm</content>
@@ -26,6 +27,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Rain alarm</label>
+        <description>Sets the rain alarm of the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +68,8 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>-</label>
+        <description>Unused</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

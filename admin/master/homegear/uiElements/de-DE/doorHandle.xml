@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.doorHandle</uniqueUiElementId>
     <control>doorHandle</control>
     <type>simple</type>
+    <description>Visualisiert den Status eines Türkontaktes oder -griffes.</description>
     <texts>
       <text id="title">
         <content>Status</content>
@@ -26,6 +27,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Türstatus</label>
+        <description>Der Türstatus, welcher im UI-Element gesetzt werden soll. "false" oder "0" für geschlossen, "true" oder "1" für geöffnet, "2" für gekippt, "3" für unbekannt.</description>
+        <types>int, bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -92,6 +96,8 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>-</label>
+        <description>Ungenutzt</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
