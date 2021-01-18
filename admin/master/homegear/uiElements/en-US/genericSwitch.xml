@@ -4,6 +4,7 @@
     <uniqueUiElementId>Base.genericSwitch</uniqueUiElementId>
     <control>genericSwitch</control>
     <type>simple</type>
+    <description>Visualizes and sets a binary state.</description>
     <texts>
       <text id="title">
         <color>title</color>
