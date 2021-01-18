@@ -1091,6 +1091,7 @@ const shif_device = {
         'props',
         'indexes',
         'rendering',
+        'dynamicMetadata',
         'include_place',
         'sibling_idx',
     ],

@@ -21,15 +21,16 @@
 
 function comp_obj(control, device, input, output, is, indexes) {
     let ret = {
-        uiElement: device,
-        control:   control,
-        device:    device.databaseId,
-        icons:     device.icons,
-        texts:     device.texts,
-        output:    output,
-        props:     input.properties,
-        indexes:   indexes,
-        rendering: input.rendering,
+        uiElement:       device,
+        control:         control,
+        device:          device.databaseId,
+        icons:           device.icons,
+        texts:           device.texts,
+        output:          output,
+        props:           input.properties,
+        indexes:         indexes,
+        rendering:       input.rendering,
+        dynamicMetadata: device.dynamicMetadata
     };
 
     if (is)
