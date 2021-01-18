@@ -20,14 +20,6 @@
         <name>thermometer_1</name>
         <color>inactive</color>
       </icon>
-      <icon id="l2">
-        <name>floor_1</name>
-        <color>inactive</color>
-      </icon>
-      <icon id="l3">
-        <name>arrow_right_1</name>
-        <color>iconArrow</color>
-      </icon>
     </icons>
     <variableInputs>
       <variable>

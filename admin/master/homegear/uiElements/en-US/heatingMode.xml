@@ -44,7 +44,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>Minimal</content>
+                <content>Frost protection</content>
                 <color>active</color>
               </text>
             </texts>
@@ -72,7 +72,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>Save</content>
+                <content>Eco</content>
                 <color>active</color>
               </text>
             </texts>

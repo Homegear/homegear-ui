@@ -134,6 +134,12 @@
                         ""
                     ]
                 },
+                "generic": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
                 "icons": {
                     "activated": true,
                     "requiredAssets": [

@@ -21,9 +21,6 @@
                 }
             },
             "label": "Regenalarm Helper",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 0,
             "room": 13,
             "texts": {
@@ -132,9 +129,6 @@
                 }
             },
             "label": "Windalarm Helper",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 0,
             "room": 13,
             "texts": {
@@ -243,9 +237,6 @@
                 }
             },
             "label": "Fensteralarm Helper",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 0,
             "room": 13,
             "texts": {
@@ -354,9 +345,6 @@
                 }
             },
             "label": "Licht in Stockwerkslos",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 13,
             "texts": {
@@ -489,9 +477,6 @@
                 }
             },
             "label": "Licht",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 6,
             "texts": {
@@ -627,9 +612,6 @@
                 }
             },
             "label": "Licht Decke",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 2,
             "texts": {
@@ -765,9 +747,6 @@
                 }
             },
             "label": "Licht Spiegel",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 2,
             "texts": {
@@ -903,9 +882,6 @@
                 }
             },
             "label": "Licht",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 9,
             "texts": {
@@ -1041,9 +1017,6 @@
                 }
             },
             "label": "Licht c",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 12,
             "texts": {
@@ -1179,9 +1152,6 @@
                 }
             },
             "label": "Licht b",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 12,
             "texts": {
@@ -1317,9 +1287,6 @@
                 }
             },
             "label": "Licht d",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 12,
             "texts": {
@@ -1455,9 +1422,6 @@
                 }
             },
             "label": "Steckdose",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 400001,
             "room": 12,
             "texts": {
@@ -1593,9 +1557,6 @@
                 }
             },
             "label": "Licht",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 1,
             "texts": {
@@ -1731,9 +1692,6 @@
                 }
             },
             "label": "Licht",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 7,
             "texts": {
@@ -1869,9 +1827,6 @@
                 }
             },
             "label": "Steckdose",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 400001,
             "room": 7,
             "texts": {
@@ -2007,9 +1962,6 @@
                 }
             },
             "label": "Licht",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 10,
             "texts": {
@@ -2145,9 +2097,6 @@
                 }
             },
             "label": "Licht Decke",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 5,
             "texts": {
@@ -2283,9 +2232,6 @@
                 }
             },
             "label": "Licht Spiegel",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 100001,
             "room": 5,
             "texts": {
@@ -2421,9 +2367,6 @@
                 }
             },
             "label": "Steckdose",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 400001,
             "room": 11,
             "texts": {
@@ -2559,9 +2502,6 @@
                 }
             },
             "label": "Steckdose",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 400001,
             "room": 4,
             "texts": {
@@ -9912,9 +9852,6 @@
                             "name": "arrow_right_1"
                         }
                     },
-                    "metadata": {
-                        "l2_only": true
-                    },
                     "role": 301002,
                     "texts": {
                         "l2_state_title": {
@@ -11694,9 +11631,6 @@
                             "name": "arrow_right_1"
                         }
                     },
-                    "metadata": {
-                        "l2_only": true
-                    },
                     "role": 301002,
                     "texts": {
                         "l2_state_title": {
@@ -12250,9 +12184,6 @@
                 }
             },
             "label": "Fensterkontakt Essen",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 12,
             "texts": {
@@ -12388,9 +12319,6 @@
                 }
             },
             "label": "Fenstergriff Rund",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 3,
             "texts": {
@@ -12566,9 +12494,6 @@
                 }
             },
             "label": "Fenstergriff links",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 6,
             "texts": {
@@ -12744,9 +12669,6 @@
                 }
             },
             "label": "Fenstergriff rechts",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 6,
             "texts": {
@@ -12922,9 +12844,6 @@
                 }
             },
             "label": "Fenstergriff Bad",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 2,
             "texts": {
@@ -13100,9 +13019,6 @@
                 }
             },
             "label": "Fenstergriff links",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 9,
             "texts": {
@@ -13278,9 +13194,6 @@
                 }
             },
             "label": "Fenstergriff rechts",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 9,
             "texts": {
@@ -13456,9 +13369,6 @@
                 }
             },
             "label": "Fenstergriff K\u00fcche links",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 12,
             "texts": {
@@ -13634,9 +13544,6 @@
                 }
             },
             "label": "Fenstergriff Wohnen",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301002,
             "room": 12,
             "texts": {
@@ -13816,9 +13723,6 @@
                 }
             },
             "label": "T\u00fcrkontakt",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301001,
             "room": 3,
             "texts": {
@@ -13960,9 +13864,6 @@
                 }
             },
             "label": "T\u00fcrgriff",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301001,
             "room": 12,
             "texts": {
@@ -14144,9 +14045,6 @@
                 }
             },
             "label": "T\u00fcr Verriegelung",
-            "metadata": {
-                "l2_only": true
-            },
             "role": 301003,
             "room": 3,
             "texts": {
@@ -14602,9 +14500,6 @@
                             "name": "arrow_right_1"
                         }
                     },
-                    "metadata": {
-                        "l2_only": true
-                    },
                     "role": 100001,
                     "texts": {
                         "l2_state_title": {
@@ -14872,9 +14767,6 @@
                             "color": "iconArrow",
                             "name": "arrow_right_1"
                         }
-                    },
-                    "metadata": {
-                        "l2_only": true
                     },
                     "role": 100001,
                     "texts": {
@@ -15255,9 +15147,6 @@
                             "color": "iconArrow",
                             "name": "arrow_right_1"
                         }
-                    },
-                    "metadata": {
-                        "l2_only": true
                     },
                     "role": 100001,
                     "texts": {

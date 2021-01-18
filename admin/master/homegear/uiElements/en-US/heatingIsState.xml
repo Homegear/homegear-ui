@@ -11,7 +11,7 @@
         <color>title</color>
       </text>
       <text id="l2_state_title">
-        <content>Is</content>
+        <content>Current</content>
         <color>l2_state_title</color>
       </text>
     </texts>
@@ -19,14 +19,6 @@
       <icon id="temperature">
         <name>thermometer_1</name>
         <color>inactive</color>
-      </icon>
-      <icon id="l2">
-        <name>floor_1</name>
-        <color>inactive</color>
-      </icon>
-      <icon id="l3">
-        <name>arrow_right_1</name>
-        <color>iconArrow</color>
       </icon>
     </icons>
     <variableInputs>

@@ -73,8 +73,5 @@
         <name>*</name>
       </variable>
     </variableOutputs>
-    <metadata>
-      <l2_only>true</l2_only>
-    </metadata>
   </homegearUiElement>
 </homegearUiElements>
