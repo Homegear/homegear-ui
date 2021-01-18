@@ -15,9 +15,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 let generic_status = clone(shif_device);
-generic_status.computed.status_formatted = function () {
-    return status_format.apply(this, [this.status_minimal(false), 1]);
-};
 generic_status.computed.icon = function () {
     return 'main' in this.icons
         ? this.icons.main
@@ -27,7 +24,6 @@ generic_status.template = `
     <shif-generic-l2 v-bind:icon="icon.name"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icon.color, text: texts.title.color}"
-                     v-bind:status="status_formatted"
                      v-bind:place="place">
 
         ${shif_device_slot_favorites}
@@ -86,17 +82,6 @@ generic_switch.template = `
 shif_comps_create('genericSwitch', generic_switch, generic_switch);
 
 let generic_slider = clone(shif_device);
-generic_slider.computed.status_formatted = function () {
-    var decimalPlaces = 0;
-    if (this.dynamicMetadata.hasOwnProperty("stepSize")) {
-        var stepSize = this.dynamicMetadata.stepSize;
-        if (stepSize !== Math.floor(stepSize)) {
-            decimalPlaces = stepSize.toString().split(".")[1].length || 0;
-            console.log(decimalPlaces);
-        }
-    }
-    return status_format.apply(this, [this.status_minimal(false), decimalPlaces]);
-};
 generic_slider.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"

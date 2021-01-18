@@ -239,7 +239,7 @@ Vue.mixin({
         },
 
         float_formatted: function (val, precision=1) {
-            return parseFloat(val).toFixed(precision);
+            return parseFloat(val).toLocaleString(interfaceData.options.language, {minimumFractionDigits: precision, maximumFractionDigits: precision});
         },
 
         alert: window.alert,
