@@ -4,6 +4,7 @@
     <id>Base.lightingSwitchBrightnessTemp</id>
     <control>lightingSwitchBrightnessTemp</control>
     <type>complex</type>
+    <description>Visualisiert ein Licht mit einstellbarer Farbtemperatur.</description>
     <texts>
       <text id="title">
         <content>Beleuchtung</content>

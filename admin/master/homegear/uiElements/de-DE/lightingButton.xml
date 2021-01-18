@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Status</label>
+        <description>Setzt den visualisierten Status.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Status</label>
+        <description>Gibt den Status aus, welcher im UI-Element gesetzt wird.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

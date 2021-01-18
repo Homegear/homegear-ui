@@ -6,7 +6,7 @@
     <control>lightingSwitch</control>
     <texts>
       <text id="title">
-        <content>Toggle</content>
+        <content>State</content>
         <color>title</color>
       </text>
       <text id="l2_state_title">
@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>State</label>
+        <description>Sets the visualized state.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>State</label>
+        <description>Outputs state changes from the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

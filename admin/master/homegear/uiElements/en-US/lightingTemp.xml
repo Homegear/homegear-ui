@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Color temperature</label>
+        <description>Sets the visualized color temperature.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -39,6 +42,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Color temperature</label>
+        <description>Outputs the color temperature set in the UI element.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

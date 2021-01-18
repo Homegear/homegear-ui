@@ -4,6 +4,7 @@
     <id>Base.lightingSwitchBrightness</id>
     <control>lightingSwitchBrightness</control>
     <type>complex</type>
+    <description>Visualizes a dimmable light.</description>
     <texts>
       <text id="title">
         <content>Lighting</content>

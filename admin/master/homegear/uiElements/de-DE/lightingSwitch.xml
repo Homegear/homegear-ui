@@ -6,7 +6,7 @@
     <type>simple</type>
     <texts>
       <text id="title">
-        <content>Schalter</content>
+        <content>Status</content>
         <color>title</color>
       </text>
       <text id="l2_state_title">
@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Status</label>
+        <description>Setzt den visualisierten Status.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Status</label>
+        <description>Gibt den im UI-Element gesetzten Status aus.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

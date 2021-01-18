@@ -4,6 +4,7 @@
     <id>Base.lightingSwitchColor</id>
     <control>lightingSwitchColor</control>
     <type>complex</type>
+    <description>Visualisiert ein farbiges Licht.</description>
     <texts>
       <text id="title">
         <content>Beleuchtung</content>

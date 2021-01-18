@@ -4,6 +4,7 @@
     <id>Base.lightingSwitchBrightnessTemp</id>
     <control>lightingSwitchBrightnessTemp</control>
     <type>complex</type>
+    <description>Visualizes a light with settable color temperature.</description>
     <texts>
       <text id="title">
         <content>Lightning</content>

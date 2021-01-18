@@ -30,6 +30,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Brightness</label>
+        <description>Sets the visualized brightness.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -61,6 +64,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Brightness</label>
+        <description>Outputs the brightness when set in the UI element.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>State</label>
+        <description>Sets the visualized state.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -54,7 +57,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>unpushed</content>
+                <content>released</content>
                 <color>inactive</color>
               </text>
             </texts>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>State</label>
+        <description>Ouputs the state when set in the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

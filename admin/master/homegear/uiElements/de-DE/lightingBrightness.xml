@@ -30,6 +30,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Helligkeit</label>
+        <description>Setzt die visualisierte Helligkeit.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -61,6 +64,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Helligkeit</label>
+        <description>Gibt die Helligkeit aus, welche im UI-Element gesetzt wird.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

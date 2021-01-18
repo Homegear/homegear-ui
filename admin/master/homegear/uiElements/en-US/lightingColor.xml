@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Color</label>
+        <description>Sets the visualized color. You need to pass a RGB string ("#rrggbb", with "rr", "gg", "bb" being hexadecimal values between 0 and FF. E. g. for red "#FF0000").</description>
+        <types>string</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,8 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Color</label>
+        <description>Outputs the color when set in the UI element as a RGB string ("#rrggbb", with "rr", "gg", "bb" being hexadecimal values between 0 and FF. e. g. for red "#FF0000").</description>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

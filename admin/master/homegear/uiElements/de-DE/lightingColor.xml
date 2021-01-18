@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Color</label>
+        <description>Setzt die visualisierte Farbe. Übergeben werden muss ein RGB-String ("#rrggbb", mit "rr", "gg", "bb" als Hexadezimalwert zwischen 0 und FF. Z. B. für rot "#FF0000").</description>
+        <types>string</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Color</label>
+        <description>Gibt die im UI-Element gewählte Farbe aus. Das Format ist ein RGB-String ("#rrggbb", mit "rr", "gg", "bb" als Hexadezimalwert zwischen 0 und FF. Z. B. für rot "#FF0000").</description>
+        <types>string</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
