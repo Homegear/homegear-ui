@@ -144,9 +144,17 @@ let modal = new Vue({
             this.notification_action(id, btn.id, () => {
                 const msg = interfaceData.notifications[id];
 
-                if (msg.displayType === NotificationDisplayType.Modal &&
-                    btn.closeModal === true)
-                    this.notification_hide(id);
+                if (btn.closeModal === true) {
+                    switch (msg.displayType) {
+                        case NotificationDisplayType.Modal:
+                            this.notification_hide(id);
+                            break;
+                        case NotificationDisplayType.ToastIntegrated:
+                        case NotificationDisplayType.Integrated:
+                            this.$router.back();
+                            break;
+                    }
+                }
 
                 if (btn.reloadUi === true)
                     window.location.reload();
@@ -211,9 +219,17 @@ const ShifNotificationsNotification = {
             this.notification_action(this.notification_id, btn.id, () => {
                 const msg = interfaceData.notifications[this.notification_id];
 
-                if (msg.displayType === NotificationDisplayType.Modal &&
-                    btn.closeModal === true)
-                    this.notification_hide(msg.id);
+                if (btn.closeModal === true) {
+                    switch (msg.displayType) {
+                        case NotificationDisplayType.Modal:
+                            this.notification_hide(msg.id);
+                            break;
+                        case NotificationDisplayType.ToastIntegrated:
+                        case NotificationDisplayType.Integrated:
+                            this.$router.back();
+                            break;
+                    }
+                }
 
                 if (btn.reloadUi === true)
                     window.location.reload();
