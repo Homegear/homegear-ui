@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<homegearUiElements lang="en-US">
+<homegearUiElements lang="de-DE">
   <homegearUiElement>
-    <id>Base.heatingIsStateSliderMode</id>
-    <control>heatingIsStateSliderMode</control>
+    <id>Base.heatingSliderModeWindowhandle</id>
+    <control>heatingSliderModeWindowhandle</control>
     <type>complex</type>
-    <description>UI element to control the setpoint temperature, set the heating mode and visualize the current room temperature.</description>
+    <description>UI-Element zum Setzen der Solltemperatur des Heizungsmodus und Visualisieren der aktuellen Raumtemperatur. Zusätzlich gibt es einen Eingang für den aktuellen Fensterstatus, welcher im UI-Element angezeigt wird und die Bedienung beim Öffnen des Fensters deaktiviert.</description>
     <texts>
       <text id="title">
-        <content>Heating</content>
+        <content>Heizung</content>
         <color>title</color>
       </text>
       <text id="l2_state_title">
-        <content>Heating</content>
+        <content>Status</content>
         <color>l2_state_title</color>
       </text>
     </texts>
@@ -36,7 +36,7 @@
       <rows>3</rows>
     </grid>
     <controls>
-      <control id="Base.heatingIsState">
+      <control id="Base.heatingTemperature">
         <x>0</x>
         <y>0</y>
         <columns>1</columns>
@@ -49,6 +49,12 @@
         <rows>1</rows>
       </control>
       <control id="Base.heatingMode">
+        <x>0</x>
+        <y>1</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+      <control id="Base.windowHandle">
         <x>0</x>
         <y>1</y>
         <columns>1</columns>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
   <homegearUiElement>
-    <uniqueUiElementId>Base.heatingIsState</uniqueUiElementId>
-    <control>heatingIsState</control>
+    <uniqueUiElementId>Base.heatingTemperature</uniqueUiElementId>
+    <control>heatingTemperature</control>
     <type>simple</type>
     <description>Visualizes the current temperature.</description>
     <texts>

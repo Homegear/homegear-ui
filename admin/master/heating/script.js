@@ -56,11 +56,11 @@ shif_comps_create('heatingSlider', heating_slider_l2, heating_slider_l3);
 
 
 
-let heating_is_state_l2 = clone(shif_device);
-heating_is_state_l2.computed.status_formatted = function () {
+let heating_temperature_l2 = clone(shif_device);
+heating_temperature_l2.computed.status_formatted = function () {
     return status_format.apply(this, [this.status, 1]);
 };
-heating_is_state_l2.template = `
+heating_temperature_l2.template = `
     <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
@@ -75,11 +75,11 @@ heating_is_state_l2.template = `
 
     </shif-generic-l2>
 `;
-let heating_is_state_l3 = clone(shif_device);
-heating_is_state_l3.computed.status_formatted = function () {
+let heating_temperature_l3 = clone(shif_device);
+heating_temperature_l3.computed.status_formatted = function () {
     return status_format.apply(this, [this.status_minimal(false), 1]);
 };
-heating_is_state_l3.template = `
+heating_temperature_l3.template = `
     <shif-generic-l2 v-bind:icon="control.icons.temperature.name"
                      v-bind:title="title"
                      v-bind:active="{icon: control.icons.temperature.color, text: texts.title.color}"
@@ -92,7 +92,7 @@ heating_is_state_l3.template = `
     </shif-generic-l2>
 `;
 
-shif_comps_create('heatingIsState', heating_is_state_l2, heating_is_state_l3);
+shif_comps_create('heatingTemperature', heating_temperature_l2, heating_temperature_l3);
 
 
 
@@ -118,30 +118,12 @@ heating_mode_l3.template = `
     </shif-radio>
 `;
 
-shif_comps_create('heatingMode', heating_is_state_l2, heating_mode_l3);
-
-
-
-let heating_window = clone(shif_device);
-heating_window.template = `
-    <shif-generic-l2 v-bind:icon="cond.icon.name"
-                     v-bind:title="title"
-                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
-                     v-bind:status="status_minimal()"
-                     v-bind:place="place">
-
-        ${shif_device_slot_automations}
-        ${shif_device_slot_draggable}
-
-    </shif-generic-l2>
-`;
-
-shif_comps_create('heatingWindow', heating_window, heating_window);
+shif_comps_create('heatingMode', heating_temperature_l2, heating_mode_l3);
 
 
 
 shif_register_disable_hooks({
-    'Base.heatingIsStateSliderMode': [
+    'Base.heatingSliderMode': [
         {
             condition: {
                 index: 2,
@@ -155,53 +137,7 @@ shif_register_disable_hooks({
 });
 
 shif_register_disable_hooks({
-    'Base.heatingIsStateSliderModeWindow': [
-        {
-            condition: {
-                index: 2,
-                operator: 'eq',
-                value: 0
-            },
-            disable: [1],
-            reason: 'Frost'
-        },
-        {
-            condition: {
-                index: 3,
-                operator: 'gt',
-                value: 0
-            },
-            disable: [1, 2],
-            reason: 'Window',
-        }
-    ],
-});
-
-shif_register_disable_hooks({
-    'Base.heatingIsStateSliderModeWindowHandle': [
-        {
-            condition: {
-                index: 2,
-                operator: 'eq',
-                value: 0
-            },
-            disable: [1],
-            reason: 'Frost'
-        },
-        {
-            condition: {
-                index: 3,
-                operator: 'gt',
-                value: 0
-            },
-            disable: [1, 2],
-            reason: 'Window',
-        }
-    ],
-});
-
-shif_register_disable_hooks({
-    'Base.heatingIsStateSliderModeWindowContact': [
+    'Base.heatingSliderModeWindowhandle': [
         {
             condition: {
                 index: 2,

@@ -63,7 +63,6 @@ window_status_l3.template = `
     </shif-generic-l2>
 `;
 
-shif_comps_create('windowContact', window_status, window_status_l3);
 shif_comps_create('windowHandle',  window_status, window_status_l3);
 
 let window_buttons_l2 = clone(shif_device);
