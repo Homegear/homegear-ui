@@ -63,6 +63,26 @@ generic_status_link.template = `
     </shif-generic-l2>
 `;
 
+let generic_button = clone(shif_device);
+generic_button.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status"
+                     v-bind:place="place"
+                     v-on:mousedown="$homegear.value_set(output, true)"
+                     v-on:mouseup="$homegear.value_set(output, false)">
+
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+
+    </shif-generic-l2>
+`;
+
+shif_comps_create('genericButton', generic_button, generic_button);
+
 let generic_switch = clone(shif_device);
 generic_switch.template = `
     <shif-generic-l2 v-bind:icon="cond.icon.name"
