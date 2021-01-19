@@ -6,7 +6,7 @@
     <type>simple</type>
     <texts>
       <text id="title">
-        <content>Slats Position</content>
+        <content>Slats position</content>
         <color>title</color>
       </text>
       <text id="l2_state_title">
@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Slats position</label>
+        <description>Sets the visualized slats position.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -39,6 +42,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Slats position</label>
+        <description>Outputs the slats position set in the UI element.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

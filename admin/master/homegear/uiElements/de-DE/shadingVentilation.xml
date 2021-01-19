@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Belüftung</label>
+        <description>Setzt den visualisierten Belüftungszustand.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Belüftung</label>
+        <description>Gibt den in der Visualisierung gewählten Belüftungszustand aus.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

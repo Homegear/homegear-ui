@@ -100,16 +100,24 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Hoch</label>
+        <description>Gibt "true" aus, wenn der Benutzer "hoch" in der UI drückt.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Runter</label>
+        <description>Gibt "true" aus, wenn der Benutzer "runter" in der UI drückt.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
     </variableOutputs>
-    <l3_force>true</l3_force>
+    <metadata>
+      <l3_force>true</l3_force>
+    </metadata>
   </homegearUiElement>
 </homegearUiElements>

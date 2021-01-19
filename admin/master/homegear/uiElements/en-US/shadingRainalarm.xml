@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Rain alarm</label>
+        <description>Sets the visualized rain alarm.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

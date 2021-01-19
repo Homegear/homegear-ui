@@ -172,21 +172,33 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Hoch (Jalousie)</label>
+        <description>Gibt "true" aus, wenn der Hoch-Knopf im UI-Element gedrückt wurde.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Hoch (Lamelle)</label>
+        <description>Gibt "true" aus, wenn der Lamellen-Hoch-Knopf im UI-Element gedrückt wurde.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Runter (Lamelle)</label>
+        <description>Gibt "true" aus, wenn der Lamellen-Runter-Knopf im UI-Element gedrückt wurde.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Runter (Jalousie)</label>
+        <description>Gibt "true" aus, wenn der Runter-Knopf im UI-Element gedrückt wurde.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

@@ -6,11 +6,11 @@
     <type>simple</type>
     <texts>
       <text id="title">
-        <content>Blenden Position</content>
+        <content>Lamellenposition</content>
         <color>title</color>
       </text>
       <text id="l2_state_title">
-        <content>Blenden</content>
+        <content>Lamellen</content>
         <color>l2_state_title</color>
       </text>
     </texts>
@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Lamellenposition</label>
+        <description>Setzt die visualisierte Lamellenposition.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -39,6 +42,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Lamellenposition</label>
+        <description>Gibt die im UI-Element gewählte Lamellenposition aus.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

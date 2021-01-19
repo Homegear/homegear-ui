@@ -26,11 +26,12 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Position</label>
+        <description>Sets the visualized position.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
-        <label>Position</label>
-        <types>int</types>
         <visualizeInOverview>true</visualizeInOverview>
         <unit>%</unit>
         <minimumValue>0</minimumValue>
@@ -41,11 +42,12 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Position</label>
+        <description>Outputs the position selected in the UI element.</description>
+        <types>int</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
-        <label>Position</label>
-        <types>int</types>
       </variable>
     </variableOutputs>
   </homegearUiElement>

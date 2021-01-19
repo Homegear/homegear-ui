@@ -170,7 +170,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3, 4, 5],
-            reason: 'Windalarm',
+            reason: 'Wind alarm',
         },
     ],
 });
@@ -184,7 +184,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3, 4],
-            reason: 'Rainalarm',
+            reason: 'Rain alarm',
         },
     ],
 });
@@ -198,7 +198,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3, 4],
-            reason: 'Windalarm',
+            reason: 'Wind alarm',
         },
     ],
 });
@@ -212,7 +212,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3],
-            reason: 'Windalarm',
+            reason: 'Wind alarm',
         },
     ],
 });
@@ -236,7 +236,21 @@ shif_register_disable_hooks({
                 value: 1
             },
             disable: [0, 1, 2, 3],
-            reason: 'Rainalarm'
+            reason: 'Rain alarm'
+        }
+    ],
+});
+
+shif_register_disable_hooks({
+    'Base.shadingAwningButtonsPositionRainalarm': [
+        {
+            condition: {
+                index: 4,
+                operator: 'eq',
+                value: true
+            },
+            disable: [0, 1, 2, 3],
+            reason: 'Rain alarm'
         }
     ],
 });
@@ -250,7 +264,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3],
-            reason: 'Windalarm'
+            reason: 'Wind alarm'
         }
     ],
 });
@@ -264,7 +278,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3],
-            reason: 'Windalarm',
+            reason: 'Wind alarm',
         },
         {
             condition: {
@@ -273,7 +287,7 @@ shif_register_disable_hooks({
                 value: true
             },
             disable: [0, 1, 2, 3],
-            reason: 'Rainalarm',
+            reason: 'Rain alarm',
         }
     ],
 });

@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Wind alarm</label>
+        <description>Sets the visualized wind alarm.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

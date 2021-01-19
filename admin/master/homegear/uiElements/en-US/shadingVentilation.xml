@@ -26,6 +26,9 @@
     </icons>
     <variableInputs>
       <variable>
+        <label>Ventilation</label>
+        <description>Sets the visualized ventilation state.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -64,6 +67,9 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Ventilation</label>
+        <description>Outputs the ventilation state selected in the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

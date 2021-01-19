@@ -172,21 +172,33 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Up (Blind)</label>
+        <description>Outputs true when the "up" button is pressed in the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Up (Slats)</label>
+        <description>Outputs true when the "slats up" button is pressed in the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Down (Slats)</label>
+        <description>Outputs true when the "slats down" button is pressed in the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Down (Blind)</label>
+        <description>Outputs true when the "down" button is pressed in the UI element.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>

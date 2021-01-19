@@ -100,16 +100,24 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Up</label>
+        <description>Outputs "true" when the user presses "up" in the UI.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Down</label>
+        <description>Outputs "true" when the user presses "down" in the UI.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
     </variableOutputs>
-    <l3_force>true</l3_force>
+    <metadata>
+      <l3_force>true</l3_force>
+    </metadata>
   </homegearUiElement>
 </homegearUiElements>

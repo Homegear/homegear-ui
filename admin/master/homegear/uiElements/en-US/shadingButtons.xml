@@ -29,8 +29,6 @@
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
-        <label>Up</label>
-        <types>bool</types>
         <visualizeInOverview>false</visualizeInOverview>
         <rendering>
           <condition operator="not" value="0">
@@ -67,8 +65,6 @@
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
-        <label>Stop</label>
-        <types>bool</types>
         <visualizeInOverview>false</visualizeInOverview>
         <rendering>
           <condition operator="not" value="0">
@@ -105,8 +101,6 @@
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
-        <label>Down</label>
-        <types>bool</types>
         <visualizeInOverview>false</visualizeInOverview>
         <rendering>
           <condition operator="not" value="0">
@@ -142,25 +136,28 @@
     </variableInputs>
     <variableOutputs>
       <variable>
-        <deviceTypeId>*</deviceTypeId>
-        <channel>*</channel>
-        <name>*</name>
         <label>Up</label>
+        <description>Outputs "true" when the user presses "up" in the UI.</description>
         <types>bool</types>
-      </variable>
-      <variable>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
+      </variable>
+      <variable>
         <label>Stop</label>
+        <description>Outputs "true" when the user presses "stop" in the UI.</description>
         <types>bool</types>
-      </variable>
-      <variable>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
+      </variable>
+      <variable>
         <label>Down</label>
+        <description>Outputs "true" when the user presses "down" in the UI.</description>
         <types>bool</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
       </variable>
     </variableOutputs>
     <metadata>
