@@ -1,27 +1,28 @@
 {
-    "_from": "@homegear\/homegearws@^1.0.11",
-    "_id": "@homegear\/homegearws@1.0.11",
+    "_from": "@homegear\/homegearws@1.0.12",
+    "_id": "@homegear\/homegearws@1.0.12",
     "_inBundle": false,
-    "_integrity": "sha512-aNoIe4kyTHverVD5S7BrG4IsuDqyafIz80FvDXNjnRfSo9aswbMRxHqP6nbcNwZ6Uw9midQRaJ0VPnVgVXsUHw==",
+    "_integrity": "sha512-LN4VSrgjYG3BR2X6q8ynOCM5uczuUXFxwld7UajVz+wiSxHh5IaIau2HUt0pvCXYlqu6EnuqQE7+peLki0Fnuw==",
     "_location": "\/@homegear\/homegearws",
     "_phantomChildren": [],
     "_requested": {
-        "type": "range",
+        "type": "version",
         "registry": true,
-        "raw": "@homegear\/homegearws@^1.0.11",
+        "raw": "@homegear\/homegearws@1.0.12",
         "name": "@homegear\/homegearws",
         "escapedName": "@homegear%2fhomegearws",
         "scope": "@homegear",
-        "rawSpec": "^1.0.11",
+        "rawSpec": "1.0.12",
         "saveSpec": null,
-        "fetchSpec": "^1.0.11"
+        "fetchSpec": "1.0.12"
     },
     "_requiredBy": [
+        "#USER",
         "\/"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/@homegear\/homegearws\/-\/homegearws-1.0.11.tgz",
-    "_shasum": "e2c8e2ebd656b750a6f2822634fda2ae8f4b70e2",
-    "_spec": "@homegear\/homegearws@^1.0.11",
+    "_resolved": "https:\/\/registry.npmjs.org\/@homegear\/homegearws\/-\/homegearws-1.0.12.tgz",
+    "_shasum": "fadeaa4b2986d3e25940de87557e9cac7f13f6b7",
+    "_spec": "@homegear\/homegearws@1.0.12",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "Homegear GmbH"
@@ -39,7 +40,7 @@
         "homegearws"
     ],
     "license": "LGPLv3",
-    "main": "homegear-ws-1.0.11.min.js",
+    "main": "homegear-ws-1.0.12.min.js",
     "name": "@homegear\/homegearws",
     "repository": {
         "type": "git",
@@ -48,5 +49,5 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "version": "1.0.11"
+    "version": "1.0.12"
 }

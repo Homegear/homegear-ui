@@ -320,7 +320,7 @@
                     "files": [
                         {
                             "rawMinUrl": "/",
-                            "rawMinUrlFile": "homegear-ws-1.0.11.min.js",
+                            "rawMinUrlFile": "homegear-ws-1.0.12.min.js",
                             "outputName": "homegearws.min.js"
                         }
                     ],
@@ -503,9 +503,9 @@
                     "repository": "/node_modules/sortablejs",
                     "files": [
                         {
-                            "rawMinUrl": "/dist/",
-                            "rawMinUrlFile": "sortable.umd.js",
-                            "outputName": "sortable.umd.js"
+                            "rawMinUrl": "/",
+                            "rawMinUrlFile": "sortable.min.js",
+                            "outputName": "sortable.min.js"
                         }
                     ],
                     "license": {
