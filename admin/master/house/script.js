@@ -703,37 +703,37 @@ let toast = new Vue({
         <div id="toast">
             <div class="toast" v-for="msg, i in msgs_combined"
                                v-bind:key="msg.id">
-                    <template v-if="msg.close">
-                        <button class="toast_close"
-                                v-on:click="remove_msg(i)">
-                            X
-                        </button>
-                    </template>
-                    <template v-if="msg.flags && msg.flags.closeable === true">
-                        <button class="toast_close"
-                                v-on:click="notification_hide_or_remove(msg)">
-                            X
-                        </button>
-                    </template>
+                <template v-if="msg.close">
+                    <button class="toast_close"
+                            v-on:click="remove_msg(i)">
+                        X
+                    </button>
+                </template>
+                <template v-if="msg.flags && msg.flags.closeable === true">
+                    <button class="toast_close"
+                            v-on:click="notification_hide_or_remove(msg)">
+                        X
+                    </button>
+                </template>
 
-                    <template v-if="is_toast_integrated(msg)">
-                        <router-link v-bind:to="link(msg.id)"
-                                     class="toast_content" v-html="msg.content">
-                        </router-link>
-                    </template>
-                    <template v-else>
-                        <div class="toast_content">
-                            <div class="toast_text" v-html="msg.content">
-                            </div>
-                            <template v-for="btn in msg.buttons">
-                                <button class="toast_action"
-                                        v-bind:class="btn.type"
-                                        v-on:click="click(msg, btn)">
-                                    {{ btn.label }}
-                                </button>
-                            </template>
+                <template v-if="is_toast_integrated(msg)">
+                    <router-link v-bind:to="link(msg.id)"
+                                 class="toast_content" v-html="msg.overlayContent">
+                    </router-link>
+                </template>
+                <template v-else>
+                    <div class="toast_content">
+                        <div class="toast_text" v-html="msg.overlayContent">
                         </div>
-                    </template>
+                        <template v-for="btn in msg.buttons">
+                            <button class="toast_action"
+                                    v-bind:class="btn.type"
+                                    v-on:click="click(msg, btn)">
+                                {{ btn.label }}
+                            </button>
+                        </template>
+                    </div>
+                </template>
             </div>
         </div>
     `
@@ -803,15 +803,16 @@ function _create_notification(inc_buttons = false, args) {
             'de-DE': 'Test Nachricht: ' + date_format(),
             'en-US': 'Test Message: ' + date_format(),
         },
-        content: `
-            <p class="toast_text">Test</p>
-        `,
+        overlayContent: {
+            'de-DE': 'Test Nachricht: Toast',
+            'en-US': 'Test Message: Toast',
+        },
         modalTitle: {
             'de-DE': 'Test Nachricht: Modal',
             'en-US': 'Test Message: Modal',
         },
         modalContent: {
-            'de-DE': 'Test Content: ' + date_format(),
+            'de-DE': 'Test Inhalt: ' + date_format(),
             'en-US': 'Test Content: ' + date_format(),
         },
         buttons,
