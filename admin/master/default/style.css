@@ -160,7 +160,7 @@ button div {
 button.warning,
 input[type=button].warning,
 input[type=submit].warning {
-  background: #b8360e;
+  background: #d46700;
   color: #fff;
 }
 
@@ -173,7 +173,10 @@ input[type=submit].error {
 
 button.info,
 input[type=button].info,
-input[type=submit].info {
+input[type=submit].info,
+button.success,
+input[type=button].success,
+input[type=submit].success {
   background: #2ab108;
   color: #fff;
 }

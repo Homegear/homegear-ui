@@ -77,6 +77,42 @@ else if (isset($_POST['prod'])) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Functions
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+function generateIcons ($path) {
+    $files = array();
+    $categories = array();
+    $handle=opendir($path);
+    while ($file = readdir($handle)){
+        if ($file == "." || $file == "..") {
+            continue;
+        }
+        else if (is_dir($path.$file)) {
+            $categoriesData = generateIcons($path.$file."/");
+            if (count($categoriesData) > 0) {
+                $categories[$file] = $categoriesData;
+            }
+        }
+        else if (is_file($path.$file)) {
+            $icon_data = file_get_contents($path.$file);
+
+            $search  = array( "\n", "\r", '"');
+            $replace = array( "",   "",   "'");
+            $icon_data = str_replace($search, $replace, $icon_data);
+    
+            $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
+            $icon_data = preg_replace('!\s+!', ' ', $icon_data);
+
+            $files[str_replace(".svg", "", $file)] = $icon_data;
+        }
+        else {
+            echo "Icon Error: ".$file;
+        }
+    }
+    return $files + $categories;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Generieren der Erweiterungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 if($action == "generateExtensions"){
@@ -343,34 +379,6 @@ if($action == "generateExtensions"){
     //////////////////////////////////////////////////////////
     // generieren aller Icons
     //////////////////////////////////////////////////////////
-    function generateIcons ($path) {
-        $files = array();
-        $handle=opendir($path);
-        while ($file = readdir($handle)){
-            if ($file == "." || $file == "..") {
-                continue;
-            }
-            else if (is_dir($path . $file)) {
-                $files[$file] = generateIcons($path.$file."/");
-            }
-            else if (is_file($path.$file)) {
-                $icon_data = file_get_contents($path.$file);
-
-                $search  = array( "\n", "\r", '"');
-                $replace = array( "",   "",   "'");
-                $icon_data = str_replace($search, $replace, $icon_data);
-        
-                $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
-                $icon_data = preg_replace('!\s+!', ' ', $icon_data);
-
-                $files[str_replace(".svg", "", $file)] = $icon_data;
-            }
-            else {
-                echo "Icon Error: ".$file;
-            }
-        }
-        return $files;
-    }
     $tempInterfaceData["icons"] = 'var icons =' . json_encode(generateIcons($adminPath."/media/icons/"), JSON_PRETTY_PRINT) . ';';
 
     /////////////////////////////////////////////////////////
@@ -656,21 +664,15 @@ else if($action == "phpinfo"){
 // Auflisten aller Icons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 else if($action == "icons"){
-    $files = null;
-    $out = null;
-    $path = $adminPath."/media/icons/";
-    $handle=opendir($path);
-
-    while ($file = readdir($handle)){
-        if ($file != "." && $file != ".." && $file != str_replace('/','','thumbs')) {
-            $files[] = $file;
-        }
-    }
-
-    sort($files);
-
-    $out .= '
+    $out = '
         <style>
+        .iconCategory {
+            clear: both;
+        }
+        .iconCategory .title {
+            font-size: 20px;
+            padding: 25px 0px 8px 0px;
+        }
         .icon{
             width:170px;
             height:170px;
@@ -695,18 +697,16 @@ else if($action == "icons"){
         </style>
     ';
 
-    foreach($files as $icon){
-        $icon_data = file_get_contents($path.$icon);
-
-        $search  = array( "\n", "\r", '"');
-        $replace = array( "",   "",   "'");
-        $icon_data = str_replace($search, $replace, $icon_data);
-
-        $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
-        $icon_data = preg_replace('!\s+!', ' ', $icon_data);
-
-        $out .= '<div class="icon"><div class="title">'.$icon.'</div> ' . $icon_data . '</div>';
-
+    foreach (generateIcons($adminPath."/media/icons/") as $icon_name => $icon_data) {
+        if (is_array($icon_data)) {
+            $out .= '<div class="iconCategory"><div class="title">'.$icon_name.'</div></div>';
+            foreach ($icon_data as $name => $icon) {
+                $out .= '<div class="icon"><div class="title">'.$name.'</div> ' . $icon . '</div>';
+            }
+        }
+        else {
+            $out .= '<div class="icon"><div class="title">'.$icon_name.'</div> ' . $icon_data . '</div>';
+        }
     }
 
     echo $out;
