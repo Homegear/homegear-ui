@@ -264,18 +264,10 @@
                 "lightingBrightness": true,
                 "lightingButton": true,
                 "lightingColor": true,
-                "lightingFunction": true,
-                "lightingSpeed": true,
                 "lightingSwitch": true,
                 "lightingSwitchBrightness": true,
-                "lightingSwitchBrightnessColor": true,
                 "lightingSwitchBrightnessTemp": true,
-                "lightingSwitchButtonBrightness": true,
-                "lightingSwitchButtonBrightnessColor": true,
                 "lightingSwitchColor": true,
-                "lightingSwitchFunctionBrightnessColor": true,
-                "lightingSwitchFunctionBrightnessSpeedColor": true,
-                "lightingSwitchTimer": true,
                 "lightingTemp": true
             }
         },
@@ -308,14 +300,11 @@
                 }
             },
             "uiElements": {
-                "heatingIsState": true,
-                "heatingIsStateSliderMode": true,
-                "heatingIsStateSliderModeWindow": true,
-                "heatingIsStateSliderModeWindowContact": true,
-                "heatingIsStateSliderModeWindowHandle": true,
+                "heatingTemperature": true,
+                "heatingSliderMode": true,
+                "heatingSliderModeWindowhandle": true,
                 "heatingMode": true,
-                "heatingSlider": true,
-                "heatingWindow": true
+                "heatingSlider": true
             }
         },
         "2": {
@@ -354,7 +343,7 @@
         },
         "3": {
             "name": {
-                "en-US": "Dors",
+                "en-US": "Doors",
                 "de-DE": "Türen"
             },
             "icon": "door_open_2",
@@ -382,7 +371,6 @@
                 }
             },
             "uiElements": {
-                "doorContact": true,
                 "doorHandle": true,
                 "doorLock": true
             }
@@ -416,7 +404,6 @@
                 }
             },
             "uiElements": {
-                "windowContact": true,
                 "windowHandle": true,
                 "windowPosition": true
             }
@@ -486,10 +473,8 @@
             },
             "uiElements": {
                 "shadingButtons": true,
-                "shadingButtonsButtonsSingleStepButtonsUpDownPositionPositionSlatsVentilationWindalarm": true,
                 "shadingButtonsPosition": true,
                 "shadingButtonsPositionPositionSlats": true,
-                "shadingButtonsPositionSlats": true,
                 "shadingButtonsPositionVentilationWindalarm": true,
                 "shadingButtonsPositionWindalarm": true,
                 "shadingButtonsSingleStep": true,
