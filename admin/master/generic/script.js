@@ -24,6 +24,7 @@ generic_status.template = `
     <shif-generic-l2 v-bind:icon="icon.name"
                      v-bind:title="dev.label"
                      v-bind:active="{icon: icon.color, text: texts.title.color}"
+                     v-bind:status="status_minimal()"
                      v-bind:place="place">
 
         ${shif_device_slot_favorites}
