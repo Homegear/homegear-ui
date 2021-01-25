@@ -2158,6 +2158,15 @@ td {
   max-height: calc(100vh - 550px);
 }
 
+.notification_message .dont_show_again p {
+    text-align: right;
+    margin-right: 65px;
+}
+
+.notification_message .check {
+    right: 20px;
+}
+
 .notification_message .notification_buttons {
   padding: 20px;
 }
