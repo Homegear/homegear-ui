@@ -780,9 +780,9 @@ const ShifSettingsProfile = {
                             () => {
                                 this.$router.push({name: 'house.tab.rooms'});
                                 user_interaction.alert({
-                                    content: 'settings.profiles.profile.load.description'
+                                    content: 'settings.profiles.profile.load.description',
+                                    dont_show_again: 'settings.profiles.profile.load.description',
                                 });
-
                             }
                         );
                     }
@@ -792,7 +792,8 @@ const ShifSettingsProfile = {
                     this.modemenu_show(ModeMenuState.PROFILES);
                     this.$router.push({name: 'house.tab.rooms'});
                     return user_interaction.alert({
-                        content: 'settings.profiles.profile.load.description'
+                        content: 'settings.profiles.profile.load.description',
+                        dont_show_again: 'settings.profiles.profile.load.description',
                     });
 
                 case 'save':
