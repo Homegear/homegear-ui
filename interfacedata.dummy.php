@@ -22022,7 +22022,8 @@
         "websocket_url": "location.hostname",
         "websocket_port": "location.port",
         "websocket_security_ssl": "location.protocol",
-        "elementOrder": []
+        "dont_show_again": {},
+        "elementOrder": {}
     },
     "manifest": {
         "lang": "de",
