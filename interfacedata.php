@@ -32,6 +32,8 @@
             },
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"],
+            "dont_show_again": {
+            },
             "elementOrder": {
             }
         }
@@ -678,6 +680,7 @@
             "notifications": "Notifications",
             "notifications.amount": "Amount",
             "notifications.close_delete": "Close and Delete",
+            "notifications.dont_show_again": "Don\'t show again",
             "settings": "Settings",
             "settings.automations": "Automations",
             "settings.automations.description": "Add and delete automations",
@@ -746,7 +749,7 @@
             "settings.profiles.profile.roles.remove": "Remove",
             "settings.profiles.profile.delete": "Delete",
             "settings.profiles.profile.load": "Modify Devices",
-            "settings.profiles.profile.load.description": "Please choose the devices you want to have added to the profile. Please adjust the device states of the wanted devices before saving.",
+            "settings.profiles.profile.load.description": "Please choose the devices you want to have added to the profile. Please adjust the device states of the wanted devices before saving.<br /><br />Note: To showcase profiles changes live, all relevant devices are set to their configured value.",
             "settings.profiles.profile.save": "Save",
             "settings.profiles.profile.edit": "Edit",
             "settings.profiles.profile.delete_request": "Are you sure you want to delete this profile?",
@@ -826,6 +829,7 @@
             "notifications": "Benachrichtigungen",
             "notifications.amount": "Anzahl",
             "notifications.close_delete": "Löschen und Schließen",
+            "notifications.dont_show_again": "Nicht erneut anzeigen",
             "settings": "Einstellungen",
             "settings.automations": "Automatisierungen",
             "settings.automations.new": "Neu",
@@ -894,7 +898,7 @@
             "settings.profiles.profile.roles.remove": "Entfernen",
             "settings.profiles.profile.delete": "Löschen",
             "settings.profiles.profile.load": "Zugehörige Geräte bearbeiten",
-            "settings.profiles.profile.load.description": "Bitte wählen Sie jetzt die Geräte aus, welche in das Profil aufgenommen werden sollen. Bitte setzen Sie vor dem Speichern den gewünschten Gerätezustand.",
+            "settings.profiles.profile.load.description": "Bitte wählen Sie jetzt die Geräte aus, welche in das Profil aufgenommen werden sollen. Bitte setzen Sie vor dem Speichern den gewünschten Gerätezustand.<br /><br />Hinweis: Um Änderungen am Profil live verfolgen zu können, werden alle relevanten Geräte in den eingestellten Zustand gebracht.",
             "settings.profiles.profile.save": "Speichern",
             "settings.profiles.profile.edit": "Bearbeiten",
             "settings.profiles.profile.unsaved": "Sie haben noch nicht gespeicherte Änderungen. Trotzdem fortsetzen?",
@@ -1160,6 +1164,7 @@ function userSettings() {
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
     $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
     $interfaceData["options"]["elementOrder"] = ($user->getSettings()["elementOrder"] ?? $interfaceData["settings"]["userDefaults"]["elementOrder"]);
+    $interfaceData["options"]["dont_show_again"] = ($user->getSettings()["dont_show_again"] ?? $interfaceData["settings"]["userDefaults"]["dont_show_again"]);
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");
