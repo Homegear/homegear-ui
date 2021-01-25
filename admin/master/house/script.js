@@ -792,7 +792,7 @@ function _create_notification(inc_buttons = false, args) {
     ];
 
     const msg = {
-        type: 'test',
+        type: args.type || 'test',
         flags: {
             closeable: args.closeable || false,
             hasModal: args.hasModal || false,
