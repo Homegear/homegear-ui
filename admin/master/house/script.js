@@ -24,6 +24,7 @@
         ShifNotifications
         ShifNotificationsLvl1
         ShifNotificationsNotification
+        ShifPageNotFound
         ShifSettingsLog
         ShifMainmenu
         ShifModemenu
@@ -262,11 +263,27 @@ let ShifLogoff = Vue.component('shif-logoff', {
 const scroll_positions = {};
 
 
+
+function next_or_abort(next, flag) {
+    if (flag)
+        next({name: 'error.page_not_found', replace: true});
+    else
+        next();
+}
+
+
+
 let router = new VueRouter({
     routes: [
         { path: '/',   name: 'index',  redirect: {name: interfaceData.options.startPath || 'house'}, },
         { path: '/nb', name: 'legacy', redirect: {name: 'index'}},
 
+        {
+            path: '/404',
+            name: 'error.page_not_found',
+            component: ShifPageNotFound,
+            meta: {breadcrumbs: ['error.page_not_found']},
+        },
         { path: '/house', name: 'house', component: ShifHouse, redirect: {name: 'house.tab.rooms'},
             children: [
                 {
@@ -284,6 +301,12 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['room_id']}}
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.floors[to.params.floor_id] === undefined ||
+                            interfaceData.rooms[to.params.room_id]   === undefined
+                        );
+                    }
                 },
                 {
                     name: 'house.tab.rooms.room.device',
@@ -294,6 +317,13 @@ let router = new VueRouter({
                         cache_ident: {small: {params: ['room_id']}, big: {params: ['room_id', 'device_id']}},
                     },
                     props: {small: true, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.floors[to.params.floor_id]   === undefined ||
+                            interfaceData.rooms[to.params.room_id]     === undefined ||
+                            interfaceData.devices[to.params.device_id] === undefined
+                        );
+                    }
                 },
 
                 {
@@ -312,6 +342,14 @@ let router = new VueRouter({
                         cache_ident: {small: {bc_idx: 1}, big: {params: ['cat_id', 'room_id', 'device_id']}},
                     },
                     props: {small: true, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.deviceCategories[to.params.cat_id] === undefined ||
+                            interfaceData.floors[to.params.floor_id]         === undefined ||
+                            interfaceData.rooms[to.params.room_id]           === undefined ||
+                            interfaceData.devices[to.params.device_id]       === undefined
+                        );
+                    }
                 },
 
                 {
@@ -371,6 +409,11 @@ let router = new VueRouter({
                     components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
                     meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']},
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.profiles[to.params.profile_id] === undefined
+                        );
+                    }
                 },
                 {
                     path: 'automations',
@@ -387,6 +430,15 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['automation_ids']}},
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        const ids = to.params.automation_ids;
+                        const pred = ids === ''
+                                        ? true
+                                        : ids.split('-')
+                                             .every(x => interfaceData.automations[x] !== undefined);
+
+                        next_or_abort(next, pred);
+                    }
                 },
                 {
                     path: 'automations/add',
@@ -403,6 +455,11 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['automation_id']}},
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.automations[to.params.automation_id] === undefined
+                        );
+                    }
                 },
                 {
                     path: 'log',
@@ -431,6 +488,13 @@ let router = new VueRouter({
                         cache_ident: {small: {bc_idx: 0}, big: {params: ['room_id', 'device_id']}}
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.floors[to.params.floor_id]         === undefined ||
+                            interfaceData.rooms[to.params.room_id]           === undefined ||
+                            interfaceData.devices[to.params.device_id]       === undefined
+                        );
+                    }
                 }
             ],
         },
@@ -452,11 +516,17 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['notification_id']}},
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.notifications[to.params.notification_id] === undefined
+                        );
+                    }
                 },
             ],
         },
 
         { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
+        { path: '*', redirect: {name: 'error.page_not_found'}, replace: true},
     ],
 });
 
