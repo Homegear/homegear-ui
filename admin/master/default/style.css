@@ -173,11 +173,15 @@ input[type=submit].error {
 
 button.info,
 input[type=button].info,
-input[type=submit].info,
+input[type=submit].info {
+  background: #2ab108;
+  color: #fff;
+}
+
 button.success,
 input[type=button].success,
 input[type=submit].success {
-  background: #2ab108;
+  background: #e3a104;
   color: #fff;
 }
 
