@@ -91,7 +91,7 @@ generic_switch.template = `
                      v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
                      v-bind:status="status"
                      v-bind:place="place"
-                     v-on:click_icon="$homegear.value_set(output, ! props.value)">
+                     v-on:click="$homegear.value_set(output, ! props.value)">
 
         ${shif_device_slot_profiles}
         ${shif_device_slot_automations}
