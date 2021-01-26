@@ -35,7 +35,7 @@
       <rows>3</rows>
     </grid>
     <controls>
-      <control id="Base.heatingIsState">
+      <control id="Base.heatingTemperature">
         <x>0</x>
         <y>0</y>
         <columns>1</columns>
