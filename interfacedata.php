@@ -659,6 +659,9 @@
     },
     "i18n": {
         "en-US": {
+            "error.page_not_found": "Error",
+            "error.title": "The page could not be found",
+            "error.link.text": "Back to home",
             "login": {
                 "username": "Username",
                 "password": "Password",
@@ -808,6 +811,9 @@
             "draggable.confirm.invalid_keys.button.abort": "Abort"
         },
         "de-DE": {
+            "error.page_not_found": "Fehler",
+            "error.title": "Die Seite konnte nicht angezeigt werden",
+            "error.link.text": "Zurück zur Raumansicht",
             "login": {
                 "username": "Benutzername",
                 "password": "Kennwort",
