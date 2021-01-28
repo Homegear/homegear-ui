@@ -869,25 +869,28 @@ const ShifSettingsProfile = {
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.locations') }}:</div>
-                    <div class="global"
-                         v-on:click.prevent="form.locations.global = !form.locations.global">
-                        <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
-                        <shif-checkbox v-model="form.locations.global" />
-                    </div>
 
-                    <div class="label">
-                        {{ i18n('settings.profiles.profile.locations.floor') }} /
-                        {{ i18n('settings.profiles.profile.locations.room') }}:
-                    </div>
-                    <shif-room-selection v-bind:map="map_room_floor"
-                                         v-model="form.locations.rooms" />
+                    <div style="padding-left:40px;">
+                        <div class="global" 
+                                v-on:click.prevent="form.locations.global = !form.locations.global">
+                            <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
+                            <shif-checkbox v-model="form.locations.global" />
+                        </div>
 
-                    <div class="label" style="margin-top: 30px;">{{ i18n('settings.profiles.profile.categories') }}:</div>
-                    <shif-multi-select v-bind:options="interfaceData.deviceCategories"
-                                       v-bind:func_item_name="x => interfaceData.deviceCategories[x].name"
-                                       v-model="form.locations.categories" />
+                        <div class="label">
+                            {{ i18n('settings.profiles.profile.locations.floor') }} /
+                            {{ i18n('settings.profiles.profile.locations.room') }}:
+                        </div>
+                        <shif-room-selection v-bind:map="map_room_floor"
+                                                v-model="form.locations.rooms" />
+                    
+                        <div class="label" style="margin-top: 30px;">{{ i18n('settings.profiles.profile.categories') }}:</div>
+                        <shif-multi-select v-bind:options="interfaceData.deviceCategories"
+                                            v-bind:func_item_name="x => interfaceData.deviceCategories[x].name"
+                                            v-model="form.locations.categories" />
+                    </div>
                 </div>
-
+                
                 <div v-if="show_roles"
                      class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.roles') }}:</div>
