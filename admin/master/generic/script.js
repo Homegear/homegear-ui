@@ -1,11 +1,13 @@
 /*
     global
         clone
+        get_or_default
         shif_comps_create
         shif_device
         shif_device_slot_automations
         shif_device_slot_draggable
         shif_device_slot_favorites
+        shif_device_slot_profiles
         status_format
 */
 
@@ -38,10 +40,8 @@ shif_comps_create('genericStatus', generic_status, generic_status);
 
 let generic_status_link = clone(shif_device);
 generic_status_link.computed.status_formatted = function () {
-    var precision = 0;
-    if (this.dynamicMetadata.hasOwnProperty("precision")) {
-        precision = this.dynamicMetadata.precision;
-    }
+    const precision = get_or_default(this.dynamicMetadata, 'precision', 0);
+
     return status_format.apply(this, [this.status_minimal(false), precision]);
 };
 generic_status_link.computed.icon = function () {
