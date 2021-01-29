@@ -534,29 +534,29 @@ else if($action == "getAssetMaster"){
             $counter = 0;
             foreach($master["files"] as $masterFile){
                 if(!file_exists($rootPath.$master["repository"].$masterFile["rawMinUrl"].$masterFile["rawMinUrlFile"])){
-                    echo "file missing";
+                    echo "file missing"."\n";
                     continue;
                 }
                 $data = file_get_contents($rootPath.$master["repository"].$masterFile["rawMinUrl"].$masterFile["rawMinUrlFile"]);
                 if($data == ""){
-                    echo "data empty";
+                    echo "data empty"."\n";
                     continue;
                 }
                 echo $masterFile["rawMinUrlFile"]." | ".$package["version"]."\n";
                 file_put_contents($adminPath.'/assets/updated/'.$key.'/'.$masterFile["outputName"], $data);
                 file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'.$masterFile["outputName"], $data);
-                if($counter == 0 && isset($license)){
-                    file_put_contents($adminPath.'/assets/updated/'.$key.'/'."LICENSE", $license);
-                    file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."LICENSE", $license);
-                    echo "license file copied"."\n";
-                }
-                if($counter == 0 && is_array($package)){
-                    $packageJson = json_encode($package, JSON_PRETTY_PRINT);
-                    file_put_contents($adminPath.'/assets/updated/'.$key.'/'."package.json", $packageJson);
-                    file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."package.json", $packageJson);
-                    echo "package file copied"."\n";
-                }
                 $counter++;
+            }
+            if(isset($license)){
+                file_put_contents($adminPath.'/assets/updated/'.$key.'/'."LICENSE", $license);
+                file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."LICENSE", $license);
+                echo "license file copied"."\n";
+            }
+            if(is_array($package)){
+                $packageJson = json_encode($package, JSON_PRETTY_PRINT);
+                file_put_contents($adminPath.'/assets/updated/'.$key.'/'."package.json", $packageJson);
+                file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."package.json", $packageJson);
+                echo "package file copied"."\n";
             }
         }
         echo "</pre>";

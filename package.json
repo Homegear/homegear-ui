@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "license": "LGPLv3",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "@homegear/homegearws": "^1.0.12",
     "@jaames/iro": "^4.5.3",
     "jquery": "^3.5.1",

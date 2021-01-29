@@ -100,6 +100,7 @@
                         "vue-router",
                         "sortablejs",
                         "vuedraggable",
+                        "fontawesome",
                         "flaticons"
                     ]
                 },
@@ -579,6 +580,29 @@
                         "rights": "Matt Bryson",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",
                         "licensename": "MIT"
+                    }
+                },
+                "fontawesome": {
+                    "user": "fortawesome",
+                    "repository": "/node_modules/@fortawesome/fontawesome-free",
+                    "files": [
+                        {
+                            "rawMinUrl": "/svgs/regular/",
+                            "rawMinUrlFile": "*",
+                            "outputName": "*"
+                        },
+                        {
+                            "rawMinUrl": "/svgs/solid/",
+                            "rawMinUrlFile": "*",
+                            "outputName": "*"
+                        }
+                    ],
+                    "license": {
+                        "name": "fontawesome",
+                        "version": "",
+                        "rights": "fortawesome",
+                        "licenseurl": "https://creativecommons.org/licenses/by/4.0/",
+                        "licensename": "CC BY 4.0 License"
                     }
                 },
                 "flaticons": {

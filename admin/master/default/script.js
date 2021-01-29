@@ -353,18 +353,36 @@ Vue.component('shif-icon', {
         rotate:    Boolean,
     },
 
+    computed: {
+        icon: function () {
+            const font_awesome = 'font-awesome/fa-';
+
+            if (this.interfaceIcons[this.src] !== undefined)
+                return this.interfaceIcons[this.src];
+
+            if (this.src.startsWith(font_awesome)) {
+                const key = this.src.replace(font_awesome, '');
+
+                if (this.interfaceIcons.fontawesome_solid[key] !== undefined)
+                    return this.interfaceIcons.fontawesome_solid[key];
+
+                if (this.interfaceIcons.fontawesome_regular[key] !== undefined)
+                    return this.interfaceIcons.fontawesome_regular[key];
+            }
+
+            if (this.interfaceData.iconFallback[this.src] !== undefined)
+                return this.interfaceIcons[this.interfaceData.iconFallback[this.src]];
+
+            return undefined;
+        },
+    },
+
     template: `
         <div v-bind:class="classname" v-on:click="$emit('click', this)">
-            <template v-if="src in interfaceIcons">
+            <template v-if="icon !== undefined">
                 <div class="svg_icon"
                      v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
-                     v-html="interfaceIcons[src]">
-                </div>
-            </template>
-            <template v-else-if="src in interfaceData.iconFallback">
-                <div class="svg_icon"
-                     v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
-                     v-html="interfaceIcons[interfaceData.iconFallback[src]]">
+                     v-html="icon">
                 </div>
             </template>
             <template v-else>
