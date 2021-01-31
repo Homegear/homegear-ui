@@ -12,6 +12,7 @@
         ShifSettingsAutomations
         ShifSettingsAutomationsForm
         ShifSettingsFavorites
+        ShifSettingsIntercom
         ShifSettingsItemsLvl1
         ShifSettingsLicenses
         ShifSettingsProfile
@@ -467,7 +468,11 @@ let router = new VueRouter({
                     component: ShifSettingsLog,
                     meta: {breadcrumbs: ['settings', 'settings.log']},
                 },
-
+                {
+                    path: 'intercom',
+                    name: 'settings.intercom',
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsIntercom},
+                }
             ],
         },
 
@@ -572,6 +577,14 @@ let app = new Vue({
     },
 
     router: router,
+
+    mounted: function () {
+        // Cache router queries between different pages
+        Vue.set(interfaceData.options, 'route_query', {});
+
+        for (const i in this.$route.query)
+            Vue.set(interfaceData.options.route_query, i, this.$route.query[i]);
+    },
 
     // Hack: decrease .content height when modemenu and/or tabmenu are visible.
     template: `
