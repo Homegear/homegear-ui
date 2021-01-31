@@ -19,6 +19,7 @@
         ShifSettingsAutomations
         ShifSettingsAutomationsForm
         ShifSettingsFavorites
+        ShifSettingsIntercom
         ShifSettingsItemsLvl1
         ShifSettingsLicenses
         ShifSettingsLog
@@ -871,7 +872,7 @@ const ShifSettingsProfile = {
                     <div class="label">{{ i18n('settings.profiles.profile.locations') }}:</div>
 
                     <div style="padding-left:40px;">
-                        <div class="global" 
+                        <div class="global"
                                 v-on:click.prevent="form.locations.global = !form.locations.global">
                             <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
                             <shif-checkbox v-model="form.locations.global" />
@@ -883,14 +884,14 @@ const ShifSettingsProfile = {
                         </div>
                         <shif-room-selection v-bind:map="map_room_floor"
                                                 v-model="form.locations.rooms" />
-                    
+
                         <div class="label" style="margin-top: 30px;">{{ i18n('settings.profiles.profile.categories') }}:</div>
                         <shif-multi-select v-bind:options="interfaceData.deviceCategories"
                                             v-bind:func_item_name="x => interfaceData.deviceCategories[x].name"
                                             v-model="form.locations.categories" />
                     </div>
                 </div>
-                
+
                 <div v-if="show_roles"
                      class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.roles') }}:</div>
@@ -1581,6 +1582,67 @@ const ShifSettingsAutomations = {
 
 
 
+const ShifSettingsIntercom = {
+    data: function () {
+        return {
+            volume_bell: 0,
+            volume_voice: 0,
+            sensitivity: 0,
+        };
+    },
+
+    computed: {
+        options: function () {
+            return interfaceData.options.intercom || {
+                ringVolume: true,
+                outstationVolume: true,
+                micVolume: true,
+                mute: true,
+            };
+        },
+    },
+
+    template: `
+        <div class="user_wrapper">
+            <div v-if="options.ringVolume === true"
+                 class="form-group">
+                <div class="label">{{ i18n('settings.intercom.volume_bell') }}:</div>
+                <shif-slider v-bind:min="0"
+                             v-bind:max="100"
+                             unit="%"
+                             v-model="volume_bell" />
+            </div>
+
+            <div v-if="options.outstationVolume === true"
+                 class="form-group">
+                <div class="label">{{ i18n('settings.intercom.volume_voice') }}:</div>
+                <shif-slider v-bind:min="0"
+                             v-bind:max="100"
+                             unit="%"
+                             v-model="volume_voice" />
+            </div>
+
+            <div v-if="options.micVolume === true"
+                 class="form-group">
+                <div class="label">{{ i18n('settings.intercom.sensitivity') }}:</div>
+                <shif-slider v-bind:min="0"
+                             v-bind:max="100"
+                             unit="%"
+                             v-model="sensitivity" />
+            </div>
+
+            <div v-if="options.mute === true"
+                 class="form-group">
+                <shif-button>
+                    {{ i18n('settings.intercom.mute') }}
+                </shif-button>
+            </div>
+        </div>
+    `
+};
+
+
+
 const ShifSettingsItemsLvl1 = {
     mixins: [
         mixin_scroll_position,
@@ -1602,9 +1664,24 @@ const ShifSettingsItemsLvl1 = {
         },
     },
 
+    methods: {
+        cond_show: function (menu) {
+            const cond = menu.condition;
+            if (cond === undefined)
+                return true;
+
+            if (cond.route !== undefined &&
+                cond.route.query !== undefined)
+                return interfaceData.options.route_query[cond.route.query] !== undefined;
+
+            return true;
+        },
+    },
+
     template: `
         <div>
-            <template v-for="i in elements">
+            <template v-for="i in elements"
+                      v-if="cond_show(i)">
 
                 <template v-if="i.type === 'submenu'">
                     <router-link v-bind:to="{name: i.name}">
