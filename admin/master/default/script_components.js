@@ -3,7 +3,6 @@
         ModeMenuState
         clone
         get_or_default
-        interfaceIcons
         mixin_modemenu
         scroll_positions
         shif_device_slot_automations_profile
