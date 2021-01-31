@@ -24,6 +24,13 @@
             "consoleLog": true,
             "viewportScale": 0.65,
             "scrollbarScale": 4,
+            "intercom": {
+                "visible": true,
+                "ringVolume": true,
+                "outstationVolume": true,
+                "mute": true,
+                "micVolume": true
+            },
             "disabledMainmenus": {
             },
             "disabledMenus": {
@@ -71,16 +78,31 @@
             ]
         },
         "2": {
+            "id": "intercom",
+            "name": "intercom",
+            "icon": "telephone_1",
+            "condition": {
+                "route": {
+                    "query": "intercom"
+                }
+            },
+            "invoke": {
+                "jsonrpc": 2.0,
+                "method": "triggerIntercom",
+                "params": []
+            }
+        },
+        "3": {
             "id": "notifications",
             "name": "notifications",
             "icon": "notification_2"
         },
-        "3": {
+        "4": {
             "id": "settings",
             "name": "settings",
             "icon": "settings_1"
         },
-        "4": {
+        "5": {
             "id": "logoff",
             "name": "logoff",
             "icon": "power_1"
@@ -133,6 +155,20 @@
             "level": "1",
             "icon": "calendar-time_1",
             "description": "settings.automations.description"
+        },
+        {
+            "name": "settings.intercom",
+            "type": "submenu",
+            "mainmenu": "settings",
+            "category": "intercom",
+            "level": "1",
+            "icon": "telephone_1",
+            "description": "settings.intercom.description",
+            "condition": {
+                "route": {
+                    "query": "intercom"
+                }
+            }
         },
         {
             "name": "settings.log",
@@ -726,6 +762,12 @@
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
             "settings.favorites.description": "Set and unset favorites",
+            "settings.intercom": "Intercom",
+            "settings.intercom.description": "Intercom settings",
+            "settings.intercom.volume_bell": "Bell volume",
+            "settings.intercom.volume_voice": "Voice volume",
+            "settings.intercom.sensitivity": "Microphone sensitivity",
+            "settings.intercom.mute": "Mute bell",
             "settings.log": "Log",
             "settings.log.description": "View browser log",
             "settings.sort": "Sort",
@@ -876,6 +918,12 @@
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
             "settings.favorites.description": "Favoriten hinzufügen und entfernen",
+            "settings.intercom": "Sprechanlage",
+            "settings.intercom.description": "Sprechanlageneinstellungen",
+            "settings.intercom.volume_bell": "Klingellautstärke",
+            "settings.intercom.volume_voice": "Sprachlautstärke",
+            "settings.intercom.sensitivity": "Mikrofonempfindlichkeit",
+            "settings.intercom.mute": "Klingelton stummschalten",
             "settings.log": "Log",
             "settings.log.description": "Zeige Browser-Log",
             "settings.sort": "Sortieren",
@@ -1141,6 +1189,7 @@ function userSettings() {
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
     $interfaceData["options"]["language"] = $user->getSettings()["language"];
     $interfaceData["options"]["startPath"] = ($user->getSettings()["startPath"] ?? $interfaceData["settings"]["userDefaults"]["startPath"]);
+    $interfaceData["options"]["intercom"] = ($user->getSettings()["intercom"] ?? $interfaceData["settings"]["userDefaults"]["intercom"]);
     if (isset($_GET['viewportScale']) && is_float(floatval($_GET['viewportScale']))) {
         $interfaceData["options"]["viewportScale"] = floatval($_GET['viewportScale']);
     }
