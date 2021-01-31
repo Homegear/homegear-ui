@@ -45,6 +45,18 @@ const ShifMainmenu = {
     methods: {
         badge_wanted: function (cur) {
             return this.notifications_available > 0 && cur === 'notifications';
+        },
+
+        cond_show: function (menu) {
+            const cond = menu.condition;
+            if (cond === undefined)
+                return true;
+
+            if (cond.route !== undefined &&
+                cond.route.query !== undefined)
+                return interfaceData.options.route_query[cond.route.query] !== undefined;
+
+            return true;
         }
     },
 
@@ -52,16 +64,29 @@ const ShifMainmenu = {
         <div id="mainmenu">
             <ul class="menu">
                 <li v-for="i in enabled_menus"
+                    v-if="cond_show(i)"
                     v-bind:style="{width: width}">
 
-                    <router-link v-bind:to="{name: i.name}">
+                    <template v-if="i.invoke">
                         <div v-bind:id="'mainmenu_' + i.name"
                              class="mainmenu_button"
                              v-bind:class="{badge: badge_wanted(i.name)}"
-                             v-bind:data-badge="notifications_available">
-                             <shif-icon v-bind:src="i.icon" />
+                             v-bind:data-badge="notifications_available"
+j                            v-on:click="$homegear.invoke(i.invoke)">
+                            <shif-icon v-bind:src="i.icon" />
                         </div>
-                    </router-link>
+                    </template>
+
+                    <template v-else>
+                        <router-link v-bind:to="{name: i.name}">
+                            <div v-bind:id="'mainmenu_' + i.name"
+                                 class="mainmenu_button"
+                                 v-bind:class="{badge: badge_wanted(i.name)}"
+                                 v-bind:data-badge="notifications_available">
+                                <shif-icon v-bind:src="i.icon" />
+                            </div>
+                        </router-link>
+                    </template>
 
                 </li>
             </ul>
