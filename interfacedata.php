@@ -25,7 +25,7 @@
             "viewportScale": 0.65,
             "scrollbarScale": 4,
             "intercom": {
-                "visible": true,
+                "visible": false,
                 "ringVolume": true,
                 "outstationVolume": true,
                 "mute": true,
@@ -1190,6 +1190,9 @@ function userSettings() {
     $interfaceData["options"]["language"] = $user->getSettings()["language"];
     $interfaceData["options"]["startPath"] = ($user->getSettings()["startPath"] ?? $interfaceData["settings"]["userDefaults"]["startPath"]);
     $interfaceData["options"]["intercom"] = ($user->getSettings()["intercom"] ?? $interfaceData["settings"]["userDefaults"]["intercom"]);
+    if (isset($_GET['intercom'])) {
+        $interfaceData["options"]["intercom"]["visible"] = true;
+    }
     if (isset($_GET['viewportScale']) && is_float(floatval($_GET['viewportScale']))) {
         $interfaceData["options"]["viewportScale"] = floatval($_GET['viewportScale']);
     }

@@ -1603,36 +1603,32 @@ const ShifSettingsIntercom = {
     },
 
     template: `
-        <div class="user_wrapper">
-            <div v-if="options.ringVolume === true"
-                 class="form-group">
-                <div class="label">{{ i18n('settings.intercom.volume_bell') }}:</div>
+        <div class="intercom_wrapper">
+            <div v-if="options.ringVolume === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
+                             v-bind:title="i18n('settings.intercom.volume_bell')"
                              unit="%"
                              v-model="volume_bell" />
             </div>
 
-            <div v-if="options.outstationVolume === true"
-                 class="form-group">
-                <div class="label">{{ i18n('settings.intercom.volume_voice') }}:</div>
+            <div v-if="options.outstationVolume === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
+                             v-bind:title="i18n('settings.intercom.volume_voice')"
                              unit="%"
                              v-model="volume_voice" />
             </div>
 
-            <div v-if="options.micVolume === true"
-                 class="form-group">
-                <div class="label">{{ i18n('settings.intercom.sensitivity') }}:</div>
+            <div v-if="options.micVolume === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
+                             v-bind:title="i18n('settings.intercom.sensitivity')"
                              unit="%"
                              v-model="sensitivity" />
             </div>
 
-            <div v-if="options.mute === true"
-                 class="form-group">
+            <div v-if="options.mute === true">
                 <shif-button>
                     {{ i18n('settings.intercom.mute') }}
                 </shif-button>
