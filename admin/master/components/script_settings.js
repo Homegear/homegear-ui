@@ -1604,34 +1604,38 @@ const ShifSettingsIntercom = {
 
     template: `
         <div class="intercom_wrapper">
-            <div v-if="options.ringVolume === true">
+            <div v-if="options.ringVolume.visible === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
+                             v-bind:value="options.ringVolume.status"
                              v-bind:title="i18n('settings.intercom.volume_bell')"
                              unit="%"
                              v-model="volume_bell" />
             </div>
 
-            <div v-if="options.outstationVolume === true">
+            <div v-if="options.outstationVolume.visible === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
+                             v-bind:value="options.outstationVolume.status"
                              v-bind:title="i18n('settings.intercom.volume_voice')"
                              unit="%"
                              v-model="volume_voice" />
             </div>
 
-            <div v-if="options.micVolume === true">
+            <div v-if="options.micVolume.visible === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
+                             v-bind:value="options.micVolume.status"
                              v-bind:title="i18n('settings.intercom.sensitivity')"
                              unit="%"
                              v-model="sensitivity" />
             </div>
 
-            <div v-if="options.mute === true">
-                <shif-button>
-                    {{ i18n('settings.intercom.mute') }}
-                </shif-button>
+            <div v-if="options.mute.visible === true">
+                <div class="mute">
+                    <div class="label">{{ i18n('settings.intercom.mute') }}:</div>
+                    <shif-checkbox v-bind:value="options.mute.status" />
+                </div>
             </div>
         </div>
     `

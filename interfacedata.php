@@ -26,10 +26,22 @@
             "scrollbarScale": 4,
             "intercom": {
                 "visible": false,
-                "ringVolume": true,
-                "outstationVolume": true,
-                "mute": true,
-                "micVolume": true
+                "ringVolume": {
+                    "visible": true,
+                    "status": 25
+                },
+                "outstationVolume": {
+                    "visible": true,
+                    "status": 50
+                },
+                "mute": {
+                    "visible": true,
+                    "status": false
+                },
+                "micVolume": {
+                    "visible": true,
+                    "status": 90
+                }
             },
             "disabledMainmenus": {
             },
