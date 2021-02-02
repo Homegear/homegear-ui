@@ -11,17 +11,17 @@
     "jquery": "^3.5.1",
     "sortablejs": "^1.13.0",
     "vue": "^2.6.12",
-    "vue-router": "^3.4.9",
+    "vue-router": "^3.5.1",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
-    "acorn": "^8.0.1",
+    "acorn": "^8.0.5",
     "csslint": "^1.0.5",
-    "eslint": "^7.18.0",
-    "eslint-plugin-vue": "^7.4.1",
+    "eslint": "^7.19.0",
+    "eslint-plugin-vue": "^7.5.0",
     "gulp": "^4.0.2"
   },
   "unusedDevDependencies": {
