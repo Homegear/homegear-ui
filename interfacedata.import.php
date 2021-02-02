@@ -1668,7 +1668,7 @@
             }
         ],
         [
-            "Base.socketButton",
+            "Base.socketSwitch",
             {
                 "inputPeers": [
                     [
@@ -2922,7 +2922,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderModeWindowHandle",
+            "Base.heatingSliderModeWindowhandle",
             {
                 "inputPeers": [
                     [
@@ -2994,7 +2994,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderModeWindow",
+            "Base.heatingSliderModeWindowhandle",
             {
                 "inputPeers": [
                     [
@@ -3061,7 +3061,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderMode",
+            "Base.heatingSliderMode",
             {
                 "inputPeers": [
                     [
@@ -3114,7 +3114,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderMode",
+            "Base.heatingSliderMode",
             {
                 "inputPeers": [
                     [
@@ -3167,7 +3167,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderModeWindowContact",
+            "Base.heatingSliderModeWindowhandle",
             {
                 "inputPeers": [
                     [
@@ -3234,7 +3234,7 @@
             }
         ],
         [
-            "Base.heatingIsStateSliderMode",
+            "Base.heatingSliderMode",
             {
                 "inputPeers": [
                     [
@@ -3517,7 +3517,7 @@
             }
         ],
         [
-            "Base.doorContact",
+            "Base.doorHandle",
             {
                 "inputPeers": [
                     [
@@ -3537,7 +3537,7 @@
                         }
                     ]
                 ],
-                "label": "Türkontakt",
+                "label": "Türgriff",
                 "room": 3,
                 "dynamicMetadata": {
                     "favorites": {
@@ -3713,16 +3713,9 @@
             }
         ],
         [
-            "Base.lightingSwitchButtonBrightness",
+            "Base.lightingSwitchBrightness",
             {
                 "inputPeers": [
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "LIGHT2"
-                        }
-                    ],
                     [
                         {
                             "peer": 0,
@@ -3750,24 +3743,16 @@
                         {
                             "peer": 0,
                             "channel": -1,
-                            "name": "LIGHT2"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
                             "name": "DIMMER2"
                         }
                     ]
                 ],
-                "label": "Dimmlicht Push",
-                "room": 9,
-                "role": 101001
+                "label": "Dimmlicht",
+                "room": 9
             }
         ],
         [
-            "Base.lightingSwitchFunctionBrightnessSpeedColor",
+            "Base.lightingSwitchColor",
             {
                 "inputPeers": [
                     [
@@ -3775,27 +3760,6 @@
                             "peer": 0,
                             "channel": -1,
                             "name": "LIGHT3"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "FUNCTION"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "DIMMER3"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "SPEED"
                         }
                     ],
                     [
@@ -3812,27 +3776,6 @@
                             "peer": 0,
                             "channel": -1,
                             "name": "LIGHT3"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "FUNCTION"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "DIMMER3"
-                        }
-                    ],
-                    [
-                        {
-                            "peer": 0,
-                            "channel": -1,
-                            "name": "SPEED"
                         }
                     ],
                     [
@@ -3844,8 +3787,7 @@
                     ]
                 ],
                 "label": "Farblicht",
-                "room": 9,
-                "role": 101001
+                "room": 9
             }
         ],
         [
