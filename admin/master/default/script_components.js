@@ -576,7 +576,9 @@ const mixin_favorites = {
                 params: [dev],
             }, (data) => {
                 // Theoretically this should never be an array...
-                let meta_new = Array.isArray(data.result)
+                let meta_new = (typeof(data.result) !== 'object' ||
+                                data.result === null ||
+                                Array.isArray(data.result))
                                     ? {}
                                     : clone(data.result);
 
