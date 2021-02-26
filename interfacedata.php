@@ -96,6 +96,10 @@
             "condition": {
                 "route": {
                     "query": "intercom"
+                },
+                "options": {
+                    "path": ["intercom", "visible"],
+                    "value": true
                 }
             },
             "invoke": {
@@ -179,6 +183,10 @@
             "condition": {
                 "route": {
                     "query": "intercom"
+                },
+                "options": {
+                    "path": ["intercom", "visible"],
+                    "value": true
                 }
             }
         },
