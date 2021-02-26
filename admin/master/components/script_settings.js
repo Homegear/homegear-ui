@@ -1708,10 +1708,27 @@ const ShifSettingsItemsLvl1 = {
                 return true;
 
             if (cond.route !== undefined &&
-                cond.route.query !== undefined)
-                return interfaceData.options.route_query[cond.route.query] !== undefined;
+                cond.route.query !== undefined &&
+                interfaceData.options.route_query[cond.route.query] !== undefined)
+                return true;
 
-            return true;
+            if (cond.options !== undefined &&
+                cond.options.path !== undefined) {
+
+                let cur = interfaceData.options;
+                for (const i of cond.options.path) {
+                    if (cur[i] === undefined)
+                        return false;
+
+                    cur = cur[i];
+                }
+
+                return cond.options.value === undefined
+                        ? true
+                        : cur === cond.options.value;
+            }
+
+            return false;
         },
     },
 
