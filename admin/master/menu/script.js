@@ -27,7 +27,8 @@ const ShifMainmenu = {
     data: function () {
         return {
             enabled_menus: interfaceData.mainmenu
-                            .filter(x => ! this.disabled('mainmenu', x.name)),
+                            .filter(x => ! this.disabled('mainmenu', x.name))
+                            .filter(x => this.cond_show(x)),
             active: true,
         };
     },

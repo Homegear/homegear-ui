@@ -1,6 +1,7 @@
 /*
     global
         clone
+        get_or_default
         shif_comps_create
         shif_device
         shif_device_slot_automations
@@ -33,13 +34,16 @@ heating_slider_l2.template = `
     </shif-generic-l2>
 `;
 let heating_slider_l3 = clone(shif_device);
+heating_slider_l3.computed.step_size = function () {
+    return get_or_default(this.dynamicMetadata, 'stepSize', 0.5);
+};
 heating_slider_l3.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="parseFloat(props.maximumScaled)"
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
-                 v-bind:step="dynamicMetadata.stepSize ?? 0.5"
+                 v-bind:step="step_size"
                  v-bind:precision="1"
                  v-on:change="$homegear.value_set(output, props.value)"
                  v-bind:disabled="disabled"

@@ -103,14 +103,20 @@ generic_switch.template = `
 shif_comps_create('genericSwitch', generic_switch, generic_switch);
 
 let generic_slider = clone(shif_device);
+generic_slider.computed.step_size = function () {
+    return get_or_default(this.dynamicMetadata, 'stepSize', 1.0);
+};
+generic_slider.computed.precision = function () {
+    return get_or_default(this.dynamicMetadata, 'precision', 0);
+};
 generic_slider.template = `
     <shif-slider v-bind:min="props.minimumScaled"
                  v-bind:max="props.maximumScaled"
                  v-bind:unit="props.unit"
                  v-bind:value="props.value"
                  v-bind:title="title"
-                 v-bind:step="dynamicMetadata.stepSize ?? 1.0"
-                 v-bind:precision="dynamicMetadata.precision ?? 0"
+                 v-bind:step="step_size"
+                 v-bind:precision="precision"
                  v-bind:disabled="disabled"
                  v-on:change="$homegear.value_set(output, props.value)"
                  v-model:value="props.value">
