@@ -86,7 +86,8 @@ Vue.component('shif-draggable', {
                 }, (data) => {
                     let new_settings = data.result;
 
-                    if (new_settings.interface === undefined)
+                    if (new_settings.interface === undefined ||
+                        new_settings.interface === null)
                         new_settings.interface = {};
 
                     if (new_settings.interface.elementOrder === undefined)
