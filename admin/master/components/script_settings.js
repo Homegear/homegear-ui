@@ -1610,6 +1610,7 @@ const ShifSettingsIntercom = {
                     status: false,
                     visible: true,
                 },
+                visible: false,
             };
         },
     },
@@ -1630,7 +1631,15 @@ const ShifSettingsIntercom = {
                     if (new_settings.interface === undefined)
                         new_settings.interface = {};
 
-                    new_settings.interface.intercom = new_;
+                    if (new_settings.interface.intercom === undefined)
+                        new_settings.interface.intercom = new_;
+                    else {
+                        new_settings.interface.intercom.ringVolume = new_.ringVolume;
+                        new_settings.interface.intercom.outstationVolume = new_.outstationVolume;
+                        new_settings.interface.intercom.micVolume = new_.micVolume;
+                        new_settings.interface.intercom.mute = new_.mute;
+                    }
+
 
                     this.$homegear.invoke({
                         jsonrpc: '2.0',
