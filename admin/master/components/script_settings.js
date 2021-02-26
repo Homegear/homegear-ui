@@ -1594,11 +1594,51 @@ const ShifSettingsIntercom = {
     computed: {
         options: function () {
             return interfaceData.options.intercom || {
-                ringVolume: true,
-                outstationVolume: true,
-                micVolume: true,
-                mute: true,
+                ringVolume: {
+                    status: 100,
+                    visible: true,
+                },
+                outstationVolume: {
+                    status: 100,
+                    visible: true,
+                },
+                micVolume: {
+                    status: 100,
+                    visible: true,
+                },
+                mute: {
+                    status: false,
+                    visible: true,
+                },
             };
+        },
+    },
+
+    watch: {
+        options: {
+            deep: true,
+            handler: function (new_) {
+                Vue.set(interfaceData.options, 'intercom', new_);
+
+                this.$homegear.invoke({
+                    jsonrpc: '2.0',
+                    method: 'getUserMetadata',
+                    params: []
+                }, (data) => {
+                    let new_settings = data.result;
+
+                    if (new_settings.interface === undefined)
+                        new_settings.interface = {};
+
+                    new_settings.interface.intercom = new_;
+
+                    this.$homegear.invoke({
+                        jsonrpc: '2.0',
+                        method: 'setUserMetadata',
+                        params: [new_settings]
+                    });
+                });
+            }
         },
     },
 
@@ -1607,34 +1647,31 @@ const ShifSettingsIntercom = {
             <div v-if="options.ringVolume.visible === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
-                             v-bind:value="options.ringVolume.status"
                              v-bind:title="i18n('settings.intercom.volume_bell')"
                              unit="%"
-                             v-model="volume_bell" />
+                             v-model="options.ringVolume.status" />
             </div>
 
             <div v-if="options.outstationVolume.visible === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
-                             v-bind:value="options.outstationVolume.status"
                              v-bind:title="i18n('settings.intercom.volume_voice')"
                              unit="%"
-                             v-model="volume_voice" />
+                             v-model="options.outstationVolume.status" />
             </div>
 
             <div v-if="options.micVolume.visible === true">
                 <shif-slider v-bind:min="0"
                              v-bind:max="100"
-                             v-bind:value="options.micVolume.status"
                              v-bind:title="i18n('settings.intercom.sensitivity')"
                              unit="%"
-                             v-model="sensitivity" />
+                             v-model="options.micVolume.status" />
             </div>
 
             <div v-if="options.mute.visible === true">
                 <div class="mute">
                     <div class="label">{{ i18n('settings.intercom.mute') }}:</div>
-                    <shif-checkbox v-bind:value="options.mute.status" />
+                    <shif-checkbox v-model="options.mute.status" />
                 </div>
             </div>
         </div>
