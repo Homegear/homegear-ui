@@ -246,7 +246,8 @@ const ShifSettingsUser = {
 
                 new_settings.locale    = this.form.language;
 
-                if (new_settings.interface === undefined)
+                if (new_settings.interface === undefined ||
+                    new_settings.interface === null)
                     new_settings.interface = {};
 
                 Object.assign(new_settings.interface, {
@@ -1628,7 +1629,8 @@ const ShifSettingsIntercom = {
                 }, (data) => {
                     let new_settings = data.result;
 
-                    if (new_settings.interface === undefined)
+                    if (new_settings.interface === undefined ||
+                        new_settings.interface === null)
                         new_settings.interface = {};
 
                     if (new_settings.interface.intercom === undefined)
