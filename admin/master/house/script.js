@@ -27,6 +27,7 @@
         ShifNotificationsNotification
         ShifPageNotFound
         ShifSettingsLog
+        ShifSettingsRoomNames
         ShifMainmenu
         ShifModemenu
         ShifTabmenu
@@ -472,6 +473,11 @@ let router = new VueRouter({
                     path: 'intercom',
                     name: 'settings.intercom',
                     components: {small: ShifSettingsItemsLvl1, big: ShifSettingsIntercom},
+                },
+                {
+                    path: 'roomnames',
+                    name: 'settings.roomnames',
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsRoomNames},
                 }
             ],
         },
