@@ -27,6 +27,7 @@
         ShifSettingsProfiles
         ShifSettingsSort
         ShifSettingsUser
+        ShifSettingsRoomNames
 */
 
 
@@ -1577,6 +1578,81 @@ const ShifSettingsAutomations = {
                 <shif-settings-element v-bind:name="'settings.automations.new'"
                                         icon="plus_1" />
             </router-link>
+        </div>
+    `
+};
+
+
+
+const ShifSettingsRoomNames = {
+    data: function () {
+        return {
+            rooms: Object.keys(interfaceData.rooms)
+                         .map(x => ({
+                             id: x,
+                             name: interfaceData.rooms[x].name
+                         })),
+        };
+    },
+
+    computed: {
+        changed: function () {
+            for (const i of this.rooms)
+                if (i.name !== interfaceData.rooms[i.id].name)
+                    return true;
+
+            return false;
+        },
+    },
+
+    methods: {
+        change_room_name: function () {
+            for (const i of this.rooms) {
+                if (i.name === interfaceData.rooms[i.id].name)
+                    continue;
+
+                this.$homegear.invoke({
+                    jsonrpc: '2.0',
+                    method: 'updateRoom',
+                    params: [
+                        Number(i.id),
+                        {
+                            [interfaceData.options.language]: i.name,
+                        },
+                    ]
+                }, () => Vue.set(interfaceData.rooms[i.id], 'name', i.name));
+            }
+        }
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        if (! this.changed)
+            return next();
+
+        user_interaction.confirm({content: 'settings.roomnames.unsaved'})
+                        .then(x => {
+                            if (x)
+                                next();
+                        });
+    },
+
+    template: `
+        <div class="intercom_wrapper">
+            <div class="form-group">
+                <div class="label">{{ i18n('settings.roomnames.description') }}:</div>
+                <template v-for="i in rooms">
+                    <input v-model="i.name"
+                           v-bind:key="i.id"
+                           v-bind:name="i.id" />
+                </template>
+            </div>
+
+            <div class="form-group">
+                <input type="submit"
+                       name="save"
+                       v-bind:value="i18n('settings.roomnames.save')"
+                       v-on:click="change_room_name" />
+            </div>
         </div>
     `
 };
