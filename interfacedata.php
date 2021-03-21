@@ -191,6 +191,15 @@
             }
         },
         {
+            "name": "settings.roomnames",
+            "type": "submenu",
+            "mainmenu": "settings",
+            "category": "roomnames",
+            "level": "1",
+            "icon": "telephone_1",
+            "description": "settings.roomnames.description"
+        },
+        {
             "name": "settings.log",
             "type": "submenu",
             "component": "ShifSettingsLog",
@@ -821,6 +830,10 @@
             "settings.profiles.profile.global_or_room": "A profile must either be marked as \"global\" or be assigned to a room. Please change your configuration.",
             "settings.profiles.profile.name_required": "A profile must have a name. Please change your configuration.",
             "settings.profiles.description": "Add and delete profiles",
+            "settings.roomnames": "Room names",
+            "settings.roomnames.description": "Change room names",
+            "settings.roomnames.save": "Save",
+            "settings.roomnames.unsaved": "You have unsaved changes. Continue anyway?",
             "settings.user": "User",
             "settings.user.description": "Manage",
             "settings.user.manage": "User Settings",
@@ -977,6 +990,10 @@
             "settings.profiles.profile.name_required": "Ein Profil muss einen Namen besitzen. Bitte ändern Sie ihre Konfiguration.",
             "settings.profiles.profile.delete_request": "Sind Sie sicher, dass Sie das Profil löschen möchten?",
             "settings.profiles.description": "Profile erstellen und löschen",
+            "settings.roomnames": "Raumnamen",
+            "settings.roomnames.description": "Raumnamen abändern",
+            "settings.roomnames.save": "Speichern",
+            "settings.roomnames.unsaved": "Sie haben noch nicht gespeicherte Änderungen. Trotzdem fortsetzen?",
             "settings.user": "Benutzer",
             "settings.user.description": "Verwalten",
             "settings.user.manage": "Benutzereinstellungen",
