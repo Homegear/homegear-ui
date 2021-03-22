@@ -372,7 +372,6 @@ class User
         if(isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
             isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME'])
         {
-            // Certificate auth
             $user = $_SERVER['CLIENT_VERIFIED_USERNAME'];
             \Homegear\Homegear::setUserPrivileges($user);
             if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
