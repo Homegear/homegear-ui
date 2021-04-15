@@ -196,7 +196,7 @@
             "mainmenu": "settings",
             "category": "roomnames",
             "level": "1",
-            "icon": "telephone_1",
+            "icon": "speech_bubble_1",
             "description": "settings.roomnames.description"
         },
         {
