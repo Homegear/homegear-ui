@@ -30,6 +30,7 @@
         <label>Heating mode</label>
         <description>The heating mode that should be visualized by the UI element. Input "0" for frost protection, "1" for comfort mode and "2" for eco mode.</description>
         <types>int</types>
+        <role>201003</role>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
@@ -85,6 +86,7 @@
         <label>Heating mode</label>
         <description>Outputs the heating mode selected with the UI element. The output is "0" for frost protection, "1" for comfort mode and "2" for eco mode.</description>
         <types>int</types>
+        <role>201003</role>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
