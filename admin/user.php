@@ -173,7 +173,7 @@ class User
             if (isset($this->globalSettings['directLoginUser']) &&
                 strlen($this->globalSettings['directLoginUser']) > 0 &&
                 isset($this->globalSettings['directLoginApiKey']) &&
-                strlen($this->globalSettings['directLoginApiKey']) > 16 &&
+                strlen($this->globalSettings['directLoginApiKey']) >= 16 &&
                 isset($_REQUEST['key'])) {
                 $authorized = $this->apiKeyLogin();
                 //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in apiKeyLogin().
