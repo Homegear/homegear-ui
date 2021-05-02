@@ -2,6 +2,7 @@
     global
         ModeMenuState
         i18n
+        get_or_default,
         licenses
         mixin_menus
         mixin_modemenu
@@ -1670,7 +1671,7 @@ const ShifSettingsIntercom = {
 
     computed: {
         options: function () {
-            return interfaceData.options.intercom || {
+            let def = {
                 ringVolume: {
                     status: 100,
                     visible: true,
@@ -1688,6 +1689,19 @@ const ShifSettingsIntercom = {
                     visible: true,
                 },
                 visible: false,
+            };
+
+            if (! interfaceData.options.intercom)
+                return def;
+
+            const opt = interfaceData.options.intercom;
+
+            return {
+                ringVolume:       get_or_default(opt, 'ringVolume',       def.ringVolume),
+                outstationVolume: get_or_default(opt, 'outstationVolume', def.outstationVolume),
+                micVolume:        get_or_default(opt, 'micVolume',        def.micVolume),
+                mute:             get_or_default(opt, 'mute',             def.mute),
+                visible:          get_or_default(opt, 'visible',          def.visible),
             };
         },
     },
