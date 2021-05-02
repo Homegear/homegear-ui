@@ -25,7 +25,6 @@
             "viewportScale": 0.65,
             "scrollbarScale": 4,
             "intercom": {
-                "visible": false,
                 "ringVolume": {
                     "visible": true,
                     "status": 25
@@ -42,6 +41,9 @@
                     "visible": true,
                     "status": 90
                 }
+            },
+            "intercomSettings": {
+                "visible": false
             },
             "disabledMainmenus": {
             },
@@ -185,7 +187,7 @@
                     "query": "intercom"
                 },
                 "options": {
-                    "path": ["intercom", "visible"],
+                    "path": ["intercomSettings", "visible"],
                     "value": true
                 }
             }
