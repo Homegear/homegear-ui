@@ -473,6 +473,7 @@ let router = new VueRouter({
                     path: 'intercom',
                     name: 'settings.intercom',
                     components: {small: ShifSettingsItemsLvl1, big: ShifSettingsIntercom},
+                    meta: {breadcrumbs: ['settings', 'settings.intercom']},
                 },
                 {
                     path: 'roomnames',
