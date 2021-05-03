@@ -478,6 +478,7 @@ let router = new VueRouter({
                     path: 'roomnames',
                     name: 'settings.roomnames',
                     components: {small: ShifSettingsItemsLvl1, big: ShifSettingsRoomNames},
+                    meta: {breadcrumbs: ['settings', 'settings.roomnames']},
                 }
             ],
         },
