@@ -25,6 +25,7 @@
             "viewportScale": 0.65,
             "scrollbarScale": 4,
             "intercom": {
+                "visible": false,
                 "ringVolume": {
                     "visible": true,
                     "status": 25
