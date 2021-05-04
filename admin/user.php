@@ -393,7 +393,7 @@ class User
             if (isset($this->globalSettings['directLoginUser']) &&
                 strlen($this->globalSettings['directLoginUser']) > 0 &&
                 isset($this->globalSettings['directLoginApiKey']) &&
-                strlen($this->globalSettings['directLoginApiKey']) > 16 &&
+                strlen($this->globalSettings['directLoginApiKey']) >= 16 &&
                 isset($_REQUEST['key'])) {
                 if (!$this->constantTimeStringCompare($this->globalSettings['directLoginApiKey'], $_REQUEST['key'])) return false;
                 $user = $this->globalSettings['directLoginUser'];

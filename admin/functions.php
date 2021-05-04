@@ -87,6 +87,17 @@ function homegear_init() {
     try {
         //Set browser language when no language is set in settings.
         $hg_lang = $interfaceData["options"]["language"];
+        if (!$hg_lang) {
+            $locales = explode(',', explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0]);
+            foreach($locales as $locale) {
+                if($locale == 'de') $locale = 'de-DE';
+                if(array_key_exists($locale, $interfaceData['i18n'])) {
+                    $hg_lang = $locale;
+                    break;
+                }
+            }
+            if (!$hg_lang) $hg_lang = 'en-US';
+        }
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
