@@ -49,6 +49,11 @@
                     "type": "file"
                 },
                 {
+                    "src": "/admin/ping.php",
+                    "dist": "/dist/ping.php",
+                    "type": "file"
+                },
+                {
                     "src": "/admin/signin.php",
                     "dist": "/dist/signin.php",
                     "type": "file"
