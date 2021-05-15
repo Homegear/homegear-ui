@@ -1036,13 +1036,18 @@ Vue.component('shif-icon-selection', {
     props: {
         value:    {type: String,  required: true,},
         profiles: {type: Boolean, default: false,},
+        rooms:    {type: Boolean, default: false,},
     },
 
     computed: {
         icons: function () {
-            return this.profiles
-                    ? this.interfaceIcons.profiles
-                    : this.interfaceIcons;
+            if (this.profiles)
+                return this.interfaceIcons.profiles;
+
+            if (this.rooms)
+                return this.interfaceIcons.rooms;
+
+            return this.interfaceIcons;
         },
     },
 
@@ -1055,7 +1060,7 @@ Vue.component('shif-icon-selection', {
     template: `
         <div id="profile_icons">
             <template v-for="_, key in icons"
-                      v-if="key !== 'profiles'">
+                      v-if="key !== 'profiles' && key !== 'rooms'">
                 <label v-bind:class="{selected: value === key}"
                        v-bind:title="$root.debug ? key : undefined"
                        class="profile_icon_wrapper">
