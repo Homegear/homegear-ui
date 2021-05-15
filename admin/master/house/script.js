@@ -27,6 +27,7 @@
         ShifNotificationsNotification
         ShifPageNotFound
         ShifSettingsLog
+        ShifSettingsRoomName
         ShifSettingsRoomNames
         ShifMainmenu
         ShifModemenu
@@ -480,6 +481,21 @@ let router = new VueRouter({
                     name: 'settings.roomnames',
                     components: {small: ShifSettingsItemsLvl1, big: ShifSettingsRoomNames},
                     meta: {breadcrumbs: ['settings', 'settings.roomnames']},
+                },
+                {
+                    path: 'roomnames/:room_id',
+                    name: 'settings.roomnames.roomname',
+                    components: {small: ShifSettingsRoomNames, big: ShifSettingsRoomName},
+                    meta: {
+                        breadcrumbs: ['settings', 'settings.roomnames', 'settings.roomnames.roomname'],
+                        cache_ident: {big: {params: ['room_id']}},
+                    },
+                    props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.rooms[to.params.room_id] === undefined
+                        );
+                    }
                 }
             ],
         },
@@ -687,6 +703,11 @@ let breadcrumbs = new Vue({
                 case 'settings.automations.automation':
                     if (interfaceData.automations[params.automation_id] !== undefined)
                         return interfaceData.automations[params.automation_id].name;
+                    break;
+
+                case 'settings.roomnames.roomname':
+                    if (interfaceData.rooms[params.room_id] !== undefined)
+                        return interfaceData.rooms[params.room_id].name;
                     break;
 
                 case 'notifications.notification':
