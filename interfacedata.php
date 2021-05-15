@@ -1230,8 +1230,10 @@ function userSettings() {
     $interfaceData["options"]["language"] = $user->getSettings()["language"];
     $interfaceData["options"]["startPath"] = ($user->getSettings()["startPath"] ?? $interfaceData["settings"]["userDefaults"]["startPath"]);
     $interfaceData["options"]["intercom"] = ($user->getSettings()["intercom"] ?? $interfaceData["settings"]["userDefaults"]["intercom"]);
+    $interfaceData["options"]["intercomSettings"] = ($user->getSettings()["intercomSettings"] ?? $interfaceData["settings"]["userDefaults"]["intercomSettings"]);
     if (isset($_GET['intercom'])) {
         $interfaceData["options"]["intercom"]["visible"] = true;
+        $interfaceData["options"]["intercomSettings"]["visible"] = true;
     }
     if (isset($_GET['viewportScale']) && is_float(floatval($_GET['viewportScale']))) {
         $interfaceData["options"]["viewportScale"] = floatval($_GET['viewportScale']);
