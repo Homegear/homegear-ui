@@ -28,6 +28,7 @@
         ShifSettingsProfiles
         ShifSettingsSort
         ShifSettingsUser
+        ShifSettingsRoomName
         ShifSettingsRoomNames
 */
 
@@ -1585,22 +1586,30 @@ const ShifSettingsAutomations = {
 
 
 
-const ShifSettingsRoomNames = {
+const ShifSettingsRoomName = {
+    props: {
+        room_id: {
+            type: String,
+            required: true,
+        }
+    },
+
     data: function () {
+        const room = interfaceData.rooms[this.room_id];
+
         return {
-            rooms: Object.keys(interfaceData.rooms)
-                         .map(x => ({
-                             id: x,
-                             name: interfaceData.rooms[x].name
-                         })),
+            name: room.name,
+            icon: room.icon,
         };
     },
 
     computed: {
         changed: function () {
-            for (const i of this.rooms)
-                if (i.name !== interfaceData.rooms[i.id].name)
-                    return true;
+            if (this.name !== interfaceData.rooms[this.room_id].name)
+                return true;
+
+            if (this.icon !== interfaceData.rooms[this.room_id].icon)
+                return true;
 
             return false;
         },
@@ -1608,21 +1617,26 @@ const ShifSettingsRoomNames = {
 
     methods: {
         change_room_name: function () {
-            for (const i of this.rooms) {
-                if (i.name === interfaceData.rooms[i.id].name)
-                    continue;
+            if (! this.changed)
+                return;
 
-                this.$homegear.invoke({
-                    jsonrpc: '2.0',
-                    method: 'updateRoom',
-                    params: [
-                        Number(i.id),
-                        {
-                            [interfaceData.options.language]: i.name,
-                        },
-                    ]
-                }, () => Vue.set(interfaceData.rooms[i.id], 'name', i.name));
-            }
+            this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'updateRoom',
+                params: [
+                    Number(this.room_id),
+                    {
+                        [interfaceData.options.language]: this.name,
+                    },
+                    {
+                        icon: this.icon,
+                    }
+                ]
+            }, () => {
+                Vue.set(interfaceData.rooms[this.room_id], 'name', this.name);
+                Vue.set(interfaceData.rooms[this.room_id], 'icon', this.icon);
+                this.$router.back();
+            });
         }
     },
 
@@ -1630,7 +1644,7 @@ const ShifSettingsRoomNames = {
         if (! this.changed)
             return next();
 
-        user_interaction.confirm({content: 'settings.roomnames.unsaved'})
+        user_interaction.confirm({content: 'settings.roomnames.roomname.unsaved'})
                         .then(x => {
                             if (x)
                                 next();
@@ -1640,20 +1654,56 @@ const ShifSettingsRoomNames = {
     template: `
         <div class="intercom_wrapper">
             <div class="form-group">
-                <div class="label">{{ i18n('settings.roomnames.description') }}:</div>
-                <template v-for="i in rooms">
-                    <input v-model="i.name"
-                           v-bind:key="i.id"
-                           v-bind:name="i.id" />
-                </template>
+                <div class="label">{{ i18n('settings.roomnames.roomname.description') }}:</div>
+                <input v-model="name"
+                       v-bind:name="name" />
+            </div>
+
+            <div class="form-group">
+                <div class="label">{{ i18n('settings.roomnames.roomname.icon') }}:</div>
+                <shif-icon-selection v-model="icon"
+                                     v-bind:rooms="true" />
             </div>
 
             <div class="form-group">
                 <input type="submit"
                        name="save"
-                       v-bind:value="i18n('settings.roomnames.save')"
+                       v-bind:value="i18n('settings.roomnames.roomname.save')"
                        v-on:click="change_room_name" />
             </div>
+        </div>
+    `
+};
+
+
+
+const ShifSettingsRoomNames = {
+    data: function () {
+        return {
+        };
+    },
+
+    methods: {
+        link: function (room_id) {
+            return {
+                name: 'settings.roomnames.roomname',
+                params: {
+                    room_id: room_id,
+                },
+            };
+        }
+    },
+
+    template: `
+        <div>
+            <template v-for="(room, id) in interfaceData.rooms">
+                <router-link v-bind:to="link(id)">
+                    <shif-settings-element v-bind:key="room.name"
+                                           v-bind:icon="room.icon"
+                                           v-bind:name="room.name"
+                                           v-bind:translate="false" />
+                </router-link>
+            </template>
         </div>
     `
 };
