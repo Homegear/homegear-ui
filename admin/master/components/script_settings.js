@@ -1622,20 +1622,35 @@ const ShifSettingsRoomName = {
 
             this.$homegear.invoke({
                 jsonrpc: '2.0',
-                method: 'updateRoom',
-                params: [
-                    Number(this.room_id),
-                    {
-                        [interfaceData.options.language]: this.name,
-                    },
-                    {
-                        icon: this.icon,
-                    }
-                ]
-            }, () => {
-                Vue.set(interfaceData.rooms[this.room_id], 'name', this.name);
-                Vue.set(interfaceData.rooms[this.room_id], 'icon', this.icon);
-                this.$router.back();
+                method: 'getRooms',
+                params: [],
+            }, (res) => {
+                let room = res.result.filter(x => x.ID === Number(this.room_id))
+                                     .shift();
+                if (room === undefined)
+                    return;
+
+                if (room.METADATA === undefined)
+                    room.METADATA = {};
+                room.METADATA.icon = this.icon;
+
+                if (room.TRANSLATIONS === undefined)
+                    room.TRANSLATIONS = {};
+                room.TRANSLATIONS[interfaceData.options.language] = this.name;
+
+                this.$homegear.invoke({
+                    jsonrpc: '2.0',
+                    method: 'updateRoom',
+                    params: [
+                        Number(this.room_id),
+                        room.TRANSLATIONS,
+                        room.METADATA,
+                    ]
+                }, () => {
+                    Vue.set(interfaceData.rooms[this.room_id], 'name', this.name);
+                    Vue.set(interfaceData.rooms[this.room_id], 'icon', this.icon);
+                    this.$router.back();
+                });
             });
         }
     },
