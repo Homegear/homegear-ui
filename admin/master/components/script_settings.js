@@ -1736,7 +1736,7 @@ const ShifSettingsIntercom = {
 
     computed: {
         options: function () {
-            let def = {
+            const def = {
                 ringVolume: {
                     status: 100,
                     visible: true,
@@ -1756,10 +1756,9 @@ const ShifSettingsIntercom = {
                 visible: false,
             };
 
-            if (! interfaceData.options.intercom)
-                return def;
-
             const opt = interfaceData.options.intercom;
+            if (! opt)
+                return def;
 
             return {
                 ringVolume:       get_or_default(opt, 'ringVolume',       def.ringVolume),
@@ -1775,8 +1774,6 @@ const ShifSettingsIntercom = {
         options: {
             deep: true,
             handler: function (new_) {
-                Vue.set(interfaceData.options, 'intercom', new_);
-
                 this.$homegear.invoke({
                     jsonrpc: '2.0',
                     method: 'getUserMetadata',
@@ -1796,7 +1793,6 @@ const ShifSettingsIntercom = {
                         new_settings.interface.intercom.micVolume = new_.micVolume;
                         new_settings.interface.intercom.mute = new_.mute;
                     }
-
 
                     this.$homegear.invoke({
                         jsonrpc: '2.0',
