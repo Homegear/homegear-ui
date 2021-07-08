@@ -55,6 +55,40 @@ lighting_switch_l3.template = `
 shif_comps_create('lightingSwitch', lighting_switch_l2, lighting_switch_l3);
 
 
+let lighting_status_l2 = clone(shif_device);
+lighting_status_l2.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status"
+                     v-bind:actions="true"
+                     v-bind:place="place"
+                     v-on:click="level3(device)">
+
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-generic-l2>
+`;
+
+let lighting_status_l3 = clone(shif_device);
+lighting_status_l3.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="title"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:place="place"
+                     v-bind:status="status_minimal()">
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+
+    </shif-generic-l2>
+`;
+
+shif_comps_create('lightingStatus', lighting_status_l2, lighting_status_l3);
+
 
 let lighting_brightness = clone(shif_device);
 lighting_brightness.template = `
@@ -79,6 +113,194 @@ lighting_brightness.template = `
 shif_comps_create('lightingBrightness', lighting_switch_l2, lighting_brightness);
 shif_comps_create('lightingSpeed', lighting_switch_l2, lighting_brightness);
 
+
+let lighting_brightness_status_l2 = clone(shif_device);
+lighting_brightness_status_l2.computed.icon = function () {
+  return 'main' in this.icons
+      ? this.icons.main
+      : this.control.icons.main;
+};
+lighting_brightness_status_l2.template = `
+    <shif-generic-l2 v-bind:icon="icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: icon.color, text: texts.title.color}"
+                     v-bind:status="status"
+                     v-bind:place="place">
+
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-generic-l2>
+`;
+
+let lighting_brightness_status_l3 = clone(shif_device);
+lighting_brightness_status_l3.computed.icon = function () {
+  return 'main' in this.icons
+      ? this.icons.main
+      : this.control.icons.main;
+};
+lighting_brightness_status_l3.template = `
+    <shif-generic-l2 v-bind:icon="icon.name"
+                     v-bind:title="title"
+                     v-bind:active="{icon: icon.color, text: texts.title.color}"
+                     v-bind:place="place"
+                     v-bind:status="status_minimal()">
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+
+    </shif-generic-l2>
+`;
+
+shif_comps_create('lightingBrightnessStatus', lighting_brightness_status_l2, lighting_brightness_status_l3);
+
+
+let lighting_timer_status_l2 = clone(shif_device);
+lighting_timer_status_l2.computed.icon = function () {
+  return 'main' in this.icons
+      ? this.icons.main
+      : this.control.icons.main;
+};
+lighting_timer_status_l2.template = `
+    <shif-generic-l2 v-bind:icon="icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: icon.color, text: texts.title.color}"
+                     v-bind:status="status"
+                     v-bind:place="place">
+
+        ${shif_device_slot_favorites}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-generic-l2>
+`;
+
+let lighting_timer_status_l3 = clone(shif_device);
+lighting_timer_status_l3.computed.icon = function () {
+  return 'main' in this.icons
+      ? this.icons.main
+      : this.control.icons.main;
+};
+lighting_timer_status_l3.template = `
+    <shif-generic-l2 v-bind:icon="icon.name"
+                     v-bind:title="title"
+                     v-bind:active="{icon: icon.color, text: texts.title.color}"
+                     v-bind:place="place"
+                     v-bind:status="status_minimal()">
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+
+    </shif-generic-l2>
+`;
+
+shif_comps_create('lightingTimerStatus', lighting_timer_status_l2, lighting_timer_status_l3);
+
+
+let lighting_brightness_threshold_l2 = clone(shif_device);
+lighting_brightness_threshold_l2.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status"
+                     v-bind:place="place"
+                     v-bind:actions="true"
+                     v-on:click_icon="$homegear.value_set(output, ! props.value)"
+                     v-on:click="level3(device)">
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-generic-l2>
+`;
+let lighting_brightness_threshold_l3 = clone(shif_device);
+lighting_brightness_threshold_l3.template = `
+    <shif-slider v-bind:min="props.minimumScaled"
+                 v-bind:max="parseFloat(props.maximumScaled)"
+                 v-bind:unit="props.unit"
+                 v-bind:value="props.value"
+                 v-bind:title="title"
+                 v-bind:step="500"
+                 v-bind:precision="0"
+                 v-on:change="$homegear.value_set(output, props.value)"
+                 v-bind:disabled="disabled"
+                 v-model:value="props.value">
+
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-slider>
+`;
+
+shif_comps_create('lightingBrightnessThreshold', lighting_brightness_threshold_l2, lighting_brightness_threshold_l3);
+
+
+let lighting_timer_l2 = clone(shif_device);
+lighting_timer_l2.template = `
+    <shif-generic-l2 v-bind:icon="cond.icon.name"
+                     v-bind:title="dev.label"
+                     v-bind:active="{icon: cond.icon.color, text: cond.text.color}"
+                     v-bind:status="status"
+                     v-bind:place="place"
+                     v-bind:actions="true"
+                     v-on:click_icon="$homegear.value_set(output, ! props.value)"
+                     v-on:click="level3(device)">
+
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-generic-l2>
+`;
+let lighting_timer_l3 = clone(shif_device);
+lighting_timer_l3.template = `
+    <shif-slider v-bind:min="props.minimumScaled"
+                 v-bind:max="parseFloat(props.maximumScaled)"
+                 v-bind:unit="props.unit"
+                 v-bind:value="props.value"
+                 v-bind:title="title"
+                 v-bind:step="1"
+                 v-bind:precision="0"
+                 v-on:change="$homegear.value_set(output, props.value)"
+                 v-bind:disabled="disabled"
+                 v-model:value="props.value">
+
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-slider>
+`;
+
+shif_comps_create('lightingTimer', lighting_timer_l2, lighting_timer_l3);
+
+
+let lighting_operation_mode_l3 = clone(shif_device);
+lighting_operation_mode_l3.computed.values = function () {
+  return this.rendering
+  .map(x => ({
+    name:     x.definitions.texts.state.content,
+    value:    x.condition.value,
+    selected: x.condition.value == this.props.value,
+  }));
+};
+lighting_operation_mode_l3.template = `
+    <shif-radio v-bind:title="title"
+                v-bind:values="values"
+                v-bind:disabled="disabled"
+                v-on:input="$homegear.value_set(output, parseInt($event))">
+
+        ${shif_device_slot_profiles}
+        ${shif_device_slot_automations}
+        ${shif_device_slot_draggable}
+
+    </shif-radio>
+`;
+
+shif_comps_create('lightingOperationMode', lighting_status_l2, lighting_operation_mode_l3);
 
 
 let lighting_button_l2 = clone(shif_device);

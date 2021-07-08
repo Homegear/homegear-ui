@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.lightingOperationMode</uniqueUiElementId>
+    <control>lightingOperationMode</control>
+    <type>simple</type>
+    <description>UI-Element to set the light operation mode (automatic, always on or always off).</description>
+    <texts>
+      <text id="title">
+        <content>Mode</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Mode</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>plus-minus_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Light operation mode</label>
+        <description>The light operation mode that should be enabled. Input "0" for automatic, "1" for always on and "2" for always on.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <rendering>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>plus-minus_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Automatic</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="1">
+            <icons>
+              <icon id="state">
+                <name>plus-minus_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Always on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="2">
+            <icons>
+              <icon id="state">
+                <name>plus-minus_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Always off</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Light operation mode</label>
+        <description>Outputs the light operation mode selected with the UI element. The output is "0" for automatic, "1" for always on and "2" for always off.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

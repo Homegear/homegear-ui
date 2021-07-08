@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.lightingBrightnessStatus</uniqueUiElementId>
+    <control>lightingBrightnessStatus</control>
+    <type>simple</type>
+    <description>Visualisiert die aktuell gemessene Helligkeit.</description>
+    <texts>
+      <text id="title">
+        <content>Aktuelle Helligkeit</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Helligkeit</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="main">
+        <name>light_on_1</name>
+        <color>inactive</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Helligkeit</label>
+        <description>Setzt die aktuelle Hellingkeit (in Lux) im UI-Element.</description>
+        <types>float</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <unit>lx</unit>
+        <minimumValue>0</minimumValue>
+        <maximumValue>100000</maximumValue>
+        <automationInfo>
+          <type>int</type>
+          <minimumValue>0</minimumValue>
+          <maximumValue>100</maximumValue>
+        </automationInfo>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>-</label>
+        <description>Ungenutzt</description>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>
