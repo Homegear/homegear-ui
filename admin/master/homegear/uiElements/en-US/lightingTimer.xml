@@ -33,10 +33,9 @@
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
-        <unit>min</unit>
         <minimumValue>1</minimumValue>
         <maximumValue>30</maximumValue>
-        <minimumValueScaled>0</minimumValueScaled>
+        <minimumValueScaled>1</minimumValueScaled>
         <maximumValueScaled>30</maximumValueScaled>
         <visualizeInOverview>false</visualizeInOverview>
       </variable>

@@ -34,10 +34,10 @@
         <channel>*</channel>
         <name>*</name>
         <unit>lx</unit>
-        <minimumValue>0</minimumValue>
-        <maximumValue>30000</maximumValue>
-        <minimumValueScaled>0</minimumValueScaled>
-        <maximumValueScaled>30000</maximumValueScaled>
+        <minimumValue>100</minimumValue>
+        <maximumValue>15000</maximumValue>
+        <minimumValueScaled>100</minimumValueScaled>
+        <maximumValueScaled>15000</maximumValueScaled>
         <visualizeInOverview>false</visualizeInOverview>
       </variable>
     </variableInputs>
