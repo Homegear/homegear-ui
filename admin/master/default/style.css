@@ -580,7 +580,7 @@ a.disabled {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #ffffff;
   position: relative;
   cursor: pointer;
@@ -733,7 +733,7 @@ a.disabled {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #ffffff;
   position: relative;
   cursor: pointer;
@@ -1161,7 +1161,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #fff !important;
   font-size: 32px;
   line-height: 39px;
@@ -1268,7 +1268,7 @@ td {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #fff;
   position: relative;
   cursor: pointer;
@@ -1628,7 +1628,7 @@ td {
 }
 
 #profiles .profiles_wrapper .device_wrapper:last-child .device {
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   margin-bottom: 0px;
 }
 
@@ -1766,7 +1766,7 @@ td {
 .form-group {
   margin-top: 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   position: relative;
 }
 
@@ -2164,7 +2164,7 @@ td {
 .notification_message .notification_title {
   padding: 20px;
   font-size: 30px;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
 }
 
 .notification_message .notification_content {
