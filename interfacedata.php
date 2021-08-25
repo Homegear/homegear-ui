@@ -28,11 +28,11 @@
                 "visible": false,
                 "ringVolume": {
                     "visible": true,
-                    "status": 25
+                    "status": 100
                 },
                 "outstationVolume": {
                     "visible": true,
-                    "status": 50
+                    "status": 100
                 },
                 "mute": {
                     "visible": true,
@@ -40,7 +40,7 @@
                 },
                 "micVolume": {
                     "visible": true,
-                    "status": 90
+                    "status": 100
                 }
             },
             "intercomSettings": {
