@@ -74,18 +74,6 @@ function homegear_new() {
   );
 }
 
-function ping() {
-  $.ajax({
-    url: 'ping.php',
-    cache: false,
-    timeout: 10000
-  }).done(function() {
-    window.location.reload(true);
-  }).fail(function() {
-    setTimeout(ping, 5000);
-  });
-}
-
 let homegear = interfaceData.options.websocket_user &&
 interfaceData.options.websocket_password
     ? homegear_new(interfaceData.options.websocket_user,
@@ -96,9 +84,27 @@ interfaceData.options.websocket_password
 // it is reloaded by ping().
 homegear.reloadQueued = false;
 
+homegear.pingTimeout = 1000;
+homegear.pingInterval = 1000;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+function ping() {
+  $.ajax({
+    url: 'ping.php',
+    cache: false,
+    timeout: homegear.pingTimeout;
+  }).done(function() {
+    window.location.reload(true);
+  }).fail(function() {
+    let pingInterval = homegear.pingInterval;
+    if (homegear.pingTimeout < 10000) homegear.pingTimeout += 1000;
+    if (homegear.pingInterval < 60000) homegear.pingInterval += 1000;
+    setTimeout(ping, pingInterval);
+  });
+}
+
 homegear.ready(function() {
   if (homegear.reloadQueued) return;
   var addDevicesAsHomegearPeers = Object.keys(interfaceData.map_invoke).map(Number);
