@@ -94,7 +94,7 @@ function ping() {
   $.ajax({
     url: 'ping.php',
     cache: false,
-    timeout: homegear.pingTimeout;
+    timeout: homegear.pingTimeout
   }).done(function() {
     window.location.reload(true);
   }).fail(function() {
