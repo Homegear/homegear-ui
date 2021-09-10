@@ -123,7 +123,7 @@ homegear.connected(function() {
 homegear.disconnected(function() {
   homegear.reloadQueued = true;
   $('#loadingPage').show();
-  setTimeout(ping, 5000);
+  setTimeout(ping, 500);
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
