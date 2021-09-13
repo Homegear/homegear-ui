@@ -96,7 +96,8 @@ class User
     {
         if (!isset($_SESSION['user'])) return;
         $metadata = $this->hg->getUserMetadata($_SESSION['user']);
-        if (array_key_exists('locale', $metadata)) {
+        if (!is_array($metadata)) $metadata = [];
+        if (isset($metadata['locale'])) {
             $_SESSION['locale'] = $metadata['locale'];
         } else {
             $locales = explode(',', explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0]);
