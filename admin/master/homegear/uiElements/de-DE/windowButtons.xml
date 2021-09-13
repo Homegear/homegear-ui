@@ -144,7 +144,7 @@
     <variableOutputs>
       <variable>
         <label>Hoch</label>
-        <description>Der Hoch-Knopf wurde angeclickt.</description>
+        <description>Der Hoch-Knopf wurde angeklickt.</description>
         <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
@@ -152,7 +152,7 @@
       </variable>
       <variable>
         <label>Stopp</label>
-        <description>Der Stopp-Knopf wurde angeclickt.</description>
+        <description>Der Stopp-Knopf wurde angeklickt.</description>
         <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
@@ -160,7 +160,7 @@
       </variable>
       <variable>
         <label>Runter</label>
-        <description>Der Runter-Knopf wurde angeclickt.</description>
+        <description>Der Runter-Knopf wurde angeklickt.</description>
         <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>

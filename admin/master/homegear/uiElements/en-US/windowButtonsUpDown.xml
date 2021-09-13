@@ -100,11 +100,17 @@
     </variableInputs>
     <variableOutputs>
       <variable>
+        <label>Up</label>
+        <description>The up button was clicked.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
       </variable>
       <variable>
+        <label>Down</label>
+        <description>The down button was clicked.</description>
+        <types>bool</types>
         <deviceTypeId>*</deviceTypeId>
         <channel>*</channel>
         <name>*</name>
