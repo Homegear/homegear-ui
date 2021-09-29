@@ -28,6 +28,5 @@ door_status.template = `
     </shif-generic-l2>
 `;
 
-shif_comps_create('doorContact', door_status, door_status);
 shif_comps_create('doorHandle',  door_status, door_status);
 shif_comps_create('doorLock',  door_status, door_status);

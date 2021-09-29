@@ -78,9 +78,9 @@ async function execBabel() {
 function startWatchers() {
   //watch('admin/master/**/*.css', deploycss);
   //watch('admin/master/**/*.js', series(deployjs, babeljs));
-  watch('*.php', series(execC));
-  watch('admin/*.php', series(execC));
-  watch('admin/master/**/*.css', series(execC));
+  watch('*.php', series(execC, execBabel));
+  watch('admin/*.php', series(execC, execBabel));
+  watch('admin/master/**/*.css', series(execC, execBabel));
   watch('admin/master/**/*.js', series(execC, execBabel));
 }
 

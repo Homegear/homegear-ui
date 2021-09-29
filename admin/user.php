@@ -1,11 +1,12 @@
 <?php
+
 /* Copyright 2013-2019 Homegear GmbH
  *
  * Smart Home Interface (Shif, homegear-ui) is free software: you can
  * redistribute it and/or modify it under the terms of the GNU Lesser
  * General Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
- * 
+ *
  * Shif is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -61,8 +62,7 @@ class User
 
     private function constantTimeStringCompare($known_str, $given_str)
     {
-        if (strlen($known_str) == 0)
-        {
+        if (strlen($known_str) == 0) {
             return false;
         }
 
@@ -70,8 +70,7 @@ class User
         $given_len = strlen($given);
         $known_len = strlen($known);
 
-        for ($i = 0; $i < $given_len; ++$i)
-        {
+        for ($i = 0; $i < $given_len; ++$i) {
             $res |= ord($known_str[$i % $known_len]) ^ ord($given_str[$i]);
         }
 
@@ -82,8 +81,7 @@ class User
     {
         $this->hg = new \Homegear\Homegear();
         $this->globalSettings = $globalSettings;
-        if(session_status() == PHP_SESSION_NONE)
-        {
+        if (session_status() == PHP_SESSION_NONE) {
             ini_set('session.gc_maxlifetime', 5);
             session_start(array('name' => 'PHPSESSIDUI'));
         }
@@ -96,18 +94,27 @@ class User
 
     private function initialize()
     {
-        if(!isset($_SESSION['user'])) return;
+        if (!isset($_SESSION['user'])) return;
         $metadata = $this->hg->getUserMetadata($_SESSION['user']);
-        $_SESSION['locale'] = array((array_key_exists('locale', $metadata) ? $metadata['locale'] : 'en-US'));
-        if(is_array($_SESSION['locale']) && count($_SESSION['locale']) > 0) $_SESSION['locale'] = $_SESSION['locale'][0];
-        if(!is_string($_SESSION['locale'])) $_SESSION['locale'] = 'en-US';
+        if (!is_array($metadata)) $metadata = [];
+        if (isset($metadata['locale'])) {
+            $_SESSION['locale'] = $metadata['locale'];
+        } else {
+            $locales = explode(',', explode(';', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0]);
+            foreach ($locales as $locale) {
+                $_SESSION['locale'] = $locale;
+                break;
+            }
+            if (!$_SESSION['locale']) $_SESSION['locale'] = 'en-US';
+        }
+
         $_SESSION['locale'] = str_replace('_', '-', $_SESSION['locale']);
-        if($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
-        else if($_SESSION['locale'] == 'en') $_SESSION['locale'] = 'en-US';
-        hg_set_user_privileges($_SESSION['user']);
+        if ($_SESSION['locale'] == 'de') $_SESSION['locale'] = 'de-DE';
+        else if ($_SESSION['locale'] == 'en') $_SESSION['locale'] = 'en-US';
+        $this->hg->setUserPrivileges($_SESSION['user']);
 
         $this->userSettings = $this->globalSettings['userDefaults'] ?? array();
-        if(isset($metadata['interface'])) $this->userSettings = array_merge($this->userSettings, $metadata['interface']);
+        if (isset($metadata['interface'])) $this->userSettings = array_merge($this->userSettings, $metadata['interface']);
 
         $this->twofaSettings = $this->userSettings['2fa'] ?? array();
         unset($this->userSettings['2fa']);
@@ -115,7 +122,7 @@ class User
         $this->firstFactorAuthMethods = $this->userSettings['firstFactorAuthMethods'] ?? array();
         $this->secondFactorAuthMethods = $this->userSettings['secondFactorAuthMethods'] ?? array();
 
-        if(!isset($this->userSettings['language']) || !$this->userSettings['language']) $this->userSettings['language'] = $_SESSION['locale'];
+        if (!isset($this->userSettings['language']) || !$this->userSettings['language']) $this->userSettings['language'] = $_SESSION['locale'];
 
         $this->initialized = true;
     }
@@ -123,100 +130,83 @@ class User
     public function checkAuth($redirectToLogin)
     {
         $authorized = (isset($_SESSION["authorized"]) && $_SESSION["authorized"] === true && isset($_SESSION['user'])) ? 0 : -1;
-        if($authorized === -1 && isset($_SESSION['firstFactorAuthorized']) && $_SESSION['firstFactorAuthorized'] === true) $authorized = 1;
+        if ($authorized === -1 && isset($_SESSION['firstFactorAuthorized']) && $_SESSION['firstFactorAuthorized'] === true) $authorized = 1;
 
-        if($authorized === -1)
-        {
+        if ($authorized === -1) {
             //Try certificate login
-            if(isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
-            {
+            if (isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS") {
                 $authorized = $this->certificateLogin();
                 //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in certificateLogin().
-                if(!in_array('certificate', $this->firstFactorAuthMethods, true))
-                {
+                if (!in_array('certificate', $this->firstFactorAuthMethods, true)) {
                     $this->resetSession();
                     $authorized = -1;
                 }
             }
         }
 
-        if($authorized === -1)
-        {
+        if ($authorized === -1) {
             //Try cloud login
-            if(isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
-                isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME'])
-            {
+            if (isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
+                isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME']) {
                 $authorized = $this->cloudLogin();
                 //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in cloudLogin().
-                if(!in_array('cloud', $this->firstFactorAuthMethods, true))
-                {
+                if (!in_array('cloud', $this->firstFactorAuthMethods, true)) {
                     $this->resetSession();
                     $authorized = -1;
                 }
             }
         }
 
-        if($authorized === -1)
-        {
+        if ($authorized === -1) {
             //Try OAuth login
-            if(isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey']))
-            {
+            if (isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey'])) {
                 $authorized = $this->oauthLogin();
                 //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in oauthLogin().
-                if(!in_array('oauth', $this->firstFactorAuthMethods, true))
-                {
+                if (!in_array('oauth', $this->firstFactorAuthMethods, true)) {
                     $this->resetSession();
                     $authorized = -1;
                 }
             }
         }
 
-        if($authorized === -1)
-        {
+        if ($authorized === -1) {
             //Try API key login
-            if(isset($this->globalSettings['directLoginUser']) &&
+            if (isset($this->globalSettings['directLoginUser']) &&
                 strlen($this->globalSettings['directLoginUser']) > 0 &&
                 isset($this->globalSettings['directLoginApiKey']) &&
-                strlen($this->globalSettings['directLoginApiKey']) > 16 &&
-                isset($_REQUEST['key']))
-            {
+                strlen($this->globalSettings['directLoginApiKey']) >= 16 &&
+                isset($_REQUEST['key'])) {
                 $authorized = $this->apiKeyLogin();
                 //$this->firstFactorAuthMethods is not set before this point, because the user name is determined in apiKeyLogin().
-                if(!in_array('apiKey', $this->firstFactorAuthMethods, true))
-                {
+                if (!in_array('apiKey', $this->firstFactorAuthMethods, true)) {
                     $this->resetSession();
                     $authorized = -1;
                 }
             }
         }
 
-        if($authorized === -1 && $redirectToLogin)
-        {
+        if ($authorized === -1 && $redirectToLogin) {
             header("Location: signin.php");
             die("unauthorized");
         }
 
-        if(!$this->initialized && isset($_SESSION['user'])) $this->initialize();
+        if (!$this->initialized && isset($_SESSION['user'])) $this->initialize();
 
         return $authorized;
     }
 
     public function login($user, $password)
     {
-        if(hg_auth($user, $password) === true)
-        {
-            hg_set_user_privileges($user);
-            if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
+        if (\Homegear\Homegear::auth($user, $password) === true) {
+            \Homegear\Homegear::setUserPrivileges($user);
+            if (\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
             $_SESSION["user"] = $user;
             $this->initialize();
-            if(!in_array('login', $this->firstFactorAuthMethods, true)) return -1;
-            if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
-            {
+            if (!in_array('login', $this->firstFactorAuthMethods, true)) return -1;
+            if (count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor()) {
                 $_SESSION['firstFactorAuthorized'] = true;
                 return 1;
-            }
-            else
-            {
+            } else {
                 $_SESSION['authorized'] = true;
                 return 0;
             }
@@ -226,18 +216,14 @@ class User
 
     public function getWebAuthnCreateArgs()
     {
-        if(!isset($_SESSION['user']) || !$_SESSION['user'] || (!isset($_SESSION["authorized"]) || $_SESSION["authorized"] !== true))
-        {
+        if (!isset($_SESSION['user']) || !$_SESSION['user'] || (!isset($_SESSION["authorized"]) || $_SESSION["authorized"] !== true)) {
             return array();
         }
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
+        if (is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
         $createArgs = null;
-        try
-        {
+        try {
             $createArgs = $this->webAuthn->getCreateArgs($_SESSION["user"], $_SESSION["user"], $_SESSION["user"], 20, false, false);
-        }
-        catch(\WebAuthn\WebAuthnException $e)
-        {
+        } catch (\WebAuthn\WebAuthnException $e) {
             return array();
         }
         $_SESSION['challenge'] = $this->webAuthn->getChallenge();
@@ -246,27 +232,22 @@ class User
 
     public function getWebAuthnLoginArgs()
     {
-        if(!isset($_SESSION['user']) || !$_SESSION['user'] || (!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true))
-        {
+        if (!isset($_SESSION['user']) || !$_SESSION['user'] || (!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true)) {
             return array();
         }
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
+        if (is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
 
         $ids = array();
 
-        if(!isset($this->twofaSettings['registrations'])) return array();
-        foreach($this->twofaSettings['registrations'] as $registration)
-        {
+        if (!isset($this->twofaSettings['registrations'])) return array();
+        foreach ($this->twofaSettings['registrations'] as $registration) {
             $ids[] = $registration['credentialId'];
         }
 
         $loginArgs = null;
-        try
-        {
+        try {
             $loginArgs = $this->webAuthn->getGetArgs($ids);
-        }
-        catch(\WebAuthn\WebAuthnException $e)
-        {
+        } catch (\WebAuthn\WebAuthnException $e) {
             return array();
         }
         $_SESSION['challenge'] = $this->webAuthn->getChallenge();
@@ -275,26 +256,23 @@ class User
 
     public function registerWebAuthnDevice($clientDataJson, $attestationObject)
     {
-        if(!isset($_SESSION['user']) || !$_SESSION['user'] || !$_SESSION["authorized"] || !isset($_SESSION['challenge']) || $this->hasWebAuthn()) return false;
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
+        if (!isset($_SESSION['user']) || !$_SESSION['user'] || !$_SESSION["authorized"] || !isset($_SESSION['challenge']) || $this->hasWebAuthn()) return false;
+        if (is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
 
         $data = null;
 
-        try
-        {
+        try {
             $data = get_object_vars($this->webAuthn->processCreate($clientDataJson, $attestationObject, $_SESSION['challenge']));
-        }
-        catch(\WebAuthn\WebAuthnException $e)
-        {
+        } catch (\WebAuthn\WebAuthnException $e) {
             return false;
         }
 
         unset($_SESSION['challenge']);
 
         $metadata = $this->hg->getUserMetadata($_SESSION['user']);
-        if(!isset($metadata['interface'])) $metadata['interface'] = array();
-        if(!isset($metadata['interface']['2fa'])) $metadata['interface']['2fa'] = array();
-        if(!isset($metadata['interface']['2fa']['registrations'])) $metadata['interface']['2fa']['registrations'] = array();
+        if (!isset($metadata['interface'])) $metadata['interface'] = array();
+        if (!isset($metadata['interface']['2fa'])) $metadata['interface']['2fa'] = array();
+        if (!isset($metadata['interface']['2fa']['registrations'])) $metadata['interface']['2fa']['registrations'] = array();
         $metadata['interface']['2fa']['type'] = 'webauthn';
         $metadata['interface']['2fa']['registrations'][] = $data;
         $this->hg->setUserMetadata($_SESSION['user'], $metadata);
@@ -304,39 +282,35 @@ class User
 
     public function webauthnLogin($clientDataJson, $authenticatorData, $signature, $id)
     {
-        if(!isset($_SESSION['user']) || !$_SESSION['user'] || !isset($_SESSION['challenge'])) return false;
-        if(!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true) return false;
-        if(!$this->initialized) $this->initialize();
-        if(is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
+        if (!isset($_SESSION['user']) || !$_SESSION['user'] || !isset($_SESSION['challenge'])) return false;
+        if (!isset($_SESSION["firstFactorAuthorized"]) || $_SESSION["firstFactorAuthorized"] !== true) return false;
+        if (!$this->initialized) $this->initialize();
+        if (is_null($this->webAuthn)) $this->webAuthn = new \WebAuthn\WebAuthn('Shif WebAuthn', explode(':', $_SERVER['HTTP_HOST'])[0], array('fido-u2f', 'packed', 'android-key', 'none'));
 
         $credentialPublicKey = null;
 
-        if(!isset($this->twofaSettings['registrations'])) return false;
-        foreach($this->twofaSettings['registrations'] as $registration)
-        {
+        if (!isset($this->twofaSettings['registrations'])) return false;
+        foreach ($this->twofaSettings['registrations'] as $registration) {
             if ($registration['credentialId'] === $id) {
                 $credentialPublicKey = $registration['credentialPublicKey'];
                 break;
             }
         }
-        if($credentialPublicKey === null) return false;
+        if ($credentialPublicKey === null) return false;
 
-        try
-        {
+        try {
             $this->webAuthn->processGet($clientDataJson, $authenticatorData, $signature, $credentialPublicKey, $_SESSION['challenge']);
-        }
-        catch(\WebAuthn\WebAuthnException $e)
-        {
+        } catch (\WebAuthn\WebAuthnException $e) {
             return false;
         }
 
         unset($_SESSION['challenge']);
         unset($_SESSION['firstFactorAuthorized']);
 
-        hg_set_user_privileges($_SESSION['user']);
-        if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
+        \Homegear\Homegear::setUserPrivileges($_SESSION['user']);
+        if (\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
 
-        if(!$this->initialized) $this->initialize();
+        if (!$this->initialized) $this->initialize();
 
         $_SESSION['authorized'] = true;
         return true;
@@ -344,21 +318,17 @@ class User
 
     private function certificateLogin()
     {
-        if(isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS")
-        {
+        if (isset($_SERVER['SSL_CLIENT_VERIFY']) && $_SERVER['SSL_CLIENT_VERIFY'] == "SUCCESS") {
             // Certificate auth
             $user = $_SERVER['SSL_CLIENT_S_DN_CN'];
-            hg_set_user_privileges($user);
-            if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
+            \Homegear\Homegear::setUserPrivileges($user);
+            if (\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
             $_SESSION['user'] = $user;
             $this->initialize();
-            if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
-            {
+            if (count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor()) {
                 $_SESSION['firstFactorAuthorized'] = true;
                 return 1;
-            }
-            else
-            {
+            } else {
                 $_SESSION['authorized'] = true;
                 return 0;
             }
@@ -369,22 +339,17 @@ class User
 
     private function cloudLogin()
     {
-        if(isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
-            isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME'])
-        {
-            // Certificate auth
+        if (isset($_SERVER['CLIENT_AUTHENTICATED']) && $_SERVER['CLIENT_AUTHENTICATED'] == "true" &&
+            isset($_SERVER['CLIENT_VERIFIED_USERNAME']) && $_SERVER['CLIENT_VERIFIED_USERNAME']) {
             $user = $_SERVER['CLIENT_VERIFIED_USERNAME'];
-            hg_set_user_privileges($user);
-            if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
+            \Homegear\Homegear::setUserPrivileges($user);
+            if (\Homegear\Homegear::checkServiceAccess("ui") !== true) return false;
             $_SESSION['user'] = $user;
             $this->initialize();
-            if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
-            {
+            if (count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor()) {
                 $_SESSION['firstFactorAuthorized'] = true;
                 return 1;
-            }
-            else
-            {
+            } else {
                 $_SESSION['authorized'] = true;
                 return 0;
             }
@@ -395,74 +360,58 @@ class User
 
     private function oauthLogin()
     {
-        try
-        {
-            if(isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey']))
-            {
+        try {
+            if (isset($_COOKIE['accessKey']) && isset($_COOKIE['refreshKey'])) {
                 $user = $this->hg->verifyOauthKey($_COOKIE['accessKey']);
-                if(!$user)
-                {
+                if (!$user) {
                     $keys = $this->hg->refreshOauthKey($_COOKIE['refreshKey']);
                     setcookie("accessKey", $keys['access_token'], time() + 2592000);
                     setcookie("refreshKey", $keys['refresh_token'], time() + 2592000);
                     $user = $keys['user'];
                 }
-                if($user)
-                {
-                    hg_set_user_privileges($user);
-                    if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
+                if ($user) {
+                    \Homegear\Homegear::setUserPrivileges($user);
+                    if (\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
                     $_SESSION['user'] = $user;
                     $this->initialize();
-                    if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
-                    {
+                    if (count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor()) {
                         $_SESSION['firstFactorAuthorized'] = true;
                         return 1;
-                    }
-                    else
-                    {
+                    } else {
                         $_SESSION['authorized'] = true;
                         return 0;
                     }
                 }
             }
-        }
-        catch(\Homegear\HomegearException $e)
-        {
+        } catch (\Homegear\HomegearException $e) {
         }
         return -1;
     }
 
     private function apiKeyLogin()
     {
-        try
-        {
-            if(isset($this->globalSettings['directLoginUser']) &&
+        try {
+            if (isset($this->globalSettings['directLoginUser']) &&
                 strlen($this->globalSettings['directLoginUser']) > 0 &&
                 isset($this->globalSettings['directLoginApiKey']) &&
-                strlen($this->globalSettings['directLoginApiKey']) > 16 &&
-                isset($_REQUEST['key']))
-            {
-                if(!$this->constantTimeStringCompare($this->globalSettings['directLoginApiKey'], $_REQUEST['key'])) return false;
+                strlen($this->globalSettings['directLoginApiKey']) >= 16 &&
+                isset($_REQUEST['key'])) {
+                if (!$this->constantTimeStringCompare($this->globalSettings['directLoginApiKey'], $_REQUEST['key'])) return false;
                 $user = $this->globalSettings['directLoginUser'];
-                if(!$this->hg->userExists($user)) return false;
+                if (!$this->hg->userExists($user)) return false;
                 hg_set_user_privileges($user);
-                if(\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
+                if (\Homegear\Homegear::checkServiceAccess("ui") !== true) return -2;
                 $_SESSION['user'] = $user;
                 $this->initialize();
-                if(count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor())
-                {
+                if (count($this->secondFactorAuthMethods) > 0 && $this->hasSecondFactor()) {
                     $_SESSION['firstFactorAuthorized'] = true;
                     return 1;
-                }
-                else
-                {
+                } else {
                     $_SESSION['authorized'] = true;
                     return 0;
                 }
             }
-        }
-        catch(\Homegear\HomegearException $e)
-        {
+        } catch (\Homegear\HomegearException $e) {
         }
         return -1;
     }
@@ -476,8 +425,7 @@ class User
 
     public function logout()
     {
-        if (ini_get("session.use_cookies"))
-        {
+        if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
                 $params["path"], $params["domain"],

@@ -1,27 +1,27 @@
 {
-    "_from": "vuedraggable",
-    "_id": "vuedraggable@2.24.1",
+    "_from": "vuedraggable@2.24.3",
+    "_id": "vuedraggable@2.24.3",
     "_inBundle": false,
-    "_integrity": "sha512-G1fxO1oshx+WLdieSGl6jSJdlHOQFga1FpjuUpgXldbpKNzxpjsGn4xYNnRHVrOAqm8aG5FfpdQlh5LHesxCeA==",
+    "_integrity": "sha512-6\/HDXi92GzB+Hcs9fC6PAAozK1RLt1ewPTLjK0anTYguXLAeySDmcnqE8IC0xa7shvSzRjQXq3\/+dsZ7ETGF3g==",
     "_location": "\/vuedraggable",
     "_phantomChildren": [],
     "_requested": {
-        "type": "tag",
+        "type": "version",
         "registry": true,
-        "raw": "vuedraggable",
+        "raw": "vuedraggable@2.24.3",
         "name": "vuedraggable",
         "escapedName": "vuedraggable",
-        "rawSpec": "",
+        "rawSpec": "2.24.3",
         "saveSpec": null,
-        "fetchSpec": "latest"
+        "fetchSpec": "2.24.3"
     },
     "_requiredBy": [
         "#USER",
         "\/"
     ],
-    "_resolved": "https:\/\/registry.npmjs.org\/vuedraggable\/-\/vuedraggable-2.24.1.tgz",
-    "_shasum": "304abd7644dde05c1f199a227bf9e9107f56197a",
-    "_spec": "vuedraggable",
+    "_resolved": "https:\/\/registry.npmjs.org\/vuedraggable\/-\/vuedraggable-2.24.3.tgz",
+    "_shasum": "43c93849b746a24ce503e123d5b259c701ba0d19",
+    "_spec": "vuedraggable@2.24.3",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "browserslist": [
         "> 1%",
@@ -33,17 +33,17 @@
     },
     "bundleDependencies": false,
     "dependencies": {
-        "sortablejs": "^1.10.1"
+        "sortablejs": "1.10.2"
     },
     "deprecated": false,
     "description": "draggable component for vue",
     "devDependencies": {
-        "@vue\/cli-plugin-babel": "^3.4.0",
-        "@vue\/cli-plugin-eslint": "^3.4.0",
-        "@vue\/cli-plugin-unit-jest": "^3.4.0",
-        "@vue\/cli-service": "^3.4.0",
+        "@vue\/cli-plugin-babel": "^3.11.0",
+        "@vue\/cli-plugin-eslint": "^3.11.0",
+        "@vue\/cli-plugin-unit-jest": "^3.11.0",
+        "@vue\/cli-service": "^3.11.0",
         "@vue\/eslint-config-prettier": "^4.0.1",
-        "@vue\/test-utils": "^1.0.0-beta.20",
+        "@vue\/test-utils": "^1.1.0",
         "babel-core": "7.0.0-bridge.0",
         "babel-eslint": "^10.0.1",
         "babel-jest": "^23.6.0",
@@ -54,12 +54,12 @@
         "eslint": "^5.8.0",
         "eslint-plugin-vue": "^5.0.0",
         "font-awesome": "^4.7.0",
-        "jquery": "^3.3.1",
-        "vue": "^2.6.8",
+        "jquery": "^3.5.1",
+        "vue": "^2.6.12",
         "vue-cli-plugin-component": "^1.10.5",
         "vue-router": "^3.0.2",
-        "vue-server-renderer": "^2.6.8",
-        "vue-template-compiler": "^2.6.8",
+        "vue-server-renderer": "^2.6.12",
+        "vue-template-compiler": "^2.6.12",
         "vuetify": "^1.5.16",
         "vuex": "^3.1.1"
     },
@@ -97,7 +97,7 @@
     ],
     "license": "MIT",
     "main": "dist\/vuedraggable.umd.min.js",
-    "module": "dist\/vuedraggable.common.js",
+    "module": "dist\/vuedraggable.umd.js",
     "name": "vuedraggable",
     "postcss": {
         "plugins": {
@@ -119,5 +119,5 @@
         "test:unit": "vue-cli-service test:unit --coverage"
     },
     "types": "src\/vuedraggable.d.ts",
-    "version": "2.24.1"
+    "version": "2.24.3"
 }

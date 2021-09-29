@@ -11,6 +11,6 @@ Architecture: all
 Section: misc
 Priority: optional
 Homepage: https://homegear.eu
-Depends: ${shlibs:Depends}, ${misc:Depends}, homegear (>= 0.7.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}, homegear (>= 0.7.0), homegear-nodes-ui
 Description: Provides an user interface for Homegear.
  This packet provides an user interface for Homegear.

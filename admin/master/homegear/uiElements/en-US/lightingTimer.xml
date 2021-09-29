@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.lightingTimer</uniqueUiElementId>
+    <control>lightingTimer</control>
+    <type>simple</type>
+    <description>UI element to change the timer duration for automatic light control.</description>
+    <texts>
+      <text id="title">
+        <content>Set</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Set</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>slider_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>On timer duration</label>
+        <description>Sets the timer duration the UI element displays.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <minimumValue>1</minimumValue>
+        <maximumValue>30</maximumValue>
+        <minimumValueScaled>1</minimumValueScaled>
+        <maximumValueScaled>30</maximumValueScaled>
+        <visualizeInOverview>false</visualizeInOverview>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>On timer duration</label>
+        <description>Outputs the timer duration set with the UI element.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

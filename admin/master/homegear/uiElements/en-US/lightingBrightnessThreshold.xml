@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.lightingBrightnessThreshold</uniqueUiElementId>
+    <control>lightingBrightnessThreshold</control>
+    <type>simple</type>
+    <description>UI element to change the brightness threshold for automatic light control.</description>
+    <texts>
+      <text id="title">
+        <content>Brightness threshold</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Threshold</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>slider_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Brightness threshold</label>
+        <description>Sets the brightness threshold the UI element displays.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <unit>lx</unit>
+        <minimumValue>100</minimumValue>
+        <maximumValue>15000</maximumValue>
+        <minimumValueScaled>100</minimumValueScaled>
+        <maximumValueScaled>15000</maximumValueScaled>
+        <visualizeInOverview>false</visualizeInOverview>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Brightness threshold</label>
+        <description>Outputs the brightness threshold set with the UI element.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

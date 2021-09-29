@@ -5,22 +5,23 @@
   "version": "1.0.0",
   "license": "LGPLv3",
   "dependencies": {
-    "@homegear/homegearws": "^1.0.11",
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@homegear/homegearws": "^1.0.12",
     "@jaames/iro": "^4.5.3",
     "jquery": "^3.5.1",
-    "sortablejs": "^1.11.2-alpha.3",
+    "sortablejs": "^1.13.0",
     "vue": "^2.6.12",
-    "vue-router": "^3.4.5",
-    "vuedraggable": "^2.24.1"
+    "vue-router": "^3.5.1",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "acorn": "^6.4.2",
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "acorn": "^8.0.5",
     "csslint": "^1.0.5",
-    "eslint": "^7.10.0",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^7.6.0",
     "gulp": "^4.0.2"
   },
   "unusedDevDependencies": {

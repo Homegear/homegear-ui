@@ -63,7 +63,6 @@ window_status_l3.template = `
     </shif-generic-l2>
 `;
 
-shif_comps_create('windowContact', window_status, window_status_l3);
 shif_comps_create('windowHandle',  window_status, window_status_l3);
 
 let window_buttons_l2 = clone(shif_device);
@@ -100,15 +99,15 @@ window_buttons_l3.methods.change = function(_event) {
             this.output.hasOwnProperty('maximumValue')) {
             let output = clone(this.output);
             output.value = (down ? this.output.maximumValue : this.output.minimumValue);
-            homegear.value_set_clickcounter(this, output, null);
+            homegear.value_set(output, null);
         }
         else if(this.output.type == 'bool') {
             let output = clone(this.output);
             output.value = down;
-            homegear.value_set_clickcounter(this, output, null);
+            homegear.value_set(output, null);
         }
     }
-    else homegear.value_set_clickcounter(this, this.output, true);
+    else homegear.value_set(this.output, true);
 };
 window_buttons_l3.template = `
     <div>
@@ -131,9 +130,6 @@ shif_comps_create('windowButtonsUpDown', window_buttons_l2, window_buttons_l3);
 shif_comps_create('windowButtons', window_buttons_l2, window_buttons_l3);
 
 let window_slider = clone(shif_device);
-window_slider.methods.change = function(_event) {
-    homegear.value_set_clickcounter(this, this.output, this.props.value);
-};
 window_slider.provides = function () {
     return {
         checkbox_wanted: true,
@@ -147,7 +143,7 @@ window_slider.template = `
                  v-bind:title="title"
                  v-bind:step=5
                  v-bind:disabled="disabled"
-                 v-on:change="change"
+                 v-on:change="$homegear.value_set(output, props.value)"
                  v-model:value="props.value">
 
         ${shif_device_slot_profiles}

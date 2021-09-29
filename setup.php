@@ -73,12 +73,12 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(isset($_GET["homegear-json"])){
         header('Content-Type: application/json; charset=utf-8');
-        if(file_exists(getcwd()."/admin/master/homegear/functions.php")){
-            include(getcwd()."/admin/master/homegear/functions.php");
+        if(file_exists(getcwd()."/admin/functions.php")){
+            include(getcwd()."/admin/functions.php");
             die(json_encode(homegear_init(), JSON_PRETTY_PRINT));
         }
         else{
-            die('{"error": "No homegear functions.php file!"}');
+            die('{"error": "No /admin/functions.php file!"}');
         }
     }
 
@@ -122,20 +122,20 @@
             foreach($oldInterfaceData["devices"] as $value){
                 $device = Null;
                 try {
-                    $device = intval($hg->createDevice($value["FAMILY"], intval($value["TYPE_ID"], 16), $value["SERIALNUMBER"], $value["ADDRESS"], $value["FIRMWAREVERSION"], $value["INTERFACEID"]));
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["name"]["status"] = $hg->setName($device, $value["NAME"]);
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["name"]["name"] = $value["NAME"];
+                    $device = intval($hg->createDevice($value["FAMILY"], intval($value["TYPE_ID"], 16), $value["SERIALNUMBER"], (int)hexdec($value["ADDRESS"]), $value["FIRMWAREVERSION"], $value["INTERFACEID"]));
+                    $allInterfaceData["createDevice"][$value["ID"]]["name"]["status"] = $hg->setName($device, $value["NAME"]);
+                    $allInterfaceData["createDevice"][$value["ID"]]["name"]["name"] = $value["NAME"];
                     if ($device != $value["ID"] && $hg->getName($device) == $value["NAME"]) {
-                        $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["status"] = $hg->setId($device, $value["ID"]);
+                        $allInterfaceData["createDevice"][$value["ID"]]["idChange"]["status"] = $hg->setId($device, $value["ID"]);
                     }
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["oldId"] = $device;
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["idChange"]["newId"] = $value["ID"];
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["SERIALNUMBER"] = $value["SERIALNUMBER"];
+                    $allInterfaceData["createDevice"][$value["ID"]]["idChange"]["oldId"] = $device;
+                    $allInterfaceData["createDevice"][$value["ID"]]["idChange"]["newId"] = $value["ID"];
+                    $allInterfaceData["createDevice"][$value["ID"]]["SERIALNUMBER"] = $value["SERIALNUMBER"];
                 }
                 catch (\Homegear\HomegearException $e) {
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["error"] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage();
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["value"] = $value;
-                    $allInterfaceData["createDevice"][$value["SERIALNUMBER"]]["catch"]["device"] = $device;
+                    $allInterfaceData["createDevice"][$value["ID"]]["catch"][]["error"] = "Exception catched | Code: ".$e->getCode()." | Message: ".$e->getMessage();
+                    $allInterfaceData["createDevice"][$value["ID"]]["catch"][]["value"] = $value;
+                    $allInterfaceData["createDevice"][$value["ID"]]["catch"][]["device"] = $device;
                 }
             }
         }
@@ -145,8 +145,8 @@
             foreach($CurrentDevices as $key => $value){
                 unset($CurrentDevices[$key]["CHANNELS"]);
                 $CurrentDevices[$key]["TYPE_ID"] = "0x".dechex($value["TYPE_ID"]);
-                $CurrentDevices[$key]["SERIALNUMBER"] = $CurrentDevices[$key]["ADDRESS"];
-                $CurrentDevices[$key]["ADDRESS"] = -1;
+                $CurrentDevices[$key]["SERIALNUMBER"] = (strpos($CurrentDevices[$key]["ADDRESS"], "EOD0") !== false ? "" : $CurrentDevices[$key]["ADDRESS"]);
+                $CurrentDevices[$key]["ADDRESS"] = (strpos($CurrentDevices[$key]["ADDRESS"], "EOD0") !== false ? str_replace("EOD0", "0x", $CurrentDevices[$key]["ADDRESS"]) : -1);
                 $CurrentDevices[$key]["FIRMWAREVERSION"] = -1;
                 $CurrentDevices[$key]["INTERFACEID"] = "";
             }

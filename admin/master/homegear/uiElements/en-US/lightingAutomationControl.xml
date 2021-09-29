@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <id>Base.lightingAutomationControl</id>
+    <control>lightingAutomationControl</control>
+    <type>complex</type>
+    <description>UI element to set parameters for automatic lighting control.</description>
+    <texts>
+      <text id="title">
+        <content>Lighting control</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Status</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>clock_3</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <grid>
+      <width>3</width>
+      <height>6</height>
+      <columns>1</columns>
+      <rows>6</rows>
+    </grid>
+    <controls>
+      <control id="Base.lightingStatus">
+        <x>0</x>
+        <y>0</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+      <control id="Base.lightingBrightnessStatus">
+        <x>0</x>
+        <y>1</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+      <control id="Base.lightingTimerStatus">
+        <x>0</x>
+        <y>2</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+      <control id="Base.lightingBrightnessThreshold">
+        <x>0</x>
+        <y>3</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+      <control id="Base.lightingTimer">
+        <x>0</x>
+        <y>4</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+      <control id="Base.lightingOperationMode">
+        <x>0</x>
+        <y>5</y>
+        <columns>1</columns>
+        <rows>1</rows>
+      </control>
+    </controls>
+    <metadata>
+      <l2_action>
+        <control>0</control>
+        <input>0</input>
+      </l2_action>
+    </metadata>
+  </homegearUiElement>
+</homegearUiElements>

@@ -34,12 +34,6 @@
                     "env": "dev"
                 },
                 {
-                    "src": "/interfacedata.dummy.php",
-                    "dist": "/dist/interfacedata.dummy.php",
-                    "type": "file",
-                    "env": "dev"
-                },
-                {
                     "src": "/admin/manifest.json",
                     "dist": "/dist/manifest.json",
                     "type": "file"
@@ -52,6 +46,11 @@
                 {
                     "src": "/setup.php",
                     "dist": "/dist/setup.php",
+                    "type": "file"
+                },
+                {
+                    "src": "/admin/ping.php",
+                    "dist": "/dist/ping.php",
                     "type": "file"
                 },
                 {
@@ -106,6 +105,7 @@
                         "vue-router",
                         "sortablejs",
                         "vuedraggable",
+                        "fontawesome",
                         "flaticons"
                     ]
                 },
@@ -135,6 +135,12 @@
                     ]
                 },
                 "door": {
+                    "activated": true,
+                    "requiredAssets": [
+                        ""
+                    ]
+                },
+                "generic": {
                     "activated": true,
                     "requiredAssets": [
                         ""
@@ -320,7 +326,7 @@
                     "files": [
                         {
                             "rawMinUrl": "/",
-                            "rawMinUrlFile": "homegear-ws-1.0.11.min.js",
+                            "rawMinUrlFile": "homegear-ws-1.0.12.min.js",
                             "outputName": "homegearws.min.js"
                         }
                     ],
@@ -503,9 +509,9 @@
                     "repository": "/node_modules/sortablejs",
                     "files": [
                         {
-                            "rawMinUrl": "/dist/",
-                            "rawMinUrlFile": "sortable.umd.js",
-                            "outputName": "sortable.umd.js"
+                            "rawMinUrl": "/",
+                            "rawMinUrlFile": "sortable.min.js",
+                            "outputName": "sortable.min.js"
                         }
                     ],
                     "license": {
@@ -579,6 +585,29 @@
                         "rights": "Matt Bryson",
                         "licenseurl": "https://opensource.org/licenses/alphabetical",
                         "licensename": "MIT"
+                    }
+                },
+                "fontawesome": {
+                    "user": "fortawesome",
+                    "repository": "/node_modules/@fortawesome/fontawesome-free",
+                    "files": [
+                        {
+                            "rawMinUrl": "/svgs/regular/",
+                            "rawMinUrlFile": "*",
+                            "outputName": "*"
+                        },
+                        {
+                            "rawMinUrl": "/svgs/solid/",
+                            "rawMinUrlFile": "*",
+                            "outputName": "*"
+                        }
+                    ],
+                    "license": {
+                        "name": "fontawesome",
+                        "version": "",
+                        "rights": "fortawesome",
+                        "licenseurl": "https://creativecommons.org/licenses/by/4.0/",
+                        "licensename": "CC BY 4.0 License"
                     }
                 },
                 "flaticons": {

@@ -52,7 +52,7 @@ html {
   vertical-align: top;
   text-align: left;
   empty-cells: show;
-  overflow-x: hidden;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   overscroll-behavior-y: none;
@@ -160,7 +160,7 @@ button div {
 button.warning,
 input[type=button].warning,
 input[type=submit].warning {
-  background: #b8360e;
+  background: #d46700;
   color: #fff;
 }
 
@@ -175,6 +175,13 @@ button.info,
 input[type=button].info,
 input[type=submit].info {
   background: #2ab108;
+  color: #fff;
+}
+
+button.success,
+input[type=button].success,
+input[type=submit].success {
+  background: #e3a104;
   color: #fff;
 }
 
@@ -206,13 +213,30 @@ select {
   cursor: pointer;
 }
 
+select[multiple] {
+  padding: 0px;
+}
+
 select::-ms-expand {
   display: none;
+}
+
+optgroup {
+    color: #898989;
+}
+
+select[multiple] optgroup {
+  padding-top: 20px;
+  text-indent: 10px;
 }
 
 option {
   color: #fff;
   padding: 10px 20px;
+}
+
+option::before {
+  display: none;
 }
 
 fieldset {
@@ -302,6 +326,14 @@ a.disabled {
   z-index: 1000000;
 }
 
+#user_interaction {
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  z-index: 2000000;
+  background: rgba(0, 0, 0, .6);
+}
+
 #inhalt {
   width: 100%;
   max-width: 100%;
@@ -328,6 +360,16 @@ a.disabled {
 
 #inhalt.modemenu-visible .content {
   height: calc(100% - 85px - 92px - 59px);
+}
+
+#inhalt.tabmenu-visible .content {
+  height: calc(100% - 85px - 92px - 74px);
+  top: 159px;
+}
+
+#inhalt.modemenu-visible.tabmenu-visible .content {
+  height: calc(100% - 85px - 92px - 59px - 74px);
+  top: 159px;
 }
 
 .content.clinched {
@@ -437,6 +479,7 @@ a.disabled {
 
 #breadcrumbs_wrapper #breadcrumbs a::after {
   padding: 0px 10px;
+  color: #25282e;
 }
 
 #breadcrumbs_wrapper #breadcrumbs #breadcrumb_wrapper {
@@ -504,86 +547,17 @@ a.disabled {
 
 /* ///////////////////////////////////////////////////////////////////////// */
 
-/* Tabs */
-
-/* ///////////////////////////////////////////////////////////////////////// */
-
-#tabs {
-  width: inherit;
-  background: #191b1f;
-  position: fixed;
-  z-index: 4;
-  color: #fff;
-  font-size: 0;
-  text-align: left;
-  text-decoration: none;
-  border-top: 1px solid #25282e;
-  margin: -21px 0px 20px -35px;
-  padding: 0px;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  z-index: 999;
-}
-
-#tabs .tab {
-  display: inline-block;
-  text-align: center;
-  color: #898989;
-  font-size: 26px;
-  line-height: 26px;
-  border: 0px solid #000;
-  position: relative;
-  margin: 0;
-  padding: 24px 0;
-}
-
-#tabs a {
-  position: relative;
-}
-
-#tabs .router-link-active .tab {
-  color: #e3a104 !important;
-}
-
-#tabs .router-link-active::after {
-  content: " ";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
-  border-style: solid;
-  border-width: 24px 24px 0 24px;
-  border-color: #191b1f transparent transparent transparent;
-  right: 0;
-  bottom: -45px;
-  left: 0;
-  margin: auto;
-}
-
-.tabWrapper {
-  width: inherit;
-  height: inherit;
-  display: none;
-  padding-top: 60px;
-  position: relative;
-  overscroll-behavior-y: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.activeTab {
-  display: inline-block !important;
-}
-
-/* ///////////////////////////////////////////////////////////////////////// */
-
 /* Accordion */
 
 /* ///////////////////////////////////////////////////////////////////////// */
 
 .accordion>.device {
-  padding: 35px 0 !important;
+  padding: 28px 0 !important;
+
+}
+
+.accordion>.device .title_only .device_title {
+  margin: 19px 0;
 }
 
 .accordion_content {
@@ -606,7 +580,7 @@ a.disabled {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #ffffff;
   position: relative;
   cursor: pointer;
@@ -759,7 +733,7 @@ a.disabled {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #ffffff;
   position: relative;
   cursor: pointer;
@@ -920,6 +894,20 @@ a.disabled {
 
 /* Style the checkmark/indicator */
 .check .checkmark:after {
+  left: 11px;
+  top: 0px;
+  width: 15px;
+  height: 30px;
+  border: solid #fff;
+  border-radius: 4px;
+  border-width: 0 5px 5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.check.checked .checkmark:after {
+  display: block;
   left: 11px;
   top: 0px;
   width: 15px;
@@ -1173,7 +1161,7 @@ input[type=range]:focus::-ms-fill-upper {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #fff !important;
   font-size: 32px;
   line-height: 39px;
@@ -1280,7 +1268,7 @@ td {
   width: 100%;
   background: transparent;
   border: 0px solid #898989;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   color: #fff;
   position: relative;
   cursor: pointer;
@@ -1333,7 +1321,7 @@ td {
 
 .device_wrapper .checkbox_wrapper {
   position: absolute;
-  height: 70px;
+  height: 50px;
   width: inherit;
   right: 50px;
   top: 0;
@@ -1343,12 +1331,24 @@ td {
 
 .control_wrapper .checkbox_wrapper {
   position: absolute;
-  height: 70px;
+  height: 50px;
   width: inherit;
   right: 0px;
   top: 10px;
   margin: auto;
 
+}
+
+
+
+.control_wrapper .checkbox_wrapper .check,
+.device_wrapper .checkbox_wrapper .check {
+  position: relative;
+}
+
+.control_wrapper .checkbox_wrapper .check.checked .checkmark,
+.device_wrapper .checkbox_wrapper .check.checked .checkmark {
+  border: 4px solid #e3a104;
 }
 
 
@@ -1359,11 +1359,6 @@ td {
   z-index: 9;
 }
 
-.control_wrapper .checkbox_wrapper .checkbox_favorites_wrapper>div>div,
-.device_wrapper .checkbox_wrapper .checkbox_favorites_wrapper>div>div {
-  width: 70px;
-  height: 70px;
-}
 
 .control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper {
@@ -1372,12 +1367,8 @@ td {
   z-index: 9;
 }
 
-.control_wrapper .checkbox_wrapper .checkbox_profiles_wrapper>div>div,
-.device_wrapper .checkbox_wrapper .checkbox_profiles_wrapper>div>div {
-  width: 70px;
-  height: 70px;
-}
 
+/*
 .control_wrapper .checkbox_wrapper .checkbox_automation_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_automation_wrapper {
   float: right;
@@ -1398,28 +1389,33 @@ td {
   height: 60px;
   fill: #898989;
 }
+*/
+
 
 .control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper,
 .device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper {
   float: right;
   position: relative;
   z-index: 9;
-  top: 5px;
 }
 
 .control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper>div,
 .device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper>div {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 .control_wrapper .checkbox_wrapper .checkbox_draggable_wrapper svg,
 .device_wrapper .checkbox_wrapper .checkbox_draggable_wrapper svg {
-  width: 42px;
-  height: 60px;
+  width: 35px;
+  height: 35px;
   fill: #898989;
   margin-left: 10px;
+  top: 7px;
+  position: relative;
 }
+
+
 
 .control_wrapper .device_text,
 .device_wrapper .device_text {
@@ -1621,25 +1617,18 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
-
-
-#profiles {
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-}
-
 #house .profiles_wrapper {
   margin: 0;
   padding: 0;
 }
 
-#house .profiles_wrapper .device_wrapper:last-child .device {
-  border-bottom: 2px solid #fff;
+#house .profiles_wrapper .device_wrapper:last-child .device,
+#favorites .profiles_wrapper .device_wrapper:last-child .device {
+  border-bottom: 1px solid #fff;
 }
 
 #profiles .profiles_wrapper .device_wrapper:last-child .device {
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   margin-bottom: 0px;
 }
 
@@ -1691,7 +1680,7 @@ td {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 0;
   left: 0;
   margin: auto;
@@ -1745,7 +1734,7 @@ td {
 }
 
 .profiles_wrapper .global .label {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-left: 20px;
   font-size: 20px;
 }
@@ -1761,10 +1750,23 @@ td {
 /* ///////////////////////////////////////////////////////////////////////// */
 /* */
 /* ///////////////////////////////////////////////////////////////////////// */
+.intercom_wrapper .mute {
+  position: relative;
+  margin: 30px 0;
+  background: #191b1f;
+  padding: 22px 20px;
+}
+
+.intercom_wrapper .mute .check{
+  right: 10px;
+}
+/* ///////////////////////////////////////////////////////////////////////// */
+/* */
+/* ///////////////////////////////////////////////////////////////////////// */
 .form-group {
   margin-top: 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
   position: relative;
 }
 
@@ -1785,6 +1787,10 @@ td {
   color: #fff;
   -webkit-appearance: none;
 }
+.form-group input[type=button].disabled,
+.form-group input[type=submit].disabled {
+  opacity: .3;
+}
 
 .form-group .ui-select span {
   display: none;
@@ -1795,6 +1801,34 @@ td {
   height: 18px;
   border-radius: 3px;
   display: inline-block;
+}
+
+.form-group .select {
+    background: #191b1f;
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 0;
+    overflow-x: hidden;
+    border: none;
+    margin-top: 10px;
+}
+
+.form-group .select .optgroup p {
+    color: #898989;
+    padding: 0 20px;
+}
+
+.form-group .select .option p {
+    margin-left: 20px;
+    color: #fff;
+}
+
+.form-group .select .selected {
+    background: #e3a104;
+}
+
+.form-group div {
+    padding: 5px 0;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
@@ -2121,22 +2155,41 @@ td {
 
 .notification_message {
   max-width: 800px;
+  max-height: calc(100vh - 220px);
   margin: auto;
   background: #191b1f;
+  overflow-y: auto;
 }
 
 .notification_message .notification_title {
   padding: 20px;
   font-size: 30px;
-  border-bottom: 1px solid #898989;
+  border-bottom: 2px solid #898989;
 }
 
 .notification_message .notification_content {
   padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  height: inherit;
+  max-height: calc(100vh - 550px);
+}
+
+.notification_message .dont_show_again p {
+    text-align: right;
+    margin-right: 65px;
+}
+
+.notification_message .check {
+    right: 20px;
 }
 
 .notification_message .notification_buttons {
   padding: 20px;
+}
+
+#user_interaction .notification_message {
+    border: 3px white ridge;
 }
 
 

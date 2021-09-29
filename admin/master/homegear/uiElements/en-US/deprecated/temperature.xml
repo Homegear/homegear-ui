@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.temperature</uniqueUiElementId>
+    <type>simple</type>
+    <control>temperature</control>
+    <texts>
+      <text id="title">
+        <content>Temperature</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Temp.</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="main">
+        <name>thermometer_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="temperature">
+        <name>thermometer_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l2">
+        <name>thermomenter_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <unit>°C</unit>
+        <minimumValue>-273.15</minimumValue>
+        <maximumValue>100.0</maximumValue>
+      </variable>
+    </variableInputs>
+  </homegearUiElement>
+</homegearUiElements>

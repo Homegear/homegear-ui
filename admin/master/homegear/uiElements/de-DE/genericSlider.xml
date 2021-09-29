@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.genericSlider</uniqueUiElementId>
+    <control>genericSlider</control>
+    <type>simple</type>
+    <description>Visualisiert und setzt einen Zahlenwert innerhalb eines definierten Bereichs.</description>
+    <texts>
+      <text id="title">
+        <color>title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="main">
+        <name>house_1</name>
+        <color>inactive</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Wert</label>
+        <description>Setzt den visualierten Wert.</description>
+        <types>int, float</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <unit>%</unit>
+        <minimumValue>0</minimumValue>
+        <maximumValue>100</maximumValue>
+        <minimumValueScaled>0</minimumValueScaled>
+        <maximumValueScaled>100</maximumValueScaled>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Wert</label>
+        <description>Gibt den im UI-Element gewählten Wert aus.</description>
+        <types>int, float</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+    <metadata>
+      <l3_force>true</l3_force>
+    </metadata>
+  </homegearUiElement>
+</homegearUiElements>

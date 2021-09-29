@@ -13,7 +13,7 @@
 
 
 
-let ShifFavoritesLvl3 = {
+const ShifFavoritesLvl3 = {
     mixins: [mixin_print_mounted('shif-favorites-level-3')],
 
     props: {
@@ -37,7 +37,7 @@ let ShifFavoritesLvl3 = {
 
 
 
-let ShifFavoritesLvl1 = {
+const ShifFavoritesLvl1 = {
     mixins: [
         mixin_scroll_position,
         mixin_profiles,
@@ -67,7 +67,7 @@ let ShifFavoritesLvl1 = {
 
 
 
-let ShifFavorites = {
+const ShifFavorites = {
     mixins: [mixin_print_mounted('shif-favorites')],
 
     template: `

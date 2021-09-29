@@ -85,7 +85,8 @@ function homegear_init() {
     $hg = new \Homegear\Homegear();
 
     try {
-        $hg_lang     = $interfaceData["options"]["language"] ?? 'en-US';
+        //Set browser language when no language is set in settings.
+        $hg_lang = $interfaceData["options"]["language"];
         $hg_ui_elems = $hg->getAllUiElements($hg_lang);
         $hg_floors   = $hg->getStories($hg_lang);
         $hg_rooms    = $hg->getRooms($hg_lang);
@@ -179,11 +180,16 @@ function homegear_init() {
         $dev['grid'] = null;
         $dev['controls'][]['cell'] = null;
 
+        $fields_to_copy = [
+            'uniqueUiElementId',
+        ];
         $fields_to_move = [
-            'control', 'uniqueUiElementId', 'variableInputs', 'variableOutputs'
+            'control', 'variableInputs', 'variableOutputs'
         ];
         foreach ($fields_to_move as $field)
             array_move_element($field, $dev, $dev['controls'][0]);
+        foreach ($fields_to_copy as $field)
+            $dev['controls'][0][$field] = $dev[$field];
 
         return $dev;
     }
@@ -239,6 +245,17 @@ function homegear_init() {
         }
 
         $house['devices'][$id] = $dev;
+    }
+
+    function device_category_patch_language(&$house, &$categories, $lang) {
+        foreach ($categories as &$category) {
+            if (array_key_exists($lang, $category["name"]))
+                $category['name'] = $category['name'][$lang];
+            if (array_key_exists($lang, $category['statusMap']))
+                $category['statusMap'] = $category['statusMap'][$lang];
+        }
+
+        $house['deviceCategories'] = $categories;
     }
 
     function house_build_back_refs(&$house) {
@@ -350,6 +367,7 @@ function homegear_init() {
         'options'      => $interfaceData["options"],
         'manifest'     => $interfaceData["manifest"],
         'iconFallback' => $interfaceData["iconFallback"],
+        'deviceCategories' => $interfaceData["deviceCategories"],
     ];
 
     if($hg_lang != "en-US"){
@@ -424,6 +442,9 @@ function homegear_init() {
 
     foreach ($hg_ui_elems as &$dev)
         device_parse($house, $map_invoke, $dev, $hg_lang);
+
+    device_category_patch_language($house, $interfaceData['deviceCategories'],
+                                   $hg_lang);
 
     // Insert the cross references
     house_build_back_refs($house);

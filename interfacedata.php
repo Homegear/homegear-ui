@@ -14,26 +14,49 @@
         "userDefaults": {
             "theme": "dark",
             "highlight": "#e3a104",
-            "language": "de-DE",
             "startPath": "house.tab.rooms",
             "showFloor": true,
             "roleProfileDefinable": false,
+            "enableAutomations": false,
+            "deviceAggregation": false,
             "languageChangeable": true,
             "twofaChangeable": true,
             "consoleLog": true,
             "viewportScale": 0.65,
             "scrollbarScale": 4,
+            "intercom": {
+                "visible": false,
+                "ringVolume": {
+                    "visible": true,
+                    "status": 100
+                },
+                "outstationVolume": {
+                    "visible": true,
+                    "status": 100
+                },
+                "mute": {
+                    "visible": true,
+                    "status": false
+                },
+                "micVolume": {
+                    "visible": true,
+                    "status": 100
+                }
+            },
+            "intercomSettings": {
+                "visible": false
+            },
             "disabledMainmenus": {
             },
             "disabledMenus": {
-                "settings.automations": true
+                "settings.automations": true,
+                "settings.log": true
             },
             "firstFactorAuthMethods": ["login", "cloud", "certificate", "oauth", "apiKey"],
             "secondFactorAuthMethods": ["webauthn"],
+            "dont_show_again": {
+            },
             "elementOrder": {
-                "house.tab.rooms.room-9": {
-                    "default": [1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-                }
             }
         }
     },
@@ -70,16 +93,35 @@
             ]
         },
         "2": {
+            "id": "intercom",
+            "name": "intercom",
+            "icon": "telephone_1",
+            "condition": {
+                "route": {
+                    "query": "intercom"
+                },
+                "options": {
+                    "path": ["intercom", "visible"],
+                    "value": true
+                }
+            },
+            "invoke": {
+                "jsonrpc": 2.0,
+                "method": "triggerIntercom",
+                "params": []
+            }
+        },
+        "3": {
             "id": "notifications",
             "name": "notifications",
             "icon": "notification_2"
         },
-        "3": {
+        "4": {
             "id": "settings",
             "name": "settings",
             "icon": "settings_1"
         },
-        "4": {
+        "5": {
             "id": "logoff",
             "name": "logoff",
             "icon": "power_1"
@@ -87,23 +129,18 @@
     },
     "menu": [
         {
-            "name": "settings.user",
+            "name": "settings.user.manage",
             "mainmenu": "settings",
             "category": "user",
             "level": "1",
             "icon": "profile_1",
-            "description": "settings.user.description"
-        },
-        {
-            "name": "settings.user.manage",
-            "mainmenu": "settings",
-            "category": "user",
-            "level": "2",
-            "icon": "profile_1",
+            "type": "submenu",
             "description": "settings.user.manage.description"
         },
         {
             "name": "settings.favorites",
+            "type": "finalmenu",
+            "component": "ShifSettingsFavorites",
             "mainmenu": "settings",
             "category": "favorites",
             "level": "1",
@@ -112,6 +149,8 @@
         },
         {
             "name": "settings.sort",
+            "type": "finalmenu",
+            "component": "ShifSettingsSort",
             "mainmenu": "settings",
             "category": "sort",
             "level": "1",
@@ -120,6 +159,7 @@
         },
         {
             "name": "settings.profiles",
+            "type": "submenu",
             "mainmenu": "settings",
             "category": "profiles",
             "level": "1",
@@ -128,6 +168,7 @@
         },
         {
             "name": "settings.automations",
+            "type": "submenu",
             "mainmenu": "settings",
             "category": "automations",
             "level": "1",
@@ -135,7 +176,45 @@
             "description": "settings.automations.description"
         },
         {
+            "name": "settings.intercom",
+            "type": "submenu",
+            "mainmenu": "settings",
+            "category": "intercom",
+            "level": "1",
+            "icon": "telephone_1",
+            "description": "settings.intercom.description",
+            "condition": {
+                "route": {
+                    "query": "intercom"
+                },
+                "options": {
+                    "path": ["intercomSettings", "visible"],
+                    "value": true
+                }
+            }
+        },
+        {
+            "name": "settings.roomnames",
+            "type": "submenu",
+            "mainmenu": "settings",
+            "category": "roomnames",
+            "level": "1",
+            "icon": "speech_bubble_1",
+            "description": "settings.roomnames.description"
+        },
+        {
+            "name": "settings.log",
+            "type": "submenu",
+            "component": "ShifSettingsLog",
+            "mainmenu": "settings",
+            "category": "log",
+            "level": "1",
+            "icon": "warning_1",
+            "description": "settings.log.description"
+        },
+        {
             "name": "settings.about",
+            "type": "submenu",
             "mainmenu": "settings",
             "category": "license",
             "level": "1",
@@ -214,8 +293,443 @@
             }
         }
     },
+    "deviceCategories": {
+        "0": {
+            "name": {
+                "en-US": "Lighting",
+                "de-DE": "Beleuchtung"
+            },
+            "icon": "light_on_1",
+            "l2_status": true,
+            "highlightIcon": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        100001
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        101001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "aus",
+                    "1": "an",
+                    "falseCount": "aus",
+                    "trueCount": "an"
+                },
+                "en-US": {
+                    "0": "off",
+                    "1": "on",
+                    "falseCount": "off",
+                    "trueCount": "on"
+                }
+            },
+            "uiElements": {
+                "lightingBrightness": true,
+                "lightingButton": true,
+                "lightingColor": true,
+                "lightingSwitch": true,
+                "lightingSwitchBrightness": true,
+                "lightingSwitchBrightnessTemp": true,
+                "lightingSwitchColor": true,
+                "lightingTemp": true
+            }
+        },
+        "1": {
+            "name": {
+                "en-US": "Heating",
+                "de-DE": "Heizung"
+            },
+            "icon": "heater_1",
+            "l2_status": true,
+            "highlightIcon": false,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        201003
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "Frostschutz",
+                    "1": "Komfort",
+                    "2": "Spar"
+                },
+                "en-US": {
+                    "0": "Frost protection",
+                    "1": "Comfort",
+                    "2": "Eco"
+                }
+            },
+            "uiElements": {
+                "heatingTemperature": true,
+                "heatingSliderMode": true,
+                "heatingSliderModeWindowhandle": true,
+                "heatingMode": true,
+                "heatingSlider": true
+            }
+        },
+        "2": {
+            "name": {
+                "en-US": "Ventilation",
+                "de-DE": "Lüftung"
+            },
+            "icon": "ventilator_2",
+            "l2_status": true,
+            "highlightIcon": false,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        202001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "Stufe 1",
+                    "1": "Stufe 2",
+                    "2": "Stufe 3",
+                    "3": "Stufe 4"
+                },
+                "en-US": {
+                    "0": "Level 1",
+                    "1": "Level 2",
+                    "2": "Level 3",
+                    "3": "Level 4"
+                }
+            },
+            "uiElements": {
+                "ventilationMode": true
+            }
+        },
+        "3": {
+            "name": {
+                "en-US": "Doors",
+                "de-DE": "Türen"
+            },
+            "icon": "door_open_2",
+            "l2_status": true,
+            "highlightIcon": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        301001,
+                        301003
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "geschlossen",
+                    "1": "geöffnet",
+                    "3": "verriegelt"
+                },
+                "en-US": {
+                    "0": "closed",
+                    "1": "opened",
+                    "3": "locked"
+                }
+            },
+            "uiElements": {
+                "doorHandle": true,
+                "doorLock": true
+            }
+        },
+        "4": {
+            "name": {
+                "en-US": "Windows",
+                "de-DE": "Fenster"
+            },
+            "icon": "window_1",
+            "l2_status": true,
+            "highlightIcon": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        301002
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "geschlossen",
+                    "1": "geöffnet",
+                    "2": "gekippt"
+                },
+                "en-US": {
+                    "0": "geschlossen",
+                    "1": "geöffnet",
+                    "2": "tilted"
+                }
+            },
+            "uiElements": {
+                "windowHandle": true,
+                "windowPosition": true
+            }
+        },
+        "5": {
+            "name": {
+                "en-US": "Sockets",
+                "de-DE": "Steckdosen"
+            },
+            "icon": "socket_1",
+            "l2_status": true,
+            "highlightIcon": true,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        400001
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "0": "aus",
+                    "1": "an"
+                },
+                "en-US": {
+                    "0": "off",
+                    "1": "on"
+                }
+            },
+            "uiElements": {
+                "socketButton": true,
+                "socketSwitch": true
+            }
+        },
+        "6": {
+            "name": {
+                "en-US": "Shading",
+                "de-DE": "Beschattung"
+            },
+            "icon": "blind_1",
+            "l2_status": true,
+            "highlightIcon": false,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        501000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        501004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "falseCount": "eingefahren",
+                    "trueCount": "ausgefahren"
+                },
+                "en-US": {
+                    "falseCount": "retracted",
+                    "trueCount": "extended"
+                }
+            },
+            "uiElements": {
+                "shadingButtons": true,
+                "shadingButtonsPosition": true,
+                "shadingButtonsPositionPositionSlats": true,
+                "shadingButtonsPositionVentilationWindalarm": true,
+                "shadingButtonsPositionWindalarm": true,
+                "shadingButtonsSingleStep": true,
+                "shadingButtonsSingleStepPositionPositionSlatsWindalarm": true,
+                "shadingButtonsUpDown": true,
+                "shadingPosition": true,
+                "shadingPositionSlats": true,
+                "shadingRainalarm": true,
+                "shadingVentilation": true,
+                "shadingWindalarm": true
+            }
+        },
+        "7": {
+            "name": {
+                "en-US": "Awnings",
+                "de-DE": "Markisen"
+            },
+            "icon": "awning_1",
+            "l2_status": true,
+            "highlightIcon": false,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        502000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        502004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "falseCount": "eingefahren",
+                    "trueCount": "ausgefahren"
+                },
+                "en-US": {
+                    "falseCount": "retracted",
+                    "trueCount": "extended"
+                }
+            },
+            "uiElements": {
+                "shadingAwningButtonsPosition": true,
+                "shadingAwningButtonsPositionRainalarm": true,
+                "shadingAwningButtonsPositionWindalarm": true,
+                "shadingAwningButtonsPositionWindalarmRainalarm": true
+            }
+        },
+        "8": {
+            "name": {
+                "en-US": "Window motors",
+                "de-DE": "Fenstermotoren"
+            },
+            "icon": "window_2",
+            "l2_status": true,
+            "highlightIcon": false,
+            "aggregation": [
+                {
+                    "type": 2,
+                    "roles": [
+                        600000
+                    ]
+                },
+                {
+                    "type": 1,
+                    "roles": [
+                        600004
+                    ]
+                }
+            ],
+            "statusMap": {
+                "de-DE": {
+                    "falseCount": "geöffnet",
+                    "trueCount": "geschlossen"
+                },
+                "en-US": {
+                    "falseCount": "open",
+                    "trueCount": "closed"
+                }
+            },
+            "uiElements": {
+                "windowButtons": true,
+                "windowButtonsPosition": true,
+                "windowButtonsPositionRainalarm": true,
+                "windowButtonsUpDown": true,
+                "windowButtonsUpDownRainalarm": true,
+                "windowRainalarm": true
+            }
+        },
+        "9": {
+            "name": {
+                "en-US": "weather",
+                "de-DE": "Wetter"
+            },
+            "icon": "weather_1",
+            "l2_status": false,
+            "highlightIcon": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "OpenWeatherMap": true,
+                "climateCity": true,
+                "climateCloudcoverage": true,
+                "climateDate": true,
+                "climatePressure": true,
+                "climateRain": true,
+                "climateRain3h": true,
+                "climateSnow3h": true,
+                "climateSunrise": true,
+                "climateSunset": true,
+                "climateDusk": true,
+                "climateWeather": true,
+                "climateWinddirection": true,
+                "climateWindgust": true,
+                "climateWindspeed": true
+            }
+        },
+        "10": {
+            "name": {
+                "en-US": "Climate",
+                "de-DE": "Klima"
+            },
+            "icon": "weather_1",
+            "l2_status": false,
+            "highlightIcon": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "humidity": true,
+                "temperature": true
+            }
+        },
+        "11": {
+            "name": {
+                "en-US": "Media",
+                "de-DE": "Media"
+            },
+            "icon": "speaker_1",
+            "l2_status": false,
+            "highlightIcon": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "mediaButtons": true
+            }
+        },
+        "12": {
+            "name": {
+                "en-US": "Helper",
+                "de-DE": "Helper"
+            },
+            "icon": "police_1",
+            "l2_status": false,
+            "highlightIcon": false,
+            "aggregation": [
+
+            ],
+            "statusMap": {
+
+            },
+            "uiElements": {
+                "helperSwitch": true
+            }
+        }
+    },
     "i18n": {
         "en-US": {
+            "error.page_not_found": "Error",
+            "error.title": "The page could not be found",
+            "error.link.text": "Back to home",
             "login": {
                 "username": "Username",
                 "password": "Password",
@@ -237,6 +751,7 @@
             "notifications": "Notifications",
             "notifications.amount": "Amount",
             "notifications.close_delete": "Close and Delete",
+            "notifications.dont_show_again": "Don\'t show again",
             "settings": "Settings",
             "settings.automations": "Automations",
             "settings.automations.description": "Add and delete automations",
@@ -279,6 +794,14 @@
             "settings.favorites": "Favorites",
             "settings.favorites.mode": "Modify favorites",
             "settings.favorites.description": "Set and unset favorites",
+            "settings.intercom": "Intercom",
+            "settings.intercom.description": "Intercom settings",
+            "settings.intercom.volume_bell": "Bell volume",
+            "settings.intercom.volume_voice": "Voice volume",
+            "settings.intercom.sensitivity": "Microphone sensitivity",
+            "settings.intercom.mute": "Mute bell",
+            "settings.log": "Log",
+            "settings.log.description": "View browser log",
             "settings.sort": "Sort",
             "settings.sort.mode": "Sort elements",
             "settings.sort.description": "Restructure: stories, rooms, devices, favorites, profiles, ...",
@@ -287,14 +810,13 @@
             "settings.profiles.profile.name": "Name",
             "settings.profiles.profile.icon": "Icon",
             "settings.profiles.profile.locations": "Locations",
-            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.global": "Show in \"Profiles\" tab",
             "settings.profiles.profile.locations.favorite": "Favorite",
             "settings.profiles.profile.locations.floor": "Story",
-            "settings.profiles.profile.locations.floor.placeholder": "select story",
-            "settings.profiles.profile.locations.room": "Room",
-            "settings.profiles.profile.locations.room.placeholder": "select room",
+            "settings.profiles.profile.locations.room": "Rooms",
             "settings.profiles.profile.locations.add": "Add",
             "settings.profiles.profile.locations.remove": "Remove",
+            "settings.profiles.profile.categories": "Device Categories",
             "settings.profiles.profile.roles": "Role",
             "settings.profiles.profile.roles.name": "Role",
             "settings.profiles.profile.roles.value": "State",
@@ -302,10 +824,21 @@
             "settings.profiles.profile.roles.remove": "Remove",
             "settings.profiles.profile.delete": "Delete",
             "settings.profiles.profile.load": "Modify Devices",
-            "settings.profiles.profile.load.description": "Modify Device Mode activ",
+            "settings.profiles.profile.load.description": "Please choose the devices you want to have added to the profile. Please adjust the device states of the wanted devices before saving.<br /><br />Note: To showcase profiles changes live, all relevant devices are set to their configured value.",
             "settings.profiles.profile.save": "Save",
             "settings.profiles.profile.edit": "Edit",
+            "settings.profiles.profile.delete_request": "Are you sure you want to delete this profile?",
+            "settings.profiles.profile.unsaved": "You have unsaved changes. Continue anyway?",
+            "settings.profiles.profile.abort": "Abort",
+            "settings.profiles.profile.global_or_room": "A profile must either be marked as \"global\" or be assigned to a room. Please change your configuration.",
+            "settings.profiles.profile.name_required": "A profile must have a name. Please change your configuration.",
             "settings.profiles.description": "Add and delete profiles",
+            "settings.roomnames": "Room names",
+            "settings.roomnames.description": "Change room names",
+            "settings.roomnames.roomname.description": "Change room names",
+            "settings.roomnames.roomname.icon": "Icon",
+            "settings.roomnames.roomname.save": "Save",
+            "settings.roomnames.roomname.unsaved": "You have unsaved changes. Continue anyway?",
             "settings.user": "User",
             "settings.user.description": "Manage",
             "settings.user.manage": "User Settings",
@@ -325,6 +858,7 @@
             "settings.user.manage.highlight": "Highlighting",
             "settings.user.manage.startpath": "Start path",
             "settings.user.manage.save": "Save",
+            "settings.user.manage.unsaved": "You have unsaved changes. Continue anyway?",
             "settings.about": "License",
             "settings.about.description": "Credits",
             "settings.about.table.name": "Name",
@@ -335,19 +869,29 @@
             "modemenu.favorites.name": "Favorites mode",
             "modemenu.favorites.button.end": "Exit editing",
             "modemenu.sort.name": "Sort mode",
-            "modemenu.sort.button.end": "Exit editing",
-            "modemenu.profiles.name.label": "Profil",
-            "modemenu.profiles.button.settings": "Profil settings",
-            "modemenu.profiles.button.end": "Save & close",
+            "modemenu.sort.button.end": "Save",
+            "modemenu.profiles.name.label": "Profile",
+            "modemenu.profiles.name.new": "New profile",
+            "modemenu.profiles.button.settings": "Back to profile configuration",
+            "modemenu.profiles.button.end": "Save",
             "modemenu.profiles.button.abort": "abort",
             "refresh.message": "Please reload the interface",
             "refresh.message.button.text": "reload",
             "logoff": "Logoff",
             "disabled_text": "disabled",
             "hide": "hide",
-            "close": "close"
+            "close": "close",
+            "user_interaction.alert.button.true": "Confirm",
+            "user_interaction.confirm.button.false": "Abort",
+            "user_interaction.confirm.button.true": "Confirm",
+            "draggable.confirm.invalid_keys": "Due to changes of data, it is impossible to visualize the user defined order of elments. To be able to display the page, this configuration needs to be resettet first.",
+            "draggable.confirm.invalid_keys.button.reset": "Reset",
+            "draggable.confirm.invalid_keys.button.abort": "Abort"
         },
         "de-DE": {
+            "error.page_not_found": "Fehler",
+            "error.title": "Die Seite konnte nicht angezeigt werden",
+            "error.link.text": "Zurück zur Raumansicht",
             "login": {
                 "username": "Benutzername",
                 "password": "Kennwort",
@@ -369,6 +913,7 @@
             "notifications": "Benachrichtigungen",
             "notifications.amount": "Anzahl",
             "notifications.close_delete": "Löschen und Schließen",
+            "notifications.dont_show_again": "Nicht erneut anzeigen",
             "settings": "Einstellungen",
             "settings.automations": "Automatisierungen",
             "settings.automations.new": "Neu",
@@ -411,6 +956,14 @@
             "settings.favorites": "Favoriten",
             "settings.favorites.mode": "Favoriten bearbeiten",
             "settings.favorites.description": "Favoriten hinzufügen und entfernen",
+            "settings.intercom": "Sprechanlage",
+            "settings.intercom.description": "Sprechanlageneinstellungen",
+            "settings.intercom.volume_bell": "Klingellautstärke",
+            "settings.intercom.volume_voice": "Sprachlautstärke",
+            "settings.intercom.sensitivity": "Mikrofonempfindlichkeit",
+            "settings.intercom.mute": "Klingelton stummschalten",
+            "settings.log": "Log",
+            "settings.log.description": "Zeige Browser-Log",
             "settings.sort": "Sortieren",
             "settings.sort.mode": "Elemente sortieren",
             "settings.sort.description": "Neuanordnen: Stockwerke, Räume, Geräte, Favoriten, Profile, ...",
@@ -419,14 +972,13 @@
             "settings.profiles.profile.name": "Name",
             "settings.profiles.profile.icon": "Icon",
             "settings.profiles.profile.locations": "Visualisierungsort",
-            "settings.profiles.profile.locations.global": "Global",
+            "settings.profiles.profile.locations.global": "Im Tab \"Profile\" anzeigen",
             "settings.profiles.profile.locations.favorite": "Favorit",
             "settings.profiles.profile.locations.floor": "Stockwerk",
-            "settings.profiles.profile.locations.floor.placeholder": "Stockwerk wählen",
-            "settings.profiles.profile.locations.room": "Raum",
-            "settings.profiles.profile.locations.room.placeholder": "Raum wählen",
+            "settings.profiles.profile.locations.room": "Räume",
             "settings.profiles.profile.locations.add": "Hinzufügen",
             "settings.profiles.profile.locations.remove": "Entfernen",
+            "settings.profiles.profile.categories": "Gerätekategorien",
             "settings.profiles.profile.roles": "Rolle",
             "settings.profiles.profile.roles.name": "Rolle",
             "settings.profiles.profile.roles.value": "Status",
@@ -434,10 +986,21 @@
             "settings.profiles.profile.roles.remove": "Entfernen",
             "settings.profiles.profile.delete": "Löschen",
             "settings.profiles.profile.load": "Zugehörige Geräte bearbeiten",
-            "settings.profiles.profile.load.description": "Geräte bearbeiten aktiv",
+            "settings.profiles.profile.load.description": "Bitte wählen Sie jetzt die Geräte aus, welche in das Profil aufgenommen werden sollen. Bitte setzen Sie vor dem Speichern den gewünschten Gerätezustand.<br /><br />Hinweis: Um Änderungen am Profil live verfolgen zu können, werden alle relevanten Geräte in den eingestellten Zustand gebracht.",
             "settings.profiles.profile.save": "Speichern",
             "settings.profiles.profile.edit": "Bearbeiten",
+            "settings.profiles.profile.unsaved": "Sie haben noch nicht gespeicherte Änderungen. Trotzdem fortsetzen?",
+            "settings.profiles.profile.abort": "Abbruch",
+            "settings.profiles.profile.global_or_room": "Ein Profil muss entweder als \"global\" markiert, oder mindestens einem Raum zugewiesen sein. Bitte ändern Sie ihre Konfiguration.",
+            "settings.profiles.profile.name_required": "Ein Profil muss einen Namen besitzen. Bitte ändern Sie ihre Konfiguration.",
+            "settings.profiles.profile.delete_request": "Sind Sie sicher, dass Sie das Profil löschen möchten?",
             "settings.profiles.description": "Profile erstellen und löschen",
+            "settings.roomnames": "Raumnamen",
+            "settings.roomnames.description": "Raumnamen abändern",
+            "settings.roomnames.roomname.description": "Raumnamen abändern",
+            "settings.roomnames.roomname.icon": "Icon",
+            "settings.roomnames.roomname.save": "Speichern",
+            "settings.roomnames.roomname.unsaved": "Sie haben noch nicht gespeicherte Änderungen. Trotzdem fortsetzen?",
             "settings.user": "Benutzer",
             "settings.user.description": "Verwalten",
             "settings.user.manage": "Benutzereinstellungen",
@@ -457,6 +1020,7 @@
             "settings.user.manage.highlight": "Vordergrundfarbe",
             "settings.user.manage.startpath": "Startpunkt",
             "settings.user.manage.save": "Speichern",
+            "settings.user.manage.unsaved": "Sie haben noch nicht gespeicherte Änderungen. Trotzdem fortsetzen?",
             "settings.about": "Lizenz",
             "settings.about.description": "Credits",
             "settings.about.table.name": "Name",
@@ -467,17 +1031,24 @@
             "modemenu.favorites.name": "Favoriten Modus",
             "modemenu.favorites.button.end": "Bearbeiten beenden",
             "modemenu.sort.name": "Sortiermodus",
-            "modemenu.sort.button.end": "Bearbeiten beenden",
+            "modemenu.sort.button.end": "Speichern",
             "modemenu.profiles.name.label": "Profil",
-            "modemenu.profiles.button.settings": "Profil Einstellungen",
-            "modemenu.profiles.button.end": "speichern & beenden",
+            "modemenu.profiles.name.new": "Neues Profil",
+            "modemenu.profiles.button.settings": "Zurück zur Profilkonfiguration",
+            "modemenu.profiles.button.end": "Speichern",
             "modemenu.profiles.button.abort": "abbrechen",
             "refresh.message": "Bitte das Interface neu laden",
             "refresh.message.button.text": "neu laden",
             "logoff": "Abmelden",
             "disabled_text": "gesperrt",
             "hide": "ausblenden",
-            "close": "schließen"
+            "close": "schließen",
+            "user_interaction.alert.button.true": "Bestätigen",
+            "user_interaction.confirm.button.false": "Abbruch",
+            "user_interaction.confirm.button.true": "Bestätigen",
+            "draggable.confirm.invalid_keys": "Durch Änderung des Datenbestands ist keine plausible Darstellung der benutzerdefinierten Sortierung mehr möglich. Um die aufgerufene Seite wieder darstellen zu können, ist ein Zurücksetzen der Sortierung für diese Seite zwingend notwendig.",
+            "draggable.confirm.invalid_keys.button.reset": "Zurücksetzen",
+            "draggable.confirm.invalid_keys.button.abort": "Abbrechen"
         }
     },
     "iconFallback": {
@@ -609,6 +1180,10 @@
         "wind": "wind_1",
         "blinds_1": "blind_2",
         "blinds_2": "blind_3"
+    },
+    "map_automation": {
+        "devices": [],
+        "profiles": []
     }
 }
 ';
@@ -656,8 +1231,14 @@ function userSettings() {
     $interfaceData["options"]["userHasTwofaRegistrations"] = ($user->hasWebAuthn() ? true : false);
     $interfaceData["options"]["theme"] = ($user->getSettings()["theme"] ?? $interfaceData["settings"]["userDefaults"]["theme"]);
     $interfaceData["options"]["highlight"] = ($user->getSettings()["highlight"] ?? $interfaceData["settings"]["userDefaults"]["highlight"]);
-    $interfaceData["options"]["language"] = ($user->getSettings()["language"] ?? $interfaceData["settings"]["userDefaults"]["language"]);
+    $interfaceData["options"]["language"] = $user->getSettings()["language"];
     $interfaceData["options"]["startPath"] = ($user->getSettings()["startPath"] ?? $interfaceData["settings"]["userDefaults"]["startPath"]);
+    $interfaceData["options"]["intercom"] = ($user->getSettings()["intercom"] ?? $interfaceData["settings"]["userDefaults"]["intercom"]);
+    $interfaceData["options"]["intercomSettings"] = ($user->getSettings()["intercomSettings"] ?? $interfaceData["settings"]["userDefaults"]["intercomSettings"]);
+    if (isset($_GET['intercom'])) {
+        $interfaceData["options"]["intercom"]["visible"] = true;
+        $interfaceData["options"]["intercomSettings"]["visible"] = true;
+    }
     if (isset($_GET['viewportScale']) && is_float(floatval($_GET['viewportScale']))) {
         $interfaceData["options"]["viewportScale"] = floatval($_GET['viewportScale']);
     }
@@ -671,7 +1252,9 @@ function userSettings() {
         $interfaceData["options"]["scrollbarScale"] = ($user->getSettings()["scrollbarScale"] ?? $interfaceData["settings"]["userDefaults"]["scrollbarScale"]);
     }
     $interfaceData["options"]["roleProfileDefinable"] = ($user->getSettings()["roleProfileDefinable"] ?? $interfaceData["settings"]["userDefaults"]["roleProfileDefinable"]);
+    $interfaceData["options"]["enableAutomations"] = ($user->getSettings()["enableAutomations"] ?? $interfaceData["settings"]["userDefaults"]["enableAutomations"]);
     $interfaceData["options"]["languageChangeable"] = ($user->getSettings()["languageChangeable"] ?? $interfaceData["settings"]["userDefaults"]["languageChangeable"]);
+    $interfaceData["options"]["deviceAggregation"] = ($user->getSettings()["deviceAggregation"] ?? $interfaceData["settings"]["userDefaults"]["deviceAggregation"]);
     $interfaceData["options"]["twofaChangeable"] = ($user->getSettings()["twofaChangeable"] ?? $interfaceData["settings"]["userDefaults"]["twofaChangeable"]);
     $interfaceData["options"]["disabledMainmenus"] = ($user->getSettings()["disabledMainmenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMainmenus"]);
     $interfaceData["options"]["disabledMenus"] = ($user->getSettings()["disabledMenus"] ?? $interfaceData["settings"]["userDefaults"]["disabledMenus"]);
@@ -681,6 +1264,7 @@ function userSettings() {
     $interfaceData["options"]["websocket_port"] = $interfaceData["settings"]["homegear"]["port"];
     $interfaceData["options"]["websocket_security_ssl"] = $interfaceData["settings"]["homegear"]["ssl"] ?? "location.protocol";
     $interfaceData["options"]["elementOrder"] = ($user->getSettings()["elementOrder"] ?? $interfaceData["settings"]["userDefaults"]["elementOrder"]);
+    $interfaceData["options"]["dont_show_again"] = ($user->getSettings()["dont_show_again"] ?? $interfaceData["settings"]["userDefaults"]["dont_show_again"]);
 }
 
 if (!is_array($interfaceData)) die("Invalid JSON file!");
