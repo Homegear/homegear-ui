@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.humidity</uniqueUiElementId>
+    <type>simple</type>
+    <control>humidity</control>
+    <texts>
+      <text id="title">
+        <content>Humidity</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Humidity</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="main">
+        <name>waterdrops_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="humidity">
+        <name>waterdrops_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l2">
+        <name>waterdrops_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <unit>%</unit>
+        <minimumValue>0</minimumValue>
+        <maximumValue>100</maximumValue>
+      </variable>
+    </variableInputs>
+  </homegearUiElement>
+</homegearUiElements>

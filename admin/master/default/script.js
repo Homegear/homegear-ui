@@ -6,12 +6,14 @@
 */
 /*
     exported
+        PromiseAllSettled
         clone
         set_or_extend
         shif_device
         shif_comps_create
         shif_register_disable_hooks
         user_logoff
+        status_format
 */
 
 
@@ -93,28 +95,6 @@ $('body').on('touchmove', function (e) {
         }
     }
 });
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// passt die Header Tab Anzeige beim scrollen an
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-headerVisibility('true');
-function headerVisibility(_state) {
-    let lastScrollTop = 0;
-
-    $('.content').scroll(function(_event){
-        var st = $(this).scrollTop();
-
-        if (st > lastScrollTop) { // downscroll code
-            $('.content_single #tabs').hide();
-            $('.content_big #tabs').hide();
-        }
-        else { // upscroll code
-            $('.content_single #tabs').show();
-            $('.content_big #tabs').show();
-        }
-        lastScrollTop = st;
-    });
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // triggert beim Logoff eines Users das Löschen des Cookies
@@ -203,17 +183,38 @@ function get_or_default(obj, key, def) {
     return (typeof(obj) == 'object' && key in obj) ? obj[key] : def;
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-function set_or_extend(arr, idx, vals) {
-    if (idx >= arr.length)
-        arr.push(vals);
-    else {
-        var keys = Object.keys(vals);
-        for (var i = 0; i < keys.length; ++i)
-            arr[idx][keys[i]] = vals[keys[i]];
+/**
+ * For some reason, babel does not polyfill Promise.allSettled.
+ * https://stackoverflow.com/a/39031032
+ **/
+function PromiseAllSettled(promises) {
+    let wrappedPromises = promises.map(
+        p => Promise.resolve(p)
+                    .then(
+                        val => ({ status: 'fulfilled', value: val }),
+                        err => ({ status: 'rejected', reason: err })
+                     )
+    );
+    return Promise.all(wrappedPromises);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+function status_format(status, precision) {
+    if (typeof(status) === 'string') {
+        const regex = /^(\d+(?:[.,]\d+)?)/;
+        return status.replace(regex, (match) => this.float_formatted(match, precision));
     }
+
+    for (let cur of status)
+        cur.value = status_format.apply(this, [cur.value, precision]);
+
+    return status;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -352,18 +353,36 @@ Vue.component('shif-icon', {
         rotate:    Boolean,
     },
 
+    computed: {
+        icon: function () {
+            const font_awesome = 'font-awesome/fa-';
+
+            if (this.interfaceIcons[this.src] !== undefined)
+                return this.interfaceIcons[this.src];
+
+            if (this.src.startsWith(font_awesome)) {
+                const key = this.src.replace(font_awesome, '');
+
+                if (this.interfaceIcons.fontawesome_solid[key] !== undefined)
+                    return this.interfaceIcons.fontawesome_solid[key];
+
+                if (this.interfaceIcons.fontawesome_regular[key] !== undefined)
+                    return this.interfaceIcons.fontawesome_regular[key];
+            }
+
+            if (this.interfaceData.iconFallback[this.src] !== undefined)
+                return this.interfaceIcons[this.interfaceData.iconFallback[this.src]];
+
+            return undefined;
+        },
+    },
+
     template: `
         <div v-bind:class="classname" v-on:click="$emit('click', this)">
-            <template v-if="src in interfaceIcons">
+            <template v-if="icon !== undefined">
                 <div class="svg_icon"
                      v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
-                     v-html="interfaceIcons[src]">
-                </div>
-            </template>
-            <template v-else-if="src in interfaceData.iconFallback">
-                <div class="svg_icon"
-                     v-bind:class="[src, active, {accordion_arrow_rotated: rotate}]"
-                     v-html="interfaceIcons[interfaceData.iconFallback[src]]">
+                     v-html="icon">
                 </div>
             </template>
             <template v-else>
@@ -799,6 +818,15 @@ Vue.component('shif-generic-l2', {
             this.$off('click_icon', this.$listeners.click);
     },
 
+    computed: {
+        computedClass() {
+            if (typeof this.status !== 'undefined' && this.status.length < 1) {
+            return 'title_only';
+            }
+            return '';
+        }
+    },
+
     methods: {
         emit: function (key, val) {
             if (this.disabled.flag)
@@ -843,18 +871,20 @@ Vue.component('shif-generic-l2', {
                                classname="device_icon">
                     </shif-icon>
                 </div>
-                <div class="device_text">
+                <div class="device_text" v-bind:class="computedClass">
                     <shif-title v-bind:disabled="disabled">{{ title }}</shif-title>
                     <div v-if="place" class="device_location">
                         {{ place }}
                     </div>
-                    <template v-if="typeof(status) === 'object'">
-                        <shif-status v-bind:classname="active.text"
-                                     v-bind:key_vals="status">
-                        </shif-status>
-                    </template>
-                    <template v-else>
-                        <shif-status v-bind:classname="active.text">{{ status }}</shif-status>
+                    <template v-if="status !== undefined">
+                        <template v-if="typeof(status) === 'object'">
+                            <shif-status v-bind:classname="active.text"
+                                        v-bind:key_vals="status">
+                            </shif-status>
+                        </template>
+                        <template v-else>
+                            <shif-status v-bind:classname="active.text">{{ status }}</shif-status>
+                        </template>
                     </template>
                 </div>
                 <div v-if="actions"
@@ -875,6 +905,146 @@ Vue.component('shif-generic-l2', {
             </div>
         </div>
     `,
+});
+
+
+
+Vue.component('shif-multi-select', {
+    props: {
+        options: {
+            type: [Array, Object],
+            required: true,
+        },
+        value: {
+            type: Array,
+            default: function () { return []; },
+        },
+        func_group_name: {
+            type: Function,
+            default: function(x) {
+                if (Array.isArray(x))
+                    return undefined;
+
+                return x;
+            },
+        },
+        func_item_name: {
+            type: Function,
+            default: function (x, y) {
+                if (Array.isArray(this.options))
+                    return x;
+
+                return `${x}-${y}`;
+            },
+        },
+        func_key: {
+            type: Function,
+            default: function (x, y) {
+                if (Array.isArray(this.options))
+                    return x;
+
+                return `${x}-${y}`;
+            },
+        },
+    },
+
+    computed: {
+        options_is_array: function () {
+            return Array.isArray(this.options);
+        },
+
+        _model_object: function () {
+            if (this.options_is_array)
+                return undefined;
+
+            let out = {};
+
+            for (const opt in this.options) {
+                const cur = this.options[opt];
+                for (const i of cur)
+                    out[this.func_key(opt, i)] = {
+                        selected: this.is_selected(opt, i),
+                    };
+            }
+
+            return out;
+        },
+
+        _model_array: function () {
+            if (! this.options_is_array)
+                return undefined;
+
+            return Array.from(this.options.keys()).map(x => ({
+                selected: this.is_selected(x)
+            }));
+        },
+
+        model: function () {
+            return this.options_is_array
+                    ? this._model_array
+                    : this._model_object;
+        },
+
+        selected: function () {
+            let selected = [];
+
+            if (this.options_is_array) {
+                for (let i = 0; i < this.model.length; ++i)
+                    if (this.model[i].selected === true)
+                        selected.push(i);
+            } else {
+                for (const i in this.model)
+                    if (this.model[i].selected === true)
+                        selected.push(i);
+            }
+
+            return selected;
+        }
+    },
+
+    methods: {
+        is_selected: function (group, item) {
+            return this.value.indexOf(this.func_key(group, item)) !== -1;
+        },
+
+        has_selected_class: function (group, item) {
+            return this.model[this.func_key(group, item)].selected;
+        },
+
+        on_click: function (group, item) {
+            const key = this.func_key(group, item);
+            this.model[key].selected = ! this.model[key].selected;
+
+            this.$emit('input', this.selected);
+        },
+    },
+
+    template: `
+        <div class="select">
+
+            <template v-if="options_is_array">
+                <div v-for="_, i in options"
+                     v-bind:class="{selected: has_selected_class(i)}"
+                     v-on:click="on_click(i)"
+                     class="option">
+                    <p>{{ func_item_name(i) }}</p>
+                </div>
+            </template>
+
+            <template v-else>
+                <div class="optgroup" v-for="group, group_key in options">
+                    <p>{{ func_group_name(group_key) }}</p>
+                    <div v-for="i in group"
+                         v-bind:class="{selected: has_selected_class(group_key, i)}"
+                         v-on:click="on_click(group_key, i)"
+                         class="option">
+                        <p>{{ func_item_name(group_key, i) }}</p>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+    `
 });
 // }}}
 
@@ -939,6 +1109,7 @@ const shif_device = {
         'props',
         'indexes',
         'rendering',
+        'dynamicMetadata',
         'include_place',
         'sibling_idx',
     ],
@@ -947,14 +1118,13 @@ const shif_device = {
 
     data: function() {
         return {
-            lastClickCount: 0,
             profile_state: false,
         };
     },
 
     inject: {
         layer: 'layer',
-        role_id: {default: undefined,},
+        cat_id: {default: undefined,},
         room_id: 'room_id',
         floor_id: 'floor_id',
         // siblings: 'siblings',
@@ -1017,12 +1187,19 @@ const shif_device = {
         },
 
         disabled: function () {
+            function find_dev_obj_props(cur) {
+                while (cur.dev_obj_props === undefined && cur.$parent !== undefined)
+                    cur = cur.$parent;
+
+                return cur.dev_obj_props;
+            }
+
             const backend = check_disabled_backend(this.uiElement, this.indexes);
             if (backend.flag === true)
                 return backend;
 
             return check_disabled_frontend(this.uiElement, this.sibling_idx,
-                                           this.$parent.dev_obj_props);
+                                           find_dev_obj_props(this));
         },
 
         used_by_automations: function () {
@@ -1130,15 +1307,8 @@ Vue.component('shif-room', {
 
 
 Vue.component('shif-tab', {
-    props: {
-        width: {
-            type:    String,
-            default: '50%',
-        }
-    },
     template: `
         <div class="tab button"
-             v-bind:style="{width: width}"
              v-on:click="$emit('click', 1)">
              <slot></slot>
         </div>

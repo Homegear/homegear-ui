@@ -12,7 +12,8 @@
         ShifSettingsAutomations
         ShifSettingsAutomationsForm
         ShifSettingsFavorites
-        ShifSettingsItems
+        ShifSettingsIntercom
+        ShifSettingsItemsLvl1
         ShifSettingsLicenses
         ShifSettingsProfile
         ShifSettingsProfiles
@@ -24,9 +25,13 @@
         ShifNotifications
         ShifNotificationsLvl1
         ShifNotificationsNotification
-        ShifLog
+        ShifPageNotFound
+        ShifSettingsLog
+        ShifSettingsRoomName
+        ShifSettingsRoomNames
         ShifMainmenu
         ShifModemenu
+        ShifTabmenu
 
         condition_check
         date_format
@@ -35,6 +40,7 @@
         icons
         mixin_modemenu
         mixin_notification
+        mixin_tabmenu
         user_logoff
 */
 /*
@@ -156,11 +162,11 @@ Vue.mixin({
         },
 
         warn: function (val) {
-            console.warn(val);
+            console.oldWarn(val);
         },
 
         log: function (val) {
-            console.log(val);
+            console.oldLog(val);
         },
     },
 
@@ -201,7 +207,7 @@ Vue.mixin({
                 return this.$router.push({
                     name: `${last}.device`,
                     params: {
-                        role_id:   this.role_id,
+                        cat_id:    this.cat_id,
                         floor_id:  first_in_or(dev.floors, -1),
                         room_id:   first_in_or(dev.rooms, -1),
                         device_id: device,
@@ -223,7 +229,7 @@ Vue.mixin({
             }
 
             /**
-             * Only act in those two cases!
+             * Only act in those cases!
              * There might have been a click on the disabled content
              * (content_small) which we do not care about.
              **/
@@ -237,7 +243,7 @@ Vue.mixin({
         },
 
         float_formatted: function (val, precision=1) {
-            return parseFloat(val).toFixed(precision);
+            return parseFloat(val).toLocaleString(interfaceData.options.language, {minimumFractionDigits: precision, maximumFractionDigits: precision});
         },
 
         alert: window.alert,
@@ -260,11 +266,27 @@ let ShifLogoff = Vue.component('shif-logoff', {
 const scroll_positions = {};
 
 
+
+function next_or_abort(next, flag) {
+    if (flag)
+        next({name: 'error.page_not_found', replace: true});
+    else
+        next();
+}
+
+
+
 let router = new VueRouter({
     routes: [
         { path: '/',   name: 'index',  redirect: {name: interfaceData.options.startPath || 'house'}, },
         { path: '/nb', name: 'legacy', redirect: {name: 'index'}},
 
+        {
+            path: '/404',
+            name: 'error.page_not_found',
+            component: ShifPageNotFound,
+            meta: {breadcrumbs: ['error.page_not_found']},
+        },
         { path: '/house', name: 'house', component: ShifHouse, redirect: {name: 'house.tab.rooms'},
             children: [
                 {
@@ -282,6 +304,12 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['room_id']}}
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.floors[to.params.floor_id] === undefined ||
+                            interfaceData.rooms[to.params.room_id]   === undefined
+                        );
+                    }
                 },
                 {
                     name: 'house.tab.rooms.room.device',
@@ -292,6 +320,13 @@ let router = new VueRouter({
                         cache_ident: {small: {params: ['room_id']}, big: {params: ['room_id', 'device_id']}},
                     },
                     props: {small: true, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.floors[to.params.floor_id]   === undefined ||
+                            interfaceData.rooms[to.params.room_id]     === undefined ||
+                            interfaceData.devices[to.params.device_id] === undefined
+                        );
+                    }
                 },
 
                 {
@@ -303,13 +338,21 @@ let router = new VueRouter({
                 },
                 {
                     name: 'house.tab.devices.device',
-                    path: 'devices/role/:role_id/floor/:floor_id/room/:room_id/device/:device_id',
+                    path: 'devices/category/:cat_id/floor/:floor_id/room/:room_id/device/:device_id',
                     components: {small: ShifHouseDevices, big: ShifAllDevicesLvl3},
                     meta: {
                         breadcrumbs: ['house', 'house.tab.devices', 'house.tab.rooms.room', 'house.tab.devices.device'],
-                        cache_ident: {small: {bc_idx: 1}, big: {params: ['role_id', 'room_id', 'device_id']}},
+                        cache_ident: {small: {bc_idx: 1}, big: {params: ['cat_id', 'room_id', 'device_id']}},
                     },
                     props: {small: true, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.deviceCategories[to.params.cat_id] === undefined ||
+                            interfaceData.floors[to.params.floor_id]         === undefined ||
+                            interfaceData.rooms[to.params.room_id]           === undefined ||
+                            interfaceData.devices[to.params.device_id]       === undefined
+                        );
+                    }
                 },
 
                 {
@@ -326,43 +369,37 @@ let router = new VueRouter({
                 {
                     name: 'settings.list',
                     path: 'list',
-                    component: ShifSettingsItems(1),
+                    component: ShifSettingsItemsLvl1,
                     meta: {breadcrumbs: ['settings'], base: true,},
                 },
                 {
                     name: 'settings.about',
                     path: 'about',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsLicenses},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsLicenses},
                     meta: {breadcrumbs: ['settings', 'settings.about']},
-                },
-                {
-                    path: 'user',
-                    name: 'settings.user',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsItems(2)},
-                    meta: {breadcrumbs: ['settings', 'settings.user']},
                 },
                 {
                     path: 'user/manage',
                     name: 'settings.user.manage',
-                    components: {small: ShifSettingsItems(2), big: ShifSettingsUser},
-                    meta: {breadcrumbs: ['settings', 'settings.user', 'settings.user.manage']},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsUser},
+                    meta: {breadcrumbs: ['settings', 'settings.user.manage']},
                 },
                 {
                     path: 'favorites',
                     name: 'settings.favorites',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsFavorites},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsFavorites},
                     meta: {breadcrumbs: ['settings', 'settings.favorites']}
                 },
                 {
                     path: 'sort',
                     name: 'settings.sort',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsSort},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsSort},
                     meta: {breadcrumbs: ['settings', 'settings.sort']}
                 },
                 {
                     path: 'profiles',
                     name: 'settings.profiles',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsProfiles},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsProfiles},
                     meta: {breadcrumbs: ['settings', 'settings.profiles']}
                 }, {
                     path: 'profiles/add',
@@ -375,22 +412,36 @@ let router = new VueRouter({
                     components: {small: ShifSettingsProfiles, big: ShifSettingsProfile},
                     meta: {breadcrumbs: ['settings', 'settings.profiles', 'settings.profiles.profile']},
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.profiles[to.params.profile_id] === undefined
+                        );
+                    }
                 },
                 {
                     path: 'automations',
                     name: 'settings.automations',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsAutomations},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsAutomations},
                     meta: {breadcrumbs: ['functions', 'settings.automations'],},
                 },
                 {
                     path: 'automations/selection/:automation_ids',
                     name: 'settings.automations.selection',
-                    components: {small: ShifSettingsItems(1), big: ShifSettingsAutomations},
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsAutomations},
                     meta: {
                         breadcrumbs: ['functions', 'settings.automations', 'settings.automations.selection'],
                         cache_ident: {big: {params: ['automation_ids']}},
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        const ids = to.params.automation_ids;
+                        const pred = ids === ''
+                                        ? true
+                                        : ids.split('-')
+                                             .every(x => interfaceData.automations[x] !== undefined);
+
+                        next_or_abort(next, pred);
+                    }
                 },
                 {
                     path: 'automations/add',
@@ -407,7 +458,45 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['automation_id']}},
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.automations[to.params.automation_id] === undefined
+                        );
+                    }
                 },
+                {
+                    path: 'log',
+                    name: 'settings.log',
+                    component: ShifSettingsLog,
+                    meta: {breadcrumbs: ['settings', 'settings.log']},
+                },
+                {
+                    path: 'intercom',
+                    name: 'settings.intercom',
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsIntercom},
+                    meta: {breadcrumbs: ['settings', 'settings.intercom']},
+                },
+                {
+                    path: 'roomnames',
+                    name: 'settings.roomnames',
+                    components: {small: ShifSettingsItemsLvl1, big: ShifSettingsRoomNames},
+                    meta: {breadcrumbs: ['settings', 'settings.roomnames']},
+                },
+                {
+                    path: 'roomnames/:room_id',
+                    name: 'settings.roomnames.roomname',
+                    components: {small: ShifSettingsRoomNames, big: ShifSettingsRoomName},
+                    meta: {
+                        breadcrumbs: ['settings', 'settings.roomnames', 'settings.roomnames.roomname'],
+                        cache_ident: {big: {params: ['room_id']}},
+                    },
+                    props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.rooms[to.params.room_id] === undefined
+                        );
+                    }
+                }
             ],
         },
 
@@ -428,6 +517,13 @@ let router = new VueRouter({
                         cache_ident: {small: {bc_idx: 0}, big: {params: ['room_id', 'device_id']}}
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.floors[to.params.floor_id]         === undefined ||
+                            interfaceData.rooms[to.params.room_id]           === undefined ||
+                            interfaceData.devices[to.params.device_id]       === undefined
+                        );
+                    }
                 }
             ],
         },
@@ -449,18 +545,17 @@ let router = new VueRouter({
                         cache_ident: {big: {params: ['notification_id']}},
                     },
                     props: {small: false, big: true},
+                    beforeEnter: (to, _, next) => {
+                        next_or_abort(next,
+                            interfaceData.notifications[to.params.notification_id] === undefined
+                        );
+                    }
                 },
             ],
         },
 
-        {
-            path: '/log',
-            name: 'log',
-            component: ShifLog,
-            meta: {breadcrumbs: ['log']},
-        },
-
         { path: '/logoff',    name: 'logoff',    component: ShifLogoff, },
+        { path: '*', redirect: {name: 'error.page_not_found'}, replace: true},
     ],
 });
 
@@ -469,11 +564,12 @@ let router = new VueRouter({
 let app = new Vue({
     name: 'App',
 
-    mixins: [mixin_modemenu],
+    mixins: [mixin_modemenu, mixin_tabmenu],
 
     components: {
         ShifMainmenu,
         ShifModemenu,
+        ShifTabmenu,
     },
 
     data: {
@@ -495,13 +591,32 @@ let app = new Vue({
         show: false,
     },
 
+    computed: {
+        inhalt_classes: function () {
+            return {
+                'modemenu-visible': this.modemenu_is_shown,
+                'tabmenu-visible': this.tabmenu_is_shown,
+            };
+        },
+    },
+
     router: router,
 
-    // Hack: decrease .content height when modemenu is enabled.
+    mounted: function () {
+        // Cache router queries between different pages
+        Vue.set(interfaceData.options, 'route_query', {});
+
+        for (const i in this.$route.query)
+            Vue.set(interfaceData.options.route_query, i, this.$route.query[i]);
+    },
+
+    // Hack: decrease .content height when modemenu and/or tabmenu are visible.
     template: `
         <div v-if="show"
              id="inhalt"
-             v-bind:class="{'modemenu-visible': modemenu_is_shown}">
+             v-bind:class="inhalt_classes">
+            <shif-tabmenu />
+
             <router-view />
 
             <shif-modemenu />
@@ -588,6 +703,11 @@ let breadcrumbs = new Vue({
                 case 'settings.automations.automation':
                     if (interfaceData.automations[params.automation_id] !== undefined)
                         return interfaceData.automations[params.automation_id].name;
+                    break;
+
+                case 'settings.roomnames.roomname':
+                    if (interfaceData.rooms[params.room_id] !== undefined)
+                        return interfaceData.rooms[params.room_id].name;
                     break;
 
                 case 'notifications.notification':
@@ -695,37 +815,37 @@ let toast = new Vue({
         <div id="toast">
             <div class="toast" v-for="msg, i in msgs_combined"
                                v-bind:key="msg.id">
-                    <template v-if="msg.close">
-                        <button class="toast_close"
-                                v-on:click="remove_msg(i)">
-                            X
-                        </button>
-                    </template>
-                    <template v-if="msg.flags && msg.flags.closeable === true">
-                        <button class="toast_close"
-                                v-on:click="notification_hide_or_remove(msg)">
-                            X
-                        </button>
-                    </template>
+                <template v-if="msg.close">
+                    <button class="toast_close"
+                            v-on:click="remove_msg(i)">
+                        X
+                    </button>
+                </template>
+                <template v-if="msg.flags && msg.flags.closeable === true">
+                    <button class="toast_close"
+                            v-on:click="notification_hide_or_remove(msg)">
+                        X
+                    </button>
+                </template>
 
-                    <template v-if="is_toast_integrated(msg)">
-                        <router-link v-bind:to="link(msg.id)"
-                                     class="toast_content" v-html="msg.content">
-                        </router-link>
-                    </template>
-                    <template v-else>
-                        <div class="toast_content">
-                            <div class="toast_text" v-html="msg.content">
-                            </div>
-                            <template v-for="btn in msg.buttons">
-                                <button class="toast_action"
-                                        v-bind:class="btn.type"
-                                        v-on:click="click(msg, btn)">
-                                    {{ btn.label }}
-                                </button>
-                            </template>
+                <template v-if="is_toast_integrated(msg)">
+                    <router-link v-bind:to="link(msg.id)"
+                                 class="toast_content" v-html="msg.overlayContent">
+                    </router-link>
+                </template>
+                <template v-else>
+                    <div class="toast_content">
+                        <div class="toast_text" v-html="msg.overlayContent">
                         </div>
-                    </template>
+                        <template v-for="btn in msg.buttons">
+                            <button class="toast_action"
+                                    v-bind:class="btn.type"
+                                    v-on:click="click(msg, btn)">
+                                {{ btn.label }}
+                            </button>
+                        </template>
+                    </div>
+                </template>
             </div>
         </div>
     `
@@ -784,7 +904,7 @@ function _create_notification(inc_buttons = false, args) {
     ];
 
     const msg = {
-        type: 'test',
+        type: args.type || 'test',
         flags: {
             closeable: args.closeable || false,
             hasModal: args.hasModal || false,
@@ -795,15 +915,16 @@ function _create_notification(inc_buttons = false, args) {
             'de-DE': 'Test Nachricht: ' + date_format(),
             'en-US': 'Test Message: ' + date_format(),
         },
-        content: `
-            <p class="toast_text">Test</p>
-        `,
+        overlayContent: {
+            'de-DE': 'Test Nachricht: Toast',
+            'en-US': 'Test Message: Toast',
+        },
         modalTitle: {
             'de-DE': 'Test Nachricht: Modal',
             'en-US': 'Test Message: Modal',
         },
         modalContent: {
-            'de-DE': 'Test Content: ' + date_format(),
+            'de-DE': 'Test Inhalt: ' + date_format(),
             'en-US': 'Test Content: ' + date_format(),
         },
         buttons,

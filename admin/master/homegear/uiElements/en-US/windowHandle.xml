@@ -1,107 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
-	<homegearUiElement>
-		<uniqueUiElementId>Base.windowHandle</uniqueUiElementId>
-		<control>windowHandle</control>
-		<type>simple</type>
-        <role>301002</role>
-		<texts>
-			<text id="title">
-				<content>State</content>
-				<color>title</color>
-			</text>
-			<text id="l2_state_title">
-				<content>State</content>
-				<color>l2_state_title</color>
-			</text>
-		</texts>
-		<icons>
-			<icon id="l2">
-				<name>window_1</name>
+  <homegearUiElement>
+    <uniqueUiElementId>Base.windowHandle</uniqueUiElementId>
+    <control>windowHandle</control>
+    <type>simple</type>
+    <description>UI element to visualize a window contact or handle.</description>
+    <texts>
+      <text id="title">
+        <content>State</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>State</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>window_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Window state</label>
+        <description>The window state to set for the UI element. "false" or "0" for closed, "true" or "1" for open, "2" for tilted, "3" for unknown.</description>
+        <types>int, bool</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <rendering>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>window_1</name>
                 <color>inactive</color>
-			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
-		</icons>
-		<variableInputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-				<visualizeInOverview>true</visualizeInOverview>
-				<rendering>
-					<condition operator="e" value="0">
-						<icons>
-							<icon id="state">
-								<name>window_1</name>
-								<color>inactive</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>closed</content>
-								<color>inactive</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="e" value="1">
-						<icons>
-							<icon id="state">
-								<name>window_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>opened</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="e" value="2">
-						<icons>
-							<icon id="state">
-								<name>window_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>tilted</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="g" value="2">
-						<icons>
-							<icon id="state">
-								<name>window_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>unknown state</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-				</rendering>
-			</variable>
-		</variableInputs>
-		<variableOutputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-			</variable>
-		</variableOutputs>
-		<metadata>
-            <l2_only>true</l2_only>
-		</metadata>
-	</homegearUiElement>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>closed</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="1">
+            <icons>
+              <icon id="state">
+                <name>window_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>opened</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="2">
+            <icons>
+              <icon id="state">
+                <name>window_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>tilted</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="g" value="2">
+            <icons>
+              <icon id="state">
+                <name>window_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>unknown state</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>-</label>
+        <description>Unused</description>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
 </homegearUiElements>

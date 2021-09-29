@@ -26,6 +26,9 @@ else {
 if (file_exists("interfacedata.dummy.php")) {
     include_once("interfacedata.dummy.php");
 }
+else if (file_exists("../interfacedata.dummy.php")) {
+    include_once("../interfacedata.dummy.php");
+}
 if(isset($dummyInterfaceDataJson)) {
     $dummyInterfaceData = json_decode($dummyInterfaceDataJson, true);
     unset($dummyInterfaceData["iconFallback"]);
@@ -33,6 +36,7 @@ if(isset($dummyInterfaceDataJson)) {
     unset($dummyInterfaceData["themes"]);
     unset($dummyInterfaceData["menu"]);
     unset($dummyInterfaceData["mainmenu"]);
+    unset($dummyInterfaceData["deviceCategories"]);
     unset($dummyInterfaceData["manifest"]);
     unset($dummyInterfaceData["options"]);
     $interfaceData = array_replace_recursive($interfaceData, $dummyInterfaceData);
@@ -68,6 +72,21 @@ function print_array($result){
 function clean_json_to_js() {
     global $interfaceData;
     global $defaultInterfaceData;
+
+    $map_automation_json = '
+    {
+      "map_automation": {
+          "devices": {
+              "_dummy_": {}
+          },
+          "profiles": {
+              "_dummy_": {}
+          }
+      }
+    }
+    ';
+    $map_automation = json_decode($map_automation_json, true);
+    
     $interfaceDataOut = array();
     $interfaceDataOut["devices"] = $interfaceData["devices"];
     $interfaceDataOut["rooms"] = $interfaceData["rooms"];
@@ -84,6 +103,8 @@ function clean_json_to_js() {
     $interfaceDataOut["manifest"] = $interfaceData["manifest"];
     $interfaceDataOut["profiles"] = $interfaceData["profiles"];
     $interfaceDataOut["iconFallback"] = $interfaceData["iconFallback"];
+    $interfaceDataOut["deviceCategories"] = $interfaceData["deviceCategories"];
+    $interfaceDataOut["map_automation"] = $map_automation["map_automation"];
 
     foreach ($interfaceDataOut as $key => $type ){
         foreach($type as $keyLine => $line){
@@ -94,8 +115,17 @@ function clean_json_to_js() {
         }
     }
 
-    if ($interfaceData["options"]['language'] != "en-US") {
-        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$interfaceData["options"]['language']];
+    $lang = $interfaceData["options"]["language"];
+
+    foreach ($interfaceDataOut["deviceCategories"] as &$category) {
+        if (array_key_exists($lang, $category["name"]))
+            $category["name"] = $category["name"][$lang];
+        if (array_key_exists($lang, $category["statusMap"]))
+            $category["statusMap"] = $category["statusMap"][$lang];
+    }
+
+    if ($lang != "en-US") {
+        $interfaceDataOut["i18n"] = $interfaceData["i18n"][$lang];
         $interfaceDataOut["i18n"]["default"] = $interfaceData["i18n"]["en-US"];
     }
     else {

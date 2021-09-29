@@ -1,119 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="en-US">
-	<homegearUiElement>
-		<uniqueUiElementId>Base.shadingButtonsUpDown</uniqueUiElementId>
-		<control>shadingButtonsUpDown</control>
-		<type>simple</type>
-		<role>501000</role>
-		<texts>
-			<text id="title">
-				<content>Trigger</content>
-				<color>title</color>
-			</text>
-			<text id="l2_state_title">
-				<content>State</content>
-				<color>l2_state_title</color>
-			</text>
-		</texts>
-		<icons>
-			<icon id="l2">
-				<name>blind_1</name>
+  <homegearUiElement>
+    <uniqueUiElementId>Base.shadingButtonsUpDown</uniqueUiElementId>
+    <control>shadingButtonsUpDown</control>
+    <type>simple</type>
+    <texts>
+      <text id="title">
+        <content>Trigger</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>State</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>blind_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_up_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_up_1</name>
                 <color>inactive</color>
-			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
-		</icons>
-		<variableInputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-				<visualizeInOverview>false</visualizeInOverview>
-				<rendering>
-					<condition operator="not" value="0">
-						<icons>
-							<icon id="state">
-								<name>arrow_up_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>on</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="e" value="0">
-						<icons>
-							<icon id="state">
-								<name>arrow_up_1</name>
-								<color>inactive</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>off</content>
-								<color>inactive</color>
-							</text>
-						</texts>
-					</condition>
-				</rendering>
-			</variable>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-				<visualizeInOverview>false</visualizeInOverview>
-				<rendering>
-					<condition operator="not" value="0">
-						<icons>
-							<icon id="state">
-								<name>arrow_down_1</name>
-								<color>active</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>on</content>
-								<color>active</color>
-							</text>
-						</texts>
-					</condition>
-					<condition operator="e" value="0">
-						<icons>
-							<icon id="state">
-								<name>arrow_down_1</name>
-								<color>inactive</color>
-							</icon>
-						</icons>
-						<texts>
-							<text id="state">
-								<content>off</content>
-								<color>inactive</color>
-							</text>
-						</texts>
-					</condition>
-				</rendering>
-			</variable>
-		</variableInputs>
-		<variableOutputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-			</variable>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-			</variable>
-		</variableOutputs>
-	</homegearUiElement>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_down_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_down_1</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Up</label>
+        <description>Outputs "true" when the user presses "up" in the UI.</description>
+        <types>bool</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+      <variable>
+        <label>Down</label>
+        <description>Outputs "true" when the user presses "down" in the UI.</description>
+        <types>bool</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+    <metadata>
+      <l3_force>true</l3_force>
+    </metadata>
+  </homegearUiElement>
 </homegearUiElements>

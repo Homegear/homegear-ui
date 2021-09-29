@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.mediaButtons</uniqueUiElementId>
+    <control>mediaButtons</control>
+    <type>simple</type>
+    <texts>
+      <text id="title">
+        <content>Media</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Status</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>switches_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_left_step_2</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_left_step_2</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>speaker_3</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>speaker_3</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>play_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>play_1</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>stop_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>stop_1</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>speaker_4</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>speaker_4</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>false</visualizeInOverview>
+        <rendering>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_right_step_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>on</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_right_step_1</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>off</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+    <metadata>
+      <l2_action>
+        <control>0</control>
+        <input>0</input>
+      </l2_action>
+      <l3_force>true</l3_force>
+    </metadata>
+  </homegearUiElement>
+</homegearUiElements>

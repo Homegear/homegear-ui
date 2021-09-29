@@ -77,6 +77,42 @@ else if (isset($_POST['prod'])) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Functions
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+function generateIcons ($path) {
+    $files = array();
+    $categories = array();
+    $handle=opendir($path);
+    while ($file = readdir($handle)){
+        if ($file == "." || $file == "..") {
+            continue;
+        }
+        else if (is_dir($path.$file)) {
+            $categoriesData = generateIcons($path.$file."/");
+            if (count($categoriesData) > 0) {
+                $categories[$file] = $categoriesData;
+            }
+        }
+        else if (is_file($path.$file)) {
+            $icon_data = file_get_contents($path.$file);
+
+            $search  = array( "\n", "\r", '"');
+            $replace = array( "",   "",   "'");
+            $icon_data = str_replace($search, $replace, $icon_data);
+    
+            $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
+            $icon_data = preg_replace('!\s+!', ' ', $icon_data);
+
+            $files[str_replace(".svg", "", $file)] = $icon_data;
+        }
+        else {
+            echo "Icon Error: ".$file;
+        }
+    }
+    return $files + $categories;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Generieren der Erweiterungen
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 if($action == "generateExtensions"){
@@ -343,35 +379,7 @@ if($action == "generateExtensions"){
     //////////////////////////////////////////////////////////
     // generieren aller Icons
     //////////////////////////////////////////////////////////
-    $files = null;
-    $out_icon = 'var icons = {'."\n";
-    $path = $adminPath."/media/icons/";
-    $handle=opendir($path);
-
-    while ($file = readdir($handle)){
-        if ($file != "." && $file != ".." && $file != str_replace('/','','thumbs')) {
-            $files[] = $file;
-        }
-    }
-
-    sort($files);
-
-    foreach($files as $icon){
-        $icon_data = file_get_contents($path.$icon);
-
-        $search  = array( "\n", "\r", '"');
-        $replace = array( "",   "",   "'");
-        $icon_data = str_replace($search, $replace, $icon_data);
-
-        $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
-        $icon_data = preg_replace('!\s+!', ' ', $icon_data);
-
-        $out_icon .= '"'.str_replace(".svg", "", $icon).'":"'.$icon_data.'",'."\n";
-    }
-
-    $out_icon = substr($out_icon, 0, -2);
-    $out_icon .= "\n".'};';
-    $tempInterfaceData["icons"] = $out_icon;
+    $tempInterfaceData["icons"] = 'var icons =' . json_encode(generateIcons($adminPath."/media/icons/"), JSON_PRETTY_PRINT) . ';';
 
     /////////////////////////////////////////////////////////
     // baut die index Datei
@@ -526,29 +534,29 @@ else if($action == "getAssetMaster"){
             $counter = 0;
             foreach($master["files"] as $masterFile){
                 if(!file_exists($rootPath.$master["repository"].$masterFile["rawMinUrl"].$masterFile["rawMinUrlFile"])){
-                    echo "file missing";
+                    echo "file missing"."\n";
                     continue;
                 }
                 $data = file_get_contents($rootPath.$master["repository"].$masterFile["rawMinUrl"].$masterFile["rawMinUrlFile"]);
                 if($data == ""){
-                    echo "data empty";
+                    echo "data empty"."\n";
                     continue;
                 }
                 echo $masterFile["rawMinUrlFile"]." | ".$package["version"]."\n";
                 file_put_contents($adminPath.'/assets/updated/'.$key.'/'.$masterFile["outputName"], $data);
                 file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'.$masterFile["outputName"], $data);
-                if($counter == 0 && isset($license)){
-                    file_put_contents($adminPath.'/assets/updated/'.$key.'/'."LICENSE", $license);
-                    file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."LICENSE", $license);
-                    echo "license file copied"."\n";
-                }
-                if($counter == 0 && is_array($package)){
-                    $packageJson = json_encode($package, JSON_PRETTY_PRINT);
-                    file_put_contents($adminPath.'/assets/updated/'.$key.'/'."package.json", $packageJson);
-                    file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."package.json", $packageJson);
-                    echo "package file copied"."\n";
-                }
                 $counter++;
+            }
+            if(isset($license)){
+                file_put_contents($adminPath.'/assets/updated/'.$key.'/'."LICENSE", $license);
+                file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."LICENSE", $license);
+                echo "license file copied"."\n";
+            }
+            if(is_array($package)){
+                $packageJson = json_encode($package, JSON_PRETTY_PRINT);
+                file_put_contents($adminPath.'/assets/updated/'.$key.'/'."package.json", $packageJson);
+                file_put_contents($adminPath.'/assets/versions/'.$key."_".$package["version"].'/'."package.json", $packageJson);
+                echo "package file copied"."\n";
             }
         }
         echo "</pre>";
@@ -656,21 +664,15 @@ else if($action == "phpinfo"){
 // Auflisten aller Icons
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 else if($action == "icons"){
-    $files = null;
-    $out = null;
-    $path = $adminPath."/media/icons/";
-    $handle=opendir($path);
-
-    while ($file = readdir($handle)){
-        if ($file != "." && $file != ".." && $file != str_replace('/','','thumbs')) {
-            $files[] = $file;
-        }
-    }
-
-    sort($files);
-
-    $out .= '
+    $out = '
         <style>
+        .iconCategory {
+            clear: both;
+        }
+        .iconCategory .title {
+            font-size: 20px;
+            padding: 25px 0px 8px 0px;
+        }
         .icon{
             width:170px;
             height:170px;
@@ -695,18 +697,16 @@ else if($action == "icons"){
         </style>
     ';
 
-    foreach($files as $icon){
-        $icon_data = file_get_contents($path.$icon);
-
-        $search  = array( "\n", "\r", '"');
-        $replace = array( "",   "",   "'");
-        $icon_data = str_replace($search, $replace, $icon_data);
-
-        $icon_data = preg_replace('/<!--(.*)-->/Uis', '', $icon_data);
-        $icon_data = preg_replace('!\s+!', ' ', $icon_data);
-
-        $out .= '<div class="icon"><div class="title">'.$icon.'</div> ' . $icon_data . '</div>';
-
+    foreach (generateIcons($adminPath."/media/icons/") as $icon_name => $icon_data) {
+        if (is_array($icon_data)) {
+            $out .= '<div class="iconCategory"><div class="title">'.$icon_name.'</div></div>';
+            foreach ($icon_data as $name => $icon) {
+                $out .= '<div class="icon"><div class="title">'.$name.'</div> ' . $icon . '</div>';
+            }
+        }
+        else {
+            $out .= '<div class="icon"><div class="title">'.$icon_name.'</div> ' . $icon_data . '</div>';
+        }
     }
 
     echo $out;

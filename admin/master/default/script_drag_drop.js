@@ -1,6 +1,7 @@
 /*
     global
         homegear
+        user_interaction
 */
 
 
@@ -25,6 +26,12 @@ Vue.component('shif-draggable', {
             type: String,
             default: 'default',
         }
+    },
+
+    data: function () {
+        return {
+            show: true,
+        };
     },
 
     computed: {
@@ -79,7 +86,8 @@ Vue.component('shif-draggable', {
                 }, (data) => {
                     let new_settings = data.result;
 
-                    if (new_settings.interface === undefined)
+                    if (new_settings.interface === undefined ||
+                        new_settings.interface === null)
                         new_settings.interface = {};
 
                     if (new_settings.interface.elementOrder === undefined)
@@ -107,7 +115,7 @@ Vue.component('shif-draggable', {
         },
     },
 
-    mounted: function () {
+    created: function () {
         this.init_interfaceData_field();
     },
 
@@ -128,20 +136,44 @@ Vue.component('shif-draggable', {
                             ? Array.from(this.value.keys())
                             : Object.keys(this.value);
 
-            this._interfaceData_field =
-                saved === undefined || new_.length !== saved.length
-                    ? new_
-                    : saved;
+            if (saved === undefined) {
+                this._interfaceData_field = new_;
+                return;
+            }
+
+            this.show = new_.length === saved.length;
+            if (this.show) {
+                for (const i of saved)
+                    if (this.value[i] === undefined) {
+                        this.show = false;
+                        break;
+                    }
+            }
+
+            if (! this.show)
+                user_interaction.confirm({
+                    content: 'draggable.confirm.invalid_keys',
+                    buttons: {
+                        true: 'draggable.confirm.invalid_keys.button.reset',
+                        false: 'draggable.confirm.invalid_keys.button.abort',
+                    }
+                }).then(x => {
+                    this.keys = x ? new_ : saved;
+                    this.show = x;
+                });
+            else
+                this._interfaceData_field = saved;
         }
     },
 
     template: `
-        <draggable v-model="keys"
+        <draggable v-if="show"
+                   v-model="keys"
                    v-bind:handle="handle"
                    v-on:start="$root.draggable.in_progress = true"
                    v-on:end="$root.draggable.in_progress = false">
             <slot v-bind:keys="keys"
-                  v-bind:values="values"/>
+                  v-bind:values="values" />
         </draggable>
     `
 });
@@ -149,13 +181,20 @@ Vue.component('shif-draggable', {
 
 
 function _element_order_cleanup() {
+    const args = arguments;
+
     homegear.invoke({
         jsonrpc: '2.0',
         method: 'getUserMetadata',
         params: [],
     }, function (x) {
         let tmp = x.result;
-        delete tmp.interface.elementOrder;
+
+        if (args.length === 0)
+            delete tmp.interface.elementOrder;
+        else
+            for (const i of args)
+                delete tmp.interface.elementOrder[i];
 
         homegear.invoke({
             jsonrpc: '2.0',

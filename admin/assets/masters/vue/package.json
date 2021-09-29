@@ -1,27 +1,26 @@
 {
-    "_from": "vue@2.6.12",
+    "_from": "vue@^2.6.12",
     "_id": "vue@2.6.12",
     "_inBundle": false,
     "_integrity": "sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==",
     "_location": "\/vue",
     "_phantomChildren": [],
     "_requested": {
-        "type": "version",
+        "type": "range",
         "registry": true,
-        "raw": "vue@2.6.12",
+        "raw": "vue@^2.6.12",
         "name": "vue",
         "escapedName": "vue",
-        "rawSpec": "2.6.12",
+        "rawSpec": "^2.6.12",
         "saveSpec": null,
-        "fetchSpec": "2.6.12"
+        "fetchSpec": "^2.6.12"
     },
     "_requiredBy": [
-        "#USER",
         "\/"
     ],
     "_resolved": "https:\/\/registry.npmjs.org\/vue\/-\/vue-2.6.12.tgz",
     "_shasum": "f5ebd4fa6bd2869403e29a896aed4904456c9123",
-    "_spec": "vue@2.6.12",
+    "_spec": "vue@^2.6.12",
     "_where": "C:\\Users\\user\\Downloads\\Web\\Interface\\git\\interface",
     "author": {
         "name": "Evan You"

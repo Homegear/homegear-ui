@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.genericStatus</uniqueUiElementId>
+    <control>genericStatus</control>
+    <type>simple</type>
+    <description>Visualizes an arbitrary text.</description>
+    <texts>
+      <text id="title">
+        <color>title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="main">
+        <name>house_1</name>
+        <color>inactive</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Status</label>
+        <description>Sets the visualized status. The text is visualized unmodified.</description>
+        <types>string</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>-</label>
+        <description>Unused</description>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

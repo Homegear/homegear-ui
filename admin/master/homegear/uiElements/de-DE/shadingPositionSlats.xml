@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearUiElements lang="de-DE">
-	<homegearUiElement>
-		<uniqueUiElementId>Base.shadingPositionSlats</uniqueUiElementId>
-		<control>shadingPositionSlats</control>
-		<type>simple</type>
-		<role>501000</role>
-		<texts>
-			<text id="title">
-				<content>Blenden Position</content>
-				<color>title</color>
-			</text>
-			<text id="l2_state_title">
-				<content>Blenden</content>
-				<color>l2_state_title</color>
-			</text>
-		</texts>
-		<icons>
-			<icon id="l2">
-				<name>blind_1</name>
-                <color>inactive</color>
-			</icon>
-            <icon id="l3">
-                <name>arrow_right_1</name>
-                <color>iconArrow</color>
-            </icon>
-		</icons>
-		<variableInputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-				<visualizeInOverview>true</visualizeInOverview>
-				<unit>%</unit>
-				<minimumValue>0</minimumValue>
-				<maximumValue>100</maximumValue>
-				<minimumValueScaled>0</minimumValueScaled>
-				<maximumValueScaled>100</maximumValueScaled>
-			</variable>
-		</variableInputs>
-		<variableOutputs>
-			<variable>
-				<familyId>*</familyId>
-				<deviceTypeId>*</deviceTypeId>
-				<channel>*</channel>
-				<name>*</name>
-			</variable>
-		</variableOutputs>
-	</homegearUiElement>
+  <homegearUiElement>
+    <uniqueUiElementId>Base.shadingPositionSlats</uniqueUiElementId>
+    <control>shadingPositionSlats</control>
+    <type>simple</type>
+    <texts>
+      <text id="title">
+        <content>Lamellenposition</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Lamellen</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>blind_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Lamellenposition</label>
+        <description>Setzt die visualisierte Lamellenposition.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <unit>%</unit>
+        <minimumValue>0</minimumValue>
+        <maximumValue>100</maximumValue>
+        <minimumValueScaled>0</minimumValueScaled>
+        <maximumValueScaled>100</maximumValueScaled>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Lamellenposition</label>
+        <description>Gibt die im UI-Element gewählte Lamellenposition aus.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
 </homegearUiElements>

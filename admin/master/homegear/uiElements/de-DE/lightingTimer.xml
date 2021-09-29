@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.lightingTimer</uniqueUiElementId>
+    <control>lightingTimer</control>
+    <type>simple</type>
+    <description>UI-Element zum Setzen der Einschaltzeit.</description>
+    <texts>
+      <text id="title">
+        <content>Einschaltzeit</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Einschaltzeit</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>clock_2</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Einschaltzeit</label>
+        <description>Setzt die Einschaltzeit, welche das UI-Element anzeigt.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <minimumValue>1</minimumValue>
+        <maximumValue>30</maximumValue>
+        <minimumValueScaled>1</minimumValueScaled>
+        <maximumValueScaled>30</maximumValueScaled>
+	<visualizeInOverview>false</visualizeInOverview>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Einschaltzeit</label>
+        <description>Gibt die Einschaltzeit aus, welche im UI-Element eingestellt wurde.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

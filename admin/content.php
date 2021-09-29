@@ -125,6 +125,8 @@ echo '</script>';
 
   <div id="modal">
   </div>
+  <div id="user_interaction">
+  </div>
 
   <div id="breadcrumbs">
   </div>
@@ -157,9 +159,15 @@ echo '</script>';
       die("App script file is missing!");
   }
 
+  $filename = 'index.php';
+  if (file_exists($filename)) {
+      echo '<script> console.log("Build date: '.date("d.m.Y H:i:s.", filemtime($filename)).'");</script>'."\n";
+  }
+
   echo '<script>
     '.(isset($javascript_options) ? $javascript_options : "").'
     console.log("UI revision: '.$interfaceData["manifest"]["revision"].'");
+    
   </script>';
 ?>
 

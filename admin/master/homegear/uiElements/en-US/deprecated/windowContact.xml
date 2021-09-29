@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.windowContact</uniqueUiElementId>
+    <control>windowContact</control>
+    <type>simple</type>
+    <texts>
+      <text id="title">
+        <content>State</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>State</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>window_1</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <rendering>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>window_1</name>
+                <color>inactive</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>closed</content>
+                <color>inactive</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="not" value="0">
+            <icons>
+              <icon id="state">
+                <name>window_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>opened</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="en-US">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.lightingTimerStatus</uniqueUiElementId>
+    <control>lightingTimerStatus</control>
+    <type>simple</type>
+    <description>Visualizes the off timer status.</description>
+    <texts>
+      <text id="title">
+        <content>Timer</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Time left</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="main">
+        <name>light_on_1</name>
+        <color>inactive</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Off timer</label>
+        <description>Sets the off timer value in the UI element.</description>
+        <types>string</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <unit>min</unit>
+        <automationInfo>
+          <type>string</type>
+        </automationInfo>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>-</label>
+        <description>Unused</description>
+        <types></types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+  </homegearUiElement>
+</homegearUiElements>

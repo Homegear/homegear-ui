@@ -1,9 +1,13 @@
 /*
     global
         ModeMenuState
+        clone
         get_or_default
         mixin_modemenu
         scroll_positions
+        shif_device_slot_automations_profile
+        shif_device_slot_draggable
+        shif_device_slot_favorites_profile
 */
 /*
     exported
@@ -16,15 +20,16 @@
 
 function comp_obj(control, device, input, output, is, indexes) {
     let ret = {
-        uiElement: device,
-        control:   control,
-        device:    device.databaseId,
-        icons:     device.icons,
-        texts:     device.texts,
-        output:    output,
-        props:     input.properties,
-        indexes:   indexes,
-        rendering: input.rendering,
+        uiElement:       device,
+        control:         control,
+        device:          device.databaseId,
+        icons:           device.icons,
+        texts:           device.texts,
+        output:          output,
+        props:           input.properties,
+        indexes:         indexes,
+        rendering:       input.rendering,
+        dynamicMetadata: device.dynamicMetadata
     };
 
     if (is)
@@ -298,11 +303,10 @@ const mixin_profiles = {
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
                          .filter(
-                x => x.locations.findIndex(
-                    loc => {
-                        return loc.floorId === floor &&
-                          (loc.roomId === undefined || loc.roomId === room);
-                    }
+                x => x.locations !== undefined &&
+                     x.locations.findIndex(
+                    loc => loc.floorId === floor &&
+                          (loc.roomId  === undefined || loc.roomId === room)
                 ) !== -1
             );
         },
@@ -315,38 +319,70 @@ const mixin_profiles = {
     },
 
     methods: {
-        locations: function (floor, room) {
-            if (floor === undefined && room === undefined)
-                return [];
+        val_into_proper_type: function (value) {
+            if (value === 'true')
+                return true;
+            if (value === 'false')
+                return false;
 
-            return [
-                {
-                    floorId: floor === null ? undefined : Number(floor),
-                    roomId:  room  === null ? undefined : Number(room),
-                }
-            ];
+            const as_nr = Number(value);
+            if (! Number.isNaN(as_nr))
+                return as_nr;
+
+            return value;
         },
 
-        role_profiles: function (role_id) {
+        locations: function (locations) {
+            if (locations === undefined || locations.length === 0)
+                return [];
+
+            return locations.map(x => ({
+                floorId: Number(x.floorId),
+                roomId:  Number(x.roomId),
+            }));
+        },
+
+        roles_rooms: function (form) {
+            return form.role.role !== null &&
+                   form.role.value !== undefined &&
+                   form.role.value !== null
+                ? [[{
+                        role: Number(form.role.role),
+                        value: this.val_into_proper_type(form.role.value)
+                  }], []]
+                : [[], Object.keys(this.$root.profiles.devs)
+                             .map(x => this.$root.profiles.devs[x])
+                             .map(x => ({
+                                peerId: x.peer,
+                                channel: x.channel,
+                                variable: x.name,
+                                value: x.value,
+                             }))];
+        },
+
+        dev_cat_profiles: function (cat_id) {
             return Object.keys(interfaceData.profiles)
                          .map(x => interfaceData.profiles[x])
-                         .filter(x => x.roles !== undefined &&
-                                      x.roles.length > 0 &&
-                                      x.roles.findIndex(x => x.role === Number(role_id)) !== -1);
+                         .filter(x => x.categories !== undefined &&
+                                      x.categories.length > 0 &&
+                                      x.categories.indexOf(Number(cat_id)) !== -1);
         },
 
         profile_build_root_devs: function (profile) {
             // Overwrite current profile on new load
-            this.$root.profiles.devs = {};
+            Vue.set(this.$root.profiles, 'devs', {});
+
+            if (! profile || ! profile.values)
+                return;
 
             for (const i of profile.values) {
                 const idx = root_profiles_idx(i.peerId, i.channel, i.variable);
-                this.$root.profiles.devs[idx] = {
+                Vue.set(this.$root.profiles.devs, idx, {
                     peer:    i.peerId,
                     channel: i.channel,
                     name:    i.variable,
                     value:   i.value,
-                };
+                });
             }
         },
 
@@ -388,8 +424,8 @@ const mixin_profiles = {
         },
 
         profile_add: function (form, cb) {
-            const locations = this.locations(form.location.floor,
-                                             form.location.room);
+            const locations = this.locations(form.locations.rooms);
+            const [roles, values] = this.roles_rooms(form);
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
@@ -399,27 +435,31 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global:    form.location.global,
-                        favorite:  form.location.favorite,
-                        icon:      form.icon,
-                        locations: locations,
-                        roles:     [],
-                        values:    [],
+                        global:     form.locations.global,
+                        favorite:   false,
+                        categories: form.locations.categories,
+                        icon:       form.icon,
+                        locations:  locations,
+                        roles:      roles,
+                        values:     values,
                     }
                 ],
             }, (result) => {
                 Vue.set(interfaceData.profiles, result.result, {
-                    id:        result.result,
-                    icon:      form.icon,
-                    locations: locations,
-                    global:    form.location.global,
-                    favorite:  form.location.favorite,
-                    name:      form.profile_name,
-                    roles:     [],
-                    values:    [],
+                    id:         result.result,
+                    icon:       form.icon,
+                    locations:  locations,
+                    global:     form.locations.global,
+                    favorite:   form.locations.favorite,
+                    favorite:   false,
+                    categories: form.locations.categories,
+                    name:       form.profile_name,
+                    roles:      roles,
+                    values:     values,
                 });
 
-                this.modemenu_hide();
+                if (this.modemenu_is_state(ModeMenuState.PROFILES))
+                    this.modemenu_hide();
 
                 if (cb)
                     return cb(result);
@@ -427,37 +467,8 @@ const mixin_profiles = {
         },
 
         profile_update: function (profile, form, cb) {
-            function val_into_proper_type(value) {
-                if (value === 'true')
-                    return true;
-                if (value === 'false')
-                    return false;
-
-                const as_nr = Number(value);
-                if (! Number.isNaN(as_nr))
-                    return as_nr;
-
-                return value;
-            }
-
-            const locations = this.locations(form.location.floor,
-                                             form.location.room);
-
-            const [roles, values] = form.role.role !== null &&
-                                    form.role.value !== undefined &&
-                                    form.role.value !== null
-                ? [[{
-                        role: Number(form.role.role),
-                        value: val_into_proper_type(form.role.value)
-                  }], []]
-                : [[], Object.keys(this.$root.profiles.devs)
-                             .map(x => this.$root.profiles.devs[x])
-                             .map(x => ({
-                                peerId: x.peer,
-                                channel: x.channel,
-                                variable: x.name,
-                                value: x.value,
-                             }))];
+            const locations = this.locations(form.locations.rooms);
+            const [roles, values] = this.roles_rooms(form);
 
             return this.$homegear.invoke({
                 jsonrpc: '2.0',
@@ -468,27 +479,56 @@ const mixin_profiles = {
                         [interfaceData.options.language]: form.profile_name,
                     },
                     {
-                        global:    form.location.global,
-                        favorite:  form.location.favorite,
-                        icon:      form.icon,
-                        locations: locations,
-                        roles:     roles,
-                        values:    values,
+                        global:     form.locations.global,
+                        favorite:   profile.favorite,
+                        categories: form.locations.categories,
+                        icon:       form.icon,
+                        locations:  locations,
+                        roles:      roles,
+                        values:     values,
                     }
                 ],
             }, (result) => {
                 Vue.set(interfaceData.profiles, profile.id, {
-                    id:        profile.id,
-                    name:      form.profile_name,
-                    global:    form.location.global,
-                    favorite:  form.location.favorite,
-                    icon:      form.icon,
-                    locations: locations,
-                    roles:     roles,
-                    values:    values,
+                    id:         profile.id,
+                    name:       form.profile_name,
+                    global:     form.locations.global,
+                    favorite:   profile.favorite,
+                    categories: form.locations.categories,
+                    icon:       form.icon,
+                    locations:  locations,
+                    roles:      roles,
+                    values:     values,
                 });
 
-                this.modemenu_hide();
+                if (this.modemenu_is_state(ModeMenuState.PROFILES))
+                    this.modemenu_hide();
+
+                if (cb)
+                    return cb(result);
+            });
+        },
+
+        profile_update_favorite(profile, favorite, cb) {
+            return this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'updateVariableProfile',
+                params: [
+                    profile.id,
+                    {
+                        [interfaceData.options.language]: profile.name,
+                    },
+                    {
+                        global:    profile.global,
+                        favorite:  favorite,
+                        icon:      profile.icon,
+                        locations: profile.locations,
+                        roles:     profile.roles,
+                        values:    profile.values,
+                    }
+                ],
+            }, (result) => {
+                Vue.set(interfaceData.profiles[profile.id], 'favorite', favorite);
 
                 if (cb)
                     return cb(result);
@@ -534,22 +574,25 @@ const mixin_favorites = {
                 method: 'getUiElementMetadata',
                 params: [dev],
             }, (data) => {
-                let new_metadata = {};
-                if (Array.isArray(data.result))
-                    new_metadata = data.result;
+                // Theoretically this should never be an array...
+                let meta_new = (typeof(data.result) !== 'object' ||
+                                data.result === null ||
+                                Array.isArray(data.result))
+                                    ? {}
+                                    : clone(data.result);
 
-                if (new_metadata.favorites === undefined)
-                    new_metadata.favorites = {};
+                if (meta_new.favorites === undefined)
+                    meta_new.favorites = {};
 
-                new_metadata.favorites.state = state;
+                meta_new.favorites.state = state;
 
                 this.$homegear.invoke({
                     jsonrpc: '2.0',
                     method: 'setUiElementMetadata',
-                    params: [dev, new_metadata],
+                    params: [dev, meta_new],
                 }, () => {
-                    interfaceData.devices[dev].dynamicMetadata.favorites =
-                        new_metadata.favorites;
+                    Vue.set(interfaceData.devices[dev], 'dynamicMetadata',
+                            meta_new);
                 });
             });
         },
@@ -581,6 +624,7 @@ Vue.component('shif-trans-right-in-out', {
 Vue.component('shif-house-collected-entries', {
     mixins: [
         mixin_components,
+        mixin_modemenu,
         mixin_profiles,
         mixin_print_mounted(),
     ],
@@ -643,8 +687,9 @@ Vue.component('shif-house-collected-entries', {
                 const devices = this.favorites === true
                                     ? Object.keys(interfaceData.devices)
                                             .map(dev => interfaceData.devices[dev])
-                                            .filter(dev => dev.dynamicMetadata.favorites &&
-                                                           dev.dynamicMetadata.favorites.state)
+                                            .filter(dev => ! Array.isArray(dev.dynamicMetadata) &&
+                                                           dev.dynamicMetadata.favorites !== undefined &&
+                                                           dev.dynamicMetadata.favorites.state === true)
                                     : interfaceData.rooms[this.room_id]
                                                    .devices
                                                    .map(dev => interfaceData.devices[dev]);
@@ -677,20 +722,23 @@ Vue.component('shif-house-collected-entries', {
     template: `
         <div>
             <div v-if="profiles.length > 0" class="profiles_wrapper">
-                <template v-for="i in profiles">
-                    <shif-generic-l2 v-bind:icon="profile_icon(i)"
-                                     v-bind:title="i.name"
-                                     v-bind:status="i18n('modemenu.profiles.name.label')"
-                                     v-bind:active="{icon: i.isActive ? 'active' : ''}"
-                                     v-on:click="profile_start(i)">
-                        <template v-slot:automations>
-                            <router-link v-if="profile_used_by_automations(i.id) !== false"
-                                         v-bind:to="profile_automation_link(i.id)">
-                                <shif-icon src="calendar-time_1" />
-                            </router-link>
-                        </template>
-                    </shif-generic-l2>
-                </template>
+                <shif-draggable v-bind:value="profiles"
+                                v-slot="draggable"
+                                handle=".drag_drop_icon"
+                                name="profiles">
+                    <template v-for="i in draggable.values">
+                        <shif-generic-l2 v-bind:icon="profile_icon(i.val)"
+                                         v-bind:key="i.val.id"
+                                         v-bind:title="i.val.name"
+                                         v-bind:status="i18n('modemenu.profiles.name.label')"
+                                         v-bind:active="{icon: i.val.isActive ? 'active' : ''}"
+                                         v-on:click="profile_start(i.val)">
+                            ${shif_device_slot_favorites_profile}
+                            ${shif_device_slot_automations_profile}
+                            ${shif_device_slot_draggable}
+                        </shif-generic-l2>
+                    </template>
+                </shif-draggable>
             </div>
 
             <shif-draggable v-bind:value="dev_objs"
@@ -705,45 +753,6 @@ Vue.component('shif-house-collected-entries', {
             </shif-draggable>
         </div>
     `,
-});
-
-
-
-Vue.component('shif-mainmenu-tabs', {
-    mixins: [mixin_print_mounted()],
-
-    computed: {
-        idx_mainmenu: function () {
-            const menu_name = this.$route.matched[0].name;
-            return interfaceData.mainmenu.findIndex(x => x.name === menu_name);
-        },
-
-        tabs: function () {
-            return interfaceData.mainmenu[this.idx_mainmenu].tabs;
-        },
-
-        tab_width: function () {
-            return (100 / this.tabs.length) + '%';
-        },
-    },
-
-    template: `
-        <div>
-            <div id="tabs" v-if="$root.draggable.in_progress === false">
-                <template v-for="tab in tabs">
-                    <router-link v-bind:to="{name: tab.name}">
-                        <shif-tab v-bind:width="tab_width">
-                            {{ i18n(tab.name) }}
-                        </shif-tab>
-                    </router-link>
-                </template>
-            </div>
-
-            <div class="tabWrapper activeTab" style="text-align: center;">
-                <slot />
-            </div>
-        </div>
-    `
 });
 
 
@@ -845,37 +854,101 @@ Vue.component('shif-checkbox-favorites', {
 
     inject: ['layer'],
 
-    data: function () {
-        return {
-            state: this.dev !== undefined &&
-                   this.dev.dynamicMetadata !== undefined &&
-                   this.dev.dynamicMetadata.favorites !== undefined &&
-                   this.dev.dynamicMetadata.favorites.state === true,
-        };
-    },
-
     computed: {
         show: function () {
             return this.layer === 2 &&
                    this.modemenu_is_state(ModeMenuState.FAVORITES);
         },
+
+        dyn: function () {
+            return this.dev.dynamicMetadata;
+        },
+
+        state: {
+            get: function () {
+                return this.dyn !== undefined &&
+                       ! Array.isArray(this.dyn) &&
+                       this.dyn.favorites !== undefined &&
+                       this.dyn.favorites.state === true;
+            },
+
+            set: function (new_) {
+                this.dev_toggle_favorite(this.dev.databaseId, new_);
+            },
+        },
     },
 
     methods: {
-        change: function () {
-            return this.dev_toggle_favorite(this.dev.databaseId, this.state);
+        on_click: function () {
+            this.state = ! this.state;
         },
     },
 
     template: `
         <div>
             <template v-if="show">
-                <div v-on:click.stop=""
-                     v-on:change.stop="change">
-                    <div v-bind:class="classname">
-                        <shif-checkbox v-model="state" />
-                    </div>
-                </div>
+                <label class="check"
+                       v-bind:class="{checked: state}"
+                       v-on:click.stop="on_click">
+                    <span class="checkmark"></span>
+                </label>
+            </template>
+        </div>
+    `
+});
+
+
+
+Vue.component('shif-checkbox-favorites-profile', {
+    mixins: [mixin_profiles, mixin_modemenu],
+
+    props: {
+        profile_id: {
+            type: [Number, String],
+            required: true,
+        },
+        classname: {
+            type: String,
+            default: 'checkbox_favorites',
+        },
+    },
+
+    inject: ['layer'],
+
+    computed: {
+        profile: function () {
+            return interfaceData.profiles[this.profile_id];
+        },
+
+        show: function () {
+            return this.layer === 2 &&
+                   this.modemenu_is_state(ModeMenuState.FAVORITES);
+        },
+
+        state: {
+            get: function () {
+                return this.profile.favorite === true;
+            },
+            set: function (new_) {
+                this.profile_update_favorite(this.profile, new_);
+            },
+        }
+    },
+
+    methods: {
+        on_click: function () {
+            this.state = ! this.state;
+        },
+    },
+
+    template: `
+        <div>
+            <template v-if="show">
+                <label class="check"
+                       v-bind:class="{checked: state}"
+                       v-on:click.stop="on_click">
+                    <span class="checkmark"></span>
+                </label>
             </template>
         </div>
     `
@@ -905,48 +978,53 @@ Vue.component('shif-checkbox-profiles', {
         },
     },
 
-    data: function () {
-        const idx = root_profiles_idx(this.output.peer, this.output.channel,
-                                      this.output.name);
-
-        return {
-            idx:   idx,
-            state: (idx in this.$root.profiles.devs),
-        };
-    },
-
     watch: {
         'props.value': function () {
             if (this.modemenu_is_state(ModeMenuState.PROFILES) &&
-                (this.idx in this.$root.profiles.devs))
+                this.state === true)
                 this.$root.profiles.devs[this.idx].value = this.props.value;
         },
     },
 
-    methods: {
-        change: function () {
-            if (this.state)
-                this.$root.profiles.devs[this.idx] = {
-                    peer:    this.output.peer,
-                    channel: this.output.channel,
-                    name:    this.output.name,
-                    value:   this.props.value,
-                };
+    computed: {
+        idx: function () {
+            return root_profiles_idx(this.output.peer, this.output.channel,
+                                     this.output.name);
+        },
 
-            else if (this.idx in this.$root.profiles.devs)
-                delete this.$root.profiles.devs[this.idx];
+        state: {
+            get: function () {
+                return this.idx in this.$root.profiles.devs;
+            },
+
+            set: function (new_) {
+                if (new_)
+                    Vue.set(this.$root.profiles.devs, this.idx, {
+                        peer:    this.output.peer,
+                        channel: this.output.channel,
+                        name:    this.output.name,
+                        value:   this.props.value,
+                    });
+                else if (this.state)
+                    Vue.delete(this.$root.profiles.devs, this.idx);
+            },
+        },
+    },
+
+    methods: {
+        on_click: function () {
+            this.state = !this.state;
         },
     },
 
     template: `
         <div>
             <template v-if="modemenu_is_state('PROFILES')">
-                <div v-on:click.stop=""
-                     v-on:change.stop="change">
-                    <div v-bind:class="classname">
-                        <shif-checkbox v-model="state" />
-                    </div>
-                </div>
+                <label class="check"
+                       v-bind:class="{checked: state}"
+                       v-on:click.stop="on_click">
+                    <span class="checkmark"></span>
+                </label>
             </template>
         </div>
     `
@@ -956,7 +1034,21 @@ Vue.component('shif-checkbox-profiles', {
 
 Vue.component('shif-icon-selection', {
     props: {
-        value: {type: String, required: true,},
+        value:    {type: String,  required: true,},
+        profiles: {type: Boolean, default: false,},
+        rooms:    {type: Boolean, default: false,},
+    },
+
+    computed: {
+        icons: function () {
+            if (this.profiles)
+                return this.interfaceIcons.profiles;
+
+            if (this.rooms)
+                return this.interfaceIcons.rooms;
+
+            return this.interfaceIcons;
+        },
     },
 
     methods: {
@@ -967,17 +1059,19 @@ Vue.component('shif-icon-selection', {
 
     template: `
         <div id="profile_icons">
-            <label v-for="_, key in interfaceIcons"
-                    v-bind:class="{selected: value === key}"
-                    v-bind:title="key"
-                    class="profile_icon_wrapper">
-                <shif-icon classname="profile_icon" v-bind:src="key" />
-                <input type="radio"
-                        name="profile_icon"
-                        v-bind:value="value"
-                        v-on:click="on_click(key)"
-                        hidden />
-            </label>
+            <template v-for="_, key in icons"
+                      v-if="key !== 'profiles' && key !== 'rooms'">
+                <label v-bind:class="{selected: value === key}"
+                       v-bind:title="$root.debug ? key : undefined"
+                       class="profile_icon_wrapper">
+                    <shif-icon classname="profile_icon" v-bind:src="key" />
+                    <input type="radio"
+                            name="profile_icon"
+                            v-bind:value="value"
+                            v-on:click="on_click(key)"
+                            hidden />
+                </label>
+            </template>
         </div>
     `
 });

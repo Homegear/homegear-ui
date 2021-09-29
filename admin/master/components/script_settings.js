@@ -2,6 +2,7 @@
     global
         ModeMenuState
         i18n
+        get_or_default,
         licenses
         mixin_menus
         mixin_modemenu
@@ -10,6 +11,8 @@
         mixin_rooms
         mixin_scroll_position
         user_register_webauthn_device
+        user_interaction
+        viewLog
 */
 /*
     exported
@@ -17,13 +20,61 @@
         ShifSettingsAutomations
         ShifSettingsAutomationsForm
         ShifSettingsFavorites
-        ShifSettingsItems
+        ShifSettingsIntercom
+        ShifSettingsItemsLvl1
         ShifSettingsLicenses
+        ShifSettingsLog
         ShifSettingsProfile
         ShifSettingsProfiles
         ShifSettingsSort
         ShifSettingsUser
+        ShifSettingsRoomName
+        ShifSettingsRoomNames
 */
+
+
+
+const mixin_names = {
+    methods: {
+        floor_name: function (id) {
+            if (id === '-1')
+                return i18n('house.storyless');
+
+            return interfaceData.floors[id].name;
+        },
+
+        room_name: function (id) {
+            return interfaceData.rooms[id].name;
+        },
+
+        position: function (floor_id, room_id) {
+            return `${this.floor_name(floor_id)} - ${this.room_name(room_id)}`;
+        },
+
+        device_name: function (id) {
+            return interfaceData.devices[id].label;
+        },
+
+        control_name: function (device_id, control_idx) {
+            const cur = interfaceData.devices[device_id].controls[control_idx];
+
+            return cur.texts !== undefined &&
+                   cur.texts.title !== undefined &&
+                   cur.texts.title.content !== undefined
+                        ? cur.texts.title.content
+                        : cur.uniqueUiElementId;
+        },
+
+        input_name: function (device_id, control_idx, input_idx) {
+            return interfaceData.devices[device_id]
+                                .controls[control_idx]
+                                .variableInputs[input_idx]
+                                .name
+                                .toLowerCase();
+
+        },
+    },
+};
 
 
 
@@ -42,28 +93,33 @@ Vue.component('shif-settings-element', {
         icon_active_class: function () {
             return this.icon_active ? 'active' : '';
         },
+
+        description_available: function () {
+            return this.description && this.description.length > 0;
+        },
     },
 
     template: `
-        <div class="button">
+        <div class="button" v-on:click="$emit('click', this)">
             <shif-icon v-if="icon" classname="button_icon" v-bind:src="icon" v-bind:active="icon_active_class" />
             <div class="button_text">
-                <template v-if="description && description.length > 0">
+                <template v-if="description_available">
                     <div class="button_title">{{ translate ? i18n(name) : name }}</div>
-                </template>
-                <template v-else="description && description.length > 0">
-                    <div class="button_title button_no_description">{{ translate ? i18n(name) : name }}</div>
-                </template>
-                <template v-if="description && description.length > 0">
                     <div class="button_status" style="display:block;">{{ translate ? i18n(description) : description }}</div>
+                </template>
+
+                <template v-else>
+                    <div class="button_title button_no_description">{{ translate ? i18n(name) : name }}</div>
                 </template>
             </div>
             <div class="button_action">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
-                    <g id="Ebene_1">
-                        <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
-                    </g>
-                </svg>
+                <slot>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg" x="0" y="0" width="370.81" height="370.81" viewBox="0 0 370.81 370.81">
+                        <g id="Ebene_1">
+                            <path d="M77.9 345.97L102.03 370.81 292.92 185.41 102.03 0 77.9 24.85 243.18 185.41z"/>
+                        </g>
+                    </svg>
+                </slot>
             </div>
         </div>
     `
@@ -71,7 +127,20 @@ Vue.component('shif-settings-element', {
 
 
 
-let ShifSettingsLicenses = {
+const ShifSettingsLog = {
+    mounted: function () {
+        viewLog('-----------------------------');
+    },
+
+    template: `
+        <pre id="log" class="content content_single">
+        </pre>
+    `
+};
+
+
+
+const ShifSettingsLicenses = {
     mixins: [mixin_print_mounted('shif-settings-licenses')],
 
     computed: {
@@ -82,7 +151,7 @@ let ShifSettingsLicenses = {
 
     methods: {
         log_hook: function () {
-            this.$router.push('/log');
+            this.$router.push({name: 'settings.log'});
         },
     },
 
@@ -121,7 +190,7 @@ let ShifSettingsLicenses = {
 
 
 
-let ShifSettingsUser = {
+const ShifSettingsUser = {
     mixins: [mixin_print_mounted('shif-settings-user')],
 
     data: function () {
@@ -135,6 +204,7 @@ let ShifSettingsUser = {
             ],
             languages: interfaceData.i18n.languages,
             name:      this.$route.name,
+            changed: false,
 
             form: {
                 name: 'user_edit',
@@ -144,6 +214,15 @@ let ShifSettingsUser = {
                 color:     interfaceData.options.highlight,
             }
         };
+    },
+
+    watch: {
+        form: {
+            handler: function () {
+                this.changed = true;
+            },
+            deep: true,
+        },
     },
 
     computed: {
@@ -170,7 +249,9 @@ let ShifSettingsUser = {
 
                 new_settings.locale    = this.form.language;
 
-                if (new_settings.interface === undefined)
+                if (new_settings.interface === undefined ||
+                    new_settings.interface === null ||
+                    Array.isArray(new_settings.interface))
                     new_settings.interface = {};
 
                 Object.assign(new_settings.interface, {
@@ -184,7 +265,8 @@ let ShifSettingsUser = {
                     jsonrpc: '2.0',
                     method: 'setUserMetadata',
                     params: [new_settings]
-                }, function () {
+                }, () => {
+                    this.changed = false;
                     window.location.reload(true);
                 });
             });
@@ -193,6 +275,17 @@ let ShifSettingsUser = {
         two_fa_register_dev: function () {
             return user_register_webauthn_device();
         },
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        if (! this.changed)
+            return next();
+
+        user_interaction.confirm({content: 'settings.user.manage.unsaved'})
+                        .then(x => {
+                            if (x)
+                                next();
+                        });
     },
 
     template: `
@@ -281,41 +374,12 @@ let ShifSettingsUser = {
 
 
 
-let ShifSettingsItems = function (level) {
-    return {
-        mixins: [
-            mixin_scroll_position,
-            mixin_menus,
-            mixin_print_mounted('shif-settings-items')
-        ],
-
-        methods: {
-            elements: function (level) {
-                return interfaceData.menu.filter(x => x.mainmenu === 'settings' &&
-                                                      x.level    === String(level) &&
-                                                      ! this.disabled('menu', x.name));
-            },
-        },
-
-        template: `
-            <div>
-                <template v-for="i in elements(${level})">
-                    <router-link v-bind:to="{name: i.name}">
-                        <shif-settings-element v-bind:key="i.name"
-                                               v-bind:icon="i.icon"
-                                               v-bind:name="i.name"
-                                               v-bind:description="i.description" />
-                    </router-link>
-                </template>
-            </div>
-        `,
-    };
-};
-
-
-
-let ShifSettingsSort = {
+const ShifSettingsSort = {
     mixins: [mixin_modemenu],
+
+    props: {
+        menu: {type: Object, default: undefined},
+    },
 
     data: function () {
         return {
@@ -334,20 +398,22 @@ let ShifSettingsSort = {
     },
 
     template: `
-        <div class="device_wrapper">
-            <div class="device"
-                 v-on:click.prevent="state = ! state">
-                <shif-title>{{ i18n('settings.sort.mode') }}</shif-title>
-                <shif-checkbox v-model="state" />
-            </div>
-        </div>
+        <shif-settings-element v-bind="menu"
+                               v-on:click="state = ! state">
+            <shif-checkbox v-bind:value="state"
+                           v-on:click.native.prevent="" />
+        </shif-settings-element>
     `
 };
 
 
 
-let ShifSettingsFavorites = {
+const ShifSettingsFavorites = {
     mixins: [mixin_modemenu],
+
+    props: {
+        menu: {type: Object, default: undefined}
+    },
 
     data: function () {
         return {
@@ -366,19 +432,17 @@ let ShifSettingsFavorites = {
     },
 
     template: `
-        <div class="device_wrapper">
-            <div class="device"
-                 v-on:click.prevent="state = ! state">
-                <shif-title>{{ i18n('settings.favorites.mode') }}</shif-title>
-                <shif-checkbox v-model="state" />
-            </div>
-        </div>
+        <shif-settings-element v-bind="menu"
+                               v-on:click="state = ! state">
+            <shif-checkbox v-bind:value="state"
+                           v-on:click.native.prevent="" />
+        </shif-settings-element>
     `
 };
 
 
 
-let ShifSettingsProfiles = {
+const ShifSettingsProfiles = {
     mixins: [
         mixin_scroll_position,
         mixin_profiles,
@@ -421,7 +485,7 @@ let ShifSettingsProfiles = {
 
 
 
-let ShifSettingsProfileRoleValue = {
+const ShifSettingsProfileRoleValue = {
     mixins: [mixin_print_mounted('shif-settings-profile-role-value')],
 
     props: {
@@ -473,11 +537,71 @@ let ShifSettingsProfileRoleValue = {
 
 
 
-let ShifSettingsProfile = {
+const ShifRoomSelection = {
+    mixins: [
+        mixin_names,
+        mixin_print_mounted('shif-room-selection')
+    ],
+
+    props: {
+        map:   {
+            type: Object,
+            required: true,
+        },
+        value: {
+            type: Array,
+        },
+        value_separator: {
+            type: String,
+            default: '<|>',
+        },
+    },
+
+    computed: {
+        value_usable: {
+            get: function () {
+                return this.value
+                           .map(x => this.option_value(x.floorId, x.roomId));
+            },
+            set: function (new_) {
+                function null_or_number(x) {
+                    return x === 'null' ? null : parseInt(x);
+                }
+
+                const locations = new_.map(x => x.split(this.value_separator))
+                                      .map(x => ({
+                                            floorId: null_or_number(x[0]),
+                                            roomId:  null_or_number(x[1]),
+                                       }));
+
+                this.$emit('input', locations);
+            },
+        },
+    },
+
+    methods: {
+        option_value: function (floorId, roomId) {
+            return `${floorId}${this.value_separator}${roomId}`;
+        },
+    },
+
+    template: `
+        <shif-multi-select v-model="value_usable"
+                           v-bind:options="map"
+                           v-bind:func_group_name="floor_name"
+                           v-bind:func_item_name="(_,x) => room_name(x)"
+                           v-bind:func_key="option_value" />
+    `
+};
+
+
+
+const ShifSettingsProfile = {
     mixins: [
         mixin_modemenu,
         mixin_profiles,
-        mixin_print_mounted('shif-settings-profile')
+        mixin_print_mounted('shif-settings-profile'),
+        mixin_rooms,
     ],
 
     props: [
@@ -486,94 +610,23 @@ let ShifSettingsProfile = {
 
     components: {
         ShifSettingsProfileRoleValue,
+        ShifRoomSelection,
     },
 
     data: function () {
-        if (this.profile_id === undefined ||
-            ! (this.profile_id in interfaceData.profiles))
-            return {
-                mode: 'add',
-                profile: null,
-                form: {
-                    name: 'profile_add',
-                    icon: 'slider_1',
-                    profile_name: '',
-                    role: {
-                        role: null,
-                        value: null,
-                    },
-                    location: {
-                        floor:    null,
-                        room:     null,
-                        global:   false,
-                        favorite: false,
-                    },
-                }
-            };
+        return this[`_data_${this.state()}`]();
+    },
 
-        const profile = interfaceData.profiles[this.profile_id];
-
-        if (this.is_enabled) {
-            return {
-                mode: 'edit',
-                profile: profile,
-                form: this.$root.profiles.form,
-            };
-        }
-
-        const [floor, room] = profile.locations.length === 0
-                ? [null, null]
-                : [profile.locations[0].floorId, profile.locations[0].roomId];
-
-        const global   = profile.global === true;
-        const favorite = profile.favorite === true;
-
-        const role = profile.roles !== undefined && profile.roles.length > 0
-                        ? profile.roles[0]
-                        : {role: null, value: null};
-
-        return {
-            mode: 'edit',
-            profile: profile,
-            form: {
-                name: 'profile_edit',
-                icon: profile.icon,
-                profile_name: profile.name,
-                location: {
-                    floor:    floor === undefined ? null : floor,
-                    room:     room  === undefined ? null : room,
-                    global:   global,
-                    favorite: favorite,
-                },
-                role: role,
+    watch: {
+        form: {
+            handler: function () {
+                this.changed = true;
             },
-        };
+            deep: true,
+        },
     },
 
     computed: {
-        is_enabled: function () {
-            return this.modemenu_is_state(ModeMenuState.PROFILES);
-        },
-
-        floors: function () {
-            return Object.keys(interfaceData.floors)
-                         .map(x => ({id: x, name: interfaceData.floors[x].name}))
-                         .concat({id: null, name: '---'});
-        },
-
-        filtered_rooms: function () {
-            let rooms = Object.keys(interfaceData.rooms);
-
-            if (this.form.location.floor !== undefined &&
-                this.form.location.floor !== null &&
-                this.form.location.floor in interfaceData.floors)
-                rooms = interfaceData.floors[this.form.location.floor]
-                                     .rooms;
-
-            return rooms.map(x => ({id: x, name: interfaceData.rooms[x].name}))
-                        .concat({id: null, name: '---'});
-        },
-
         filtered_roles: function () {
             return Object.keys(interfaceData.roles)
                          .filter(x => interfaceData.roles[x].roleProfileValues !== undefined)
@@ -584,45 +637,219 @@ let ShifSettingsProfile = {
         show_roles: function () {
             return interfaceData.options.roleProfileDefinable === true;
         },
+
+        map_room_floor: function () {
+            function handle_room(floor_id, room_id) {
+                if (out[floor_id] === undefined)
+                    out[floor_id] = [room_id];
+                else if (out[floor_id].indexOf(room_id) == -1)
+                    out[floor_id].push(room_id);
+            }
+
+            let out = {};
+
+            for (const floor_id in interfaceData.floors) {
+                const floor = interfaceData.floors[floor_id];
+
+                for (const room_id of floor.rooms)
+                    handle_room(floor_id, room_id);
+            }
+
+            for (const room_id of this.unassigned_rooms)
+                handle_room(-1, room_id);
+
+            return out;
+        },
+
+        global_or_room: function () {
+            return this.form.locations !== undefined &&
+                   (this.form.locations.global === true ||
+                    this.form.locations.rooms.length > 0);
+        },
     },
 
     methods: {
+        _data_new: function () {
+            return {
+                mode: 'add',
+                profile: null,
+                changed: false,
+                form: {
+                    name: 'profile_add',
+                    icon: 'slider_1',
+                    profile_name: '',
+                    role: {
+                        role: null,
+                        value: null,
+                    },
+                    locations: {
+                        rooms:      [],
+                        global:     true,
+                        categories: [],
+                    },
+                }
+            };
+        },
+        _data_new_devices: function () {
+            return {
+                mode: 'add',
+                profile: null,
+                changed: this.$root.profiles.changed,
+                form: this.$root.profiles.form,
+            };
+        },
+        _data_edit: function () {
+            const profile = interfaceData.profiles[this.profile_id];
+
+            const role = profile.roles !== undefined && profile.roles.length > 0
+                            ? profile.roles[0]
+                            : {role: null, value: null};
+
+            return {
+                mode: 'edit',
+                profile: profile,
+                changed: false,
+                form: {
+                    name: 'profile_edit',
+                    icon: profile.icon,
+                    profile_name: profile.name,
+                    locations: {
+                        rooms:      profile.locations,
+                        global:     profile.global === true,
+                        categories: profile.categories,
+                    },
+                    role: role,
+                },
+            };
+        },
+        _data_edit_devices: function () {
+            const profile = interfaceData.profiles[this.profile_id];
+
+            return {
+                mode: 'edit',
+                profile: profile,
+                changed: this.$root.profiles.changed,
+                form: this.$root.profiles.form,
+            };
+        },
+
+        is_edit_devices: function () {
+            return this.modemenu_is_state(ModeMenuState.PROFILES);
+        },
+
+        state: function () {
+            if (this.profile_id === undefined ||
+                ! (this.profile_id in interfaceData.profiles)) {
+
+                return this.is_edit_devices()
+                    ? 'new_devices'
+                    : 'new';
+            }
+
+            return this.is_edit_devices()
+                ? 'edit_devices'
+                : 'edit';
+        },
+
+        check_storable: function () {
+            if (this.form.profile_name === '') {
+                user_interaction.alert({
+                    content: 'settings.profiles.profile.name_required'
+                });
+                return false;
+            }
+
+            if (! this.global_or_room) {
+                user_interaction.alert({
+                    content: 'settings.profiles.profile.global_or_room'
+                });
+                return false;
+            }
+
+            return true;
+        },
+
         form_submit: function (source) {
             switch (source) {
                 case 'load':
-                    this.$root.profiles.form = this.form;
-                    this.$root.profiles.id   = this.profile.id;
+                    if (!this.check_storable())
+                        return;
 
-                    return this.profile_load(this.profile,
-                        () => this.$router.push({name: 'house.tab.rooms'})
-                    );
+                    this.$root.profiles.form    = this.form;
+                    this.$root.profiles.changed = this.changed;
+                    this.changed = false;
+
+                    if (this.mode === 'edit') {
+                        this.$root.profiles.id = this.profile.id;
+
+                        return this.profile_load(this.profile,
+                            () => {
+                                this.$router.push({name: 'house.tab.rooms'});
+                                user_interaction.alert({
+                                    content: 'settings.profiles.profile.load.description',
+                                    dont_show_again: 'settings.profiles.profile.load.description',
+                                });
+                            }
+                        );
+                    }
+
+                    this.$root.profiles.id = undefined;
+
+                    this.modemenu_show(ModeMenuState.PROFILES);
+                    this.$router.push({name: 'house.tab.rooms'});
+                    return user_interaction.alert({
+                        content: 'settings.profiles.profile.load.description',
+                        dont_show_again: 'settings.profiles.profile.load.description',
+                    });
 
                 case 'save':
-                    if (this.mode === 'edit')
-                        return this.profile_update(this.profile, this.form);
+                    if (!this.check_storable())
+                        return;
 
-                    return this.profile_add(this.form,
-                        (result) => this.$router.replace({
-                            name: 'settings.profiles.profile',
-                            params: {
-                                profile_id: result.result
-                            },
-                        })
-                    );
+                    {
+                        const cb = () => {
+                            this.changed = false;
+                            this.$router.back();
+                        };
+
+                        if (this.mode === 'edit')
+                            return this.profile_update(this.profile, this.form, cb);
+
+                        return this.profile_add(this.form, cb);
+                    }
 
                 case 'delete':
-                    return this.profile_delete(this.profile,
-                        () => this.$router.replace({name: 'settings.profiles'})
-                    );
+                    return user_interaction.confirm({
+                        content: 'settings.profiles.profile.delete_request'
+                    }).then(x => {
+                        if (x)
+                            this.profile_delete(this.profile,
+                                () => this.$router.replace({name: 'settings.profiles'})
+                            );
+                    });
+
+                case 'abort':
+                    return this.$router.replace({name: 'settings.profiles'});
             }
         },
     },
 
     mounted: function () {
-        if (this.mode === 'edit' && ! this.is_enabled)
-            return this.profile_build_root_devs(this.profile);
+        if (this.is_edit_devices())
+            return this.modemenu_hide();
 
-        this.modemenu_hide();
+        this.profile_build_root_devs(this.profile);
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        if (! this.changed)
+            return next();
+
+        user_interaction.confirm({content: 'settings.profiles.profile.unsaved'})
+                        .then(x => {
+                            if (x)
+                                next();
+                        });
     },
 
     template: `
@@ -642,42 +869,32 @@ let ShifSettingsProfile = {
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.icon') }}:</div>
-                    <shif-icon-selection v-model="form.icon" />
+                    <shif-icon-selection v-model="form.icon"
+                                         v-bind:profiles="true" />
                 </div>
 
                 <div class="form-group">
                     <div class="label">{{ i18n('settings.profiles.profile.locations') }}:</div>
-                    <div class="global"
-                         v-on:click.prevent="form.location.global = !form.location.global">
-                        <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
-                        <shif-checkbox v-model="form.location.global" />
-                    </div>
-                    <div class="global"
-                         v-on:click.prevent="form.location.favorite = !form.location.favorite">
-                        <div class="label">{{ i18n('settings.profiles.profile.locations.favorite') }}:</div>
-                        <shif-checkbox v-model="form.location.favorite" />
-                    </div>
-                    <div class="label">{{ i18n('settings.profiles.profile.locations.floor') }}:</div>
-                    <select id="locationsFloors"
-                            name="locationsFloors"
-                            v-model="form.location.floor">
-                        <option v-for="i in floors"
-                                v-bind:value="i.id"
-                                autocomplete="off">
-                            {{ i.name }}
-                        </option>
-                    </select>
 
-                    <div class="label">{{ i18n('settings.profiles.profile.locations.room') }}:</div>
-                    <select id="locationsRooms"
-                            name="locationsRooms"
-                            v-model="form.location.room">
-                        <option v-for="i in filtered_rooms"
-                                v-bind:value="i.id"
-                                autocomplete="off">
-                            {{ i.name }}
-                        </option>
-                    </select>
+                    <div style="padding-left:40px;">
+                        <div class="global"
+                                v-on:click.prevent="form.locations.global = !form.locations.global">
+                            <div class="label">{{ i18n('settings.profiles.profile.locations.global') }}:</div>
+                            <shif-checkbox v-model="form.locations.global" />
+                        </div>
+
+                        <div class="label">
+                            {{ i18n('settings.profiles.profile.locations.floor') }} /
+                            {{ i18n('settings.profiles.profile.locations.room') }}:
+                        </div>
+                        <shif-room-selection v-bind:map="map_room_floor"
+                                                v-model="form.locations.rooms" />
+
+                        <div class="label" style="margin-top: 30px;">{{ i18n('settings.profiles.profile.categories') }}:</div>
+                        <shif-multi-select v-bind:options="interfaceData.deviceCategories"
+                                            v-bind:func_item_name="x => interfaceData.deviceCategories[x].name"
+                                            v-model="form.locations.categories" />
+                    </div>
                 </div>
 
                 <div v-if="show_roles"
@@ -698,72 +915,33 @@ let ShifSettingsProfile = {
                         v-bind:role_id="form.role.role" />
                 </div>
 
-                <div class="form-group">
-                    <input v-if="mode === 'edit' && form.role.role === null"
-                           type="submit"
+                <div class="form-group" v-if="form.role.role === null">
+                    <input type="button"
                            name="load"
                            v-on:click="form_submit('load')"
                            v-bind:value="i18n('settings.profiles.profile.load')" />
+                </div>
 
+                <div class="form-group">
                     <input type="submit"
                            name="save"
                            v-on:click="form_submit('save')"
                            v-bind:value="i18n('settings.profiles.profile.save')" />
 
                     <input v-if="mode === 'edit'"
-                           type="submit"
+                           type="button"
                            name="delete"
                            v-on:click="form_submit('delete')"
                            v-bind:value="i18n('settings.profiles.profile.delete')" />
+                    <input v-else-if="mode === 'add'"
+                           type="button"
+                           name="abort"
+                           v-on:click="form_submit('abort')"
+                           v-bind:value="i18n('settings.profiles.profile.abort')" />
                 </div>
             </form>
         </div>
     `,
-};
-
-
-
-
-const mixin_names = {
-    methods: {
-        floor_name: function (id) {
-            if (id === '-1')
-                return i18n('house.storyless');
-
-            return interfaceData.floors[id].name;
-        },
-
-        room_name: function (id) {
-            return interfaceData.rooms[id].name;
-        },
-
-        position: function (floor_id, room_id) {
-            return `${this.floor_name(floor_id)} - ${this.room_name(room_id)}`;
-        },
-
-        device_name: function (id) {
-            return interfaceData.devices[id].label;
-        },
-
-        control_name: function (device_id, control_idx) {
-            const cur = interfaceData.devices[device_id].controls[control_idx];
-
-            return cur.texts !== undefined &&
-                   cur.texts.title !== undefined &&
-                   cur.texts.title.content !== undefined
-                        ? cur.texts.title.content
-                        : cur.uniqueUiElementId;
-        },
-
-        input_name: function (device_id, control_idx, input_idx) {
-            return interfaceData.devices[device_id]
-                                .controls[control_idx]
-                                .variableInputs[input_idx]
-                                .name
-                                .toLowerCase();
-
-        },
-    },
 };
 
 
@@ -1409,10 +1587,341 @@ const ShifSettingsAutomations = {
 
 
 
+const ShifSettingsRoomName = {
+    props: {
+        room_id: {
+            type: String,
+            required: true,
+        }
+    },
+
+    data: function () {
+        const room = interfaceData.rooms[this.room_id];
+
+        return {
+            name: room.name,
+            icon: room.icon,
+        };
+    },
+
+    computed: {
+        changed: function () {
+            if (this.name !== interfaceData.rooms[this.room_id].name)
+                return true;
+
+            if (this.icon !== interfaceData.rooms[this.room_id].icon)
+                return true;
+
+            return false;
+        },
+    },
+
+    methods: {
+        change_room_name: function () {
+            if (! this.changed)
+                return;
+
+            this.$homegear.invoke({
+                jsonrpc: '2.0',
+                method: 'getRooms',
+                params: [],
+            }, (res) => {
+                let room = res.result.filter(x => x.ID === Number(this.room_id))
+                                     .shift();
+                if (room === undefined)
+                    return;
+
+                if (room.METADATA === undefined)
+                    room.METADATA = {};
+                room.METADATA.icon = this.icon;
+
+                if (room.TRANSLATIONS === undefined)
+                    room.TRANSLATIONS = {};
+                room.TRANSLATIONS[interfaceData.options.language] = this.name;
+
+                this.$homegear.invoke({
+                    jsonrpc: '2.0',
+                    method: 'updateRoom',
+                    params: [
+                        Number(this.room_id),
+                        room.TRANSLATIONS,
+                        room.METADATA,
+                    ]
+                }, () => {
+                    Vue.set(interfaceData.rooms[this.room_id], 'name', this.name);
+                    Vue.set(interfaceData.rooms[this.room_id], 'icon', this.icon);
+                    this.$router.back();
+                });
+            });
+        }
+    },
+
+    beforeRouteLeave: function (to, from, next) {
+        if (! this.changed)
+            return next();
+
+        user_interaction.confirm({content: 'settings.roomnames.roomname.unsaved'})
+                        .then(x => {
+                            if (x)
+                                next();
+                        });
+    },
+
+    template: `
+        <div class="intercom_wrapper">
+            <div class="form-group">
+                <div class="label">{{ i18n('settings.roomnames.roomname.description') }}:</div>
+                <input v-model="name"
+                       v-bind:name="name" />
+            </div>
+
+            <div class="form-group">
+                <div class="label">{{ i18n('settings.roomnames.roomname.icon') }}:</div>
+                <shif-icon-selection v-model="icon"
+                                     v-bind:rooms="true" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit"
+                       name="save"
+                       v-bind:value="i18n('settings.roomnames.roomname.save')"
+                       v-on:click="change_room_name" />
+            </div>
+        </div>
+    `
+};
 
 
 
-let ShifSettings = {
+const ShifSettingsRoomNames = {
+    data: function () {
+        return {
+        };
+    },
+
+    methods: {
+        link: function (room_id) {
+            return {
+                name: 'settings.roomnames.roomname',
+                params: {
+                    room_id: room_id,
+                },
+            };
+        }
+    },
+
+    template: `
+        <div>
+            <template v-for="(room, id) in interfaceData.rooms">
+                <router-link v-bind:to="link(id)">
+                    <shif-settings-element v-bind:key="room.name"
+                                           v-bind:icon="room.icon"
+                                           v-bind:name="room.name"
+                                           v-bind:translate="false" />
+                </router-link>
+            </template>
+        </div>
+    `
+};
+
+
+
+const ShifSettingsIntercom = {
+    data: function () {
+        return {
+            volume_bell: 0,
+            volume_voice: 0,
+            sensitivity: 0,
+        };
+    },
+
+    computed: {
+        options: function () {
+            const def = {
+                ringVolume: {
+                    status: 100,
+                    visible: true,
+                },
+                outstationVolume: {
+                    status: 100,
+                    visible: true,
+                },
+                micVolume: {
+                    status: 100,
+                    visible: true,
+                },
+                mute: {
+                    status: false,
+                    visible: true,
+                },
+                visible: false,
+            };
+
+            const opt = interfaceData.options.intercom;
+            if (! opt)
+                return def;
+
+            return {
+                ringVolume:       get_or_default(opt, 'ringVolume',       def.ringVolume),
+                outstationVolume: get_or_default(opt, 'outstationVolume', def.outstationVolume),
+                micVolume:        get_or_default(opt, 'micVolume',        def.micVolume),
+                mute:             get_or_default(opt, 'mute',             def.mute),
+                visible:          get_or_default(opt, 'visible',          def.visible),
+            };
+        },
+    },
+
+    watch: {
+        options: {
+            deep: true,
+            handler: function (new_) {
+                this.$homegear.invoke({
+                    jsonrpc: '2.0',
+                    method: 'getUserMetadata',
+                    params: []
+                }, (data) => {
+                    let new_settings = data.result;
+
+                    if (new_settings.interface === undefined ||
+                        new_settings.interface === null ||
+                        Array.isArray(new_settings.interface))
+                        new_settings.interface = {};
+
+                    if (new_settings.interface.intercom === undefined)
+                        new_settings.interface.intercom = new_;
+                    else {
+                        new_settings.interface.intercom.ringVolume = new_.ringVolume;
+                        new_settings.interface.intercom.outstationVolume = new_.outstationVolume;
+                        new_settings.interface.intercom.micVolume = new_.micVolume;
+                        new_settings.interface.intercom.mute = new_.mute;
+                    }
+
+                    this.$homegear.invoke({
+                        jsonrpc: '2.0',
+                        method: 'setUserMetadata',
+                        params: [new_settings]
+                    });
+                });
+            }
+        },
+    },
+
+    template: `
+        <div class="intercom_wrapper">
+            <div v-if="options.ringVolume.visible === true">
+                <shif-slider v-bind:min="0"
+                             v-bind:max="100"
+                             v-bind:title="i18n('settings.intercom.volume_bell')"
+                             unit="%"
+                             v-model="options.ringVolume.status" />
+            </div>
+
+            <div v-if="options.outstationVolume.visible === true">
+                <shif-slider v-bind:min="0"
+                             v-bind:max="100"
+                             v-bind:title="i18n('settings.intercom.volume_voice')"
+                             unit="%"
+                             v-model="options.outstationVolume.status" />
+            </div>
+
+            <div v-if="options.micVolume.visible === true">
+                <shif-slider v-bind:min="0"
+                             v-bind:max="100"
+                             v-bind:title="i18n('settings.intercom.sensitivity')"
+                             unit="%"
+                             v-model="options.micVolume.status" />
+            </div>
+
+            <div v-if="options.mute.visible === true">
+                <div class="mute">
+                    <div class="label">{{ i18n('settings.intercom.mute') }}:</div>
+                    <shif-checkbox v-model="options.mute.status" />
+                </div>
+            </div>
+        </div>
+    `
+};
+
+
+
+const ShifSettingsItemsLvl1 = {
+    mixins: [
+        mixin_scroll_position,
+        mixin_menus,
+        mixin_print_mounted('shif-settings-items')
+    ],
+
+    components: {
+        ShifSettingsFavorites,
+        ShifSettingsLog,
+        ShifSettingsSort,
+    },
+
+    computed: {
+        elements: function () {
+            return interfaceData.menu.filter(x => x.mainmenu === 'settings' &&
+                                                  x.level    === '1' &&
+                                                  ! this.disabled('menu', x.name));
+        },
+    },
+
+    methods: {
+        cond_show: function (menu) {
+            const cond = menu.condition;
+            if (cond === undefined)
+                return true;
+
+            if (cond.route !== undefined &&
+                cond.route.query !== undefined &&
+                interfaceData.options.route_query[cond.route.query] !== undefined)
+                return true;
+
+            if (cond.options !== undefined &&
+                cond.options.path !== undefined) {
+
+                let cur = interfaceData.options;
+                for (const i of cond.options.path) {
+                    if (cur[i] === undefined)
+                        return false;
+
+                    cur = cur[i];
+                }
+
+                return cond.options.value === undefined
+                        ? true
+                        : cur === cond.options.value;
+            }
+
+            return false;
+        },
+    },
+
+    template: `
+        <div>
+            <template v-for="i in elements"
+                      v-if="cond_show(i)">
+
+                <template v-if="i.type === 'submenu'">
+                    <router-link v-bind:to="{name: i.name}">
+                        <shif-settings-element v-bind:key="i.name"
+                                               v-bind:icon="i.icon"
+                                               v-bind:name="i.name"
+                                               v-bind:description="i.description" />
+                    </router-link>
+                </template>
+
+                <template v-else-if="i.type === 'finalmenu'">
+                    <component v-bind:is="i.component" v-bind:menu="i" />
+                </template>
+
+            </template>
+        </div>
+    `,
+};
+
+
+
+const ShifSettings = {
     mixins: [mixin_print_mounted('shif-settings')],
 
     template: `
