@@ -44,7 +44,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>unlocked</content>
+                <content>locked</content>
                 <color>inactive</color>
               </text>
             </texts>
@@ -58,7 +58,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>locked</content>
+                <content>unlocked</content>
                 <color>active</color>
               </text>
             </texts>
