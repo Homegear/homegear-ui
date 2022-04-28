@@ -44,7 +44,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>unverriegelt</content>
+                <content>verriegelt</content>
                 <color>inactive</color>
               </text>
             </texts>
@@ -58,7 +58,7 @@
             </icons>
             <texts>
               <text id="state">
-                <content>verriegelt</content>
+                <content>unverriegelt</content>
                 <color>active</color>
               </text>
             </texts>
