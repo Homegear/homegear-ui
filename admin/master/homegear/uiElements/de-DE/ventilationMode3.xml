@@ -4,7 +4,7 @@
     <uniqueUiElementId>Base.ventilationMode3</uniqueUiElementId>
     <type>simple</type>
     <control>ventilationMode3</control>
-    <description>UI-Element zum Visialisieren einer vierstufigen Lüftung.</description>
+    <description>UI-Element zum Visialisieren einer dreistufigen Lüftung.</description>
     <texts>
       <text id="title">
         <content>Belüftung</content>

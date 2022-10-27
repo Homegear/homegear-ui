@@ -4,7 +4,7 @@
     <uniqueUiElementId>Base.ventilationMode3</uniqueUiElementId>
     <control>ventilationMode3</control>
     <type>simple</type>
-    <description>UI element to visualize a ventilation with four levels.</description>
+    <description>UI element to visualize a ventilation with three levels.</description>
     <texts>
       <text id="title">
         <content>Mode</content>
