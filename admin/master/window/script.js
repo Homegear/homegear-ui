@@ -84,14 +84,15 @@ window_buttons_l2.template = `
 let window_buttons_l3 = clone(shif_device);
 window_buttons_l3.methods.change = function(_event) {
     let upVar = this.control.variableOutputs[0];
-    let downVar = this.control.variableOutputs[2];
-    if((this.indexes.input == 0 || this.indexes.input == 2) &&
+    let downIndex = this.control.variableOutputs.length === 2 ? 1 : 2;
+    let downVar = this.control.variableOutputs[downIndex];
+    if((this.indexes.input == 0 || this.indexes.input == downIndex) &&
         !upVar.hasOwnProperty('value') &&
         !downVar.hasOwnProperty('value') &&
         upVar.peer == downVar.peer &&
         upVar.channel == downVar.channel &&
         upVar.name == downVar.name) {
-        let down = (this.indexes.input == 2);
+        let down = (this.indexes.input == downIndex);
         if((this.output.type == 'integer' ||
             this.output.type == 'integer64' ||
             this.output.type == 'float') &&
