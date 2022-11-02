@@ -17,7 +17,7 @@
   "devDependencies": {
     "@babel/cli": "^7.13.0",
     "@babel/core": "^7.13.1",
-    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-env": "7.13.5",
     "acorn": "^8.0.5",
     "csslint": "^1.0.5",
     "eslint": "^7.20.0",
@@ -27,7 +27,7 @@
   "unusedDevDependencies": {
     "@babel/node": "^7.10.4",
     "del": "^5.1.0",
-    "gulp-babel": "^8.0.0",
+    "gulp-babel": "^7.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^6.0.0",
@@ -59,6 +59,7 @@
     "lint": "npx eslint admin/master/**/*.js"
   },
   "browserslist": [
+    "since 2017",
     "last 4 version",
     "> 1%",
     "maintained node versions",
