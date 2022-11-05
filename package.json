@@ -59,7 +59,7 @@
     "lint": "npx eslint admin/master/**/*.js"
   },
   "browserslist": [
-    "since 2017",
+    "since 2016",
     "last 4 version",
     "> 1%",
     "maintained node versions",
