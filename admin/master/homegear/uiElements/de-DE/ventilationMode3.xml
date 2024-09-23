@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<homegearUiElements lang="de-DE">
+  <homegearUiElement>
+    <uniqueUiElementId>Base.ventilationMode3</uniqueUiElementId>
+    <type>simple</type>
+    <control>ventilationMode3</control>
+    <description>UI-Element zum Visialisieren einer dreistufigen Lüftung.</description>
+    <texts>
+      <text id="title">
+        <content>Belüftung</content>
+        <color>title</color>
+      </text>
+      <text id="l2_state_title">
+        <content>Stufe</content>
+        <color>l2_state_title</color>
+      </text>
+    </texts>
+    <icons>
+      <icon id="l2">
+        <name>ventilator_2</name>
+        <color>inactive</color>
+      </icon>
+      <icon id="l3">
+        <name>arrow_right_1</name>
+        <color>iconArrow</color>
+      </icon>
+    </icons>
+    <variableInputs>
+      <variable>
+        <label>Stufe</label>
+        <description>Die Stufe, welche im UI-Element aktiviert werden soll.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+        <visualizeInOverview>true</visualizeInOverview>
+        <rendering>
+          <condition operator="e" value="0">
+            <icons>
+              <icon id="state">
+                <name>arrow_up_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Stufe 1</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="1">
+            <icons>
+              <icon id="state">
+                <name>arrow_up_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Stufe 2</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+          <condition operator="e" value="2">
+            <icons>
+              <icon id="state">
+                <name>arrow_up_1</name>
+                <color>active</color>
+              </icon>
+            </icons>
+            <texts>
+              <text id="state">
+                <content>Stufe 3</content>
+                <color>active</color>
+              </text>
+            </texts>
+          </condition>
+        </rendering>
+      </variable>
+    </variableInputs>
+    <variableOutputs>
+      <variable>
+        <label>Stufe</label>
+        <description>Die Stufe, welche im UI-Element aktiviert wurde.</description>
+        <types>int</types>
+        <deviceTypeId>*</deviceTypeId>
+        <channel>*</channel>
+        <name>*</name>
+      </variable>
+    </variableOutputs>
+    <metadata>
+      <l3_force>true</l3_force>
+    </metadata>
+  </homegearUiElement>
+</homegearUiElements>
