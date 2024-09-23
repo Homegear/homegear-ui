@@ -82,8 +82,8 @@ else if (isset($_POST['prod'])) {
 function generateIcons ($path) {
     $files = array();
     $categories = array();
-    $handle=opendir($path);
-    while ($file = readdir($handle)){
+    $files = scandir($path);
+    foreach($files as $file) {
         if ($file == "." || $file == "..") {
             continue;
         }
@@ -171,9 +171,9 @@ if($action == "generateExtensions"){
     }
 
     function recursive_copy($src,$dst) {
-        $dir = opendir($src);
+        $files = scandir($src);
         @mkdir($dst);
-        while(( $file = readdir($dir)) ) {
+        foreach($files as $file) {
             if (( $file != '.' ) && ( $file != '..' )) {
                 if ( is_dir($src . '/' . $file) ) {
                     recursive_copy($src .'/'. $file, $dst .'/'. $file);
@@ -183,7 +183,6 @@ if($action == "generateExtensions"){
                 }
             }
         }
-        closedir($dir);
         return true;
     }
 
@@ -203,26 +202,27 @@ if($action == "generateExtensions"){
     foreach($activeExtensions as $line){
         $out .= $line."\n";
         $path = $rootPath.$interfaceData["admin"]["settings"]["masterPath"]."/".$line;
+
         if(!is_dir($path)){
             continue;
         }
-        $handle=opendir($path);
-        while ($file = readdir($handle)){
-        if($file != "." && $file != ".." && !is_dir($path."/".$file)){
-            $typePart = explode("_", $file);
-            $search  = array(".css", ".js");
-            $typePart = str_replace($search, "", $typePart);
+        $files = scandir($path);
+        foreach($files as $file) {
+            if($file != "." && $file != ".." && !is_dir($path."/".$file)){
+                $typePart = explode("_", $file);
+                $search  = array(".css", ".js");
+                $typePart = str_replace($search, "", $typePart);
 
-            if($typePart[0] == "style"){
-            $tempInterfaceData["style"] .= file_get_contents($path."/".$file)."\n";
+                if($typePart[0] == "style"){
+                $tempInterfaceData["style"] .= file_get_contents($path."/".$file)."\n";
+                }
+                else if($typePart[0] == "script"){
+                $tempInterfaceData["script"] .= file_get_contents($path."/".$file)."\n";
+                }
+                else{
+                    $out .= "Keine Verarbeitungsregel vorhanden für: ".$path."/".$file."\n";
+                }
             }
-            else if($typePart[0] == "script"){
-            $tempInterfaceData["script"] .= file_get_contents($path."/".$file)."\n";
-            }
-            else{
-                $out .= "Keine Verarbeitungsregel vorhanden für: ".$path."/".$file."\n";
-            }
-        }
         }
     }
 
@@ -259,8 +259,8 @@ if($action == "generateExtensions"){
         else{
         $tempInterfaceData["vendorLicense"][] = $interfaceData["admin"]["settings"]["assets"][$line]["license"];
         }
-        $handle=opendir($path);
-        while ($file = readdir($handle)){
+        $files = scandir($path);
+        foreach($files as $file) {
         if($file != "." && $file != ".." && !is_dir($path."/".$file) && $file != "LICENSE" && $file != "package.json"){
             $out .= $file." | ";
             $type = explode(".", $file);
